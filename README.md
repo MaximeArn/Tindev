@@ -1,6 +1,6 @@
 # Tindev : Reseau social pour dev
 
-Vous avez besoin de devs pour contretiser un projet ? Tindev est fait pour vous !!
+Vous avez besoin de devs pour concrétiser un projet ? Tindev est fait pour vous !!
 
 ## Presentation du projet :
 
