@@ -1,11 +1,6 @@
 @use 'reset';
 @use 'vars';
 
-@font-face {
-  font-family: "Roboto";
-  src: url("../assets/fonts/Roboto-Regular.ttf");
-}
-
 body {
-  font-family: "Roboto", sans-serif;
+  font-family: sans-serif;
 }
