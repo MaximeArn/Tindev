@@ -23,17 +23,17 @@ Discutez avec les autres utilisateurs via une messagerie instantanée et créez 
 ### Features :
 
  #### MVP :
-1. authentification (facebook, github, google...) 
+1. authentification (google...) 
 2. messagerie instantanée
 3. création de groupes
 4. géolacalisation 
 5. projects homepage
+1. page de profil  
 
  #### optional feature :
 1. Permettre à un utilisateur de mettre son projet en attente le temps de postuler a un projet
 1. afficher les projets "done" sur la page de profil d'un user 
 1. systeme de likes/commentaires
-1. page de profil  
 2. dark theme
 
 
