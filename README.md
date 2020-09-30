@@ -15,7 +15,7 @@ Discutez avec les autres utilisateurs via une messagerie instantanée et créez 
 2. TypeScript
 3. NodeJs
 4. Express
-5. mongo/pgSQL
+5. mongoDB
 6. Redux
 7. Insomnia/Postman
 
@@ -40,6 +40,9 @@ Discutez avec les autres utilisateurs via une messagerie instantanée et créez 
 ### Equipe :
 
 ### 2 Devs :
+
+Male genital organ required
 - Un lead dev front 
 - Un lead dev back
+
 
