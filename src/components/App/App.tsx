@@ -4,6 +4,7 @@ import React from "react";
 import Home from "../Home/Home";
 import { Switch, Route } from "react-router-dom";
 import NavBar from "../NavBar/NavBar";
+import Register from "../Register/Register";
 
 function App() {
   return (
@@ -19,9 +20,7 @@ function App() {
           </div>
         </Route>
         <Route path="/register">
-          <div>
-            <p>register</p>
-          </div>
+          <Register />
         </Route>
       </Switch>
     </>
