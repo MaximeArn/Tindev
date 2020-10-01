@@ -11,7 +11,9 @@ const NavBar = () => {
         <ul>
           <div className="links">
             <li>
-              <NavLink to="/">Home</NavLink>
+              <NavLink to="/" exact>
+                Home
+              </NavLink>
             </li>
           </div>
           <div className="authNavLink">
