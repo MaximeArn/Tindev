@@ -4,4 +4,4 @@ import { Authentication } from "../../models/states";
 
 const mapState = ({ register }: Authentication) => ({ register });
 
-connect(mapState)(Register);
+export default connect(mapState)(Register);

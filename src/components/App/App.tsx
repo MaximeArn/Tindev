@@ -4,7 +4,7 @@ import React from "react";
 import Home from "../Home/Home";
 import { Switch, Route } from "react-router-dom";
 import NavBar from "../NavBar/NavBar";
-import Register from "../Register/Register";
+import Register from "../containers/Register";
 
 function App() {
   return (

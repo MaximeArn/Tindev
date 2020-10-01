@@ -1,11 +1,19 @@
 import React from "react";
+import { RegisterInput as Register } from "../../models/registerInputProps";
+import convertInputType from "../../selectors/inputType";
 
-const RegisterInput = () => {
+const RegisterInput = ({ name, placeHolder, inputValue }: Register) => {
   return (
-    <div className="fields">
-      <label>Mon input</label>
-      <input type="text" />
-    </div>
+    <>
+      <label>
+        {placeHolder}
+        <input
+          type={convertInputType(name)}
+          name={name}
+          placeholder={placeHolder}
+        />
+      </label>
+    </>
   );
 };
 
