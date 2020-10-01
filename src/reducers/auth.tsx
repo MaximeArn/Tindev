@@ -1,3 +1,5 @@
+/** @format */
+
 import { Authentication } from "../models/states";
 import { AuthenticationAction } from "../models/actions";
 
@@ -11,7 +13,6 @@ const initialState: Authentication = {
     confirmPassword: "",
     city: "",
     age: null,
-    role: "",
   },
   login: {
     email: "",

@@ -1,14 +1,17 @@
+/** @format */
+
 import { createStore, compose } from "redux";
 import authReducer from "../reducers/auth";
 
 declare global {
   interface Window {
-    __REDUX_DEVTOOLS_EXTENSION_COMPOSE__?: typeof compose;
+    __REDUX_DEVTOOLS_EXTENSION__?: typeof compose;
   }
 }
 
-const enhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
-
-const store = createStore(authReducer, enhancers);
+const store = createStore(
+  authReducer,
+  window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__()
+);
 
 export default store;

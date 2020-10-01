@@ -1,10 +1,30 @@
+/** @format */
+
 import React from "react";
+import Home from "../Home/Home";
+import { Switch, Route } from "react-router-dom";
+import NavBar from "../NavBar/NavBar";
 
 function App() {
   return (
-    <div className="App">
-      <h1>TSX CONFIG DONE</h1>
-    </div>
+    <>
+      <NavBar />
+      <Switch>
+        <Route exact path="/">
+          <Home />
+        </Route>
+        <Route path="/login">
+          <div>
+            <p>login</p>
+          </div>
+        </Route>
+        <Route path="/register">
+          <div>
+            <p>register</p>
+          </div>
+        </Route>
+      </Switch>
+    </>
   );
 }
 
