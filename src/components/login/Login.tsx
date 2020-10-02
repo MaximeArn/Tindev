@@ -1,17 +1,15 @@
 /** @format */
 
-import React, { MutableRefObject, useRef } from "react";
+import React, { useRef } from "react";
 import capitalizeFirstLetter from "../../selectors/capitalizeFirstLetter";
 import RegisterInput from "../Inputs/RegisterInput";
 import { Authentication } from "../../models/states";
-import { Link, Redirect, useHistory } from "react-router-dom";
+import { Link, useHistory } from "react-router-dom";
 import googleIcon from "src/assets/icons/googleIcon.svg";
 
 const Login = ({ login, showLogin }: Authentication) => {
   const modalContainer = useRef<HTMLDivElement>(null);
-  console.log(modalContainer);
   const history = useHistory();
-  console.log(history);
 
   return (
     <div
@@ -19,8 +17,6 @@ const Login = ({ login, showLogin }: Authentication) => {
       id="registerContainer"
       className="registerContainer"
       onClick={(e) => {
-        console.log(modalContainer.current);
-        console.log(e.target);
         e.target === modalContainer.current && history.push("/");
       }}
     >

@@ -1,16 +1,25 @@
 /** @format */
 
-import React from "react";
+import React, { useRef } from "react";
 import RegisterInput from "../Inputs/RegisterInput";
 import { Authentication } from "../../models/states";
 import capitalizeFirstLetter from "../../selectors/capitalizeFirstLetter";
-import { Link } from "react-router-dom";
+import { Link, useHistory } from "react-router-dom";
 import googleIcon from "src/assets/icons/googleIcon.svg";
 
 import "./register.scss";
 const Register = ({ register, showRegister }: Authentication) => {
-  return showRegister ? (
-    <div className="registerContainer">
+  const modalContainer = useRef<HTMLDivElement>(null);
+  const history = useHistory();
+
+  return (
+    <div
+      ref={modalContainer}
+      className="registerContainer"
+      onClick={(e) => {
+        e.target === modalContainer.current && history.push("/");
+      }}
+    >
       <div className="register" id="modal">
         <form method="POST">
           <div className="register-padding">
@@ -51,8 +60,6 @@ const Register = ({ register, showRegister }: Authentication) => {
         </form>
       </div>
     </div>
-  ) : (
-    "ntr"
   );
 };
 
