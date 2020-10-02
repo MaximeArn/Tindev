@@ -1,11 +1,10 @@
 /** @format */
 
 import React from "react";
-import RegisterInput from "../Inputs/RegisterInput";
+import RegisterInput from "../containers/RegisterInput";
 import { Authentication } from "../../models/states";
 import capitalizeFirstLetter from "../../selectors/capitalizeFirstLetter";
 import { Link } from "react-router-dom";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import googleIcon from "./googleIcon.svg";
 
 import "./register.scss";
@@ -16,11 +15,11 @@ const Register = ({ register }: Authentication) => {
         <div className="register-padding">
           <h1>Create Account</h1>
           <div className="fields">
-            {Object.keys(register).map((props) => {
+            {Object.keys(register).map((props, index) => {
               const value = props as keyof typeof register;
               return (
                 <RegisterInput
-                  key={props}
+                  key={index + 1}
                   name={props}
                   placeHolder={capitalizeFirstLetter(props)}
                   inputValue={register[value]}
