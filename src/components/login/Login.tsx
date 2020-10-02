@@ -1,40 +1,53 @@
 /** @format */
 
-import React from "react";
+import React, { MutableRefObject, useRef } from "react";
+import capitalizeFirstLetter from "../../selectors/capitalizeFirstLetter";
 import RegisterInput from "../Inputs/RegisterInput";
 import { Authentication } from "../../models/states";
-import capitalizeFirstLetter from "../../selectors/capitalizeFirstLetter";
-import { Link } from "react-router-dom";
+import { Link, Redirect, useHistory } from "react-router-dom";
 import googleIcon from "src/assets/icons/googleIcon.svg";
 
-import "./register.scss";
-const Register = ({ register, showRegister }: Authentication) => {
-  return showRegister ? (
-    <div className="registerContainer">
+const Login = ({ login, showLogin }: Authentication) => {
+  const modalContainer = useRef<HTMLDivElement>(null);
+  console.log(modalContainer);
+  const history = useHistory();
+  console.log(history);
+
+  return (
+    <div
+      ref={modalContainer}
+      id="registerContainer"
+      className="registerContainer"
+      onClick={(e) => {
+        console.log(modalContainer.current);
+        console.log(e.target);
+        e.target === modalContainer.current && history.push("/");
+      }}
+    >
       <div className="register" id="modal">
         <form method="POST">
           <div className="register-padding">
-            <h1>Create Account</h1>
+            <h1>Sign In</h1>
             <div className="fields">
-              {Object.keys(register).map((props) => {
-                const value = props as keyof typeof register;
+              {Object.keys(login).map((props) => {
+                const value = props as keyof typeof login;
                 return (
                   <RegisterInput
                     key={props}
                     name={props}
                     placeHolder={capitalizeFirstLetter(props)}
-                    inputValue={register[value]}
+                    inputValue={login[value]}
                   />
                 );
               })}
             </div>
             <button type="submit" className="submitButton">
-              Register
+              Continue
             </button>
           </div>
           <footer>
             <p>
-              Already have an Account ? <Link to="/login">Sign In</Link>
+              Not a member yet ? <Link to="/register">Register</Link>
             </p>
 
             <div className="form-separator">
@@ -51,9 +64,7 @@ const Register = ({ register, showRegister }: Authentication) => {
         </form>
       </div>
     </div>
-  ) : (
-    "ntr"
   );
 };
 
-export default Register;
+export default Login;

@@ -3,4 +3,10 @@
 
 body {
   font-family: 'Roboto', 'sans-serif';
+  background: rgb(149, 230, 191);
+  background: linear-gradient(121deg,
+      rgba(149, 230, 191, 1) 0%,
+      rgba(84, 227, 206, 1) 48%,
+      rgba(0, 212, 255, 1) 100%);
+
 }

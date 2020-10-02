@@ -4,8 +4,8 @@ import { Authentication } from "../models/states";
 import { AuthenticationAction } from "../models/actions";
 
 const initialState: Authentication = {
-  showRegister: false,
-  showLogin: false,
+  showRegister: true,
+  showLogin: true,
   register: {
     username: "",
     firstname: "",
