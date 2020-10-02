@@ -1,9 +1,12 @@
+/** @format */
+
 import React from "react";
 import RegisterInput from "../Inputs/RegisterInput";
 import { Authentication } from "../../models/states";
 import capitalizeFirstLetter from "../../selectors/capitalizeFirstLetter";
 import { Link } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import googleIcon from "./googleIcon.svg";
 
 import "./register.scss";
 const Register = ({ register }: Authentication) => {
@@ -39,9 +42,9 @@ const Register = ({ register }: Authentication) => {
           </div>
 
           <div className="social-media">
-            <button>
-              <FontAwesomeIcon icon={["fab", "google"]} />
-              <span className="social-media-google">Connect with Google</span>
+            <button className="google-connect">
+              <img src={googleIcon} alt="google icon" />
+              <span>Connect with Google</span>
             </button>
           </div>
         </footer>
