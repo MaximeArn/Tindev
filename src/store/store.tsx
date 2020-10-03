@@ -1,10 +1,14 @@
 /** @format */
 
-import { createStore, compose } from "redux";
-import authReducer from "../reducers/auth";
+import { createStore, combineReducers, compose } from "redux";
+import auth from "../reducers/auth";
+
+const reducers = combineReducers({
+  auth,
+});
 
 const store = createStore(
-  authReducer,
+  reducers,
   window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__()
 );
 

@@ -17,3 +17,7 @@ export interface Authentication {
     password: string;
   };
 }
+
+export interface AuthenticationState {
+  auth: Authentication;
+}
