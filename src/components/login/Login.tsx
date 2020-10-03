@@ -7,7 +7,7 @@ import { Authentication } from "../../models/states";
 import { Link, useHistory } from "react-router-dom";
 import googleIcon from "src/assets/icons/googleIcon.svg";
 
-const Login = ({ login, showLogin }: Authentication) => {
+const Login = ({ login }: Authentication) => {
   const modalContainer = useRef<HTMLDivElement>(null);
   const history = useHistory();
 
