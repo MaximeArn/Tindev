@@ -1,4 +1,6 @@
 export interface Authentication {
+  showRegister: boolean;
+  showLogin: boolean;
   register: {
     username: string;
     firstname: string;
