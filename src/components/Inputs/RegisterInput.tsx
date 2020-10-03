@@ -1,4 +1,4 @@
-import React, { ChangeEvent } from "react";
+import React from "react";
 import { RegisterInput as Register } from "../../models/registerInputProps";
 import convertInputType from "../../selectors/inputType";
 import "./registerinput.scss";
