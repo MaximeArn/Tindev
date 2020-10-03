@@ -2,6 +2,7 @@
 
 import { Authentication } from "../models/states";
 import { AuthenticationAction } from "../models/actions";
+import Register from "../components/containers/Register";
 
 const initialState: Authentication = {
   showRegister: true,
@@ -14,7 +15,7 @@ const initialState: Authentication = {
     password: "",
     confirmPassword: "",
     city: "",
-    age: null,
+    age: undefined,
   },
   login: {
     email: "",
@@ -22,6 +23,19 @@ const initialState: Authentication = {
   },
 };
 
-const auth = (state = initialState, action: AuthenticationAction) => state;
+const auth = (
+  state = initialState,
+  { type, inputName, inputValue }: AuthenticationAction
+): Authentication => {
+  switch (type) {
+    case "GET_INPUT_VALUE":
+      return {
+        ...state,
+        register: { ...state.register, [inputName]: inputValue },
+      };
+    default:
+      return { ...state };
+  }
+};
 
 export default auth;

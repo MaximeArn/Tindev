@@ -2,11 +2,10 @@
 
 import { connect } from "react-redux";
 import Register from "../Register/Register";
-import { Authentication } from "../../models/states";
+import { AuthenticationState } from "../../models/states";
 
-const mapState = ({ register, showRegister }: Authentication) => ({
+const mapState = ({ auth: { register } }: AuthenticationState) => ({
   register,
-  showRegister,
 });
 
 export default connect(mapState)(Register);

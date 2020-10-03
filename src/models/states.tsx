@@ -9,11 +9,15 @@ export interface Authentication {
     password: string;
     confirmPassword: string;
     city?: string;
-    age?: number | null;
+    age?: number | undefined;
   };
 
   login: {
     email: string;
     password: string;
   };
+}
+
+export interface AuthenticationState {
+  auth: Authentication;
 }

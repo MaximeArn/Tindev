@@ -1,13 +1,12 @@
 /** @format */
-
 import React, { useRef } from "react";
-import RegisterInput from "../Inputs/RegisterInput";
+import RegisterInput from "../containers/RegisterInput";
 import { Authentication } from "../../models/states";
 import capitalizeFirstLetter from "../../selectors/capitalizeFirstLetter";
 import { Link, useHistory } from "react-router-dom";
 import googleIcon from "src/assets/icons/googleIcon.svg";
-
 import "./register.scss";
+
 const Register = ({ register, showRegister }: Authentication) => {
   const modalContainer = useRef<HTMLDivElement>(null);
   const history = useHistory();

@@ -3,13 +3,20 @@ import { RegisterInput as Register } from "../../models/registerInputProps";
 import convertInputType from "../../selectors/inputType";
 import "./registerinput.scss";
 
-const RegisterInput = ({ name, placeHolder, inputValue }: Register) => {
+const RegisterInput = ({
+  name,
+  placeHolder,
+  inputValue,
+  getInputValue,
+}: Register) => {
   return (
     <>
       <input
         type={convertInputType(name)}
         name={name}
         placeholder={placeHolder}
+        onChange={({ target }) => getInputValue(name, target.value)}
+        value={inputValue}
       />
     </>
   );

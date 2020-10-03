@@ -1,12 +1,9 @@
 /** @format */
 
 import { connect } from "react-redux";
-import Login from "../login/Login";
-import { Authentication } from "../../models/states";
+import Login from "../Login/Login";
+import { AuthenticationState } from "../../models/states";
 
-const mapState = ({ login, showLogin }: Authentication) => ({
-  login,
-  showLogin,
-});
+const mapState = ({ auth: { login } }: AuthenticationState) => ({ login });
 
 export default connect(mapState)(Login);
