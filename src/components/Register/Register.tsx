@@ -1,13 +1,13 @@
 /** @format */
 import React, { useRef } from "react";
-import RegisterInput from "../containers/Input";
+import Input from "../containers/Input";
 import { Authentication } from "../../models/states";
 import capitalizeFirstLetter from "../../selectors/capitalizeFirstLetter";
 import { Link, useHistory } from "react-router-dom";
 import googleIcon from "src/assets/icons/googleIcon.svg";
 import "./register.scss";
 
-const Register = ({ register, showRegister }: Authentication) => {
+const Register = ({ register }: Authentication) => {
   const modalContainer = useRef<HTMLDivElement>(null);
   const history = useHistory();
 
@@ -27,11 +27,12 @@ const Register = ({ register, showRegister }: Authentication) => {
               {Object.keys(register).map((props) => {
                 const value = props as keyof typeof register;
                 return (
-                  <RegisterInput
+                  <Input
                     key={props}
                     name={props}
                     placeHolder={capitalizeFirstLetter(props)}
                     inputValue={register[value]}
+                    formType="Register"
                   />
                 );
               })}

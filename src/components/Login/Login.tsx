@@ -2,12 +2,12 @@
 
 import React, { useRef } from "react";
 import capitalizeFirstLetter from "../../selectors/capitalizeFirstLetter";
-import RegisterInput from "../containers/Input";
+import Input from "../containers/Input";
 import { Authentication } from "../../models/states";
 import { Link, useHistory } from "react-router-dom";
 import googleIcon from "src/assets/icons/googleIcon.svg";
 
-const Login = ({ login, showLogin }: Authentication) => {
+const Login = ({ login }: Authentication) => {
   const modalContainer = useRef<HTMLDivElement>(null);
   const history = useHistory();
 
@@ -28,11 +28,12 @@ const Login = ({ login, showLogin }: Authentication) => {
               {Object.keys(login).map((props) => {
                 const value = props as keyof typeof login;
                 return (
-                  <RegisterInput
+                  <Input
                     key={props}
                     name={props}
                     placeHolder={capitalizeFirstLetter(props)}
                     inputValue={login[value]}
+                    formType="Login"
                   />
                 );
               })}

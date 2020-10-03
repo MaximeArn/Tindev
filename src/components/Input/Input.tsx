@@ -1,25 +1,33 @@
-import React from "react";
-import { RegisterInput as Register } from "../../models/registerInputProps";
+import React, { ChangeEvent } from "react";
+import { Register } from "../../models/registerInputProps";
 import convertInputType from "../../selectors/inputType";
 import "./input.scss";
 
-const RegisterInput = ({
+const Input = ({
+  formType,
   name,
   placeHolder,
   inputValue,
-  getInputValue,
+  getRegisterInputValue,
+  getLoginInputValue,
 }: Register) => {
+  const handleChange = ({ target }: ChangeEvent<HTMLInputElement>) => {
+    return formType === "Register"
+      ? getRegisterInputValue(name, target.value)
+      : getLoginInputValue(name, target.value);
+  };
+
   return (
     <>
       <input
         type={convertInputType(name)}
         name={name}
         placeholder={placeHolder}
-        onChange={({ target }) => getInputValue(name, target.value)}
+        onChange={handleChange}
         value={inputValue}
       />
     </>
   );
 };
 
-export default RegisterInput;
+export default Input;
