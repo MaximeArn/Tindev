@@ -1,6 +1,6 @@
 /** @format */
 import React, { useRef } from "react";
-import RegisterInput from "../containers/RegisterInput";
+import RegisterInput from "../containers/Input";
 import { Authentication } from "../../models/states";
 import capitalizeFirstLetter from "../../selectors/capitalizeFirstLetter";
 import { Link, useHistory } from "react-router-dom";

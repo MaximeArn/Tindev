@@ -2,7 +2,7 @@
 
 import React, { useRef } from "react";
 import capitalizeFirstLetter from "../../selectors/capitalizeFirstLetter";
-import RegisterInput from "../containers/RegisterInput";
+import RegisterInput from "../containers/Input";
 import { Authentication } from "../../models/states";
 import { Link, useHistory } from "react-router-dom";
 import googleIcon from "src/assets/icons/googleIcon.svg";

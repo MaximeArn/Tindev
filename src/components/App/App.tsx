@@ -2,7 +2,7 @@
 
 import React from "react";
 import Home from "../Home/Home";
-import { Switch, Route, Redirect } from "react-router-dom";
+import { Switch, Route } from "react-router-dom";
 import NavBar from "../NavBar/NavBar";
 import Register from "../containers/Register";
 import Login from "../containers/Login";
