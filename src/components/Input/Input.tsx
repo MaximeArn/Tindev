@@ -1,5 +1,5 @@
 import React, { ChangeEvent } from "react";
-import { Register } from "../../models/registerInputProps";
+import { InputModel } from "../../models/inputs";
 import convertInputType from "../../selectors/inputType";
 import "./input.scss";
 
@@ -10,7 +10,7 @@ const Input = ({
   inputValue,
   getRegisterInputValue,
   getLoginInputValue,
-}: Register) => {
+}: InputModel) => {
   const handleChange = ({ target }: ChangeEvent<HTMLInputElement>) => {
     return formType === "Register"
       ? getRegisterInputValue(name, target.value)

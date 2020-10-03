@@ -2,7 +2,6 @@
 
 import { Authentication } from "../models/states";
 import { AuthenticationAction } from "../models/actions";
-import Register from "../components/containers/Register";
 
 const initialState: Authentication = {
   register: {

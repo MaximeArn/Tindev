@@ -1,43 +1,28 @@
 /** @format */
 
 import React, { useRef } from "react";
-import capitalizeFirstLetter from "../../selectors/capitalizeFirstLetter";
-import Input from "../containers/Input";
 import { Authentication } from "../../models/states";
 import { Link, useHistory } from "react-router-dom";
 import googleIcon from "src/assets/icons/googleIcon.svg";
+import modalClickHandler from "../../selectors/modalClickHandler";
+import inputMapper from "../../selectors/inputMapper";
 
 const Login = ({ login }: Authentication) => {
-  const modalContainer = useRef<HTMLDivElement>(null);
+  const modal = useRef<HTMLDivElement>(null);
   const history = useHistory();
 
   return (
     <div
-      ref={modalContainer}
+      ref={modal}
       id="registerContainer"
       className="registerContainer"
-      onClick={(e) => {
-        e.target === modalContainer.current && history.push("/");
-      }}
+      onClick={(event) => modalClickHandler({ event, modal, history })}
     >
       <div className="register" id="modal">
         <form method="POST">
           <div className="register-padding">
             <h1>Sign In</h1>
-            <div className="fields">
-              {Object.keys(login).map((props) => {
-                const value = props as keyof typeof login;
-                return (
-                  <Input
-                    key={props}
-                    name={props}
-                    placeHolder={capitalizeFirstLetter(props)}
-                    inputValue={login[value]}
-                    formType="Login"
-                  />
-                );
-              })}
-            </div>
+            <div className="fields">{inputMapper(login)}</div>
             <button type="submit" className="submitButton">
               Continue
             </button>

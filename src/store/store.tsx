@@ -1,11 +1,7 @@
 /** @format */
 
-import { createStore, combineReducers, compose } from "redux";
-import auth from "../reducers/auth";
-
-const reducers = combineReducers({
-  auth,
-});
+import { createStore, combineReducers } from "redux";
+import reducers from "../reducers";
 
 const store = createStore(
   reducers,
