@@ -1,32 +1,14 @@
 /** @format */
 
-export interface Projects {
-  projects: Project[];
-}
-
-export interface Project {
+export interface ProjectCard {
   image: string;
-  author: Author;
-  title: Title;
+  author: string;
+  title: string;
   description: string;
   contributors: Contributor[];
-  "avatar ": string;
-}
-
-export enum Author {
-  John = "John",
+  avatar: string;
 }
 
 export interface Contributor {
-  name: Name;
-}
-
-export enum Name {
-  Antho = "antho",
-  Liv = "liv",
-  Sylvain = "sylvain",
-}
-
-export enum Title {
-  Tindev = "tindev",
+  name: string;
 }

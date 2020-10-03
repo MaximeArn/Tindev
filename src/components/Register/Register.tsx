@@ -41,7 +41,7 @@ const Register = ({ register, showRegister }: Authentication) => {
               Register
             </button>
           </div>
-          <footer>
+          <footer className="modal-footer">
             <p>
               Already have an Account ? <Link to="/login">Sign In</Link>
             </p>

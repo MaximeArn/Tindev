@@ -41,7 +41,7 @@ const Login = ({ login }: Authentication) => {
               Continue
             </button>
           </div>
-          <footer>
+          <footer className="modal-footer">
             <p>
               Not a member yet ? <Link to="/register">Register</Link>
             </p>
