@@ -40,6 +40,8 @@
 }
 
 .dropdown {
+  padding: 1rem;
+
   &:hover {
     .dropdown-content {
       display: block !important;
@@ -53,7 +55,7 @@
     box-shadow: 0 4px 4px rgba(0, 0, 0, 0.4);
     border-radius: 4px;
     width: 27%;
-    margin-top: 1rem;
+    margin-top: 1.5rem;
     display: none;
   }
 
@@ -70,7 +72,8 @@
   }
 
   span {
-    color: green;
+    color: white;
+    font-weight: bold;
   }
 
   &-list {
