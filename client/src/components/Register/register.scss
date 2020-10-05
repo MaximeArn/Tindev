@@ -11,7 +11,7 @@ h1 {
   font-weight: 400;
 }
 
-footer {
+.modal-footer {
   border-top: 1px solid #e4e5e7;
 
   p {
@@ -30,6 +30,7 @@ footer {
 
 .registerContainer {
   position: fixed;
+  top: 0;
   z-index: 1000;
   width: 100vw;
   height: 100vh;
@@ -51,6 +52,7 @@ footer {
     opacity: 1;
   }
 }
+
 .register {
   border-radius: 5px;
   animation: fadeInOpacity ease 1 0.5s;
