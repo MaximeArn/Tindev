@@ -7,11 +7,11 @@ const Project = ({ title, image, description }: ProjectCard) => {
   return (
     <article className="projectCard">
       <div className="projectCard-image">
-        <img src={image} alt="" />
+        <img src={image} alt="" draggable="false" />
       </div>
       <div className="projectCard-text">
-        <p className="creation">3 weeks ago</p>
         <h2 className="title">{title}</h2>
+        <p className="creation">3 weeks ago</p>
         <p className="description">{description}</p>
       </div>
       <footer className="projectCard-footer">

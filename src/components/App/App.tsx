@@ -11,10 +11,9 @@ function App() {
   return (
     <>
       <NavBar />
+      <Home />
       <Switch>
-        <Route exact path="/">
-          <Home />
-        </Route>
+        {/* <Route exact path="/"></Route> */}
         <Route path="/login">
           <Login />
         </Route>
