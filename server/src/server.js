@@ -3,6 +3,7 @@ const express = require("express");
 const server = require("express")();
 const authRouter = require("./router/auth");
 const { pageNotFound: notFound } = require("./middlewares/NotFound");
+const User = require("./models/User");
 
 const PORT = process.env.PORT || 3000;
 
