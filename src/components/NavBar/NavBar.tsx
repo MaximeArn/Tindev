@@ -23,12 +23,12 @@ const NavBar = () => {
                   <svg className="dropdown-arrow">
                     <path
                       stroke="rgba(179, 187, 193, 0.25)"
-                      stroke-width="1"
+                      strokeWidth="1"
                       d="M0,12 L7.5,0 L15,12"
                     ></path>
                     <polygon
                       fill="#474747"
-                      stroke-width="0"
+                      strokeWidth="0"
                       points="7.5,0 15,12 0,12"
                     ></polygon>
                   </svg>
