@@ -1,14 +1,10 @@
-const mongoose = require("mongoose");
+const { connect, connection } = require("mongoose");
 
-mongoose
-  .connect(process.env.MONGO_URL, {
-    useNewUrlParser: true,
-    useUnifiedTopology: true,
-    useFindAndModify: false,
-    useCreateIndex: true,
-    autoIndex: true,
-  })
-  .catch((error) => console.log(new Error(error)));
+connect(process.env.MONGO_URL, {
+  useNewUrlParser: true,
+  useUnifiedTopology: true,
+  useFindAndModify: false,
+  useCreateIndex: true,
+}).catch((error) => console.error(error));
 
-mongoose.connection.on("error", (error) => console.error(error));
-mongoose.connection.once("open", () => console.log("Db Connected"));
+module.exports = connection;

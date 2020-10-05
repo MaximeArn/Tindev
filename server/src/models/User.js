@@ -1,4 +1,4 @@
-const mongoose = require("mongoose");
+const { model } = require("mongoose");
 const userSchema = require("../schemas/user");
 
 class User {
@@ -6,6 +6,5 @@ class User {
     return this.username;
   }
 }
-
 userSchema.loadClass(User);
-module.exports = mongoose.model("User", userSchema);
+module.exports = model("User", userSchema);
