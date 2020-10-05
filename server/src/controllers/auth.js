@@ -1,5 +1,8 @@
 const authRouter = {
-  register: async (req, res) => {},
+  register: async (req, res) => {
+    const { body } = req;
+    console.log(body);
+  },
 
   login: async (req, res) => {},
 };
