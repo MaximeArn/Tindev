@@ -3,3 +3,7 @@ export interface AuthenticationAction {
   inputName: string;
   inputValue: string | number;
 }
+
+export interface AuthReducer {
+  type: string;
+}
