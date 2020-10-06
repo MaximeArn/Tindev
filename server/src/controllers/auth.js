@@ -1,4 +1,5 @@
 const compareUnHashed = require("../secure/compareUnHashed");
+const compareHashed = require("../secure/compareHashed");
 const encrypt = require("../secure/encryptPassword");
 const emailRegex = new RegExp(
   /^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+$/g
@@ -30,7 +31,7 @@ const authRouter = {
 
     const hashedPassword = encrypt(body.password);
 
-    //TODO : check if email already exists && set user to db with default role as User.
+    //TODO : check if email and username already exists in DB && set user to db with default role as User.
   },
 
   login: async (req, res) => {},
