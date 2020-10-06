@@ -1,9 +1,15 @@
+import { AuthenticationError } from "./states";
+
 export interface AuthenticationAction {
   type: string;
   inputName: string;
   inputValue: string | number;
 }
 
-export interface AuthReducer {
+export interface ErrorAction {
+  type: string;
+}
+
+export interface AuthMiddleware {
   type: string;
 }

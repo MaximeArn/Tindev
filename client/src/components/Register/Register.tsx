@@ -1,16 +1,19 @@
 /** @format */
-import React, { useRef } from "react";
-import { Authentication } from "../../models/states";
+import React, { FormEvent, useRef } from "react";
+import { Authentication, RegisterAuth } from "../../models/states";
 import { Link, useHistory } from "react-router-dom";
 import googleIcon from "src/assets/icons/googleIcon.svg";
 import modalClickHandler from "../../selectors/modalClickHandler";
 import inputMapper from "../../selectors/inputMapper";
 import "./register.scss";
 
-const Register = ({ register }: Authentication) => {
+const Register = ({ register, submitRegister }: RegisterAuth) => {
   const modal = useRef<HTMLDivElement>(null);
   const history = useHistory();
-
+  const handleSubmit = (event: FormEvent<HTMLFormElement>) => {
+    event.preventDefault();
+    submitRegister();
+  };
   return (
     <div
       ref={modal}
@@ -18,7 +21,7 @@ const Register = ({ register }: Authentication) => {
       onClick={(event) => modalClickHandler({ event, modal, history })}
     >
       <div className="register" id="modal">
-        <form method="POST">
+        <form method="POST" onSubmit={handleSubmit}>
           <div className="register-padding">
             <h1>Create Account</h1>
             <div className="fields">{inputMapper(register)}</div>
