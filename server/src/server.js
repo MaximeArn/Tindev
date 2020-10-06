@@ -7,9 +7,6 @@ const mongoDB = require("./config/database");
 const cors = require("cors");
 const corsSettings = require("./cors");
 
-const User = require("./models/User");
-const Project = require("./models/Project");
-
 const PORT = process.env.PORT || 3000;
 
 server.use(cors(corsSettings));
@@ -23,7 +20,3 @@ mongoDB.once("open", () => console.log("Connected to mongo database"));
 server.listen(PORT, () => {
   console.log(`Server running on port ${PORT}`);
 });
-
-// Project.findOne({ author: "xdlol" })
-//   .then((result) => console.log(result))
-//   .catch((error) => console.log(error));
