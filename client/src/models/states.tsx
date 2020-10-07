@@ -34,6 +34,14 @@ export interface RegisterAuth {
   submitRegister: Function;
 }
 
+export interface LoginAuth {
+  login: {
+    email: string;
+    password: string;
+  };
+  submitLogin: Function;
+}
+
 export interface AuthenticationError {
   registerErrorMessage: string;
 }
