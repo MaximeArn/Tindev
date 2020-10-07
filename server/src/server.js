@@ -5,7 +5,7 @@ const authRouter = require("./router/auth");
 const { pageNotFound: notFound } = require("./middlewares/NotFound");
 const mongoDB = require("./config/database");
 const cors = require("cors");
-const corsSettings = require("./cors");
+const corsSettings = require("./config/cors");
 
 const PORT = process.env.PORT || 3000;
 
