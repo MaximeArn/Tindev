@@ -5,6 +5,10 @@ class User {
   getUsername() {
     return this.username;
   }
+
+  getPassword() {
+    return this.password;
+  }
 }
 userSchema.loadClass(User);
 module.exports = model("User", userSchema);
