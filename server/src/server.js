@@ -22,3 +22,5 @@ mongoDB.once("open", () => console.log("Connected to mongo database"));
 server.listen(PORT, () => {
   console.log(`Server running on port ${PORT}`);
 });
+
+console.log(process.env);

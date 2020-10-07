@@ -1,5 +1,5 @@
 module.exports = {
-  origin: "http://localhost:8080",
+  origin: process.env.CLIENT_URL,
   methods: ["GET", "PUT", "POST", "PATCH", "DELETE"],
   credentials: true,
   allowHeaders: ["Content-Type", "application/json"],
