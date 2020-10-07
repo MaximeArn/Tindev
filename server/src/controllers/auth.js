@@ -1,5 +1,7 @@
 const compareHashed = require("../secure/compareHashed");
 const fieldValidator = require("../utils/fieldValidator");
+const jwt = require("jsonwebtoken");
+const secret = process.env.SECRET;
 const { User } = require("../models");
 
 const authRouter = {
@@ -34,10 +36,12 @@ const authRouter = {
         isPasswordMatching = await compareHashed(sentPassword, user.password);
       }
 
+      const token = jwt.sign({ id: user.id, email }, secret);
+
       return !user || !isPasswordMatching
         ? res.status(500).json({ msg: "Incorrect Email or Password" })
         : res.status(200).json({
-            token: "rlazrmalr5xazkr&#rok#~&45",
+            token,
             user: { email, username },
           });
     } catch (error) {
