@@ -1,3 +1,5 @@
+/** @format */
+
 require("dotenv").config();
 const express = require("express");
 const server = require("express")();
@@ -6,6 +8,7 @@ const { pageNotFound: notFound } = require("./middlewares/NotFound");
 const mongoDB = require("./config/database");
 const User = require("./models/User");
 const Project = require("./models/Project");
+const Category = require("./models/Category");
 const PORT = process.env.PORT || 3000;
 
 server.use(express.json());
@@ -18,7 +21,3 @@ mongoDB.once("open", () => console.log("Connected to mongo database"));
 server.listen(PORT, () => {
   console.log(`Server running on port ${PORT}`);
 });
-
-Project.findOne({ author: "xdlol" })
-  .then((result) => console.log(result))
-  .catch((error) => console.log(error));
