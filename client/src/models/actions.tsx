@@ -4,6 +4,11 @@ export interface AuthenticationAction {
   type: string;
   inputName: string;
   inputValue: string | number;
+  credentials: {
+    token: string;
+    username: string;
+    email: string;
+  };
 }
 
 export interface ErrorAction {
@@ -13,4 +18,5 @@ export interface ErrorAction {
 
 export interface AuthMiddleware {
   type: string;
+  history: any;
 }

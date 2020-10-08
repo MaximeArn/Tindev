@@ -5,8 +5,8 @@ import { Authentication } from "../../models/states";
 import { LoginAuth } from "../../models/states";
 import { Link, useHistory } from "react-router-dom";
 import googleIcon from "src/assets/icons/googleIcon.svg";
-import modalClickHandler from "../../selectors/modalClickHandler";
-import inputMapper from "../../selectors/inputMapper";
+import modalClickHandler from "../../utils/modalClickHandler";
+import inputMapper from "../../utils/inputMapper";
 
 const Login = ({ login, error, submitLogin }: LoginAuth) => {
   const modal = useRef<HTMLDivElement>(null);
@@ -14,7 +14,7 @@ const Login = ({ login, error, submitLogin }: LoginAuth) => {
 
   const handleSubmit = (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault();
-    submitLogin();
+    submitLogin(history);
   };
 
   const fieldValidator = Object.values(login).every((value) => value);

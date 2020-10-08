@@ -14,6 +14,8 @@ export interface Authentication {
     email: string;
     password: string;
   };
+
+  user: { email: string; token: string } | null;
 }
 
 export interface AuthenticationState {

@@ -3,8 +3,8 @@ import React, { FormEvent, useRef } from "react";
 import { Authentication, RegisterAuth } from "../../models/states";
 import { Link, useHistory } from "react-router-dom";
 import googleIcon from "src/assets/icons/googleIcon.svg";
-import modalClickHandler from "../../selectors/modalClickHandler";
-import inputMapper from "../../selectors/inputMapper";
+import modalClickHandler from "../../utils/modalClickHandler";
+import inputMapper from "../../utils/inputMapper";
 import "./register.scss";
 
 const Register = ({ register, error, submitRegister }: RegisterAuth) => {

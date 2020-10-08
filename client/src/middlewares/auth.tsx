@@ -20,13 +20,16 @@ const setUser = ({ getState, dispatch, next, action }: AxiosAuthSubmit) => {
     });
 };
 
-const setLogin = ({ getState, dispatch, next, action }: AxiosAuthSubmit) => {
+const setLogin = (
+  { getState, dispatch, next, action }: AxiosAuthSubmit,
+  history: any
+) => {
   const { login } = getState().auth;
-  console.log(login);
   axios
     .post("/auth/login", { ...login }, { withCredentials: true })
-    .then((result) => {
-      console.log(result);
+    .then(({ data }) => {
+      dispatch({ type: "CONNECT_USER", credentials: data });
+      history.push("/");
     })
     .catch(({ response }) => {
       const { msg: error } = response.data;
@@ -37,13 +40,12 @@ const setLogin = ({ getState, dispatch, next, action }: AxiosAuthSubmit) => {
 const auth: Middleware = ({ getState, dispatch }) => (next) => (
   action: AuthMiddleware
 ) => {
-  console.log("AUTH MIDDLEWARE CALLED", action);
   switch (action.type) {
     case "SUBMIT_REGISTER":
       setUser({ getState, dispatch, next, action });
       break;
     case "SUBMIT_LOGIN":
-      setLogin({ getState, dispatch, next, action });
+      setLogin({ getState, dispatch, next, action }, action.history);
       break;
     default:
       next(action);

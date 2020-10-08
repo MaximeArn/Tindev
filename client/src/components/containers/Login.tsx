@@ -8,12 +8,11 @@ import { AnyAction, Dispatch } from "redux";
 const mapState = (state: AuthenticationState) => {
   const { login } = state.auth;
   const { loginErrorMessage: error } = state.error;
-
   return { login, error };
 };
 
 const mapDispatch = (dispatch: Dispatch<AnyAction>) => ({
-  submitLogin: () => dispatch({ type: "SUBMIT_LOGIN" }),
+  submitLogin: (history: any) => dispatch({ type: "SUBMIT_LOGIN", history }),
 });
 
 export default connect(mapState, mapDispatch)(Login);
