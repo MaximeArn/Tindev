@@ -25,23 +25,24 @@ const authRouter = {
   },
 
   login: async (req, res) => {
-    const { email: sentEmail, password: sentPassword } = req.body;
-
+    const { email, password } = req.body;
+    console.log(req.body);
     try {
       let isPasswordMatching;
       let token;
-      const user = await User.findOne({ email: sentEmail });
+      const user = await User.findOne({ email });
 
       if (user) {
-        isPasswordMatching = await compareHashed(sentPassword, user.password);
-        token = jwt.sign({ id: user.id, email }, secret);
+        isPasswordMatching = await compareHashed(password, user.password);
+        token = jwt.sign({ id: user.id, email: user.email }, secret);
       }
 
       return !user || !isPasswordMatching
         ? res.status(500).json({ msg: "Incorrect Email or Password" })
         : res.status(200).json({
             token,
-            user: { email: user.email, username: user.email },
+            email: user.email,
+            username: user.username,
           });
     } catch (error) {
       console.error(error);
