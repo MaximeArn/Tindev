@@ -15,6 +15,9 @@ const Register = ({ register, error, submitRegister }: RegisterAuth) => {
     submitRegister();
   };
 
+  const { firstname, lastname, age, city, ...mandatory } = register;
+  const fieldValidator = Object.values(mandatory).every((value) => value);
+
   return (
     <div
       ref={modal}
@@ -27,7 +30,11 @@ const Register = ({ register, error, submitRegister }: RegisterAuth) => {
             <h1>Create Account</h1>
             {error && <span className="register-error-message">{error}</span>}
             <div className="fields">{inputMapper(register)}</div>
-            <button type="submit" className="submitButton">
+            <button
+              type="submit"
+              className="submitButton"
+              disabled={!fieldValidator}
+            >
               Register
             </button>
           </div>

@@ -17,6 +17,7 @@ const Login = ({ login, error, submitLogin }: LoginAuth) => {
     submitLogin();
   };
 
+  const fieldValidator = Object.values(login).every((value) => value);
   return (
     <div
       ref={modal}
@@ -30,7 +31,11 @@ const Login = ({ login, error, submitLogin }: LoginAuth) => {
             <h1>Sign In</h1>
             {error && <span className="register-error-message">{error}</span>}
             <div className="fields">{inputMapper(login)}</div>
-            <button type="submit" className="submitButton">
+            <button
+              type="submit"
+              className="submitButton"
+              disabled={!fieldValidator}
+            >
               Continue
             </button>
           </div>
