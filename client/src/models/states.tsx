@@ -42,8 +42,10 @@ export interface LoginAuth {
     password: string;
   };
   submitLogin: Function;
+  error: string;
 }
 
 export interface AuthenticationError {
   registerErrorMessage: string;
+  loginErrorMessage: string;
 }

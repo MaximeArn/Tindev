@@ -8,7 +8,7 @@ import googleIcon from "src/assets/icons/googleIcon.svg";
 import modalClickHandler from "../../selectors/modalClickHandler";
 import inputMapper from "../../selectors/inputMapper";
 
-const Login = ({ login, submitLogin }: LoginAuth) => {
+const Login = ({ login, error, submitLogin }: LoginAuth) => {
   const modal = useRef<HTMLDivElement>(null);
   const history = useHistory();
 
@@ -28,6 +28,7 @@ const Login = ({ login, submitLogin }: LoginAuth) => {
         <form method="POST" onSubmit={handleSubmit}>
           <div className="register-padding">
             <h1>Sign In</h1>
+            {error && <span className="register-error-message">{error}</span>}
             <div className="fields">{inputMapper(login)}</div>
             <button type="submit" className="submitButton">
               Continue

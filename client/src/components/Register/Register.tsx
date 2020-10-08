@@ -15,7 +15,6 @@ const Register = ({ register, error, submitRegister }: RegisterAuth) => {
     submitRegister();
   };
 
-  console.log(error);
   return (
     <div
       ref={modal}
