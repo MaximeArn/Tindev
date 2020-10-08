@@ -2,9 +2,12 @@
 
 import React from "react";
 import { NavLink } from "react-router-dom";
+import { Authentication } from "../../models/states";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faUserCircle } from "@fortawesome/free-solid-svg-icons";
 import "./navBar.scss";
 
-const NavBar = () => {
+const NavBar = ({ user }: Authentication) => {
   return (
     <>
       <div>
@@ -42,12 +45,28 @@ const NavBar = () => {
             </div>
 
             <div className="authNavLink">
-              <li className="nav-item">
-                <NavLink to="/login">Login</NavLink>
-              </li>
-              <li className="nav-item">
-                <NavLink to="/register">Register</NavLink>
-              </li>
+              {!user ? (
+                <>
+                  <li className="nav-item">
+                    <NavLink to="/login">Login</NavLink>
+                  </li>
+                  <li className="nav-item">
+                    <NavLink to="/register">Register</NavLink>
+                  </li>
+                </>
+              ) : (
+                <>
+                  <li className="nav-item">
+                    <NavLink to="/account">
+                      <FontAwesomeIcon icon={faUserCircle} />
+                      <span className="user">{user.username}</span>
+                    </NavLink>
+                  </li>
+                  <li className="nav-item">
+                    <NavLink to="/logout">Logout</NavLink>
+                  </li>
+                </>
+              )}
             </div>
           </ul>
         </nav>

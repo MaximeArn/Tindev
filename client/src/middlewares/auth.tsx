@@ -24,6 +24,7 @@ const setLogin = (
   { getState, dispatch, next, action }: AxiosAuthSubmit,
   history: any
 ) => {
+  console.log("SET LOGIN GOT CALLED LOL");
   const { login } = getState().auth;
   axios
     .post("/auth/login", { ...login }, { withCredentials: true })
@@ -40,12 +41,13 @@ const setLogin = (
 const auth: Middleware = ({ getState, dispatch }) => (next) => (
   action: AuthMiddleware
 ) => {
+  const { user } = getState().auth;
   switch (action.type) {
     case "SUBMIT_REGISTER":
       setUser({ getState, dispatch, next, action });
       break;
     case "SUBMIT_LOGIN":
-      setLogin({ getState, dispatch, next, action }, action.history);
+      !user && setLogin({ getState, dispatch, next, action }, action.history);
       break;
     default:
       next(action);
