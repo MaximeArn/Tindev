@@ -18,6 +18,7 @@ export interface Authentication {
 
 export interface AuthenticationState {
   auth: Authentication;
+  error: AuthenticationError;
 }
 
 export interface RegisterAuth {
@@ -45,8 +46,4 @@ export interface LoginAuth {
 
 export interface AuthenticationError {
   registerErrorMessage: string;
-}
-
-export interface RegisterErrorHandling {
-  error: AuthenticationError;
 }

@@ -9,6 +9,7 @@ h1 {
   font-size: 1.8em;
   color: rgba($color: #000, $alpha: 0.55);
   font-weight: 400;
+  margin-bottom: 1rem;
 }
 
 .modal-footer {
@@ -65,6 +66,10 @@ h1 {
 
   &-padding {
     padding: 2rem 2rem 1rem;
+  }
+
+  &-error-message {
+    color: rgb(226, 37, 37);
   }
 }
 

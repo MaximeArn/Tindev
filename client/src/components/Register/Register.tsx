@@ -14,6 +14,8 @@ const Register = ({ register, error, submitRegister }: RegisterAuth) => {
     event.preventDefault();
     submitRegister();
   };
+
+  console.log(error);
   return (
     <div
       ref={modal}
@@ -24,6 +26,7 @@ const Register = ({ register, error, submitRegister }: RegisterAuth) => {
         <form method="POST" onSubmit={handleSubmit}>
           <div className="register-padding">
             <h1>Create Account</h1>
+            {error && <span className="register-error-message">{error}</span>}
             <div className="fields">{inputMapper(register)}</div>
             <button type="submit" className="submitButton">
               Register
