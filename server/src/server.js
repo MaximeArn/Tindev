@@ -6,12 +6,11 @@ const { pageNotFound: notFound } = require("./middlewares/NotFound");
 const mongoDB = require("./config/database");
 const cors = require("cors");
 const corsSettings = require("./config/cors");
-const { User } = require("./models");
-const hashPassword = require("./secure/encryptPassword");
 
 const PORT = process.env.PORT || 3000;
 
 server.use(cors(corsSettings));
+
 server.use(express.json());
 server.use("/auth", authRouter);
 server.use(notFound);
@@ -22,5 +21,3 @@ mongoDB.once("open", () => console.log("Connected to mongo database"));
 server.listen(PORT, () => {
   console.log(`Server running on port ${PORT}`);
 });
-
-console.log(process.env);
