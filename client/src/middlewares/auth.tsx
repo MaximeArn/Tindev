@@ -14,7 +14,10 @@ const setUser = ({ getState, dispatch, next, action }: AxiosAuthSubmit) => {
     .then((response) => {
       console.log(response);
     })
-    .catch((error) => console.error(error));
+    .catch(({ response }) => {
+      const { msg: error } = response.data;
+      dispatch({ type: "REGISTER_ERROR_HANDLER", error });
+    });
 };
 
 const setLogin = ({ getState, dispatch, next, action }: AxiosAuthSubmit) => {
@@ -25,18 +28,18 @@ const setLogin = ({ getState, dispatch, next, action }: AxiosAuthSubmit) => {
     .then((result) => {
       console.log(result);
     })
-    .catch((error) => console.log(error));
+    .catch((error) => console.log(error.toJSON()));
 };
 
 const auth: Middleware = ({ getState, dispatch }) => (next) => (
   action: AuthMiddleware
 ) => {
-  console.log("AUTH MIDDLEWARE CALLED");
+  console.log("AUTH MIDDLEWARE CALLED", action);
   switch (action.type) {
     case "SUBMIT_REGISTER":
       setUser({ getState, dispatch, next, action });
-    case "SUBMIT_LOGIN":
-      setLogin({ getState, dispatch, next, action });
+    // case "SUBMIT_LOGIN":
+    //   setLogin({ getState, dispatch, next, action });
   }
 
   next(action);

@@ -7,7 +7,7 @@ import modalClickHandler from "../../selectors/modalClickHandler";
 import inputMapper from "../../selectors/inputMapper";
 import "./register.scss";
 
-const Register = ({ register, submitRegister }: RegisterAuth) => {
+const Register = ({ register, error, submitRegister }: RegisterAuth) => {
   const modal = useRef<HTMLDivElement>(null);
   const history = useHistory();
   const handleSubmit = (event: FormEvent<HTMLFormElement>) => {

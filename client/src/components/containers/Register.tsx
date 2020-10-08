@@ -2,12 +2,19 @@
 
 import { connect } from "react-redux";
 import Register from "../Register/Register";
-import { AuthenticationState } from "../../models/states";
+import {
+  AuthenticationState,
+  RegisterErrorHandling,
+} from "../../models/states";
 import { Dispatch } from "react";
 import { AnyAction } from "redux";
 
-const mapState = ({ auth: { register } }: AuthenticationState) => ({
+const mapState = (
+  { auth: { register } }: AuthenticationState,
+  { error: { registerErrorMessage } }: RegisterErrorHandling
+) => ({
   register,
+  error: registerErrorMessage,
 });
 
 const mapDispatch = (dispatch: Dispatch<AnyAction>) => ({

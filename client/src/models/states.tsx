@@ -32,6 +32,7 @@ export interface RegisterAuth {
     age?: number | undefined;
   };
   submitRegister: Function;
+  error: string;
 }
 
 export interface LoginAuth {
@@ -44,4 +45,8 @@ export interface LoginAuth {
 
 export interface AuthenticationError {
   registerErrorMessage: string;
+}
+
+export interface RegisterErrorHandling {
+  error: AuthenticationError;
 }

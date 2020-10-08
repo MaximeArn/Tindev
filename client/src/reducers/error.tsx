@@ -5,8 +5,10 @@ const initialState: AuthenticationError = {
   registerErrorMessage: "",
 };
 
-const error = (state = initialState, { type }: ErrorAction) => {
+const error = (state = initialState, { type, error }: ErrorAction) => {
   switch (type) {
+    case "REGISTER_ERROR_HANDLER":
+      return { ...state, registerErrorMessage: error };
     default:
       return state;
   }

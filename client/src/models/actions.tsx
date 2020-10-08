@@ -8,6 +8,7 @@ export interface AuthenticationAction {
 
 export interface ErrorAction {
   type: string;
+  error: string;
 }
 
 export interface AuthMiddleware {
