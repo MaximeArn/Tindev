@@ -34,7 +34,7 @@ const Login = ({ login, error, submitLogin }: LoginAuth) => {
         ref={modal}
         id="registerContainer"
         className="registerContainer"
-        onClick={(event) => modalClickHandler({ event, modal, history })}
+        onMouseDown={(event) => modalClickHandler({ event, modal, history })}
       >
         <div className="register" id="modal">
           <form method="POST" onSubmit={handleSubmit}>

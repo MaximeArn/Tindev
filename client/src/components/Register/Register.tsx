@@ -22,7 +22,7 @@ const Register = ({ register, error, submitRegister }: RegisterAuth) => {
     <div
       ref={modal}
       className="registerContainer"
-      onClick={(event) => modalClickHandler({ event, modal, history })}
+      onMouseDown={(event) => modalClickHandler({ event, modal, history })}
     >
       <div className="register" id="modal">
         <form method="POST" onSubmit={handleSubmit}>
