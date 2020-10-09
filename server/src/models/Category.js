@@ -1,7 +1,7 @@
 /** @format */
 
 const { model } = require("mongoose");
-const projectSchema = require("../schemas/category");
+const categorySchema = require("../schemas/category");
 
 class Category {
   getColor() {
@@ -9,5 +9,5 @@ class Category {
   }
 }
 
-projectSchema.loadClass(Category);
-module.exports = model("Category", projectSchema);
+categorySchema.loadClass(Category);
+module.exports = model("Category", categorySchema);

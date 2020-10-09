@@ -9,6 +9,7 @@ const mongoDB = require("./config/database");
 const User = require("./models/User");
 const Project = require("./models/Project");
 const Category = require("./models/Category");
+const Message = require("./models/Message");
 const PORT = process.env.PORT || 3000;
 
 server.use(express.json());
