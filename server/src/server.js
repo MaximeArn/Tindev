@@ -16,7 +16,6 @@ server.use(cors(corsSettings));
 
 server.use(express.json());
 server.use(cookieParser());
-// server.use("/", (req, res) => console.log("xd xd", req.cookies));
 server.use("/auth", authRouter);
 server.use(notFound);
 

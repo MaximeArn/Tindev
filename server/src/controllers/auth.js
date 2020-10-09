@@ -1,3 +1,5 @@
+/** @format */
+
 const compareHashed = require("../secure/compareHashed");
 const fieldValidator = require("../utils/fieldValidator");
 const jwt = require("jsonwebtoken");
@@ -26,6 +28,7 @@ const authRouter = {
 
   login: async (req, res) => {
     const { email, password } = req.body;
+    console.log("login called !!");
 
     try {
       let isPasswordMatching;

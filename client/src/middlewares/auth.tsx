@@ -1,3 +1,5 @@
+/** @format */
+
 import { Middleware } from "redux";
 import { AuthMiddleware } from "../models/actions";
 import { AxiosAuthSubmit } from "../models/axios";
@@ -8,15 +10,21 @@ axios.defaults.baseURL = url;
 axios.defaults.headers.post["Content-Type"] = "application/json";
 axios.defaults.withCredentials = true;
 
-const setUser = ({ getState, dispatch, next, action }: AxiosAuthSubmit) => {
+const setUser = (
+  { getState, dispatch, next, action }: AxiosAuthSubmit,
+  history: any
+) => {
   const { register } = getState().auth;
-  console.log(register);
   axios
-    .post("/auth/register", { ...register })
-    .then((response) => {
-      console.log(response);
+    .post("/auth/register", { ...register }, { withCredentials: true })
+    .then(({ data: { msg } }) => {
+      history.push({
+        pathname: "/login",
+        state: { msg },
+      });
     })
     .catch(({ response }) => {
+      console.log("log in catch");
       const { msg: error } = response.data;
       dispatch({ type: "REGISTER_ERROR_HANDLER", error });
     });
@@ -56,7 +64,7 @@ const auth: Middleware = ({ getState, dispatch }) => (next) => (
   const { user } = getState().auth;
   switch (action.type) {
     case "SUBMIT_REGISTER":
-      setUser({ getState, dispatch, next, action });
+      setUser({ getState, dispatch, next, action }, action.history);
       break;
     case "SUBMIT_LOGIN":
       !user && setLogin({ getState, dispatch, next, action }, action.history);
