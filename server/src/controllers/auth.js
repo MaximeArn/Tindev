@@ -26,7 +26,7 @@ const authRouter = {
 
   login: async (req, res) => {
     const { email, password } = req.body;
-    console.log(req.body);
+
     try {
       let isPasswordMatching;
       let token;
