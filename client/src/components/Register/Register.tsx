@@ -1,15 +1,22 @@
 /** @format */
-import React, { useRef } from "react";
-import { Authentication } from "../../models/states";
+import React, { FormEvent, useRef } from "react";
+import { Authentication, RegisterAuth } from "../../models/states";
 import { Link, useHistory } from "react-router-dom";
 import googleIcon from "src/assets/icons/googleIcon.svg";
-import modalClickHandler from "../../selectors/modalClickHandler";
-import inputMapper from "../../selectors/inputMapper";
+import modalClickHandler from "../../utils/modalClickHandler";
+import inputMapper from "../../utils/inputMapper";
 import "./register.scss";
 
-const Register = ({ register }: Authentication) => {
+const Register = ({ register, error, submitRegister }: RegisterAuth) => {
   const modal = useRef<HTMLDivElement>(null);
   const history = useHistory();
+  const handleSubmit = (event: FormEvent<HTMLFormElement>) => {
+    event.preventDefault();
+    submitRegister();
+  };
+
+  const { firstname, lastname, age, city, ...mandatory } = register;
+  const fieldValidator = Object.values(mandatory).every((value) => value);
 
   return (
     <div
@@ -18,11 +25,16 @@ const Register = ({ register }: Authentication) => {
       onClick={(event) => modalClickHandler({ event, modal, history })}
     >
       <div className="register" id="modal">
-        <form method="POST">
+        <form method="POST" onSubmit={handleSubmit}>
           <div className="register-padding">
             <h1>Create Account</h1>
+            {error && <span className="register-error-message">{error}</span>}
             <div className="fields">{inputMapper(register)}</div>
-            <button type="submit" className="submitButton">
+            <button
+              type="submit"
+              className="submitButton"
+              disabled={!fieldValidator}
+            >
               Register
             </button>
           </div>

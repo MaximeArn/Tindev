@@ -18,11 +18,12 @@ const initialState: Authentication = {
     email: "",
     password: "",
   },
+  user: null,
 };
 
 const auth = (
   state = initialState,
-  { type, inputName, inputValue }: AuthenticationAction
+  { type, inputName, inputValue, credentials }: AuthenticationAction
 ): Authentication => {
   switch (type) {
     case "GET_REGISTER_INPUT_VALUE":
@@ -32,6 +33,8 @@ const auth = (
       };
     case "GET_LOGIN_INPUT_VALUE":
       return { ...state, login: { ...state.login, [inputName]: inputValue } };
+    case "CONNECT_USER":
+      return { ...state, user: credentials };
     default:
       return { ...state };
   }

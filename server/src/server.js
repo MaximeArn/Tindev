@@ -6,11 +6,12 @@ const server = require("express")();
 const authRouter = require("./router/auth");
 const { pageNotFound: notFound } = require("./middlewares/NotFound");
 const mongoDB = require("./config/database");
-const User = require("./models/User");
-const Project = require("./models/Project");
-const Category = require("./models/Category");
-const Message = require("./models/Message");
+const cors = require("cors");
+const corsSettings = require("./config/cors");
+
 const PORT = process.env.PORT || 3000;
+
+server.use(cors(corsSettings));
 
 server.use(express.json());
 server.use("/auth", authRouter);

@@ -1,11 +1,10 @@
 /** @format */
 
-import { createStore, combineReducers } from "redux";
+import { createStore, compose, applyMiddleware } from "redux";
 import reducers from "../reducers";
+import { auth } from "../middlewares";
 
-const store = createStore(
-  reducers,
-  window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__()
-);
+const storeEnhancer = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
+const store = createStore(reducers, storeEnhancer(applyMiddleware(auth)));
 
 export default store;

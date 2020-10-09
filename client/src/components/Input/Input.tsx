@@ -1,6 +1,6 @@
 import React, { ChangeEvent } from "react";
 import { InputModel } from "../../models/inputs";
-import convertInputType from "../../selectors/inputType";
+import convertInputType from "../../utils/inputType";
 import "./input.scss";
 
 const Input = ({

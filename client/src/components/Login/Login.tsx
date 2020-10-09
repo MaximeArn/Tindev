@@ -1,16 +1,23 @@
 /** @format */
 
-import React, { useRef } from "react";
+import React, { FormEvent, useRef } from "react";
 import { Authentication } from "../../models/states";
+import { LoginAuth } from "../../models/states";
 import { Link, useHistory } from "react-router-dom";
 import googleIcon from "src/assets/icons/googleIcon.svg";
-import modalClickHandler from "../../selectors/modalClickHandler";
-import inputMapper from "../../selectors/inputMapper";
+import modalClickHandler from "../../utils/modalClickHandler";
+import inputMapper from "../../utils/inputMapper";
 
-const Login = ({ login }: Authentication) => {
+const Login = ({ login, error, submitLogin }: LoginAuth) => {
   const modal = useRef<HTMLDivElement>(null);
   const history = useHistory();
 
+  const handleSubmit = (event: FormEvent<HTMLFormElement>) => {
+    event.preventDefault();
+    submitLogin(history);
+  };
+
+  const fieldValidator = Object.values(login).every((value) => value);
   return (
     <div
       ref={modal}
@@ -19,11 +26,16 @@ const Login = ({ login }: Authentication) => {
       onClick={(event) => modalClickHandler({ event, modal, history })}
     >
       <div className="register" id="modal">
-        <form method="POST">
+        <form method="POST" onSubmit={handleSubmit}>
           <div className="register-padding">
             <h1>Sign In</h1>
+            {error && <span className="register-error-message">{error}</span>}
             <div className="fields">{inputMapper(login)}</div>
-            <button type="submit" className="submitButton">
+            <button
+              type="submit"
+              className="submitButton"
+              disabled={!fieldValidator}
+            >
               Continue
             </button>
           </div>
