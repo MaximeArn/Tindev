@@ -3,13 +3,15 @@
 import React, { useEffect } from "react";
 import Home from "../Home/Home";
 import { Switch, Route } from "react-router-dom";
+import { AppState } from "../../models/states";
 import NavBar from "../containers/NavBar";
 import Register from "../containers/Register";
 import Login from "../containers/Login";
 
-
-function App() {
-  useEffect(() => {}, []);
+function App({ verifyToken }: AppState) {
+  useEffect(() => {
+    verifyToken();
+  }, []);
   return (
     <>
       <NavBar />

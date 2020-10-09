@@ -48,6 +48,20 @@ const authRouter = {
       console.error(error);
     }
   },
+  verify: (req, res) => {
+    const { token } = req.cookies;
+    jwt.verify(token, secret, (error, decoded) => {
+      return decoded
+        ? User.findOne({ email: decoded.email })
+            .then(({ username, email }) => {
+              return email
+                ? res.status(200).json({ username, email })
+                : res.status(404).json({ msg: "Unknown token payload" });
+            })
+            .catch((error) => console.error(error))
+        : res.status(401).json({ msg: "Invalid Token provided" });
+    });
+  },
 };
 
 module.exports = authRouter;

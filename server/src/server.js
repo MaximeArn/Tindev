@@ -3,6 +3,7 @@
 require("dotenv").config();
 const express = require("express");
 const server = require("express")();
+const cookieParser = require("cookie-parser");
 const authRouter = require("./router/auth");
 const { pageNotFound: notFound } = require("./middlewares/NotFound");
 const mongoDB = require("./config/database");
@@ -14,6 +15,8 @@ const PORT = process.env.PORT || 3000;
 server.use(cors(corsSettings));
 
 server.use(express.json());
+server.use(cookieParser());
+// server.use("/", (req, res) => console.log("xd xd", req.cookies));
 server.use("/auth", authRouter);
 server.use(notFound);
 
