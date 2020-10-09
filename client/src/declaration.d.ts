@@ -7,3 +7,4 @@ declare interface Window {
   __REDUX_DEVTOOLS_EXTENSION_COMPOSE__?: typeof compose;
 }
 declare module "uuid";
+declare module "js-cookie";

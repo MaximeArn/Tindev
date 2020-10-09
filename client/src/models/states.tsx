@@ -15,7 +15,7 @@ export interface Authentication {
     password: string;
   };
 
-  user: { email: string; username: string; token: string } | null;
+  user: { email: string; username: string } | null;
 }
 
 export interface AuthenticationState {
@@ -50,4 +50,8 @@ export interface LoginAuth {
 export interface AuthenticationError {
   registerErrorMessage: string;
   loginErrorMessage: string;
+}
+
+export interface AppState {
+  verifyToken: Function;
 }
