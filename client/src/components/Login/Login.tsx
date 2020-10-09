@@ -6,7 +6,6 @@ import { Link, useHistory, useLocation } from "react-router-dom";
 import googleIcon from "src/assets/icons/googleIcon.svg";
 import modalClickHandler from "../../utils/modalClickHandler";
 import inputMapper from "../../utils/inputMapper";
-import "react-toastify/dist/ReactToastify.css";
 import "./login.scss";
 
 const Login = ({ login, error, submitLogin }: LoginAuth) => {
@@ -35,7 +34,7 @@ const Login = ({ login, error, submitLogin }: LoginAuth) => {
         ref={modal}
         id="registerContainer"
         className="registerContainer"
-        onClick={(event) => modalClickHandler({ event, modal, history })}
+        onMouseDown={(event) => modalClickHandler({ event, modal, history })}
       >
         <div className="register" id="modal">
           <form method="POST" onSubmit={handleSubmit}>
