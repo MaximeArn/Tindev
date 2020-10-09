@@ -1,3 +1,5 @@
+/** @format */
+
 const comparePasswords = require("../secure/comparePasswords");
 const hash = require("../secure/hashPassword");
 const { User } = require("../models");
@@ -17,7 +19,8 @@ module.exports = async (body) => {
     if (!body.email.match(emailRegex))
       return new Error("Invalid email address");
 
-    if (body.age && isNaN(body.age)) return new Error("Incorrect age format");
+    if ((body.age && isNaN(body.age)) || body.age < 0)
+      return new Error("Incorrect age format");
 
     if (!comparePasswords(body)) {
       return new Error("Passwords do not match");
