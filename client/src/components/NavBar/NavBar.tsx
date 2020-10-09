@@ -57,6 +57,9 @@ const NavBar = ({ user, logout }: NavState) => {
               ) : (
                 <>
                   <li className="nav-item">
+                    <NavLink to="/project/create">Create a project...</NavLink>
+                  </li>
+                  <li className="nav-item">
                     <li className="dropdown">
                       <FontAwesomeIcon icon={faUserCircle} />
                       <span className="user">{user.username}</span>

@@ -39,7 +39,7 @@ const Login = ({ login, error, submitLogin }: LoginAuth) => {
         <div className="register" id="modal">
           <form method="POST" onSubmit={handleSubmit}>
             <div className="register-padding">
-              <h1>Sign In</h1>
+              <h1 className="register-title">Sign In</h1>
               {registered && (
                 <p className="success-message">{registered.message}</p>
               )}

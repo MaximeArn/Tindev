@@ -20,6 +20,7 @@ const Input = ({
   return (
     <>
       <input
+        className="auth-input"
         type={convertInputType(name)}
         name={name}
         placeholder={placeHolder}

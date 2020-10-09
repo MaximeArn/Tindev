@@ -7,6 +7,7 @@ import { AppState } from "../../models/states";
 import NavBar from "../containers/NavBar";
 import Register from "../containers/Register";
 import Login from "../containers/Login";
+import ProjectCreation from "../ProjectCreation/ProjectCreation";
 
 function App({ verifyToken }: AppState) {
   useEffect(() => {
@@ -14,15 +15,20 @@ function App({ verifyToken }: AppState) {
   }, []);
   return (
     <>
-      <NavBar />
-      <Home />
+      {/* <NavBar /> */}
+      {/* <Home /> */}
       <Switch>
-        {/* <Route exact path="/"></Route> */}
+        <Route exact path="/">
+          <Home />
+        </Route>
         <Route path="/login">
           <Login />
         </Route>
         <Route path="/register">
           <Register />
+        </Route>
+        <Route exact path="/project/create">
+          <ProjectCreation />
         </Route>
       </Switch>
     </>

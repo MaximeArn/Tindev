@@ -1,0 +1,62 @@
+.project-creation {
+  color: white;
+  &-title {
+    font-weight: 400;
+    font-size: 1.2em;
+    margin-bottom: 1.5rem;
+    margin-top: 1.5rem;
+
+    &-entry {
+      margin-top: 7rem;
+      margin-bottom: 1.5rem;
+      font-size: 1.2em;
+    }
+  }
+
+  input {
+    width: 100%;
+  }
+  &-input {
+    width: 35%;
+    color: #404145;
+    padding: 0.7rem;
+    border: 1px solid #e4e5e7;
+    margin-bottom: 1rem;
+    background-color: #fff;
+    border-radius: 4px;
+    -webkit-transition: border 0.4s ease-in-out;
+    transition: border 0.4s ease-in-out;
+
+    &.textarea {
+      height: 150px;
+      width: 636px;
+    }
+
+    &.size {
+      border-radius: 1px;
+      width: 17%;
+    }
+  }
+
+  &-description {
+    margin-top: 1rem;
+    font-size: 1.4em;
+    font-weight: 400;
+    margin-bottom: 1.5rem;
+  }
+
+  &-button {
+    width: 15%;
+    padding: 0.8rem;
+    border-radius: 1px;
+    text-decoration-line: none;
+    text-decoration-style: solid;
+    background-color: rgb(239, 239, 240);
+    border-style: none;
+    color: rgb(134, 136, 143);
+    &:hover {
+      background-color: rgb(149, 151, 157);
+      transition: 0.15s ease-in;
+    }
+  }
+}

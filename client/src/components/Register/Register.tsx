@@ -27,7 +27,7 @@ const Register = ({ register, error, submitRegister }: RegisterAuth) => {
       <div className="register" id="modal">
         <form method="POST" onSubmit={handleSubmit}>
           <div className="register-padding">
-            <h1>Create Account</h1>
+            <h1 className="register-title">Create Account</h1>
             {error && <span className="register-error-message">{error}</span>}
             <div className="fields">{inputMapper(register)}</div>
             <button
