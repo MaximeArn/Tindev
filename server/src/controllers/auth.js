@@ -1,3 +1,5 @@
+/** @format */
+
 const compareHashed = require("../secure/compareHashed");
 const fieldValidator = require("../utils/fieldValidator");
 const jwt = require("jsonwebtoken");
@@ -7,9 +9,10 @@ const { User } = require("../models");
 const authRouter = {
   register: async (req, res) => {
     const { body } = req;
+    console.log("register called !!", body);
     try {
       const validator = await fieldValidator(body);
-
+      console.log(validator instanceof Error);
       return validator instanceof Error
         ? res.status(500).json({ msg: validator.message })
         : User.create(body)
@@ -26,6 +29,7 @@ const authRouter = {
 
   login: async (req, res) => {
     const { email, password } = req.body;
+    console.log("login called !!");
 
     try {
       let isPasswordMatching;

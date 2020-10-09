@@ -14,7 +14,8 @@ const mapState = (state: AuthenticationState) => {
 };
 
 const mapDispatch = (dispatch: Dispatch<AnyAction>) => ({
-  submitRegister: () => dispatch({ type: "SUBMIT_REGISTER" }),
+  submitRegister: (history: any) =>
+    dispatch({ type: "SUBMIT_REGISTER", history }),
 });
 
 export default connect(mapState, mapDispatch)(Register);

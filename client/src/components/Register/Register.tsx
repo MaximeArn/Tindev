@@ -12,7 +12,7 @@ const Register = ({ register, error, submitRegister }: RegisterAuth) => {
   const history = useHistory();
   const handleSubmit = (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault();
-    submitRegister();
+    submitRegister(history);
   };
 
   const { firstname, lastname, age, city, ...mandatory } = register;
