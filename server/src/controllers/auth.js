@@ -13,7 +13,7 @@ const authRouter = {
       const validator = await fieldValidator(body);
 
       return validator instanceof Error
-        ? res.status(500).json({ msg: validator.message })
+        ? res.status(400).json({ msg: validator.message })
         : User.create(body)
             .then((result) =>
               res
@@ -41,7 +41,7 @@ const authRouter = {
       }
 
       return !user || !isPasswordMatching
-        ? res.status(500).json({ msg: "Incorrect Email or Password" })
+        ? res.status(400).json({ msg: "Incorrect Email or Password" })
         : res.status(200).json({
             token,
             email: user.email,
