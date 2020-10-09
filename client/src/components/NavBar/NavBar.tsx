@@ -2,12 +2,12 @@
 
 import React from "react";
 import { NavLink } from "react-router-dom";
-import { Authentication } from "../../models/states";
+import { Authentication, NavState } from "../../models/states";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faUserCircle } from "@fortawesome/free-solid-svg-icons";
 import "./navBar.scss";
 
-const NavBar = ({ user }: Authentication) => {
+const NavBar = ({ user, logout }: NavState) => {
   return (
     <>
       <div>
@@ -57,13 +57,29 @@ const NavBar = ({ user }: Authentication) => {
               ) : (
                 <>
                   <li className="nav-item">
-                    <NavLink to="/account">
+                    <li className="dropdown">
                       <FontAwesomeIcon icon={faUserCircle} />
                       <span className="user">{user.username}</span>
-                    </NavLink>
-                  </li>
-                  <li className="nav-item">
-                    <NavLink to="/logout">Logout</NavLink>
+
+                      <div className="dropdown-content">
+                        <svg className="dropdown-arrow">
+                          <path
+                            stroke="rgba(179, 187, 193, 0.25)"
+                            strokeWidth="1"
+                            d="M0,12 L7.5,0 L15,12"
+                          ></path>
+                          <polygon
+                            fill="#474747"
+                            strokeWidth="0"
+                            points="7.5,0 15,12 0,12"
+                          ></polygon>
+                        </svg>
+                        <div className="dropdown-list">
+                          <NavLink to="/account">My Profile</NavLink>
+                          <button onClick={() => logout()}>Logout</button>
+                        </div>
+                      </div>
+                    </li>
                   </li>
                 </>
               )}

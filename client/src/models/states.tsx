@@ -55,3 +55,8 @@ export interface AuthenticationError {
 export interface AppState {
   verifyToken: Function;
 }
+
+export interface NavState {
+  user: { email: string; username: string } | null;
+  logout: Function;
+}
