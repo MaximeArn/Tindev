@@ -1,11 +1,20 @@
-import React from "react";
+import React, { MouseEvent, useRef } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faPaperclip, faPlus } from "@fortawesome/free-solid-svg-icons";
 import "./projectcreation.scss";
 
 const ProjectCreation = () => {
+  const fileInput = useRef<HTMLInputElement>(null);
+
+  const onFileBrowserClick = (event: MouseEvent<HTMLButtonElement>) => {
+    const { current: fileBrowser } = fileInput;
+    event.preventDefault();
+    fileBrowser && fileBrowser.click();
+  };
+
   return (
     <>
+      <input type="file" ref={fileInput} style={{ display: "none" }} />
       <div className="project-container">
         <h1 className="project-creation-title-entry">Project Title : </h1>
         <div className="project-creation">
@@ -29,7 +38,10 @@ const ProjectCreation = () => {
               placeholder="My project ..."
             />
 
-            <button className="project-creation-button image">
+            <button
+              className="project-creation-button image"
+              onClick={onFileBrowserClick}
+            >
               <FontAwesomeIcon icon={faPaperclip} />
               Select An Image
             </button>
@@ -46,7 +58,7 @@ const ProjectCreation = () => {
               <option value="option2">Option1</option>
               <option value="option3">Option1</option>
               <option value="option4">Option1</option>
-              <option value="option5">Option1</option>
+              <option value="option5">Option2</option>
               <option value="option6">Option1</option>
             </select>
 
