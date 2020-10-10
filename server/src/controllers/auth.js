@@ -28,7 +28,6 @@ const authRouter = {
 
   login: async (req, res) => {
     const { email, password } = req.body;
-    console.log("login called !!");
 
     try {
       let isPasswordMatching;

@@ -8,17 +8,14 @@
 
     &-entry {
       color: white;
-      margin-top: 7rem;
+
       margin-bottom: 1.5rem;
       font-size: 1.2em;
     }
   }
 
-  input {
-    width: 100%;
-  }
   &-input {
-    width: 35%;
+    width: 93%;
     color: #404145;
     padding: 0.7rem;
     border: 1px solid #e4e5e7;
@@ -30,7 +27,7 @@
 
     &.textarea {
       height: 150px;
-      width: 636px;
+      width: 500px;
     }
 
     &.size {
@@ -47,7 +44,7 @@
   }
 
   &-button {
-    width: 15%;
+    width: 24%;
     padding: 0.8rem;
     border-radius: 1px;
     text-decoration-line: none;
@@ -59,5 +56,31 @@
       background-color: rgb(149, 151, 157);
       transition: 0.15s ease-in;
     }
+
+    &.image {
+      color: #000;
+      font-weight: 400;
+      width: 150px;
+      padding: 0.7rem;
+      display: flex;
+      justify-content: space-around;
+      border-radius: 4px;
+      margin-bottom: 2rem;
+    }
   }
+}
+
+.project-container {
+  border: 1.2px solid #fff;
+  padding: 3rem;
+  min-width: 35%;
+  max-width: 35%;
+  margin: 8% auto auto;
+  border-radius: 5px;
+}
+
+.separator {
+  margin-top: 1rem;
+  border-top: 1px solid white;
+  width: 501px;
 }

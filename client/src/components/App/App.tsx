@@ -15,7 +15,7 @@ function App({ verifyToken }: AppState) {
   }, []);
   return (
     <>
-      {/* <NavBar /> */}
+      <NavBar />
       {/* <Home /> */}
       <Switch>
         <Route exact path="/">

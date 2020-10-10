@@ -5,7 +5,7 @@ export interface AuthenticationAction {
   inputName: string;
   inputValue: string | number;
   credentials: {
-    token: string;
+    token?: string;
     username: string;
     email: string;
   };
