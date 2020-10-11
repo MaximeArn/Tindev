@@ -5,6 +5,7 @@ export interface InputModel {
   inputValue: string | number | undefined;
   getRegisterInputValue: Function;
   getLoginInputValue: Function;
+  getProjectInputValue: Function;
 }
 
 export interface Login {

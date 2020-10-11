@@ -10,11 +10,14 @@ const Input = ({
   inputValue,
   getRegisterInputValue,
   getLoginInputValue,
+  getProjectInputValue,
 }: InputModel) => {
   const handleChange = ({ target }: ChangeEvent<HTMLInputElement>) => {
     return formType === "Register"
       ? getRegisterInputValue(name, target.value)
-      : getLoginInputValue(name, target.value);
+      : formType === "Login"
+      ? getLoginInputValue(name, target.value)
+      : getProjectInputValue(name, target.value);
   };
 
   return (

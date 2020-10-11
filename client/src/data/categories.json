@@ -21,19 +21,23 @@
       "color": "red"
     },
     {
-      "name": "Web",
+      "name": "Java",
       "color": "purple"
     },
     {
-      "name": "Web",
+      "name": "React",
       "color": "purple"
     },
     {
-      "name": "Web",
+      "name": "Angular",
       "color": "purple"
     },
     {
-      "name": "Web",
+      "name": "Vue",
+      "color": "purple"
+    },
+    {
+      "name": "NodeJS",
       "color": "purple"
     }
   ]

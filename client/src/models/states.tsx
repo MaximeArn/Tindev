@@ -1,4 +1,4 @@
-import { ProjectState, Project } from "./projects";
+import { ProjectState, Project, Categories } from "./projects";
 
 export interface Authentication {
   register: {
@@ -65,6 +65,6 @@ export interface NavState {
 }
 
 export interface ProjectCreationProps {
-  projectValues: Project;
-  getProjectInputValue: Function;
+  projectInputs: Project;
+  categories: Categories[];
 }

@@ -4,8 +4,8 @@ import { Login, Register } from "../models/inputs";
 import capitalizeFirstLetter from "./capitalizeFirstLetter";
 
 export default (input: Login | Register) => {
-  const typeChecking = (formType: Login | Register) =>
-    "confirmPassword" in formType ? "Register" : "Login";
+  const typeChecking = (inputType: Login | Register) =>
+    "confirmPassword" in inputType ? "Register" : "Login";
 
   return Object.keys(input).map((props) => {
     const key = props as keyof typeof input;

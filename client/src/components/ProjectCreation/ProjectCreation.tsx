@@ -2,15 +2,15 @@ import React, { FormEvent, MouseEvent, useRef } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faPaperclip, faPlus } from "@fortawesome/free-solid-svg-icons";
 import { ProjectCreationProps } from "../../models/states";
-import Input from "./Input";
-import Button from "./Button";
+import capitalizeFirstLetter from "../../utils/capitalizeFirstLetter";
+import Buttons from "./Buttons";
+import Input from "../containers/Input";
 import "./projectcreation.scss";
 
 const ProjectCreation = ({
-  projectValues,
-  getProjectInputValue,
+  projectInputs,
+  categories,
 }: ProjectCreationProps) => {
-  console.log(projectValues);
   const fileInput = useRef<HTMLInputElement>(null);
 
   const onFileBrowserClick = (event: MouseEvent<HTMLButtonElement>) => {
@@ -30,21 +30,18 @@ const ProjectCreation = ({
         <h1 className="project-creation-title-entry">Project Title : </h1>
         <div className="project-creation">
           <form onSubmit={handleSubmit}>
-            <input
-              className="project-creation-input"
-              type="text"
+            <Input
               name="title"
-              placeholder="Title"
-              onChange={({ target }) =>
-                getProjectInputValue(target.name, target.value)
-              }
+              placeHolder={capitalizeFirstLetter("title")}
+              inputValue={projectInputs["title"]}
+              formType="ProjectCreation"
             />
-
             <div className="separator"></div>
 
             <h1 className="project-creation-title">
               Project Description - try to be as detailed as possible :
             </h1>
+
             <input
               name="description"
               className="project-creation-input textarea"
@@ -63,29 +60,20 @@ const ProjectCreation = ({
             <div className="separator"></div>
 
             <h1 className="project-creation-title">Choose a category :</h1>
-            <select
-              defaultValue="Option 1"
-              className="project-creation-input"
-              name="category"
-            >
-              <option value="option1">Option1</option>
-              <option value="option2">Option1</option>
-              <option value="option3">Option1</option>
-              <option value="option4">Option1</option>
-              <option value="option5">Option2</option>
-              <option value="option6">Option1</option>
+
+            <select className="project-creation-input" name="category">
+              {categories.map(({ name }) => (
+                <option key={name} value={name}>
+                  {name}
+                </option>
+              ))}
             </select>
 
             <div className="separator"></div>
 
             <h1 className="project-creation-title">Desired team size :</h1>
             <div className="project-creation-teamsize">
-              <button className="project-creation-button">2 people</button>
-              <button className="project-creation-button">3 people</button>
-              <button className="project-creation-button">4 people</button>
-              <button className="project-creation-button">
-                <FontAwesomeIcon icon={faPlus} color="grey" />
-              </button>
+              <Buttons />
             </div>
             <button type="submit" className="project-creation-button submit">
               Submit

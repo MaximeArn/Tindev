@@ -21,8 +21,10 @@ const project = (
 ) => {
   switch (type) {
     case "GET_PROJECT_CREATION_VALUE":
-      console.log("PROJECT CREATION :", inputName, inputValue);
-      break;
+      return {
+        ...state,
+        createProject: { ...state.createProject, [inputName]: inputValue },
+      };
     default:
       return state;
   }
