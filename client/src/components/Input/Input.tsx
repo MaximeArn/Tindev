@@ -8,6 +8,7 @@ const Input = ({
   formType,
   name,
   inputValue,
+  categories,
   getRegisterInputValue,
   getLoginInputValue,
   getProjectInputValue,
@@ -23,7 +24,11 @@ const Input = ({
   return (
     <>
       {name === "category" ? (
-        <select name={name}></select>
+        categories.map(({ name }) => (
+          <option key={name} value={name}>
+            {name}
+          </option>
+        ))
       ) : (
         <input
           className="auth-input"

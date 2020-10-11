@@ -1,7 +1,10 @@
+import { Category } from "../models/projects";
+
 export interface InputModel {
   formType: string;
   name: string;
   inputValue: string | number | undefined;
+  categories: Category[];
   getRegisterInputValue: Function;
   getLoginInputValue: Function;
   getProjectInputValue: Function;

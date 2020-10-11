@@ -21,13 +21,13 @@ export interface Project {
   size: number | undefined;
 }
 
-export interface Categories {
+export interface Category {
   name: string;
   color?: string;
 }
 
 export interface ProjectState {
   projects: Project[];
-  categories: Categories[];
+  categories: Category[];
   createProject: Project;
 }

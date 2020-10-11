@@ -1,16 +1,13 @@
 import React, { FormEvent, MouseEvent, useRef } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faPaperclip, faPlus } from "@fortawesome/free-solid-svg-icons";
+import { faPaperclip } from "@fortawesome/free-solid-svg-icons";
 import { ProjectCreationProps } from "../../models/states";
 import capitalizeFirstLetter from "../../utils/capitalizeFirstLetter";
 import Buttons from "./Buttons";
 import Input from "../containers/Input";
 import "./projectcreation.scss";
 
-const ProjectCreation = ({
-  projectInputs,
-  categories,
-}: ProjectCreationProps) => {
+const ProjectCreation = ({ projectInputs }: ProjectCreationProps) => {
   const fileInput = useRef<HTMLInputElement>(null);
 
   const onFileBrowserClick = (event: MouseEvent<HTMLButtonElement>) => {
@@ -47,12 +44,6 @@ const ProjectCreation = ({
               inputValue={projectInputs["description"]}
               formType="ProjectCreation"
             />
-            <input
-              name="description"
-              className="project-creation-input textarea"
-              type="textarea"
-              placeholder="My project ..."
-            />
 
             <button
               className="project-creation-button image"
@@ -67,11 +58,7 @@ const ProjectCreation = ({
             <h1 className="project-creation-title">Choose a category :</h1>
 
             <select className="project-creation-input" name="category">
-              {categories.map(({ name }) => (
-                <option key={name} value={name}>
-                  {name}
-                </option>
-              ))}
+              <Input name="category" />
             </select>
 
             <div className="separator"></div>
