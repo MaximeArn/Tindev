@@ -5,6 +5,7 @@ const express = require("express");
 const server = require("express")();
 const cookieParser = require("cookie-parser");
 const authRouter = require("./router/auth");
+const projectRouter = require("./router/project");
 const { pageNotFound: notFound } = require("./middlewares/NotFound");
 const mongoDB = require("./config/database");
 const cors = require("cors");
@@ -17,6 +18,7 @@ server.use(cors(corsSettings));
 server.use(express.json());
 server.use(cookieParser());
 server.use("/auth", authRouter);
+server.use("/project", projectRouter);
 server.use(notFound);
 
 mongoDB.on("error", () => console.log("Error connecting to database"));

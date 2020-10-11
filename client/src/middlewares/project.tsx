@@ -9,8 +9,8 @@ axios.defaults.withCredentials = true;
 
 const sendProject = ({ getState, dispatch }: AxiosSubmit) => {
   const { createProject } = getState().project;
-
   const formData = new FormData();
+
   for (const key in createProject) {
     key === "image" && createProject["image"]
       ? formData.append(key, createProject[key], "projectImage")

@@ -15,7 +15,7 @@
     "isolatedModules": true,
     "jsx": "react",
     // "strictNullChecks": false,
-    "downlevelIteration": true,
+    // "downlevelIteration": true,
     "noImplicitAny": true
   },
   "include": ["src"]
