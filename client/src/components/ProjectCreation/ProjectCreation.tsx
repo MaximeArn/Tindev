@@ -1,4 +1,4 @@
-import React, { MouseEvent, useRef } from "react";
+import React, { FormEvent, MouseEvent, useRef } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faPaperclip, faPlus } from "@fortawesome/free-solid-svg-icons";
 import "./projectcreation.scss";
@@ -12,13 +12,17 @@ const ProjectCreation = () => {
     fileBrowser && fileBrowser.click();
   };
 
+  const handleSubmit = (event: FormEvent<HTMLFormElement>) => {
+    event.preventDefault();
+  };
+
   return (
     <>
       <input type="file" ref={fileInput} style={{ display: "none" }} />
       <div className="project-container">
         <h1 className="project-creation-title-entry">Project Title : </h1>
         <div className="project-creation">
-          <form>
+          <form onSubmit={handleSubmit}>
             <input
               className="project-creation-input"
               type="text"
@@ -73,6 +77,9 @@ const ProjectCreation = () => {
                 <FontAwesomeIcon icon={faPlus} color="grey" />
               </button>
             </div>
+            <button type="submit" className="project-creation-button submit">
+              Submit
+            </button>
           </form>
         </div>
       </div>

@@ -16,6 +16,10 @@ export interface ErrorAction {
   error: string;
 }
 
+export interface ProjectAction {
+  type: string;
+}
+
 export interface AuthMiddleware {
   type: string;
   history: any;

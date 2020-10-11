@@ -12,3 +12,16 @@ export interface ProjectCard {
 export interface Contributor {
   name: string;
 }
+
+export interface Project {
+  title: string;
+  description: string;
+  image: any;
+  category: string;
+  size: number | undefined;
+}
+
+export interface ProjectState {
+  projects: Project[];
+  createProject: Project;
+}

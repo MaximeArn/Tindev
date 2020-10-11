@@ -21,9 +21,20 @@
     border: 1px solid #e4e5e7;
     margin-bottom: 1rem;
     background-color: #fff;
-    border-radius: 4px;
-    -webkit-transition: border 0.4s ease-in-out;
-    transition: border 0.4s ease-in-out;
+    border-radius: 5px;
+    transition: border ease-in-out 0.4s;
+
+    &:hover {
+      border: 1px solid rgba($color: #62646a, $alpha: 0.6);
+    }
+
+    &:focus {
+      border: 1px solid rgba($color: #62646a, $alpha: 0.9);
+    }
+
+    &:focus::placeholder {
+      color: rgba($color: #000, $alpha: 0.7);
+    }
 
     &.textarea {
       height: 150px;
@@ -44,7 +55,7 @@
   }
 
   &-button {
-    width: 24%;
+    width: 23.5%;
     padding: 0.8rem;
     border-radius: 1px;
     text-decoration-line: none;
@@ -55,6 +66,17 @@
     &:hover {
       background-color: rgb(149, 151, 157);
       transition: 0.15s ease-in;
+    }
+
+    &.submit {
+      color: #000;
+      font-weight: 400;
+      width: 150px;
+      padding: 0.7rem;
+      display: flex;
+      justify-content: space-around;
+      border-radius: 4px;
+      margin: 2rem auto 0 auto;
     }
 
     &.image {
@@ -72,7 +94,7 @@
 
 .project-container {
   border: 1.2px solid #fff;
-  padding: 3rem;
+  padding: 2rem;
   min-width: 35%;
   max-width: 35%;
   margin: 8% auto auto;
@@ -82,5 +104,5 @@
 .separator {
   margin-top: 1rem;
   border-top: 1px solid white;
-  width: 501px;
+  width: 522px;
 }
