@@ -2,7 +2,7 @@
 
 import { Middleware } from "redux";
 import { AuthMiddleware } from "../models/actions";
-import { AxiosAuthSubmit } from "../models/axios";
+import { AxiosSubmit } from "../models/axios";
 import { url } from "../environments/api";
 import Cookies from "js-cookie";
 import axios from "axios";
@@ -10,10 +10,7 @@ axios.defaults.baseURL = url;
 axios.defaults.headers.post["Content-Type"] = "application/json";
 axios.defaults.withCredentials = true;
 
-const setUser = (
-  { getState, dispatch, next, action }: AxiosAuthSubmit,
-  history: any
-) => {
+const setUser = ({ getState, dispatch }: AxiosSubmit, history: any) => {
   const { register } = getState().auth;
   axios
     .post("/auth/register", { ...register }, { withCredentials: true })
@@ -29,10 +26,7 @@ const setUser = (
     });
 };
 
-const setLogin = (
-  { getState, dispatch, next, action }: AxiosAuthSubmit,
-  history: any
-) => {
+const setLogin = ({ getState, dispatch }: AxiosSubmit, history: any) => {
   const { login } = getState().auth;
   axios
     .post("/auth/login", { ...login })
@@ -63,10 +57,10 @@ const auth: Middleware = ({ getState, dispatch }) => (next) => (
   const { user } = getState().auth;
   switch (action.type) {
     case "SUBMIT_REGISTER":
-      setUser({ getState, dispatch, next, action }, action.history);
+      setUser({ getState, dispatch }, action.history);
       break;
     case "SUBMIT_LOGIN":
-      !user && setLogin({ getState, dispatch, next, action }, action.history);
+      !user && setLogin({ getState, dispatch }, action.history);
       break;
     case "TOKEN_VALIDATION":
       retrieveToken(dispatch);

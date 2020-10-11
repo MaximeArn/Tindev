@@ -7,16 +7,22 @@ import Buttons from "../containers/ProjectCreationButtons";
 import Input from "../containers/Input";
 import "./projectcreation.scss";
 
-const ProjectCreation = ({ projectInputs }: ProjectCreationProps) => {
-  const fileInput = useRef<HTMLInputElement>(null);
+const ProjectCreation = ({
+  projectInputs,
+  setProjectImage,
+  sendProject,
+}: ProjectCreationProps) => {
+  const fileInput = useRef<any>(null);
 
   const onFileBrowserClick = (event: MouseEvent<HTMLButtonElement>) => {
     event.preventDefault();
-    fileInput.current && fileInput.current.click();
+    fileInput.current.click();
   };
 
   const handleSubmit = (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault();
+    setProjectImage(fileInput.current.files[0]);
+    sendProject();
   };
 
   return (

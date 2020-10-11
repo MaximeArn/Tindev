@@ -66,4 +66,6 @@ export interface NavState {
 
 export interface ProjectCreationProps {
   projectInputs: Project;
+  sendProject: Function;
+  setProjectImage: Function;
 }
