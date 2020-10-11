@@ -7,7 +7,7 @@ import { AppState } from "../../models/states";
 import NavBar from "../containers/NavBar";
 import Register from "../containers/Register";
 import Login from "../containers/Login";
-import ProjectCreation from "../ProjectCreation/ProjectCreation";
+import ProjectCreation from "../containers/ProjectCreation";
 
 function App({ verifyToken }: AppState) {
   useEffect(() => {

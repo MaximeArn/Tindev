@@ -1,3 +1,5 @@
+import { ProjectState, Project } from "./projects";
+
 export interface Authentication {
   register: {
     username: string;
@@ -18,9 +20,10 @@ export interface Authentication {
   user: { email: string; username: string } | null;
 }
 
-export interface AuthenticationState {
+export interface State {
   auth: Authentication;
   error: AuthenticationError;
+  project: ProjectState;
 }
 
 export interface RegisterAuth {
@@ -59,4 +62,9 @@ export interface AppState {
 export interface NavState {
   user: { email: string; username: string } | null;
   logout: Function;
+}
+
+export interface ProjectCreationProps {
+  projectValues: Project;
+  getProjectInputValue: Function;
 }

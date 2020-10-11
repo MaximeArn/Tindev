@@ -12,8 +12,14 @@ const initialState: ProjectState = {
   },
 };
 
-const project = (state = initialState, { type }: ProjectAction) => {
+const project = (
+  state = initialState,
+  { type, inputName, inputValue }: ProjectAction
+) => {
   switch (type) {
+    case "GET_PROJECT_CREATION_VALUE":
+      console.log("PROJECT CREATION :", inputName, inputValue);
+      break;
     default:
       return state;
   }

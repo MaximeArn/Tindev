@@ -2,11 +2,11 @@
 
 import { connect } from "react-redux";
 import Register from "../Register/Register";
-import { AuthenticationState } from "../../models/states";
+import { State } from "../../models/states";
 import { Dispatch } from "react";
 import { AnyAction } from "redux";
 
-const mapState = (state: AuthenticationState) => {
+const mapState = (state: State) => {
   const { register } = state.auth;
   const { registerErrorMessage } = state.error;
 

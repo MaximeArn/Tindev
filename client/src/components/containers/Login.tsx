@@ -2,10 +2,10 @@
 
 import { connect } from "react-redux";
 import Login from "../Login/Login";
-import { AuthenticationState } from "../../models/states";
+import { State } from "../../models/states";
 import { AnyAction, Dispatch } from "redux";
 
-const mapState = (state: AuthenticationState) => {
+const mapState = (state: State) => {
   const { login } = state.auth;
   const { loginErrorMessage: error } = state.error;
   return { login, error };

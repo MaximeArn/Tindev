@@ -18,6 +18,8 @@ export interface ErrorAction {
 
 export interface ProjectAction {
   type: string;
+  inputName: string;
+  inputValue: string;
 }
 
 export interface AuthMiddleware {

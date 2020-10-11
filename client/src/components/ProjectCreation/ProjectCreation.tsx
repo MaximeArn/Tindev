@@ -1,9 +1,16 @@
 import React, { FormEvent, MouseEvent, useRef } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faPaperclip, faPlus } from "@fortawesome/free-solid-svg-icons";
+import { ProjectCreationProps } from "../../models/states";
+import Input from "./Input";
+import Button from "./Button";
 import "./projectcreation.scss";
 
-const ProjectCreation = () => {
+const ProjectCreation = ({
+  projectValues,
+  getProjectInputValue,
+}: ProjectCreationProps) => {
+  console.log(projectValues);
   const fileInput = useRef<HTMLInputElement>(null);
 
   const onFileBrowserClick = (event: MouseEvent<HTMLButtonElement>) => {
@@ -28,6 +35,9 @@ const ProjectCreation = () => {
               type="text"
               name="title"
               placeholder="Title"
+              onChange={({ target }) =>
+                getProjectInputValue(target.name, target.value)
+              }
             />
 
             <div className="separator"></div>
