@@ -19,4 +19,4 @@ const project = (state = initialState, { type }: ProjectAction) => {
   }
 };
 
-export { project };
+export default project;

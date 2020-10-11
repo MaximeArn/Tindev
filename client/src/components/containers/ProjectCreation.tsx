@@ -2,7 +2,8 @@ import { connect } from "react-redux";
 import ProjectCreation from "../ProjectCreation/ProjectCreation";
 
 const mapDispatch = (dispatch: any) => ({
-  getProjectInputValue: () => dispatch(),
+  getProjectInputValue: (inputName: string, inputValue: string) =>
+    dispatch({ type: "" }),
 });
 
-export default connect(null)(ProjectCreation);
+export default connect(null, mapDispatch)(ProjectCreation);
