@@ -17,7 +17,7 @@ const initialState: ProjectState = {
 
 const project = (
   state = initialState,
-  { type, inputName, inputValue }: ProjectAction
+  { type, inputName, inputValue, teamSize }: ProjectAction
 ) => {
   switch (type) {
     case "GET_PROJECT_CREATION_VALUE":
@@ -25,6 +25,12 @@ const project = (
         ...state,
         createProject: { ...state.createProject, [inputName]: inputValue },
       };
+    case "GET_PROJECT_TEAM_SIZE":
+      return {
+        ...state,
+        createProject: { ...state.createProject, size: teamSize },
+      };
+
     default:
       return state;
   }

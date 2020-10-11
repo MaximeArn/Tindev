@@ -24,7 +24,6 @@ const setUser = (
       });
     })
     .catch(({ response }) => {
-      console.log("log in catch");
       const { msg: error } = response.data;
       dispatch({ type: "REGISTER_ERROR_HANDLER", error });
     });
@@ -76,7 +75,6 @@ const auth: Middleware = ({ getState, dispatch }) => (next) => (
       next(action);
       break;
   }
-  next(action);
 };
 
 export default auth;

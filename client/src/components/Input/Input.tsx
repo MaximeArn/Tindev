@@ -13,7 +13,9 @@ const Input = ({
   getLoginInputValue,
   getProjectInputValue,
 }: InputModel) => {
-  const handleChange = ({ target }: ChangeEvent<HTMLInputElement>) => {
+  const handleChange = ({
+    target,
+  }: ChangeEvent<HTMLInputElement | HTMLSelectElement>) => {
     return formType === "Register"
       ? getRegisterInputValue(name, target.value)
       : formType === "Login"
@@ -24,11 +26,17 @@ const Input = ({
   return (
     <>
       {name === "category" ? (
-        categories.map(({ name }) => (
-          <option key={name} value={name}>
-            {name}
-          </option>
-        ))
+        <select
+          name={name}
+          className="project-creation-input"
+          onChange={handleChange}
+        >
+          {categories.map(({ name }) => (
+            <option key={name} value={name}>
+              {name}
+            </option>
+          ))}
+        </select>
       ) : (
         <input
           className="auth-input"

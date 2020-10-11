@@ -31,3 +31,7 @@ export interface ProjectState {
   categories: Category[];
   createProject: Project;
 }
+
+export interface ProjectCreationButton {
+  getProjectTeamSize: Function;
+}

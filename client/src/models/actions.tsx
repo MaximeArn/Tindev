@@ -20,6 +20,7 @@ export interface ProjectAction {
   type: string;
   inputName: string;
   inputValue: string;
+  teamSize: number;
 }
 
 export interface AuthMiddleware {
