@@ -1,10 +1,4 @@
-import React, {
-  ChangeEvent,
-  FormEvent,
-  MouseEvent,
-  useRef,
-  useState,
-} from "react";
+import React, { FormEvent, MouseEvent, useRef } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faPaperclip } from "@fortawesome/free-solid-svg-icons";
 import { ProjectCreationProps } from "../../models/states";
@@ -15,30 +9,18 @@ import "./projectcreation.scss";
 
 const ProjectCreation = ({ projectInputs }: ProjectCreationProps) => {
   const fileInput = useRef<HTMLInputElement>(null);
-  const imgElement = useRef<HTMLImageElement>(null);
-  const [display, setDisplay] = useState(false);
 
   const onFileBrowserClick = (event: MouseEvent<HTMLButtonElement>) => {
-    const { current: fileBrowser } = fileInput;
     event.preventDefault();
-    fileBrowser && fileBrowser.click();
-    fileBrowser && console.log(fileBrowser.files);
+    fileInput.current && fileInput.current.click();
   };
 
   const handleSubmit = (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault();
-    const reader = new FileReader();
-    reader.readAsDataURL(fileInput.current.files[0]);
-    reader.onload = (event: any) => {
-      console.log("onload");
-      imgElement.current.src = event.target.result;
-      setDisplay(true);
-    };
   };
 
   return (
     <>
-      <img ref={imgElement} />
       <input type="file" ref={fileInput} style={{ display: "none" }} />
       <div className="project-container">
         <h1 className="project-creation-title-entry">Project Title : </h1>
