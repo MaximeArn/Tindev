@@ -55,6 +55,7 @@ export interface LoginAuth {
     email: string;
     password: string;
   };
+  loginLoader: boolean;
   submitLogin: Function;
   error: string;
 }

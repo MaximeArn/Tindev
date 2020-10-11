@@ -7,8 +7,9 @@ import googleIcon from "src/assets/icons/googleIcon.svg";
 import modalClickHandler from "../../utils/modalClickHandler";
 import inputMapper from "../../utils/inputMapper";
 import "./login.scss";
+import CircularProgress from "@material-ui/core/CircularProgress";
 
-const Login = ({ login, error, submitLogin }: LoginAuth) => {
+const Login = ({ login, error, submitLogin, loginLoader }: LoginAuth) => {
   const modal = useRef<HTMLDivElement>(null);
   const history = useHistory();
 
@@ -45,13 +46,22 @@ const Login = ({ login, error, submitLogin }: LoginAuth) => {
               )}
               {error && <span className="register-error-message">{error}</span>}
               <div className="fields">{inputMapper(login)}</div>
-              <button
-                type="submit"
-                className="submitButton"
-                disabled={!fieldValidator}
-              >
-                Continue
-              </button>
+              {loginLoader ? (
+                <button type="submit" className="submitButton" disabled>
+                  <div className="loading-button">
+                    <p>Loading</p>
+                    <CircularProgress size={15} />
+                  </div>
+                </button>
+              ) : (
+                <button
+                  type="submit"
+                  className="submitButton"
+                  disabled={!fieldValidator}
+                >
+                  Continue
+                </button>
+              )}
             </div>
             <footer className="modal-footer">
               <p>

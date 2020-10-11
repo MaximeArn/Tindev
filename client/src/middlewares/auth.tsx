@@ -39,9 +39,11 @@ const setLogin = (
   history: any
 ) => {
   const { login } = getState().auth;
+  dispatch({ type: "SET_LOGIN_LOADER", value: true });
   axios
     .post("/auth/login", { ...login })
     .then(({ data }) => {
+      console.log("login then");
       const { token, email, username } = data;
       !Cookies.get("token") && Cookies.set("token", token, { expires: 7 });
       dispatch({ type: "CONNECT_USER", credentials: { email, username } });
@@ -50,6 +52,9 @@ const setLogin = (
     .catch(({ response }) => {
       const { msg: error } = response.data;
       dispatch({ type: "LOGIN_ERROR_HANDLER", error });
+    })
+    .finally(() => {
+      dispatch({ type: "SET_LOGIN_LOADER", value: false });
     });
 };
 

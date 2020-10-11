@@ -11,10 +11,16 @@ const initialState: Loaders = {
 const loaders = (state = initialState, { type, value }: LoadersActions) => {
   switch (type) {
     case "SET_REGISTER_LOADER":
-      console.log("value", value);
+      console.log("registerLoader", value);
       return {
         ...state,
         registerLoader: value,
+      };
+    case "SET_LOGIN_LOADER":
+      console.log("loginLoader", value);
+      return {
+        ...state,
+        loginLoader: value,
       };
     default:
       return state;

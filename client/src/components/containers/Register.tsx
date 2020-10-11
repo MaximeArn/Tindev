@@ -17,8 +17,6 @@ const mapState = (state: AuthenticationState) => {
 const mapDispatch = (dispatch: Dispatch<AnyAction>) => ({
   submitRegister: (history: any) =>
     dispatch({ type: "SUBMIT_REGISTER", history }),
-  // setRegisterLoader: (value: boolean) =>
-  //   dispatch({ type: "SET_REGISTER_LOADER", value }),
 });
 
 export default connect(mapState, mapDispatch)(Register);
