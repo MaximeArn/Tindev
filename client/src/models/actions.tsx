@@ -1,3 +1,5 @@
+/** @format */
+
 import { AuthenticationError } from "./states";
 
 export interface AuthenticationAction {
@@ -9,6 +11,10 @@ export interface AuthenticationAction {
     username: string;
     email: string;
   };
+}
+
+export interface LoadersActions {
+  type: string;
 }
 
 export interface ErrorAction {

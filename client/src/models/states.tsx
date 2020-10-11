@@ -1,3 +1,8 @@
+/** @format */
+
+import { string } from "prop-types";
+import { LoaderOptions } from "ts-loader/dist/interfaces";
+
 export interface Authentication {
   register: {
     username: string;
@@ -21,6 +26,12 @@ export interface Authentication {
 export interface AuthenticationState {
   auth: Authentication;
   error: AuthenticationError;
+  loaders: Loaders;
+}
+
+export interface Loaders {
+  registerLoader: boolean;
+  loginLoader: boolean;
 }
 
 export interface RegisterAuth {
