@@ -15,6 +15,7 @@ const setUser = (
   history: any
 ) => {
   const { register } = getState().auth;
+  dispatch({ type: "SET_REGISTER_LOADER", value: true });
   axios
     .post("/auth/register", { ...register }, { withCredentials: true })
     .then(({ data: { msg } }) => {
@@ -27,6 +28,9 @@ const setUser = (
       console.log("log in catch");
       const { msg: error } = response.data;
       dispatch({ type: "REGISTER_ERROR_HANDLER", error });
+    })
+    .finally(() => {
+      dispatch({ type: "SET_REGISTER_LOADER", value: false });
     });
 };
 
@@ -76,7 +80,6 @@ const auth: Middleware = ({ getState, dispatch }) => (next) => (
       next(action);
       break;
   }
-  next(action);
 };
 
 export default auth;

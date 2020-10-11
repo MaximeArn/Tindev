@@ -47,6 +47,7 @@ export interface RegisterAuth {
   };
   submitRegister: Function;
   error: string;
+  registerLoader: boolean;
 }
 
 export interface LoginAuth {

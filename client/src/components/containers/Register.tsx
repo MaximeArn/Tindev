@@ -9,13 +9,16 @@ import { AnyAction } from "redux";
 const mapState = (state: AuthenticationState) => {
   const { register } = state.auth;
   const { registerErrorMessage } = state.error;
+  const { registerLoader } = state.loaders;
 
-  return { register, error: registerErrorMessage };
+  return { register, error: registerErrorMessage, registerLoader };
 };
 
 const mapDispatch = (dispatch: Dispatch<AnyAction>) => ({
   submitRegister: (history: any) =>
     dispatch({ type: "SUBMIT_REGISTER", history }),
+  // setRegisterLoader: (value: boolean) =>
+  //   dispatch({ type: "SET_REGISTER_LOADER", value }),
 });
 
 export default connect(mapState, mapDispatch)(Register);

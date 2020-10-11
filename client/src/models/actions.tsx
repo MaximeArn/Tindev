@@ -15,6 +15,7 @@ export interface AuthenticationAction {
 
 export interface LoadersActions {
   type: string;
+  value: string;
 }
 
 export interface ErrorAction {
