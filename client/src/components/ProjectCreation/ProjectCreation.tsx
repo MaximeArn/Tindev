@@ -42,6 +42,11 @@ const ProjectCreation = ({
               Project Description - try to be as detailed as possible :
             </h1>
 
+            <Input
+              name="description"
+              inputValue={projectInputs["description"]}
+              formType="ProjectCreation"
+            />
             <input
               name="description"
               className="project-creation-input textarea"
