@@ -1,8 +1,11 @@
 import { ProjectState } from "../models/projects";
 import { ProjectAction } from "../models/actions";
+import categoriesData from "../data/categories.json";
 
+const { categories } = categoriesData;
 const initialState: ProjectState = {
   projects: [],
+  categories,
   createProject: {
     title: "",
     description: "",

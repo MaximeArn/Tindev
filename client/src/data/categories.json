@@ -1,0 +1,40 @@
+{
+  "categories": [
+    {
+      "name": "Video Game",
+      "color": "orange"
+    },
+    {
+      "name": "Web",
+      "color": "purple"
+    },
+    {
+      "name": "Software",
+      "color": "green"
+    },
+    {
+      "name": "AI",
+      "color": "blue"
+    },
+    {
+      "name": "Static",
+      "color": "red"
+    },
+    {
+      "name": "Web",
+      "color": "purple"
+    },
+    {
+      "name": "Web",
+      "color": "purple"
+    },
+    {
+      "name": "Web",
+      "color": "purple"
+    },
+    {
+      "name": "Web",
+      "color": "purple"
+    }
+  ]
+}
