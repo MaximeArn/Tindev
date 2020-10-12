@@ -12,6 +12,7 @@ const Buttons = ({ getProjectTeamSize }: ProjectCreationButton) => {
   return (
     <>
       <button
+        type="button"
         className="project-creation-button"
         value={2}
         onClick={(event) => getProjectTeamSize(event.currentTarget.value)}
@@ -19,6 +20,7 @@ const Buttons = ({ getProjectTeamSize }: ProjectCreationButton) => {
         2 people
       </button>
       <button
+        type="button"
         value={3}
         className="project-creation-button"
         onClick={handleButtonClick}
@@ -26,13 +28,14 @@ const Buttons = ({ getProjectTeamSize }: ProjectCreationButton) => {
         3 people
       </button>
       <button
+        type="button"
         className="project-creation-button"
         value={4}
         onClick={handleButtonClick}
       >
         4 people
       </button>
-      <button className="project-creation-button">
+      <button type="button" className="project-creation-button">
         <FontAwesomeIcon icon={faPlus} color="grey" />
       </button>
     </>

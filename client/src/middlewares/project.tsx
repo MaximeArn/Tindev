@@ -2,7 +2,6 @@ import { Middleware } from "redux";
 import { url } from "../environments/api";
 import { AxiosSubmit } from "../models/axios";
 import axios from "axios";
-import { Fireplace } from "@material-ui/icons";
 axios.defaults.baseURL = url;
 axios.defaults.headers.post["Content-Type"] = "multipart/form-data";
 axios.defaults.withCredentials = true;
@@ -12,10 +11,15 @@ const sendProject = ({ getState, dispatch }: AxiosSubmit) => {
   const formData = new FormData();
 
   for (const key in createProject) {
-    key === "image" && createProject["image"]
-      ? formData.append(key, createProject[key], "projectImage")
-      : formData.append(key, createProject[key]);
+    formData.append(key, createProject[key]);
   }
+
+  axios
+    .post("/project/create", formData)
+    .then((result) => {
+      console.log(result);
+    })
+    .catch((error) => console.log(error));
 };
 
 const project: Middleware = ({ getState, dispatch }) => (next) => (action) => {

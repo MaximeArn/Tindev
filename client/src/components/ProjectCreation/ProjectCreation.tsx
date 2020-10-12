@@ -27,7 +27,12 @@ const ProjectCreation = ({
 
   return (
     <>
-      <input type="file" ref={fileInput} style={{ display: "none" }} />
+      <input
+        name="image"
+        type="file"
+        ref={fileInput}
+        style={{ display: "none" }}
+      />
       <div className="project-container">
         <h1 className="project-creation-title-entry">Project Title : </h1>
         <div className="project-creation">
