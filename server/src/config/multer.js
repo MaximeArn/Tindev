@@ -1,4 +1,6 @@
 const multer = require("multer");
+const path = require("path");
+
 const ALLOWED_MIME_TYPE = {
   "image/jpeg": "jpeg",
   "image/jpg": "jpg",
@@ -10,7 +12,7 @@ module.exports = multer.diskStorage({
     const error = ALLOWED_MIME_TYPE[file.mimetype]
       ? null
       : new Error("Invalid file format");
-    callback(error, "/src/public/uploads");
+    callback(error, path.join(__dirname, "../public/uploads"));
   },
   filename: (req, file, callback) => {
     const fileExtension = ALLOWED_MIME_TYPE[file.mimetype];

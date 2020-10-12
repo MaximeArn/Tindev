@@ -1,6 +1,8 @@
 const router = require("express").Router();
-const upload = require("multer")();
 const { create } = require("../controllers/project");
+const imageDiskStorage = require("../config/multer");
+
+const upload = require("multer")({ storage: imageDiskStorage });
 
 router.post("/create", upload.single("image"), create);
 
