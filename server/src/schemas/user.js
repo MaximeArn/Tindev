@@ -1,3 +1,4 @@
+const { ObjectId } = require("mongodb");
 /** @format */
 
 const { Schema } = require("mongoose");
@@ -12,6 +13,7 @@ const userSchema = new Schema(
     age: Number,
     city: String,
     role: String,
+    project: ObjectId,
   },
   { versionKey: false }
 );

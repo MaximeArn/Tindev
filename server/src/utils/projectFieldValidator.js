@@ -13,10 +13,8 @@ const categories = [
 ];
 const ProjectError = require("../utils/ProjectError");
 
-module.exports = async (body, next) => {
-  console.log(body);
-
-  const { title, description, size, category } = body;
+module.exports = (body, next) => {
+  const { title, size, category } = body;
 
   try {
     const validateMandatoryFields = Object.values(body).every((value) => value);
@@ -38,6 +36,8 @@ module.exports = async (body, next) => {
     }
 
     parseInt(size);
+
+    return body;
   } catch (error) {
     console.error(error);
     next(error);
