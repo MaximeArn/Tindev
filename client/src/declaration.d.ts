@@ -8,3 +8,4 @@ declare interface Window {
 }
 declare module "uuid";
 declare module "js-cookie";
+declare module "slugify";
