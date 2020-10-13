@@ -1,6 +1,6 @@
 /** @format */
 
-import React from "react";
+import React, { useEffect } from "react";
 import ProjectsList from "../ProjectsList/ProjectsList";
 
 const Home = () => {
