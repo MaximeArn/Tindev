@@ -1,16 +1,15 @@
 /** @format */
 
 import React from "react";
-import { projects } from "../../data/projects.json";
 import Project from "./Project";
 import "./projectsList.scss";
-import { ProjectCard } from "../../models/projects";
+import { Project as ProjectModel, Projects } from "../../models/projects";
 import idGenerator from "../../utils/randomIdGenerator";
-const ProjectsList = () => {
-  const projectsList: ProjectCard[] = projects;
+
+const ProjectsList = ({ projects }: Projects) => {
   return (
     <div className="projectsList">
-      {projectsList.map((project: ProjectCard) => {
+      {projects.map((project: ProjectModel) => {
         return <Project key={idGenerator()} {...project} />;
       })}
     </div>

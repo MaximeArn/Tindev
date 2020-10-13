@@ -1,3 +1,5 @@
+/** @format */
+
 import { Middleware } from "redux";
 import { url } from "../environments/api";
 import { AxiosSubmit } from "../models/axios";
@@ -33,6 +35,16 @@ const project: Middleware = ({ getState, dispatch }) => (next) => (action) => {
       const { user } = getState().auth;
       user.username && sendProject({ getState, dispatch });
       break;
+    case "GET_PROJECTS":
+      axios
+        .get("/project")
+        .then((res) => {
+          const { data: dbProjects } = res;
+          dispatch({ type: "SET_PROJECTS", projects: dbProjects });
+        })
+        .catch((err) => {
+          console.log(err);
+        });
     default:
       next(action);
       break;

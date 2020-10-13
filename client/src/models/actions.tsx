@@ -1,5 +1,8 @@
+/** @format */
+
 import { MutableRefObject } from "react";
 import { AuthenticationError } from "./states";
+import { Project } from "./projects";
 
 export interface AuthenticationAction {
   type: string;
@@ -28,6 +31,7 @@ export interface ProjectAction {
   inputValue: string;
   teamSize: number;
   image: MutableRefObject<any>;
+  projects: Project[];
 }
 
 export interface AuthMiddleware {

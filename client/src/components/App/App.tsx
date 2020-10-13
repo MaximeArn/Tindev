@@ -9,14 +9,15 @@ import Register from "../containers/Register";
 import Login from "../containers/Login";
 import ProjectCreation from "../containers/ProjectCreation";
 
-function App({ verifyToken }: AppState) {
+function App({ verifyToken, getProjects }: AppState) {
   useEffect(() => {
     verifyToken();
+    getProjects();
+    console.log("app log !");
   }, []);
   return (
     <>
       <NavBar />
-      {/* <Home /> */}
       <Switch>
         <Route exact path="/">
           <Home />

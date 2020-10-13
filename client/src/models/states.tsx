@@ -1,3 +1,5 @@
+/** @format */
+
 import { ProjectState, Project, Category } from "./projects";
 
 export interface Authentication {
@@ -65,6 +67,7 @@ export interface AuthenticationError {
 
 export interface AppState {
   verifyToken: Function;
+  getProjects: Function;
 }
 
 export interface NavState {

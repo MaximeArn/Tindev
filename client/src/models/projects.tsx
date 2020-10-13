@@ -1,24 +1,30 @@
 /** @format */
 
-export interface ProjectCard {
-  image: string;
-  author: string;
-  title: string;
-  description: string;
-  contributors: Contributor[];
-  avatar: string;
-}
-
-export interface Contributor {
-  name: string;
+export interface Projects {
+  projects: Project[];
 }
 
 export interface Project {
+  _id: string;
+  author: string;
+  title: string;
+  description: string;
+  image: string;
+  categories: Category[] | [];
+  size: number;
+  contributors: Contributor[] | [];
+}
+
+export interface ProjectCreation {
   title: string;
   description: string;
   image: any;
   categories: string;
   size: number | undefined;
+}
+
+export interface Contributor {
+  name: string;
 }
 
 export interface Category {
@@ -29,7 +35,7 @@ export interface Category {
 export interface ProjectState {
   projects: Project[];
   categories: Category[];
-  createProject: Project;
+  createProject: ProjectCreation;
 }
 
 export interface ProjectCreationButton {

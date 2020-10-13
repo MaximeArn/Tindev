@@ -1,3 +1,5 @@
+/** @format */
+
 import { ProjectState } from "../models/projects";
 import { ProjectAction } from "../models/actions";
 import categoriesData from "../data/categories.json";
@@ -17,7 +19,7 @@ const initialState: ProjectState = {
 
 const project = (
   state = initialState,
-  { type, inputName, inputValue, teamSize, image }: ProjectAction
+  { type, inputName, inputValue, teamSize, image, projects }: ProjectAction
 ) => {
   switch (type) {
     case "GET_PROJECT_CREATION_VALUE":
@@ -32,6 +34,8 @@ const project = (
       };
     case "SET_PROJECT_IMAGE":
       return { ...state, createProject: { ...state.createProject, image } };
+    case "SET_PROJECTS":
+      return { ...state, projects };
     default:
       return state;
   }

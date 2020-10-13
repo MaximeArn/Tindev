@@ -6,6 +6,12 @@
   flex-wrap: wrap;
   justify-content: space-evenly;
 
+  article {
+    display: flex;
+    justify-content: center;
+    align-items: stretch;
+  }
+
   .projectCard {
     border-radius: 15px;
     max-width: 300px;
@@ -13,10 +19,14 @@
     background-color: #fff;
     color: #333;
     transition: all 0.5s;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
 
     &:hover {
       transform: scale(1.03);
     }
+
     .projectCard-image {
       img {
         border-radius: 13px 13px 0 0;
