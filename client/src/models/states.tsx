@@ -24,6 +24,12 @@ export interface State {
   auth: Authentication;
   error: AuthenticationError;
   project: ProjectState;
+  loaders: Loaders;
+}
+
+export interface Loaders {
+  registerLoader: boolean;
+  loginLoader: boolean;
 }
 
 export interface RegisterAuth {
@@ -39,6 +45,7 @@ export interface RegisterAuth {
   };
   submitRegister: Function;
   error: string;
+  registerLoader: boolean;
 }
 
 export interface LoginAuth {
@@ -46,6 +53,7 @@ export interface LoginAuth {
     email: string;
     password: string;
   };
+  loginLoader: boolean;
   submitLogin: Function;
   error: string;
 }

@@ -12,6 +12,7 @@ axios.defaults.withCredentials = true;
 
 const setUser = ({ getState, dispatch }: AxiosSubmit, history: any) => {
   const { register } = getState().auth;
+  dispatch({ type: "SET_REGISTER_LOADER", value: true });
   axios
     .post("/auth/register", { ...register }, { withCredentials: true })
     .then(({ data: { msg } }) => {
@@ -23,14 +24,19 @@ const setUser = ({ getState, dispatch }: AxiosSubmit, history: any) => {
     .catch(({ response }) => {
       const { msg: error } = response.data;
       dispatch({ type: "REGISTER_ERROR_HANDLER", error });
+    })
+    .finally(() => {
+      dispatch({ type: "SET_REGISTER_LOADER", value: false });
     });
 };
 
 const setLogin = ({ getState, dispatch }: AxiosSubmit, history: any) => {
   const { login } = getState().auth;
+  dispatch({ type: "SET_LOGIN_LOADER", value: true });
   axios
     .post("/auth/login", { ...login })
     .then(({ data }) => {
+      console.log("login then");
       const { token, email, username } = data;
       !Cookies.get("token") && Cookies.set("token", token, { expires: 7 });
       dispatch({ type: "CONNECT_USER", credentials: { email, username } });
@@ -39,6 +45,9 @@ const setLogin = ({ getState, dispatch }: AxiosSubmit, history: any) => {
     .catch(({ response }) => {
       const { msg: error } = response.data;
       dispatch({ type: "LOGIN_ERROR_HANDLER", error });
+    })
+    .finally(() => {
+      dispatch({ type: "SET_LOGIN_LOADER", value: false });
     });
 };
 

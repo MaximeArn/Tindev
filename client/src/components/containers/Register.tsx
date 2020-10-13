@@ -9,8 +9,9 @@ import { AnyAction } from "redux";
 const mapState = (state: State) => {
   const { register } = state.auth;
   const { registerErrorMessage } = state.error;
+  const { registerLoader } = state.loaders;
 
-  return { register, error: registerErrorMessage };
+  return { register, error: registerErrorMessage, registerLoader };
 };
 
 const mapDispatch = (dispatch: Dispatch<AnyAction>) => ({

@@ -8,7 +8,13 @@
   box-shadow: 0px 8px 10px 5px rgba($color: #000, $alpha: 0.2);
 
   a:hover {
-    color: white;
+    background: -webkit-linear-gradient(121deg,
+        rgba(149, 230, 191, 1) 0%,
+        rgba(84, 227, 206, 1) 48%,
+        rgba(0, 212, 255, 1) 100%);
+    background-clip: text;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
   }
 
   .nav-list {
@@ -32,12 +38,10 @@
   }
 
   .active {
-    background: -webkit-linear-gradient(
-      121deg,
-      rgba(149, 230, 191, 1) 0%,
-      rgba(84, 227, 206, 1) 48%,
-      rgba(0, 212, 255, 1) 100%
-    );
+    background: -webkit-linear-gradient(121deg,
+        rgba(149, 230, 191, 1) 0%,
+        rgba(84, 227, 206, 1) 48%,
+        rgba(0, 212, 255, 1) 100%);
     background-clip: text;
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
@@ -56,12 +60,11 @@
 
   &-content {
     position: absolute;
-    background-color: #474747;
     color: white;
     box-shadow: 0 4px 4px rgba(0, 0, 0, 0.4);
     border-radius: 4px;
     width: 27%;
-    margin-top: 1.5rem;
+    padding-top: 1.5rem;
     display: none;
   }
 
@@ -85,6 +88,7 @@
   &-list {
     display: flex;
     flex-direction: column;
+    background-color: #474747;
   }
 
   &-arrow {

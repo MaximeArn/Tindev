@@ -34,7 +34,8 @@ const ProjectCreation = ({
         style={{ display: "none" }}
       />
       <div className="project-container">
-        <h1 className="project-creation-title-entry">Project Title : </h1>
+        <h2 className="project-creation-title-entry">Project Title : </h2>
+
         <div className="project-creation">
           <form onSubmit={handleSubmit}>
             <Input

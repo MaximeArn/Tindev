@@ -1,13 +1,19 @@
 /** @format */
 import React, { FormEvent, useRef } from "react";
-import { Authentication, RegisterAuth } from "../../models/states";
+import { Authentication, RegisterAuth, Loaders } from "../../models/states";
 import { Link, useHistory } from "react-router-dom";
 import googleIcon from "src/assets/icons/googleIcon.svg";
 import modalClickHandler from "../../utils/modalClickHandler";
 import inputMapper from "../../utils/inputMapper";
 import "./register.scss";
+import CircularProgress from "@material-ui/core/CircularProgress";
 
-const Register = ({ register, error, submitRegister }: RegisterAuth) => {
+const Register = ({
+  register,
+  error,
+  submitRegister,
+  registerLoader,
+}: RegisterAuth) => {
   const modal = useRef<HTMLDivElement>(null);
   const history = useHistory();
   const handleSubmit = (event: FormEvent<HTMLFormElement>) => {
@@ -30,13 +36,22 @@ const Register = ({ register, error, submitRegister }: RegisterAuth) => {
             <h1 className="register-title">Create Account</h1>
             {error && <span className="register-error-message">{error}</span>}
             <div className="fields">{inputMapper(register)}</div>
-            <button
-              type="submit"
-              className="submitButton"
-              disabled={!fieldValidator}
-            >
-              Register
-            </button>
+            {registerLoader ? (
+              <button type="submit" className="submitButton" disabled>
+                <div className="loading-button">
+                  <p>Loading</p>
+                  <CircularProgress size={15} />
+                </div>
+              </button>
+            ) : (
+              <button
+                type="submit"
+                className="submitButton"
+                disabled={!fieldValidator}
+              >
+                Register
+              </button>
+            )}
           </div>
           <footer className="modal-footer">
             <p>
