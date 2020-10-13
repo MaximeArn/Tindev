@@ -1,19 +1,7 @@
-//TODO: use db categories result to check if the provided category does exist , instead of using fake data
-const categories = [
-  "Video Game",
-  "Web",
-  "AI",
-  "Software",
-  "Static",
-  "Java",
-  "React",
-  "Angular",
-  "Vue",
-  "NodeJS",
-];
+const { Category } = require("../models");
 const ProjectError = require("../utils/ProjectError");
 
-module.exports = (body, next) => {
+module.exports = async (body, next) => {
   const { title, size, category } = body;
 
   try {
@@ -23,7 +11,9 @@ module.exports = (body, next) => {
       throw new ProjectError("Some required fields were not provided", 400);
     }
 
-    if (!categories.includes(category)) {
+    const categories = await Category.find();
+
+    if (!categories.some(({ name }) => name === category)) {
       throw new ProjectError("Invalid Category provided", 400);
     }
 
