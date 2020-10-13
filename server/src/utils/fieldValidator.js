@@ -1,7 +1,7 @@
 /** @format */
 
-const comparePasswords = require("../secure/comparePasswords");
-const hash = require("../secure/hashPassword");
+const comparePasswords = require("./comparePasswords");
+const hash = require("./hashPassword");
 const { User } = require("../models");
 const emailRegex = new RegExp(
   /^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+$/g

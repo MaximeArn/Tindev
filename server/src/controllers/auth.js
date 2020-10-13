@@ -1,6 +1,6 @@
 /** @format */
 
-const compareHashed = require("../secure/compareHashed");
+const compareHashed = require("../utils/compareHashed");
 const fieldValidator = require("../utils/fieldValidator");
 const jwt = require("jsonwebtoken");
 const secret = process.env.SECRET;

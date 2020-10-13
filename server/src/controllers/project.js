@@ -1,9 +1,15 @@
 const { Project } = require("../models");
-const fs = require("fs");
+const fieldValidator = require("../utils/projectFieldValidator");
 
 module.exports = {
-  create: (req, res) => {
-    console.log("project creation controller called");
-    console.log(req.file);
+  create: async (req, res, next) => {
+    console.log(req.body);
+    // console.log(req.file);
+    try {
+      const { title, description, category, size } = req.body;
+      if (!title) throw new Error("Incorrect team size provided");
+    } catch (error) {
+      next({ error, status: 400 });
+    }
   },
 };
