@@ -8,7 +8,7 @@ const authRouter = require("./router/auth");
 const projectRouter = require("./router/project");
 const { pageNotFound: notFound } = require("./middlewares/NotFound");
 const mongoDB = require("./config/database");
-const errorHandler = require("./middlewares/ProjectErrorHandler");
+const errorHandler = require("./middlewares/errorHandler");
 const cors = require("cors");
 const corsSettings = require("./config/cors");
 
