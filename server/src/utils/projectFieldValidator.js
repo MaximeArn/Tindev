@@ -2,7 +2,7 @@ const { Category } = require("../models");
 const ProjectError = require("../utils/ProjectError");
 
 module.exports = async (body, next) => {
-  const { title, size, category } = body;
+  const { title, size, categories: category } = body;
 
   try {
     const validateMandatoryFields = Object.values(body).every((value) => value);
@@ -26,6 +26,7 @@ module.exports = async (body, next) => {
     }
 
     parseInt(size);
+    body.categories = [categories.find(({ name }) => name === category)];
 
     return body;
   } catch (error) {

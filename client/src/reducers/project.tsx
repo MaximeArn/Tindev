@@ -10,7 +10,7 @@ const initialState: ProjectState = {
     title: "",
     description: "",
     image: null,
-    category: "",
+    categories: "",
     size: undefined,
   },
 };

@@ -68,7 +68,7 @@ const ProjectCreation = ({
 
             <h1 className="project-creation-title">Choose a category :</h1>
 
-            <Input name="category" formType="ProjectCreation" />
+            <Input name="categories" formType="ProjectCreation" />
 
             <div className="separator"></div>
 

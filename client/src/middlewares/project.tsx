@@ -8,7 +8,12 @@ axios.defaults.withCredentials = true;
 
 const sendProject = ({ getState, dispatch }: AxiosSubmit) => {
   const { createProject } = getState().project;
+  const {
+    user: { username },
+  } = getState().auth;
+
   const formData = new FormData();
+  formData.append("author", username);
 
   for (const key in createProject) {
     formData.append(key, createProject[key]);
@@ -25,7 +30,8 @@ const sendProject = ({ getState, dispatch }: AxiosSubmit) => {
 const project: Middleware = ({ getState, dispatch }) => (next) => (action) => {
   switch (action.type) {
     case "SEND_PROJECT":
-      sendProject({ getState, dispatch });
+      const { user } = getState().auth;
+      user.username && sendProject({ getState, dispatch });
       break;
     default:
       next(action);

@@ -17,7 +17,7 @@ export interface Project {
   title: string;
   description: string;
   image: any;
-  category: string;
+  categories: string;
   size: number | undefined;
 }
 

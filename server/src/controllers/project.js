@@ -3,8 +3,15 @@ const fieldValidator = require("../utils/projectFieldValidator");
 
 module.exports = {
   create: async (req, res, next) => {
-    // const { filename } = req.file;
+    let filename;
+    if (req.file) filename = req.file.filename;
+
     const valid = await fieldValidator(req.body, next);
-    // valid && Project.create({ ...req.body, image: filename, categories: [] });
+
+    return valid && filename
+      ? Project.create({ ...valid, contributors: [], image: filename })
+      : valid
+      ? Project.create({ ...valid, contributors: [], image: null })
+      : null;
   },
 };

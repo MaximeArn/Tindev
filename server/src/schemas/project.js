@@ -10,7 +10,8 @@ const projectSchema = new Schema(
     description: String,
     contributors: [{ name: String }],
     image: String,
-    categories: [ObjectId],
+    categories: [{ name: String, color: String }],
+    size: Number,
   },
   { versionKey: false }
 );

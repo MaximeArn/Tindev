@@ -36,7 +36,6 @@ const setLogin = ({ getState, dispatch }: AxiosSubmit, history: any) => {
   axios
     .post("/auth/login", { ...login })
     .then(({ data }) => {
-      console.log("login then");
       const { token, email, username } = data;
       !Cookies.get("token") && Cookies.set("token", token, { expires: 7 });
       dispatch({ type: "CONNECT_USER", credentials: { email, username } });

@@ -25,7 +25,7 @@ const Input = ({
 
   return (
     <>
-      {name === "category" ? (
+      {name === "categories" ? (
         <select
           name={name}
           className="project-creation-input"
