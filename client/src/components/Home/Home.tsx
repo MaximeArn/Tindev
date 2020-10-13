@@ -1,7 +1,7 @@
 /** @format */
 
 import React from "react";
-import ProjectsList from "../ProjectsList/ProjectsList";
+import ProjectsList from "../containers/ProjectList";
 
 const Home = () => {
   return (

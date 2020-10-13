@@ -1,5 +1,7 @@
+/** @format */
+
 const router = require("express").Router();
-const { create } = require("../controllers/project");
+const { create, getAllProjects } = require("../controllers/project");
 const imageDiskStorage = require("../config/multer");
 const upload = require("multer")({
   storage: imageDiskStorage,
@@ -7,5 +9,6 @@ const upload = require("multer")({
 });
 
 router.post("/create", upload.single("image"), create);
+router.get("/", getAllProjects);
 
 module.exports = router;

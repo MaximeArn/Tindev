@@ -9,9 +9,10 @@ import Register from "../containers/Register";
 import Login from "../containers/Login";
 import ProjectCreation from "../containers/ProjectCreation";
 
-function App({ verifyToken }: AppState) {
+function App({ verifyToken, getProjects }: AppState) {
   useEffect(() => {
     verifyToken();
+    getProjects();
   }, []);
   return (
     <>

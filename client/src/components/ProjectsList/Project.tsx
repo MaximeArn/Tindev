@@ -1,9 +1,9 @@
 /** @format */
 
 import React from "react";
-import { ProjectCard } from "../../models/projects";
+import { Project as ProjectModel } from "../../models/projects";
 
-const Project = ({ title, image, description }: ProjectCard) => {
+const Project = ({ title, image, description }: ProjectModel) => {
   return (
     <article className="projectCard">
       <div className="projectCard-image">
