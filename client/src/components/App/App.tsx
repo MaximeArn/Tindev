@@ -13,11 +13,11 @@ function App({ verifyToken, getProjects }: AppState) {
   useEffect(() => {
     verifyToken();
     getProjects();
+    console.log("app log !");
   }, []);
   return (
     <>
       <NavBar />
-      {/* <Home /> */}
       <Switch>
         <Route exact path="/">
           <Home />
