@@ -4,13 +4,14 @@ import React from "react";
 import slugifier from "../../utils/slugify";
 import shortify from "../../utils/shortifyString";
 import { Project as ProjectModel } from "../../models/projects";
+import { url } from "../../environments/api";
 
 const Project = ({ title, image, description }: ProjectModel) => {
   return (
     <article>
       <a href={`/project/${slugifier(title)}`} className="projectCard">
         <div className="projectCard-image">
-          <img src={image} alt="" draggable="false" />
+          <img src={`${url}/uploads/${image}`} alt={image} draggable="false" />
         </div>
         <div className="projectCard-text">
           <h2 className="title">{title}</h2>

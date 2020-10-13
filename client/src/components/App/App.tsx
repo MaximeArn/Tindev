@@ -1,6 +1,6 @@
 /** @format */
 
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import Home from "../containers/Home";
 import { Switch, Route } from "react-router-dom";
 import { AppProps } from "../../models/states";
@@ -8,6 +8,8 @@ import NavBar from "../containers/NavBar";
 import Register from "../containers/Register";
 import Login from "../containers/Login";
 import ProjectCreation from "../containers/ProjectCreation";
+import axios from "axios";
+import { url } from "../../environments/api";
 
 function App({ verifyToken }: AppProps) {
   useEffect(() => {

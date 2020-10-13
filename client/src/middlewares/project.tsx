@@ -24,6 +24,18 @@ const sendProject = ({ getState, dispatch }: AxiosSubmit) => {
   axios.post("/project/create", formData).catch((error) => console.log(error));
 };
 
+const setProjects = ({ getState, dispatch }: AxiosSubmit) => {
+  axios
+    .get("/project")
+    .then((res) => {
+      const { data: dbProjects } = res;
+      dispatch({ type: "SET_PROJECTS", projects: dbProjects });
+    })
+    .catch((err) => {
+      console.log(err);
+    });
+};
+
 const project: Middleware = ({ getState, dispatch }) => (next) => (action) => {
   switch (action.type) {
     case "SEND_PROJECT":
@@ -31,15 +43,8 @@ const project: Middleware = ({ getState, dispatch }) => (next) => (action) => {
       user.username && sendProject({ getState, dispatch });
       break;
     case "GET_PROJECTS":
-      axios
-        .get("/project")
-        .then((res) => {
-          const { data: dbProjects } = res;
-          dispatch({ type: "SET_PROJECTS", projects: dbProjects });
-        })
-        .catch((err) => {
-          console.log(err);
-        });
+      setProjects({ getState, dispatch });
+      break;
     default:
       next(action);
       break;

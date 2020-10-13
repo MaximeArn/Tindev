@@ -78,8 +78,7 @@ let categories = [
 
 let projects = [
   {
-    image:
-      "https://images.pexels.com/photos/747964/pexels-photo-747964.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500",
+    image: "image-default.jpeg",
     author: "John",
     title: "Pomodoro",
     description: `Le Pomodoro, pour ceux qui ne connaissent pas, c'est quoi ?
@@ -89,8 +88,7 @@ let projects = [
     size: 2,
   },
   {
-    image:
-      "https://images.pexels.com/photos/747964/pexels-photo-747964.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500",
+    image: "image-default.jpeg",
     author: "John",
     title: "Voyage Voyage",
     description: `Un outil qui permettrait à chaque personne ayant l’âme d'un leader de groupe d'organiser un voyage que ce soit pour un séminaire professionnel, un voyage entre amis ou en famille ou autre.`,
@@ -99,8 +97,7 @@ let projects = [
     size: 3,
   },
   {
-    image:
-      "https://images.pexels.com/photos/747964/pexels-photo-747964.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500",
+    image: "image-default.jpeg",
     author: "John",
     title: "Jardins Connectés",
     description: `S'entraider entre jardiniers pour être plus autonomes dans nos productions au potager.
@@ -113,8 +110,7 @@ let projects = [
     size: 4,
   },
   {
-    image:
-      "https://images.pexels.com/photos/747964/pexels-photo-747964.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500",
+    image: "image-default.jpeg",
     author: "John",
     title: "tindev",
     description: `Réseau social permettant de réunir des devs autour d'un projet commun.

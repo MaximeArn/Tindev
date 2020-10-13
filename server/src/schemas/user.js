@@ -3,19 +3,16 @@ const { ObjectId } = require("mongodb");
 
 const { Schema } = require("mongoose");
 
-const userSchema = new Schema(
-  {
-    username: String,
-    firstname: String,
-    lastname: String,
-    email: String,
-    password: String,
-    age: Number,
-    city: String,
-    role: String,
-    project: ObjectId,
-  },
-  { versionKey: false }
-);
+const userSchema = new Schema({
+  username: String,
+  firstname: String,
+  lastname: String,
+  email: String,
+  password: String,
+  age: Number,
+  city: String,
+  role: String,
+  project: ObjectId,
+});
 
 module.exports = userSchema;

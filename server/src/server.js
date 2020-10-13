@@ -15,6 +15,7 @@ const corsSettings = require("./config/cors");
 const PORT = process.env.PORT || 3000;
 
 server.use(cors(corsSettings));
+server.use(express.static(`${__dirname}/public`));
 server.use(express.json());
 server.use(cookieParser());
 server.use("/auth", authRouter);
