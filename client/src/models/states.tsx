@@ -65,14 +65,17 @@ export interface AuthenticationError {
   loginErrorMessage: string;
 }
 
-export interface AppState {
+export interface AppProps {
   verifyToken: Function;
-  getProjects: Function;
 }
 
 export interface NavState {
   user: { email: string; username: string } | null;
   logout: Function;
+}
+
+export interface HomeProps {
+  getProjects: Function;
 }
 
 export interface ProjectCreationProps {

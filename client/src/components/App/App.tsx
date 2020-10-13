@@ -1,19 +1,17 @@
 /** @format */
 
 import React, { useEffect } from "react";
-import Home from "../Home/Home";
+import Home from "../containers/Home";
 import { Switch, Route } from "react-router-dom";
-import { AppState } from "../../models/states";
+import { AppProps } from "../../models/states";
 import NavBar from "../containers/NavBar";
 import Register from "../containers/Register";
 import Login from "../containers/Login";
 import ProjectCreation from "../containers/ProjectCreation";
 
-function App({ verifyToken, getProjects }: AppState) {
+function App({ verifyToken }: AppProps) {
   useEffect(() => {
     verifyToken();
-    getProjects();
-    console.log("app log !");
   }, []);
   return (
     <>

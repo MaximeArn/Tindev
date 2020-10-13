@@ -1,12 +1,12 @@
 /** @format */
 
 import React, { useEffect } from "react";
-
 import ProjectsList from "../containers/ProjectList";
+import { HomeProps } from "../../models/states";
 
-const Home = () => {
+const Home = ({ getProjects }: HomeProps) => {
   useEffect(() => {
-    console.log("useEffect");
+    getProjects();
   }, []);
 
   return (

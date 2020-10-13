@@ -21,12 +21,7 @@ const sendProject = ({ getState, dispatch }: AxiosSubmit) => {
     formData.append(key, createProject[key]);
   }
 
-  axios
-    .post("/project/create", formData)
-    .then((result) => {
-      console.log(result);
-    })
-    .catch((error) => console.log(error));
+  axios.post("/project/create", formData).catch((error) => console.log(error));
 };
 
 const project: Middleware = ({ getState, dispatch }) => (next) => (action) => {
