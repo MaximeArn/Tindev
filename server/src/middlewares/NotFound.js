@@ -1,3 +1,2 @@
-module.exports = {
-  pageNotFound: (req, res) => res.status(404).json("Invalid Request"),
-};
+module.exports = (req, res) => res.status(404).json("Page not found");
+

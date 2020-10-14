@@ -5,10 +5,11 @@ const express = require("express");
 const server = require("express")();
 const cookieParser = require("cookie-parser");
 const authRouter = require("./router/auth");
+const categoriesRouter = require('./router/categories');
 const projectRouter = require("./router/project");
-const { pageNotFound: notFound } = require("./middlewares/NotFound");
-const mongoDB = require("./config/database");
+const notFound = require("./middlewares/NotFound");
 const errorHandler = require("./middlewares/errorHandler");
+const mongoDB = require("./config/database");
 const cors = require("cors");
 const corsSettings = require("./config/cors");
 
@@ -20,6 +21,7 @@ server.use(express.json());
 server.use(cookieParser());
 server.use("/auth", authRouter);
 server.use("/project", projectRouter);
+server.use('/categories', categoriesRouter);
 server.use(errorHandler);
 server.use(notFound);
 
