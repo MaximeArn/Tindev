@@ -8,7 +8,8 @@ const upload = require("multer")({
   // limits: { fileSize: 8500 },
 });
 
-router.post("/create", upload.single("image"), create);
 router.get("/", getAllProjects);
+router.post("/create", upload.single("image"), create);
+
 
 module.exports = router;
