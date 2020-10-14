@@ -63,6 +63,7 @@ export interface LoginAuth {
 export interface AuthenticationError {
   registerErrorMessage: string;
   loginErrorMessage: string;
+  projectCreationErrorMessage: string
 }
 
 export interface AppProps {
@@ -78,8 +79,4 @@ export interface HomeProps {
   getProjects: Function;
 }
 
-export interface ProjectCreationProps {
-  projectInputs: Project;
-  sendProject: Function;
-  setProjectImage: Function;
-}
+

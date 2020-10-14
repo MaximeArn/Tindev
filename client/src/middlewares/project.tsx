@@ -21,7 +21,10 @@ const sendProject = ({ getState, dispatch }: AxiosSubmit) => {
     formData.append(key, createProject[key]);
   }
 
-  axios.post("/project/create", formData).catch((error) => console.log(error));
+  axios.post("/project/create", formData).catch(({response}) => {
+    const {msg: error} = response.data;
+    dispatch({type: "PROJECT_CREATION_ERROR_HANDLER", error})
+  })
 };
 
 const setProjects = ({ getState, dispatch }: AxiosSubmit) => {

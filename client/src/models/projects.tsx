@@ -41,3 +41,10 @@ export interface ProjectState {
 export interface ProjectCreationButton {
   getProjectTeamSize: Function;
 }
+
+export interface ProjectCreationProps {
+  projectInputs: Project;
+  error: string;
+  sendProject: Function;
+  setProjectImage: Function;
+}

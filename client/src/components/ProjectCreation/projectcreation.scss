@@ -99,6 +99,12 @@
   max-width: 35%;
   margin: 8% auto auto;
   border-radius: 5px;
+
+  .error-message {
+    text-align: center;
+    color: rgb(226, 37, 37);
+    margin-bottom: 1rem;
+  }
 }
 
 .separator {

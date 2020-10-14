@@ -1,7 +1,7 @@
 import React, { FormEvent, MouseEvent, useRef } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faPaperclip } from "@fortawesome/free-solid-svg-icons";
-import { ProjectCreationProps } from "../../models/states";
+import { ProjectCreationProps } from "../../models/projects";
 import capitalizeFirstLetter from "../../utils/capitalizeFirstLetter";
 import Buttons from "../containers/ProjectCreationButtons";
 import Input from "../containers/Input";
@@ -9,6 +9,7 @@ import "./projectcreation.scss";
 
 const ProjectCreation = ({
   projectInputs,
+  error,
   setProjectImage,
   sendProject,
 }: ProjectCreationProps) => {
@@ -33,7 +34,9 @@ const ProjectCreation = ({
         ref={fileInput}
         style={{ display: "none" }}
       />
+      
       <div className="project-container">
+      {error && <div className="error-message">{error}</div>}
         <h2 className="project-creation-title-entry">Project Title : </h2>
 
         <div className="project-creation">
