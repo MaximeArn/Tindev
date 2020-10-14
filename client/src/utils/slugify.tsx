@@ -2,7 +2,7 @@
 
 const slugify = require("slugify");
 
-const slugifyString = (string: string) => {
+export default (string: string) => {
   return slugify(string, {
     replacement: "-",
     remove: /[*+~.()'"!:@]/g,
@@ -11,5 +11,3 @@ const slugifyString = (string: string) => {
     locale: "vi",
   });
 };
-
-export default slugifyString;
