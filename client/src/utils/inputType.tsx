@@ -3,7 +3,7 @@ const input: any = {
   email: "email",
   password: "password",
   confirmPassword: "password",
-  description: "textarea"
+  description: "textarea",
 };
 
 export default (name: string) => input[name] || "text";

@@ -1,6 +1,6 @@
-const router = require('express').Router();
-const {fetchCategories} = require('../controllers/categories');
+const router = require("express").Router();
+const { fetchCategories } = require("../controllers/categories");
 
-router.get('/', fetchCategories);
+router.get("/", fetchCategories);
 
 module.exports = router;

@@ -1,6 +1,7 @@
 /** @format */
 
-import { ProjectState, Project, Category } from "./projects";
+import { ProjectState } from "./projects";
+import { Category } from "./categories";
 
 export interface Authentication {
   register: {
@@ -25,6 +26,7 @@ export interface Authentication {
 export interface State {
   auth: Authentication;
   error: AuthenticationError;
+  categories: CategoriesState;
   project: ProjectState;
   loaders: Loaders;
 }
@@ -63,7 +65,7 @@ export interface LoginAuth {
 export interface AuthenticationError {
   registerErrorMessage: string;
   loginErrorMessage: string;
-  projectCreationErrorMessage: string
+  projectCreationErrorMessage: string;
 }
 
 export interface AppProps {
@@ -79,4 +81,6 @@ export interface HomeProps {
   getProjects: Function;
 }
 
-
+export interface CategoriesState {
+  categories: Category[];
+}

@@ -1,5 +1,5 @@
 /** @format */
-
+import { Category } from "../models/categories";
 export interface Projects {
   projects: Project[];
 }
@@ -27,14 +27,8 @@ export interface Contributor {
   name: string;
 }
 
-export interface Category {
-  name: string;
-  color?: string;
-}
-
 export interface ProjectState {
   projects: Project[];
-  categories: Category[];
   createProject: ProjectCreation;
 }
 

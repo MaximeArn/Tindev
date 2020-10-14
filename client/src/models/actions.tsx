@@ -2,6 +2,7 @@
 
 import { MutableRefObject } from "react";
 import { AuthenticationError } from "./states";
+import { Category } from "./categories";
 import { Project } from "./projects";
 
 export interface AuthenticationAction {
@@ -37,4 +38,9 @@ export interface ProjectAction {
 export interface AuthMiddleware {
   type: string;
   history: any;
+}
+
+export interface CategoriesAction {
+  type: string;
+  categories: Category[];
 }

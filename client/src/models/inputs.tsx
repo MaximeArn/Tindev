@@ -1,4 +1,4 @@
-import { Category } from "../models/projects";
+import { Category } from "../models/categories";
 
 export interface InputModel {
   formType: string;

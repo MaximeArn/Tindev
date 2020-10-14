@@ -2,7 +2,7 @@ import { connect } from "react-redux";
 import Input from "../Input/Input";
 import { State } from "../../models/states";
 
-const mapState = ({ project: { categories } }: State) => ({
+const mapState = ({ categories: { categories } }: State) => ({
   categories,
 });
 

@@ -11,5 +11,4 @@ const upload = require("multer")({
 router.get("/", getAllProjects);
 router.post("/create", upload.single("image"), create);
 
-
 module.exports = router;
