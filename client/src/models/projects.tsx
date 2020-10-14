@@ -47,4 +47,5 @@ export interface ProjectCreationProps {
   error: string;
   sendProject: Function;
   setProjectImage: Function;
+  getCategories: Function;
 }

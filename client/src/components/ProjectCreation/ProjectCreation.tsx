@@ -1,4 +1,4 @@
-import React, { FormEvent, MouseEvent, useRef } from "react";
+import React, { FormEvent, MouseEvent, useEffect, useRef } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faPaperclip } from "@fortawesome/free-solid-svg-icons";
 import { ProjectCreationProps } from "../../models/projects";
@@ -12,8 +12,13 @@ const ProjectCreation = ({
   error,
   setProjectImage,
   sendProject,
+  getCategories
 }: ProjectCreationProps) => {
   const fileInput = useRef<any>(null);
+
+  useEffect(() => {
+    getCategories();
+  }, [])
 
   const onFileBrowserClick = (event: MouseEvent<HTMLButtonElement>) => {
     event.preventDefault();

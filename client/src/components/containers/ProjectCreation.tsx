@@ -14,6 +14,7 @@ const mapDispatch = (dispatch: any) => ({
   setProjectImage: (image: MutableRefObject<any>) =>
     dispatch({ type: "SET_PROJECT_IMAGE", image }),
   sendProject: () => dispatch({ type: "SEND_PROJECT" }),
+  getCategories: () => ({type: "GET_CATEGORIES"})
 });
 
 export default connect(mapState, mapDispatch)(ProjectCreation);
