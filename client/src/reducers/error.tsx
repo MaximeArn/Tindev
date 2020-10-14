@@ -5,6 +5,7 @@ const initialState: AuthenticationError = {
   registerErrorMessage: "",
   loginErrorMessage: "",
   projectCreationErrorMessage: "",
+  projectListErrorMessage: "",
 };
 
 const error = (state = initialState, { type, error }: ErrorAction) => {
@@ -13,6 +14,8 @@ const error = (state = initialState, { type, error }: ErrorAction) => {
       return { ...state, registerErrorMessage: error };
     case "LOGIN_ERROR_HANDLER":
       return { ...state, loginErrorMessage: error };
+    case "PROJECT_LIST_ERROR_HANDLER":
+      return { ...state, projectListErrorMessage: error };
     case "PROJECT_CREATION_ERROR_HANDLER":
       return { ...state, projectCreationErrorMessage: error };
     default:

@@ -2,6 +2,7 @@
 import { Category } from "../models/categories";
 export interface Projects {
   projects: Project[];
+  error: string;
 }
 
 export interface Project {

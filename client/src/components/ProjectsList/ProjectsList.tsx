@@ -6,13 +6,19 @@ import "./projectsList.scss";
 import { Project as ProjectModel, Projects } from "../../models/projects";
 import idGenerator from "../../utils/randomIdGenerator";
 
-const ProjectsList = ({ projects }: Projects) => {
+const ProjectsList = ({ projects, error }: Projects) => {
   return (
-    <div className="projectsList">
-      {projects.map((project: ProjectModel) => {
-        return <Project key={idGenerator()} {...project} />;
-      })}
-    </div>
+    <>
+      {error ? (
+        <div className="project-list-error">{error}</div>
+      ) : (
+        <div className="projectsList">
+          {projects.map((project: ProjectModel) => {
+            return <Project key={idGenerator()} {...project} />;
+          })}
+        </div>
+      )}
+    </>
   );
 };
 

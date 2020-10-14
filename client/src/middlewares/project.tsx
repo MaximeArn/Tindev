@@ -35,8 +35,11 @@ const setProjects = (dispatch: Dispatch<AnyAction>) => {
       const { data: dbProjects } = res;
       dispatch({ type: "SET_PROJECTS", projects: dbProjects });
     })
-    .catch((err) => {
-      console.log(err);
+    .catch((error) => {
+      dispatch({
+        type: "PROJECT_LIST_ERROR_HANDLER",
+        error: "Oops... Something went wrong",
+      });
     })
     .finally(() => dispatch({ type: "SET_PROJECTLIST_LOADER", value: false }));
 };

@@ -11,7 +11,6 @@ const Home = ({ loader, getProjects }: HomeProps) => {
     getProjects();
   }, []);
 
-  console.log(loader);
   return (
     <div>
       {loader && (

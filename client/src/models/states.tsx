@@ -67,6 +67,7 @@ export interface AuthenticationError {
   registerErrorMessage: string;
   loginErrorMessage: string;
   projectCreationErrorMessage: string;
+  projectListErrorMessage: string;
 }
 
 export interface AppProps {

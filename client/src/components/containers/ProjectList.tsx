@@ -6,7 +6,8 @@ import ProjectList from "../ProjectsList/ProjectsList";
 
 const mapState = (state: State) => {
   const { projects } = state.project;
-  return { projects };
+  const { projectListErrorMessage: error } = state.error;
+  return { projects, error };
 };
 
 export default connect(mapState)(ProjectList);
