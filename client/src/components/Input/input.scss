@@ -8,6 +8,10 @@
   border-radius: 5px;
   transition: border ease-in-out 0.4s;
 
+  &.description {
+    height: 150px;
+  }
+
   &:hover {
     border: 1px solid rgba($color: #62646a, $alpha: 0.6);
   }

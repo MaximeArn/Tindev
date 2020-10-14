@@ -39,7 +39,7 @@ const Input = ({
         </select>
       ) : (
         <input
-          className="auth-input"
+          className={name === "description" ? "auth-input description" : "auth-input"}
           type={convertInputType(name)}
           name={name}
           placeholder={capitalizeFirstLetter(name)}
