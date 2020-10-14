@@ -60,7 +60,7 @@ const NavBar = ({ user, logout }: NavState) => {
                     <NavLink to="/project/create">Create a project...</NavLink>
                   </li>
                   <li className="nav-item">
-                    <li className="dropdown">
+                    <span className="dropdown">
                       <FontAwesomeIcon icon={faUserCircle} />
                       <span className="user">{user.username}</span>
 
@@ -82,7 +82,7 @@ const NavBar = ({ user, logout }: NavState) => {
                           <button onClick={() => logout()}>Logout</button>
                         </div>
                       </div>
-                    </li>
+                    </span>
                   </li>
                 </>
               )}
