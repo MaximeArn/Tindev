@@ -1,6 +1,6 @@
 /** @format */
 
-import React, { useEffect  } from "react";
+import React, { useEffect } from "react";
 import Home from "../containers/Home";
 import { Switch, Route } from "react-router-dom";
 import { AppProps } from "../../models/states";

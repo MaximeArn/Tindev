@@ -6,22 +6,23 @@ import { LoadersActions } from "../models/actions";
 const initialState: Loaders = {
   registerLoader: false,
   loginLoader: false,
+  projectListLoader: false,
 };
 
 const loaders = (state = initialState, { type, value }: LoadersActions) => {
   switch (type) {
     case "SET_REGISTER_LOADER":
-      console.log("registerLoader", value);
       return {
         ...state,
         registerLoader: value,
       };
     case "SET_LOGIN_LOADER":
-      console.log("loginLoader", value);
       return {
         ...state,
         loginLoader: value,
       };
+    case "SET_PROJECTLIST_LOADER":
+      return { ...state, projectListLoader: value };
     default:
       return state;
   }

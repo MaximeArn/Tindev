@@ -28,6 +28,7 @@ const sendProject = ({ getState, dispatch }: AxiosSubmit) => {
 };
 
 const setProjects = (dispatch: Dispatch<AnyAction>) => {
+  dispatch({ type: "SET_PROJECTLIST_LOADER", value: true });
   axios
     .get("/project")
     .then((res) => {
@@ -36,7 +37,8 @@ const setProjects = (dispatch: Dispatch<AnyAction>) => {
     })
     .catch((err) => {
       console.log(err);
-    });
+    })
+    .finally(() => dispatch({ type: "SET_PROJECTLIST_LOADER", value: false }));
 };
 
 const project: Middleware = ({ getState, dispatch }) => (next) => (action) => {

@@ -34,6 +34,7 @@ export interface State {
 export interface Loaders {
   registerLoader: boolean;
   loginLoader: boolean;
+  projectListLoader: boolean;
 }
 
 export interface RegisterAuth {
@@ -78,6 +79,7 @@ export interface NavState {
 }
 
 export interface HomeProps {
+  loader: boolean;
   getProjects: Function;
 }
 
