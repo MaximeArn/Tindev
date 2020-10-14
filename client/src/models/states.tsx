@@ -4,6 +4,7 @@ import { ProjectState } from "./projects";
 import { Category } from "./categories";
 
 export interface Authentication {
+  isModalOpen: boolean;
   register: {
     username: string;
     firstname: string;
@@ -77,6 +78,7 @@ export interface AppProps {
 export interface NavState {
   user: { email: string; username: string } | null;
   logout: Function;
+  openModal: Function;
 }
 
 export interface HomeProps {

@@ -2,12 +2,12 @@
 
 import React from "react";
 import { NavLink } from "react-router-dom";
-import { Authentication, NavState } from "../../models/states";
+import { NavState } from "../../models/states";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faUserCircle } from "@fortawesome/free-solid-svg-icons";
 import "./navBar.scss";
 
-const NavBar = ({ user, logout }: NavState) => {
+const NavBar = ({ user, logout, openModal }: NavState) => {
   return (
     <>
       <div>
@@ -48,10 +48,14 @@ const NavBar = ({ user, logout }: NavState) => {
               {!user ? (
                 <>
                   <li className="nav-item">
-                    <NavLink to="/login">Login</NavLink>
+                    <NavLink onClick={() => openModal()} to="/login">
+                      Login
+                    </NavLink>
                   </li>
                   <li className="nav-item">
-                    <NavLink to="/register">Register</NavLink>
+                    <NavLink onClick={() => openModal()} to="/register">
+                      Register
+                    </NavLink>
                   </li>
                 </>
               ) : (
