@@ -1,3 +1,5 @@
+/** @format */
+
 import React, { FormEvent, MouseEvent, useRef } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faPaperclip } from "@fortawesome/free-solid-svg-icons";
@@ -33,53 +35,67 @@ const ProjectCreation = ({
         ref={fileInput}
         style={{ display: "none" }}
       />
-      <div className="project-container">
-        <h2 className="project-creation-title-entry">Project Title : </h2>
+      <div className="maxiWrapper">
+        <div className="project-container">
+          <div className="project-container-form">
+            <form onSubmit={handleSubmit}>
+              <section className="title-section">
+                <h3 className="project-creation-title-entry">
+                  Project Title :{" "}
+                </h3>
+                <Input
+                  name="title"
+                  placeHolder={capitalizeFirstLetter("title")}
+                  inputValue={projectInputs["title"]}
+                  formType="ProjectCreation"
+                />
+              </section>
 
-        <div className="project-creation">
-          <form onSubmit={handleSubmit}>
-            <Input
-              name="title"
-              placeHolder={capitalizeFirstLetter("title")}
-              inputValue={projectInputs["title"]}
-              formType="ProjectCreation"
-            />
-            <div className="separator"></div>
+              <section className="description-section">
+                <h3 className="project-creation-title">
+                  Project Description - try to be as detailed as possible :
+                </h3>
 
-            <h1 className="project-creation-title">
-              Project Description - try to be as detailed as possible :
-            </h1>
+                <Input
+                  name="description"
+                  inputValue={projectInputs["description"]}
+                  formType="ProjectCreation"
+                />
+              </section>
 
-            <Input
-              name="description"
-              inputValue={projectInputs["description"]}
-              formType="ProjectCreation"
-            />
+              <section className="image-section">
+                <button
+                  className="project-creation-button image"
+                  onClick={onFileBrowserClick}
+                >
+                  <FontAwesomeIcon icon={faPaperclip} />
+                  <p>Select An Image</p>
+                </button>
+              </section>
 
-            <button
-              className="project-creation-button image"
-              onClick={onFileBrowserClick}
-            >
-              <FontAwesomeIcon icon={faPaperclip} />
-              Select An Image
-            </button>
+              <section className="category-section">
+                <h3 className="project-creation-title">Choose a category :</h3>
 
-            <div className="separator"></div>
+                <Input name="categories" formType="ProjectCreation" />
+              </section>
 
-            <h1 className="project-creation-title">Choose a category :</h1>
+              <section className="team-size-section">
+                <h3 className="project-creation-title">Desired team size :</h3>
+                <div className="project-creation-teamsize">
+                  <Buttons />
+                </div>
+              </section>
 
-            <Input name="categories" formType="ProjectCreation" />
-
-            <div className="separator"></div>
-
-            <h1 className="project-creation-title">Desired team size :</h1>
-            <div className="project-creation-teamsize">
-              <Buttons />
-            </div>
-            <button type="submit" className="project-creation-button submit">
-              Submit
-            </button>
-          </form>
+              <section className="submit-section">
+                <button
+                  type="submit"
+                  className="project-creation-button submit"
+                >
+                  Submit
+                </button>
+              </section>
+            </form>
+          </div>
         </div>
       </div>
     </>

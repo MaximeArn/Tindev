@@ -8,8 +8,6 @@ import NavBar from "../containers/NavBar";
 import Register from "../containers/Register";
 import Login from "../containers/Login";
 import ProjectCreation from "../containers/ProjectCreation";
-import axios from "axios";
-import { url } from "../../environments/api";
 
 function App({ verifyToken }: AppProps) {
   useEffect(() => {
