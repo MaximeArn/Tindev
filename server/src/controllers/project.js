@@ -19,8 +19,8 @@ module.exports = {
     try {
       const projects = await Project.find();
       return res.status(200).json(projects);
-    } catch (err) {
-      console.error(err);
+    } catch (error) {
+      console.error(error);
       next(error);
     }
   },
