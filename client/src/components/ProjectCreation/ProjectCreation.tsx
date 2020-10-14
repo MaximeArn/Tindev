@@ -40,9 +40,18 @@ const ProjectCreation = ({
           <div className="project-container-form">
             <form onSubmit={handleSubmit}>
               <section className="title-section">
-                <h3 className="project-creation-title-entry">
-                  Project Title :{" "}
-                </h3>
+                <div className="title-wrapper">
+                  <h3 className="project-creation-title-entry">
+                    Project Title :{" "}
+                  </h3>
+                  <button
+                    className="project-creation-button image"
+                    onClick={onFileBrowserClick}
+                  >
+                    <FontAwesomeIcon icon={faPaperclip} />
+                    <p>select an image</p>
+                  </button>
+                </div>
                 <Input
                   name="title"
                   placeHolder={capitalizeFirstLetter("title")}
@@ -63,22 +72,11 @@ const ProjectCreation = ({
                 />
               </section>
 
-              <section className="image-section">
-                <button
-                  className="project-creation-button image"
-                  onClick={onFileBrowserClick}
-                >
-                  <FontAwesomeIcon icon={faPaperclip} />
-                  <p>Select An Image</p>
-                </button>
-              </section>
-
               <section className="category-section">
-                <h3 className="project-creation-title">Choose a category :</h3>
+                <h3 className="project-creation-title">Project category :</h3>
 
                 <Input name="categories" formType="ProjectCreation" />
               </section>
-
               <section className="team-size-section">
                 <h3 className="project-creation-title">Desired team size :</h3>
                 <div className="project-creation-teamsize">

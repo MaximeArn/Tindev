@@ -46,22 +46,30 @@
 
   section {
     padding-bottom: 1rem;
-    // margin-bottom: 1rem;
-    // border-bottom: 1px dashed rgba($color: #fff, $alpha: 1);
+    // border-bottom: 1px solid rgba($color: #fff, $alpha: 1);
   }
 
-  .image-section {
-    // text-align: center;
+  .title-section {
+    .title-wrapper {
+      display: flex;
+      align-items: baseline;
+      // justify-content: space-between;
+      padding-bottom: .5rem;
 
-    button {
-      padding: 0.7rem;
-      border: none;
-      color: #333;
-      border-radius: 7px;
+      h3 {
+        padding-right: 2.3rem;
+      }
 
-      p {
-        display: inline-block;
-        padding-left: 0.4rem;
+      button {
+        padding: .5rem;
+        border: none;
+        color: #333;
+        border-radius: 5px;
+
+        p {
+          display: inline-block;
+          padding-left: 0.4rem;
+        }
       }
     }
   }
@@ -71,8 +79,14 @@
     justify-content: start;
     align-items: baseline;
 
+    select {
+      border-radius: 5px;
+      padding: .3rem;
+      color: 333;
+    }
+
     h3 {
-      padding-right: 2rem;
+      padding-right: 1em;
     }
   }
 
@@ -97,7 +111,7 @@
       }
 
       &:hover {
-        background-color: #ccc;
+        background-color: #fff;
       }
     }
   }
