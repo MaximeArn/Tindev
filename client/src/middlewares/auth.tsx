@@ -1,6 +1,6 @@
 /** @format */
 
-import { Middleware } from "redux";
+import { AnyAction, Dispatch, Middleware } from "redux";
 import { AuthMiddleware } from "../models/actions";
 import { AxiosSubmit } from "../models/axios";
 import { url } from "../environments/api";
@@ -50,7 +50,7 @@ const setLogin = ({ getState, dispatch }: AxiosSubmit, history: any) => {
     });
 };
 
-const retrieveToken = (dispatch: any) => {
+const retrieveToken = (dispatch: Dispatch<AnyAction>) => {
   axios
     .get("/auth/verify")
     .then(({ data: { username, email } }) => {

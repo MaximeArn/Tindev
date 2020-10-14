@@ -1,4 +1,4 @@
-import { Middleware } from "redux";
+import { AnyAction, Dispatch, Middleware } from "redux";
 import { AxiosSubmit } from "../models/axios";
 import { url } from "../environments/api";
 import axios from "axios";
@@ -6,7 +6,7 @@ axios.defaults.baseURL = url;
 axios.defaults.headers.post["Content-Type"] = "application/json";
 axios.defaults.withCredentials = true;
 
-const getCategories = ({ getState, dispatch }: AxiosSubmit) => {
+const getCategories = (dispatch: Dispatch<AnyAction>) => {
   axios
     .get("/categories")
     .then(({ data: categories }) => {
@@ -19,7 +19,7 @@ const categories: Middleware = ({ getState, dispatch }) => (next) => (
 ) => {
   switch (action.type) {
     case "GET_CATEGORIES":
-      getCategories({ getState, dispatch });
+      getCategories(dispatch);
       break;
     default:
       next(action);
