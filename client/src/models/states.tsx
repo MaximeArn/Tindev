@@ -52,6 +52,7 @@ export interface RegisterAuth {
   submitRegister: Function;
   error: string;
   registerLoader: boolean;
+  closeModal: Function;
 }
 
 export interface LoginAuth {
@@ -62,6 +63,7 @@ export interface LoginAuth {
   loginLoader: boolean;
   submitLogin: Function;
   error: string;
+  closeModal: Function;
 }
 
 export interface AuthenticationError {
@@ -73,6 +75,7 @@ export interface AuthenticationError {
 
 export interface AppProps {
   verifyToken: Function;
+  isModalOpen: boolean;
 }
 
 export interface NavState {

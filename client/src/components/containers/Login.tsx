@@ -15,6 +15,7 @@ const mapState = (state: State) => {
 
 const mapDispatch = (dispatch: Dispatch<AnyAction>) => ({
   submitLogin: (history: any) => dispatch({ type: "SUBMIT_LOGIN", history }),
+  closeModal: () => dispatch({ type: "SET_MODAL_STATE" }),
 });
 
 export default connect(mapState, mapDispatch)(Login);

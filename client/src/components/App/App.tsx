@@ -9,13 +9,13 @@ import Register from "../containers/Register";
 import Login from "../containers/Login";
 import ProjectCreation from "../containers/ProjectCreation";
 
-function App({ verifyToken }: AppProps) {
+function App({ verifyToken, isModalOpen }: AppProps) {
   useEffect(() => {
     verifyToken();
   }, []);
   return (
     <>
-      <NavBar />
+      {!isModalOpen && <NavBar />}
       <Switch>
         <Route exact path="/">
           <Home />

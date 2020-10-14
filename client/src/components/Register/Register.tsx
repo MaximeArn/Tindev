@@ -13,6 +13,7 @@ const Register = ({
   error,
   submitRegister,
   registerLoader,
+  closeModal,
 }: RegisterAuth) => {
   const modal = useRef<HTMLDivElement>(null);
   const history = useHistory();
@@ -28,7 +29,9 @@ const Register = ({
     <div
       ref={modal}
       className="registerContainer"
-      onMouseDown={(event) => modalClickHandler({ event, modal, history })}
+      onMouseDown={(event) =>
+        modalClickHandler({ event, modal, history, closeModal })
+      }
     >
       <div className="register" id="modal">
         <form method="POST" onSubmit={handleSubmit}>

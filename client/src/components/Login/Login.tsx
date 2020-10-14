@@ -9,7 +9,13 @@ import inputMapper from "../../utils/inputMapper";
 import "./login.scss";
 import CircularProgress from "@material-ui/core/CircularProgress";
 
-const Login = ({ login, error, submitLogin, loginLoader }: LoginAuth) => {
+const Login = ({
+  login,
+  error,
+  submitLogin,
+  loginLoader,
+  closeModal,
+}: LoginAuth) => {
   const modal = useRef<HTMLDivElement>(null);
   const history = useHistory();
 
@@ -35,7 +41,9 @@ const Login = ({ login, error, submitLogin, loginLoader }: LoginAuth) => {
         ref={modal}
         id="registerContainer"
         className="registerContainer"
-        onMouseDown={(event) => modalClickHandler({ event, modal, history })}
+        onMouseDown={(event) =>
+          modalClickHandler({ event, modal, history, closeModal })
+        }
       >
         <div className="register" id="modal">
           <form method="POST" onSubmit={handleSubmit}>

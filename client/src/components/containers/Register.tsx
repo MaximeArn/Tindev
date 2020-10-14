@@ -17,6 +17,7 @@ const mapState = (state: State) => {
 const mapDispatch = (dispatch: Dispatch<AnyAction>) => ({
   submitRegister: (history: any) =>
     dispatch({ type: "SUBMIT_REGISTER", history }),
+  closeModal: () => dispatch({ type: "SET_MODAL_STATE" }),
 });
 
 export default connect(mapState, mapDispatch)(Register);
