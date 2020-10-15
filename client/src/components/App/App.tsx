@@ -8,11 +8,12 @@ import NavBar from "../containers/NavBar";
 import Register from "../containers/Register";
 import Login from "../containers/Login";
 import ProjectCreation from "../containers/ProjectCreation";
-import ProjectDetail from "../ProjectDetail/ProjectDetail";
+import ProjectDetail from "../containers/ProjectDetail";
 
-function App({ verifyToken, isModalOpen }: AppProps) {
+function App({ verifyToken, isModalOpen, getProjects }: AppProps) {
   useEffect(() => {
     verifyToken();
+    getProjects();
   }, []);
   return (
     <>

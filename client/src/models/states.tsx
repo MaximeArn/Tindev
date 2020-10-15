@@ -76,6 +76,7 @@ export interface AuthenticationError {
 export interface AppProps {
   verifyToken: Function;
   isModalOpen: boolean;
+  getProjects: Function;
 }
 
 export interface NavState {

@@ -2,13 +2,10 @@
 
 import React from "react";
 import "./projectDetail.scss";
+import ProjectComp from "../ProjectsList/Project";
 
-const ProjectDetail = () => {
-  return (
-    <div className="projectDetail">
-      <p>hello</p>
-    </div>
-  );
+const ProjectDetail = ({ project }: any) => {
+  return <>{project && <ProjectComp {...project} />}</>;
 };
 
 export default ProjectDetail;

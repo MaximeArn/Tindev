@@ -8,7 +8,7 @@ import "./home.scss";
 
 const Home = ({ loader, getProjects }: HomeProps) => {
   useEffect(() => {
-    getProjects();
+    // getProjects();
   }, []);
 
   return (
