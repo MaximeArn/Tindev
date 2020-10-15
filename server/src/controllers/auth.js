@@ -1,28 +1,24 @@
 /** @format */
 
 const compareHashed = require("../utils/compareHashed");
-const fieldValidator = require("../utils/fieldValidator");
+const fieldValidator = require("../utils/authFieldValidator");
 const jwt = require("jsonwebtoken");
 const secret = process.env.SECRET;
 const { User } = require("../models");
 
 const authRouter = {
-  register: async (req, res) => {
+  register: async (req, res, next) => {
     const { body } = req;
     try {
-      const validator = await fieldValidator(body);
+      const validator = await fieldValidator(body, next);
 
-      return validator instanceof Error
-        ? res.status(400).json({ msg: validator.message })
-        : User.create(body)
-            .then((result) =>
-              res
-                .status(200)
-                .json({ result, msg: "Account Successfully created" })
-            )
-            .catch((error) => console.error(error));
+      if (validator) {
+        const result = await User.create(body);
+        res.status(200).json({ result, msg: "Account Successfully created" });
+      }
     } catch (error) {
       console.error(error);
+      next(error);
     }
   },
 

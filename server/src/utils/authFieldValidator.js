@@ -3,27 +3,28 @@
 const comparePasswords = require("./comparePasswords");
 const hash = require("./hashPassword");
 const { User } = require("../models");
+const UserError = require("./CustomError");
 const emailRegex = new RegExp(
   /^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+$/g
 );
 
-module.exports = async (body) => {
+module.exports = async (body, next) => {
   try {
     const { age, city, lastname, firstname, ...mandatory } = body;
     const requiredFields = Object.values(mandatory).every((value) => value);
 
     if (!requiredFields) {
-      return new Error("Some required fields were not provided");
+      throw new UserError("Some required fields were not provided", 400);
     }
 
     if (!body.email.match(emailRegex))
-      return new Error("Invalid email address");
+      throw new UserError("Invalid email address", 400);
 
     if ((body.age && isNaN(body.age)) || body.age < 0)
-      return new Error("Incorrect age format");
+      throw new UserError("Incorrect age format", 400);
 
     if (!comparePasswords(body)) {
-      return new Error("Passwords do not match");
+      throw new UserError("Passwords do not match", 400);
     }
 
     body.password = await hash(body.password);
@@ -32,10 +33,11 @@ module.exports = async (body) => {
       $or: [{ email: body.email }, { username: body.username }],
     });
 
-    return user
-      ? new Error("Email or Username already in use")
-      : { success: true };
-  } catch (err) {
-    console.error(err);
+    if (!user) throw new UserError("Email or Username already in use", 400);
+
+    return { success: true };
+  } catch (error) {
+    console.error(error);
+    next(error);
   }
 };

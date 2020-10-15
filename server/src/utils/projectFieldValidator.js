@@ -1,5 +1,5 @@
 const { Category } = require("../models");
-const ProjectError = require("../utils/ProjectError");
+const ProjectError = require("./CustomError");
 
 module.exports = async (body, next) => {
   const { title, size, categories: category } = body;
