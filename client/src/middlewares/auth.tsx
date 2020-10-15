@@ -51,12 +51,13 @@ const setLogin = ({ getState, dispatch }: AxiosSubmit, history: any) => {
 };
 
 const retrieveToken = (dispatch: Dispatch<AnyAction>) => {
-  axios
-    .get("/auth/verify")
-    .then(({ data: { username, email } }) => {
-      dispatch({ type: "CONNECT_USER", credentials: { username, email } });
-    })
-    .catch(({ response }) => console.log(response));
+  Cookies.get("token") &&
+    axios
+      .get("/auth/verify")
+      .then(({ data: { username, email } }) => {
+        dispatch({ type: "CONNECT_USER", credentials: { username, email } });
+      })
+      .catch(({ response }) => console.log(response));
 };
 
 const auth: Middleware = ({ getState, dispatch }) => (next) => (
