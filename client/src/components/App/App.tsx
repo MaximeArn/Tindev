@@ -8,6 +8,7 @@ import NavBar from "../containers/NavBar";
 import Register from "../containers/Register";
 import Login from "../containers/Login";
 import ProjectCreation from "../containers/ProjectCreation";
+import ProjectDetail from "../ProjectDetail/ProjectDetail";
 
 function App({ verifyToken, isModalOpen }: AppProps) {
   useEffect(() => {
@@ -17,18 +18,11 @@ function App({ verifyToken, isModalOpen }: AppProps) {
     <>
       {!isModalOpen && <NavBar />}
       <Switch>
-        <Route exact path="/">
-          <Home />
-        </Route>
-        <Route path="/login">
-          <Login />
-        </Route>
-        <Route path="/register">
-          <Register />
-        </Route>
-        <Route exact path="/project/create">
-          <ProjectCreation />
-        </Route>
+        <Route exact path="/" component={Home} />
+        <Route path="/login" component={Login} />
+        <Route path="/register" component={Register} />
+        <Route exact path="/project/create" component={ProjectCreation} />
+        <Route path="/project/:slug" component={ProjectDetail} />
       </Switch>
     </>
   );
