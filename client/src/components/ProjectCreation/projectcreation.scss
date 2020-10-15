@@ -3,10 +3,12 @@
 .maxiWrapper {
   height: calc(100vh - 80px);
   width: 100vw;
-  background: linear-gradient(90deg,
-      rgba(149, 230, 191, 1) 0%,
-      rgba(84, 227, 206, 1) 48%,
-      rgba(0, 212, 255, 1) 100%);
+  background: linear-gradient(
+    90deg,
+    rgba(149, 230, 191, 1) 0%,
+    rgba(84, 227, 206, 1) 48%,
+    rgba(0, 212, 255, 1) 100%
+  );
   color: #fff;
   margin-top: 80px;
 }
@@ -21,7 +23,7 @@
     background-color: #333;
     padding: 1rem;
     border-radius: 10px;
-    box-shadow: 10px 10px 10px rgba($color: #000000, $alpha: .2);
+    box-shadow: 10px 10px 10px rgba($color: #000000, $alpha: 0.2);
   }
 
   h3 {
@@ -46,22 +48,20 @@
 
   section {
     padding-bottom: 1rem;
-    // border-bottom: 1px solid rgba($color: #fff, $alpha: 1);
   }
 
   .title-section {
     .title-wrapper {
       display: flex;
       align-items: baseline;
-      // justify-content: space-between;
-      padding-bottom: .5rem;
+      padding-bottom: 0.5rem;
 
       h3 {
         padding-right: 2.3rem;
       }
 
       button {
-        padding: .5rem;
+        padding: 0.5rem;
         border: none;
         color: #333;
         border-radius: 5px;
@@ -76,12 +76,12 @@
 
   .category-section {
     display: flex;
-    justify-content: start;
+    justify-content: flex-start;
     align-items: baseline;
 
     select {
       border-radius: 5px;
-      padding: .3rem;
+      padding: 0.3rem;
       color: 333;
     }
 
