@@ -1,12 +1,14 @@
 /** @format */
 
-import React, { RefObject, useRef } from "react";
+import React, { RefObject, useRef, useEffect } from "react";
+import { useHistory, Link } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faArrowLeft } from "@fortawesome/free-solid-svg-icons";
 import Applicant from "./applicant";
 import "./managePage.scss";
 
 const ApplyPage = () => {
+  const history = useHistory();
   const fakeApplicant = [
     {
       username: "liv",
@@ -50,11 +52,16 @@ const ApplyPage = () => {
     current && current.classList.toggle("hide");
   };
 
+  const pushLastPath = () => {
+    console.log(history);
+    history.goBack();
+  };
+
   return (
     <div className="applyPage">
-      <div className="left-arrow">
+      <Link className="left-arrow" onClick={pushLastPath}>
         <FontAwesomeIcon icon={faArrowLeft} size="lg" />
-      </div>
+      </Link>
       <div className="applyPage-content">
         <div className="title-section">
           <h2>manage your team</h2>
