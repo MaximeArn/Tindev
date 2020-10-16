@@ -3,6 +3,7 @@
 const { Project } = require("../models");
 const fieldValidator = require("../utils/validators/projectFieldValidator");
 const applyValidator = require("../utils/validators/applyValidator");
+const tokenValidator = require("../utils/validators/tokenValidator");
 
 module.exports = {
   create: async (req, res, next) => {
@@ -27,8 +28,10 @@ module.exports = {
     }
   },
   apply: async (req, res, next) => {
-    console.log(req.cookies);
+    const { token } = req.cookies;
     try {
+      const tokenCredentials = await tokenValidator(token, next);
+
       const apply = await applyValidator(req.body, next);
 
       if (apply) {
@@ -45,7 +48,7 @@ module.exports = {
         // );
       }
     } catch (error) {
-      console.error(error);
+      console.error("HOHOHOHOHOOHOH", error);
       next(error);
     }
   },
