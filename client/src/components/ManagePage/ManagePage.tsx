@@ -1,7 +1,7 @@
 /** @format */
 
 import React, { RefObject, useRef } from "react";
-import "./applyPage.scss";
+import "./managePage.scss";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import randomKey from "../../utils/randomIdGenerator";
 import {

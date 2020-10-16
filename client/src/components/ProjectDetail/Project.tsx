@@ -44,7 +44,7 @@ const Project = ({
         <div className="buttons-section">
           <button>Like</button>
           <button>
-            <Link to={`${pathname}/apply`}>Apply</Link>
+            <Link to={`${pathname}/manage`}>Apply</Link>
           </button>
         </div>
       </div>

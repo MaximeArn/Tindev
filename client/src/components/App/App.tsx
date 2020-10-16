@@ -9,7 +9,7 @@ import Register from "../containers/Register";
 import Login from "../containers/Login";
 import ProjectCreation from "../containers/ProjectCreation";
 import ProjectDetail from "../containers/ProjectDetail";
-import ApplyPage from "../containers/ApplyPage";
+import ManagePage from "../containers/ManagePage";
 
 function App({ verifyToken, isModalOpen, getProjects }: AppProps) {
   useEffect(() => {
@@ -24,7 +24,7 @@ function App({ verifyToken, isModalOpen, getProjects }: AppProps) {
         <Route path="/login" component={Login} />
         <Route path="/register" component={Register} />
         <Route exact path="/project/create" component={ProjectCreation} />
-        <Route path="/project/:slug/apply" component={ApplyPage} />
+        <Route path="/project/:slug/manage" component={ManagePage} />
         <Route path="/project/:slug" component={ProjectDetail} />
       </Switch>
     </>
