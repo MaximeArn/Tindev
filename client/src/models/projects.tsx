@@ -17,6 +17,18 @@ export interface Project {
   applicant: Applicant[] | [];
 }
 
+export interface ProjectDetailSubComponent {
+  _id: string;
+  author: string;
+  title: string;
+  description: string;
+  image: string;
+  categories: Category[] | [];
+  size: number;
+  contributors: Contributor[];
+  applicant: Applicant[] | [];
+  setModalStatus: Function;
+}
 export interface ProjectCreation {
   title: string;
   description: string;
@@ -42,6 +54,7 @@ export interface ProjectState {
 }
 
 export interface ProjectDetail {
+  isModalOpen: boolean;
   application: {
     description: string;
   };
@@ -63,4 +76,6 @@ export interface ProjectDetailProps {
   location: any;
   match: any;
   project: Project;
+  isModalOpen: boolean;
+  setModalStatus: Function;
 }

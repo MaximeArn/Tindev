@@ -41,14 +41,16 @@ module.exports = {
           message,
         } = body;
 
-        const update = await Project.updateOne(
+        await Project.updateOne(
           { _id: project._id },
           {
             applicant: [...project.applicant, { _id: id, username, message }],
           }
         );
 
-        console.log(update);
+        return res.status(200).json({
+          msg: "Thank you for your apply. We will be in touch with you soon.",
+        });
       }
     } catch (error) {
       console.error(error);
