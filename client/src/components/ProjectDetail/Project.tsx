@@ -15,7 +15,9 @@ const Project = ({
   return (
     <div className="projectDetail">
       <div className="projectDetail-content">
-        <img src={`${url}/uploads/${image}`} alt="project image" />
+        <div className="image-section">
+          <img src={`${url}/uploads/${image}`} alt="project image" />
+        </div>
         <div className="title-section">
           <h2>{title}</h2>
           <p>by {author}</p>
@@ -24,7 +26,7 @@ const Project = ({
           <p>{description}</p>
         </div>
         <div className="contributors-section">
-          <div className="test">
+          <div className="row-wrapper">
             {typedContributors.map(({ name }: Contributor) => (
               <div className="contributor-row">
                 <span>
