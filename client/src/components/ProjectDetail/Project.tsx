@@ -4,6 +4,8 @@ import React from "react";
 import { url } from "../../environments/api";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faUserCircle } from "@fortawesome/free-solid-svg-icons";
+import { Link, useLocation } from "react-router-dom";
+
 const Project = ({
   title,
   image,
@@ -12,6 +14,8 @@ const Project = ({
   author,
 }: ProjectModel) => {
   const typedContributors: Contributor[] | [] = contributors;
+  const { pathname } = useLocation();
+
   return (
     <div className="projectDetail">
       <div className="projectDetail-content">
@@ -39,7 +43,9 @@ const Project = ({
         </div>
         <div className="buttons-section">
           <button>Like</button>
-          <button>Apply</button>
+          <button>
+            <Link to={`${pathname}/apply`}>Apply</Link>
+          </button>
         </div>
       </div>
     </div>
