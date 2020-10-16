@@ -1,7 +1,7 @@
 /** @format */
 
-const fieldValidator = require("../utils/authFieldValidator");
-const loginValidator = require("../utils/loginValidator");
+const fieldValidator = require("../utils/validators/authFieldValidator");
+const loginValidator = require("../utils/validators/loginValidator");
 const jwt = require("jsonwebtoken");
 const secret = process.env.SECRET;
 const { User } = require("../models");

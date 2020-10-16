@@ -1,6 +1,6 @@
-const { User } = require("../models");
-const UserError = require("../utils/CustomError");
-const compareHashed = require("../utils/compareHashed");
+const { User } = require("../../models");
+const UserError = require("../CustomError");
+const compareHashed = require("../compareHashed");
 
 module.exports = async (body) => {
   try {

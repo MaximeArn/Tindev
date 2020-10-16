@@ -1,7 +1,7 @@
-const ApplyError = require("../utils/CustomError");
-const { Project } = require("../models");
+const ApplyError = require("../CustomError");
+const { Project } = require("../../models");
 const sanitize = require("sanitize-html");
-const sanitizeConfig = require("../config/sanitize");
+const sanitizeConfig = require("../../config/sanitize");
 
 module.exports = async (body, next) => {
   const { appliant, message, project: id } = body;
