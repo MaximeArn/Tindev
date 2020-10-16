@@ -13,7 +13,7 @@ export interface Project {
   image: string;
   categories: Category[] | [];
   size: number;
-  contributors: Contributor[] | [];
+  contributors: Contributor[];
 }
 
 export interface ProjectCreation {
