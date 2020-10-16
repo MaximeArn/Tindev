@@ -21,6 +21,11 @@ export interface LoadersActions {
   value: string;
 }
 
+export interface ModalAction {
+  type: string;
+  modalStatus: boolean;
+}
+
 export interface ErrorAction {
   type: string;
   error: string;
@@ -33,6 +38,7 @@ export interface ProjectAction {
   teamSize: number;
   image: MutableRefObject<any>;
   projects: Project[];
+  modalStatus: boolean;
 }
 
 export interface AuthMiddleware {

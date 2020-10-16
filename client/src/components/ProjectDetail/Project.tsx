@@ -1,5 +1,9 @@
 /** @format */
-import { Project as ProjectModel, Contributor } from "../../models/projects";
+import {
+  Project as ProjectModel,
+  Contributor,
+  ProjectDetailSubComponent,
+} from "../../models/projects";
 import React from "react";
 import { url } from "../../environments/api";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
@@ -12,10 +16,11 @@ const Project = ({
   description,
   contributors,
   author,
-}: ProjectModel) => {
+  setModalStatus,
+}: ProjectDetailSubComponent) => {
   const typedContributors: Contributor[] | [] = contributors;
   const { pathname } = useLocation();
-
+  const owner = false;
   return (
     <div className="projectDetail">
       <div className="projectDetail-content">
@@ -43,9 +48,14 @@ const Project = ({
         </div>
         <div className="buttons-section">
           <button>Like</button>
-          <button>
-            <Link to={`${pathname}/manage`}>Apply</Link>
-          </button>
+
+          {owner ? (
+            <button>
+              <Link to={`${pathname}/manage`}>Manage</Link>
+            </button>
+          ) : (
+            <button onClick={() => setModalStatus(true)}>Apply</button>
+          )}
         </div>
       </div>
     </div>

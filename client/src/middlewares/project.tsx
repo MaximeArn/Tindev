@@ -27,7 +27,6 @@ const sendProject = ({ getState, dispatch }: AxiosSubmit) => {
   });
 };
 
-
 const setProjects = (dispatch: Dispatch<AnyAction>) => {
   dispatch({ type: "SET_PROJECTLIST_LOADER", value: true });
   axios
@@ -36,7 +35,7 @@ const setProjects = (dispatch: Dispatch<AnyAction>) => {
       const { data: dbProjects } = res;
       dispatch({ type: "SET_PROJECTS", projects: dbProjects });
     })
-    .catch((error) => {
+    .catch(() => {
       dispatch({
         type: "PROJECT_LIST_ERROR_HANDLER",
         error: "Oops... Something went wrong",
@@ -45,14 +44,33 @@ const setProjects = (dispatch: Dispatch<AnyAction>) => {
     .finally(() => dispatch({ type: "SET_PROJECTLIST_LOADER", value: false }));
 };
 
+const sendApply = ({ getState, dispatch }: AxiosSubmit, projectId: string) => {
+  const { user } = getState().auth;
+  const {
+    application: { description },
+  } = getState().project.projectDetail;
+
+  axios
+    .post(
+      "/project/apply",
+      { appliant: user, message: description, project: projectId },
+      { headers: { "Content-Type": "application/json" } }
+    )
+    .then((response) => console.log(response))
+    .catch((error) => console.error(error));
+};
+
 const project: Middleware = ({ getState, dispatch }) => (next) => (action) => {
+  const { user } = getState().auth;
   switch (action.type) {
     case "SEND_PROJECT":
-      const { user } = getState().auth;
       user.username && sendProject({ getState, dispatch });
       break;
     case "GET_PROJECTS":
       setProjects(dispatch);
+      break;
+    case "SEND_USER_APPLY":
+      user && sendApply({ getState, dispatch }, action.project);
       break;
     default:
       next(action);
