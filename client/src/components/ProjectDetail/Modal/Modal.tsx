@@ -1,15 +1,25 @@
-import React, { FormEvent } from "react";
+import React, { FormEvent, useRef } from "react";
 import Input from "../../containers/Input";
 import { ProjectDetailModal } from "../../../models/modal";
 import "./modal.scss";
 
-const Modal = ({ inputValue, sendApply }: ProjectDetailModal) => {
+const Modal = ({
+  inputValue,
+  sendApply,
+  setModalStatus,
+}: ProjectDetailModal) => {
+  const modal = useRef<HTMLDivElement>(null);
+
+  const handleMouseDown = (event: any) => {
+    event.target === modal.current && setModalStatus(false);
+  };
   const handleSubmit = (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault();
     sendApply();
   };
+
   return (
-    <div className="project-detail">
+    <div ref={modal} onMouseDown={handleMouseDown} className="project-detail">
       <div className="project-detail-modal">
         <form onSubmit={handleSubmit}>
           <div className="project-detail-padding">

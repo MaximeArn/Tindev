@@ -8,8 +8,12 @@ const mapState = ({ project: { projectDetail } }: State) => {
   return { inputValue: description };
 };
 
-const mapDispatch = (dispatch: Dispatch<AnyAction>, { project }: any) => {
-  return { sendApply: () => dispatch({ type: "SEND_USER_APPLY", project }) };
-};
+const mapDispatch = (dispatch: Dispatch<AnyAction>, { project }: any) => ({
+  sendApply: () => dispatch({ type: "SEND_USER_APPLY", project }),
+  setModalStatus: (modalStatus: boolean) => {
+    console.log("MODAL STATUS CALLED");
+    dispatch({ type: "SET_APPLY_MODAL_STATUS", modalStatus });
+  },
+});
 
 export default connect(mapState, mapDispatch)(Modal);

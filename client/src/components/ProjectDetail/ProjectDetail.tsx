@@ -13,11 +13,7 @@ const ProjectDetail = ({
   console.log(isModalOpen);
   return (
     <>
-      {isModalOpen && (
-        <div className="project-detail-modal">
-          <Modal project={project && project._id} />
-        </div>
-      )}
+      {isModalOpen && <Modal project={project && project._id} />}
 
       {project ? (
         <Project setModalStatus={setModalStatus} {...project} />
