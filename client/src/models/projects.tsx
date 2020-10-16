@@ -14,6 +14,7 @@ export interface Project {
   categories: Category[] | [];
   size: number;
   contributors: Contributor[] | [];
+  applicant: Applicant[] | [];
 }
 
 export interface ProjectCreation {
@@ -25,7 +26,13 @@ export interface ProjectCreation {
 }
 
 export interface Contributor {
+  _id: string;
   name: string;
+}
+
+export interface Applicant {
+  _id: string;
+  username: string;
 }
 
 export interface ProjectState {
@@ -43,4 +50,11 @@ export interface ProjectCreationProps {
   sendProject: Function;
   setProjectImage: Function;
   getCategories: Function;
+}
+
+export interface ProjectDetailProps {
+  history: any;
+  location: any;
+  match: any;
+  project: Project;
 }

@@ -3,12 +3,12 @@
 import { connect } from "react-redux";
 import ProjectDetail from "../ProjectDetail/ProjectDetail";
 import { State } from "../../models/states";
+import { ProjectDetailProps as OwnProps } from "../../models/projects";
 import { withRouter } from "react-router-dom";
 import slugify from "../../utils/slugify";
 
-const mapState = (state: State, { match }: any) => {
+const mapState = ({ project: { projects } }: State, { match }: OwnProps) => {
   const { slug } = match.params;
-  const { projects } = state.project;
   const project = projects.find(({ title }) => slugify(title) === slug);
   return { project };
 };

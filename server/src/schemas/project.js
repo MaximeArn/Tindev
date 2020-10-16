@@ -10,6 +10,7 @@ const projectSchema = new Schema({
   contributors: [{ name: String }],
   image: String,
   categories: [{ name: String, color: String }],
+  applicant: [{ id: ObjectId, username: String, message: String }],
   size: Number,
 });
 

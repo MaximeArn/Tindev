@@ -12,6 +12,7 @@ module.exports = {
       Project.create({
         ...valid,
         contributors: [],
+        applicant: [],
         image: filename,
       });
   },
