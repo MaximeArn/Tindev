@@ -11,7 +11,7 @@
 
         img {
             padding: 0 1.5rem;
-            max-width: 100%;
+            width: 100%;
             margin-bottom: 2rem;
             text-align: center;
         }
@@ -143,13 +143,14 @@
         &-content {
             .contributors-section {
                 .row-wrapper {
-                    min-width: 50%;
+                    display: flex;
                     flex-wrap: wrap;
-                    // justify-content: space-evenly;
+                    justify-content: space-around;
 
                     .contributor-row {
                         width: 50%;
-                        display: inline-block;
+                        display: flex;
+                        justify-content: center;
                         text-align: center;
                     }
                 }
