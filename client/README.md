@@ -56,7 +56,7 @@ Tout sauf IE
 ### Features :
 
  #### MVP :
-1. authentification (google...) 
+1. authentification (login/register)
 2. page d'accueil avec tous les projets
 3. page de détail d'un projet spécifique
 4. possibilité de postuler a un projet (si l'on est connecté)
@@ -68,6 +68,7 @@ Tout sauf IE
 10. messagerie instantanée
 
  #### optional feature :
+1. authtentication google et github
 1. afficher les projets "done" sur la page de profil d'un user 
 1. systeme de likes/commentaires
 1. création de groupes de messagerie
