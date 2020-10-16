@@ -27,6 +27,16 @@ module.exports = {
     }
   },
   apply: async (req, res, next) => {
-    const apply = await applyValidator(req.body, next);
+    try {
+      const apply = await applyValidator(req.body, next);
+
+      if (apply) {
+        const { body, project } = apply;
+        // Project.updateOne({_id: })
+      }
+    } catch (error) {
+      console.error(error);
+      next(error);
+    }
   },
 };

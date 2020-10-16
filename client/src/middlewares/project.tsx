@@ -61,9 +61,9 @@ const sendApply = ({ getState, dispatch }: AxiosSubmit, projectId: string) => {
 };
 
 const project: Middleware = ({ getState, dispatch }) => (next) => (action) => {
+  const { user } = getState().auth;
   switch (action.type) {
     case "SEND_PROJECT":
-      const { user } = getState().auth;
       user.username && sendProject({ getState, dispatch });
       break;
     case "GET_PROJECTS":
