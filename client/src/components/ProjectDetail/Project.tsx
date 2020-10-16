@@ -1,6 +1,6 @@
 /** @format */
 import { Project as ProjectModel, Contributor } from "../../models/projects";
-import Modal from "./Modal/Modal";
+import Modal from "../containers/ProjectDetailModal";
 import React from "react";
 import { url } from "../../environments/api";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";

@@ -12,6 +12,11 @@ const initialState: ProjectState = {
     categories: "",
     size: undefined,
   },
+  projectDetail: {
+    application: {
+      description: "",
+    },
+  },
 };
 
 const project = (

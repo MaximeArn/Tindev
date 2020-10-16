@@ -6,3 +6,7 @@ export interface ModalSelector {
   history: any;
   closeModal: Function;
 }
+
+export interface ProjectDetailModal {
+  inputValue: string;
+}

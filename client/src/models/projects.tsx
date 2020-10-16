@@ -38,8 +38,14 @@ export interface Applicant {
 export interface ProjectState {
   projects: Project[];
   createProject: ProjectCreation;
+  projectDetail: ProjectDetail;
 }
 
+export interface ProjectDetail {
+  application: {
+    description: string;
+  };
+}
 export interface ProjectCreationButton {
   getProjectTeamSize: Function;
 }
