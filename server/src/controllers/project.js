@@ -31,24 +31,27 @@ module.exports = {
     const { token } = req.cookies;
     try {
       const tokenCredentials = await tokenValidator(token, next);
-
       const apply = await applyValidator(req.body, next);
 
-      if (apply) {
+      if (apply && tokenCredentials) {
+        const { id } = tokenCredentials;
         const { body, project } = apply;
-        const { appliant, message } = body;
-        // const update = await Project.updateOne(
-        //   { _id: project._id },
-        //   {
-        //     applicant: [
-        //       ...project.applicant,
-        //       { _id: body.appliant.id, message: body.message },
-        //     ],
-        //   }
-        // );
+        const {
+          appliant: { username },
+          message,
+        } = body;
+
+        const update = await Project.updateOne(
+          { _id: project._id },
+          {
+            applicant: [...project.applicant, { _id: id, username, message }],
+          }
+        );
+
+        console.log(update);
       }
     } catch (error) {
-      console.error("HOHOHOHOHOOHOH", error);
+      console.error(error);
       next(error);
     }
   },
