@@ -1,9 +1,8 @@
 /** @format */
 
 const { Project } = require("../models");
-const sanitize = require("sanitize-html");
-const sanitizeConfig = require("../config/sanitize");
 const fieldValidator = require("../utils/projectFieldValidator");
+const applyValidator = require("../utils/applyValidator");
 
 module.exports = {
   create: async (req, res, next) => {
@@ -28,7 +27,6 @@ module.exports = {
     }
   },
   apply: async (req, res, next) => {
-    console.log(req.body);
-    console.log(sanitize(req.body.message, sanitizeConfig));
+    const apply = await applyValidator(req.body, next);
   },
 };
