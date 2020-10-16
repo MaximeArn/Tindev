@@ -34,6 +34,17 @@ const project = (
         ...state,
         createProject: { ...state.createProject, size: teamSize },
       };
+    case "GET_PROJECT_DETAIL_MODAL_VALUE":
+      return {
+        ...state,
+        projectDetail: {
+          ...state.projectDetail,
+          application: {
+            ...state.projectDetail.application,
+            [inputName]: inputValue,
+          },
+        },
+      };
     case "SET_PROJECT_IMAGE":
       return { ...state, createProject: { ...state.createProject, image } };
     case "SET_PROJECTS":

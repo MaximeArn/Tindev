@@ -12,6 +12,7 @@ const Input = ({
   getRegisterInputValue,
   getLoginInputValue,
   getProjectInputValue,
+  getProjectDetailValue,
 }: InputModel) => {
   const handleChange = ({
     target,
@@ -20,7 +21,9 @@ const Input = ({
       ? getRegisterInputValue(name, target.value)
       : formType === "Login"
       ? getLoginInputValue(name, target.value)
-      : getProjectInputValue(name, target.value);
+      : formType === "ProjectCreation"
+      ? getProjectInputValue(name, target.value)
+      : getProjectDetailValue(name, target.value);
   };
 
   return (
@@ -39,7 +42,9 @@ const Input = ({
         </select>
       ) : (
         <input
-          className={name === "description" ? "auth-input description" : "auth-input"}
+          className={
+            name === "description" ? "auth-input description" : "auth-input"
+          }
           type={convertInputType(name)}
           name={name}
           placeholder={capitalizeFirstLetter(name)}

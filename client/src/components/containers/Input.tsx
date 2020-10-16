@@ -13,6 +13,8 @@ const mapDispatch = (dispatch: any) => ({
     dispatch({ type: "GET_LOGIN_INPUT_VALUE", inputName, inputValue }),
   getProjectInputValue: (inputName: string, inputValue: string) =>
     dispatch({ type: "GET_PROJECT_CREATION_VALUE", inputName, inputValue }),
+  getProjectDetailValue: (inputName: string, inputValue: string) =>
+    dispatch({ type: "GET_PROJECT_DETAIL_MODAL_VALUE", inputName, inputValue }),
 });
 
 export default connect(mapState, mapDispatch)(Input);
