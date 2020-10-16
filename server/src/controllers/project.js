@@ -16,7 +16,7 @@ module.exports = {
         image: filename,
       });
   },
-  getAllProjects: async (req, res, next) => {
+  getProjects: async (req, res, next) => {
     try {
       const projects = await Project.find();
       return res.status(200).json(projects);
@@ -24,5 +24,8 @@ module.exports = {
       console.error(error);
       next(error);
     }
+  },
+  apply: async (req, res, next) => {
+    console.log(req.body);
   },
 };

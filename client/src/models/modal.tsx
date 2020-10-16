@@ -9,4 +9,5 @@ export interface ModalSelector {
 
 export interface ProjectDetailModal {
   inputValue: string;
+  sendApply: Function;
 }
