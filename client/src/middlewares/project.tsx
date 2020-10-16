@@ -44,7 +44,7 @@ const setProjects = (dispatch: Dispatch<AnyAction>) => {
     .finally(() => dispatch({ type: "SET_PROJECTLIST_LOADER", value: false }));
 };
 
-const sendApply = ({ getState, dispatch }: AxiosSubmit) => {
+const sendApply = ({ getState, dispatch }: AxiosSubmit, projectId: string) => {
   const { user } = getState().auth;
   const {
     application: { description },
@@ -53,7 +53,7 @@ const sendApply = ({ getState, dispatch }: AxiosSubmit) => {
   axios
     .post(
       "/project/apply",
-      { appliant: user, message: description },
+      { appliant: user, message: description, project: projectId },
       { headers: { "Content-Type": "application/json" } }
     )
     .then((response) => console.log(response))
@@ -70,7 +70,7 @@ const project: Middleware = ({ getState, dispatch }) => (next) => (action) => {
       setProjects(dispatch);
       break;
     case "SEND_USER_APPLY":
-      user && sendApply({ getState, dispatch });
+      user && sendApply({ getState, dispatch }, action.project);
       break;
     default:
       next(action);

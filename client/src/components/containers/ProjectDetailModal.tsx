@@ -8,8 +8,8 @@ const mapState = ({ project: { projectDetail } }: State) => {
   return { inputValue: description };
 };
 
-const mapDispatch = (dispatch: Dispatch<AnyAction>) => ({
-  sendApply: () => dispatch({ type: "SEND_USER_APPLY" }),
-});
+const mapDispatch = (dispatch: Dispatch<AnyAction>, { project }: any) => {
+  return { sendApply: () => dispatch({ type: "SEND_USER_APPLY", project }) };
+};
 
 export default connect(mapState, mapDispatch)(Modal);

@@ -1,6 +1,5 @@
 /** @format */
 import { Project as ProjectModel, Contributor } from "../../models/projects";
-import Modal from "../containers/ProjectDetailModal";
 import React from "react";
 import { url } from "../../environments/api";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
@@ -15,8 +14,7 @@ const Project = ({
   const typedContributors: Contributor[] | [] = contributors;
   return (
     <div className="projectDetail">
-      <Modal />
-      {/* <div className="projectDetail-content">
+      <div className="projectDetail-content">
         <img src={`${url}/uploads/${image}`} alt="project image" />
         <div className="title-section">
           <h2>{title}</h2>
@@ -41,7 +39,7 @@ const Project = ({
           <button>Like</button>
           <button>Apply</button>
         </div>
-      </div> */}
+      </div>
     </div>
   );
 };
