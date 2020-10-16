@@ -35,8 +35,8 @@ const auth = (
       };
     case "GET_LOGIN_INPUT_VALUE":
       return { ...state, login: { ...state.login, [inputName]: inputValue } };
-    case "SET_MODAL_STATE":
-      return { ...state, isModalOpen: !state.isModalOpen };
+    // case "SET_MODAL_STATE":
+    //   return { ...state, isModalOpen: !state.isModalOpen };
     case "CONNECT_USER":
       return { ...state, user: credentials };
     case "DISCONNECT_USER":

@@ -93,3 +93,8 @@ export interface HomeProps {
 export interface CategoriesState {
   categories: Category[];
 }
+
+export interface ModalState {
+  authModal: boolean;
+  applyModal: boolean;
+}

@@ -10,7 +10,6 @@ const ProjectDetail = ({
   isModalOpen,
   setModalStatus,
 }: ProjectDetailProps) => {
-  console.log(isModalOpen);
   return (
     <>
       {isModalOpen && <Modal project={project && project._id} />}

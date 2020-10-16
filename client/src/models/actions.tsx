@@ -21,6 +21,11 @@ export interface LoadersActions {
   value: string;
 }
 
+export interface ModalAction {
+  type: string;
+  modalStatus: boolean;
+}
+
 export interface ErrorAction {
   type: string;
   error: string;

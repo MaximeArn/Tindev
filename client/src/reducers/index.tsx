@@ -5,6 +5,7 @@ import error from "./error";
 import project from "./project";
 import loaders from "./loaders";
 import categories from "./categories";
+import modal from "./modal";
 import { combineReducers } from "redux";
 
 export default combineReducers({
@@ -13,4 +14,5 @@ export default combineReducers({
   project,
   categories,
   loaders,
+  modal,
 });
