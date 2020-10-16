@@ -33,7 +33,7 @@ module.exports = async (body, next) => {
       $or: [{ email: body.email }, { username: body.username }],
     });
 
-    if (!user) throw new UserError("Email or Username already in use", 400);
+    if (user) throw new UserError("Email or Username already in use", 400);
 
     return { success: true };
   } catch (error) {
