@@ -25,21 +25,21 @@ Tout sauf IE
 ## Routes :
 
 ### Client:
-"/" Home Page
-"/login" Login modal
-"/register" Register modal
-"/project/:name" Détail d'un projet
-"/project/create" Création d'un projet
-"/project/category/:name" Liste des projets par catégories
-"/categories" Liste de toutes les catégories
+- "/" Home Page
+- "/login" Login modal
+- "/register" Register modal
+- "/project/:name" Détail d'un projet
+- "/project/create" Création d'un projet
+- "/project/category/:name" Liste des projets par catégories
+- "/categories" Liste de toutes les catégories
 
 ### Server:
-/auth/register Register handler (post)
-/auth/login Login handler (post)
-/auth/verify Vérifier si l'utilisateur est connecté/existe (get)
-/project/ Récupérer tous les projets (get)
-/project/create Ajouter un projet dans la db (post)
-/categories Récupère toutes les catégories (get)
+- /auth/register Register handler (post)
+- /auth/login Login handler (post)
+- /auth/verify Vérifier si l'utilisateur est connecté/existe (get)
+- /project/ Récupérer tous les projets (get)
+- /project/create Ajouter un projet dans la db (post)
+- /categories Récupère toutes les catégories (get)
 
 
 ### Technos :
