@@ -68,7 +68,7 @@ Tout sauf IE
 10. messagerie instantanée
 
  #### optional feature :
-1. authtentication google et github
+1. authentification google et github
 1. afficher les projets "done" sur la page de profil d'un user 
 1. systeme de likes/commentaires
 1. création de groupes de messagerie
