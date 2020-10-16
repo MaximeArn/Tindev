@@ -25,21 +25,21 @@ Tout sauf IE
 ## Routes :
 
 ### Client:
-- "/" Home Page
-- "/login" Login modal
-- "/register" Register modal
-- "/project/:name" Détail d'un projet
-- "/project/create" Création d'un projet
-- "/project/category/:name" Liste des projets par catégories
-- "/categories" Liste de toutes les catégories
+"/" Home Page
+"/login" Login modal
+"/register" Register modal
+"/project/:name" Détail d'un projet
+"/project/create" Création d'un projet
+"/project/category/:name" Liste des projets par catégories
+"/categories" Liste de toutes les catégories
 
 ### Server:
-- /auth/register Register handler
-- /auth/login Login handler
-- /auth/verify Vérifier si l'utilisateur est connecté/existe
-- /project/ Récupérer tous les projets
-- /project/create Ajouter un projet dans la db
-- /categories Récupère toutes les catégories
+/auth/register Register handler (post)
+/auth/login Login handler (post)
+/auth/verify Vérifier si l'utilisateur est connecté/existe (get)
+/project/ Récupérer tous les projets (get)
+/project/create Ajouter un projet dans la db (post)
+/categories Récupère toutes les catégories (get)
 
 
 ### Technos :
@@ -57,16 +57,20 @@ Tout sauf IE
 
  #### MVP :
 1. authentification (google...) 
-2. messagerie instantanée
-3. création de groupes
-4. géolacalisation 
-5. projects homepage
-1. page de profil  
+2. page d'accueil avec tous les projets
+3. page de détail d'un projet spécifique
+4. possibilité de postuler a un projet (si l'on est connecté)
+5. filtrer les recherches par géolocalisation/catégories... 
+6. page de management de son projet (si l'on est le créateur du projet)
+7. page pour créer un projet (uniquement si l'on est connecté)
+8. page de profil d'un utilisateur
+9. page de recherche de membres
+10. messagerie instantanée
 
  #### optional feature :
-1. Permettre à un utilisateur de mettre son projet en attente le temps de postuler a un projet
 1. afficher les projets "done" sur la page de profil d'un user 
 1. systeme de likes/commentaires
+1. création de groupes de messagerie
 2. dark theme
 
 
