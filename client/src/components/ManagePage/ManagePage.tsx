@@ -4,54 +4,14 @@ import React, { RefObject, useRef, useEffect } from "react";
 import { useHistory, Link } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faArrowLeft } from "@fortawesome/free-solid-svg-icons";
-import Applicant from "./applicant";
+import Applicant from "../containers/Applicant";
 import "./managePage.scss";
-import { Projects } from "../../models/projects";
 import randomKey from "../../utils/randomIdGenerator";
 
-const ApplyPage = ({ project }: any) => {
-  console.log("projet : ", project);
+const ManagePage = ({ project }: any) => {
   const { applicant } = project;
-  console.log("applicant", applicant);
 
   const history = useHistory();
-  const fakeApplicant = [
-    {
-      username: "liv",
-      message:
-        "this project is very interesting and I would love to participate in it",
-    },
-    {
-      username: "popo",
-      message:
-        "this project is very interesting and I would love to participate in it",
-    },
-    {
-      username: "virgile",
-      message:
-        "this project is very interesting and I would love to participate in it",
-    },
-    {
-      username: "sylvain",
-      message:
-        "this project is very interesting and I would love to participate in it",
-    },
-    {
-      username: "tanguy",
-      message:
-        "this project is very interesting and I would love to participate in it",
-    },
-    {
-      username: "antho",
-      message:
-        "this project is very interesting and I would love to participate in it",
-    },
-    {
-      username: "maxime",
-      message:
-        "this project is very interesting and I would love to participate in it",
-    },
-  ];
 
   const toggleMessage = (messageRef: RefObject<HTMLDivElement>) => {
     const { current } = messageRef;
@@ -77,6 +37,7 @@ const ApplyPage = ({ project }: any) => {
 
             return (
               <Applicant
+                project={project._id}
                 key={randomKey()}
                 {...applicant}
                 toggleMessage={toggleMessage}
@@ -90,4 +51,4 @@ const ApplyPage = ({ project }: any) => {
   );
 };
 
-export default ApplyPage;
+export default ManagePage;

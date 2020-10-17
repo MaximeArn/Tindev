@@ -13,7 +13,14 @@ import {
 import capitalyzeFirstLetter from "../../utils/capitalizeFirstLetter";
 import { Link } from "react-router-dom";
 
-const applicant = ({ username, message, toggleMessage, messageRef }: any) => {
+const Applicant = ({
+  project,
+  username,
+  message,
+  toggleMessage,
+  messageRef,
+  acceptApplicant,
+}: any) => {
   return (
     <div key={randomKey()}>
       <div className="applicant-row">
@@ -35,7 +42,10 @@ const applicant = ({ username, message, toggleMessage, messageRef }: any) => {
           <i className="icon-comment">
             <FontAwesomeIcon icon={faComment} />
           </i>
-          <i className="icon-check">
+          <i
+            className="icon-check"
+            onClick={() => acceptApplicant(project, username)}
+          >
             <FontAwesomeIcon icon={faCheck} />
           </i>
           <i className="icon-trash">
@@ -54,4 +64,4 @@ const applicant = ({ username, message, toggleMessage, messageRef }: any) => {
   );
 };
 
-export default applicant;
+export default Applicant;

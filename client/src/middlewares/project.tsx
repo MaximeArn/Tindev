@@ -4,6 +4,7 @@ import { AnyAction, Dispatch, Middleware } from "redux";
 import { url } from "../environments/api";
 import { AxiosSubmit } from "../models/axios";
 import axios from "axios";
+import Project from "../components/ProjectDetail/Project";
 axios.defaults.baseURL = url;
 axios.defaults.headers.post["Content-Type"] = "multipart/form-data";
 axios.defaults.withCredentials = true;
@@ -27,7 +28,6 @@ const sendProject = ({ getState, dispatch }: AxiosSubmit) => {
   });
 };
 
-
 const setProjects = (dispatch: Dispatch<AnyAction>) => {
   dispatch({ type: "SET_PROJECTLIST_LOADER", value: true });
   axios
@@ -45,6 +45,19 @@ const setProjects = (dispatch: Dispatch<AnyAction>) => {
     .finally(() => dispatch({ type: "SET_PROJECTLIST_LOADER", value: false }));
 };
 
+const acceptApplicant = ({ project, applicant }: any) => {
+  // console.log("project", project);
+  // console.log("applicant", applicant);
+  axios
+    .patch(
+      "/project/accept_applicant",
+      { project, applicant },
+      { headers: { "Content-Type": "application/json" } }
+    )
+    .then((res) => console.log(res))
+    .catch((err) => console.log(err));
+};
+
 const project: Middleware = ({ getState, dispatch }) => (next) => (action) => {
   switch (action.type) {
     case "SEND_PROJECT":
@@ -53,6 +66,9 @@ const project: Middleware = ({ getState, dispatch }) => (next) => (action) => {
       break;
     case "GET_PROJECTS":
       setProjects(dispatch);
+      break;
+    case "ACCEPT_APPLICANT":
+      acceptApplicant(action.data);
       break;
     default:
       next(action);
