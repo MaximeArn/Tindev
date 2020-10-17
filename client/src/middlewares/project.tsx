@@ -56,7 +56,9 @@ const sendApply = ({ getState, dispatch }: AxiosSubmit, projectId: string) => {
       { appliant: user, message: description, project: projectId },
       { headers: { "Content-Type": "application/json" } }
     )
-    .then((response) => console.log(response))
+    .then(({ data: { msg } }) =>
+      dispatch({ type: "APPLY_SUCCESS_MESSAGE", message: msg })
+    )
     .catch(({ response }) => {
       const { msg: error } = response.data;
       dispatch({ type: "PROJECT_APPLY_ERROR_HANDLER", error });

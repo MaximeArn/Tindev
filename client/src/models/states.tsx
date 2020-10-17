@@ -26,6 +26,7 @@ export interface Authentication {
 export interface State {
   auth: Authentication;
   error: ErrorState;
+  success: SuccessState;
   categories: CategoriesState;
   project: ProjectState;
   loaders: Loaders;
@@ -105,4 +106,8 @@ export interface ModalState {
   showNavbar: boolean;
   authModal: boolean;
   applyModal: boolean;
+}
+
+export interface SuccessState {
+  applySuccess: boolean | string;
 }

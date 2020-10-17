@@ -6,9 +6,14 @@ import { AnyAction, Dispatch } from "redux";
 const mapState = ({
   project: { projectDetail },
   error: { projectApplyErrorMessage },
+  success: { applySuccess },
 }: State) => {
   const { description } = projectDetail.application;
-  return { inputValue: description, error: projectApplyErrorMessage };
+  return {
+    inputValue: description,
+    error: projectApplyErrorMessage,
+    success: applySuccess,
+  };
 };
 
 const mapDispatch = (dispatch: Dispatch<AnyAction>, { project }: any) => ({

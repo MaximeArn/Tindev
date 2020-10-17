@@ -8,6 +8,7 @@ const Modal = ({
   sendApply,
   setModalStatus,
   error,
+  success,
 }: ProjectDetailModal) => {
   const modal = useRef<HTMLDivElement>(null);
 

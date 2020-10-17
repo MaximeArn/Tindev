@@ -48,3 +48,8 @@ export interface CategoriesAction {
   type: string;
   categories: Category[];
 }
+
+export interface SuccessAction {
+  type: string;
+  message: string;
+}
