@@ -4,7 +4,6 @@ import { ProjectState } from "./projects";
 import { Category } from "./categories";
 
 export interface Authentication {
-  isModalOpen: boolean;
   register: {
     username: string;
     firstname: string;
@@ -30,6 +29,12 @@ export interface State {
   categories: CategoriesState;
   project: ProjectState;
   loaders: Loaders;
+  modal: Modals;
+}
+
+export interface Modals {
+  authModal: boolean;
+  applyModal: boolean;
 }
 
 export interface Loaders {
