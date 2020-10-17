@@ -31,21 +31,26 @@ const Project = ({
         </div>
         <div className="contributors-section">
           <div className="row-wrapper">
-            {typedContributors.map(({ name }: Contributor) => (
-              <div className="contributor-row">
-                <span>
-                  <FontAwesomeIcon icon={faUserCircle} size="lg" />
-                </span>
-                <p>{name}</p>
-              </div>
-            ))}
+            {typedContributors.length > 1 ? (
+              typedContributors.map(({ name }: Contributor) => (
+                <div className="contributor-row">
+                  <span>
+                    <FontAwesomeIcon icon={faUserCircle} size="lg" />
+                  </span>
+                  <p>{name}</p>
+                </div>
+              ))
+            ) : (
+              <p>no memeber yet</p>
+            )}
           </div>
         </div>
         <div className="buttons-section">
           <button>Like</button>
-          <button>
-            <Link to={`${pathname}/manage`}>Apply</Link>
-          </button>
+
+          <Link to={`${pathname}/manage`}>
+            <button>Apply</button>
+          </Link>
         </div>
       </div>
     </div>

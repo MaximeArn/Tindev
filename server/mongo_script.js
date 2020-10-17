@@ -83,20 +83,7 @@ let projects = [
     title: "Pomodoro",
     description: `Le Pomodoro, pour ceux qui ne connaissent pas, c'est quoi ?
       C'est une technique de gestion du temps, basée sur un minuteur. On sélectionne une tâche, puis on travaille sur des durées de 25 minutes, et on enchaîne sur de courtes pauses, par cycle de 4 pour arriver à une pause plus longue.`,
-    contributors: [
-      {
-        name: "Liv",
-      },
-      {
-        name: "Antho",
-      },
-      {
-        name: "Sylvain",
-      },
-      {
-        name: "Virgile",
-      },
-    ],
+    contributors: [],
     categories: [],
     size: 2,
   },
@@ -105,20 +92,7 @@ let projects = [
     author: "John",
     title: "Voyage Voyage",
     description: `Un outil qui permettrait à chaque personne ayant l’âme d'un leader de groupe d'organiser un voyage que ce soit pour un séminaire professionnel, un voyage entre amis ou en famille ou autre.`,
-    contributors: [
-      {
-        name: "Liv",
-      },
-      {
-        name: "Antho",
-      },
-      {
-        name: "Sylvain",
-      },
-      {
-        name: "Virgile",
-      },
-    ],
+    contributors: [],
     categories: [],
     size: 3,
   },
@@ -131,20 +105,7 @@ let projects = [
       Voir les jardiniers qui ont de bons résultats dans son secteur pour s'entraider.
       S'appuyer sur un référentiel de fiches diverses en BDD pour mieux gérer nos potagers.
       Le but est de faire un projet qui nous plait, de continuer à apprendre et de travailler en équipe. C'est certainement un poil ambitieux, alors on peut évidemment simplifier.`,
-    contributors: [
-      {
-        name: "Liv",
-      },
-      {
-        name: "Antho",
-      },
-      {
-        name: "Sylvain",
-      },
-      {
-        name: "Virgile",
-      },
-    ],
+    contributors: [],
     categories: [],
     size: 4,
   },
@@ -156,20 +117,7 @@ let projects = [
       Vous pourrez proposer un projet ou vous joindre au projet d'un autre utilisateur.
       Vous aurez la possibilité de filtrer les recherches selon vos critères.
       Discutez avec les autres utilisateurs via une messagerie instantanée et créez des groupes afin de faciliter la communication.`,
-    contributors: [
-      {
-        name: "Liv",
-      },
-      {
-        name: "Antho",
-      },
-      {
-        name: "Sylvain",
-      },
-      {
-        name: "Virgile",
-      },
-    ],
+    contributors: [],
     categories: [],
     size: 5,
   },
