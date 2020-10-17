@@ -2,7 +2,7 @@
 
 import { connect } from "react-redux";
 import { AnyAction, Dispatch } from "redux";
-import Applicant from "../ManagePage/Applicant";
+import Applicant from "../ManageProject/Applicant";
 
 const mapDispatch = (dispatch: Dispatch<AnyAction>) => ({
   acceptApplicant: (project: string, applicant: string) =>
