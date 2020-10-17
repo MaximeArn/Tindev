@@ -4,6 +4,7 @@ import { AnyAction, Dispatch, Middleware } from "redux";
 import { url } from "../environments/api";
 import { AxiosSubmit } from "../models/axios";
 import axios from "axios";
+import Project from "../components/ProjectDetail/Project";
 axios.defaults.baseURL = url;
 axios.defaults.headers.post["Content-Type"] = "multipart/form-data";
 axios.defaults.withCredentials = true;
@@ -65,6 +66,18 @@ const sendApply = ({ getState, dispatch }: AxiosSubmit, projectId: string) => {
       dispatch({ type: "PROJECT_APPLY_ERROR_HANDLER", error });
     });
 };
+const acceptApplicant = ({ project, applicant }: any) => {
+  // console.log("project", project);
+  // console.log("applicant", applicant);
+  axios
+    .patch(
+      "/project/accept_applicant",
+      { project, applicant },
+      { headers: { "Content-Type": "application/json" } }
+    )
+    .then((res) => console.log(res))
+    .catch((err) => console.log(err));
+};
 
 const project: Middleware = ({ getState, dispatch }) => (next) => (action) => {
   const { user } = getState().auth;
@@ -77,6 +90,8 @@ const project: Middleware = ({ getState, dispatch }) => (next) => (action) => {
       break;
     case "SEND_USER_APPLY":
       user && sendApply({ getState, dispatch }, action.project);
+    case "ACCEPT_APPLICANT":
+      acceptApplicant(action.data);
       break;
     default:
       next(action);

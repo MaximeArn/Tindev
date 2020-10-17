@@ -4,48 +4,14 @@ import React, { RefObject, useRef, useEffect } from "react";
 import { useHistory, Link } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faArrowLeft } from "@fortawesome/free-solid-svg-icons";
-import Applicant from "./applicant";
+import Applicant from "../containers/Applicant";
 import "./managePage.scss";
+import randomKey from "../../utils/randomIdGenerator";
 
-const ApplyPage = () => {
+const ManagePage = ({ project }: any) => {
+  const { applicant } = project;
+
   const history = useHistory();
-  const fakeApplicant = [
-    {
-      username: "liv",
-      message:
-        "this project is very interesting and I would love to participate in it",
-    },
-    {
-      username: "popo",
-      message:
-        "this project is very interesting and I would love to participate in it",
-    },
-    {
-      username: "virgile",
-      message:
-        "this project is very interesting and I would love to participate in it",
-    },
-    {
-      username: "sylvain",
-      message:
-        "this project is very interesting and I would love to participate in it",
-    },
-    {
-      username: "tanguy",
-      message:
-        "this project is very interesting and I would love to participate in it",
-    },
-    {
-      username: "antho",
-      message:
-        "this project is very interesting and I would love to participate in it",
-    },
-    {
-      username: "maxime",
-      message:
-        "this project is very interesting and I would love to participate in it",
-    },
-  ];
 
   const toggleMessage = (messageRef: RefObject<HTMLDivElement>) => {
     const { current } = messageRef;
@@ -53,7 +19,6 @@ const ApplyPage = () => {
   };
 
   const pushLastPath = () => {
-    console.log(history);
     history.goBack();
   };
 
@@ -67,11 +32,13 @@ const ApplyPage = () => {
           <h2>manage your team</h2>
         </div>
         <div className="applicant-section">
-          {fakeApplicant.map((applicant: any) => {
+          {applicant.map((applicant: any) => {
             const messageRef = useRef<HTMLDivElement>(null);
 
             return (
               <Applicant
+                project={project._id}
+                key={randomKey()}
                 {...applicant}
                 toggleMessage={toggleMessage}
                 messageRef={messageRef}
@@ -84,4 +51,4 @@ const ApplyPage = () => {
   );
 };
 
-export default ApplyPage;
+export default ManagePage;

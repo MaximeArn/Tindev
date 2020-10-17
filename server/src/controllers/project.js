@@ -4,6 +4,7 @@ const { Project } = require("../models");
 const fieldValidator = require("../utils/validators/projectFieldValidator");
 const applyValidator = require("../utils/validators/applyValidator");
 const tokenValidator = require("../utils/validators/tokenValidator");
+const applicantValidator = require("../utils/validators/applicantValidator");
 
 module.exports = {
   create: async (req, res, next) => {
@@ -50,6 +51,29 @@ module.exports = {
         return res.status(200).json({
           msg: "Thank you for your apply. We will be in touch with you soon.",
         });
+      }
+    } catch (error) {
+      console.error(error);
+      next(error);
+    }
+  },
+
+  addApplicant: async ({ body }, res, next) => {
+    try {
+      const project = await applicantValidator(body, next);
+      if (project) {
+        const { username } = project.applicant.find(
+          ({ username }) => username === body.applicant
+        );
+        const applicants = project.applicant.filter(
+          ({ username }) => username !== body.applicant
+        );
+        project.applicant = applicants;
+        console.log("CONTRIBUTORS", typeof project.contributors);
+        project.contributors.push({
+          name: username,
+        });
+        await Project.findOneAndUpdate({ _id: project._id }, project);
       }
     } catch (error) {
       console.error(error);
