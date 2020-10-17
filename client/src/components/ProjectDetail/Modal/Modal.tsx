@@ -7,11 +7,11 @@ const Modal = ({
   inputValue,
   sendApply,
   setModalStatus,
+  resetApplySuccessState,
   error,
   success,
 }: ProjectDetailModal) => {
   const modal = useRef<HTMLDivElement>(null);
-
   const handleMouseDown = (event: any) => {
     event.target === modal.current && setModalStatus(false);
   };
@@ -44,7 +44,14 @@ const Modal = ({
           <div className="project-detail-padding">
             <div className="apply-success-message">{success}</div>
           </div>
-          <button className="apply-success-button" type="button">
+          <button
+            className="apply-success-button"
+            type="button"
+            onClick={() => {
+              setModalStatus(false);
+              resetApplySuccessState();
+            }}
+          >
             Close
           </button>
         </div>

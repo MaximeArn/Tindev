@@ -2,6 +2,7 @@
 
 import { ProjectState } from "../models/projects";
 import { ProjectAction } from "../models/actions";
+import resetInputs from "../utils/resetInputs";
 
 const initialState: ProjectState = {
   projects: [],
@@ -49,6 +50,15 @@ const project = (
       return { ...state, createProject: { ...state.createProject, image } };
     case "SET_PROJECTS":
       return { ...state, projects };
+    case "RESET_PROJECT_APPLY_FORM_VALUES":
+      const { application: inputs } = state.projectDetail;
+      return {
+        ...state,
+        projectDetails: {
+          ...state.projectDetail,
+          application: resetInputs(inputs),
+        },
+      };
     default:
       return state;
   }
