@@ -1,11 +1,12 @@
 import { ErrorAction } from "../models/actions";
-import { AuthenticationError } from "../models/states";
+import { ErrorState } from "../models/states";
 
-const initialState: AuthenticationError = {
+const initialState: ErrorState = {
   registerErrorMessage: "",
   loginErrorMessage: "",
   projectCreationErrorMessage: "",
   projectListErrorMessage: "",
+  projectApplyErrorMessage: "",
 };
 
 const error = (state = initialState, { type, error }: ErrorAction) => {
@@ -18,6 +19,8 @@ const error = (state = initialState, { type, error }: ErrorAction) => {
       return { ...state, projectListErrorMessage: error };
     case "PROJECT_CREATION_ERROR_HANDLER":
       return { ...state, projectCreationErrorMessage: error };
+    case "PROJECT_APPLY_ERROR_HANDLER":
+      return { ...state, projectApplyErrorMessage: error };
     default:
       return state;
   }

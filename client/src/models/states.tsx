@@ -25,7 +25,7 @@ export interface Authentication {
 
 export interface State {
   auth: Authentication;
-  error: AuthenticationError;
+  error: ErrorState;
   categories: CategoriesState;
   project: ProjectState;
   loaders: Loaders;
@@ -72,11 +72,12 @@ export interface LoginAuth {
   closeModal: Function;
 }
 
-export interface AuthenticationError {
+export interface ErrorState {
   registerErrorMessage: string;
   loginErrorMessage: string;
   projectCreationErrorMessage: string;
   projectListErrorMessage: string;
+  projectApplyErrorMessage: string;
 }
 
 export interface AppProps {

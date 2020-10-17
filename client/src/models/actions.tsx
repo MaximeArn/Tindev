@@ -1,7 +1,6 @@
 /** @format */
 
 import { MutableRefObject } from "react";
-import { AuthenticationError } from "./states";
 import { Category } from "./categories";
 import { Project } from "./projects";
 

@@ -57,7 +57,10 @@ const sendApply = ({ getState, dispatch }: AxiosSubmit, projectId: string) => {
       { headers: { "Content-Type": "application/json" } }
     )
     .then((response) => console.log(response))
-    .catch((error) => console.error(error));
+    .catch(({ response }) => {
+      const { msg: error } = response.data;
+      dispatch({ type: "PROJECT_APPLY_ERROR_HANDLER", error });
+    });
 };
 
 const project: Middleware = ({ getState, dispatch }) => (next) => (action) => {
