@@ -10,13 +10,7 @@ import randomKey from "../../utils/randomIdGenerator";
 
 const ManagePage = ({ project }: any) => {
   const { applicant } = project;
-
   const history = useHistory();
-
-  const toggleMessage = (messageRef: RefObject<HTMLDivElement>) => {
-    const { current } = messageRef;
-    current && current.classList.toggle("hide");
-  };
 
   const pushLastPath = () => {
     history.goBack();
@@ -33,15 +27,11 @@ const ManagePage = ({ project }: any) => {
         </div>
         <div className="applicant-section">
           {applicant.map((applicant: any) => {
-            const messageRef = useRef<HTMLDivElement>(null);
-
             return (
               <Applicant
                 project={project._id}
                 key={randomKey()}
                 {...applicant}
-                toggleMessage={toggleMessage}
-                messageRef={messageRef}
               />
             );
           })}

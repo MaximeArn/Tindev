@@ -20,7 +20,7 @@ const Project = ({
 }: ProjectDetailSubComponent) => {
   const typedContributors: Contributor[] | [] = contributors;
   const { pathname } = useLocation();
-  const owner = false;
+  const owner = true;
   return (
     <div className="projectDetail">
       <div className="projectDetail-content">
@@ -46,7 +46,7 @@ const Project = ({
                 </div>
               ))
             ) : (
-              <p>no memeber yet</p>
+              <p>no member yet</p>
             )}
           </div>
         </div>

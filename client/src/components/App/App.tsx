@@ -9,7 +9,7 @@ import Register from "../containers/Register";
 import Login from "../containers/Login";
 import ProjectCreation from "../containers/ProjectCreation";
 import ProjectDetail from "../containers/ProjectDetail";
-import ManagePage from "../containers/ManagePage";
+import ManagePage from "../containers/ManageProject";
 
 function App({ verifyToken, showNavbar, getProjects }: AppProps) {
   useEffect(() => {

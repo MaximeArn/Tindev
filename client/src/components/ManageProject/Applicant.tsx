@@ -1,6 +1,6 @@
 /** @format */
 
-import React from "react";
+import React, { RefObject, useRef } from "react";
 import randomKey from "../../utils/randomIdGenerator";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
@@ -13,19 +13,19 @@ import {
 import capitalyzeFirstLetter from "../../utils/capitalizeFirstLetter";
 import { Link } from "react-router-dom";
 
-const Applicant = ({
-  project,
-  username,
-  message,
-  toggleMessage,
-  messageRef,
-  acceptApplicant,
-}: any) => {
+const Applicant = ({ project, username, message, acceptApplicant }: any) => {
+  const messageRef = useRef<HTMLDivElement>(null);
+
+  const toggleMessage = () => {
+    const { current } = messageRef;
+    current && current.classList.toggle("hide");
+  };
+
   return (
     <div key={randomKey()}>
       <div className="applicant-row">
         <div className="applicant-row-user">
-          <span onClick={() => toggleMessage(messageRef)}>
+          <span onClick={() => toggleMessage()}>
             <FontAwesomeIcon icon={faSortDown} />
           </span>
           <span className="applicant-row-user-icon">
