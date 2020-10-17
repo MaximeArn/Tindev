@@ -6,8 +6,14 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faArrowLeft } from "@fortawesome/free-solid-svg-icons";
 import Applicant from "./applicant";
 import "./managePage.scss";
+import { Projects } from "../../models/projects";
+import randomKey from "../../utils/randomIdGenerator";
 
-const ApplyPage = () => {
+const ApplyPage = ({ project }: any) => {
+  console.log("projet : ", project);
+  const { applicant } = project;
+  console.log("applicant", applicant);
+
   const history = useHistory();
   const fakeApplicant = [
     {
@@ -53,7 +59,6 @@ const ApplyPage = () => {
   };
 
   const pushLastPath = () => {
-    console.log(history);
     history.goBack();
   };
 
@@ -67,11 +72,12 @@ const ApplyPage = () => {
           <h2>manage your team</h2>
         </div>
         <div className="applicant-section">
-          {fakeApplicant.map((applicant: any) => {
+          {applicant.map((applicant: any) => {
             const messageRef = useRef<HTMLDivElement>(null);
 
             return (
               <Applicant
+                key={randomKey()}
                 {...applicant}
                 toggleMessage={toggleMessage}
                 messageRef={messageRef}

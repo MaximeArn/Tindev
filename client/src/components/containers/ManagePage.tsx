@@ -11,7 +11,7 @@ const mapState = ({ project: { projects } }: State, { match }: OwnProps) => {
   const { slug } = match.params;
   console.log(slug);
   const project = projects.find(({ title }) => slugify(title) === slug);
-  console.log(project);
+  project && console.log(project.applicant);
   return { project };
 };
 
