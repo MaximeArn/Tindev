@@ -39,6 +39,7 @@ const setLogin = ({ getState, dispatch }: AxiosSubmit, history: any) => {
       const { token, email, username } = data;
       !Cookies.get("token") && Cookies.set("token", token, { expires: 7 });
       dispatch({ type: "CONNECT_USER", credentials: { email, username } });
+      dispatch({ type: "SET_AUTH_MODAL_STATE", modalStatus: false });
       history.push("/");
     })
     .catch(({ response }) => {

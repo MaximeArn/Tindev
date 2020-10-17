@@ -10,10 +10,8 @@ const mapState = ({ project: { projectDetail } }: State) => {
 
 const mapDispatch = (dispatch: Dispatch<AnyAction>, { project }: any) => ({
   sendApply: () => dispatch({ type: "SEND_USER_APPLY", project }),
-  setModalStatus: (modalStatus: boolean) => {
-    console.log("MODAL STATUS CALLED");
-    dispatch({ type: "SET_APPLY_MODAL_STATUS", modalStatus });
-  },
+  setModalStatus: (modalStatus: boolean) =>
+    dispatch({ type: "SET_APPLY_MODAL_STATUS", modalStatus }),
 });
 
 export default connect(mapState, mapDispatch)(Modal);
