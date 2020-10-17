@@ -38,7 +38,6 @@ export interface ProjectAction {
   teamSize: number;
   image: MutableRefObject<any>;
   projects: Project[];
-  modalStatus: boolean;
 }
 
 export interface AuthMiddleware {

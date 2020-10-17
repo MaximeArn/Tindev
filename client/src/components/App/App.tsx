@@ -11,14 +11,14 @@ import ProjectCreation from "../containers/ProjectCreation";
 import ProjectDetail from "../containers/ProjectDetail";
 import ManagePage from "../containers/ManagePage";
 
-function App({ verifyToken, isModalOpen, getProjects }: AppProps) {
+function App({ verifyToken, showNavbar, getProjects }: AppProps) {
   useEffect(() => {
     verifyToken();
     getProjects();
   }, []);
   return (
     <>
-      {!isModalOpen && <NavBar />}
+      {showNavbar && <NavBar />}
       <Switch>
         <Route exact path="/" component={Home} />
         <Route path="/login" component={Login} />

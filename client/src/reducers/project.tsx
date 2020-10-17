@@ -13,7 +13,6 @@ const initialState: ProjectState = {
     size: undefined,
   },
   projectDetail: {
-    isModalOpen: false,
     application: {
       description: "",
     },
@@ -22,15 +21,7 @@ const initialState: ProjectState = {
 
 const project = (
   state = initialState,
-  {
-    type,
-    inputName,
-    inputValue,
-    teamSize,
-    image,
-    projects,
-    modalStatus,
-  }: ProjectAction
+  { type, inputName, inputValue, teamSize, image, projects }: ProjectAction
 ) => {
   switch (type) {
     case "GET_PROJECT_CREATION_VALUE":
@@ -58,11 +49,6 @@ const project = (
       return { ...state, createProject: { ...state.createProject, image } };
     case "SET_PROJECTS":
       return { ...state, projects };
-    case "SET_APPLY_MODAL_STATUS":
-      return {
-        ...state,
-        projectDetail: { ...state.projectDetail, isModalOpen: modalStatus },
-      };
     default:
       return state;
   }

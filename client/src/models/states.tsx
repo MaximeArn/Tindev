@@ -33,6 +33,7 @@ export interface State {
 }
 
 export interface Modals {
+  showNavbar: boolean;
   authModal: boolean;
   applyModal: boolean;
 }
@@ -80,7 +81,7 @@ export interface AuthenticationError {
 
 export interface AppProps {
   verifyToken: Function;
-  isModalOpen: boolean;
+  showNavbar: boolean;
   getProjects: Function;
 }
 
@@ -100,6 +101,7 @@ export interface CategoriesState {
 }
 
 export interface ModalState {
+  showNavbar: boolean;
   authModal: boolean;
   applyModal: boolean;
 }

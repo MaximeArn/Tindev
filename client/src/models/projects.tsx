@@ -54,7 +54,6 @@ export interface ProjectState {
 }
 
 export interface ProjectDetail {
-  isModalOpen: boolean;
   application: {
     description: string;
   };
