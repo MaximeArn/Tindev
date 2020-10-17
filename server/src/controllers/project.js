@@ -27,11 +27,10 @@ module.exports = {
       next(error);
     }
   },
-  apply: async (req, res, next) => {
-    const { token } = req.cookies;
+  apply: async ({ body, token }, res, next) => {
     try {
       const tokenCredentials = await tokenValidator(token, next);
-      const apply = await applyValidator(req.body, next);
+      const apply = await applyValidator(body, next);
 
       if (apply && tokenCredentials) {
         const { id } = tokenCredentials;

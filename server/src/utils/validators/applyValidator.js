@@ -14,6 +14,8 @@ module.exports = async (body, next) => {
       throw new ApplyError("This project does not exist anymore", 404);
     }
 
+    if (!message) throw new ApplyError("Please specify a message.", 400);
+
     body.message = sanitize(message, sanitizeConfig);
 
     return { body, project };
