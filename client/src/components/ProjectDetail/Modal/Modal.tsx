@@ -22,22 +22,33 @@ const Modal = ({
 
   return (
     <div ref={modal} onMouseDown={handleMouseDown} className="project-detail">
-      <div className="project-detail-modal">
-        <form onSubmit={handleSubmit}>
+      {!success ? (
+        <div className="project-detail-modal">
+          <form onSubmit={handleSubmit}>
+            <div className="project-detail-padding">
+              <h1 className="project-detail-interest">Show your interest</h1>
+              {error && <div className="apply-error-message">{error}</div>}
+              <Input
+                name="description"
+                formType="ProjectDetail"
+                inputValue={inputValue}
+              />
+            </div>
+            <button className="project-detail-submit" type="submit">
+              Send
+            </button>
+          </form>
+        </div>
+      ) : (
+        <div className="apply-success">
           <div className="project-detail-padding">
-            <h1 className="project-detail-interest">Show your interest</h1>
-            {error && <div className="apply-error-message">{error}</div>}
-            <Input
-              name="description"
-              formType="ProjectDetail"
-              inputValue={inputValue}
-            />
+            <div className="apply-success-message">{success}</div>
           </div>
-          <button className="project-detail-submit" type="submit">
-            Send
+          <button className="apply-success-button" type="button">
+            Close
           </button>
-        </form>
-      </div>
+        </div>
+      )}
     </div>
   );
 };
