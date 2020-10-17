@@ -37,7 +37,7 @@ const Register = ({
         <form method="POST" onSubmit={handleSubmit}>
           <div className="register-padding">
             <h1 className="register-title">Create Account</h1>
-            {error && <span className="register-error-message">{error}</span>}
+            {error && <span className="error-message">{error}</span>}
             <div className="fields">{inputMapper(register)}</div>
             {registerLoader ? (
               <button type="submit" className="submitButton" disabled>

@@ -7,6 +7,7 @@ const Modal = ({
   inputValue,
   sendApply,
   setModalStatus,
+  error,
 }: ProjectDetailModal) => {
   const modal = useRef<HTMLDivElement>(null);
 
@@ -24,6 +25,7 @@ const Modal = ({
         <form onSubmit={handleSubmit}>
           <div className="project-detail-padding">
             <h1 className="project-detail-interest">Show your interest</h1>
+            {error && <div className="apply-error-message">{error}</div>}
             <Input
               name="description"
               formType="ProjectDetail"

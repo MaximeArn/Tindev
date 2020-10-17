@@ -3,9 +3,12 @@ import Modal from "../ProjectDetail/Modal/Modal";
 import { State } from "../../models/states";
 import { AnyAction, Dispatch } from "redux";
 
-const mapState = ({ project: { projectDetail } }: State) => {
+const mapState = ({
+  project: { projectDetail },
+  error: { projectApplyErrorMessage },
+}: State) => {
   const { description } = projectDetail.application;
-  return { inputValue: description };
+  return { inputValue: description, error: projectApplyErrorMessage };
 };
 
 const mapDispatch = (dispatch: Dispatch<AnyAction>, { project }: any) => ({

@@ -60,10 +60,6 @@
     padding: 2rem 2rem 1rem;
   }
 
-  &-error-message {
-    color: rgb(226, 37, 37);
-  }
-
   &-title {
     margin-top: 0;
     font-size: 1.8em;
@@ -161,4 +157,8 @@
     background-color: #fff;
     color: #62646a;
   }
+}
+
+.error-message {
+  color: rgb(226, 37, 37);
 }

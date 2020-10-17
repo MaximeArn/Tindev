@@ -2,7 +2,7 @@ const { User } = require("../../models");
 const UserError = require("../CustomError");
 const compareHashed = require("../compareHashed");
 
-module.exports = async (body) => {
+module.exports = async (body, next) => {
   try {
     const { password, email } = body;
     const user = await User.findOne({ email });
