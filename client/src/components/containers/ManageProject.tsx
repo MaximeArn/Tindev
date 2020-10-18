@@ -10,7 +10,6 @@ import { ProjectDetailProps as OwnProps } from "../../models/projects";
 const mapState = ({ project: { projects } }: State, { match }: OwnProps) => {
   const { slug } = match.params;
   const project = projects.find(({ title }) => slugify(title) === slug);
-  console.log(project);
   return { project };
 };
 

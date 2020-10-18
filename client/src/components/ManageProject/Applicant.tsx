@@ -1,6 +1,6 @@
 /** @format */
 
-import React, { RefObject, useRef } from "react";
+import React, { useRef } from "react";
 import randomKey from "../../utils/randomIdGenerator";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
@@ -46,17 +46,17 @@ const Applicant = ({
           <Link to={`/profile/${username}`}>view profile</Link>
         </div>
         <div className="applicant-row-actions">
-          <i className="icon-comment">
+          <i className="icon comment">
             <FontAwesomeIcon icon={faComment} />
           </i>
           <i
-            className="icon-check"
+            className="icon check"
             onClick={() => acceptApplicant({ projectId, userId, username })}
           >
             <FontAwesomeIcon icon={faCheck} />
           </i>
           <i
-            className="icon-trash"
+            className="icon trash"
             onClick={() => declineApplicant({ projectId, userId })}
           >
             <FontAwesomeIcon icon={faTrashAlt} />

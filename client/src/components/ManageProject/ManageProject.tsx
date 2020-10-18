@@ -8,7 +8,7 @@ import Applicant from "../containers/Applicant";
 import "./managePage.scss";
 import randomKey from "../../utils/randomIdGenerator";
 
-const ManagePage = ({ project }: any) => {
+const ManageProject = ({ project }: any) => {
   const history = useHistory();
 
   const pushLastPath = () => {
@@ -17,9 +17,9 @@ const ManagePage = ({ project }: any) => {
 
   return (
     <div className="applyPage">
-      <Link className="left-arrow" onClick={pushLastPath}>
+      <span className="left-arrow" onClick={pushLastPath}>
         <FontAwesomeIcon icon={faArrowLeft} size="lg" />
-      </Link>
+      </span>
       <div className="applyPage-content">
         <div className="title-section">
           <h2>Manage your team</h2>
@@ -41,4 +41,4 @@ const ManagePage = ({ project }: any) => {
   );
 };
 
-export default ManagePage;
+export default ManageProject;

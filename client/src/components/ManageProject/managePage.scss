@@ -1,114 +1,117 @@
 .applyPage {
-    margin-top: calc(80px + 3rem);
-    color: #fff;
-    width: 100%;
+  margin-top: calc(80px + 3rem);
+  color: #fff;
+  width: 100%;
 
-    .left-arrow {
-        position: fixed;
-        top: calc(80px + 1rem);
-        left: 1rem;
+  .left-arrow {
+    position: fixed;
+    cursor: pointer;
+    top: calc(80px + 1rem);
+    left: 1rem;
+  }
+
+  &-content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    .title-section {
+      width: 100%;
+      text-align: center;
+      margin-bottom: 4rem;
+
+      h2 {
+        text-transform: capitalize;
+        font-weight: 400;
+        font-size: 1.4em;
+      }
     }
 
-    &-content {
+    .applicant-section {
+      padding: 2rem;
+      width: 90%;
+      display: flex;
+      flex-direction: column;
+      border: 1px solid #fff;
+
+      .applicant-row {
         display: flex;
-        flex-direction: column;
         align-items: center;
+        border-bottom: 1px solid rgba($color: #fff, $alpha: 0.3);
+        padding: 0 1rem 0.5rem;
+        margin-bottom: 0.5rem;
 
-        .title-section {
-            width: 100%;
-            text-align: center;
-            margin-bottom: 4rem;
-
-            h2 {
-                text-transform: capitalize;
-                font-weight: 400;
-                font-size: 1.4em;
-            }
+        &:last-child {
+          border: none;
         }
 
-        .applicant-section {
-            padding: 2rem;
-            width: 90%;
-            display: flex;
-            flex-direction: column;
-            border: 1px solid #fff;
+        &-user {
+          width: 40%;
+          display: flex;
+          flex-direction: row;
 
-            .applicant-row {
-                display: flex;
-                align-items: center;
-                border-bottom: 1px solid rgba($color: #fff, $alpha: .3);
-                padding: 0 1rem .5rem;
-                margin-bottom: .5rem;
+          &-icon {
+            padding: 0 1rem;
+          }
 
-                &:last-child {
-                    border: none;
-                }
-
-                &-user {
-                    width: 40%;
-                    display: flex;
-                    flex-direction: row;
-
-                    &-icon {
-                        padding: 0 1rem;
-                    }
-
-                    &-username {
-                        font-size: 1.2em;
-                    }
-                }
-
-                &-profile {
-                    width: 30%;
-
-                    a {
-                        font-weight: 300;
-                        font-size: .9em;
-                        font-style: italic;
-                    }
-                }
-
-                &-actions {
-                    width: 30%;
-                    text-align: center;
-                    display: flex;
-                    justify-content: space-evenly;
-
-                    .icon-check {
-                        color: #208637;
-                    }
-
-                    .icon-trash {
-                        color: #A51D2A;
-                    }
-                }
-            }
-
-            .applicant-message {
-                padding: 1rem 3rem;
-                border-bottom: 1px solid rgba($color: #fff, $alpha: .3);
-                margin-bottom: 1rem;
-            }
-
-            .hide {
-                display: none;
-            }
-
-
+          &-username {
+            font-size: 1.2em;
+          }
         }
+
+        &-profile {
+          width: 30%;
+
+          a {
+            font-weight: 300;
+            font-size: 0.9em;
+            font-style: italic;
+          }
+        }
+
+        &-actions {
+          width: 30%;
+          text-align: center;
+          display: flex;
+          justify-content: space-evenly;
+
+          .icon {
+            cursor: pointer;
+
+            &.check {
+              color: #208637;
+            }
+
+            &.trash {
+              color: #a51d2a;
+            }
+          }
+        }
+      }
+
+      .applicant-message {
+        padding: 1rem 3rem;
+        border-bottom: 1px solid rgba($color: #fff, $alpha: 0.3);
+        margin-bottom: 1rem;
+      }
+
+      .hide {
+        display: none;
+      }
     }
+  }
 }
 
-@media (min-width:1000px) {
-    .applyPage {
-        &-content {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
+@media (min-width: 1000px) {
+  .applyPage {
+    &-content {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
 
-            .applicant-section {
-                width: 50%;
-            }
-        }
+      .applicant-section {
+        width: 50%;
+      }
     }
+  }
 }
