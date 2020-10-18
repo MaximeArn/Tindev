@@ -11,7 +11,7 @@ import {
   faSortDown,
 } from "@fortawesome/free-solid-svg-icons";
 import capitalizeFirstLetter from "../../utils/capitalizeFirstLetter";
-import DeclineModal from "./DeclineModal";
+import DeclineModal from "../containers/DeclineApplicantModal";
 import { Link } from "react-router-dom";
 
 const Applicant = ({
@@ -22,7 +22,6 @@ const Applicant = ({
   acceptApplicant,
   setModalStatus,
   isModalOpen,
-  declineApplicant,
 }: any) => {
   const messageRef = useRef<HTMLDivElement>(null);
 
@@ -33,7 +32,7 @@ const Applicant = ({
 
   return (
     <>
-      {isModalOpen && <DeclineModal />}
+      {isModalOpen && <DeclineModal projectId={projectId} userId={userId} />}
       <div key={randomKey()}>
         <div className="applicant-row">
           <div className="applicant-row-user">
@@ -60,11 +59,7 @@ const Applicant = ({
             >
               <FontAwesomeIcon icon={faCheck} />
             </i>
-            <i
-              className="icon trash"
-              onClick={() => setModalStatus(true)}
-              // onClick={() => declineApplicant({ projectId, userId })}
-            >
+            <i className="icon trash" onClick={() => setModalStatus(true)}>
               <FontAwesomeIcon icon={faTrashAlt} />
             </i>
           </div>

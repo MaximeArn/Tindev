@@ -1,17 +1,28 @@
 import React from "react";
+import { DeclineApplicantModalProps } from "../../models/projects";
 import "./declinemodal.scss";
 
-const DeclineModal = () => {
+const DeclineModal = ({
+  projectId,
+  userId,
+  setModalStatus,
+  declineApplicant,
+}: DeclineApplicantModalProps) => {
   return (
-    <div className="apply-success">
+    <div className="decline-applicant">
       <div className="project-detail-padding">
-        <div className="apply-success-message">
+        <div className="decline-applicant-message">
           Are you sure you want to decline this applicant ?
         </div>
       </div>
-      <button className="apply-success-button" type="button">
-        Close
-      </button>
+      <div className="decline-applicant-buttons">
+        <button className="decline-applicant-button" type="button">
+          Yes
+        </button>
+        <button className="decline-applicant-button" type="button">
+          No
+        </button>
+      </div>
     </div>
   );
 };

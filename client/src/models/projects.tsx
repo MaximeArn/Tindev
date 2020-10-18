@@ -80,3 +80,10 @@ export interface ProjectDetailProps {
   isModalOpen: boolean;
   setModalStatus: Function;
 }
+
+export interface DeclineApplicantModalProps {
+  projectId: string;
+  userId: string;
+  declineApplicant: Function;
+  setModalStatus: Function;
+}
