@@ -10,7 +10,7 @@ import {
   faCheck,
   faSortDown,
 } from "@fortawesome/free-solid-svg-icons";
-import capitalyzeFirstLetter from "../../utils/capitalizeFirstLetter";
+import capitalizeFirstLetter from "../../utils/capitalizeFirstLetter";
 import { Link } from "react-router-dom";
 
 const Applicant = ({
@@ -39,7 +39,7 @@ const Applicant = ({
             <FontAwesomeIcon icon={faUserCircle} size="lg" />
           </span>
           <h3 className="applicant-row-user-username">
-            {capitalyzeFirstLetter(username)}
+            {capitalizeFirstLetter(username)}
           </h3>
         </div>
         <div className="applicant-row-profile">

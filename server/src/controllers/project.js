@@ -51,7 +51,7 @@ module.exports = {
         );
 
         return res.status(200).json({
-          msg: "Thank you for your apply. We will be in touch with you soon.",
+          msg: "Thank you for your apply.",
         });
       }
     } catch (error) {
@@ -62,18 +62,22 @@ module.exports = {
   addApplicant: async ({ body }, res, next) => {
     try {
       const project = await applicantValidator(body, next);
+
       if (project) {
         const { username } = project.applicant.find(
           ({ username }) => username === body.applicant
         );
+
         const applicants = project.applicant.filter(
           ({ username }) => username !== body.applicant
         );
+
         project.applicant = applicants;
-        console.log("CONTRIBUTORS", typeof project.contributors);
+
         project.contributors.push({
           name: username,
         });
+
         await Project.findOneAndUpdate({ _id: project._id }, project);
       }
     } catch (error) {
@@ -81,9 +85,25 @@ module.exports = {
       next(error);
     }
   },
-  declineApplicant: async ({ body, cookies }, res, next) => {
-    const validator = await applicantValidator(body);
+  declineApplicant: async ({ body }, res, next) => {
+    const { user } = body;
+    try {
+      const project = await applicantValidator(body, next);
 
-    console.log(validator);
+      if (project) {
+        project.applicants.pull(user);
+        project.save();
+        // const deleteApplicant = await Project.findByIdAndUpdate(
+        //   projectId,
+        //   {
+        //     $pull: { applicants: { _id: user } },
+        //   },
+        //   { new: true }
+        // );
+      }
+    } catch (error) {
+      console.error(error);
+      next(error);
+    }
   },
 };

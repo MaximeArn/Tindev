@@ -15,7 +15,7 @@ export interface Project {
   categories: Category[] | [];
   size: number;
   contributors: Contributor[];
-  applicant: Applicant[] | [];
+  applicants: Applicant[] | [];
 }
 
 export interface ProjectDetailSubComponent {
@@ -27,7 +27,7 @@ export interface ProjectDetailSubComponent {
   categories: Category[] | [];
   size: number;
   contributors: Contributor[];
-  applicant: Applicant[] | [];
+  applicants: Applicant[] | [];
   setModalStatus: Function;
 }
 export interface ProjectCreation {

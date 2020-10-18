@@ -12,7 +12,7 @@ const projectSchema = new Schema({
   contributors: [{ name: String, _id: ObjectId }],
   image: String,
   categories: [{ name: String, color: String }],
-  applicant: [{ _id: ObjectId, username: String, message: String }],
+  applicants: [{ _id: ObjectId, username: String, message: String }],
   size: Number,
 });
 

@@ -85,7 +85,7 @@ let projects = [
       C'est une technique de gestion du temps, basée sur un minuteur. On sélectionne une tâche, puis on travaille sur des durées de 25 minutes, et on enchaîne sur de courtes pauses, par cycle de 4 pour arriver à une pause plus longue.`,
     contributors: [],
     categories: [],
-    applicant: [
+    applicants: [
       {
         username: "liv",
         message:
@@ -131,7 +131,7 @@ let projects = [
     description: `Un outil qui permettrait à chaque personne ayant l’âme d'un leader de groupe d'organiser un voyage que ce soit pour un séminaire professionnel, un voyage entre amis ou en famille ou autre.`,
     contributors: [],
     categories: [],
-    applicant: [
+    applicants: [
       {
         username: "liv",
         message:
@@ -181,7 +181,7 @@ let projects = [
       Le but est de faire un projet qui nous plait, de continuer à apprendre et de travailler en équipe. C'est certainement un poil ambitieux, alors on peut évidemment simplifier.`,
     contributors: [],
     categories: [],
-    applicant: [
+    applicants: [
       {
         username: "liv",
         message:
@@ -230,7 +230,7 @@ let projects = [
       Discutez avec les autres utilisateurs via une messagerie instantanée et créez des groupes afin de faciliter la communication.`,
     contributors: [],
     categories: [],
-    applicant: [
+    applicants: [
       {
         username: "liv",
         message:
