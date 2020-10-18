@@ -60,6 +60,7 @@ module.exports = {
     }
   },
   addApplicant: async ({ body }, res, next) => {
+    const { user } = body;
     try {
       const project = await applicantValidator(body, next);
 
@@ -68,17 +69,12 @@ module.exports = {
           ({ username }) => username === body.applicant
         );
 
-        const applicants = project.applicant.filter(
-          ({ username }) => username !== body.applicant
-        );
-
-        project.applicant = applicants;
-
+        project.applicants.pull(user);
         project.contributors.push({
-          name: username,
+          username,
         });
 
-        await Project.findOneAndUpdate({ _id: project._id }, project);
+        await project.save();
       }
     } catch (error) {
       console.error(error);
@@ -92,7 +88,7 @@ module.exports = {
 
       if (project) {
         project.applicants.pull(user);
-        project.save();
+        await project.save();
       }
     } catch (error) {
       console.error(error);

@@ -12,7 +12,7 @@ import { url } from "../environments/api";
 import { AxiosSubmit } from "../models/axios";
 import axios from "axios";
 axios.defaults.baseURL = url;
-axios.defaults.headers.post["Content-Type"] = "multipart/form-data";
+axios.defaults.headers.post["Content-Type"] = "application/json";
 axios.defaults.withCredentials = true;
 
 const sendProject = ({ getState, dispatch }: AxiosSubmit) => {
@@ -28,10 +28,14 @@ const sendProject = ({ getState, dispatch }: AxiosSubmit) => {
     formData.append(key, createProject[key]);
   }
 
-  axios.post("/project/create", formData).catch(({ response }) => {
-    const { msg: error } = response.data;
-    dispatch({ type: "PROJECT_CREATION_ERROR_HANDLER", error });
-  });
+  axios
+    .post("/project/create", formData, {
+      headers: { "Content-Type": "multipart/form-data" },
+    })
+    .catch(({ response }) => {
+      const { msg: error } = response.data;
+      dispatch({ type: "PROJECT_CREATION_ERROR_HANDLER", error });
+    });
 };
 
 const setProjects = (dispatch: Dispatch<AnyAction>) => {
@@ -58,11 +62,11 @@ const sendApply = ({ getState, dispatch }: AxiosSubmit, projectId: string) => {
   } = getState().project.projectDetail;
 
   axios
-    .post(
-      "/project/apply",
-      { appliant: user, message: description, project: projectId },
-      { headers: { "Content-Type": "application/json" } }
-    )
+    .post("/project/apply", {
+      appliant: user,
+      message: description,
+      project: projectId,
+    })
     .then(({ data: { msg } }) => {
       dispatch({ type: "APPLY_SUCCESS_MESSAGE", message: msg });
       dispatch({ type: "RESET_PROJECT_APPLY_FORM_VALUES" });
@@ -78,11 +82,7 @@ const acceptApplicant = ({
   data: { project, user },
 }: AxiosApplicant) => {
   axios
-    .patch(
-      "/project/accept_applicant",
-      { project, user },
-      { headers: { "Content-Type": "application/json" } }
-    )
+    .patch("/project/accept_applicant", { projectId: project, user })
     .then((res) => console.log(res))
     .catch((err) => console.log(err));
 };
