@@ -46,11 +46,14 @@ const ProjectCreation = ({
       <div className="maxiWrapper">
         <div className="project-container">
           <div className="project-container-form">
+            {error && (
+              <div className="project-creation-error-message">{error}</div>
+            )}
             <form onSubmit={handleSubmit}>
               <section className="title-section">
                 <div className="title-wrapper">
                   <h3 className="project-creation-title-entry">
-                    Project Title :{" "}
+                    Project Title :
                   </h3>
                   <button
                     className="project-creation-button image"
