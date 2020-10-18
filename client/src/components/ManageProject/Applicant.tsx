@@ -14,8 +14,8 @@ import capitalizeFirstLetter from "../../utils/capitalizeFirstLetter";
 import { Link } from "react-router-dom";
 
 const Applicant = ({
-  project,
-  _id: user,
+  projectId,
+  _id: userId,
   username,
   message,
   acceptApplicant,
@@ -51,13 +51,13 @@ const Applicant = ({
           </i>
           <i
             className="icon-check"
-            onClick={() => acceptApplicant(project, user)}
+            onClick={() => acceptApplicant({ projectId, userId, username })}
           >
             <FontAwesomeIcon icon={faCheck} />
           </i>
           <i
             className="icon-trash"
-            onClick={() => declineApplicant(project, user)}
+            onClick={() => declineApplicant({ projectId, userId })}
           >
             <FontAwesomeIcon icon={faTrashAlt} />
           </i>

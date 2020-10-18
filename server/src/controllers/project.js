@@ -59,22 +59,20 @@ module.exports = {
       next(error);
     }
   },
-  addApplicant: async ({ body }, res, next) => {
-    const { user } = body;
+  acceptApplicant: async ({ body }, res, next) => {
+    const { userId, username } = body;
     try {
       const project = await applicantValidator(body, next);
 
       if (project) {
-        const { username } = project.applicant.find(
-          ({ username }) => username === body.applicant
-        );
-
-        project.applicants.pull(user);
+        project.applicants.pull(userId);
         project.contributors.push({
+          _id: userId,
           username,
         });
 
-        await project.save();
+        console.log(project);
+        // await project.save();
       }
     } catch (error) {
       console.error(error);
@@ -82,12 +80,12 @@ module.exports = {
     }
   },
   declineApplicant: async ({ body }, res, next) => {
-    const { user } = body;
+    const { userId } = body;
     try {
       const project = await applicantValidator(body, next);
 
       if (project) {
-        project.applicants.pull(user);
+        project.applicants.pull(userId);
         await project.save();
       }
     } catch (error) {

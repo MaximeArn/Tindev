@@ -5,7 +5,7 @@ const {
   create,
   getProjects,
   apply,
-  addApplicant,
+  acceptApplicant,
   declineApplicant,
 } = require("../controllers/project");
 
@@ -18,7 +18,7 @@ const upload = require("multer")({
 router.get("/", getProjects);
 router.post("/create", upload.single("image"), create);
 router.post("/apply", apply);
-router.patch("/accept_applicant", addApplicant);
+router.patch("/accept_applicant", acceptApplicant);
 router.patch("/decline_applicant", declineApplicant);
 
 module.exports = router;

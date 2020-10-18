@@ -53,3 +53,9 @@ export interface SuccessAction {
   type: string;
   message: string;
 }
+
+export interface ApplicantAction {
+  projectId: string;
+  userId: string;
+  username?: string;
+}

@@ -9,7 +9,6 @@ import "./managePage.scss";
 import randomKey from "../../utils/randomIdGenerator";
 
 const ManagePage = ({ project }: any) => {
-  const { applicants } = project;
   const history = useHistory();
 
   const pushLastPath = () => {
@@ -23,18 +22,19 @@ const ManagePage = ({ project }: any) => {
       </Link>
       <div className="applyPage-content">
         <div className="title-section">
-          <h2>manage your team</h2>
+          <h2>Manage your team</h2>
         </div>
         <div className="applicant-section">
-          {applicants.map((applicant: any) => {
-            return (
-              <Applicant
-                project={project._id}
-                key={randomKey()}
-                {...applicant}
-              />
-            );
-          })}
+          {project &&
+            project.applicants.map((applicant: any) => {
+              return (
+                <Applicant
+                  projectId={project._id}
+                  key={randomKey()}
+                  {...applicant}
+                />
+              );
+            })}
         </div>
       </div>
     </div>

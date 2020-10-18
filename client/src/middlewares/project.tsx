@@ -1,15 +1,8 @@
 /** @format */
-interface AxiosApplicant {
-  dispatch: Dispatch<AnyAction>;
-  data: {
-    project: string;
-    user: string;
-  };
-}
 
 import { AnyAction, Dispatch, Middleware } from "redux";
 import { url } from "../environments/api";
-import { AxiosSubmit } from "../models/axios";
+import { AxiosSubmit, AxiosApplicant } from "../models/axios";
 import axios from "axios";
 axios.defaults.baseURL = url;
 axios.defaults.headers.post["Content-Type"] = "application/json";
@@ -79,20 +72,20 @@ const sendApply = ({ getState, dispatch }: AxiosSubmit, projectId: string) => {
 
 const acceptApplicant = ({
   dispatch,
-  data: { project, user },
+  data: { projectId, userId, username },
 }: AxiosApplicant) => {
   axios
-    .patch("/project/accept_applicant", { projectId: project, user })
+    .patch("/project/accept_applicant", { projectId, userId, username })
     .then((res) => console.log(res))
     .catch((err) => console.log(err));
 };
 
 const declineApplicant = ({
   dispatch,
-  data: { project, user },
+  data: { projectId, userId },
 }: AxiosApplicant) => {
   axios
-    .patch("/project/decline_applicant", { projectId: project, user })
+    .patch("/project/decline_applicant", { projectId, userId })
     .then((result) => console.log(result))
     .catch((error) => console.error(error));
 };
