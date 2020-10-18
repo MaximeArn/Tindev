@@ -9,17 +9,22 @@ const {
 } = require("../utils/validators");
 
 module.exports = {
-  create: async (req, res, next) => {
-    const filename = req.file ? req.file.filename : null;
-    const valid = await projectValidator(req.body, next);
+  create: async ({ body, cookies: { token }, file }, res, next) => {
+    const filename = file ? file.filename : null;
+    try {
+      await tokenValidator(token, next);
+      const valid = await projectValidator(body, next);
 
-    valid &&
-      Project.create({
+      await Project.create({
         ...valid,
         contributors: [],
         applicants: [],
         image: filename,
       });
+    } catch (error) {
+      console.error(error);
+      next(error);
+    }
   },
   getProjects: async (req, res, next) => {
     try {
