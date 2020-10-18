@@ -20,7 +20,7 @@ const Project = ({
 }: ProjectDetailSubComponent) => {
   const typedContributors: Contributor[] | [] = contributors;
   const { pathname } = useLocation();
-  const owner = true;
+  const owner = false;
   return (
     <div className="projectDetail">
       <div className="projectDetail-content">

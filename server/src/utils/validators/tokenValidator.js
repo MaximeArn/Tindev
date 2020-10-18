@@ -7,7 +7,7 @@ module.exports = (token, next) => {
     return new Promise((resolve, reject) => {
       jwt.verify(token, secret, (error, decoded) => {
         if (error) {
-          throw new UserError("Token is corrupted, please sign in again.", 403);
+          throw new UserError("User not found, please sign in again.", 403);
         }
 
         resolve(decoded);

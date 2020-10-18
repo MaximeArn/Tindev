@@ -12,7 +12,7 @@ const ProjectDetail = ({
 }: ProjectDetailProps) => {
   return (
     <>
-      {isModalOpen && <Modal project={project && project._id} />}
+      {isModalOpen && <Modal projectId={project && project._id} />}
 
       {project ? (
         <Project setModalStatus={setModalStatus} {...project} />

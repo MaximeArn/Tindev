@@ -101,7 +101,7 @@ const project: Middleware = ({ getState, dispatch }) => (next) => (action) => {
       setProjects(dispatch);
       break;
     case "SEND_USER_APPLY":
-      user && sendApply({ getState, dispatch }, action.project);
+      user && sendApply({ getState, dispatch }, action.projectId);
     case "ACCEPT_APPLICANT":
       acceptApplicant({ dispatch, data });
       break;
