@@ -17,7 +17,7 @@ module.exports = {
       Project.create({
         ...valid,
         contributors: [],
-        applicant: [],
+        applicants: [],
         image: filename,
       });
   },
@@ -46,7 +46,7 @@ module.exports = {
         await Project.updateOne(
           { _id: project._id },
           {
-            applicant: [...project.applicant, { _id: id, username, message }],
+            applicants: [...project.applicants, { _id: id, username, message }],
           }
         );
 
@@ -93,13 +93,6 @@ module.exports = {
       if (project) {
         project.applicants.pull(user);
         project.save();
-        // const deleteApplicant = await Project.findByIdAndUpdate(
-        //   projectId,
-        //   {
-        //     $pull: { applicants: { _id: user } },
-        //   },
-        //   { new: true }
-        // );
       }
     } catch (error) {
       console.error(error);
