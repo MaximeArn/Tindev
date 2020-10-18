@@ -67,6 +67,7 @@ export interface ProjectCreationButton {
 export interface ProjectCreationProps {
   projectInputs: Project;
   error: string;
+  loading: boolean;
   sendProject: Function;
   setProjectImage: Function;
   getCategories: Function;

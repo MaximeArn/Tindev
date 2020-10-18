@@ -6,12 +6,14 @@ import { faPaperclip } from "@fortawesome/free-solid-svg-icons";
 import { ProjectCreationProps } from "../../models/projects";
 import capitalizeFirstLetter from "../../utils/capitalizeFirstLetter";
 import Buttons from "../containers/ProjectCreationButtons";
+import CircularProgress from "@material-ui/core/CircularProgress";
 import Input from "../containers/Input";
 import "./projectcreation.scss";
 
 const ProjectCreation = ({
   projectInputs,
   error,
+  loading,
   setProjectImage,
   sendProject,
   getCategories,
@@ -94,8 +96,16 @@ const ProjectCreation = ({
                 <button
                   type="submit"
                   className="project-creation-button submit"
+                  disabled={loading}
                 >
-                  Submit
+                  {!loading ? (
+                    <p>Submit</p>
+                  ) : (
+                    <div className="loader">
+                      <p>Loading</p>
+                      <CircularProgress size={15} />
+                    </div>
+                  )}
                 </button>
               </section>
             </form>

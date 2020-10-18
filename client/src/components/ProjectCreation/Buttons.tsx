@@ -15,7 +15,7 @@ const Buttons = ({ getProjectTeamSize }: ProjectCreationButton) => {
         type="button"
         className="project-creation-button"
         value={2}
-        onClick={(event) => getProjectTeamSize(event.currentTarget.value)}
+        onClick={handleButtonClick}
       >
         2 people
       </button>

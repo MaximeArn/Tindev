@@ -7,6 +7,7 @@ const initialState: Loaders = {
   registerLoader: false,
   loginLoader: false,
   projectListLoader: false,
+  projectCreationLoader: false,
 };
 
 const loaders = (state = initialState, { type, value }: LoadersActions) => {
@@ -23,6 +24,8 @@ const loaders = (state = initialState, { type, value }: LoadersActions) => {
       };
     case "SET_PROJECTLIST_LOADER":
       return { ...state, projectListLoader: value };
+    case "SET_PROJECT_CREATION_LOADER":
+      return { ...state, projectCreationLoader: value };
     default:
       return state;
   }

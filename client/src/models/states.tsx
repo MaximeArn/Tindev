@@ -44,6 +44,7 @@ export interface Loaders {
   registerLoader: boolean;
   loginLoader: boolean;
   projectListLoader: boolean;
+  projectCreationLoader: boolean;
 }
 
 export interface RegisterAuth {

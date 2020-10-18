@@ -21,6 +21,7 @@ const sendProject = ({ getState, dispatch }: AxiosSubmit) => {
     formData.append(key, createProject[key]);
   }
 
+  dispatch({ type: "SET_PROJECT_CREATION_LOADER", value: true });
   axios
     .post("/project/create", formData, {
       headers: { "Content-Type": "multipart/form-data" },
@@ -28,7 +29,10 @@ const sendProject = ({ getState, dispatch }: AxiosSubmit) => {
     .catch(({ response }) => {
       const { msg: error } = response.data;
       dispatch({ type: "PROJECT_CREATION_ERROR_HANDLER", error });
-    });
+    })
+    .finally(() =>
+      dispatch({ type: "SET_PROJECT_CREATION_LOADER", value: false })
+    );
 };
 
 const setProjects = (dispatch: Dispatch<AnyAction>) => {
