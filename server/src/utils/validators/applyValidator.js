@@ -22,7 +22,6 @@ module.exports = async ({ body, id }, next) => {
     if (!message) throw new ApplyError("Please specify a message.", 400);
 
     body.message = sanitize(message, sanitizeConfig);
-
     return { body, project };
   } catch (error) {
     console.error(error);

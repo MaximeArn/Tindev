@@ -6,8 +6,7 @@ const secret = process.env.SECRET;
 const { User } = require("../models");
 
 const authRouter = {
-  register: async (req, res, next) => {
-    const { body } = req;
+  register: async ({ body }, res, next) => {
     try {
       const validator = await registerValidator(body, next);
 
@@ -21,11 +20,15 @@ const authRouter = {
     }
   },
 
-  login: async (req, res, next) => {
-    const user = await loginValidator(req.body, next);
+  login: async ({ body }, res, next) => {
+    const user = await loginValidator(body, next);
 
     if (user) {
-      const token = jwt.sign({ id: user.id, email: user.email }, secret);
+      const token = jwt.sign(
+        { id: user.id, email: user.email, username: user.username },
+        secret
+      );
+
       return res.status(200).json({
         token,
         email: user.email,
@@ -33,8 +36,7 @@ const authRouter = {
       });
     }
   },
-  verify: (req, res, next) => {
-    const { token } = req.cookies;
+  verify: ({ cookies: { token } }, res, next) => {
     jwt.verify(token, secret, (error, decoded) => {
       if (decoded) {
         User.findOne({ email: decoded.email })

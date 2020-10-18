@@ -10,12 +10,7 @@ axios.defaults.withCredentials = true;
 
 const sendProject = ({ getState, dispatch }: AxiosSubmit) => {
   const { createProject } = getState().project;
-  const {
-    user: { username },
-  } = getState().auth;
-
   const formData = new FormData();
-  formData.append("author", username);
 
   for (const key in createProject) {
     formData.append(key, createProject[key]);

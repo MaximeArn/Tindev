@@ -12,15 +12,18 @@ module.exports = {
   create: async ({ body, cookies: { token }, file }, res, next) => {
     const filename = file ? file.filename : null;
     try {
-      await tokenValidator(token, next);
+      const { username } = await tokenValidator(token, next);
       const valid = await projectValidator(body, next);
 
-      await Project.create({
-        ...valid,
-        contributors: [],
-        applicants: [],
-        image: filename,
-      });
+      if (valid && username) {
+        await Project.create({
+          ...valid,
+          author: username,
+          contributors: [],
+          applicants: [],
+          image: filename,
+        });
+      }
     } catch (error) {
       console.error(error);
       next(error);
@@ -37,25 +40,27 @@ module.exports = {
   },
   apply: async ({ body, cookies: { token } }, res, next) => {
     try {
-      const id = await tokenValidator(token, next);
+      const { id } = await tokenValidator(token, next);
       const apply = await applyValidator({ body, id }, next);
 
-      const { body, project } = apply;
-      const {
-        appliant: { username },
-        message,
-      } = body;
+      if (apply && id) {
+        const { body: validatedBody, project } = apply;
+        const {
+          appliant: { username },
+          message,
+        } = validatedBody;
 
-      await Project.updateOne(
-        { _id: project._id },
-        {
-          applicants: [...project.applicants, { _id: id, username, message }],
-        }
-      );
+        await Project.updateOne(
+          { _id: project._id },
+          {
+            applicants: [...project.applicants, { _id: id, username, message }],
+          }
+        );
 
-      return res.status(200).json({
-        msg: "Thank you for your apply.",
-      });
+        return res.status(200).json({
+          msg: "Thank you for your apply.",
+        });
+      }
     } catch (error) {
       console.error(error);
       next(error);
