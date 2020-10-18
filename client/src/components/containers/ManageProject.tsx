@@ -4,7 +4,7 @@ import { connect } from "react-redux";
 import { withRouter } from "react-router-dom";
 import { State } from "../../models/states";
 import slugify from "../../utils/slugify";
-import ApplyPage from "../ManageProject/ManageProject";
+import ManageProject from "../ManageProject/ManageProject";
 import { ProjectDetailProps as OwnProps } from "../../models/projects";
 
 const mapState = ({ project: { projects } }: State, { match }: OwnProps) => {
@@ -13,4 +13,4 @@ const mapState = ({ project: { projects } }: State, { match }: OwnProps) => {
   return { project };
 };
 
-export default withRouter(connect(mapState)(ApplyPage));
+export default withRouter(connect(mapState)(ManageProject));

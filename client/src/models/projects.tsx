@@ -1,5 +1,6 @@
 /** @format */
 import { Category } from "../models/categories";
+
 export interface Projects {
   projects: Project[];
   error: string;
@@ -45,6 +46,7 @@ export interface Contributor {
 export interface Applicant {
   _id: string;
   username: string;
+  message: string;
 }
 
 export interface ProjectState {

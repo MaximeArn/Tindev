@@ -1,10 +1,16 @@
 /** @format */
+interface AxiosApplicant {
+  dispatch: Dispatch<AnyAction>;
+  data: {
+    project: string;
+    user: string;
+  };
+}
 
 import { AnyAction, Dispatch, Middleware } from "redux";
 import { url } from "../environments/api";
 import { AxiosSubmit } from "../models/axios";
 import axios from "axios";
-import Project from "../components/ProjectDetail/Project";
 axios.defaults.baseURL = url;
 axios.defaults.headers.post["Content-Type"] = "multipart/form-data";
 axios.defaults.withCredentials = true;
@@ -66,21 +72,34 @@ const sendApply = ({ getState, dispatch }: AxiosSubmit, projectId: string) => {
       dispatch({ type: "PROJECT_APPLY_ERROR_HANDLER", error });
     });
 };
-const acceptApplicant = ({ project, applicant }: any) => {
-  // console.log("project", project);
-  // console.log("applicant", applicant);
+
+const acceptApplicant = ({
+  dispatch,
+  data: { project, user },
+}: AxiosApplicant) => {
   axios
     .patch(
       "/project/accept_applicant",
-      { project, applicant },
+      { project, user },
       { headers: { "Content-Type": "application/json" } }
     )
     .then((res) => console.log(res))
     .catch((err) => console.log(err));
 };
 
+const declineApplicant = ({
+  dispatch,
+  data: { project, user },
+}: AxiosApplicant) => {
+  axios
+    .patch("/project/decline_applicant", { projectId: project, user })
+    .then((result) => console.log(result))
+    .catch((error) => console.error(error));
+};
+
 const project: Middleware = ({ getState, dispatch }) => (next) => (action) => {
   const { user } = getState().auth;
+  const { data } = action;
   switch (action.type) {
     case "SEND_PROJECT":
       user.username && sendProject({ getState, dispatch });
@@ -91,7 +110,10 @@ const project: Middleware = ({ getState, dispatch }) => (next) => (action) => {
     case "SEND_USER_APPLY":
       user && sendApply({ getState, dispatch }, action.project);
     case "ACCEPT_APPLICANT":
-      acceptApplicant(action.data);
+      acceptApplicant({ dispatch, data });
+      break;
+    case "DECLINE_APPLICANT":
+      declineApplicant({ dispatch, data });
       break;
     default:
       next(action);

@@ -5,9 +5,10 @@ import { AnyAction, Dispatch } from "redux";
 import Applicant from "../ManageProject/Applicant";
 
 const mapDispatch = (dispatch: Dispatch<AnyAction>) => ({
-  acceptApplicant: (project: string, applicant: string) =>
-    dispatch({ type: "ACCEPT_APPLICANT", data: { project, applicant } }),
-  denyApplicant: () => dispatch({ type: "DENY_APPLICANT" }),
+  acceptApplicant: (project: string, user: string) =>
+    dispatch({ type: "ACCEPT_APPLICANT", data: { project, user } }),
+  declineApplicant: (project: string, user: string) =>
+    dispatch({ type: "DECLINE_APPLICANT", data: { project, user } }),
 });
 
 export default connect(null, mapDispatch)(Applicant);
