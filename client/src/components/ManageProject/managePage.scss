@@ -28,6 +28,10 @@
     }
 
     .applicant-section {
+      &-empty {
+        text-align: center;
+      }
+
       padding: 2rem;
       width: 90%;
       display: flex;

@@ -25,7 +25,7 @@ const ManageProject = ({ project }: any) => {
           <h2>Manage your team</h2>
         </div>
         <div className="applicant-section">
-          {project &&
+          {project && project.applicants.length > 0 ? (
             project.applicants.map((applicant: any) => {
               return (
                 <Applicant
@@ -34,7 +34,10 @@ const ManageProject = ({ project }: any) => {
                   {...applicant}
                 />
               );
-            })}
+            })
+          ) : (
+            <div className="applicant-section-empty">No applicants yet</div>
+          )}
         </div>
       </div>
     </div>
