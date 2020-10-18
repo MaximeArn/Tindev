@@ -1,15 +1,17 @@
 /** @format */
 
 const { Project } = require("../models");
-const fieldValidator = require("../utils/validators/projectFieldValidator");
-const applyValidator = require("../utils/validators/applyValidator");
-const tokenValidator = require("../utils/validators/tokenValidator");
-const applicantValidator = require("../utils/validators/applicantValidator");
+const {
+  projectValidator,
+  applyValidator,
+  tokenValidator,
+  applicantValidator,
+} = require("../utils/validators");
 
 module.exports = {
   create: async (req, res, next) => {
     const filename = req.file ? req.file.filename : null;
-    const valid = await fieldValidator(req.body, next);
+    const valid = await projectValidator(req.body, next);
 
     valid &&
       Project.create({
@@ -57,7 +59,6 @@ module.exports = {
       next(error);
     }
   },
-
   addApplicant: async ({ body }, res, next) => {
     try {
       const project = await applicantValidator(body, next);
@@ -79,5 +80,8 @@ module.exports = {
       console.error(error);
       next(error);
     }
+  },
+  declineApplicant: async ({ body, cookies }, res, next) => {
+    console.log(body);
   },
 };

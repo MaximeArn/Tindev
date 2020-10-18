@@ -6,6 +6,7 @@ const {
   getProjects,
   apply,
   addApplicant,
+  declineApplicant,
 } = require("../controllers/project");
 
 const imageDiskStorage = require("../config/multer");
@@ -18,5 +19,6 @@ router.get("/", getProjects);
 router.post("/create", upload.single("image"), create);
 router.post("/apply", apply);
 router.patch("/accept_applicant", addApplicant);
+router.patch("/decline_applicant", declineApplicant);
 
 module.exports = router;

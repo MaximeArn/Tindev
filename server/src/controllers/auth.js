@@ -1,7 +1,6 @@
 /** @format */
 
-const fieldValidator = require("../utils/validators/authFieldValidator");
-const loginValidator = require("../utils/validators/loginValidator");
+const { loginValidator, registerValidator } = require("../utils/validators");
 const jwt = require("jsonwebtoken");
 const secret = process.env.SECRET;
 const { User } = require("../models");
@@ -10,7 +9,7 @@ const authRouter = {
   register: async (req, res, next) => {
     const { body } = req;
     try {
-      const validator = await fieldValidator(body, next);
+      const validator = await registerValidator(body, next);
 
       if (validator) {
         const result = await User.create(body);
