@@ -32,28 +32,25 @@ module.exports = {
   },
   apply: async ({ body, cookies: { token } }, res, next) => {
     try {
-      const { id } = await tokenValidator(token, next);
+      const id = await tokenValidator(token, next);
       const apply = await applyValidator({ body, id }, next);
 
-      if (apply && tokenCredentials) {
-        const { id } = tokenCredentials;
-        const { body, project } = apply;
-        const {
-          appliant: { username },
-          message,
-        } = body;
+      const { body, project } = apply;
+      const {
+        appliant: { username },
+        message,
+      } = body;
 
-        await Project.updateOne(
-          { _id: project._id },
-          {
-            applicants: [...project.applicants, { _id: id, username, message }],
-          }
-        );
+      await Project.updateOne(
+        { _id: project._id },
+        {
+          applicants: [...project.applicants, { _id: id, username, message }],
+        }
+      );
 
-        return res.status(200).json({
-          msg: "Thank you for your apply.",
-        });
-      }
+      return res.status(200).json({
+        msg: "Thank you for your apply.",
+      });
     } catch (error) {
       console.error(error);
       next(error);

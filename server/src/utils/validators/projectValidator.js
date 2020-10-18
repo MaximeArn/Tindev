@@ -26,7 +26,7 @@ module.exports = async (body, next) => {
     }
 
     parseInt(size);
-    body.categories = [categories.find(({ name }) => name === category)];
+    body.categories = categories.filter(({ name }) => name === category);
 
     return body;
   } catch (error) {
