@@ -71,8 +71,7 @@ module.exports = {
           username,
         });
 
-        console.log(project);
-        // await project.save();
+        await project.save();
       }
     } catch (error) {
       console.error(error);
