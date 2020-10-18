@@ -5,6 +5,7 @@ const initialState: ModalState = {
   showNavbar: true,
   authModal: false,
   applyModal: false,
+  declineApplicantModal: false,
 };
 const modal = (state = initialState, { type, modalStatus }: ModalAction) => {
   switch (type) {
@@ -12,6 +13,12 @@ const modal = (state = initialState, { type, modalStatus }: ModalAction) => {
       return { ...state, authModal: modalStatus, showNavbar: !modalStatus };
     case "SET_APPLY_MODAL_STATUS":
       return { ...state, applyModal: modalStatus, showNavbar: !modalStatus };
+    case "SET_DECLINE_APPLICANT_MODAL_STATUS":
+      return {
+        ...state,
+        declineApplicantModal: modalStatus,
+        showNavbar: !modalStatus,
+      };
     default:
       return state;
   }

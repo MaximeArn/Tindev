@@ -37,6 +37,7 @@ export interface Modals {
   showNavbar: boolean;
   authModal: boolean;
   applyModal: boolean;
+  declineApplicantModal: boolean;
 }
 
 export interface Loaders {
@@ -106,6 +107,7 @@ export interface ModalState {
   showNavbar: boolean;
   authModal: boolean;
   applyModal: boolean;
+  declineApplicantModal: boolean;
 }
 
 export interface SuccessState {
