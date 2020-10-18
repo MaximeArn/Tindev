@@ -82,6 +82,8 @@ module.exports = {
     }
   },
   declineApplicant: async ({ body, cookies }, res, next) => {
-    console.log(body);
+    const validator = await applicantValidator(body);
+
+    console.log(validator);
   },
 };
