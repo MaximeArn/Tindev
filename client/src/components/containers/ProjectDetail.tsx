@@ -20,6 +20,7 @@ const mapState = (
 ) => {
   const { slug } = match.params;
   const project = projects.find(({ title }) => slugify(title) === slug);
+
   return { project, isModalOpen: applyModal, owner };
 };
 

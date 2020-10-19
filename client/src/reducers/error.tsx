@@ -1,3 +1,5 @@
+/** @format */
+
 import { ErrorAction } from "../models/actions";
 import { ErrorState } from "../models/states";
 
