@@ -5,6 +5,7 @@ export interface InputModel {
   name: string;
   inputValue: string | number | undefined;
   categories: Category[];
+  required: boolean;
   getRegisterInputValue: Function;
   getLoginInputValue: Function;
   getProjectInputValue: Function;

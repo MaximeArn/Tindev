@@ -24,8 +24,6 @@ const Login = ({
     submitLogin(history);
   };
 
-  const fieldValidator = Object.values(login).every((value) => value);
-
   let registered;
   if (useLocation().state) {
     let {
@@ -53,7 +51,7 @@ const Login = ({
                 <p className="success-message">{registered.message}</p>
               )}
               {error && <span className="error-message">{error}</span>}
-              <div className="fields">{inputMapper(login)}</div>
+              <div className="fields">{inputMapper(login, login)}</div>
               {loginLoader ? (
                 <button type="submit" className="submitButton" disabled>
                   <div className="loading-button">
@@ -62,11 +60,7 @@ const Login = ({
                   </div>
                 </button>
               ) : (
-                <button
-                  type="submit"
-                  className="submitButton"
-                  disabled={!fieldValidator}
-                >
+                <button type="submit" className="submitButton">
                   Continue
                 </button>
               )}

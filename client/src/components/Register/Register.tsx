@@ -15,15 +15,14 @@ const Register = ({
   registerLoader,
   closeModal,
 }: RegisterAuth) => {
+  const { firstname, lastname, age, city, ...mandatory } = register;
   const modal = useRef<HTMLDivElement>(null);
   const history = useHistory();
+
   const handleSubmit = (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault();
     submitRegister(history);
   };
-
-  const { firstname, lastname, age, city, ...mandatory } = register;
-  const fieldValidator = Object.values(mandatory).every((value) => value);
 
   return (
     <div
@@ -38,7 +37,7 @@ const Register = ({
           <div className="register-padding">
             <h1 className="register-title">Create Account</h1>
             {error && <span className="error-message">{error}</span>}
-            <div className="fields">{inputMapper(register)}</div>
+            <div className="fields">{inputMapper(register, mandatory)}</div>
             {registerLoader ? (
               <button type="submit" className="submitButton" disabled>
                 <div className="loading-button">
@@ -47,11 +46,7 @@ const Register = ({
                 </div>
               </button>
             ) : (
-              <button
-                type="submit"
-                className="submitButton"
-                disabled={!fieldValidator}
-              >
+              <button type="submit" className="submitButton">
                 Register
               </button>
             )}

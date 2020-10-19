@@ -11,6 +11,7 @@ const Input = ({
   name,
   inputValue,
   categories,
+  required,
   getRegisterInputValue,
   getLoginInputValue,
   getProjectInputValue,
@@ -28,9 +29,9 @@ const Input = ({
       : getProjectDetailValue(name, target.value);
   };
 
-  const requiredFields = ["email", "password", "confirmPassword", "username"];
-  const isRequired = requiredFields.includes(name);
-
+  // const requiredFields = ["email", "password", "confirmPassword", "username"];
+  // const isRequired = requiredFields.includes(name);
+  console.log(required);
   return (
     <>
       {name === "categories" ? (
@@ -55,7 +56,7 @@ const Input = ({
           placeholder={capitalizeFirstLetter(name)}
           onChange={handleChange}
           value={inputValue}
-          required={isRequired}
+          required={required}
         />
       )}
     </>
