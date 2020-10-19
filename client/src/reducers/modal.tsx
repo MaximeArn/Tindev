@@ -7,12 +7,12 @@ const initialState: ModalState = {
   applyModal: false,
   declineApplicantModal: {
     isModalOpen: false,
-    applicantId: null,
+    applicant: null,
   },
 };
 const modal = (
   state = initialState,
-  { type, modalStatus, applicantId }: ModalAction
+  { type, modalStatus, applicant }: ModalAction
 ) => {
   switch (type) {
     case "SET_AUTH_MODAL_STATE":
@@ -22,7 +22,7 @@ const modal = (
     case "SET_DECLINE_APPLICANT_MODAL_STATUS":
       return {
         ...state,
-        declineApplicantModal: { isModalOpen: modalStatus, applicantId },
+        declineApplicantModal: { isModalOpen: modalStatus, applicant },
         showNavbar: !modalStatus,
       };
     default:

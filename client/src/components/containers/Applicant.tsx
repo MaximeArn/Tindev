@@ -17,11 +17,11 @@ const mapState = ({
 const mapDispatch = (dispatch: Dispatch<AnyAction>) => ({
   acceptApplicant: (data: ApplicantAction) =>
     dispatch({ type: "ACCEPT_APPLICANT", data }),
-  setModalStatus: (modalStatus: boolean, applicantId: string) =>
+  setModalStatus: (modalStatus: boolean, applicant: string) =>
     dispatch({
       type: "SET_DECLINE_APPLICANT_MODAL_STATUS",
       modalStatus,
-      applicantId,
+      applicant,
     }),
 });
 

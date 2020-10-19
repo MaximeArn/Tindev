@@ -9,7 +9,7 @@ const mapDispatch = (dispatch: Dispatch<AnyAction>) => ({
     dispatch({
       type: "SET_DECLINE_APPLICANT_MODAL_STATUS",
       modalStatus,
-      applicantId: null,
+      applicant: null,
     }),
   declineApplicant: (data: ApplicantAction) =>
     dispatch({ type: "DECLINE_APPLICANT", data }),

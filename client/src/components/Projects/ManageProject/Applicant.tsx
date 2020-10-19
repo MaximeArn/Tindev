@@ -22,7 +22,7 @@ const Applicant = ({
   message,
   acceptApplicant,
   setModalStatus,
-  declineApplicantModal: { isModalOpen, applicantId: applicant },
+  declineApplicantModal: { isModalOpen, applicant },
   isLoading: { loader, applicantId },
 }: any) => {
   const messageRef = useRef<HTMLDivElement>(null);

@@ -119,7 +119,7 @@ export interface ModalState {
   applyModal: boolean;
   declineApplicantModal: {
     isModalOpen: false;
-    applicantId: null;
+    applicant: null | string;
   };
 }
 
