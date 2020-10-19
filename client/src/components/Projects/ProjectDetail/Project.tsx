@@ -51,14 +51,20 @@ const Project = ({
           </div>
         </div>
         <div className="buttons-section">
-          <button>Like</button>
-
           {owner ? (
             <Link to={`${pathname}/manage`}>
-              <button>Manage</button>
+              <button className="manage-button">Manage</button>
             </Link>
           ) : (
-            <button onClick={() => setModalStatus(true)}>Apply</button>
+            <>
+              <button className="like-button">Like</button>
+              <button
+                onClick={() => setModalStatus(true)}
+                className="apply-button"
+              >
+                Apply
+              </button>
+            </>
           )}
         </div>
       </div>

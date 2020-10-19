@@ -16,6 +16,7 @@
       text-align: center;
     }
   }
+
   &-content {
     border-radius: 10px;
     width: 80%;
@@ -27,12 +28,10 @@
       h2 {
         font-weight: bold;
         text-transform: uppercase;
-        background: -webkit-linear-gradient(
-          121deg,
-          rgba(149, 230, 191, 1) 0%,
-          rgba(84, 227, 206, 1) 48%,
-          rgba(0, 212, 255, 1) 100%
-        );
+        background: -webkit-linear-gradient(121deg,
+            rgba(149, 230, 191, 1) 0%,
+            rgba(84, 227, 206, 1) 48%,
+            rgba(0, 212, 255, 1) 100%);
         background-clip: text;
         -webkit-background-clip: text;
         -webkit-text-fill-color: transparent;
@@ -48,6 +47,7 @@
       text-align: center;
       margin-bottom: 2rem;
     }
+
     .description-section {
       padding: 0 1.5rem;
       margin-bottom: 2rem;
@@ -65,6 +65,7 @@
       justify-content: center;
       align-items: center;
       margin-bottom: 2rem;
+
       .row-wrapper {
         flex-direction: row;
         align-items: flex-start;
@@ -85,6 +86,7 @@
         span {
           padding-right: 1rem;
         }
+
         p {
           display: inline-block;
         }
@@ -95,6 +97,21 @@
       border-top: 2px solid #fff;
       margin-top: 1rem;
 
+      .manage-button {
+        width: 100%;
+        border: none;
+        border-radius: 0 0 10px 10px;
+      }
+
+      .like-button {
+        border-radius: 0 0 0 10px;
+      }
+
+      .apply-button {
+        border-left: 2px solid #fff;
+        border-radius: 0 0 10px 0;
+      }
+
       button {
         padding: 1rem;
         width: 50%;
@@ -104,29 +121,21 @@
         color: #fff;
         transition: all 0.5s;
         box-sizing: border-box;
+
         a {
           padding: 1rem;
         }
 
         &:hover {
-          background: -webkit-linear-gradient(
-            121deg,
-            rgba(149, 230, 191, 1) 0%,
-            rgba(84, 227, 206, 1) 48%,
-            rgba(0, 212, 255, 1) 100%
-          );
+          background: -webkit-linear-gradient(121deg,
+              rgba(149, 230, 191, 1) 0%,
+              rgba(84, 227, 206, 1) 48%,
+              rgba(0, 212, 255, 1) 100%);
           background-clip: text;
           -webkit-background-clip: text;
           -webkit-text-fill-color: transparent;
         }
-        &:first-child {
-          border-radius: 0 0 0 10px;
-        }
 
-        &:last-child {
-          border-left: 2px solid #fff;
-          border-radius: 0 0 10px 0;
-        }
       }
     }
   }
@@ -146,6 +155,7 @@
           display: flex;
           flex-wrap: wrap;
           justify-content: space-around;
+
           .contributor-row {
             width: 50%;
             display: flex;
