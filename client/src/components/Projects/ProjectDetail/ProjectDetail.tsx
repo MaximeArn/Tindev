@@ -13,21 +13,34 @@ const ProjectDetail = ({
   setModalStatus,
   verifyOwner,
   owner,
+  projectDetailErrorMessage,
 }: ProjectDetailProps) => {
+  console.log(project);
+
   useEffect(() => {
     project && verifyOwner(project.author);
   }, [project]);
+
   return (
     <>
       {isModalOpen && <Modal projectId={project && project._id} />}
-
-      {project ? (
-        <Project setModalStatus={setModalStatus} {...project} owner={owner} />
+      {projectDetailErrorMessage ? (
+        <p className="error-message">{projectDetailErrorMessage}</p>
       ) : (
-        <div className="projectDetail">
-          <p>Loading</p>
-          <CircularProgress size={15} />
-        </div>
+        <>
+          {project ? (
+            <Project
+              setModalStatus={setModalStatus}
+              {...project}
+              owner={owner}
+            />
+          ) : (
+            <div className="projectDetail">
+              <p>Loading</p>
+              <CircularProgress size={15} />
+            </div>
+          )}
+        </>
       )}
     </>
   );

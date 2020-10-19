@@ -7,6 +7,7 @@ import { ProjectDetailProps as OwnProps } from "../../models/projects";
 import { withRouter } from "react-router-dom";
 import slugify from "../../utils/slugify";
 import { AnyAction, Dispatch } from "redux";
+import { ErrorState } from "../../models/states";
 
 const mapState = (
   {
@@ -15,13 +16,19 @@ const mapState = (
       projectDetail: { owner },
     },
     modal: { applyModal },
+    error: { projectDetailErrorMessage },
   }: State,
   { match }: OwnProps
 ) => {
   const { slug } = match.params;
   const project = projects.find(({ title }) => slugify(title) === slug);
-
-  return { project, isModalOpen: applyModal, owner };
+  const error = project ? null : "oops... something went wrong ";
+  return {
+    project,
+    isModalOpen: applyModal,
+    owner,
+    projectDetailErrorMessage: error,
+  };
 };
 
 const mapDispatch = (dispatch: Dispatch<AnyAction>) => ({

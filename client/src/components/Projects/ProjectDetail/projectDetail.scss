@@ -141,6 +141,14 @@
   }
 }
 
+.error-message {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  color: #fff;
+}
+
 @media (min-width: 1000px) {
   .projectDetail-content {
     width: 50%;
