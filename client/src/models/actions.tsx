@@ -37,6 +37,7 @@ export interface ProjectAction {
   teamSize: number;
   image: MutableRefObject<any>;
   projects: Project[];
+  owner: boolean;
 }
 
 export interface AuthMiddleware {

@@ -17,10 +17,10 @@ const Project = ({
   contributors,
   author,
   setModalStatus,
+  owner,
 }: ProjectDetailSubComponent) => {
   const typedContributors: Contributor[] | [] = contributors;
   const { pathname } = useLocation();
-  const owner = true;
   return (
     <div className="projectDetail">
       <div className="projectDetail-content">
@@ -55,7 +55,7 @@ const Project = ({
 
           {owner ? (
             <Link to={`${pathname}/manage`}>
-              <button>Apply</button>
+              <button>Manage</button>
             </Link>
           ) : (
             <button onClick={() => setModalStatus(true)}>Apply</button>

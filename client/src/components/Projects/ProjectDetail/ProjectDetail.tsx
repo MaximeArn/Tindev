@@ -12,6 +12,7 @@ const ProjectDetail = ({
   isModalOpen,
   setModalStatus,
   verifyOwner,
+  owner,
 }: ProjectDetailProps) => {
   useEffect(() => {
     project && verifyOwner(project.author);
@@ -21,7 +22,7 @@ const ProjectDetail = ({
       {isModalOpen && <Modal projectId={project && project._id} />}
 
       {project ? (
-        <Project setModalStatus={setModalStatus} {...project} />
+        <Project setModalStatus={setModalStatus} {...project} owner={owner} />
       ) : (
         <div className="projectDetail">
           <p>Loading</p>

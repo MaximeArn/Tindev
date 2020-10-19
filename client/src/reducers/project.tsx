@@ -14,6 +14,7 @@ const initialState: ProjectState = {
     size: undefined,
   },
   projectDetail: {
+    owner: false,
     application: {
       description: "",
     },
@@ -22,7 +23,15 @@ const initialState: ProjectState = {
 
 const project = (
   state = initialState,
-  { type, inputName, inputValue, teamSize, image, projects }: ProjectAction
+  {
+    type,
+    inputName,
+    inputValue,
+    teamSize,
+    image,
+    projects,
+    owner,
+  }: ProjectAction
 ) => {
   switch (type) {
     case "GET_PROJECT_CREATION_VALUE":
@@ -59,6 +68,8 @@ const project = (
           application: resetInputs(inputs),
         },
       };
+    case "SET_PROJECT_OWNER":
+      return { ...state, projectDetail: { ...state.projectDetail, owner } };
     default:
       return state;
   }

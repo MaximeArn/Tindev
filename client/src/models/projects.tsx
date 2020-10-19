@@ -29,6 +29,7 @@ export interface ProjectDetailSubComponent {
   contributors: Contributor[];
   applicants: Applicant[] | [];
   setModalStatus: Function;
+  owner: boolean;
 }
 export interface ProjectCreation {
   title: string;
@@ -56,6 +57,7 @@ export interface ProjectState {
 }
 
 export interface ProjectDetail {
+  owner: boolean;
   application: {
     description: string;
   };
@@ -82,6 +84,7 @@ export interface ProjectDetailProps {
   isModalOpen: boolean;
   setModalStatus: Function;
   verifyOwner: Function;
+  owner: boolean;
 }
 
 export interface DeclineApplicantModalProps {

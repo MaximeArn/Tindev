@@ -9,12 +9,18 @@ import slugify from "../../utils/slugify";
 import { AnyAction, Dispatch } from "redux";
 
 const mapState = (
-  { project: { projects }, modal: { applyModal } }: State,
+  {
+    project: {
+      projects,
+      projectDetail: { owner },
+    },
+    modal: { applyModal },
+  }: State,
   { match }: OwnProps
 ) => {
   const { slug } = match.params;
   const project = projects.find(({ title }) => slugify(title) === slug);
-  return { project, isModalOpen: applyModal };
+  return { project, isModalOpen: applyModal, owner };
 };
 
 const mapDispatch = (dispatch: Dispatch<AnyAction>) => ({
