@@ -6,9 +6,12 @@ import { MutableRefObject } from "react";
 const mapState = (state: State) => {
   const { createProject } = state.project;
   const { projectCreationErrorMessage: error } = state.error;
-  const { projectCreationLoader: loading } = state.loaders;
+  const {
+    projectCreationLoader: loading,
+    projectCategoriesLoader: categoriesLoader,
+  } = state.loaders;
 
-  return { projectInputs: createProject, error, loading };
+  return { projectInputs: createProject, error, loading, categoriesLoader };
 };
 
 const mapDispatch = (dispatch: any) => ({
