@@ -75,7 +75,7 @@ const acceptApplicant = ({
   dispatch({
     type: "SET_PROJECT_MANAGE_LOADER",
     value: true,
-    applicant: userId,
+    applicantId: userId,
   });
   axios
     .patch("/project/accept_applicant", { projectId, userId, username })
@@ -85,7 +85,7 @@ const acceptApplicant = ({
       dispatch({
         type: "SET_PROJECT_MANAGE_LOADER",
         value: false,
-        applicant: userId,
+        applicantId: userId,
       });
       dispatch({ type: "GET_PROJECT_BY_ID", projectId });
     });
@@ -98,7 +98,7 @@ const declineApplicant = ({
   dispatch({
     type: "SET_PROJECT_MANAGE_LOADER",
     value: true,
-    applicant: userId,
+    applicantId: userId,
   });
   axios
     .patch("/project/decline_applicant", { projectId, userId })
@@ -108,7 +108,7 @@ const declineApplicant = ({
       dispatch({
         type: "SET_PROJECT_MANAGE_LOADER",
         value: false,
-        applicant: userId,
+        applicantId: userId,
       });
       dispatch({ type: "GET_PROJECT_BY_ID", projectId });
     });
