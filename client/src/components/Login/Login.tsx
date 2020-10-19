@@ -65,7 +65,7 @@ const Login = ({
                 <button
                   type="submit"
                   className="submitButton"
-                  disabled={!fieldValidator}
+                  // disabled={!fieldValidator}
                 >
                   Continue
                 </button>

@@ -1,3 +1,5 @@
+/** @format */
+
 import React, { ChangeEvent } from "react";
 import { InputModel } from "../../models/inputs";
 import convertInputType from "../../utils/inputType";
@@ -26,6 +28,9 @@ const Input = ({
       : getProjectDetailValue(name, target.value);
   };
 
+  const requiredFields = ["email", "password", "confirmPassword", "username"];
+  const isRequired = requiredFields.includes(name);
+
   return (
     <>
       {name === "categories" ? (
@@ -50,6 +55,7 @@ const Input = ({
           placeholder={capitalizeFirstLetter(name)}
           onChange={handleChange}
           value={inputValue}
+          required={isRequired}
         />
       )}
     </>
