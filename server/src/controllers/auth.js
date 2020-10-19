@@ -1,6 +1,10 @@
 /** @format */
 
-const { loginValidator, registerValidator } = require("../utils/validators");
+const {
+  loginValidator,
+  registerValidator,
+  tokenValidator,
+} = require("../utils/validators");
 const jwt = require("jsonwebtoken");
 const secret = process.env.SECRET;
 const { User } = require("../models");
@@ -36,19 +40,14 @@ const authRouter = {
       });
     }
   },
-  verify: ({ cookies: { token } }, res, next) => {
-    jwt.verify(token, secret, (error, decoded) => {
-      if (decoded) {
-        User.findOne({ email: decoded.email })
-          .then(({ username, email }) => {
-            return email && res.status(200).json({ username, email });
-          })
-          .catch((error) => {
-            console.error(error);
-            next(error);
-          });
-      }
-    });
+  verify: async ({ cookies: { token } }, res, next) => {
+    try {
+      const { username, email } = await tokenValidator(token, next);
+      return email && username && res.status(200).json({ username, email });
+    } catch (error) {
+      console.error(error);
+      next(error);
+    }
   },
 };
 
