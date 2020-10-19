@@ -3,9 +3,9 @@ import {
   Project as ProjectModel,
   Contributor,
   ProjectDetailSubComponent,
-} from "../../models/projects";
+} from "../../../models/projects";
 import React from "react";
-import { url } from "../../environments/api";
+import { url } from "../../../environments/api";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faUserCircle } from "@fortawesome/free-solid-svg-icons";
 import { Link, useLocation } from "react-router-dom";

@@ -1,7 +1,7 @@
 import React, { MouseEvent } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faPlus } from "@fortawesome/free-solid-svg-icons";
-import { ProjectCreationButton } from "../../models/projects";
+import { ProjectCreationButton } from "../../../models/projects";
 
 const Buttons = ({ getProjectTeamSize }: ProjectCreationButton) => {
   const handleButtonClick = ({

@@ -1,5 +1,5 @@
 import { connect } from "react-redux";
-import ProjectCreation from "../ProjectCreation/ProjectCreation";
+import ProjectCreation from "../Projects/ProjectCreation/ProjectCreation";
 import { State } from "../../models/states";
 import { MutableRefObject } from "react";
 

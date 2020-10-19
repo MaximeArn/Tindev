@@ -1,10 +1,10 @@
 /** @format */
 
 import React from "react";
-import slugifier from "../../utils/slugify";
-import shortify from "../../utils/shortifyString";
-import { Project as ProjectModel } from "../../models/projects";
-import { url } from "../../environments/api";
+import slugifier from "../../../utils/slugify";
+import shortify from "../../../utils/shortifyString";
+import { Project as ProjectModel } from "../../../models/projects";
+import { url } from "../../../environments/api";
 
 const Project = ({ title, image, description }: ProjectModel) => {
   return (

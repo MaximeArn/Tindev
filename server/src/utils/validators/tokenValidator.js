@@ -12,7 +12,6 @@ module.exports = (token, next) => {
           reject(new UserError("User not found, please sign in.", 403));
         }
 
-        console.log(decoded);
         const exists = await User.findById(decoded.id);
 
         if (!exists) reject(new UserError("User does not exists.", 403));

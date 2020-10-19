@@ -1,7 +1,7 @@
 /** @format */
 
 import React, { useRef } from "react";
-import randomKey from "../../utils/randomIdGenerator";
+import randomKey from "../../../utils/randomIdGenerator";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
   faUserCircle,
@@ -10,8 +10,8 @@ import {
   faCheck,
   faSortDown,
 } from "@fortawesome/free-solid-svg-icons";
-import capitalizeFirstLetter from "../../utils/capitalizeFirstLetter";
-import DeclineModal from "../containers/DeclineApplicantModal";
+import capitalizeFirstLetter from "../../../utils/capitalizeFirstLetter";
+import DeclineModal from "../../containers/DeclineApplicantModal";
 import { Link } from "react-router-dom";
 
 const Applicant = ({

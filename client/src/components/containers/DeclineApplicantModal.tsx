@@ -1,7 +1,7 @@
 import { Dispatch } from "react";
 import { connect } from "react-redux";
 import { AnyAction } from "redux";
-import DeclineModal from "../ManageProject/DeclineModal";
+import DeclineModal from "../Projects/ManageProject/DeclineModal";
 import { ApplicantAction } from "../../models/actions";
 
 const mapDispatch = (dispatch: Dispatch<AnyAction>) => ({

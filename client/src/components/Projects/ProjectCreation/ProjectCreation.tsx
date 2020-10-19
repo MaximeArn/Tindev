@@ -3,11 +3,11 @@
 import React, { FormEvent, MouseEvent, useEffect, useRef } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faPaperclip } from "@fortawesome/free-solid-svg-icons";
-import { ProjectCreationProps } from "../../models/projects";
-import capitalizeFirstLetter from "../../utils/capitalizeFirstLetter";
-import Buttons from "../containers/ProjectCreationButtons";
+import { ProjectCreationProps } from "../../../models/projects";
+import capitalizeFirstLetter from "../../../utils/capitalizeFirstLetter";
+import Buttons from "../../containers/ProjectCreationButtons";
 import CircularProgress from "@material-ui/core/CircularProgress";
-import Input from "../containers/Input";
+import Input from "../../containers/Input";
 import "./projectcreation.scss";
 
 const ProjectCreation = ({

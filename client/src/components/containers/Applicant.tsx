@@ -3,7 +3,7 @@
 import { connect } from "react-redux";
 import { AnyAction, Dispatch } from "redux";
 import { State } from "../../models/states";
-import Applicant from "../ManageProject/Applicant";
+import Applicant from "../Projects/ManageProject/Applicant";
 import { ApplicantAction } from "../../models/actions";
 
 const mapState = ({ modal: { declineApplicantModal } }: State) => ({

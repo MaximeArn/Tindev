@@ -4,9 +4,9 @@ import React, { RefObject, useRef, useEffect } from "react";
 import { useHistory, Link } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faArrowLeft } from "@fortawesome/free-solid-svg-icons";
-import Applicant from "../containers/Applicant";
+import Applicant from "../../containers/Applicant";
 import "./managePage.scss";
-import randomKey from "../../utils/randomIdGenerator";
+import randomKey from "../../../utils/randomIdGenerator";
 
 const ManageProject = ({ project }: any) => {
   const history = useHistory();

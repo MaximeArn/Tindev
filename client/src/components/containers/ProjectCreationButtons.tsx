@@ -1,5 +1,5 @@
 import { connect } from "react-redux";
-import Buttons from "../ProjectCreation/Buttons";
+import Buttons from "../Projects/ProjectCreation/Buttons";
 
 const mapDispatch = (dispatch: any) => ({
   getProjectTeamSize: (value: number) => {

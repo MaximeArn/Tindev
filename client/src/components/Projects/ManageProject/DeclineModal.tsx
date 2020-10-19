@@ -1,5 +1,5 @@
 import React from "react";
-import { DeclineApplicantModalProps } from "../../models/projects";
+import { DeclineApplicantModalProps } from "../../../models/projects";
 import "./declinemodal.scss";
 
 const DeclineModal = ({

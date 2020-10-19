@@ -1,7 +1,7 @@
 /** @format */
 
 import { connect } from "react-redux";
-import ProjectDetail from "../ProjectDetail/ProjectDetail";
+import ProjectDetail from "../Projects/ProjectDetail/ProjectDetail";
 import { State } from "../../models/states";
 import { ProjectDetailProps as OwnProps } from "../../models/projects";
 import { withRouter } from "react-router-dom";

@@ -1,7 +1,7 @@
 import React from "react";
 import "./projectDetail.scss";
-import Modal from "../containers/ProjectDetailModal";
-import { ProjectDetailProps } from "../../models/projects";
+import Modal from "../../containers/ProjectDetailModal";
+import { ProjectDetailProps } from "../../../models/projects";
 import Project from "./Project";
 import CircularProgress from "@material-ui/core/CircularProgress";
 

@@ -1,6 +1,6 @@
 import React, { FormEvent, useRef } from "react";
-import Input from "../../containers/Input";
-import { ProjectDetailModal } from "../../../models/modal";
+import Input from "../../../containers/Input";
+import { ProjectDetailModal } from "../../../../models/modal";
 import "./modal.scss";
 
 const Modal = ({
