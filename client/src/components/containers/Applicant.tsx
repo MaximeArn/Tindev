@@ -10,15 +10,19 @@ const mapState = ({
   modal: { declineApplicantModal },
   loaders: { manageApplicantLoader },
 }: State) => ({
-  isModalOpen: declineApplicantModal,
+  declineApplicantModal,
   isLoading: manageApplicantLoader,
 });
 
 const mapDispatch = (dispatch: Dispatch<AnyAction>) => ({
   acceptApplicant: (data: ApplicantAction) =>
     dispatch({ type: "ACCEPT_APPLICANT", data }),
-  setModalStatus: (modalStatus: boolean) =>
-    dispatch({ type: "SET_DECLINE_APPLICANT_MODAL_STATUS", modalStatus }),
+  setModalStatus: (modalStatus: boolean, applicantId: string) =>
+    dispatch({
+      type: "SET_DECLINE_APPLICANT_MODAL_STATUS",
+      modalStatus,
+      applicantId,
+    }),
 });
 
 export default connect(mapState, mapDispatch)(Applicant);
