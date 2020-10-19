@@ -1,4 +1,6 @@
-import React from "react";
+/** @format */
+
+import React, { useEffect } from "react";
 import "./projectDetail.scss";
 import Modal from "../../containers/ProjectDetailModal";
 import { ProjectDetailProps } from "../../../models/projects";
@@ -9,7 +11,11 @@ const ProjectDetail = ({
   project,
   isModalOpen,
   setModalStatus,
+  verifyOwner,
 }: ProjectDetailProps) => {
+  useEffect(() => {
+    project && verifyOwner(project.author);
+  }, [project]);
   return (
     <>
       {isModalOpen && <Modal projectId={project && project._id} />}

@@ -81,6 +81,7 @@ export interface ProjectDetailProps {
   project: Project;
   isModalOpen: boolean;
   setModalStatus: Function;
+  verifyOwner: Function;
 }
 
 export interface DeclineApplicantModalProps {

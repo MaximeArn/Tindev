@@ -89,9 +89,17 @@ const declineApplicant = ({
     .catch((error) => console.error(error));
 };
 
+const verifyOwner = (projectAuthor: string, dispatch: Dispatch<AnyAction>) => {
+  console.log("log author in middleware", projectAuthor);
+  axios
+    .post("/project/verify_owner", { projectAuthor })
+    .then(({ data: owner }) => dispatch({ type: "SET_PROJECT_OWNER", owner }))
+    .catch((error) => console.error(error));
+};
+
 const project: Middleware = ({ getState, dispatch }) => (next) => (action) => {
   const { user } = getState().auth;
-  const { data } = action;
+  const { data, projectAuthor } = action;
   switch (action.type) {
     case "SEND_PROJECT":
       user.username && sendProject({ getState, dispatch });
@@ -107,6 +115,8 @@ const project: Middleware = ({ getState, dispatch }) => (next) => (action) => {
     case "DECLINE_APPLICANT":
       declineApplicant({ dispatch, data });
       break;
+    case "VERIFY_OWNER":
+      verifyOwner(projectAuthor, dispatch);
     default:
       next(action);
       break;
