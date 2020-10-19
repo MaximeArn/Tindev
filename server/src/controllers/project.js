@@ -78,7 +78,8 @@ module.exports = {
           username,
         });
 
-        await project.save();
+        const updated = await project.save();
+        return res.status(200).json(updated);
       }
     } catch (error) {
       console.error(error);
@@ -92,7 +93,8 @@ module.exports = {
 
       if (project) {
         project.applicants.pull(userId);
-        await project.save();
+        const updated = await project.save();
+        return res.status(200).json(updated);
       }
     } catch (error) {
       console.error(error);
@@ -100,4 +102,3 @@ module.exports = {
     }
   },
 };
-

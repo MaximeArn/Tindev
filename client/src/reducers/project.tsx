@@ -2,6 +2,7 @@
 
 import { ProjectState } from "../models/projects";
 import { ProjectAction } from "../models/actions";
+import updateProjects from "../utils/updateProjects";
 import resetInputs from "../utils/resetInputs";
 
 const initialState: ProjectState = {
@@ -22,7 +23,15 @@ const initialState: ProjectState = {
 
 const project = (
   state = initialState,
-  { type, inputName, inputValue, teamSize, image, projects }: ProjectAction
+  {
+    type,
+    inputName,
+    inputValue,
+    teamSize,
+    image,
+    projects,
+    project,
+  }: ProjectAction
 ) => {
   switch (type) {
     case "GET_PROJECT_CREATION_VALUE":
@@ -50,6 +59,8 @@ const project = (
       return { ...state, createProject: { ...state.createProject, image } };
     case "SET_PROJECTS":
       return { ...state, projects };
+    case "SET_PROJECT":
+      return { ...state, projects: updateProjects(project, state.projects) };
     case "RESET_PROJECT_APPLY_FORM_VALUES":
       const { application: inputs } = state.projectDetail;
       return {

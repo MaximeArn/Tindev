@@ -34,9 +34,8 @@ const setProjects = (dispatch: Dispatch<AnyAction>) => {
   dispatch({ type: "SET_PROJECTLIST_LOADER", value: true });
   axios
     .get("/project")
-    .then((res) => {
-      const { data: dbProjects } = res;
-      dispatch({ type: "SET_PROJECTS", projects: dbProjects });
+    .then(({ data: projects }) => {
+      dispatch({ type: "SET_PROJECTS", projects });
     })
     .catch(() => {
       dispatch({
@@ -45,13 +44,6 @@ const setProjects = (dispatch: Dispatch<AnyAction>) => {
       });
     })
     .finally(() => dispatch({ type: "SET_PROJECTLIST_LOADER", value: false }));
-};
-
-const getProjectById = (dispatch: Dispatch<AnyAction>, projectId: string) => {
-  axios
-    .get(`/project/${projectId}`)
-    .then((response) => console.log(response))
-    .catch((error) => console.error(error));
 };
 
 const sendApply = ({ getState, dispatch }: AxiosSubmit, projectId: string) => {
@@ -82,7 +74,7 @@ const acceptApplicant = ({
 }: AxiosApplicant) => {
   axios
     .patch("/project/accept_applicant", { projectId, userId, username })
-    .then((res) => console.log(res))
+    .then(({ data: project }) => dispatch({ type: "SET_PROJECT", project }))
     .catch((err) => console.log(err))
     .finally(() => dispatch({ type: "GET_PROJECT_BY_ID", projectId }));
 };
@@ -93,7 +85,7 @@ const declineApplicant = ({
 }: AxiosApplicant) => {
   axios
     .patch("/project/decline_applicant", { projectId, userId })
-    .then((result) => console.log(result))
+    .then(({ data: project }) => dispatch({ type: "SET_PROJECT", project }))
     .catch((error) => console.error(error))
     .finally(() => dispatch({ type: "GET_PROJECT_BY_ID", projectId }));
 };
@@ -108,9 +100,6 @@ const project: Middleware = ({ getState, dispatch }) => (next) => (action) => {
       break;
     case "GET_PROJECTS":
       setProjects(dispatch);
-      break;
-    case "GET_PROJECT_BY_ID":
-      getProjectById(dispatch, projectId);
       break;
     case "SEND_USER_APPLY":
       user && sendApply({ getState, dispatch }, projectId);
