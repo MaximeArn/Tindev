@@ -40,6 +40,7 @@ export interface ProjectAction {
   image: MutableRefObject<any>;
   projects: Project[];
   project: Project;
+  owner: boolean;
 }
 
 export interface AuthMiddleware {

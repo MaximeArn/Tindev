@@ -89,6 +89,7 @@ export interface ErrorState {
   projectCreationErrorMessage: string;
   projectListErrorMessage: string;
   projectApplyErrorMessage: string;
+  projectDetailErrorMessage: string;
 }
 
 export interface AppProps {

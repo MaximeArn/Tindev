@@ -1,7 +1,9 @@
 .project-loading-button {
-  margin-top: 50%;
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
   display: flex;
-  justify-content: center;
 }
 
 .loading-message {

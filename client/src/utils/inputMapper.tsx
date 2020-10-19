@@ -1,3 +1,5 @@
+/** @format */
+
 import Input from "../components/containers/Input";
 import React from "react";
 import { Login, Register } from "../models/inputs";
@@ -8,6 +10,7 @@ export default (input: Login | Register) => {
 
   return Object.keys(input).map((props) => {
     const key = props as keyof typeof input;
+
     return (
       <Input
         key={key}

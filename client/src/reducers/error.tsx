@@ -1,3 +1,5 @@
+/** @format */
+
 import { ErrorAction } from "../models/actions";
 import { ErrorState } from "../models/states";
 
@@ -7,6 +9,7 @@ const initialState: ErrorState = {
   projectCreationErrorMessage: "",
   projectListErrorMessage: "",
   projectApplyErrorMessage: "",
+  projectDetailErrorMessage: "",
 };
 
 const error = (state = initialState, { type, error }: ErrorAction) => {
@@ -21,6 +24,8 @@ const error = (state = initialState, { type, error }: ErrorAction) => {
       return { ...state, projectCreationErrorMessage: error };
     case "PROJECT_APPLY_ERROR_HANDLER":
       return { ...state, projectApplyErrorMessage: error };
+    case "PROJECT_DETAIL_ERROR_HANDLER":
+      return { ...state, projectDetailErrorMessage: error };
     default:
       return state;
   }

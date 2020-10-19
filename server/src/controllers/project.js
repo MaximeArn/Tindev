@@ -101,4 +101,9 @@ module.exports = {
       next(error);
     }
   },
+  verifyOwner: async ({ body, cookies: { token } }, res, next) => {
+    const { projectAuthor } = body;
+    const { username } = await tokenValidator(token, next);
+    return username && res.status(200).json(projectAuthor === username);
+  },
 };
