@@ -47,6 +47,13 @@ const setProjects = (dispatch: Dispatch<AnyAction>) => {
     .finally(() => dispatch({ type: "SET_PROJECTLIST_LOADER", value: false }));
 };
 
+const getProjectById = (dispatch: Dispatch<AnyAction>, projectId: string) => {
+  axios
+    .get(`/project/${projectId}`)
+    .then((response) => console.log(response))
+    .catch((error) => console.error(error));
+};
+
 const sendApply = ({ getState, dispatch }: AxiosSubmit, projectId: string) => {
   const { user } = getState().auth;
   const {
@@ -76,7 +83,8 @@ const acceptApplicant = ({
   axios
     .patch("/project/accept_applicant", { projectId, userId, username })
     .then((res) => console.log(res))
-    .catch((err) => console.log(err));
+    .catch((err) => console.log(err))
+    .finally(() => dispatch({ type: "GET_PROJECT_BY_ID", projectId }));
 };
 
 const declineApplicant = ({
@@ -86,11 +94,13 @@ const declineApplicant = ({
   axios
     .patch("/project/decline_applicant", { projectId, userId })
     .then((result) => console.log(result))
-    .catch((error) => console.error(error));
+    .catch((error) => console.error(error))
+    .finally(() => dispatch({ type: "GET_PROJECT_BY_ID", projectId }));
 };
 
 const project: Middleware = ({ getState, dispatch }) => (next) => (action) => {
   const { user } = getState().auth;
+  const { projectId } = action;
   const { data } = action;
   switch (action.type) {
     case "SEND_PROJECT":
@@ -99,8 +109,11 @@ const project: Middleware = ({ getState, dispatch }) => (next) => (action) => {
     case "GET_PROJECTS":
       setProjects(dispatch);
       break;
+    case "GET_PROJECT_BY_ID":
+      getProjectById(dispatch, projectId);
+      break;
     case "SEND_USER_APPLY":
-      user && sendApply({ getState, dispatch }, action.projectId);
+      user && sendApply({ getState, dispatch }, projectId);
     case "ACCEPT_APPLICANT":
       acceptApplicant({ dispatch, data });
       break;
