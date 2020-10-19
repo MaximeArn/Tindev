@@ -50,7 +50,7 @@ const Register = ({
               <button
                 type="submit"
                 className="submitButton"
-                // disabled={!fieldValidator}
+                disabled={!fieldValidator}
               >
                 Register
               </button>
