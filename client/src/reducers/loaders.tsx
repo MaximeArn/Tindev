@@ -9,9 +9,16 @@ const initialState: Loaders = {
   projectListLoader: false,
   projectCreationLoader: false,
   projectCategoriesLoader: false,
+  manageApplicantLoader: {
+    applicantId: null,
+    loader: false,
+  },
 };
 
-const loaders = (state = initialState, { type, value }: LoadersActions) => {
+const loaders = (
+  state = initialState,
+  { type, value, applicantId }: LoadersActions
+) => {
   switch (type) {
     case "SET_REGISTER_LOADER":
       return {
@@ -29,6 +36,11 @@ const loaders = (state = initialState, { type, value }: LoadersActions) => {
       return { ...state, projectCreationLoader: value };
     case "SET_PROJECT_CATEGORIES_LOADER":
       return { ...state, projectCategoriesLoader: value };
+    case "SET_PROJECT_MANAGE_LOADER":
+      return {
+        ...state,
+        manageApplicantLoader: { applicantId, loader: value },
+      };
     default:
       return state;
   }

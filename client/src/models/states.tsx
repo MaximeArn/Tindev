@@ -46,6 +46,10 @@ export interface Loaders {
   projectListLoader: boolean;
   projectCreationLoader: boolean;
   projectCategoriesLoader: boolean;
+  manageApplicantLoader: {
+    applicantId: null | string;
+    loader: false;
+  };
 }
 
 export interface RegisterAuth {

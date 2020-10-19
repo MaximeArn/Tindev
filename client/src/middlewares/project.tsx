@@ -72,22 +72,46 @@ const acceptApplicant = ({
   dispatch,
   data: { projectId, userId, username },
 }: AxiosApplicant) => {
+  dispatch({
+    type: "SET_PROJECT_MANAGE_LOADER",
+    value: true,
+    applicant: userId,
+  });
   axios
     .patch("/project/accept_applicant", { projectId, userId, username })
     .then(({ data: project }) => dispatch({ type: "SET_PROJECT", project }))
     .catch((err) => console.log(err))
-    .finally(() => dispatch({ type: "GET_PROJECT_BY_ID", projectId }));
+    .finally(() => {
+      dispatch({
+        type: "SET_PROJECT_MANAGE_LOADER",
+        value: false,
+        applicant: userId,
+      });
+      dispatch({ type: "GET_PROJECT_BY_ID", projectId });
+    });
 };
 
 const declineApplicant = ({
   dispatch,
   data: { projectId, userId },
 }: AxiosApplicant) => {
+  dispatch({
+    type: "SET_PROJECT_MANAGE_LOADER",
+    value: true,
+    applicant: userId,
+  });
   axios
     .patch("/project/decline_applicant", { projectId, userId })
     .then(({ data: project }) => dispatch({ type: "SET_PROJECT", project }))
     .catch((error) => console.error(error))
-    .finally(() => dispatch({ type: "GET_PROJECT_BY_ID", projectId }));
+    .finally(() => {
+      dispatch({
+        type: "SET_PROJECT_MANAGE_LOADER",
+        value: false,
+        applicant: userId,
+      });
+      dispatch({ type: "GET_PROJECT_BY_ID", projectId });
+    });
 };
 
 const project: Middleware = ({ getState, dispatch }) => (next) => (action) => {

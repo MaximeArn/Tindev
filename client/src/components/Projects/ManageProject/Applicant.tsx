@@ -22,6 +22,7 @@ const Applicant = ({
   acceptApplicant,
   setModalStatus,
   isModalOpen,
+  isLoading,
 }: any) => {
   const messageRef = useRef<HTMLDivElement>(null);
 

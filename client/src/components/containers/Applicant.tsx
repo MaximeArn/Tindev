@@ -6,8 +6,12 @@ import { State } from "../../models/states";
 import Applicant from "../Projects/ManageProject/Applicant";
 import { ApplicantAction } from "../../models/actions";
 
-const mapState = ({ modal: { declineApplicantModal } }: State) => ({
+const mapState = ({
+  modal: { declineApplicantModal },
+  loaders: { manageApplicantLoader },
+}: State) => ({
   isModalOpen: declineApplicantModal,
+  isLoading: manageApplicantLoader,
 });
 
 const mapDispatch = (dispatch: Dispatch<AnyAction>) => ({
