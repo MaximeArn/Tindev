@@ -29,9 +29,6 @@ const Input = ({
       : getProjectDetailValue(name, target.value);
   };
 
-  // const requiredFields = ["email", "password", "confirmPassword", "username"];
-  // const isRequired = requiredFields.includes(name);
-  console.log(required);
   return (
     <>
       {name === "categories" ? (

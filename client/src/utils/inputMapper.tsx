@@ -2,9 +2,12 @@
 
 import Input from "../components/containers/Input";
 import React from "react";
-import { Login, Register } from "../models/inputs";
+import { Login, Register, InputMapperRequiredFields } from "../models/inputs";
 
-export default (input: Login | Register, requiredFields: any) => {
+export default (
+  input: Login | Register,
+  requiredFields: InputMapperRequiredFields
+) => {
   const typeChecking = (inputType: Login | Register) =>
     "confirmPassword" in inputType ? "Register" : "Login";
 

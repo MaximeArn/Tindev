@@ -27,3 +27,10 @@ export interface Register {
   city?: string;
   age?: number | undefined;
 }
+
+export interface InputMapperRequiredFields {
+  username?: string;
+  email: string;
+  password: string;
+  confirmPassword?: string;
+}
