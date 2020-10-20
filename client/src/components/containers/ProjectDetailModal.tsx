@@ -1,3 +1,5 @@
+/** @format */
+
 import { connect } from "react-redux";
 import Modal from "../Projects/ProjectDetail/Modal/Modal";
 import { State } from "../../models/states";

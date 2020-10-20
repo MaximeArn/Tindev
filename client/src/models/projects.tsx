@@ -15,7 +15,7 @@ export interface Project {
   categories: Category[] | [];
   size: number;
   contributors: Contributor[];
-  applicants: Applicant[] | [];
+  applicants: Applicant[];
 }
 
 export interface ProjectDetailSubComponent {
@@ -41,7 +41,7 @@ export interface ProjectCreation {
 
 export interface Contributor {
   _id: string;
-  name: string;
+  username: string;
 }
 
 export interface Applicant {

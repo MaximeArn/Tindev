@@ -8,8 +8,11 @@ import Applicant from "../../containers/Applicant";
 import "./managePage.scss";
 import randomKey from "../../../utils/randomIdGenerator";
 import { ApplicantRow, ProjectProp } from "../../../models/projects";
+import { Applicant as ApplicantModel } from "../../../models/projects";
 
 const ManageProject = ({ project }: ProjectProp) => {
+  const typedApplicants: ApplicantModel[] | [] = project && project.applicants;
+
   const history = useHistory();
 
   const pushLastPath = () => {
@@ -28,7 +31,6 @@ const ManageProject = ({ project }: ProjectProp) => {
         <div className="applicant-section">
           {project && project.applicants.length > 0 ? (
             project.applicants.map((applicant: ApplicantRow) => {
-              console.log(applicant);
               return (
                 <Applicant
                   projectId={project._id}

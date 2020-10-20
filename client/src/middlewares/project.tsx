@@ -120,7 +120,6 @@ const declineApplicant = ({
 };
 
 const verifyOwner = (projectAuthor: string, dispatch: Dispatch<AnyAction>) => {
-  console.log("log author in middleware", projectAuthor);
   axios
     .post("/project/verify_owner", { projectAuthor })
     .then(({ data: owner }) => dispatch({ type: "SET_PROJECT_OWNER", owner }))
@@ -139,7 +138,7 @@ const project: Middleware = ({ getState, dispatch }) => (next) => (action) => {
       setProjects(dispatch);
       break;
     case "SEND_USER_APPLY":
-      user && sendApply({ getState, dispatch }, projectId);
+      sendApply({ getState, dispatch }, projectId);
     case "ACCEPT_APPLICANT":
       acceptApplicant({ dispatch, data });
       break;

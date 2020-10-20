@@ -36,13 +36,13 @@ const Project = ({
         </div>
         <div className="contributors-section">
           <div className="row-wrapper">
-            {typedContributors.length > 1 ? (
-              typedContributors.map(({ name }: Contributor) => (
+            {typedContributors.length > 0 ? (
+              typedContributors.map(({ username }: Contributor) => (
                 <div className="contributor-row">
                   <span>
                     <FontAwesomeIcon icon={faUserCircle} size="lg" />
                   </span>
-                  <p>{name}</p>
+                  <p>{username}</p>
                 </div>
               ))
             ) : (

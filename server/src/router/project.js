@@ -4,7 +4,6 @@ const router = require("express").Router();
 const {
   create,
   getProjects,
-  getProjectById,
   apply,
   acceptApplicant,
   declineApplicant,

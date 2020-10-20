@@ -15,6 +15,7 @@ const Register = ({
   registerLoader,
   closeModal,
 }: RegisterAuth) => {
+  console.log("ERROR IN COMPONENT : ", error);
   const { firstname, lastname, age, city, ...mandatory } = register;
   const modal = useRef<HTMLDivElement>(null);
   const history = useHistory();
@@ -36,7 +37,7 @@ const Register = ({
         <form method="POST" onSubmit={handleSubmit}>
           <div className="modal-padding">
             <h1 className="modal-title">Create Account</h1>
-            {error && <span className="error-message">{error}</span>}
+            {error && <span className="modal-error-message">{error}</span>}
             <div className="fields">{inputMapper(register, mandatory)}</div>
             {registerLoader ? (
               <button type="submit" className="submitButton" disabled>

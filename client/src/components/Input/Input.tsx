@@ -37,7 +37,7 @@ const Input = ({
           className="project-creation-input"
           onChange={handleChange}
         >
-          <option selected value="select">
+          <option selected value={undefined}>
             select
           </option>
           {categories.map(({ name }) => (
