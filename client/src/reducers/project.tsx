@@ -10,9 +10,9 @@ const initialState: ProjectState = {
   createProject: {
     title: "",
     description: "",
-    image: null,
     categories: "",
     size: undefined,
+    image: null,
   },
   projectDetail: {
     owner: false,
