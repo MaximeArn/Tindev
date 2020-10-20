@@ -1,11 +1,11 @@
 /** @format */
 import React, { FormEvent, useRef } from "react";
-import { Authentication, RegisterAuth, Loaders } from "../../models/states";
+import { Authentication, RegisterAuth, Loaders } from "../../../models/states";
 import { Link, useHistory } from "react-router-dom";
 import googleIcon from "src/assets/icons/googleIcon.svg";
-import modalClickHandler from "../../utils/modalClickHandler";
-import inputMapper from "../../utils/inputMapper";
-import "./register.scss";
+import modalClickHandler from "../../../utils/modalClickHandler";
+import inputMapper from "../../../utils/inputMapper";
+import "../modal.scss";
 import CircularProgress from "@material-ui/core/CircularProgress";
 
 const Register = ({
@@ -27,15 +27,15 @@ const Register = ({
   return (
     <div
       ref={modal}
-      className="registerContainer"
+      className="modalContainer"
       onMouseDown={(event) =>
         modalClickHandler({ event, modal, history, closeModal })
       }
     >
-      <div className="register" id="modal">
+      <div className="modal" id="modal">
         <form method="POST" onSubmit={handleSubmit}>
-          <div className="register-padding">
-            <h1 className="register-title">Create Account</h1>
+          <div className="modal-padding">
+            <h1 className="modal-title">Create Account</h1>
             {error && <span className="error-message">{error}</span>}
             <div className="fields">{inputMapper(register, mandatory)}</div>
             {registerLoader ? (

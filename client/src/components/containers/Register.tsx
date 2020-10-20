@@ -1,7 +1,7 @@
 /** @format */
 
 import { connect } from "react-redux";
-import Register from "../Register/Register";
+import Register from "../Auth/Register/Register";
 import { State } from "../../models/states";
 import { Dispatch } from "react";
 import { AnyAction } from "redux";

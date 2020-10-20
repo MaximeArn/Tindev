@@ -1,12 +1,12 @@
 /** @format */
 
 import React, { FormEvent, useRef } from "react";
-import { LoginAuth } from "../../models/states";
+import { LoginAuth } from "../../../models/states";
 import { Link, useHistory, useLocation } from "react-router-dom";
 import googleIcon from "src/assets/icons/googleIcon.svg";
-import modalClickHandler from "../../utils/modalClickHandler";
-import inputMapper from "../../utils/inputMapper";
-import "./login.scss";
+import modalClickHandler from "../../../utils/modalClickHandler";
+import inputMapper from "../../../utils/inputMapper";
+import "../modal.scss";
 import CircularProgress from "@material-ui/core/CircularProgress";
 
 const Login = ({
@@ -38,15 +38,15 @@ const Login = ({
       <div
         ref={modal}
         id="registerContainer"
-        className="registerContainer"
+        className="modalContainer"
         onMouseDown={(event) =>
           modalClickHandler({ event, modal, history, closeModal })
         }
       >
-        <div className="register" id="modal">
+        <div className="modal" id="modal">
           <form method="POST" onSubmit={handleSubmit}>
-            <div className="register-padding">
-              <h1 className="register-title">Sign In</h1>
+            <div className="modal-padding">
+              <h1 className="modal-title">Sign In</h1>
               {registered && (
                 <p className="success-message">{registered.message}</p>
               )}

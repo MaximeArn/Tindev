@@ -21,7 +21,7 @@
   }
 }
 
-.registerContainer {
+.modalContainer {
   position: fixed;
   top: 0;
   z-index: 1000;
@@ -46,7 +46,7 @@
   }
 }
 
-.register {
+.modal {
   border-radius: 5px;
   animation: fadeInOpacity ease 1 0.5s;
   width: 400px;
@@ -161,4 +161,10 @@
 
 .error-message {
   color: rgb(226, 37, 37);
+}
+
+.success-message {
+  font-size: .9em;
+  font-weight: 400;
+  color: #19a463;
 }
