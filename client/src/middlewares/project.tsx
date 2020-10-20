@@ -127,18 +127,18 @@ const verifyOwner = (projectAuthor: string, dispatch: Dispatch<AnyAction>) => {
 };
 
 const project: Middleware = ({ getState, dispatch }) => (next) => (action) => {
-  const { user } = getState().auth;
   const { data, projectAuthor, projectId, history } = action;
 
   switch (action.type) {
     case "SEND_PROJECT":
-      user.username && sendProject({ getState, dispatch, history });
+      sendProject({ getState, dispatch, history });
       break;
     case "GET_PROJECTS":
       setProjects(dispatch);
       break;
     case "SEND_USER_APPLY":
       sendApply({ getState, dispatch }, projectId);
+      break;
     case "ACCEPT_APPLICANT":
       acceptApplicant({ dispatch, data });
       break;
