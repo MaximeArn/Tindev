@@ -20,6 +20,7 @@ const setUser = ({ getState, dispatch, history }: AxiosSubmit) => {
         pathname: "/login",
         state: { msg },
       });
+      dispatch({ type: "RESET_AUTH_INPUTS_VALUES", authType: "register" });
     })
     .catch(({ response }) => {
       const { msg: error } = response.data;
@@ -40,6 +41,7 @@ const setLogin = ({ getState, dispatch, history }: AxiosSubmit) => {
       !Cookies.get("token") && Cookies.set("token", token, { expires: 7 });
       dispatch({ type: "CONNECT_USER", credentials: { email, username } });
       dispatch({ type: "SET_AUTH_MODAL_STATE", modalStatus: false });
+      dispatch({ type: "RESET_AUTH_INPUTS_VALUES", authType: "login" });
       history.push("/");
     })
     .catch(({ response }) => {
@@ -71,7 +73,7 @@ const auth: Middleware = ({ getState, dispatch }) => (next) => (
       setUser({ getState, dispatch, history });
       break;
     case "SUBMIT_LOGIN":
-      !user && setLogin({ getState, dispatch, history });
+      setLogin({ getState, dispatch, history });
       break;
     case "TOKEN_VALIDATION":
       retrieveToken(dispatch);
