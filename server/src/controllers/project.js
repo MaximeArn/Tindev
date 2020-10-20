@@ -10,7 +10,7 @@ const {
 
 module.exports = {
   create: async ({ body, cookies: { token }, file }, res, next) => {
-    const filename = file ? file.filename : null;
+    const filename = file ? file.filename : "image-default.jpeg";
     try {
       const { username } = await tokenValidator(token, next);
       const valid = await projectValidator(body, next);

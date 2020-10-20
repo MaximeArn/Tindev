@@ -9,7 +9,6 @@ const ALLOWED_MIME_TYPE = {
 
 module.exports = multer.diskStorage({
   destination: (req, file, callback) => {
-    console.log("PASSED IN MULTER CONFIG");
     callback(null, path.join(__dirname, "../../public/uploads"));
   },
   filename: (req, { fieldname, mimetype }, callback) => {

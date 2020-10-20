@@ -5,7 +5,7 @@ const ALLOWED_MIME_TYPE = {
 };
 
 module.exports = (req, { mimetype }, callback) => {
-  ALLOWED_MIME_TYPE.hasOwnProperty(mimetype)
+  ALLOWED_MIME_TYPE[mimetype]
     ? callback(null, true)
     : callback(new Error("Invalid file format"));
 };
