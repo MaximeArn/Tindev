@@ -20,7 +20,6 @@ module.exports = (token, next) => {
       });
     });
   } catch (error) {
-    console.error(error);
     next(error);
   }
 };

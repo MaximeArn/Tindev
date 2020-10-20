@@ -15,7 +15,6 @@ module.exports = async (body, next) => {
 
     return user;
   } catch (error) {
-    console.error(error);
     next(error);
   }
 };

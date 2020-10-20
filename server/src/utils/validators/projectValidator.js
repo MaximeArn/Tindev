@@ -30,7 +30,6 @@ module.exports = async (body, next) => {
 
     return body;
   } catch (error) {
-    console.error(error);
     next(error);
   }
 };

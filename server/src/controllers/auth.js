@@ -19,7 +19,6 @@ const authRouter = {
         res.status(200).json({ result, msg: "Account Successfully created" });
       }
     } catch (error) {
-      console.error(error);
       next(error);
     }
   },
@@ -45,7 +44,6 @@ const authRouter = {
       const { username, email } = await tokenValidator(token, next);
       return email && username && res.status(200).json({ username, email });
     } catch (error) {
-      console.error(error);
       next(error);
     }
   },

@@ -27,7 +27,6 @@ module.exports = {
       //   return created && res.status(200).json(created);
       // }
     } catch (error) {
-      console.error(error);
       next(error);
     }
   },
@@ -36,7 +35,6 @@ module.exports = {
       const projects = await Project.find();
       return res.status(200).json(projects);
     } catch (error) {
-      console.error(error);
       next(error);
     }
   },
@@ -64,7 +62,6 @@ module.exports = {
         });
       }
     } catch (error) {
-      console.error(error);
       next(error);
     }
   },
@@ -84,7 +81,6 @@ module.exports = {
         return res.status(200).json(updated);
       }
     } catch (error) {
-      console.error(error);
       next(error);
     }
   },
@@ -99,7 +95,6 @@ module.exports = {
         return res.status(200).json(updated);
       }
     } catch (error) {
-      console.error(error);
       next(error);
     }
   },

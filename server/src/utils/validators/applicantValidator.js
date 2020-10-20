@@ -17,7 +17,6 @@ module.exports = async ({ projectId, userId }, next) => {
 
     return exist;
   } catch (error) {
-    console.error(error);
     next(error);
   }
 };

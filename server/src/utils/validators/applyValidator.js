@@ -24,7 +24,6 @@ module.exports = async ({ body, id }, next) => {
     body.message = sanitize(message, sanitizeConfig);
     return { body, project };
   } catch (error) {
-    console.error(error);
     next(error);
   }
 };

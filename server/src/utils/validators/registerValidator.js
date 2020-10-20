@@ -39,7 +39,6 @@ module.exports = async (body, next) => {
 
     return { success: true };
   } catch (error) {
-    console.error(error);
     next(error);
   }
 };
