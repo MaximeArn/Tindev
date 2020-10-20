@@ -22,8 +22,7 @@ const error = (state = initialState, { type, error }: ErrorAction) => {
     case "LOGIN_ERROR_HANDLER":
       return { ...state, auth: { ...state.auth, loginErrorMessage: error } };
     case "RESET_AUTH_MODAL_ERROR_VALUES":
-      const { auth } = state;
-      return { ...state, auth: resetErrorValues(auth) };
+      return { ...state, auth: resetErrorValues(state.auth) };
     case "PROJECT_LIST_ERROR_HANDLER":
       return { ...state, projectListErrorMessage: error };
     case "PROJECT_CREATION_ERROR_HANDLER":
