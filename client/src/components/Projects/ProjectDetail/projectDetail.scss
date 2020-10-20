@@ -1,8 +1,11 @@
+@use '../../../styles/vars';
+
 .projectDetail {
-  margin: calc(80px + 2rem) 0 2rem;
+  padding: calc(80px + 2rem) 0 2rem;
   display: flex;
   justify-content: center;
   align-items: center;
+  background: vars.$gradient-background;
 
   .image-section {
     display: flex;
