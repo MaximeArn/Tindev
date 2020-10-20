@@ -84,8 +84,10 @@ export interface LoginAuth {
 }
 
 export interface ErrorState {
-  registerErrorMessage: string;
-  loginErrorMessage: string;
+  auth: {
+    registerErrorMessage: string;
+    loginErrorMessage: string;
+  };
   projectCreationErrorMessage: string;
   projectListErrorMessage: string;
   projectApplyErrorMessage: string;

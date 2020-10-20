@@ -50,7 +50,7 @@ const Login = ({
               {registered && (
                 <p className="success-message">{registered.message}</p>
               )}
-              {error && <span className="error-message">{error}</span>}
+              {error && <span className="login-error-message">{error}</span>}
               <div className="fields">{inputMapper(login, login)}</div>
               {loginLoader ? (
                 <button type="submit" className="submitButton" disabled>

@@ -159,12 +159,16 @@
   }
 }
 
-.error-message {
+.register-error-message {
+  color: rgb(226, 37, 37);
+}
+
+.login-error-message {
   color: rgb(226, 37, 37);
 }
 
 .success-message {
-  font-size: .9em;
+  font-size: 0.9em;
   font-weight: 400;
   color: #19a463;
 }
