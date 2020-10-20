@@ -13,6 +13,8 @@ module.exports = async (body, next) => {
 
     const categories = await Category.find();
 
+    console.log(categories);
+    console.log(category);
     if (!categories.some(({ name }) => name === category)) {
       throw new ProjectError("Invalid Category provided", 400);
     }
@@ -25,7 +27,7 @@ module.exports = async (body, next) => {
       throw new ProjectError("Invalid Team size specified", 400);
     }
 
-    parseInt(size);
+    parseInt(body.size);
     body.categories = categories.filter(({ name }) => name === category);
 
     return body;

@@ -10,24 +10,25 @@ const {
 
 module.exports = {
   create: async ({ body, cookies: { token }, file }, res, next) => {
-    console.log("GOT INTO PROJET CONTROLLER : ", body);
-    // const filename = file ? file.filename : "image-default.jpeg";
-    // try {
-    //   const { username } = await tokenValidator(token, next);
-    // const valid = await projectValidator(body, next);
-    // if (valid && username) {
-    //   const created = await Project.create({
-    //     ...valid,
-    //     author: username,
-    //     contributors: [],
-    //     applicants: [],
-    //     image: filename,
-    //   });
-    //   return created && res.status(200).json(created);
-    // }
-    // } catch (error) {
-    //   next(error);
-    // }
+    const filename = file ? file.filename : "image-default.jpeg";
+    try {
+      const { username } = await tokenValidator(token, next);
+      const valid = await projectValidator(body, next);
+
+      console.log("CC C MOI");
+      // if (valid && username) {
+      //   const created = await Project.create({
+      //     ...valid,
+      //     author: username,
+      //     contributors: [],
+      //     applicants: [],
+      //     image: filename,
+      //   });
+      //   return created && res.status(200).json(created);
+      // }
+    } catch (error) {
+      next(error);
+    }
   },
   getProjects: async (req, res, next) => {
     try {
