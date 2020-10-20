@@ -14,18 +14,16 @@ module.exports = {
     try {
       const { username } = await tokenValidator(token, next);
       const valid = await projectValidator(body, next);
-
-      console.log("CC C MOI");
-      // if (valid && username) {
-      //   const created = await Project.create({
-      //     ...valid,
-      //     author: username,
-      //     contributors: [],
-      //     applicants: [],
-      //     image: filename,
-      //   });
-      //   return created && res.status(200).json(created);
-      // }
+      if (valid && username) {
+        const created = await Project.create({
+          ...valid,
+          author: username,
+          contributors: [],
+          applicants: [],
+          image: filename,
+        });
+        return created && res.status(200).json(created);
+      }
     } catch (error) {
       next(error);
     }

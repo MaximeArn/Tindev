@@ -13,8 +13,6 @@ module.exports = async (body, next) => {
 
     const categories = await Category.find();
 
-    console.log(categories);
-    console.log(category);
     if (!categories.some(({ name }) => name === category)) {
       throw new ProjectError("Invalid Category provided", 400);
     }

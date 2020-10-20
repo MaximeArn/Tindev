@@ -44,9 +44,6 @@ module.exports = async (
       return callback(new ProjectError("Invalid team size provided.", 400));
     }
 
-    parseInt(body.size);
-    body.categories = categories.filter(({ name }) => name === category);
-
     return ALLOWED_MIME_TYPE[mimetype]
       ? callback(null, true)
       : callback(new ProjectError("Invalid file format", 400));
