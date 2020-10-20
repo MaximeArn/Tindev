@@ -36,10 +36,8 @@ const Input = ({
           name={name}
           className="project-creation-input"
           onChange={handleChange}
+          defaultValue={undefined}
         >
-          <option selected value={undefined}>
-            select
-          </option>
           {categories.map(({ name }) => (
             <option key={name} value={name}>
               {name}
