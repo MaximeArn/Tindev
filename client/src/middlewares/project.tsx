@@ -8,7 +8,7 @@ axios.defaults.baseURL = url;
 axios.defaults.headers.post["Content-Type"] = "application/json";
 axios.defaults.withCredentials = true;
 
-const sendProject = ({ getState, dispatch }: AxiosSubmit) => {
+const sendProject = ({ getState, dispatch, history }: AxiosSubmit) => {
   const { createProject } = getState().project;
   const formData = new FormData();
 
@@ -20,6 +20,9 @@ const sendProject = ({ getState, dispatch }: AxiosSubmit) => {
   axios
     .post("/project/create", formData, {
       headers: { "Content-Type": "multipart/form-data" },
+    })
+    .then(({ data }) => {
+      console.log(data);
     })
     .catch(({ response }) => {
       const { msg: error } = response.data;
@@ -124,11 +127,11 @@ const verifyOwner = (projectAuthor: string, dispatch: Dispatch<AnyAction>) => {
 
 const project: Middleware = ({ getState, dispatch }) => (next) => (action) => {
   const { user } = getState().auth;
-  const { data, projectAuthor, projectId } = action;
+  const { data, projectAuthor, projectId, history } = action;
 
   switch (action.type) {
     case "SEND_PROJECT":
-      user.username && sendProject({ getState, dispatch });
+      user.username && sendProject({ getState, dispatch, history });
       break;
     case "GET_PROJECTS":
       setProjects(dispatch);

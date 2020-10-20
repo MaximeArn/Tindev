@@ -7,7 +7,6 @@ import { ProjectDetailProps as OwnProps } from "../../models/projects";
 import { withRouter } from "react-router-dom";
 import slugify from "../../utils/slugify";
 import { AnyAction, Dispatch } from "redux";
-import { ErrorState } from "../../models/states";
 
 const mapState = (
   {

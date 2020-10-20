@@ -10,7 +10,7 @@ axios.defaults.baseURL = url;
 axios.defaults.headers.post["Content-Type"] = "application/json";
 axios.defaults.withCredentials = true;
 
-const setUser = ({ getState, dispatch }: AxiosSubmit, history: any) => {
+const setUser = ({ getState, dispatch, history }: AxiosSubmit) => {
   const { register } = getState().auth;
   dispatch({ type: "SET_REGISTER_LOADER", value: true });
   axios
@@ -30,7 +30,7 @@ const setUser = ({ getState, dispatch }: AxiosSubmit, history: any) => {
     });
 };
 
-const setLogin = ({ getState, dispatch }: AxiosSubmit, history: any) => {
+const setLogin = ({ getState, dispatch, history }: AxiosSubmit) => {
   const { login } = getState().auth;
   dispatch({ type: "SET_LOGIN_LOADER", value: true });
   axios
@@ -65,12 +65,13 @@ const auth: Middleware = ({ getState, dispatch }) => (next) => (
   action: AuthMiddleware
 ) => {
   const { user } = getState().auth;
+  const { history } = action;
   switch (action.type) {
     case "SUBMIT_REGISTER":
-      setUser({ getState, dispatch }, action.history);
+      setUser({ getState, dispatch, history });
       break;
     case "SUBMIT_LOGIN":
-      !user && setLogin({ getState, dispatch }, action.history);
+      !user && setLogin({ getState, dispatch, history });
       break;
     case "TOKEN_VALIDATION":
       retrieveToken(dispatch);
