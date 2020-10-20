@@ -25,4 +25,6 @@ const mapDispatch = (dispatch: Dispatch<AnyAction>) => ({
   },
 });
 
+
+
 export default connect(mapState, mapDispatch)(Register);

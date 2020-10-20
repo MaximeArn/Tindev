@@ -8,6 +8,7 @@ export interface AuthenticationAction {
   type: string;
   inputName: string;
   inputValue: string | number;
+  authType: string;
   credentials: {
     token?: string;
     username: string;

@@ -2,9 +2,10 @@
 
 import { Authentication } from "../models/states";
 import { AuthenticationAction } from "../models/actions";
+import resetInputs from "../utils/resetInputs";
 import Cookies from "js-cookie";
 
-const initialState: Authentication = {
+const initialState: any = {
   register: {
     username: "",
     firstname: "",
@@ -24,7 +25,7 @@ const initialState: Authentication = {
 
 const auth = (
   state = initialState,
-  { type, inputName, inputValue, credentials }: AuthenticationAction
+  { type, inputName, inputValue, credentials, authType }: AuthenticationAction
 ): Authentication => {
   switch (type) {
     case "GET_REGISTER_INPUT_VALUE":
@@ -34,6 +35,8 @@ const auth = (
       };
     case "GET_LOGIN_INPUT_VALUE":
       return { ...state, login: { ...state.login, [inputName]: inputValue } };
+    case "RESET_AUTH_INPUTS_VALUES":
+      return { ...state, [authType]: resetInputs(state[authType]) };
     case "CONNECT_USER":
       return { ...state, user: credentials };
     case "DISCONNECT_USER":

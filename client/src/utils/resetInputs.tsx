@@ -1,6 +1,7 @@
 export default (inputs: any) => {
-  for (const key in inputs) {
-    inputs[key] = "";
+  const inputsCopy = { ...inputs };
+  for (const key in inputsCopy) {
+    inputsCopy[key] = "";
   }
-  return inputs;
+  return inputsCopy;
 };
