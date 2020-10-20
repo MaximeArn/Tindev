@@ -63,6 +63,9 @@ const project = (
       return { ...state, projects };
     case "SET_PROJECT":
       return { ...state, projects: updateProjects(project, state.projects) };
+    case "ADD_PROJECT_ON_PROJECT_CREATION":
+      console.log("REDUCER ADD PROJECT ON PROJECT CREATION");
+      return { ...state, projects: [...state.projects, project] };
     case "RESET_PROJECT_APPLY_FORM_VALUES":
       const { application: inputs } = state.projectDetail;
       return {
