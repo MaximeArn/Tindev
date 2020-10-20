@@ -3,6 +3,7 @@
 import { AnyAction, Dispatch, Middleware } from "redux";
 import { url } from "../environments/api";
 import { AxiosSubmit, AxiosApplicant } from "../models/axios";
+import slugify from "../utils/slugify";
 import axios from "axios";
 axios.defaults.baseURL = url;
 axios.defaults.headers.post["Content-Type"] = "application/json";
@@ -21,8 +22,9 @@ const sendProject = ({ getState, dispatch, history }: AxiosSubmit) => {
     .post("/project/create", formData, {
       headers: { "Content-Type": "multipart/form-data" },
     })
-    .then(({ data }) => {
-      console.log(data);
+    .then(({ data: project }) => {
+      dispatch({ type: "ADD_PROJECT_ON_PROJECT_CREATION", project });
+      history.push(`/project/${slugify(project.title)}`);
     })
     .catch(({ response }) => {
       const { msg: error } = response.data;
