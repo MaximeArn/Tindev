@@ -13,7 +13,7 @@ const ProjectDetail = ({
   setModalStatus,
   verifyOwner,
   owner,
-  projectDetailErrorMessage,
+  error,
 }: ProjectDetailProps) => {
   console.log(project);
 
@@ -24,8 +24,8 @@ const ProjectDetail = ({
   return (
     <>
       {isModalOpen && <Modal projectId={project && project._id} />}
-      {projectDetailErrorMessage ? (
-        <p className="error-message">{projectDetailErrorMessage}</p>
+      {error ? (
+        <p className="error-message">{error}</p>
       ) : (
         <>
           {project ? (

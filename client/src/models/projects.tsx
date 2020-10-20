@@ -85,7 +85,11 @@ export interface ProjectDetailProps {
   setModalStatus: Function;
   verifyOwner: Function;
   owner: boolean;
-  projectDetailErrorMessage: string;
+  error: string;
+}
+
+export interface ProjectProp {
+  project: Project;
 }
 
 export interface ApplicantRow {

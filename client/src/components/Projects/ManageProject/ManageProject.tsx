@@ -1,16 +1,15 @@
 /** @format */
 
-import React, { RefObject, useRef, useEffect } from "react";
+import React from "react";
 import { useHistory, Link } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faArrowLeft } from "@fortawesome/free-solid-svg-icons";
 import Applicant from "../../containers/Applicant";
-import DeclineModal from "../../containers/DeclineApplicantModal";
 import "./managePage.scss";
 import randomKey from "../../../utils/randomIdGenerator";
-import { ApplicantRow, Project } from "../../../models/projects";
+import { ApplicantRow, ProjectProp } from "../../../models/projects";
 
-const ManageProject = ({ project }: any) => {
+const ManageProject = ({ project }: ProjectProp) => {
   const history = useHistory();
 
   const pushLastPath = () => {

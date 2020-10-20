@@ -15,7 +15,6 @@ const mapState = (
       projectDetail: { owner },
     },
     modal: { applyModal },
-    error: { projectDetailErrorMessage },
   }: State,
   { match }: OwnProps
 ) => {
@@ -26,7 +25,7 @@ const mapState = (
     project,
     isModalOpen: applyModal,
     owner,
-    projectDetailErrorMessage: error,
+    error,
   };
 };
 
