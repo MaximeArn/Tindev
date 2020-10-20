@@ -1,6 +1,10 @@
 /** @format */
 
 const router = require("express").Router();
+const imageDiskStorage = require("../config/multer/multer");
+const fileFilter = require("../config/multer/fileFilter");
+const multer = require("multer");
+const upload = multer({ storage: imageDiskStorage, fileFilter });
 const {
   create,
   getProjects,
@@ -9,11 +13,6 @@ const {
   declineApplicant,
   verifyOwner,
 } = require("../controllers/project");
-
-const imageDiskStorage = require("../config/multer");
-const upload = require("multer")({
-  storage: imageDiskStorage,
-});
 
 router.get("/", getProjects);
 router.post("/create", upload.single("image"), create);
