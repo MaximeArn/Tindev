@@ -20,10 +20,24 @@ const ProjectCreation = ({
   getCategories,
 }: ProjectCreationProps) => {
   const fileInput = useRef<any>(null);
+  const imagePreview = useRef<any>(null);
 
   useEffect(() => {
     getCategories();
   }, []);
+
+  const showImagePreview = (input: HTMLInputElement) => {
+    console.log("ici !");
+    if (input.files && input.files[0]) {
+      console.log("ici 2 !");
+      var reader = new FileReader();
+
+      reader.onload = function (e) {
+        imagePreview.current.setAttribute("src", e.target?.result);
+      };
+      reader.readAsDataURL(input.files[0]);
+    }
+  };
 
   const onFileBrowserClick = (event: MouseEvent<HTMLButtonElement>) => {
     event.preventDefault();
@@ -43,6 +57,9 @@ const ProjectCreation = ({
         type="file"
         ref={fileInput}
         style={{ display: "none" }}
+        onChange={() => {
+          showImagePreview(fileInput.current);
+        }}
       />
       <div className="maxiWrapper">
         <div className="project-container">
@@ -69,6 +86,11 @@ const ProjectCreation = ({
                       <FontAwesomeIcon icon={faPaperclip} />
                       <p>select an image</p>
                     </button>
+                    <img
+                      ref={imagePreview}
+                      src="http://placehold.it/180"
+                      alt="your image"
+                    />
                   </div>
                   <Input
                     name="title"
