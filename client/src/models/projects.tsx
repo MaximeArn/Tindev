@@ -88,6 +88,29 @@ export interface ProjectDetailProps {
   projectDetailErrorMessage: string;
 }
 
+export interface ApplicantRow {
+  _id: string;
+  username: string;
+  message: string;
+}
+
+export interface ApplicantProps {
+  projectId: string;
+  _id: string;
+  username: string;
+  message: string;
+  acceptApplicant: Function;
+  setModalStatus: Function;
+  declineApplicantModal: {
+    isModalOpen: boolean;
+    applicant: string;
+  };
+  isLoading: {
+    loader: boolean;
+    applicantId: string;
+  };
+}
+
 export interface DeclineApplicantModalProps {
   projectId: string;
   userId: string;

@@ -14,6 +14,7 @@ import capitalizeFirstLetter from "../../../utils/capitalizeFirstLetter";
 import DeclineModal from "../../containers/DeclineApplicantModal";
 import { Link } from "react-router-dom";
 import CircularProgress from "@material-ui/core/CircularProgress";
+import { ApplicantProps } from "../../../models/projects";
 
 const Applicant = ({
   projectId,
@@ -24,7 +25,7 @@ const Applicant = ({
   setModalStatus,
   declineApplicantModal: { isModalOpen, applicant },
   isLoading: { loader, applicantId },
-}: any) => {
+}: ApplicantProps) => {
   const messageRef = useRef<HTMLDivElement>(null);
 
   const toggleMessage = () => {

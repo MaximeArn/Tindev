@@ -8,6 +8,7 @@ import Applicant from "../../containers/Applicant";
 import DeclineModal from "../../containers/DeclineApplicantModal";
 import "./managePage.scss";
 import randomKey from "../../../utils/randomIdGenerator";
+import { ApplicantRow, Project } from "../../../models/projects";
 
 const ManageProject = ({ project }: any) => {
   const history = useHistory();
@@ -27,7 +28,8 @@ const ManageProject = ({ project }: any) => {
         </div>
         <div className="applicant-section">
           {project && project.applicants.length > 0 ? (
-            project.applicants.map((applicant: any) => {
+            project.applicants.map((applicant: ApplicantRow) => {
+              console.log(applicant);
               return (
                 <Applicant
                   projectId={project._id}
