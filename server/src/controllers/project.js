@@ -16,13 +16,15 @@ module.exports = {
       const valid = await projectValidator(body, next);
 
       if (valid && username) {
-        await Project.create({
+        const created = await Project.create({
           ...valid,
           author: username,
           contributors: [],
           applicants: [],
           image: filename,
         });
+
+        return created && res.status(200).json(created);
       }
     } catch (error) {
       console.error(error);

@@ -9,12 +9,12 @@ module.exports = (token, next) => {
     return new Promise((resolve, reject) => {
       jwt.verify(token, secret, async (error, decoded) => {
         if (error) {
-          reject(new UserError("User not found, please sign in.", 403));
+          return reject(new UserError("User not found, please sign in.", 403));
         }
 
         const exists = await User.findById(decoded.id);
 
-        if (!exists) reject(new UserError("User does not exists.", 403));
+        if (!exists) return reject(new UserError("User does not exists.", 403));
 
         resolve(decoded);
       });
