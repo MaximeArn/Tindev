@@ -7,14 +7,23 @@ const {
   tokenValidator,
   applicantValidator,
 } = require("../utils/validators");
+const imageDiskStorage = require("../config/multer");
+const multer = require("multer");
+const upload = multer({ storage: imageDiskStorage }).single("image");
 
 module.exports = {
-  create: async ({ body, cookies: { token }, file }, res, next) => {
-    const filename = file ? file.filename : null;
+  create: async (req, res, next) => {
+    const {
+      body,
+      cookies: { token },
+      file,
+    } = req;
+    // const filename = file ? file.filename : null;
     try {
       const { username } = await tokenValidator(token, next);
       const valid = await projectValidator(body, next);
 
+      upload({ file }, res);
       if (valid && username) {
         const created = await Project.create({
           ...valid,

@@ -13,7 +13,6 @@ const {
 const imageDiskStorage = require("../config/multer");
 const upload = require("multer")({
   storage: imageDiskStorage,
-  // limits: { fileSize: 8500 },
 });
 
 router.get("/", getProjects);
