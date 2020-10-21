@@ -73,6 +73,7 @@ export interface RegisterAuth {
   error: string;
   registerLoader: boolean;
   closeModal: Function;
+  swapModal: Function;
 }
 
 export interface LoginAuth {
@@ -84,6 +85,7 @@ export interface LoginAuth {
   submitLogin: Function;
   error: string;
   closeModal: Function;
+  swapModal: Function;
 }
 
 export interface ErrorState {

@@ -14,6 +14,7 @@ const Register = ({
   submitRegister,
   registerLoader,
   closeModal,
+  swapModal,
 }: RegisterAuth) => {
   console.log("ERROR IN COMPONENT : ", error);
   const { firstname, lastname, age, city, ...mandatory } = register;
@@ -54,7 +55,14 @@ const Register = ({
           </div>
           <footer className="modal-footer">
             <p>
-              Already have an Account ? <Link to="/login">Sign In</Link>
+              Already have an Account ?{" "}
+              <a
+                onClick={() =>
+                  swapModal({ modal: "register", modal2: "login" })
+                }
+              >
+                Sign In
+              </a>
             </p>
 
             <div className="form-separator">

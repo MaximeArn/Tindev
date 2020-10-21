@@ -12,6 +12,11 @@ export interface AuthModalOpening {
   modal: string;
 }
 
+export interface AuthModalSwapping {
+  modal: string;
+  modal2: string;
+}
+
 export interface ProjectDetailModal {
   inputValue: string;
   sendApply: Function;

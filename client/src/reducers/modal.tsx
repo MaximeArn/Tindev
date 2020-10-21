@@ -16,7 +16,7 @@ const initialState: ModalState = {
 };
 const modal = (
   state = initialState,
-  { type, modal, modalStatus, applicant }: ModalAction
+  { type, modal, modal2, modalStatus, applicant }: ModalAction
 ) => {
   switch (type) {
     case "SET_AUTH_MODAL_STATUS":
@@ -24,6 +24,11 @@ const modal = (
         ...state,
         authModal: { ...state.authModal, [modal]: modalStatus },
         showNavbar: !modalStatus,
+      };
+    case "SWAP_AUTH_MODAL":
+      return {
+        ...state,
+        authModal: { [modal]: modalStatus, [modal2]: !modalStatus },
       };
     case "SET_APPLY_MODAL_STATUS":
       return { ...state, applyModal: modalStatus, showNavbar: !modalStatus };
