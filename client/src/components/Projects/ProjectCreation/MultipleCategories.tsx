@@ -1,4 +1,5 @@
-import React from "react";
+import React, { ChangeEvent } from "react";
+import idGenerator from "../../../utils/randomIdGenerator";
 import {
   createStyles,
   makeStyles,
@@ -11,8 +12,11 @@ import MenuItem from "@material-ui/core/MenuItem";
 import FormControl from "@material-ui/core/FormControl";
 import Select from "@material-ui/core/Select";
 import Chip from "@material-ui/core/Chip";
+import randomIdGenerator from "../../../utils/randomIdGenerator";
 interface MultipleCategory {
   categories: string[];
+  categoriesFieldValues: string[];
+  getCategories: Function;
 }
 
 const useStyles = makeStyles((theme: Theme) =>
@@ -54,13 +58,17 @@ function getStyles(name: string, personName: string[], theme: Theme) {
   };
 }
 
-const MultipleCategories = ({ categories }: MultipleCategory) => {
+const MultipleCategories = ({
+  categories,
+  categoriesFieldValues,
+  getCategories,
+}: MultipleCategory) => {
   const classes = useStyles();
   const theme = useTheme();
-  const [categoryName, setCategories] = React.useState<string[]>([]);
+  // const [categoryName, setCategories] = React.useState<string[]>([]);
 
-  const handleChange = (event: React.ChangeEvent<{ value: unknown }>) => {
-    setCategories(event.target.value as string[]);
+  const handleChange = (event: ChangeEvent<{ value: unknown }>) => {
+    getCategories(event.target.value);
   };
 
   return (
@@ -73,29 +81,33 @@ const MultipleCategories = ({ categories }: MultipleCategory) => {
           labelId="demo-mutiple-chip-label"
           id="demo-mutiple-chip"
           multiple
-          value={categoryName}
+          value={categoriesFieldValues}
           onChange={handleChange}
           input={<Input id="select-multiple-chip" />}
-          renderValue={(selected) => {
+          renderValue={(selected: any) => {
             return (
               <div className={classes.chips}>
-                {(selected as string[]).map((value) => (
-                  <Chip key={value} label={value} className={classes.chip} />
+                {selected.map((value: string) => (
+                  <Chip
+                    key={idGenerator()}
+                    label={value}
+                    className={classes.chip}
+                  />
                 ))}
               </div>
             );
           }}
           MenuProps={MenuProps}
         >
-          {categories.map((name) => (
+          {/* {categories.map((name) => (
             <MenuItem
               key={name}
               value={name}
-              style={getStyles(name, categoryName, theme)}
+              style={getStyles(name, categoriesFieldValues, theme)}
             >
               {name}
             </MenuItem>
-          ))}
+          ))} */}
         </Select>
       </FormControl>
     </div>

@@ -30,6 +30,7 @@ const project = (
     inputValue,
     teamSize,
     image,
+    category,
     projects,
     project,
     owner,
@@ -40,6 +41,14 @@ const project = (
       return {
         ...state,
         createProject: { ...state.createProject, [inputName]: inputValue },
+      };
+    case "GET_PROJECT_CREATION_CATEGORIES":
+      return {
+        ...state,
+        createProject: {
+          ...state.createProject,
+          categories: [...state.createProject.categories, category],
+        },
       };
     case "GET_PROJECT_TEAM_SIZE":
       return {

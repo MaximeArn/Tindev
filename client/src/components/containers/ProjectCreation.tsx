@@ -14,12 +14,10 @@ const mapState = (state: State) => {
     projectCategoriesLoader: categoriesLoader,
   } = state.loaders;
 
-  const { categories } = state.categories;
   return {
     projectInputs: createProject,
     error,
     loading,
-    categories,
     categoriesLoader,
   };
 };

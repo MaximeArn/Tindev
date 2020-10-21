@@ -5,7 +5,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faPaperclip } from "@fortawesome/free-solid-svg-icons";
 import { ProjectCreationProps } from "../../../models/projects";
 import capitalizeFirstLetter from "../../../utils/capitalizeFirstLetter";
-import MultipleCategories from "./MultipleCategories";
+import MultipleCategories from "../../containers/MultipleCategories";
 import Buttons from "../../containers/ProjectCreationButtons";
 import CircularProgress from "@material-ui/core/CircularProgress";
 import Input from "../../containers/Input";
@@ -18,7 +18,6 @@ const ProjectCreation = ({
   categoriesLoader,
   setProjectImage,
   sendProject,
-  categories,
   getCategories,
 }: ProjectCreationProps) => {
   const fileInput = useRef<any>(null);
@@ -117,7 +116,7 @@ const ProjectCreation = ({
 
                 <section className="category-section">
                   <h3 className="project-creation-title">Project category :</h3>
-                  <MultipleCategories categories={categories} />
+                  <MultipleCategories />
                 </section>
                 <section className="team-size-section">
                   <h3 className="project-creation-title">

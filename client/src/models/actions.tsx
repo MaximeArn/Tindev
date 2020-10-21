@@ -39,6 +39,7 @@ export interface ProjectAction {
   inputName: string;
   inputValue: string;
   teamSize: number;
+  category: string;
   image: MutableRefObject<any>;
   projects: Project[];
   project: Project;

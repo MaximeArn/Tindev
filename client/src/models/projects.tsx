@@ -72,7 +72,6 @@ export interface ProjectCreationProps {
   categoriesLoader: boolean;
   sendProject: Function;
   setProjectImage: Function;
-  categories: string[];
   getCategories: Function;
 }
 
