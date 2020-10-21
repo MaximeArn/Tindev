@@ -70,6 +70,7 @@ const Login = ({
               <p>
                 Not a member yet ?
                 <a
+                  className="auth-modal"
                   onClick={() =>
                     swapModal({ modal: "login", modal2: "register" })
                   }

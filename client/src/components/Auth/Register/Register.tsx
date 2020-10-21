@@ -57,6 +57,7 @@ const Register = ({
             <p>
               Already have an Account ?{" "}
               <a
+                className="auth-modal"
                 onClick={() =>
                   swapModal({ modal: "register", modal2: "login" })
                 }

@@ -29,8 +29,6 @@ function App({
       {register && <Register />}
       <Switch>
         <Route exact path="/" component={Home} />
-        {/* <Route path="/login" component={Login} />
-        <Route path="/register" component={Register} /> */}
         <Route exact path="/project/create" component={ProjectCreation} />
         <Route path="/project/:slug/manage" component={ManagePage} />
         <Route path="/project/:slug" component={ProjectDetail} />
