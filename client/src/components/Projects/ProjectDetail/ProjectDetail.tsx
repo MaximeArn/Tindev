@@ -15,8 +15,6 @@ const ProjectDetail = ({
   owner,
   error,
 }: ProjectDetailProps) => {
-  console.log(project);
-
   useEffect(() => {
     project && verifyOwner(project.author);
   }, [project]);
