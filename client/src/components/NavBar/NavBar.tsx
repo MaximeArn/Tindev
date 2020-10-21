@@ -50,7 +50,7 @@ const NavBar = ({ user, logout, openModal }: NavState) => {
                   <li className="nav-item">
                     <a
                       onClick={() =>
-                        openModal({ status: true, modal: "login" })
+                        openModal({ modalStatus: true, modal: "login" })
                       }
                     >
                       Login
@@ -59,7 +59,7 @@ const NavBar = ({ user, logout, openModal }: NavState) => {
                   <li className="nav-item">
                     <a
                       onClick={() =>
-                        openModal({ status: true, modal: "login" })
+                        openModal({ modalStatus: true, modal: "login" })
                       }
                     >
                       Register
