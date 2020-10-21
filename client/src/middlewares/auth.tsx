@@ -14,7 +14,7 @@ const setUser = ({ getState, dispatch, history }: AxiosSubmit) => {
   const { register } = getState().auth;
   dispatch({ type: "SET_REGISTER_LOADER", value: true });
   axios
-    .post("/auth/register", { ...register }, { withCredentials: true })
+    .post("/auth/register", { ...register })
     .then(({ data: { msg } }) => {
       history.push({
         pathname: "/login",
@@ -66,7 +66,6 @@ const retrieveToken = (dispatch: Dispatch<AnyAction>) => {
 const auth: Middleware = ({ getState, dispatch }) => (next) => (
   action: AuthMiddleware
 ) => {
-  const { user } = getState().auth;
   const { history } = action;
   switch (action.type) {
     case "SUBMIT_REGISTER":

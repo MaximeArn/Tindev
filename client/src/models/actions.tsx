@@ -1,7 +1,6 @@
 /** @format */
 
 import { MutableRefObject } from "react";
-import { Category } from "./categories";
 import { Project } from "./projects";
 
 export interface AuthenticationAction {
@@ -53,7 +52,7 @@ export interface AuthMiddleware {
 
 export interface CategoriesAction {
   type: string;
-  categories: Category[];
+  categories: string[];
 }
 
 export interface SuccessAction {

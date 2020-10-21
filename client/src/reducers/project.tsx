@@ -10,7 +10,7 @@ const initialState: ProjectState = {
   createProject: {
     title: "",
     description: "",
-    categories: "",
+    categories: [],
     size: undefined,
     image: null,
   },

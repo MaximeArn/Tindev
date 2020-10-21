@@ -14,7 +14,14 @@ const mapState = (state: State) => {
     projectCategoriesLoader: categoriesLoader,
   } = state.loaders;
 
-  return { projectInputs: createProject, error, loading, categoriesLoader };
+  const { categories } = state.categories;
+  return {
+    projectInputs: createProject,
+    error,
+    loading,
+    categories,
+    categoriesLoader,
+  };
 };
 
 const mapDispatch = (dispatch: Dispatch<AnyAction>, { history }: OwnProps) => {

@@ -4,7 +4,6 @@ import {
   Contributor,
   ProjectDetailSubComponent,
 } from "../../../models/projects";
-import { Category } from "../../../models/categories";
 import React from "react";
 import { url } from "../../../environments/api";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
@@ -53,7 +52,7 @@ const Project = ({
           </div>
         </div>
         <div className="categories-section">
-          {categories.map(({ name, color }) => (
+          {categories.map((name) => (
             <div className="category">{name}</div>
           ))}
         </div>

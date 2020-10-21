@@ -1,7 +1,6 @@
 /** @format */
 
 import { ProjectState } from "./projects";
-import { Category } from "./categories";
 
 export interface Authentication {
   register: {
@@ -118,7 +117,7 @@ export interface HomeProps {
 }
 
 export interface CategoriesState {
-  categories: Category[];
+  categories: string[];
 }
 
 export interface ModalState {
