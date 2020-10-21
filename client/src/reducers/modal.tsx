@@ -23,6 +23,7 @@ const modal = (
       const status = modal
         ? { ...state.authModal, [modal]: modalStatus }
         : resetInputs(state.authModal);
+      console.log("STATUS : ", status);
       return {
         ...state,
         authModal: status,

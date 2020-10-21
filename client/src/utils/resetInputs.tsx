@@ -6,7 +6,9 @@ interface AuthInputs {
 export default (inputs: any | AuthInputs) => {
   const inputsCopy = { ...inputs };
   for (const key in inputsCopy) {
-    inputs.login ? (inputsCopy[key] = false) : (inputsCopy[key] = "");
+    inputs.hasOwnProperty("login")
+      ? (inputsCopy[key] = false)
+      : (inputsCopy[key] = "");
   }
   return inputsCopy;
 };

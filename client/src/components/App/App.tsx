@@ -11,7 +11,13 @@ import ProjectCreation from "../containers/ProjectCreation";
 import ProjectDetail from "../containers/ProjectDetail";
 import ManagePage from "../containers/ManageProject";
 
-function App({ verifyToken, showNavbar, getProjects }: AppProps) {
+function App({
+  verifyToken,
+  showNavbar,
+  login,
+  register,
+  getProjects,
+}: AppProps) {
   useEffect(() => {
     verifyToken();
     getProjects();
@@ -19,6 +25,8 @@ function App({ verifyToken, showNavbar, getProjects }: AppProps) {
   return (
     <>
       {showNavbar && <NavBar />}
+      {login && <Login />}
+      {register && <Register />}
       <Switch>
         <Route exact path="/" component={Home} />
         {/* <Route path="/login" component={Login} />

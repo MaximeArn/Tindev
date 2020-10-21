@@ -48,10 +48,22 @@ const NavBar = ({ user, logout, openModal }: NavState) => {
               {!user ? (
                 <>
                   <li className="nav-item">
-                    <a onClick={() => openModal(true)}>Login</a>
+                    <a
+                      onClick={() =>
+                        openModal({ status: true, modal: "login" })
+                      }
+                    >
+                      Login
+                    </a>
                   </li>
                   <li className="nav-item">
-                    <a onClick={() => openModal(true)}>Register</a>
+                    <a
+                      onClick={() =>
+                        openModal({ status: true, modal: "login" })
+                      }
+                    >
+                      Register
+                    </a>
                   </li>
                 </>
               ) : (

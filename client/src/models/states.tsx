@@ -100,6 +100,8 @@ export interface AppProps {
   verifyToken: Function;
   showNavbar: boolean;
   getProjects: Function;
+  login: boolean;
+  register: boolean;
 }
 
 export interface NavState {
