@@ -99,15 +99,18 @@ const MultipleCategories = ({
           }}
           MenuProps={MenuProps}
         >
-          {/* {categories.map((name) => (
-            <MenuItem
-              key={name}
-              value={name}
-              style={getStyles(name, categoriesFieldValues, theme)}
-            >
-              {name}
-            </MenuItem>
-          ))} */}
+          {categories.map((name) => {
+            console.log(name);
+            return (
+              <MenuItem
+                key={name}
+                value={name}
+                style={getStyles(name, categoriesFieldValues, theme)}
+              >
+                {name}
+              </MenuItem>
+            );
+          })}
         </Select>
       </FormControl>
     </div>
