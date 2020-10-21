@@ -20,13 +20,9 @@ const modal = (
 ) => {
   switch (type) {
     case "SET_AUTH_MODAL_STATUS":
-      const status = modal
-        ? { ...state.authModal, [modal]: modalStatus }
-        : resetInputs(state.authModal);
-      console.log("STATUS : ", status);
       return {
         ...state,
-        authModal: status,
+        authModal: { ...state.authModal, [modal]: modalStatus },
         showNavbar: !modalStatus,
       };
     case "SET_APPLY_MODAL_STATUS":
