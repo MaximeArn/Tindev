@@ -12,7 +12,7 @@ export interface Project {
   title: string;
   description: string;
   image: string;
-  categories: Category[] | [];
+  categories: Category[];
   size: number;
   contributors: Contributor[];
   applicants: Applicant[];
@@ -24,7 +24,7 @@ export interface ProjectDetailSubComponent {
   title: string;
   description: string;
   image: string;
-  categories: Category[] | [];
+  categories: Category[];
   size: number;
   contributors: Contributor[];
   applicants: Applicant[] | [];

@@ -121,7 +121,33 @@ let projects = [
       Vous aurez la possibilité de filtrer les recherches selon vos critères.
       Discutez avec les autres utilisateurs via une messagerie instantanée et créez des groupes afin de faciliter la communication.`,
     contributors: [],
-    categories: [{ name: "Angular", color: "purple" }],
+    categories: [
+      { name: "Angular", color: "yellow" },
+      {
+        name: "Web",
+        color: "purple",
+      },
+      {
+        name: "Software",
+        color: "green",
+      },
+      {
+        name: "AI",
+        color: "blue",
+      },
+      {
+        name: "Static",
+        color: "red",
+      },
+      {
+        name: "Java",
+        color: "#E23C6E",
+      },
+      {
+        name: "React",
+        color: "#24E8A1",
+      },
+    ],
     applicants: [],
     size: 5,
   },

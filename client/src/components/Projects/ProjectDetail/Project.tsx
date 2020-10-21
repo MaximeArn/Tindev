@@ -4,6 +4,7 @@ import {
   Contributor,
   ProjectDetailSubComponent,
 } from "../../../models/projects";
+import { Category } from "../../../models/categories";
 import React from "react";
 import { url } from "../../../environments/api";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
@@ -15,6 +16,7 @@ const Project = ({
   image,
   description,
   contributors,
+  categories,
   author,
   setModalStatus,
   owner,
@@ -49,6 +51,11 @@ const Project = ({
               <p>no member yet</p>
             )}
           </div>
+        </div>
+        <div className="categories-section">
+          {categories.map(({ name, color }) => (
+            <div className="category">{name}</div>
+          ))}
         </div>
         <div className="buttons-section">
           {owner ? (

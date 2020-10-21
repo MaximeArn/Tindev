@@ -96,6 +96,30 @@
       }
     }
 
+    .categories-section {
+      margin: 0 1.5rem;
+      display: flex;
+      flex-flow: row wrap;
+      justify-content: space-between;
+      background-color: #333;
+      padding: 1rem 5%;
+
+      .category {
+        background: vars.$gradient-background;
+        color: #333;
+        text-align: center;
+        min-width: 40%;
+        padding: .8rem;
+        border-radius: 7px;
+        margin: 7px 7px;
+        font-weight: 500;
+
+        &:last-child {
+          justify-self: left;
+        }
+      }
+    }
+
     .buttons-section {
       border-top: 2px solid #fff;
       margin-top: 1rem;
