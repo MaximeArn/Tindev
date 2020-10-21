@@ -35,8 +35,11 @@ export interface State {
 
 export interface Modals {
   showNavbar: boolean;
-  authModal: boolean;
   applyModal: boolean;
+  authModal: {
+    login: boolean;
+    register: boolean;
+  };
   declineApplicantModal: {
     isModalOpen: boolean;
     applicantId: string | null;
@@ -116,8 +119,11 @@ export interface CategoriesState {
 
 export interface ModalState {
   showNavbar: boolean;
-  authModal: boolean;
   applyModal: boolean;
+  authModal: {
+    login: boolean;
+    register: boolean;
+  };
   declineApplicantModal: {
     isModalOpen: false;
     applicant: null | string;

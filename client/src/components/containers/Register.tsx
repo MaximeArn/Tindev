@@ -21,10 +21,8 @@ const mapDispatch = (dispatch: Dispatch<AnyAction>) => ({
     dispatch({ type: "SUBMIT_REGISTER", history }),
   closeModal: (modalStatus: boolean) => {
     dispatch({ type: "RESET_AUTH_MODAL_ERROR_VALUES" });
-    dispatch({ type: "SET_AUTH_MODAL_STATE", modalStatus });
+    dispatch({ type: "SET_AUTH_MODAL_STATUS", modal: "register", modalStatus });
   },
 });
-
-
 
 export default connect(mapState, mapDispatch)(Register);

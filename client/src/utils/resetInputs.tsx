@@ -1,7 +1,12 @@
-export default (inputs: any) => {
+interface AuthInputs {
+  login: boolean;
+  register: boolean;
+}
+
+export default (inputs: any | AuthInputs) => {
   const inputsCopy = { ...inputs };
   for (const key in inputsCopy) {
-    inputsCopy[key] = "";
+    inputs.login ? (inputsCopy[key] = false) : (inputsCopy[key] = "");
   }
   return inputsCopy;
 };
