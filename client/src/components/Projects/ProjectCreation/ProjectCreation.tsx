@@ -20,10 +20,22 @@ const ProjectCreation = ({
   getCategories,
 }: ProjectCreationProps) => {
   const fileInput = useRef<any>(null);
+  const imagePreview = useRef<any>(null);
 
   useEffect(() => {
     getCategories();
   }, []);
+
+  const showImagePreview = (input: HTMLInputElement) => {
+    if (input.files && input.files[0]) {
+      var reader = new FileReader();
+      reader.readAsDataURL(input.files[0]);
+
+      reader.onload = (event) => {
+        imagePreview.current.src = event.target?.result;
+      };
+    }
+  };
 
   const onFileBrowserClick = (event: MouseEvent<HTMLButtonElement>) => {
     event.preventDefault();
@@ -43,6 +55,9 @@ const ProjectCreation = ({
         type="file"
         ref={fileInput}
         style={{ display: "none" }}
+        onChange={() => {
+          showImagePreview(fileInput.current);
+        }}
       />
       <div className="maxiWrapper">
         <div className="project-container">
@@ -57,18 +72,26 @@ const ProjectCreation = ({
                 {error && (
                   <div className="project-creation-error-message">{error}</div>
                 )}
+                <section className="image-section">
+                  <button
+                    className="project-creation-button image"
+                    onClick={onFileBrowserClick}
+                  >
+                    <FontAwesomeIcon icon={faPaperclip} />
+                    <p>select an image</p>
+                  </button>
+                  <img
+                    ref={imagePreview}
+                    src="https://user-images.githubusercontent.com/2351721/31314483-7611c488-ac0e-11e7-97d1-3cfc1c79610e.png"
+                    alt="your image"
+                    className="image-preview"
+                  />
+                </section>
                 <section className="title-section">
                   <div className="title-wrapper">
                     <h3 className="project-creation-title-entry">
                       Project Title :
                     </h3>
-                    <button
-                      className="project-creation-button image"
-                      onClick={onFileBrowserClick}
-                    >
-                      <FontAwesomeIcon icon={faPaperclip} />
-                      <p>select an image</p>
-                    </button>
                   </div>
                   <Input
                     name="title"
