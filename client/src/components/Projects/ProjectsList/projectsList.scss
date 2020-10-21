@@ -1,5 +1,5 @@
 /** @format */
-@use '../../../styles/vars';
+@use '/client/src/styles/vars';
 
 .projectsList {
   padding: calc(1rem + 80px) 1rem 1rem 1rem;
@@ -32,7 +32,7 @@
     .projectCard-image {
       img {
         border-radius: 13px 13px 0 0;
-        max-width: 100%;
+        width: 100%;
         user-select: none;
       }
     }
@@ -52,10 +52,12 @@
         font-weight: bold;
         font-size: 1.8em;
         text-transform: capitalize;
-        background: -webkit-linear-gradient(110deg,
-            rgba(37, 194, 121, 1) 0%,
-            rgba(42, 246, 240, 1) 50%,
-            rgba(0, 172, 255, 1) 100%);
+        background: -webkit-linear-gradient(
+          110deg,
+          rgba(37, 194, 121, 1) 0%,
+          rgba(42, 246, 240, 1) 50%,
+          rgba(0, 172, 255, 1) 100%
+        );
         -webkit-background-clip: text;
         -webkit-text-fill-color: transparent;
       }
@@ -72,10 +74,12 @@
       justify-content: space-evenly;
       text-align: center;
       background-color: #28dfbc;
-      background: linear-gradient(295deg,
-          rgba(37, 194, 121, 1) 0%,
-          rgba(42, 246, 240, 1) 50%,
-          rgba(0, 172, 255, 1) 100%);
+      background: linear-gradient(
+        295deg,
+        rgba(37, 194, 121, 1) 0%,
+        rgba(42, 246, 240, 1) 50%,
+        rgba(0, 172, 255, 1) 100%
+      );
       text-shadow: 0px 0px 5px rgba(0, 0, 0, 0.5);
       border-radius: 0 0 13px 13px;
       color: #fff;
