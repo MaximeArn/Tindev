@@ -7,6 +7,16 @@ export interface ModalSelector {
   closeModal: Function;
 }
 
+export interface AuthModalOpening {
+  modalStatus: boolean;
+  modal: string;
+}
+
+export interface AuthModalSwapping {
+  modal: string;
+  modal2: string;
+}
+
 export interface ProjectDetailModal {
   inputValue: string;
   sendApply: Function;

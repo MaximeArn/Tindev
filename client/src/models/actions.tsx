@@ -24,6 +24,8 @@ export interface LoadersActions {
 
 export interface ModalAction {
   type: string;
+  modal: string;
+  modal2: string;
   modalStatus: boolean;
   applicant: string | null;
 }

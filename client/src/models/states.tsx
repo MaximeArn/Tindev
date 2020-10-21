@@ -35,8 +35,11 @@ export interface State {
 
 export interface Modals {
   showNavbar: boolean;
-  authModal: boolean;
   applyModal: boolean;
+  authModal: {
+    login: boolean;
+    register: boolean;
+  };
   declineApplicantModal: {
     isModalOpen: boolean;
     applicantId: string | null;
@@ -70,6 +73,7 @@ export interface RegisterAuth {
   error: string;
   registerLoader: boolean;
   closeModal: Function;
+  swapModal: Function;
 }
 
 export interface LoginAuth {
@@ -81,6 +85,7 @@ export interface LoginAuth {
   submitLogin: Function;
   error: string;
   closeModal: Function;
+  swapModal: Function;
 }
 
 export interface ErrorState {
@@ -97,6 +102,8 @@ export interface AppProps {
   verifyToken: Function;
   showNavbar: boolean;
   getProjects: Function;
+  login: boolean;
+  register: boolean;
 }
 
 export interface NavState {
@@ -116,8 +123,11 @@ export interface CategoriesState {
 
 export interface ModalState {
   showNavbar: boolean;
-  authModal: boolean;
   applyModal: boolean;
+  authModal: {
+    login: boolean;
+    register: boolean;
+  };
   declineApplicantModal: {
     isModalOpen: false;
     applicant: null | string;

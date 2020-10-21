@@ -15,6 +15,7 @@ const Login = ({
   submitLogin,
   loginLoader,
   closeModal,
+  swapModal,
 }: LoginAuth) => {
   const modal = useRef<HTMLDivElement>(null);
   const history = useHistory();
@@ -67,7 +68,14 @@ const Login = ({
             </div>
             <footer className="modal-footer">
               <p>
-                Not a member yet ? <Link to="/register">Register</Link>
+                Not a member yet ?
+                <a
+                  onClick={() =>
+                    swapModal({ modal: "login", modal2: "register" })
+                  }
+                >
+                  Register
+                </a>
               </p>
 
               <div className="form-separator">

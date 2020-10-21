@@ -1,4 +1,4 @@
-import React from "react";
+import React, { MouseEvent, useRef } from "react";
 import { DeclineApplicantModalProps } from "../../../models/projects";
 import "./declinemodal.scss";
 
@@ -8,13 +8,19 @@ const DeclineModal = ({
   setModalStatus,
   declineApplicant,
 }: DeclineApplicantModalProps) => {
+  const modalContainer = useRef<HTMLDivElement>(null);
+
   const handleConfirmClick = () => {
     declineApplicant({ projectId, userId });
     setModalStatus(false);
   };
 
+  const handleModal = (event: MouseEvent<HTMLDivElement>) => {
+    event.target === modalContainer.current && setModalStatus(false);
+  };
+
   return (
-    <div className="decline">
+    <div ref={modalContainer} className="decline" onClick={handleModal}>
       <div className="decline-applicant">
         <div className="project-detail-padding">
           <div className="decline-applicant-message">
