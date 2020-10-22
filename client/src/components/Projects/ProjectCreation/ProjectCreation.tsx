@@ -2,7 +2,7 @@
 
 import React, { FormEvent, MouseEvent, useEffect, useRef } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faPaperclip } from "@fortawesome/free-solid-svg-icons";
+import { faCamera } from "@fortawesome/free-solid-svg-icons";
 import { ProjectCreationProps } from "../../../models/projects";
 import capitalizeFirstLetter from "../../../utils/capitalizeFirstLetter";
 import MultipleCategories from "../../containers/MultipleCategories";
@@ -38,7 +38,9 @@ const ProjectCreation = ({
     }
   };
 
-  const onFileBrowserClick = (event: MouseEvent<HTMLButtonElement>) => {
+  const onFileBrowserClick = (
+    event: MouseEvent<HTMLButtonElement | HTMLDivElement>
+  ) => {
     event.preventDefault();
     fileInput.current.click();
   };
@@ -74,19 +76,18 @@ const ProjectCreation = ({
                   <div className="project-creation-error-message">{error}</div>
                 )}
                 <section className="image-section">
-                  <button
-                    className="project-creation-button image"
-                    onClick={onFileBrowserClick}
-                  >
-                    <FontAwesomeIcon icon={faPaperclip} />
-                    <p>select an image</p>
-                  </button>
-                  <img
-                    ref={imagePreview}
-                    src="https://user-images.githubusercontent.com/2351721/31314483-7611c488-ac0e-11e7-97d1-3cfc1c79610e.png"
-                    alt="your image"
-                    className="image-preview"
-                  />
+                  <div className="" onClick={onFileBrowserClick}>
+                    <button className="project-creation-button image">
+                      <FontAwesomeIcon icon={faCamera} size="lg" />
+                    </button>
+                    <img
+                      ref={imagePreview}
+                      src="https://user-images.githubusercontent.com/2351721/31314483-7611c488-ac0e-11e7-97d1-3cfc1c79610e.png"
+                      alt="your image"
+                      className="image-preview"
+                      onClick={onFileBrowserClick}
+                    />
+                  </div>
                 </section>
                 <section className="title-section">
                   <div className="title-wrapper">
