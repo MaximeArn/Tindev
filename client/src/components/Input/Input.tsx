@@ -38,7 +38,7 @@ const Input = ({
           onChange={handleChange}
           defaultValue={undefined}
         >
-          {categories.map((name) => (
+          {categories.map(({ name }) => (
             <option key={name} value={name}>
               {name}
             </option>

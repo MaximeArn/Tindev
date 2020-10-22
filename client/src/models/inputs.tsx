@@ -1,8 +1,9 @@
+import { Category } from "../models/categories";
 export interface InputModel {
   formType: string;
   name: string;
   inputValue: string | number | undefined;
-  categories: string[];
+  categories: Category[];
   required: boolean;
   getRegisterInputValue: Function;
   getLoginInputValue: Function;

@@ -1,5 +1,6 @@
 /** @format */
 
+import { Category } from "./categories";
 import { ProjectState } from "./projects";
 
 export interface Authentication {
@@ -117,7 +118,7 @@ export interface HomeProps {
 }
 
 export interface CategoriesState {
-  categories: string[];
+  categories: Category[];
 }
 
 export interface ModalState {

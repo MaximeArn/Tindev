@@ -2,6 +2,7 @@
 
 import { MutableRefObject } from "react";
 import { Project } from "./projects";
+import { Category } from "./categories";
 
 export interface AuthenticationAction {
   type: string;
@@ -39,7 +40,7 @@ export interface ProjectAction {
   inputName: string;
   inputValue: string;
   teamSize: number;
-  category: string;
+  category: Category;
   image: MutableRefObject<any>;
   projects: Project[];
   project: Project;
@@ -53,7 +54,7 @@ export interface AuthMiddleware {
 
 export interface CategoriesAction {
   type: string;
-  categories: string[];
+  categories: Category[];
 }
 
 export interface SuccessAction {

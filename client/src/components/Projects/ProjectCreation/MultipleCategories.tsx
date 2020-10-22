@@ -1,5 +1,5 @@
 import React, { ChangeEvent } from "react";
-import idGenerator from "../../../utils/randomIdGenerator";
+import { Category } from "../../../models/categories";
 import {
   createStyles,
   makeStyles,
@@ -12,10 +12,9 @@ import MenuItem from "@material-ui/core/MenuItem";
 import FormControl from "@material-ui/core/FormControl";
 import Select from "@material-ui/core/Select";
 import Chip from "@material-ui/core/Chip";
-import randomIdGenerator from "../../../utils/randomIdGenerator";
 interface MultipleCategory {
-  categories: string[];
-  categoriesFieldValues: string[];
+  categories: Category[];
+  categoriesFieldValues: Category[];
   getCategories: Function;
 }
 
@@ -49,10 +48,14 @@ const MenuProps = {
   },
 };
 
-function getStyles(name: string, personName: string[], theme: Theme) {
+function getStyles(
+  name: string,
+  categoriesFieldValues: Category[],
+  theme: Theme
+) {
   return {
     fontWeight:
-      personName.indexOf(name) === -1
+      categoriesFieldValues.indexOf({ name }) === -1
         ? theme.typography.fontWeightRegular
         : theme.typography.fontWeightMedium,
   };
@@ -95,7 +98,7 @@ const MultipleCategories = ({
           }}
           MenuProps={MenuProps}
         >
-          {categories.map((name: string) => {
+          {categories.map(({ name }) => {
             console.log(name);
             return (
               <MenuItem

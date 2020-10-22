@@ -1,5 +1,7 @@
 /** @format */
 
+import { Category } from "./categories";
+
 export interface Projects {
   projects: Project[];
   error: string;
@@ -11,7 +13,7 @@ export interface Project {
   title: string;
   description: string;
   image: string;
-  categories: string[];
+  categories: Category[];
   size: number;
   contributors: Contributor[];
   applicants: Applicant[];
@@ -23,7 +25,7 @@ export interface ProjectDetailSubComponent {
   title: string;
   description: string;
   image: string;
-  categories: string[];
+  categories: Category[];
   size: number;
   contributors: Contributor[];
   applicants: Applicant[] | [];
@@ -34,7 +36,7 @@ export interface ProjectCreation {
   title: string;
   description: string;
   image: any;
-  categories: string[];
+  categories: Category[];
   size: number | undefined;
 }
 
