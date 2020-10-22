@@ -103,6 +103,7 @@ export interface AppProps {
   verifyToken: Function;
   showNavbar: boolean;
   getProjects: Function;
+  getUsers: Function;
   login: boolean;
   register: boolean;
 }

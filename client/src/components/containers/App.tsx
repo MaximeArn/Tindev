@@ -17,6 +17,7 @@ const mapState = ({
 const mapDispatch = (dispatch: any) => ({
   verifyToken: () => dispatch({ type: "TOKEN_VALIDATION" }),
   getProjects: () => dispatch({ type: "GET_PROJECTS" }),
+  getUsers: () => dispatch({ type: "GET_USERS" }),
 });
 
 export default connect(mapState, mapDispatch)(App);
