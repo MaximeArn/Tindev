@@ -14,8 +14,7 @@ module.exports = async (
   callback
 ) => {
   try {
-    // body.categories = JSON.parse(body.categories);
-    const { title, size, categories } = body;
+    let { title, size, categories } = body;
     categories = JSON.parse(categories);
     const user = await tokenValidator(token, null);
     const validateFieldsValues = Object.values(body).every((value) => value);
