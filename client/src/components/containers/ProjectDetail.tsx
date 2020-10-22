@@ -20,7 +20,7 @@ const mapState = (
 ) => {
   const { slug } = match.params;
   const project = projects.find(({ title }) => slugify(title) === slug);
-  const error = project ? null : "oops... something went wrong ";
+  const error = project ? null : "Oops... something went wrong ";
   return {
     project,
     isModalOpen: applyModal,
