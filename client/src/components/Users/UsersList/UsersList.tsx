@@ -2,12 +2,15 @@
 
 import React from "react";
 import { User, UserState } from "../../../models/users";
+import UserCard from "./userCard";
 
 const UsersList = ({ users }: UserState) => {
   console.log("component", users);
   return (
     <div>
-      <p>it works !!</p>
+      {users.map((user) => (
+        <UserCard key={user._id} {...user} />
+      ))}
     </div>
   );
 };
