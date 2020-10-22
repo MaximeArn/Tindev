@@ -24,10 +24,10 @@ const userCard = ({
         </div>
         <div className="user-content">
           <h2 className="user-username">{username}</h2>
+          <p className="user-email">{email}</p>
           <p className="user-firstname">{firstname}</p>
           <p className="user-lastname">{lastname}</p>
-          <p className="user-email">{email}</p>
-          <p className="user-age">{age}</p>
+          <p className="user-age">{age && `${age} years old`}</p>
           <p className="user-city">{city}</p>
         </div>
       </Link>

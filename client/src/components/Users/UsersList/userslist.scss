@@ -27,9 +27,14 @@
   background-color: #fff;
   color: #333;
   transition: all 0.5s;
+  min-height: 433px;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
+
+  &:hover {
+    transform: scale(1.03);
+  }
 
   &-image {
     img {
