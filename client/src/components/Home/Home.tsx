@@ -6,11 +6,7 @@ import { HomeProps } from "../../models/states";
 import CircularProgress from "@material-ui/core/CircularProgress";
 import "./home.scss";
 
-const Home = ({ loader, getProjects }: HomeProps) => {
-  useEffect(() => {
-    // getProjects();
-  }, []);
-
+const Home = ({ loader }: HomeProps) => {
   return (
     <div>
       {loader && (
