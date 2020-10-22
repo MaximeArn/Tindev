@@ -1,5 +1,5 @@
 /** @format */
-const User = require("../models/User");
+const { User } = require("../models");
 const { tokenValidator } = require("../utils/validators");
 
 const usersController = {
@@ -15,13 +15,17 @@ const usersController = {
       next(error);
     }
   },
-  getUserByUsername: async ({ body, cookies: { token } }, res, next) => {
-    console.log(body);
+  getUserByUsername: async (
+    { params: { username }, cookies: { token } },
+    res,
+    next
+  ) => {
     try {
-      const user = await tokenValidator(token, next);
+      // const { id } = await tokenValidator(token, next);
+      // if (id) {
+      const user = await User.findOne({ username });
 
-      if (user) {
-      }
+      // }
     } catch (error) {
       next(error);
     }
