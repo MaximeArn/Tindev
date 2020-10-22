@@ -5,6 +5,7 @@ const express = require("express");
 const server = require("express")();
 const cookieParser = require("cookie-parser");
 const authRouter = require("./router/auth");
+const usersRouter = require("./router/users");
 const categoriesRouter = require("./router/categories");
 const projectRouter = require("./router/project");
 const notFound = require("./middlewares/NotFound");
@@ -22,6 +23,7 @@ server.use(cookieParser());
 server.use("/auth", authRouter);
 server.use("/project", projectRouter);
 server.use("/categories", categoriesRouter);
+server.use("/users", usersRouter);
 server.use(errorHandler);
 server.use(notFound);
 

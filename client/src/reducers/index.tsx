@@ -7,11 +7,13 @@ import project from "./project";
 import loaders from "./loaders";
 import categories from "./categories";
 import modal from "./modal";
+import users from "./users";
 import { combineReducers } from "redux";
 
 export default combineReducers({
   auth,
   project,
+  users,
   categories,
   loaders,
   modal,

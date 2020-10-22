@@ -10,6 +10,7 @@ import Login from "../containers/Login";
 import ProjectCreation from "../containers/ProjectCreation";
 import ProjectDetail from "../containers/ProjectDetail";
 import ManagePage from "../containers/ManageProject";
+import UsersList from "../containers/UsersList";
 
 function App({
   verifyToken,
@@ -17,10 +18,12 @@ function App({
   login,
   register,
   getProjects,
+  getUsers,
 }: AppProps) {
   useEffect(() => {
     verifyToken();
     getProjects();
+    getUsers();
   }, []);
   return (
     <>
@@ -32,6 +35,7 @@ function App({
         <Route exact path="/project/create" component={ProjectCreation} />
         <Route path="/project/:slug/manage" component={ManagePage} />
         <Route path="/project/:slug" component={ProjectDetail} />
+        <Route exact path="/users" component={UsersList} />
       </Switch>
     </>
   );
