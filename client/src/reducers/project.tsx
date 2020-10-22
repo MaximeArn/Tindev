@@ -78,7 +78,7 @@ const project = (
       const { application: inputs } = state.projectDetail;
       return {
         ...state,
-        projectDetails: {
+        projectDetail: {
           ...state.projectDetail,
           application: resetInputs(inputs),
         },

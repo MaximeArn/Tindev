@@ -12,8 +12,12 @@ const Modal = ({
   success,
 }: ProjectDetailModal) => {
   const modal = useRef<HTMLDivElement>(null);
+
   const handleMouseDown = (event: any) => {
-    event.target === modal.current && setModalStatus(false);
+    if (event.target === modal.current) {
+      setModalStatus(false);
+      resetApplySuccessState();
+    }
   };
   const handleSubmit = (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault();
