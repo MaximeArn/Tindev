@@ -18,7 +18,7 @@ const mapState = (state: State) => {
 };
 
 const mapDispatch = (dispatch: Dispatch<AnyAction>) => ({
-  submitLogin: (history: any) => dispatch({ type: "SUBMIT_LOGIN", history }),
+  submitLogin: () => dispatch({ type: "SUBMIT_LOGIN" }),
   closeModal: (modalStatus: boolean) => {
     dispatch({ type: "RESET_AUTH_MODAL_ERROR_VALUES" });
     dispatch({
