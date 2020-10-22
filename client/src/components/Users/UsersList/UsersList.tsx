@@ -1,13 +1,13 @@
 /** @format */
 
 import React from "react";
+import "./userslist.scss";
 import { User, UserState } from "../../../models/users";
 import UserCard from "./userCard";
 
 const UsersList = ({ users }: UserState) => {
-  console.log("component", users);
   return (
-    <div>
+    <div className="users-list">
       {users.map((user) => (
         <UserCard key={user._id} {...user} />
       ))}

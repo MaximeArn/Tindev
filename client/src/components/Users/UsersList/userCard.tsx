@@ -2,11 +2,36 @@
 
 import React from "react";
 import { User } from "../../../models/users";
-const userCard = ({ username }: User) => {
+import { Link } from "react-router-dom";
+import { url } from "../../../environments/api";
+const userCard = ({
+  username,
+  firstname,
+  lastname,
+  email,
+  age,
+  city,
+}: User) => {
   return (
-    <div>
-      <p>{username}</p>
-    </div>
+    <article className="card">
+      <Link className="user">
+        <div className="user-image">
+          <img
+            src={`${url}/uploads/image-default.jpeg`}
+            alt="user-image"
+            draggable="false"
+          />
+        </div>
+        <div className="user-content">
+          <h2 className="user-username">{username}</h2>
+          <p className="user-firstname">{firstname}</p>
+          <p className="user-lastname">{lastname}</p>
+          <p className="user-email">{email}</p>
+          <p className="user-age">{age}</p>
+          <p className="user-city">{city}</p>
+        </div>
+      </Link>
+    </article>
   );
 };
 

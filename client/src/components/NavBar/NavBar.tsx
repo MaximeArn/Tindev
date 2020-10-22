@@ -81,7 +81,7 @@ const NavBar = ({ user, logout, openModal }: NavState) => {
                   <li className="nav-item">
                     <span className="dropdown">
                       <FontAwesomeIcon icon={faUserCircle} />
-                      <span className="user">{user.username}</span>
+                      <span className="member">{user.username}</span>
 
                       <div className="dropdown-content">
                         <svg className="dropdown-arrow">

@@ -14,7 +14,7 @@ const ProjectsList = ({ projects, error }: Projects) => {
       ) : (
         <div className="projectsList">
           {projects.map((project: ProjectModel) => {
-            return <Project key={idGenerator()} {...project} />;
+            return <Project key={project._id} {...project} />;
           })}
         </div>
       )}
