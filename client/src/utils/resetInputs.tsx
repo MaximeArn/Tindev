@@ -1,19 +1,19 @@
 import { ProjectCreation } from "../models/projects";
-const resetProjectCreation = (key: string) => {
-  return key === "image"
-    ? null
-    : key === "size"
-    ? undefined
-    : key === "categories"
-    ? []
-    : "";
+
+const PROJECT_CREATION: any = {
+  image: null,
+  size: null,
+  categories: [],
 };
+
 export default (inputs: any | ProjectCreation) => {
   const inputsCopy = { ...inputs };
   for (const key in inputsCopy) {
-    inputs.hasOwnProperty("image")
-      ? (inputsCopy[key] = resetProjectCreation(key))
+    PROJECT_CREATION.hasOwnProperty(key)
+      ? (inputsCopy[key] = PROJECT_CREATION[key])
       : (inputsCopy[key] = "");
   }
+
+  console.log("AFTER : ", inputsCopy);
   return inputsCopy;
 };

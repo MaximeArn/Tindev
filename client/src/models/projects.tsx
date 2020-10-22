@@ -37,7 +37,7 @@ export interface ProjectCreation {
   description: string;
   image: any;
   categories: Category[] | [];
-  size: number | undefined;
+  size: number | null;
 }
 
 export interface Contributor {
