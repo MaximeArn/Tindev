@@ -85,6 +85,7 @@ export interface LoginAuth {
   submitLogin: Function;
   error: string;
   closeModal: Function;
+  success: boolean | string;
   swapModal: Function;
 }
 
@@ -136,4 +137,5 @@ export interface ModalState {
 
 export interface SuccessState {
   applySuccess: boolean | string;
+  registerSuccess: boolean | string;
 }

@@ -16,14 +16,12 @@ const Register = ({
   closeModal,
   swapModal,
 }: RegisterAuth) => {
-  console.log("ERROR IN COMPONENT : ", error);
   const { firstname, lastname, age, city, ...mandatory } = register;
   const modal = useRef<HTMLDivElement>(null);
-  const history = useHistory();
 
   const handleSubmit = (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault();
-    submitRegister(history);
+    submitRegister();
   };
 
   return (

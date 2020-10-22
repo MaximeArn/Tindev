@@ -12,8 +12,9 @@ const mapState = (state: State) => {
     auth: { loginErrorMessage: error },
   } = state.error;
   const { loginLoader } = state.loaders;
+  const { registerSuccess: success } = state.success;
 
-  return { login, error, loginLoader };
+  return { login, error, loginLoader, success };
 };
 
 const mapDispatch = (dispatch: Dispatch<AnyAction>) => ({

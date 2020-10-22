@@ -20,7 +20,7 @@ const mapState = ({
 
 const mapDispatch = (dispatch: Dispatch<AnyAction>, { projectId }: any) => ({
   sendApply: () => dispatch({ type: "SEND_USER_APPLY", projectId }),
-  resetApplySuccessState: () => dispatch({ type: "RESET_SUCCESS_MESSAGE" }),
+  resetApplySuccessState: () => dispatch({ type: "APPLY_SUCCESS_MESSAGE" }),
   setModalStatus: (modalStatus: boolean) =>
     dispatch({ type: "SET_APPLY_MODAL_STATUS", modalStatus }),
 });

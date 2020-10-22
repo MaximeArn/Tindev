@@ -2,7 +2,7 @@
 
 import React, { FormEvent, MouseEvent, useRef } from "react";
 import { LoginAuth } from "../../../models/states";
-import { Link, useHistory, useLocation } from "react-router-dom";
+import { Link, useHistory } from "react-router-dom";
 import googleIcon from "src/assets/icons/googleIcon.svg";
 import modalClickHandler from "../../../utils/modalClickHandler";
 import inputMapper from "../../../utils/inputMapper";
@@ -15,6 +15,7 @@ const Login = ({
   submitLogin,
   loginLoader,
   closeModal,
+  success,
   swapModal,
 }: LoginAuth) => {
   const modal = useRef<HTMLDivElement>(null);
@@ -24,15 +25,6 @@ const Login = ({
     event.preventDefault();
     submitLogin(history);
   };
-
-  let registered;
-  if (useLocation().state) {
-    let {
-      state: { msg },
-    } = useLocation();
-
-    registered = { message: msg };
-  }
 
   return (
     <>
@@ -46,9 +38,7 @@ const Login = ({
           <form method="POST" onSubmit={handleSubmit}>
             <div className="modal-padding">
               <h1 className="modal-title">Sign In</h1>
-              {registered && (
-                <p className="success-message">{registered.message}</p>
-              )}
+              {success && <p className="success-message">{success}</p>}
               {error && <span className="modal-error-message">{error}</span>}
               <div className="fields">{inputMapper(login, login)}</div>
               {loginLoader ? (
