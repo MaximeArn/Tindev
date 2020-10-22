@@ -10,7 +10,9 @@ axios.defaults.withCredentials = true;
 const getUsers = (dispatch: Dispatch<AnyAction>) => {
   axios
     .get("/users")
-    .then(({ data }) => dispatch({ type: "SET_USERS", users: data }))
+    .then(({ data: users }) => {
+      dispatch({ type: "SET_USERS", users });
+    })
     .catch((error) => console.log(error));
 };
 

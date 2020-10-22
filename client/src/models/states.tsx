@@ -2,6 +2,7 @@
 
 import { Category } from "./categories";
 import { ProjectState } from "./projects";
+import { UserState } from "./users";
 
 export interface Authentication {
   register: {
@@ -31,6 +32,7 @@ export interface State {
   project: ProjectState;
   loaders: Loaders;
   modal: Modals;
+  users: UserState;
 }
 
 export interface Modals {

@@ -10,7 +10,7 @@ import Login from "../containers/Login";
 import ProjectCreation from "../containers/ProjectCreation";
 import ProjectDetail from "../containers/ProjectDetail";
 import ManagePage from "../containers/ManageProject";
-import UsersList from "../Users/UsersList/UsersList";
+import UsersList from "../containers/UsersList";
 
 function App({
   verifyToken,

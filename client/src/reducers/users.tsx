@@ -1,21 +1,15 @@
 /** @format */
-
-import { CategoriesAction } from "../models/actions";
-
 const initialState = {
-  categories: [],
+  users: [],
 };
 
-const categories = (
-  state = initialState,
-  { type, categories }: CategoriesAction
-) => {
+const users = (state = initialState, { type, users }: any) => {
   switch (type) {
-    case "GET_USERS":
-      return { ...state, categories };
+    case "SET_USERS":
+      return { ...state, users };
     default:
       return state;
   }
 };
 
-export default categories;
+export default users;
