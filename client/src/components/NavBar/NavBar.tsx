@@ -19,6 +19,11 @@ const NavBar = ({ user, logout, openModal }: NavState) => {
                   Home
                 </NavLink>
               </li>
+              <li className="nav-item">
+                <NavLink to="/users" exact>
+                  Members
+                </NavLink>
+              </li>
               <li className="dropdown">
                 <span>Dropdown</span>
 

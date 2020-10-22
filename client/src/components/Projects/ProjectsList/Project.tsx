@@ -3,13 +3,14 @@
 import React from "react";
 import slugifier from "../../../utils/slugify";
 import shortify from "../../../utils/shortifyString";
+import { Link } from "react-router-dom";
 import { Project as ProjectModel } from "../../../models/projects";
 import { url } from "../../../environments/api";
 
 const Project = ({ title, image, description }: ProjectModel) => {
   return (
     <article>
-      <a href={`/project/${slugifier(title)}`} className="projectCard">
+      <Link to={`/project/${slugifier(title)}`} className="projectCard">
         <div className="projectCard-image">
           <img src={`${url}/uploads/${image}`} alt={image} draggable="false" />
         </div>
@@ -32,7 +33,7 @@ const Project = ({ title, image, description }: ProjectModel) => {
             <p>people</p>
           </div>
         </footer>
-      </a>
+      </Link>
     </article>
   );
 };
