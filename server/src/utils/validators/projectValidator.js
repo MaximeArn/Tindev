@@ -4,7 +4,6 @@ const ProjectError = require("../CustomError");
 module.exports = async (body, next) => {
   body.categories = JSON.parse(body.categories);
   const { title, size, categories } = body;
-  console.log(categories);
 
   try {
     const validateMandatoryFields = Object.values(body).every((value) => value);

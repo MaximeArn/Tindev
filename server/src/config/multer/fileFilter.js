@@ -1,6 +1,6 @@
 const ProjectError = require("../../utils/CustomError");
 const { Category } = require("../../models");
-const { tokenValidator } = require("../../utils/validators/tokenValidator");
+const { tokenValidator } = require("../../utils/validators");
 
 const ALLOWED_MIME_TYPE = {
   "image/jpeg": "jpeg",
@@ -14,10 +14,11 @@ module.exports = async (
   callback
 ) => {
   try {
-    const { title, size, categories: category } = body;
+    body.categories = JSON.parse(body.categories);
+    const { title, size, categories } = body;
     const user = await tokenValidator(token, null);
     const validateFieldsValues = Object.values(body).every((value) => value);
-    const categories = await Category.find();
+    const dbCategories = await Category.find();
 
     if (!user) {
       return callback(new ProjectError("Please sign in.", 403));
@@ -29,8 +30,12 @@ module.exports = async (
       );
     }
 
-    if (!categories.some(({ name }) => name === category)) {
-      return callback(new ProjectError("Invalid Category provided.", 400));
+    if (
+      !categories.every((name) =>
+        dbCategories.some(({ name: dbName }) => dbName === name)
+      )
+    ) {
+      throw new ProjectError("Invalid Category provided", 400);
     }
 
     if (title.length > 50) {
