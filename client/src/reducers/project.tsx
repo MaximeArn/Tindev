@@ -30,7 +30,7 @@ const project = (
     inputValue,
     teamSize,
     image,
-    category,
+    categories,
     projects,
     project,
     owner,
@@ -47,7 +47,7 @@ const project = (
         ...state,
         createProject: {
           ...state.createProject,
-          categories: [...state.createProject.categories, category],
+          categories: [categories],
         },
       };
     case "GET_PROJECT_TEAM_SIZE":

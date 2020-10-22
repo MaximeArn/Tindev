@@ -99,7 +99,6 @@ const MultipleCategories = ({
           MenuProps={MenuProps}
         >
           {categories.map(({ name }) => {
-            console.log(name);
             return (
               <MenuItem
                 key={name}

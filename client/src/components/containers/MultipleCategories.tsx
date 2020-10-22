@@ -13,9 +13,13 @@ const mapState = ({
   categoriesFieldValues,
 });
 
-const mapDispatch = (dispatch: Dispatch<AnyAction>) => ({
-  getCategories: (category: string) =>
-    dispatch({ type: "GET_PROJECT_CREATION_CATEGORIES", category }),
-});
+const mapDispatch = (dispatch: Dispatch<AnyAction>) => {
+  return {
+    getCategories: (categories: string[]) => {
+      console.log(categories);
+      dispatch({ type: "GET_PROJECT_CREATION_CATEGORIES", categories });
+    },
+  };
+};
 
 export default connect(mapState, mapDispatch)(MultipleCategories);

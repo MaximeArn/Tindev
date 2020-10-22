@@ -36,7 +36,7 @@ export interface ProjectCreation {
   title: string;
   description: string;
   image: any;
-  categories: Category[];
+  categories: Category[] | [];
   size: number | undefined;
 }
 

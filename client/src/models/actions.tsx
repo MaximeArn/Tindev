@@ -40,7 +40,7 @@ export interface ProjectAction {
   inputName: string;
   inputValue: string;
   teamSize: number;
-  category: Category;
+  categories: Category[];
   image: MutableRefObject<any>;
   projects: Project[];
   project: Project;
