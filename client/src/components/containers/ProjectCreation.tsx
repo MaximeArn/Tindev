@@ -30,6 +30,7 @@ const mapDispatch = (dispatch: Dispatch<AnyAction>, { history }: OwnProps) => {
     getCategories: () => dispatch({ type: "GET_CATEGORIES" }),
     onUrlChange: () => {
       dispatch({ type: "PROJECT_CREATION_ERROR_HANDLER" });
+      dispatch({ type: "RESET_PROJECT_CREATION_VALUES" });
     },
   };
 };

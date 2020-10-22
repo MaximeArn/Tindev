@@ -50,11 +50,13 @@ const project = (
           categories: categories,
         },
       };
-    case "GET_PROJECT_TEAM_SIZE":
+    case "GET_PROJECT_CREATION_TEAM_SIZE":
       return {
         ...state,
         createProject: { ...state.createProject, size: teamSize },
       };
+    case "RESET_PROJECT_CREATION_VALUES":
+      return { ...state, createProject: resetInputs(state.createProject) };
     case "GET_PROJECT_DETAIL_MODAL_VALUE":
       return {
         ...state,

@@ -3,7 +3,7 @@ import Buttons from "../Projects/ProjectCreation/Buttons";
 
 const mapDispatch = (dispatch: any) => ({
   getProjectTeamSize: (value: number) => {
-    dispatch({ type: "GET_PROJECT_TEAM_SIZE", teamSize: value });
+    dispatch({ type: "GET_PROJECT_CREATION_TEAM_SIZE", teamSize: value });
   },
 });
 
