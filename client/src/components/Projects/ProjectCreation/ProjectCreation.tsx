@@ -14,17 +14,22 @@ import "./projectcreation.scss";
 const ProjectCreation = ({
   projectInputs,
   error,
+  history: { listen },
   loading,
   categoriesLoader,
   setProjectImage,
   sendProject,
   getCategories,
+  onUrlChange,
 }: ProjectCreationProps) => {
   const fileInput = useRef<any>(null);
   const imagePreview = useRef<any>(null);
 
   useEffect(() => {
     getCategories();
+    listen(() => {
+      location.pathname !== "/project/create" && onUrlChange();
+    });
   }, []);
 
   const showImagePreview = (input: HTMLInputElement) => {

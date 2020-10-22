@@ -73,8 +73,10 @@ export interface ProjectCreationProps {
   loading: boolean;
   categoriesLoader: boolean;
   sendProject: Function;
+  history: any;
   setProjectImage: Function;
   getCategories: Function;
+  onUrlChange: Function;
 }
 
 export interface ProjectDetailProps {

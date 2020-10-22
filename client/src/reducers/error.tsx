@@ -25,7 +25,8 @@ const error = (state = initialState, { type, error }: ErrorAction) => {
     case "PROJECT_LIST_ERROR_HANDLER":
       return { ...state, projectListErrorMessage: error };
     case "PROJECT_CREATION_ERROR_HANDLER":
-      return { ...state, projectCreationErrorMessage: error };
+      const err = error ? error : "";
+      return { ...state, projectCreationErrorMessage: err };
     case "PROJECT_APPLY_ERROR_HANDLER":
       return { ...state, projectApplyErrorMessage: error };
     default:

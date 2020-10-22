@@ -28,6 +28,9 @@ const mapDispatch = (dispatch: Dispatch<AnyAction>, { history }: OwnProps) => {
       dispatch({ type: "SET_PROJECT_IMAGE", image }),
     sendProject: () => dispatch({ type: "SEND_PROJECT", history }),
     getCategories: () => dispatch({ type: "GET_CATEGORIES" }),
+    onUrlChange: () => {
+      dispatch({ type: "PROJECT_CREATION_ERROR_HANDLER" });
+    },
   };
 };
 

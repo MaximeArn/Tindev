@@ -16,7 +16,6 @@ const Input = ({
   getProjectInputValue,
   getProjectDetailValue,
 }: InputModel) => {
-  console.log("GOT INTO INPUT COMPONENT , DESCRIPTION VALUE : ", inputValue);
   const handleChange = ({
     target,
   }: ChangeEvent<HTMLInputElement | HTMLSelectElement>) => {
