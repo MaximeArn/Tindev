@@ -88,18 +88,14 @@ const MultipleCategories = ({
             return (
               <div className={classes.chips}>
                 {selected.map((value: string) => (
-                  <Chip
-                    key={idGenerator()}
-                    label={value}
-                    className={classes.chip}
-                  />
+                  <Chip key={value} label={value} className={classes.chip} />
                 ))}
               </div>
             );
           }}
           MenuProps={MenuProps}
         >
-          {categories.map((name) => {
+          {categories.map((name: string) => {
             console.log(name);
             return (
               <MenuItem

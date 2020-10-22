@@ -34,46 +34,16 @@ let users = [
 ];
 
 let categories = [
-  {
-    name: "Video Game",
-    color: "orange",
-  },
-  {
-    name: "Web",
-    color: "purple",
-  },
-  {
-    name: "Software",
-    color: "green",
-  },
-  {
-    name: "AI",
-    color: "blue",
-  },
-  {
-    name: "Static",
-    color: "red",
-  },
-  {
-    name: "Java",
-    color: "purple",
-  },
-  {
-    name: "React",
-    color: "purple",
-  },
-  {
-    name: "Angular",
-    color: "purple",
-  },
-  {
-    name: "Vue",
-    color: "purple",
-  },
-  {
-    name: "NodeJS",
-    color: "purple",
-  },
+  "Video Game",
+  "Web",
+  "Software",
+  "AI",
+  "Static",
+  "Java",
+  "React",
+  "Angular",
+  "Vue",
+  "NodeJS",
 ];
 
 let projects = [
