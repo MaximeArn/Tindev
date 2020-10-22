@@ -14,7 +14,7 @@ const userCard = ({
 }: User) => {
   return (
     <article className="card">
-      <Link to={`/u/${username}`} className="user">
+      <Link to={`/user/${username}`} className="user">
         <div className="user-image">
           <img
             src={`${url}/uploads/image-default.jpeg`}

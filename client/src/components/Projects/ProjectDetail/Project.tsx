@@ -43,7 +43,7 @@ const Project = ({
                   <span>
                     <FontAwesomeIcon icon={faUserCircle} size="lg" />
                   </span>
-                  <p>{username}</p>
+                  <a href={`/user/${username}`}>{username}</a>
                 </div>
               ))
             ) : (
