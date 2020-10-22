@@ -14,7 +14,7 @@ let users = [
   {
     username: "Antho",
     firstname: "Antho",
-    lastname: "",
+    lastname: "Jesaispas2",
     email: "Antho@gmail.com",
     password: "vivejason",
     age: 26,
@@ -24,7 +24,7 @@ let users = [
   {
     username: "Liv",
     firstname: "Liv",
-    lastname: "Lacon",
+    lastname: "Jesaispas3",
     email: "Liv@gmail.com",
     password: "viveleslgbt",
     age: 26,
