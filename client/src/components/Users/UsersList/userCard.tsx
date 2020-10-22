@@ -14,7 +14,7 @@ const userCard = ({
 }: User) => {
   return (
     <article className="card">
-      <Link className="user">
+      <Link to={`/u/${username}`} className="user">
         <div className="user-image">
           <img
             src={`${url}/uploads/image-default.jpeg`}
@@ -25,10 +25,10 @@ const userCard = ({
         <div className="user-content">
           <h2 className="user-username">{username}</h2>
           <p className="user-email">{email}</p>
-          <p className="user-firstname">{firstname}</p>
-          <p className="user-lastname">{lastname}</p>
-          <p className="user-age">{age && `${age} years old`}</p>
-          <p className="user-city">{city}</p>
+          {firstname && <p className="user-firstname">{firstname}</p>}
+          {lastname && <p className="user-lastname">{lastname}</p>}
+          {age && <p className="user-age">{age} years old</p>}
+          {city && <p className="user-city">{city}</p>}
         </div>
       </Link>
     </article>
