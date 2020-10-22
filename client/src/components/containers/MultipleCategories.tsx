@@ -15,10 +15,8 @@ const mapState = ({
 
 const mapDispatch = (dispatch: Dispatch<AnyAction>) => {
   return {
-    getCategories: (categories: string[]) => {
-      console.log(categories);
-      dispatch({ type: "GET_PROJECT_CREATION_CATEGORIES", categories });
-    },
+    getCategories: (categories: string[]) =>
+      dispatch({ type: "GET_PROJECT_CREATION_CATEGORIES", categories }),
   };
 };
 

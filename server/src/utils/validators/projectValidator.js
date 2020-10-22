@@ -2,7 +2,9 @@ const { Category } = require("../../models");
 const ProjectError = require("../CustomError");
 
 module.exports = async (body, next) => {
-  const { title, size, categories: category } = body;
+  body.categories = JSON.parse(body.categories);
+  const { title, size, categories } = body;
+  console.log(categories);
 
   try {
     const validateMandatoryFields = Object.values(body).every((value) => value);
@@ -11,9 +13,13 @@ module.exports = async (body, next) => {
       throw new ProjectError("Some required fields were not provided", 400);
     }
 
-    const categories = await Category.find();
+    const dbCategories = await Category.find();
 
-    if (!categories.some(({ name }) => name === category)) {
+    if (
+      !categories.every((name) =>
+        dbCategories.some(({ name: dbName }) => dbName === name)
+      )
+    ) {
       throw new ProjectError("Invalid Category provided", 400);
     }
 
@@ -26,7 +32,6 @@ module.exports = async (body, next) => {
     }
 
     parseInt(body.size);
-    body.categories = categories.filter(({ name }) => name === category);
 
     return body;
   } catch (error) {

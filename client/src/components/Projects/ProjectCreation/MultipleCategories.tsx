@@ -61,7 +61,6 @@ function getStyles(
   };
 }
 
-
 const MultipleCategories = ({
   categories,
   categoriesFieldValues,
@@ -69,7 +68,6 @@ const MultipleCategories = ({
 }: MultipleCategory) => {
   const classes = useStyles();
   const theme = useTheme();
-  // const [categoryName, setCategories] = React.useState<string[]>([]);
 
   const handleChange = (event: ChangeEvent<{ value: unknown }>) => {
     getCategories(event.target.value);

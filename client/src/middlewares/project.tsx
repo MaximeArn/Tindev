@@ -14,7 +14,9 @@ const sendProject = ({ getState, dispatch, history }: AxiosSubmit) => {
   const formData = new FormData();
 
   for (const key in createProject) {
-    formData.append(key, createProject[key]);
+    key === "categories"
+      ? formData.append(key, JSON.stringify(createProject[key]))
+      : formData.append(key, createProject[key]);
   }
 
   dispatch({ type: "SET_PROJECT_CREATION_LOADER", value: true });
