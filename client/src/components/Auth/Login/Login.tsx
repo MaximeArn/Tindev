@@ -25,10 +25,6 @@ const Login = ({
     submitLogin(history);
   };
 
-  const handleModalClick = (event: MouseEvent<HTMLDivElement>) => {
-    event.target === modal.current && closeModal(false);
-  };
-
   let registered;
   if (useLocation().state) {
     let {
@@ -44,7 +40,7 @@ const Login = ({
         ref={modal}
         id="registerContainer"
         className="modalContainer"
-        onMouseDown={handleModalClick}
+        onMouseDown={(event) => modalClickHandler({ event, modal, closeModal })}
       >
         <div className="modal" id="modal">
           <form method="POST" onSubmit={handleSubmit}>

@@ -26,12 +26,12 @@ const Register = ({
     submitRegister(history);
   };
 
-  const handleModalClick = (event: MouseEvent<HTMLDivElement>) => {
-    event.target === modal.current && closeModal(false);
-  };
-
   return (
-    <div ref={modal} className="modalContainer" onMouseDown={handleModalClick}>
+    <div
+      ref={modal}
+      className="modalContainer"
+      onMouseDown={(event) => modalClickHandler({ event, modal, closeModal })}
+    >
       <div className="modal" id="modal">
         <form method="POST" onSubmit={handleSubmit}>
           <div className="modal-padding">
