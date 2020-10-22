@@ -76,7 +76,7 @@ const ProjectCreation = ({
                   <div className="project-creation-error-message">{error}</div>
                 )}
                 <section className="image-section">
-                  <div className="" onClick={onFileBrowserClick}>
+                  <div onClick={onFileBrowserClick}>
                     <button className="project-creation-button image">
                       <FontAwesomeIcon icon={faCamera} size="lg" />
                     </button>
@@ -85,7 +85,6 @@ const ProjectCreation = ({
                       src="https://user-images.githubusercontent.com/2351721/31314483-7611c488-ac0e-11e7-97d1-3cfc1c79610e.png"
                       alt="your image"
                       className="image-preview"
-                      onClick={onFileBrowserClick}
                     />
                   </div>
                 </section>
