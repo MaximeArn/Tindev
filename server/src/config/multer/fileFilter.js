@@ -1,7 +1,6 @@
 const ProjectError = require("../../utils/CustomError");
 const { Category } = require("../../models");
-const {} = require("../../utils/validators/tokenValidator");
-const { tokenValidator } = require("../../utils/validators");
+const { tokenValidator } = require("../../utils/validators/tokenValidator");
 
 const ALLOWED_MIME_TYPE = {
   "image/jpeg": "jpeg",

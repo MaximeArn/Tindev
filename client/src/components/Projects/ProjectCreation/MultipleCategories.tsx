@@ -61,6 +61,7 @@ function getStyles(
   };
 }
 
+
 const MultipleCategories = ({
   categories,
   categoriesFieldValues,

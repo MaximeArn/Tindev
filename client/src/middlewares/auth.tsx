@@ -14,7 +14,7 @@ const setUser = ({ getState, dispatch, history }: AxiosSubmit) => {
   const { register } = getState().auth;
   dispatch({ type: "SET_REGISTER_LOADER", value: true });
   axios
-    .post("/auth/register", { ...register })
+    .post("/auth/register", register)
     .then(({ data: { msg } }) => {
       history.push({
         pathname: "/login",
@@ -35,7 +35,7 @@ const setLogin = ({ getState, dispatch, history }: AxiosSubmit) => {
   const { login } = getState().auth;
   dispatch({ type: "SET_LOGIN_LOADER", value: true });
   axios
-    .post("/auth/login", { ...login })
+    .post("/auth/login", login)
     .then(({ data }) => {
       const { token, email, username } = data;
       !Cookies.get("token") && Cookies.set("token", token, { expires: 7 });
@@ -57,8 +57,8 @@ const retrieveToken = (dispatch: Dispatch<AnyAction>) => {
   Cookies.get("token") &&
     axios
       .get("/auth/verify")
-      .then(({ data: { username, email } }) => {
-        dispatch({ type: "CONNECT_USER", credentials: { username, email } });
+      .then(({ data: credentials }) => {
+        dispatch({ type: "CONNECT_USER", credentials });
       })
       .catch(({ response }) => console.log(response));
 };
