@@ -10,7 +10,6 @@ const Input = ({
   formType,
   name,
   inputValue,
-  categories,
   required,
   getRegisterInputValue,
   getLoginInputValue,
@@ -31,32 +30,17 @@ const Input = ({
 
   return (
     <>
-      {name === "categories" ? (
-        <select
-          name={name}
-          className="project-creation-input"
-          onChange={handleChange}
-          defaultValue={undefined}
-        >
-          {categories.map(({ name }) => (
-            <option key={name} value={name}>
-              {name}
-            </option>
-          ))}
-        </select>
-      ) : (
-        <input
-          className={
-            name === "description" ? "auth-input description" : "auth-input"
-          }
-          type={convertInputType(name)}
-          name={name}
-          placeholder={capitalizeFirstLetter(name)}
-          onChange={handleChange}
-          value={inputValue}
-          required={required}
-        />
-      )}
+      <input
+        className={
+          name === "description" ? "auth-input description" : "auth-input"
+        }
+        type={convertInputType(name)}
+        name={name}
+        placeholder={capitalizeFirstLetter(name)}
+        onChange={handleChange}
+        value={inputValue}
+        required={required}
+      />
     </>
   );
 };
