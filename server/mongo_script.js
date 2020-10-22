@@ -34,16 +34,36 @@ let users = [
 ];
 
 let categories = [
-  "Video Game",
-  "Web",
-  "Software",
-  "AI",
-  "Static",
-  "Java",
-  "React",
-  "Angular",
-  "Vue",
-  "NodeJS",
+  {
+    name: "Video Game",
+  },
+  {
+    name: "Web",
+  },
+  {
+    name: "Software",
+  },
+  {
+    name: "AI",
+  },
+  {
+    name: "Static",
+  },
+  {
+    name: "Java",
+  },
+  {
+    name: "React",
+  },
+  {
+    name: "Angular",
+  },
+  {
+    name: "Vue",
+  },
+  {
+    name: "NodeJS",
+  },
 ];
 
 let projects = [

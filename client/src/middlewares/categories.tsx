@@ -11,7 +11,6 @@ const getCategories = (dispatch: Dispatch<AnyAction>) => {
   axios
     .get("/categories")
     .then(({ data: categories }) => {
-      console.log(categories);
       dispatch({ type: "SET_CATEGORIES", categories });
     })
     .catch((error) => console.error(error))
