@@ -30,9 +30,7 @@ const Register = ({
     <div
       ref={modal}
       className="modalContainer"
-      onMouseDown={(event) =>
-        modalClickHandler({ event, modal, history, closeModal })
-      }
+      onMouseDown={() => closeModal(false)}
     >
       <div className="modal" id="modal">
         <form method="POST" onSubmit={handleSubmit}>

@@ -1,6 +1,6 @@
 /** @format */
 
-import React, { FormEvent, useRef } from "react";
+import React, { FormEvent, MouseEvent, useRef } from "react";
 import { LoginAuth } from "../../../models/states";
 import { Link, useHistory, useLocation } from "react-router-dom";
 import googleIcon from "src/assets/icons/googleIcon.svg";
@@ -25,6 +25,10 @@ const Login = ({
     submitLogin(history);
   };
 
+  const handleModalClick = (event: MouseEvent<HTMLDivElement>) => {
+    event.target === modal.current && closeModal(false);
+  };
+
   let registered;
   if (useLocation().state) {
     let {
@@ -40,9 +44,7 @@ const Login = ({
         ref={modal}
         id="registerContainer"
         className="modalContainer"
-        onMouseDown={(event) =>
-          modalClickHandler({ event, modal, history, closeModal })
-        }
+        onMouseDown={handleModalClick}
       >
         <div className="modal" id="modal">
           <form method="POST" onSubmit={handleSubmit}>

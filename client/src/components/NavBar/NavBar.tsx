@@ -61,7 +61,7 @@ const NavBar = ({ user, logout, openModal }: NavState) => {
                     <a
                       className="auth-modal"
                       onClick={() =>
-                        openModal({ modalStatus: true, modal: "login" })
+                        openModal({ modalStatus: true, modal: "register" })
                       }
                     >
                       Register
