@@ -3,12 +3,11 @@
 .maxiWrapper {
   height: calc(100vh - 80px);
   width: 100vw;
-  background: linear-gradient(
-    90deg,
-    rgba(149, 230, 191, 1) 0%,
-    rgba(84, 227, 206, 1) 48%,
-    rgba(0, 212, 255, 1) 100%
-  );
+  height: 100%;
+  background: linear-gradient(90deg,
+      rgba(149, 230, 191, 1) 0%,
+      rgba(84, 227, 206, 1) 48%,
+      rgba(0, 212, 255, 1) 100%);
   color: #fff;
   margin-top: 80px;
 }
@@ -20,7 +19,7 @@
 }
 
 .project-container {
-  height: 100%;
+  height: 100vh;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -62,9 +61,25 @@
     align-items: center;
     justify-content: flex-start;
 
+    div {
+      position: relative;
+    }
+
+    button {
+      width: 20px;
+      color: #0AD6FB;
+      padding: 0;
+      background-color: transparent;
+      border: none;
+      position: absolute;
+      bottom: -5px;
+      right: -10px;
+    }
+
     img {
-      max-width: 110px;
-      max-height: 110px;
+      max-width: 150px;
+      max-height: 150px;
+      cursor: pointer;
     }
   }
 
