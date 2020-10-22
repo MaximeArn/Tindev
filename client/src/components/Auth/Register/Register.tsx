@@ -1,5 +1,5 @@
 /** @format */
-import React, { FormEvent, useRef } from "react";
+import React, { FormEvent, MouseEvent, useRef } from "react";
 import { Authentication, RegisterAuth, Loaders } from "../../../models/states";
 import { Link, useHistory } from "react-router-dom";
 import googleIcon from "src/assets/icons/googleIcon.svg";
@@ -26,12 +26,12 @@ const Register = ({
     submitRegister(history);
   };
 
+  const handleModalClick = (event: MouseEvent<HTMLDivElement>) => {
+    event.target === modal.current && closeModal(false);
+  };
+
   return (
-    <div
-      ref={modal}
-      className="modalContainer"
-      onMouseDown={() => closeModal(false)}
-    >
+    <div ref={modal} className="modalContainer" onMouseDown={handleModalClick}>
       <div className="modal" id="modal">
         <form method="POST" onSubmit={handleSubmit}>
           <div className="modal-padding">
