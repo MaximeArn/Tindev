@@ -1,6 +1,6 @@
 /** @format */
 const { User } = require("../models");
-const { tokenValidator } = require("../utils/validators");
+const { tokenValidator, userValidator } = require("../utils/validators");
 
 const usersController = {
   getUsers: async ({ cookies: { token } }, res, next) => {
@@ -21,11 +21,11 @@ const usersController = {
     next
   ) => {
     try {
-      // const { id } = await tokenValidator(token, next);
-      // if (id) {
-      const user = await User.findOne({ username });
-
-      // }
+      const { id } = await tokenValidator(token, next);
+      const user = await userValidator(username, next);
+      if (id && user) {
+        return res.status(200).json(user);
+      }
     } catch (error) {
       next(error);
     }

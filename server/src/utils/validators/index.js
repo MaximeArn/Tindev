@@ -6,6 +6,8 @@ const registerValidator = require("./registerValidator");
 const loginValidator = require("./loginValidator");
 const projectValidator = require("./projectValidator");
 const tokenValidator = require("./tokenValidator");
+const userValidator = require("./userValidator");
+
 module.exports = {
   applicantValidator,
   applyValidator,
@@ -13,4 +15,5 @@ module.exports = {
   loginValidator,
   projectValidator,
   tokenValidator,
+  userValidator,
 };
