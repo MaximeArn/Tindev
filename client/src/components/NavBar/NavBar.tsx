@@ -1,7 +1,7 @@
 /** @format */
 
 import React from "react";
-import { NavLink } from "react-router-dom";
+import { NavLink, Link } from "react-router-dom";
 import { NavState } from "../../models/states";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faUserCircle } from "@fortawesome/free-solid-svg-icons";
@@ -98,7 +98,9 @@ const NavBar = ({ user, logout, openModal }: NavState) => {
                         </svg>
                         <div className="dropdown-list">
                           <NavLink to="/account">My Profile</NavLink>
-                          <button onClick={() => logout()}>Logout</button>
+                          <a className="auth-modal" onClick={() => logout()}>
+                            Logout
+                          </a>
                         </div>
                       </div>
                     </span>
