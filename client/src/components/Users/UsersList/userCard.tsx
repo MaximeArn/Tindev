@@ -4,6 +4,10 @@ import React from "react";
 import { User } from "../../../models/users";
 import { Link } from "react-router-dom";
 import { url } from "../../../environments/api";
+import MailOutlineOutlinedIcon from "@material-ui/icons/MailOutlineOutlined";
+import PermIdentityOutlinedIcon from "@material-ui/icons/PermIdentityOutlined";
+import LocationCityOutlinedIcon from "@material-ui/icons/LocationCityOutlined";
+
 const userCard = ({
   username,
   firstname,
@@ -24,22 +28,46 @@ const userCard = ({
               className="background-image"
             />
           </div>
-          <div className="avatar-container">
+          <div className="header-content">
             <img
               src={`${url}/uploads/users/default-image.jpg`}
               alt="user-image"
               draggable="false"
               className="avatar"
             />
+            <h2 className="full-name">
+              {firstname} {lastname}
+            </h2>
           </div>
         </header>
         <div className="user-content">
-          <h2 className="user-username">{username}</h2>
-          <p className="user-email">{email}</p>
-          {firstname && <p className="user-firstname">{firstname}</p>}
-          {lastname && <p className="user-lastname">{lastname}</p>}
-          {age && <p className="user-age">{age} years old</p>}
-          {city && <p className="user-city">{city}</p>}
+          <div className="info-row">
+            <p className="info-row-name">
+              <span>
+                <MailOutlineOutlinedIcon style={{ fontSize: 16 }} />
+              </span>
+              E-mail :
+            </p>
+            <p>{email}</p>
+          </div>
+          <div className="info-row">
+            <p className="info-row-name">
+              <span>
+                <PermIdentityOutlinedIcon style={{ fontSize: 16 }} />
+              </span>
+              User name :
+            </p>
+            <p>{username}</p>
+          </div>
+          <div className="info-row">
+            <p className="info-row-name">
+              <span>
+                <LocationCityOutlinedIcon style={{ fontSize: 16 }} />
+              </span>
+              City :
+            </p>
+            <p>{city}</p>
+          </div>
         </div>
       </Link>
     </article>
