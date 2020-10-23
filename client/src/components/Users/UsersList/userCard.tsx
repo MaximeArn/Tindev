@@ -15,13 +15,24 @@ const userCard = ({
   return (
     <article className="card">
       <Link to={`/user/${username}`} className="user">
-        <div className="user-image">
-          <img
-            src={`${url}/uploads/image-default.jpeg`}
-            alt="user-image"
-            draggable="false"
-          />
-        </div>
+        <header className="user-image">
+          <div className="background-container">
+            <img
+              src={`${url}/uploads/users/default-image.jpg`}
+              alt="user-image"
+              draggable="false"
+              className="background-image"
+            />
+          </div>
+          <div className="avatar-container">
+            <img
+              src={`${url}/uploads/users/default-image.jpg`}
+              alt="user-image"
+              draggable="false"
+              className="avatar"
+            />
+          </div>
+        </header>
         <div className="user-content">
           <h2 className="user-username">{username}</h2>
           <p className="user-email">{email}</p>
