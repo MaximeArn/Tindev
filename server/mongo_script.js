@@ -74,7 +74,7 @@ let projects = [
     description: `Le Pomodoro, pour ceux qui ne connaissent pas, c'est quoi ?
       C'est une technique de gestion du temps, basée sur un minuteur. On sélectionne une tâche, puis on travaille sur des durées de 25 minutes, et on enchaîne sur de courtes pauses, par cycle de 4 pour arriver à une pause plus longue.`,
     contributors: [],
-    categories: ["Java"],
+    categories: ["Java", "Software", "AI", "Angular"],
     applicants: [],
     size: 2,
   },
@@ -84,7 +84,7 @@ let projects = [
     title: "Voyage Voyage",
     description: `Un outil qui permettrait à chaque personne ayant l’âme d'un leader de groupe d'organiser un voyage que ce soit pour un séminaire professionnel, un voyage entre amis ou en famille ou autre.`,
     contributors: [],
-    categories: ["AI"],
+    categories: ["Java", "Software", "AI", "Angular"],
     applicants: [],
     size: 3,
   },
@@ -98,7 +98,7 @@ let projects = [
       S'appuyer sur un référentiel de fiches diverses en BDD pour mieux gérer nos potagers.
       Le but est de faire un projet qui nous plait, de continuer à apprendre et de travailler en équipe. C'est certainement un poil ambitieux, alors on peut évidemment simplifier.`,
     contributors: [],
-    categories: ["Software"],
+    categories: ["Java", "Software", "AI", "Angular"],
     applicants: [],
     size: 4,
   },
@@ -111,8 +111,22 @@ let projects = [
       Vous aurez la possibilité de filtrer les recherches selon vos critères.
       Discutez avec les autres utilisateurs via une messagerie instantanée et créez des groupes afin de faciliter la communication.`,
     contributors: [],
-    categories: ["Angular"],
-    applicants: [],
+    categories: ["Java", "Software", "AI", "Angular"],
+    applicants: [
+      {
+        username: "Etienne",
+        message:
+          "J'suis chaud pour le projet mais y a cyberpunk dans 3 semaine tu comptes plus sur moi après",
+      },
+      { username: "Tanguy", message: "react-redux chaud !!!" },
+      { username: "Jerry", message: "salut le projet est en français ?" },
+      {
+        username: "Maxime",
+        message:
+          "SLT MOI C MAXIME JSUIS CHO PR LE PROJET SA MERE PREN MOI STEUPLEZ",
+      },
+      { username: "John", message: "Interessant comme projet je postule" },
+    ],
     size: 5,
   },
 ];

@@ -47,7 +47,7 @@ const Project = ({
                 </div>
               ))
             ) : (
-              <p>no member yet</p>
+              <p>No contributors yet</p>
             )}
           </div>
         </div>
