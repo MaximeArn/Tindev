@@ -123,4 +123,5 @@ export interface DeclineApplicantModalProps {
   userId: string;
   declineApplicant: Function;
   setModalStatus: Function;
+  username: string;
 }

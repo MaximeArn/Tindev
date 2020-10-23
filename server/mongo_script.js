@@ -112,21 +112,7 @@ let projects = [
       Discutez avec les autres utilisateurs via une messagerie instantanée et créez des groupes afin de faciliter la communication.`,
     contributors: [],
     categories: ["Java", "Software", "AI", "Angular"],
-    applicants: [
-      {
-        username: "Etienne",
-        message:
-          "J'suis chaud pour le projet mais y a cyberpunk dans 3 semaine tu comptes plus sur moi après",
-      },
-      { username: "Tanguy", message: "react-redux chaud !!!" },
-      { username: "Jerry", message: "salut le projet est en français ?" },
-      {
-        username: "Maxime",
-        message:
-          "SLT MOI C MAXIME JSUIS CHO PR LE PROJET SA MERE PREN MOI STEUPLEZ",
-      },
-      { username: "John", message: "Interessant comme projet je postule" },
-    ],
+    applicants: [],
     size: 5,
   },
 ];

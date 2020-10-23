@@ -16,7 +16,7 @@ const NavBar = ({ user, logout, openModal }: NavState) => {
             <div className="links">
               <li className="nav-item">
                 <NavLink to="/" exact>
-                  Home
+                  Tindev
                 </NavLink>
               </li>
               <li className="nav-item">
@@ -59,7 +59,7 @@ const NavBar = ({ user, logout, openModal }: NavState) => {
                         openModal({ modalStatus: true, modal: "login" })
                       }
                     >
-                      Login
+                      Sign in
                     </a>
                   </li>
                   <li className="nav-item">
@@ -69,7 +69,7 @@ const NavBar = ({ user, logout, openModal }: NavState) => {
                         openModal({ modalStatus: true, modal: "register" })
                       }
                     >
-                      Register
+                      Sign up
                     </a>
                   </li>
                 </>

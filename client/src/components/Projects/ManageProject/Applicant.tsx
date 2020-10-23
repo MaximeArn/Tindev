@@ -69,7 +69,7 @@ const Applicant = ({
                 </h3>
               </div>
               <div className="applicant-row-profile">
-                <Link to={`/profile/${username}`}>view profile</Link>
+                <Link to={`/user/${username}`}>view profile</Link>
               </div>
               <div className="applicant-row-actions">
                 <i className="icon comment">

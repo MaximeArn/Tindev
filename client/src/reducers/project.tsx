@@ -73,6 +73,7 @@ const project = (
     case "SET_PROJECTS":
       return { ...state, projects };
     case "SET_PROJECT":
+      console.log("UPDATING PROJECT : ", project);
       return { ...state, projects: updateProjects(project, state.projects) };
     case "ADD_PROJECT_ON_PROJECT_CREATION":
       return { ...state, projects: [...state.projects, project] };
