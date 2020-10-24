@@ -96,7 +96,7 @@ const ProjectCreation = ({
                 <section className="title-section">
                   <div className="title-wrapper">
                     <h3 className="project-creation-title-entry">
-                      Project Title :
+                      PROJECT TITLE
                     </h3>
                   </div>
                   <Input
@@ -109,7 +109,7 @@ const ProjectCreation = ({
 
                 <section className="description-section">
                   <h3 className="project-creation-title">
-                    Project Description - try to be as detailed as possible :
+                    PROJECT DESCRIPTION - try to be as detailed as possible
                   </h3>
 
                   <Input
@@ -120,13 +120,11 @@ const ProjectCreation = ({
                 </section>
 
                 <section className="category-section">
-                  <h3 className="project-creation-title">Project category :</h3>
+                  <h3 className="project-creation-title">PROJECT CATEGORY</h3>
                   <MultipleCategories />
                 </section>
                 <section className="team-size-section">
-                  <h3 className="project-creation-title">
-                    Desired team size :
-                  </h3>
+                  <h3 className="project-creation-title">DESIRED TEAM SIZE</h3>
                   <div className="project-creation-teamsize">
                     <Buttons />
                   </div>

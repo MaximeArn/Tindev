@@ -27,8 +27,10 @@ const mapDispatch = (dispatch: Dispatch<AnyAction>) => ({
       modalStatus,
     });
   },
-  swapModal: ({ modal, modal2 }: AuthModalSwapping) =>
-    dispatch({ type: "SWAP_AUTH_MODAL", modal, modal2, modalStatus: false }),
+  swapModal: ({ modal, modal2 }: AuthModalSwapping) => {
+    dispatch({ type: "SWAP_AUTH_MODAL", modal, modal2, modalStatus: false });
+    dispatch({ type: "RESET_AUTH_MODAL_ERROR_VALUES" });
+  },
 });
 
 export default connect(mapState, mapDispatch)(Login);

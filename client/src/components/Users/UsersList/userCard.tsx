@@ -7,6 +7,7 @@ import { url } from "../../../environments/api";
 import MailOutlineOutlinedIcon from "@material-ui/icons/MailOutlineOutlined";
 import PermIdentityOutlinedIcon from "@material-ui/icons/PermIdentityOutlined";
 import LocationCityOutlinedIcon from "@material-ui/icons/LocationCityOutlined";
+import userify from "../../../utils/whiteSpaceRemover";
 
 const userCard = ({
   username,
@@ -18,7 +19,7 @@ const userCard = ({
 }: User) => {
   return (
     <article className="card">
-      <Link to={`/user/${username}`} className="user">
+      <Link to={`/user/${userify(username)}`} className="user">
         <header className="user-image">
           <div className="background-container">
             <img

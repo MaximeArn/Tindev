@@ -22,7 +22,7 @@ const ManageProject = ({ project }: ProjectProp) => {
   return (
     <div className="applyPage">
       <span className="left-arrow" onClick={pushLastPath}>
-        <FontAwesomeIcon icon={faArrowLeft} size="lg" color="#333" />
+        <FontAwesomeIcon icon={faArrowLeft} size="2x" color="#F7F7F7" />
       </span>
       <div className="applyPage-content">
         <div className="title-section">

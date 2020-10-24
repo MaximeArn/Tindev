@@ -9,6 +9,7 @@ import { url } from "../../../environments/api";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faUserCircle } from "@fortawesome/free-solid-svg-icons";
 import { Link, useLocation } from "react-router-dom";
+import userify from "../../../utils/whiteSpaceRemover";
 
 const Project = ({
   title,
@@ -43,7 +44,7 @@ const Project = ({
                   <span>
                     <FontAwesomeIcon icon={faUserCircle} size="lg" />
                   </span>
-                  <a href={`/user/${username}`}>{username}</a>
+                  <Link to={`/user/${userify(username)}`}>{username}</Link>
                 </div>
               ))
             ) : (
