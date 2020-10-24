@@ -1,8 +1,13 @@
 import { connect } from "react-redux";
 import { AnyAction, Dispatch } from "redux";
 import UserProfile from "../Users/UserProfile/UserProfile";
+import { State } from "../../models/states";
 import { withRouter } from "react-router-dom";
 import { OwnProps } from "../../models/connect";
+
+const mapState = ({ users: { user } }: State) => ({
+  user,
+});
 
 const mapDispatch = (
   dispatch: Dispatch<AnyAction>,
@@ -14,4 +19,4 @@ const mapDispatch = (
   };
 };
 
-export default withRouter(connect(null, mapDispatch)(UserProfile));
+export default withRouter(connect(mapState, mapDispatch)(UserProfile));
