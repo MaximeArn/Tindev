@@ -16,12 +16,23 @@ const getUsers = (dispatch: Dispatch<AnyAction>) => {
     .catch((error) => console.log(error));
 };
 
+const getUser = (dispatch: Dispatch<AnyAction>, username: string) => {
+  axios
+    .get(`/users/${username}`)
+    .then((result) => console.log(result))
+    .catch((error) => console.log(error));
+};
+
 const project: Middleware = ({ getState, dispatch }) => (next) => (action) => {
-  //   const {} = action;
+  const { username } = action;
 
   switch (action.type) {
     case "GET_USERS":
       getUsers(dispatch);
+      break;
+    case "GET_USER":
+      getUser(dispatch, username);
+      break;
     default:
       next(action);
       break;
