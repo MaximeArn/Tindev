@@ -1,0 +1,7 @@
+@use '../../../styles/vars';
+
+.user-profile {
+  padding: calc(1rem + 80px) 1rem 1rem 1rem;
+  min-height: 100vh;
+  height: 100%;
+}

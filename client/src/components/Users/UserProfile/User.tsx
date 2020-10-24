@@ -1,7 +1,10 @@
 import React from "react";
+import { User } from "../../../models/users";
+import "./userprofile.scss";
 
-const User = () => {
-  return <div></div>;
+const User = ({ username }: User) => {
+  console.log(username);
+  return <div>HELLO HELLO HELLO</div>;
 };
 
 export default User;
