@@ -16,6 +16,7 @@ const setUser = ({ getState, dispatch }: AxiosSubmit) => {
   axios
     .post("/auth/register", register)
     .then(({ data: { msg } }) => {
+      Cookies.remove("token");
       dispatch({
         type: "SWAP_AUTH_MODAL",
         modal: "register",
