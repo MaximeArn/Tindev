@@ -11,6 +11,8 @@ const success = (state = initialState, { type, message }: SuccessAction) => {
       return { ...state, applySuccess: msg };
     case "REGISTER_SUCCESS_MESSAGE":
       return { ...state, registerSuccess: message };
+    case "RESET_REGISTER_SUCCESS_MESSAGE":
+      return { ...state, registerSuccess: false };
     default:
       return state;
   }

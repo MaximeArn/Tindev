@@ -24,6 +24,7 @@ const setUser = ({ getState, dispatch }: AxiosSubmit) => {
       });
       dispatch({ type: "REGISTER_SUCCESS_MESSAGE", message: msg });
       dispatch({ type: "RESET_AUTH_INPUTS_VALUES", authType: "register" });
+      dispatch({ type: "RESET_AUTH_MODAL_ERROR_VALUES" });
     })
     .catch(({ response }) => {
       const { msg: error } = response.data;
@@ -49,6 +50,8 @@ const setLogin = ({ getState, dispatch }: AxiosSubmit) => {
         modal: "login",
       });
       dispatch({ type: "RESET_AUTH_INPUTS_VALUES", authType: "login" });
+      dispatch({ type: "RESET_AUTH_MODAL_ERROR_VALUES" });
+      dispatch({ type: "RESET_REGISTER_SUCCESS_MESSAGE" });
     })
     .catch(({ response }) => {
       const { msg: error } = response.data;
