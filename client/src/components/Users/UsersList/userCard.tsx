@@ -4,6 +4,7 @@ import React from "react";
 import { User } from "../../../models/users";
 import { Link } from "react-router-dom";
 import { url } from "../../../environments/api";
+import userify from "../../../utils/whiteSpaceRemover";
 const userCard = ({
   username,
   firstname,
@@ -14,7 +15,7 @@ const userCard = ({
 }: User) => {
   return (
     <article className="card">
-      <Link to={`/user/${username}`} className="user">
+      <Link to={`/user/${userify(username)}`} className="user">
         <div className="user-image">
           <img
             src={`${url}/uploads/image-default.jpeg`}
