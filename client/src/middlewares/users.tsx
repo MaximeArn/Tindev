@@ -19,8 +19,10 @@ const getUsers = (dispatch: Dispatch<AnyAction>) => {
 const getUser = (dispatch: Dispatch<AnyAction>, username: string) => {
   axios
     .get(`/users/${username}`)
-    .then((result) => console.log(result))
-    .catch((error) => console.log(error));
+    .then(({ data: user }) => dispatch({ type: "SET_USER", user }))
+    .catch(({ response: { data: { msg: error } } }) =>
+      dispatch({ type: "USER_PROFILE_ERROR_HANDLER", error })
+    );
 };
 
 const project: Middleware = ({ getState, dispatch }) => (next) => (action) => {

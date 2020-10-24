@@ -2,7 +2,8 @@ import React, { useEffect } from "react";
 import { UserProps } from "../../../models/users";
 import "./userprofile.scss";
 
-const UserProfile = ({ getUser }: UserProps) => {
+const UserProfile = ({ user, getUser }: UserProps) => {
+  console.log("USER : ", user);
   useEffect(() => {
     getUser();
   }, []);

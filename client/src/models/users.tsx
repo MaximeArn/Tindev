@@ -18,5 +18,6 @@ export interface User {
 }
 
 export interface UserProps {
+  user: User;
   getUser: Function;
 }
