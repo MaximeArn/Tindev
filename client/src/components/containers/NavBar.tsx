@@ -14,5 +14,8 @@ const mapDispatch = (dispatch: Dispatch<AnyAction>) => ({
   openModal: ({ modalStatus, modal }: AuthModalOpening) => {
     dispatch({ type: "SET_AUTH_MODAL_STATUS", modalStatus, modal });
   },
+  getSearchValue: (value: string) =>
+    dispatch({ type: "GET_SEARCH_VALUE", value }),
+  sendSearch: () => dispatch({ type: "SEND_RESEARCH" }),
 });
 export default connect(mapState, mapDispatch)(NavBar);

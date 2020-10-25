@@ -7,6 +7,8 @@ const initialState: SearchState = {
 
 const search = (state = initialState, { type, value }: SearchAction) => {
   switch (type) {
+    case "GET_SEARCH_VALUE":
+      return { ...state, research: value };
     default:
       return state;
   }

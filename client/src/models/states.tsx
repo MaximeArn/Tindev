@@ -116,6 +116,8 @@ export interface NavState {
   user: { email: string; username: string } | null;
   research: string;
   logout: Function;
+  getSearchValue: Function;
+  sendSearch: Function;
   openModal: Function;
 }
 

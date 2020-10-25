@@ -24,6 +24,7 @@ import MailIcon from "@material-ui/icons/Mail";
 import NotificationsIcon from "@material-ui/icons/Notifications";
 import MoreIcon from "@material-ui/icons/MoreVert";
 import "./navBar.scss";
+import { send } from "process";
 
 const useStyles = makeStyles((theme: Theme) =>
   createStyles({
@@ -105,7 +106,14 @@ const useStyles = makeStyles((theme: Theme) =>
   })
 );
 
-const NavBar = ({ user, research, logout, openModal }: NavState) => {
+const NavBar = ({
+  user,
+  research,
+  getSearchValue,
+  sendSearch,
+  logout,
+  openModal,
+}: NavState) => {
   const classes = useStyles();
   const [anchorEl, setAnchorEl] = React.useState<null | HTMLElement>(null);
   const [
@@ -151,7 +159,7 @@ const NavBar = ({ user, research, logout, openModal }: NavState) => {
             logout();
           }}
         >
-          logout
+          Logout
         </MenuItem>
         <MenuItem onClick={handleMenuClose}>My account</MenuItem>
       </div>
@@ -235,14 +243,19 @@ const NavBar = ({ user, research, logout, openModal }: NavState) => {
             <div className={classes.searchIcon}>
               <SearchIcon />
             </div>
-            <InputBase
-              placeholder="Search…"
-              classes={{
-                root: classes.inputRoot,
-                input: classes.inputInput,
-              }}
-              inputProps={{ "aria-label": "search" }}
-            />
+            <form onSubmit={() => sendSearch()}>
+              <InputBase
+                name="search"
+                placeholder="Search…"
+                value={research}
+                onChange={({ target }) => getSearchValue(target.value)}
+                classes={{
+                  root: classes.inputRoot,
+                  input: classes.inputInput,
+                }}
+                inputProps={{ "aria-label": "search" }}
+              />
+            </form>
           </div>
           <div className={classes.grow} />
           <div className={classes.sectionDesktop}>
@@ -266,7 +279,7 @@ const NavBar = ({ user, research, logout, openModal }: NavState) => {
                     openModal({ modalStatus: true, modal: "login" })
                   }
                 >
-                  login
+                  Sign In
                 </Typography>
                 <Typography
                   className={classes.navLink}
@@ -276,7 +289,7 @@ const NavBar = ({ user, research, logout, openModal }: NavState) => {
                     openModal({ modalStatus: true, modal: "register" })
                   }
                 >
-                  register
+                  Sign Up
                 </Typography>
               </div>
             ) : (
