@@ -1,7 +1,6 @@
 const jwt = require("jsonwebtoken");
 const UserError = require("../CustomError");
 const { User } = require("../../models");
-const { Error } = require("mongoose");
 const secret = process.env.SECRET;
 
 module.exports = (token, next) => {

@@ -22,11 +22,12 @@
     display: block;
     margin: 0 auto;
     text-align: center;
+    position: relative;
   }
 
   img {
-    width: 250px;
-    height: 250px;
+    width: 42%;
+    height: 80%;
     margin: auto;
     border-radius: 50%;
     border: 4px solid #fff;
@@ -41,7 +42,6 @@
     overflow: hidden;
     padding: 1rem;
     color: #555;
-    border: 1px solid hsla(0, 1%, 34%, 0.26);
     margin: auto;
   }
 
@@ -52,4 +52,34 @@
     height: 70vh;
     border-left: none;
   }
+
+  &-social {
+    border-top: 1px solid #333;
+    width: 80%;
+    margin: auto;
+    display: flex;
+    justify-content: center;
+    margin-top: 3rem;
+  }
+
+  &-icon {
+    width: 30%;
+    display: flex;
+    justify-content: space-evenly;
+    margin-top: 2rem;
+  }
+}
+
+@media (max-width: 600px) {
+  .user-profile {
+    img {
+      height: auto;
+    }
+  }
+}
+
+.chat {
+  position: absolute;
+  right: 5%;
+  top: 5%;
 }
