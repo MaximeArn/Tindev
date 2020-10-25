@@ -23,7 +23,7 @@ import AccountCircle from "@material-ui/icons/AccountCircle";
 import MailIcon from "@material-ui/icons/Mail";
 import NotificationsIcon from "@material-ui/icons/Notifications";
 import MoreIcon from "@material-ui/icons/MoreVert";
-// import "./navBar.scss";
+import "./navBar.scss";
 
 const useStyles = makeStyles((theme: Theme) =>
   createStyles({
@@ -38,6 +38,19 @@ const useStyles = makeStyles((theme: Theme) =>
       [theme.breakpoints.up("sm")]: {
         display: "block",
       },
+    },
+    navLink: {
+      display: "none",
+      [theme.breakpoints.up("sm")]: {
+        display: "block",
+        paddingLeft: ".5rem",
+      },
+    },
+    authLinkContainer: {
+      display: "flex",
+    },
+    navBar: {
+      backgroundColor: "#333",
     },
     search: {
       position: "relative",
@@ -80,6 +93,7 @@ const useStyles = makeStyles((theme: Theme) =>
       display: "none",
       [theme.breakpoints.up("md")]: {
         display: "flex",
+        alignItems: "center",
       },
     },
     sectionMobile: {
@@ -130,7 +144,7 @@ const NavBar = ({ user, logout, openModal }: NavState) => {
       open={isMenuOpen}
       onClose={handleMenuClose}
     >
-      <>
+      <div>
         <MenuItem
           onClick={() => {
             handleMenuClose();
@@ -140,7 +154,7 @@ const NavBar = ({ user, logout, openModal }: NavState) => {
           logout
         </MenuItem>
         <MenuItem onClick={handleMenuClose}>My account</MenuItem>
-      </>
+      </div>
     </Menu>
   );
 
@@ -172,22 +186,18 @@ const NavBar = ({ user, logout, openModal }: NavState) => {
         <p>Notifications</p>
       </MenuItem>
       {!user ? (
-        <>
+        <div>
           <MenuItem
             onClick={() => openModal({ modalStatus: true, modal: "login" })}
           >
-            <li className="nav-item">
-              <a className="auth-modal">Sign in</a>
-            </li>
+            <a className="nav-item">Sign in</a>
           </MenuItem>
           <MenuItem
             onClick={() => openModal({ modalStatus: true, modal: "register" })}
           >
-            <li className="nav-item">
-              <a className="auth-modal">Sign up</a>
-            </li>
+            <a className="nav-item">Sign up</a>{" "}
           </MenuItem>
-        </>
+        </div>
       ) : (
         <MenuItem onClick={handleProfileMenuOpen}>
           <IconButton
@@ -205,21 +215,21 @@ const NavBar = ({ user, logout, openModal }: NavState) => {
   );
   return (
     <div className={classes.grow}>
-      <AppBar position="static">
+      <AppBar position="static" className={classes.navBar}>
         <Toolbar>
           <IconButton
             edge="start"
             className={classes.menuButton}
             color="inherit"
             aria-label="open drawer"
-            onClick={() => {
-              console.log("hello");
-            }}
           >
             <MenuIcon />
           </IconButton>
           <Typography className={classes.title} variant="h6" noWrap>
-            Material-UI
+            <NavLink to="/">Tindev</NavLink>
+          </Typography>
+          <Typography className={classes.navLink} variant="subtitle1">
+            <NavLink to="/project/create">Create</NavLink>
           </Typography>
           <div className={classes.search}>
             <div className={classes.searchIcon}>
@@ -247,8 +257,11 @@ const NavBar = ({ user, logout, openModal }: NavState) => {
               </Badge>
             </IconButton>
             {!user ? (
-              <>
+              <div className={classes.authLinkContainer}>
                 <Typography
+                  className={classes.navLink}
+                  variant="h6"
+                  noWrap
                   onClick={() =>
                     openModal({ modalStatus: true, modal: "login" })
                   }
@@ -256,13 +269,16 @@ const NavBar = ({ user, logout, openModal }: NavState) => {
                   login
                 </Typography>
                 <Typography
+                  className={classes.navLink}
+                  variant="h6"
+                  noWrap
                   onClick={() =>
                     openModal({ modalStatus: true, modal: "register" })
                   }
                 >
                   register
                 </Typography>
-              </>
+              </div>
             ) : (
               <IconButton
                 edge="end"
