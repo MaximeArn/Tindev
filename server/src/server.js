@@ -4,15 +4,18 @@ require("dotenv").config();
 const express = require("express");
 const server = require("express")();
 const cookieParser = require("cookie-parser");
-const authRouter = require("./router/auth");
-const usersRouter = require("./router/users");
-const categoriesRouter = require("./router/categories");
-const projectRouter = require("./router/project");
 const notFound = require("./middlewares/NotFound");
 const errorHandler = require("./middlewares/errorHandler");
 const mongoDB = require("./config/database");
 const cors = require("cors");
 const corsSettings = require("./config/cors");
+const {
+  authRouter,
+  usersRouter,
+  categoriesRouter,
+  projectRouter,
+  searchRouter,
+} = require("./router");
 
 const PORT = process.env.PORT || 3000;
 
@@ -24,6 +27,7 @@ server.use("/auth", authRouter);
 server.use("/project", projectRouter);
 server.use("/categories", categoriesRouter);
 server.use("/users", usersRouter);
+server.use("/search", searchRouter);
 server.use(errorHandler);
 server.use(notFound);
 
