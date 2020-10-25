@@ -7,7 +7,12 @@ axios.defaults.headers.post["Content-Type"] = "application/json";
 axios.defaults.withCredentials = true;
 
 const sendSearch = ({ dispatch, getState }: AxiosSubmit) => {
-  const { research } = getState().search;
+  const { search } = getState().search;
+
+  axios
+    .get(`/search/${search}`)
+    .then(({ data }) => console.log(data))
+    .catch(({ response }) => console.log(response));
 };
 
 const search: Middleware = ({ dispatch, getState }) => (next) => (action) => {

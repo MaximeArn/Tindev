@@ -1,6 +1,6 @@
 const router = require("express").Router();
 const { search } = require("../controllers/search");
 
-router.get("/", search);
+router.get("/:query", search);
 
 module.exports = router;

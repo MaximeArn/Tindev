@@ -1,27 +1,27 @@
 const { User, Project } = require("../../models");
 const SearchError = require("../CustomError");
-module.exports = async ({ search }, next) => {
+module.exports = async ({ query }, next) => {
   try {
-    if (!search) throw new SearchError("Invalid research", 400);
+    if (!query) throw new SearchError("Invalid research", 400);
 
     const project = Project.find({
       $or: [
-        { title: { $regex: search, $options: "i" } },
-        { author: { $regex: search, $options: "i" } },
-        { categories: { $in: [search] } },
+        { title: { $regex: query, $options: "i" } },
+        { author: { $regex: query, $options: "i" } },
+        { categories: { $in: [query] } },
       ],
     });
 
     const user = User.find({
       $or: [
-        { username: { $regex: search, $options: "i" } },
-        { city: { $regex: search, $options: "i" } },
+        { username: { $regex: query, $options: "i" } },
+        { city: { $regex: query, $options: "i" } },
       ],
     });
 
     const [projects, users] = await Promise.all([project, user]);
 
-    return { projects, users };
+    return [...projects, ...users];
   } catch (error) {
     next(error);
   }

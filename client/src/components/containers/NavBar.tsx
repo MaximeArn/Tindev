@@ -4,9 +4,9 @@ import { State } from "../../models/states";
 import { AuthModalOpening } from "../../models/modal";
 import { AnyAction, Dispatch } from "redux";
 
-const mapState = ({ auth: { user }, search: { research } }: State) => ({
+const mapState = ({ auth: { user }, search: { search } }: State) => ({
   user,
-  research,
+  search,
 });
 
 const mapDispatch = (dispatch: Dispatch<AnyAction>) => ({

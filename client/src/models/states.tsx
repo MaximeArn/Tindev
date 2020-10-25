@@ -149,5 +149,5 @@ export interface SuccessState {
 }
 
 export interface SearchState {
-  research: string;
+  search: string;
 }

@@ -2,11 +2,9 @@ const { User, Project } = require("../models");
 const { searchValidator, tokenValidator } = require("../utils/validators");
 
 module.exports = {
-  search: async ({ body }, res, next) => {
+  search: async ({ params }, res, next) => {
     try {
-      const { projects, users } = await searchValidator(body, next);
-      const result = projects.concat(users);
-
+      const result = await searchValidator(params, next);
       return res.status(200).json(result);
     } catch (error) {
       next(error);
