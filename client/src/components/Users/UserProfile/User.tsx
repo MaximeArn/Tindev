@@ -12,13 +12,11 @@ const User = ({ username }: User) => {
           <img src={`${url}/uploads/users/default-image.jpg`} />
         </div>
 
-        <div>
-          <p className="user-profile-description">
-            Lorem ipsum, dolor sit amet consectetur adipisicing elit. Ipsa
-            laborum necessitatibus harum sit voluptate architecto dicta, illo
-            eveniet perspiciatis reprehenderit, voluptatum nisi nulla animi a
-            voluptatem rem maiores voluptas vero!
-          </p>
+        <div className="user-profile-description">
+          Lorem ipsum, dolor sit amet consectetur adipisicing elit. Ipsa laborum
+          necessitatibus harum sit voluptate architecto dicta, illo eveniet
+          perspiciatis reprehenderit, voluptatum nisi nulla animi a voluptatem
+          rem maiores voluptas vero!
         </div>
       </div>
       {/* <div className="user-profile-introduce">
