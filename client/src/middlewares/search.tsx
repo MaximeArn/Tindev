@@ -11,7 +11,9 @@ const sendSearch = ({ dispatch, getState }: AxiosSubmit) => {
 
   axios
     .get(`/search/${search}`)
-    .then(({ data }) => console.log(data))
+    .then(({ data: results }) =>
+      dispatch({ type: "SET_SEARCH_RESULTS", results })
+    )
     .catch(({ response }) => console.log(response));
 };
 

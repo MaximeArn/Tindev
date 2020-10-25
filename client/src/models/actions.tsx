@@ -78,4 +78,5 @@ export interface UserAction {
 export interface SearchAction {
   type: string;
   value: string;
+  results: User[] | Project[];
 }

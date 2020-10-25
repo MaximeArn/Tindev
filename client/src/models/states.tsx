@@ -3,6 +3,8 @@
 import { Category } from "./categories";
 import { ProjectState } from "./projects";
 import { UserState } from "./users";
+import { User } from "../models/users";
+import { Project } from "../models/projects";
 
 export interface Authentication {
   register: {
@@ -150,4 +152,5 @@ export interface SuccessState {
 
 export interface SearchState {
   search: string;
+  results: User[] | Project[];
 }

@@ -12,6 +12,7 @@ import ProjectDetail from "../containers/ProjectDetail";
 import ManagePage from "../containers/ManageProject";
 import UsersList from "../containers/UsersList";
 import UserProfile from "../containers/UserProfile";
+import Search from "../containers/Search";
 
 function App({
   verifyToken,
@@ -38,6 +39,7 @@ function App({
         <Route path="/project/:slug" component={ProjectDetail} />
         <Route exact path="/users" component={UsersList} />
         <Route exact path="/user/:username" component={UserProfile} />
+        <Route path="/search" component={Search} />
       </Switch>
     </>
   );
