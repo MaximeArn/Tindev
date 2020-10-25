@@ -4,17 +4,24 @@ module.exports = async ({ search }, next) => {
   try {
     if (!search) throw new SearchError("Invalid research", 400);
 
-    // search = search.toLowerCase();
-
-    const projects = await Project.find({
+    const project = Project.find({
       $or: [
-        { title: search },
-        { author: search },
+        { title: { $regex: search, $options: "i" } },
+        { author: { $regex: search, $options: "i" } },
         { categories: { $in: [search] } },
       ],
     });
 
-    console.log(projects);
+    const user = User.find({
+      $or: [
+        { username: { $regex: search, $options: "i" } },
+        { city: { $regex: search, $options: "i" } },
+      ],
+    });
+
+    const [projects, users] = await Promise.all([project, user]);
+
+    return { projects, users };
   } catch (error) {
     next(error);
   }
