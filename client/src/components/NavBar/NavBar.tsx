@@ -1,6 +1,6 @@
 /** @format */
 
-import React from "react";
+import React, { FormEvent } from "react";
 import { NavLink, Link } from "react-router-dom";
 import { NavState } from "../../models/states";
 import {
@@ -24,7 +24,6 @@ import MailIcon from "@material-ui/icons/Mail";
 import NotificationsIcon from "@material-ui/icons/Notifications";
 import MoreIcon from "@material-ui/icons/MoreVert";
 import "./navBar.scss";
-import { send } from "process";
 
 const useStyles = makeStyles((theme: Theme) =>
   createStyles({
@@ -141,6 +140,11 @@ const NavBar = ({
     setMobileMoreAnchorEl(event.currentTarget);
   };
 
+  const handleSearch = (event: FormEvent<HTMLFormElement>) => {
+    console.log("GOT HERE");
+    event.preventDefault();
+    sendSearch();
+  };
   const menuId = "primary-search-account-menu";
   const renderMenu = (
     <Menu
@@ -243,7 +247,7 @@ const NavBar = ({
             <div className={classes.searchIcon}>
               <SearchIcon />
             </div>
-            <form onSubmit={() => sendSearch()}>
+            <form onSubmit={handleSearch}>
               <InputBase
                 name="search"
                 placeholder="Search…"
