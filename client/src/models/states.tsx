@@ -33,6 +33,7 @@ export interface State {
   loaders: Loaders;
   modal: Modals;
   users: UserState;
+  search: SearchState;
 }
 
 export interface Modals {
@@ -113,6 +114,7 @@ export interface AppProps {
 
 export interface NavState {
   user: { email: string; username: string } | null;
+  research: string;
   logout: Function;
   openModal: Function;
 }
@@ -142,4 +144,8 @@ export interface ModalState {
 export interface SuccessState {
   applySuccess: boolean | string;
   registerSuccess: boolean | string;
+}
+
+export interface SearchState {
+  research: string;
 }

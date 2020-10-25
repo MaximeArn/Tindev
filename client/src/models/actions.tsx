@@ -74,3 +74,8 @@ export interface UserAction {
   users: User[];
   user: User;
 }
+
+export interface SearchAction {
+  type: string;
+  value: string;
+}

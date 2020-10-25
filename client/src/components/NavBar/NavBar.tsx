@@ -105,7 +105,7 @@ const useStyles = makeStyles((theme: Theme) =>
   })
 );
 
-const NavBar = ({ user, logout, openModal }: NavState) => {
+const NavBar = ({ user, research, logout, openModal }: NavState) => {
   const classes = useStyles();
   const [anchorEl, setAnchorEl] = React.useState<null | HTMLElement>(null);
   const [
@@ -195,7 +195,7 @@ const NavBar = ({ user, logout, openModal }: NavState) => {
           <MenuItem
             onClick={() => openModal({ modalStatus: true, modal: "register" })}
           >
-            <a className="nav-item">Sign up</a>{" "}
+            <a className="nav-item">Sign up</a>
           </MenuItem>
         </div>
       ) : (

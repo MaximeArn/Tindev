@@ -4,7 +4,10 @@ import { State } from "../../models/states";
 import { AuthModalOpening } from "../../models/modal";
 import { AnyAction, Dispatch } from "redux";
 
-const mapState = ({ auth: { user } }: State) => ({ user });
+const mapState = ({ auth: { user }, search: { research } }: State) => ({
+  user,
+  research,
+});
 
 const mapDispatch = (dispatch: Dispatch<AnyAction>) => ({
   logout: () => dispatch({ type: "DISCONNECT_USER" }),
