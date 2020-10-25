@@ -2,6 +2,7 @@
 
 export interface UserState {
   users: User[];
+  user: User | null;
 }
 
 export interface User {
@@ -14,4 +15,9 @@ export interface User {
   age: number;
   city: string;
   role: string;
+}
+
+export interface UserProps {
+  user: User;
+  getUser: Function;
 }

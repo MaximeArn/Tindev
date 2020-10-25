@@ -3,6 +3,7 @@
 import { MutableRefObject } from "react";
 import { Project } from "./projects";
 import { Category } from "./categories";
+import { User } from "./users";
 
 export interface AuthenticationAction {
   type: string;
@@ -66,4 +67,10 @@ export interface ApplicantAction {
   projectId: string;
   userId: string;
   username?: string;
+}
+
+export interface UserAction {
+  type: string;
+  users: User[];
+  user: User;
 }

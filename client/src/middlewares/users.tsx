@@ -16,12 +16,25 @@ const getUsers = (dispatch: Dispatch<AnyAction>) => {
     .catch((error) => console.log(error));
 };
 
+const getUser = (dispatch: Dispatch<AnyAction>, username: string) => {
+  axios
+    .get(`/users/${username}`)
+    .then(({ data: user }) => dispatch({ type: "SET_USER", user }))
+    .catch(({ response: { data: { msg: error } } }) =>
+      dispatch({ type: "USER_PROFILE_ERROR_HANDLER", error })
+    );
+};
+
 const project: Middleware = ({ getState, dispatch }) => (next) => (action) => {
-  //   const {} = action;
+  const { username } = action;
 
   switch (action.type) {
     case "GET_USERS":
       getUsers(dispatch);
+      break;
+    case "GET_USER":
+      getUser(dispatch, username);
+      break;
     default:
       next(action);
       break;

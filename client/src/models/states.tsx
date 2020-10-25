@@ -99,6 +99,7 @@ export interface ErrorState {
   projectCreationErrorMessage: string;
   projectListErrorMessage: string;
   projectApplyErrorMessage: string;
+  userProfileErrorMessage: string;
 }
 
 export interface AppProps {

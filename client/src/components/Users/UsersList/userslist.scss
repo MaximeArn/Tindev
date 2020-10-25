@@ -21,7 +21,7 @@
 }
 
 .user {
-
+  box-shadow: 0px 0px 2px black;
   border-radius: 15px;
   max-width: 300px;
   margin: 1rem;
@@ -80,24 +80,24 @@
       color: #fff;
       text-shadow: 0 0 10px #000;
       font-weight: 500;
-      font-size: .8em;
+      font-size: 0.8em;
     }
   }
 
   .user-content {
-    padding-top: .5rem;
+    padding-top: 0.5rem;
   }
 
   .info-row {
     margin: 0 1rem;
-    padding: .6rem 0;
+    padding: 0.6rem 0;
     display: flex;
     justify-content: space-between;
     align-items: center;
-    font-size: .7em;
+    font-size: 0.7em;
     font-weight: 300;
     color: #aaa;
-    border-bottom: 1px solid rgba($color: #ccc, $alpha: .3);
+    border-bottom: 1px solid rgba($color: #ccc, $alpha: 0.3);
 
     &-name {
       color: #555;
@@ -105,7 +105,7 @@
       align-items: center;
 
       span {
-        margin-right: .5rem;
+        margin-right: 0.5rem;
       }
     }
   }
