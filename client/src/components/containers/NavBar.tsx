@@ -2,6 +2,7 @@ import { connect } from "react-redux";
 import NavBar from "../NavBar/NavBar";
 import { State } from "../../models/states";
 import { AuthModalOpening } from "../../models/modal";
+import { withRouter } from "react-router-dom";
 import { AnyAction, Dispatch } from "redux";
 import { OwnProps } from "../../models/connect";
 
@@ -19,4 +20,4 @@ const mapDispatch = (dispatch: Dispatch<AnyAction>, { history }: OwnProps) => ({
     dispatch({ type: "GET_SEARCH_VALUE", value }),
   sendSearch: () => dispatch({ type: "SEND_RESEARCH", history }),
 });
-export default connect(mapState, mapDispatch)(NavBar);
+export default withRouter(connect(mapState, mapDispatch)(NavBar));
