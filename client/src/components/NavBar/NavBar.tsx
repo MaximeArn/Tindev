@@ -117,7 +117,6 @@ const NavBar = ({
   logout,
   openModal,
 }: NavState) => {
-  const searchBar = useRef<any>(null);
   const classes = useStyles();
   const [anchorEl, setAnchorEl] = React.useState<null | HTMLElement>(null);
   const [
@@ -254,8 +253,8 @@ const NavBar = ({
             </div>
             <form onSubmit={handleSearch}>
               <InputBase
-                ref={searchBar}
                 onFocus={() => setSearchBarStatus(true)}
+                onBlur={() => setSearchBarStatus(false)}
                 name="search"
                 placeholder="Search…"
                 value={research}
