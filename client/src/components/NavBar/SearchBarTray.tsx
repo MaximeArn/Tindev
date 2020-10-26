@@ -33,7 +33,7 @@ const SearchBarTray = ({
             <div key={_id} className="search-tray-item">
               <FontAwesomeIcon icon={faSearch} />
               <Link to={path} className="search-value">
-                results
+                {title || username}
               </Link>
             </div>
           );
