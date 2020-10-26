@@ -1,13 +1,12 @@
+@use '../../styles/vars';
+
 .nav-item {
   padding-left: 12px;
 }
 
 .search-tray {
-  display: flex;
-  flex-direction: column;
-  justify-content: space-evenly;
   position: absolute;
-  height: 100px;
+  height: 230px;
   width: 100%;
   background-color: #333333;
   text-align: center;
@@ -19,7 +18,7 @@
   &-item {
     display: flex;
     justify-content: flex-start;
-    margin-left: 1rem;
+    margin: 1rem 0 0 1rem;
   }
 }
 
