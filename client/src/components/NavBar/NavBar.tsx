@@ -266,8 +266,9 @@ const NavBar = ({
                 inputProps={{ "aria-label": "search" }}
               />
             </form>
-            {focused && <SearchBarTray />}
+            <SearchBarTray />
           </div>
+
           <div className={classes.grow} />
           <div className={classes.sectionDesktop}>
             <IconButton aria-label="show 4 new mails" color="inherit">

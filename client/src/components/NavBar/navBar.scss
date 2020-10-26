@@ -1,3 +1,28 @@
 .nav-item {
   padding-left: 12px;
 }
+
+.search-tray {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+  position: absolute;
+  height: 100px;
+  width: 100%;
+  background-color: #333333;
+  text-align: center;
+
+  &-list-item {
+    width: 100%;
+  }
+
+  &-item {
+    display: flex;
+    justify-content: flex-start;
+    margin-left: 1rem;
+  }
+}
+
+.search-value {
+  margin-left: 1rem;
+}
