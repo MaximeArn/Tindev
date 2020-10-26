@@ -21,11 +21,16 @@ const sendSearch = ({ dispatch, getState, history }: AxiosSubmit) => {
     .catch(({ response }) => console.log(response));
 };
 
+const sendSearchPreview = ({ getState, dispatch }: AxiosSubmit) => {};
+
 const search: Middleware = ({ dispatch, getState }) => (next) => (action) => {
   const { history } = action;
   switch (action.type) {
     case "SEND_RESEARCH":
       sendSearch({ dispatch, getState, history });
+      break;
+    case "SEND_SEARCH_PREVIEW":
+      sendSearchPreview({ dispatch, getState });
       break;
     default:
       next(action);

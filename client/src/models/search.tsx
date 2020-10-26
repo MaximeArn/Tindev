@@ -7,4 +7,5 @@ export interface SearchProps {
 
 export interface SearchTrayProps {
   search: string;
+  sendSearchPreview: Function;
 }

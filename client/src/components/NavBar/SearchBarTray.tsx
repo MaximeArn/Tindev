@@ -1,9 +1,13 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faSearch } from "@fortawesome/free-solid-svg-icons";
 import { SearchTrayProps } from "../../models/search";
 
-const SearchBarTray = ({ search }: SearchTrayProps) => {
+const SearchBarTray = ({ search, sendSearchPreview }: SearchTrayProps) => {
+  useEffect(() => {
+    sendSearchPreview();
+  }, [search]);
+
   return (
     <div className="search-tray">
       <div className="search-tray-list-item">
