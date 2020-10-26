@@ -117,10 +117,12 @@ export interface AppProps {
 export interface NavState {
   user: { email: string; username: string } | null;
   research: string;
+  focused: boolean;
   logout: Function;
   getSearchValue: Function;
   sendSearch: Function;
   openModal: Function;
+  setSearchBarStatus: Function;
 }
 
 export interface HomeProps {
@@ -152,5 +154,6 @@ export interface SuccessState {
 
 export interface SearchState {
   search: string;
+  focused: boolean;
   results: User[] | Project[];
 }

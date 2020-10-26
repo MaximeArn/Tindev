@@ -1,6 +1,7 @@
 /** @format */
 
-import React, { FormEvent } from "react";
+import React, { FormEvent, useEffect, useRef } from "react";
+import { findDOMNode } from "react-dom";
 import { NavLink, Link } from "react-router-dom";
 import { NavState } from "../../models/states";
 import {
@@ -23,6 +24,7 @@ import AccountCircle from "@material-ui/icons/AccountCircle";
 import MailIcon from "@material-ui/icons/Mail";
 import NotificationsIcon from "@material-ui/icons/Notifications";
 import MoreIcon from "@material-ui/icons/MoreVert";
+import SearchBarTray from "./SearchBarTray";
 import "./navBar.scss";
 
 const useStyles = makeStyles((theme: Theme) =>
@@ -108,11 +110,14 @@ const useStyles = makeStyles((theme: Theme) =>
 const NavBar = ({
   user,
   research,
+  focused,
   getSearchValue,
+  setSearchBarStatus,
   sendSearch,
   logout,
   openModal,
 }: NavState) => {
+  const searchBar = useRef<any>(null);
   const classes = useStyles();
   const [anchorEl, setAnchorEl] = React.useState<null | HTMLElement>(null);
   const [
@@ -249,6 +254,8 @@ const NavBar = ({
             </div>
             <form onSubmit={handleSearch}>
               <InputBase
+                ref={searchBar}
+                onFocus={() => setSearchBarStatus(true)}
                 name="search"
                 placeholder="Search…"
                 value={research}
@@ -260,6 +267,7 @@ const NavBar = ({
                 inputProps={{ "aria-label": "search" }}
               />
             </form>
+            {focused && <SearchBarTray />}
           </div>
           <div className={classes.grow} />
           <div className={classes.sectionDesktop}>

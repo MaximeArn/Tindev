@@ -78,5 +78,6 @@ export interface UserAction {
 export interface SearchAction {
   type: string;
   value: string;
+  focused: boolean;
   results: User[] | Project[];
 }
