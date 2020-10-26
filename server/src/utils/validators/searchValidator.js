@@ -20,11 +20,15 @@ module.exports = async ({ query }, next) => {
     });
 
     //not useful at the moment but might use it later on with a category allocated page
-    const category = await Category.find({
+    const category = Category.find({
       name: { $regex: regex, $options: "i" },
     });
 
-    const [projects, users] = await Promise.all([project, user]);
+    const [projects, users, categories] = await Promise.all([
+      project,
+      user,
+      category,
+    ]);
 
     return [...projects, ...users];
   } catch (error) {
