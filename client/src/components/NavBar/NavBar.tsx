@@ -67,7 +67,7 @@ const useStyles = makeStyles((theme: Theme) =>
       width: "100%",
       [theme.breakpoints.up("sm")]: {
         marginLeft: theme.spacing(3),
-        width: "auto",
+        width: "350px",
       },
     },
     searchIcon: {
@@ -266,7 +266,7 @@ const NavBar = ({
                 inputProps={{ "aria-label": "search" }}
               />
             </form>
-            <SearchBarTray />
+            {focused && <SearchBarTray />}
           </div>
 
           <div className={classes.grow} />
@@ -337,107 +337,3 @@ const NavBar = ({
 };
 
 export default NavBar;
-
-// <>
-//   <div>
-//     <nav className="navbar">
-//       <ul className="nav-list">
-//         <div className="links">
-//           <li className="nav-item">
-//             <NavLink to="/" exact>
-//               Tindev
-//             </NavLink>
-//           </li>
-//           <li className="nav-item">
-//             <NavLink to="/users" exact>
-//               Members
-//             </NavLink>
-//           </li>
-//           <li className="dropdown">
-//             <span>Dropdown</span>
-
-//             <div className="dropdown-content">
-//               <svg className="dropdown-arrow">
-//                 <path
-//                   stroke="rgba(179, 187, 193, 0.25)"
-//                   strokeWidth="1"
-//                   d="M0,12 L7.5,0 L15,12"
-//                 ></path>
-//                 <polygon
-//                   fill="#474747"
-//                   strokeWidth="0"
-//                   points="7.5,0 15,12 0,12"
-//                 ></polygon>
-//               </svg>
-//               <div className="dropdown-list">
-//                 <a href="#">LINK 1</a>
-//                 <a href="#">LINK 2</a>
-//                 <a href="#">LINK 3</a>
-//               </div>
-//             </div>
-//           </li>
-//         </div>
-
-//         <div className="authNavLink">
-//           {!user ? (
-//             <>
-//               <li className="nav-item">
-//                 <a
-//                   className="auth-modal"
-//                   onClick={() =>
-//                     openModal({ modalStatus: true, modal: "login" })
-//                   }
-//                 >
-//                   Sign in
-//                 </a>
-//               </li>
-//               <li className="nav-item">
-//                 <a
-//                   className="auth-modal"
-//                   onClick={() =>
-//                     openModal({ modalStatus: true, modal: "register" })
-//                   }
-//                 >
-//                   Sign up
-//                 </a>
-//               </li>
-//             </>
-//           ) : (
-//             <>
-//               <li className="nav-item">
-//                 <NavLink to="/project/create">Create a project</NavLink>
-//               </li>
-//               <li className="nav-item">
-//                 <span className="dropdown">
-//                   <FontAwesomeIcon icon={faUserCircle} />
-//                   <span className="member">{user.username}</span>
-
-//                   <div className="dropdown-content">
-//                     <svg className="dropdown-arrow">
-//                       <path
-//                         stroke="rgba(179, 187, 193, 0.25)"
-//                         strokeWidth="1"
-//                         d="M0,12 L7.5,0 L15,12"
-//                       ></path>
-//                       <polygon
-//                         fill="#474747"
-//                         strokeWidth="0"
-//                         points="7.5,0 15,12 0,12"
-//                       ></polygon>
-//                     </svg>
-//                     <div className="dropdown-list">
-//                       <NavLink to="/account">My Profile</NavLink>
-//                       <a className="auth-modal" onClick={() => logout()}>
-//                         Logout
-//                       </a>
-//                     </div>
-//                   </div>
-//                 </span>
-//               </li>
-//             </>
-//           )}
-//         </div>
-//       </ul>
-//     </nav>
-//   </div>
-// </>
