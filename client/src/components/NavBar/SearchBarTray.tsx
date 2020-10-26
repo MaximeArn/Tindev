@@ -7,10 +7,12 @@ const SearchBarTray = ({ search }: SearchTrayProps) => {
   return (
     <div className="search-tray">
       <div className="search-tray-list-item">
-        <div className="search-tray-item">
-          <FontAwesomeIcon icon={faSearch} />
-          <span className="search-value">{search}</span>
-        </div>
+        {search && (
+          <div className="search-tray-item">
+            <FontAwesomeIcon icon={faSearch} />
+            <span className="search-value">{search}</span>
+          </div>
+        )}
         <div className="search-tray-item">
           <FontAwesomeIcon icon={faSearch} />
           <span className="search-value">results</span>

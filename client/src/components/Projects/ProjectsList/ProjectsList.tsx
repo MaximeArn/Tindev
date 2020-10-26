@@ -1,8 +1,8 @@
 /** @format */
 
 import React from "react";
+import "./projectslist.scss";
 import Project from "./Project";
-import "./projectsList.scss";
 import { Project as ProjectModel, Projects } from "../../../models/projects";
 
 const ProjectsList = ({ projects, error }: Projects) => {
