@@ -21,7 +21,15 @@ const sendSearch = ({ dispatch, getState, history }: AxiosSubmit) => {
     .catch(({ response }) => console.log(response));
 };
 
-const sendSearchPreview = ({ getState, dispatch }: AxiosSubmit) => {};
+const sendSearchPreview = ({ getState, dispatch }: AxiosSubmit) => {
+  const { search } = getState().search;
+  axios
+    .get(`/search/${search}`)
+    .then(({ data: results }) =>
+      dispatch({ type: "SET_SEARCH_RESULTS", results })
+    )
+    .catch(({ response }) => console.log(response));
+};
 
 const search: Middleware = ({ dispatch, getState }) => (next) => (action) => {
   const { history } = action;

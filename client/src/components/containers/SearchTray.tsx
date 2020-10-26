@@ -3,7 +3,10 @@ import { AnyAction, Dispatch } from "redux";
 import { State } from "../../models/states";
 import SearchBarTray from "../NavBar/SearchBarTray";
 
-const mapState = ({ search: { search } }: State) => ({ search });
+const mapState = ({ search: { search, results } }: State) => ({
+  search,
+  results,
+});
 
 const mapDispatch = (dispatch: Dispatch<AnyAction>) => ({
   sendSearchPreview: () => dispatch({ type: "SEND_SEARCH_PREVIEW" }),

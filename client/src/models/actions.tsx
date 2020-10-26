@@ -79,5 +79,5 @@ export interface SearchAction {
   type: string;
   value: string;
   focused: boolean;
-  results: User[] | Project[];
+  results: (User | Project)[];
 }
