@@ -6,7 +6,7 @@ axios.defaults.baseURL = url;
 axios.defaults.headers.post["Content-Type"] = "application/json";
 axios.defaults.withCredentials = true;
 
-const sendSearch = ({ dispatch, getState }: AxiosSubmit) => {
+const sendSearch = ({ dispatch, getState, history }: AxiosSubmit) => {
   const { search } = getState().search;
 
   axios
@@ -18,9 +18,10 @@ const sendSearch = ({ dispatch, getState }: AxiosSubmit) => {
 };
 
 const search: Middleware = ({ dispatch, getState }) => (next) => (action) => {
+  const { history } = action;
   switch (action.type) {
     case "SEND_RESEARCH":
-      sendSearch({ dispatch, getState });
+      sendSearch({ dispatch, getState, history });
       break;
     default:
       next(action);

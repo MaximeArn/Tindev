@@ -1,0 +1,6 @@
+import { User } from "../models/users";
+import { Project } from "../models/projects";
+
+export interface SearchProps {
+  results: User[] | Project[];
+}
