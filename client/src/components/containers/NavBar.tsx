@@ -25,7 +25,6 @@ const mapDispatch = (dispatch: Dispatch<AnyAction>, { history }: OwnProps) => {
     },
     getSearchValue: (value: string) =>
       dispatch({ type: "GET_SEARCH_VALUE", value }),
-    sendSearch: () => dispatch({ type: "SEND_RESEARCH", history }),
     setSearchBarStatus,
   };
 };
