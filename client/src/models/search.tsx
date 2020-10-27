@@ -9,4 +9,5 @@ export interface SearchTrayProps {
   search: string;
   results: (User | Project)[];
   sendSearchPreview: Function;
+  setSearchTrayStatus: Function;
 }

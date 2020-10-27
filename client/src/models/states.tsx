@@ -112,6 +112,7 @@ export interface AppProps {
   getUsers: Function;
   login: boolean;
   register: boolean;
+  setSearchBarStatus: Function;
 }
 
 export interface NavState {

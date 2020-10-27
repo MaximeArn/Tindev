@@ -10,13 +10,14 @@ const SearchBarTray = ({
   search,
   results,
   sendSearchPreview,
+  setSearchTrayStatus,
 }: SearchTrayProps) => {
   useEffect(() => {
     sendSearchPreview();
   }, [search]);
 
   return (
-    <div className="search-tray">
+    <div tabIndex={-1} className="search-tray">
       <div className="search-tray-list-item">
         {search && (
           <div className="search-tray-item">
@@ -32,7 +33,11 @@ const SearchBarTray = ({
           return (
             <div key={_id} className="search-tray-item">
               <FontAwesomeIcon icon={faSearch} />
-              <Link to={path} className="search-value">
+              <Link
+                onClick={() => setSearchTrayStatus(false)}
+                to={path}
+                className="search-value"
+              >
                 {title || username}
               </Link>
             </div>

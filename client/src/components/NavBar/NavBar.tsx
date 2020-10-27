@@ -151,10 +151,6 @@ const NavBar = ({
     sendSearch();
   };
 
-  const handleNavClick = (event: MouseEvent<HTMLDivElement>) => {
-    event.target !== searchBar.current?.firstChild && setSearchBarStatus(false);
-  };
-
   const menuId = "primary-search-account-menu";
   const renderMenu = (
     <Menu
@@ -236,7 +232,7 @@ const NavBar = ({
     </Menu>
   );
   return (
-    <div onClick={handleNavClick} className={classes.grow}>
+    <div className={classes.grow}>
       <AppBar position="static" className={classes.navBar}>
         <Toolbar>
           <IconButton
@@ -260,7 +256,11 @@ const NavBar = ({
             <form onSubmit={handleSearch}>
               <InputBase
                 ref={searchBar}
-                onClick={() => setSearchBarStatus(true)}
+                onFocus={() => setSearchBarStatus(true)}
+                onBlur={(event: any) => {
+                  console.log(event.relatedTarget);
+                  !event.relatedTarget && setSearchBarStatus(false);
+                }}
                 name="search"
                 placeholder="Search…"
                 value={research}
@@ -271,8 +271,8 @@ const NavBar = ({
                 }}
                 inputProps={{ "aria-label": "search" }}
               />
+              {focused && <SearchBarTray />}
             </form>
-            {focused && <SearchBarTray />}
           </div>
 
           <div className={classes.grow} />

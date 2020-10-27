@@ -27,6 +27,7 @@ function App({
     getProjects();
     getUsers();
   }, []);
+
   return (
     <>
       {showNavbar && <NavBar />}
