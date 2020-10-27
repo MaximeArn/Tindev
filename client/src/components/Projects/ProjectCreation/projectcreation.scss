@@ -1,7 +1,5 @@
-/** @format */
-
 .maxiWrapper {
-  height: calc(100vh - 80px);
+  height: calc(100vh - 60px);
   width: 100vw;
   height: 100%;
   background: linear-gradient(90deg,
@@ -9,7 +7,6 @@
       rgba(84, 227, 206, 1) 48%,
       rgba(0, 212, 255, 1) 100%);
   color: #fff;
-  margin-top: 80px;
 }
 
 .project-creation-error-message {
@@ -125,26 +122,8 @@
   .team-size-section {
     width: 100%;
 
-    button {
-      width: 25%;
-      padding: 0.7rem;
-      border: none;
-      color: #333;
-      transition: background-color 0.8s ease;
-      border-right: 1px solid #222;
-
-      &:first-child {
-        border-radius: 10px 0 0 10px;
-      }
-
-      &:last-child {
-        border-radius: 0 10px 10px 0;
-        border: none;
-      }
-
-      &:hover {
-        background-color: #fff;
-      }
+    .project-creation-teamsize {
+      text-align: left;
     }
   }
 
@@ -153,10 +132,17 @@
     padding: 0;
 
     button {
-      padding: 0.7rem;
-      border: none;
+      padding: .7rem 2rem;
+      border: 1px solid #333;
       color: #333;
       border-radius: 7px;
+      transition: all .5s;
+
+      &:hover {
+        background-color: #333;
+        color: #fff;
+        border: 1px solid #fff;
+      }
     }
   }
 }
@@ -167,4 +153,15 @@
   p {
     margin-right: 0.5rem;
   }
+}
+
+
+.teamSize-Input {
+  box-shadow: none !important;
+  background-color: transparent !important;
+  border: none;
+  height: 100% !important;
+  font-size: 0.9375rem;
+  font-weight: 500;
+  text-align: center;
 }
