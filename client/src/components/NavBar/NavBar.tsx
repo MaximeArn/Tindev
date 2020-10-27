@@ -257,10 +257,9 @@ const NavBar = ({
               <InputBase
                 ref={searchBar}
                 onFocus={() => setSearchBarStatus(true)}
-                onBlur={(event: any) => {
-                  console.log(event.relatedTarget);
-                  !event.relatedTarget && setSearchBarStatus(false);
-                }}
+                onBlur={(event: any) =>
+                  !event.relatedTarget && setSearchBarStatus(false)
+                }
                 name="search"
                 placeholder="Search…"
                 value={research}

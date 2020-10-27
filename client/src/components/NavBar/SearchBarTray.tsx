@@ -13,7 +13,7 @@ const SearchBarTray = ({
   setSearchTrayStatus,
 }: SearchTrayProps) => {
   useEffect(() => {
-    sendSearchPreview();
+    search && sendSearchPreview();
   }, [search]);
 
   return (
