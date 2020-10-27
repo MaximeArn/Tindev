@@ -19,7 +19,7 @@
 
 .projectCard {
   border-radius: 15px;
-  max-width: 300px;
+  width: 300px;
   margin: 1rem;
   background-color: #fff;
   color: #333;
@@ -56,16 +56,15 @@
       font-weight: bold;
       font-size: 1.8em;
       text-transform: capitalize;
-      background: -webkit-linear-gradient(
-        110deg,
-        rgba(37, 194, 121, 1) 0%,
-        rgba(42, 246, 240, 1) 50%,
-        rgba(0, 172, 255, 1) 100%
-      );
+      background: -webkit-linear-gradient(110deg,
+          rgba(37, 194, 121, 1) 0%,
+          rgba(42, 246, 240, 1) 50%,
+          rgba(0, 172, 255, 1) 100%);
       -webkit-background-clip: text;
       -webkit-text-fill-color: transparent;
     }
   }
+
   .description {
     color: #777;
     font-weight: 300;
@@ -78,12 +77,10 @@
   justify-content: space-evenly;
   text-align: center;
   background-color: #28dfbc;
-  background: linear-gradient(
-    295deg,
-    rgba(37, 194, 121, 1) 0%,
-    rgba(42, 246, 240, 1) 50%,
-    rgba(0, 172, 255, 1) 100%
-  );
+  background: linear-gradient(295deg,
+      rgba(37, 194, 121, 1) 0%,
+      rgba(42, 246, 240, 1) 50%,
+      rgba(0, 172, 255, 1) 100%);
 
   text-shadow: 0px 0px 5px rgba(0, 0, 0, 0.5);
   border-radius: 0 0 13px 13px;
@@ -93,6 +90,7 @@
     font-weight: bolder;
   }
 }
+
 .footer-likes {
   padding: 0.7rem 0;
   width: 33%;

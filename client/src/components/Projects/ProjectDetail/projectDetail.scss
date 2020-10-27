@@ -124,17 +124,13 @@
       border-top: 2px solid #fff;
       margin-top: 1rem;
 
-      .manage-button {
-        width: 100%;
-        border: none;
-        border-radius: 0 0 10px 10px;
-      }
-
-      .like-button {
+      .like-button,
+      .edit-button {
         border-radius: 0 0 0 10px;
       }
 
-      .apply-button {
+      .apply-button,
+      .manage-button {
         border-left: 2px solid #fff;
         border-radius: 0 0 10px 0;
       }

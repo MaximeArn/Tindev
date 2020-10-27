@@ -59,9 +59,12 @@ const Project = ({
         </div>
         <div className="buttons-section">
           {owner ? (
-            <Link to={`${pathname}/manage`}>
-              <button className="manage-button">Manage</button>
-            </Link>
+            <>
+              <button className="edit-button">Edit</button>
+              <Link to={`${pathname}/manage`}>
+                <button className="manage-button">Manage</button>
+              </Link>
+            </>
           ) : (
             <>
               <button className="like-button">Like</button>
