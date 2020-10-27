@@ -30,12 +30,10 @@ const SearchBarTray = ({
             : `/user/${userify(username)}`;
 
           return (
-            <div key={_id} className="search-tray-item">
+            <Link to={path} key={_id} className="search-tray-item">
               <FontAwesomeIcon icon={faSearch} />
-              <Link to={path} className="search-value">
-                {title || username}
-              </Link>
-            </div>
+              <span className="search-value">{title || username}</span>
+            </Link>
           );
         })}
       </div>

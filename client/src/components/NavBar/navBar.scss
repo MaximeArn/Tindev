@@ -19,7 +19,11 @@
 
   &-item {
     display: flex;
-    padding: 1.5rem 0 0 1rem;
+    padding: 0.8rem;
+
+    &:hover {
+      background-color: #666666;
+    }
   }
 }
 

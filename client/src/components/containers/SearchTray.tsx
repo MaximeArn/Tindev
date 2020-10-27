@@ -1,7 +1,7 @@
 import { connect } from "react-redux";
 import { AnyAction, Dispatch } from "redux";
 import { State } from "../../models/states";
-import SearchBarTray from "../NavBar/SearchBarTray";
+import SearchTray from "../NavBar/SearchTray";
 
 const mapState = ({ search: { search, results } }: State) => ({
   search,
@@ -12,4 +12,4 @@ const mapDispatch = (dispatch: Dispatch<AnyAction>) => ({
   sendSearchPreview: () => dispatch({ type: "SEND_SEARCH_PREVIEW" }),
 });
 
-export default connect(mapState, mapDispatch)(SearchBarTray);
+export default connect(mapState, mapDispatch)(SearchTray);
