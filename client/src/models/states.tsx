@@ -116,7 +116,7 @@ export interface AppProps {
 
 export interface NavState {
   user: { email: string; username: string } | null;
-  research: string;
+  search: string;
   focused: boolean;
   logout: Function;
   getSearchValue: Function;

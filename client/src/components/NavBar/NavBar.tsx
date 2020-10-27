@@ -1,14 +1,7 @@
 /** @format */
 
-import React, {
-  FocusEvent,
-  FormEvent,
-  MouseEvent,
-  useEffect,
-  useRef,
-} from "react";
-import { findDOMNode } from "react-dom";
-import { NavLink, Link } from "react-router-dom";
+import React, { FocusEvent, FormEvent, useRef } from "react";
+import { NavLink } from "react-router-dom";
 import { NavState } from "../../models/states";
 import {
   fade,
@@ -30,7 +23,6 @@ import AccountCircle from "@material-ui/icons/AccountCircle";
 import MailIcon from "@material-ui/icons/Mail";
 import NotificationsIcon from "@material-ui/icons/Notifications";
 import MoreIcon from "@material-ui/icons/MoreVert";
-// import SearchBarTray from "./SearchBarTray";
 import SearchBarTray from "../containers/SearchTray";
 import "./navBar.scss";
 
@@ -116,7 +108,7 @@ const useStyles = makeStyles((theme: Theme) =>
 
 const NavBar = ({
   user,
-  research,
+  search,
   focused,
   getSearchValue,
   setSearchBarStatus,
@@ -262,13 +254,18 @@ const NavBar = ({
             <form onSubmit={handleSearch}>
               <InputBase
                 ref={searchBar}
-                onFocus={() => setSearchBarStatus(true)}
+                onKeyPress={() => {
+                  !focused && setSearchBarStatus(true);
+                }}
+                onFocus={() => {
+                  search && setSearchBarStatus(true);
+                }}
                 onBlur={(event: FocusEvent<HTMLInputElement>) =>
                   !event.relatedTarget && setSearchBarStatus(false)
                 }
                 name="search"
                 placeholder="Search…"
-                value={research}
+                value={search}
                 onChange={({ target }) => getSearchValue(target.value)}
                 classes={{
                   root: classes.inputRoot,
