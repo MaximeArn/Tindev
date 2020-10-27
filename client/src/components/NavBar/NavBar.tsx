@@ -34,9 +34,9 @@ const NavBar = ({
   focused,
   getSearchValue,
   setSearchBarStatus,
-  sendSearch,
   logout,
   openModal,
+  history,
 }: NavState) => {
   const searchBar = useRef<HTMLInputElement>(null);
   const classes = useStyles();
@@ -79,7 +79,10 @@ const NavBar = ({
 
   const handleSearchSubmit = (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault();
-    sendSearch();
+    history.push({
+      pathname: "/search",
+      search: `term=${search}`,
+    });
   };
 
   const handleSearchChange = ({

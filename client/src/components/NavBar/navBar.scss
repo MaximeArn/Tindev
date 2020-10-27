@@ -25,9 +25,24 @@ body {
     width: 100%;
   }
 
+  &-noresult {
+    display: flex;
+    padding: 0.8rem;
+  }
+
   &-item {
     display: flex;
     padding: 0.8rem;
+
+    &-default {
+      display: flex;
+      padding: 0.8rem;
+      cursor: pointer;
+
+      &:hover {
+        background-color: #666666;
+      }
+    }
 
     &:hover {
       background-color: #666666;
