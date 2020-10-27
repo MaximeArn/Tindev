@@ -1,6 +1,6 @@
 /** @format */
 
-import React, { FormEvent, useEffect, useRef } from "react";
+import React, { FormEvent, MouseEvent, useEffect, useRef } from "react";
 import { findDOMNode } from "react-dom";
 import { NavLink, Link } from "react-router-dom";
 import { NavState } from "../../models/states";
@@ -67,7 +67,7 @@ const useStyles = makeStyles((theme: Theme) =>
       width: "100%",
       [theme.breakpoints.up("sm")]: {
         marginLeft: theme.spacing(3),
-        width: "350px",
+        width: "auto",
       },
     },
     searchIcon: {
@@ -118,6 +118,7 @@ const NavBar = ({
   logout,
   openModal,
 }: NavState) => {
+  const searchBar = useRef<HTMLInputElement>(null);
   const classes = useStyles();
   const [anchorEl, setAnchorEl] = React.useState<null | HTMLElement>(null);
   const [
@@ -149,6 +150,11 @@ const NavBar = ({
     event.preventDefault();
     sendSearch();
   };
+
+  const handleNavClick = (event: MouseEvent<HTMLDivElement>) => {
+    event.target !== searchBar.current?.firstChild && setSearchBarStatus(false);
+  };
+
   const menuId = "primary-search-account-menu";
   const renderMenu = (
     <Menu
@@ -230,7 +236,7 @@ const NavBar = ({
     </Menu>
   );
   return (
-    <div className={classes.grow}>
+    <div onClick={handleNavClick} className={classes.grow}>
       <AppBar position="static" className={classes.navBar}>
         <Toolbar>
           <IconButton
@@ -253,8 +259,8 @@ const NavBar = ({
             </div>
             <form onSubmit={handleSearch}>
               <InputBase
-                onFocus={() => setSearchBarStatus(true)}
-                onBlur={() => setSearchBarStatus(false)}
+                ref={searchBar}
+                onClick={() => setSearchBarStatus(true)}
                 name="search"
                 placeholder="Search…"
                 value={research}
