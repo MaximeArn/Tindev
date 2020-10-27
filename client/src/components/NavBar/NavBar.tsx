@@ -24,8 +24,9 @@ import MailIcon from "@material-ui/icons/Mail";
 import NotificationsIcon from "@material-ui/icons/Notifications";
 import MoreIcon from "@material-ui/icons/MoreVert";
 import SearchBarTray from "../containers/SearchTray";
-import Collapse from "@material-ui/core/Collapse";
 import useStyles from "../../styles/MUI/navbar";
+import renderMainMenu from "./Menus/mainMenu";
+import renderProfileMenu from "./Menus/profileMenu";
 import "./navBar.scss";
 
 const NavBar = ({
@@ -38,6 +39,7 @@ const NavBar = ({
   openModal,
   history,
 }: NavState) => {
+  const accountMenuId = "accountMenu";
   const searchBar = useRef<HTMLInputElement>(null);
   const classes = useStyles();
   const [
@@ -54,7 +56,6 @@ const NavBar = ({
 
   const isAccountMenuOpen = Boolean(accountMenuAnchor);
   const isMobileRightMenuOpen = Boolean(mobileRightMenuAnchor);
-  const isMainMenuOpen = Boolean(mainMenuAnchor);
 
   const openAccountMenu = (event: React.MouseEvent<HTMLElement>) => {
     setAccountMenuAnchor(event.currentTarget);
@@ -97,30 +98,6 @@ const NavBar = ({
     setMainMenuAnchor(null);
   };
 
-  const mainMenuId = "mainMenu";
-  const renderMainMenu = (
-    <Menu
-      id={mainMenuId}
-      open={isMainMenuOpen}
-      anchorEl={mainMenuAnchor}
-      keepMounted
-      onClose={closeMainMenu}
-      className={classes.mainMenu}
-      TransitionComponent={Collapse}
-    >
-      <NavLink exact to="/">
-        <MenuItem onClick={closeMainMenu}>Home</MenuItem>
-      </NavLink>
-      <NavLink to="/project/create">
-        <MenuItem onClick={closeMainMenu}>Create</MenuItem>
-      </NavLink>
-      <NavLink to="/users">
-        <MenuItem onClick={closeMainMenu}>Users</MenuItem>
-      </NavLink>
-    </Menu>
-  );
-
-  const accountMenuId = "accountMenu";
   const renderProfileMenu = (
     <Menu
       anchorEl={accountMenuAnchor}
@@ -210,7 +187,7 @@ const NavBar = ({
             className={classes.menuButton}
             color="inherit"
             aria-label="open drawer"
-            aria-controls={mainMenuId}
+            aria-controls={`mainMenu`}
             onClick={openMainMenu}
           >
             <MenuIcon />
@@ -318,7 +295,7 @@ const NavBar = ({
       </AppBar>
       {renderMobileAuthMenu}
       {renderProfileMenu}
-      {renderMainMenu}
+      {renderMainMenu(mainMenuAnchor, closeMainMenu)}
     </div>
   );
 };
