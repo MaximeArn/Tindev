@@ -35,18 +35,25 @@ const SearchBarTray = ({
             <span className="search-value">{search}</span>
           </div>
         )}
-        {results.map(({ _id, title, username, author }: any) => {
-          const path = author
-            ? `/project/${slugify(title)}`
-            : `/user/${userify(username)}`;
+        {results.length ? (
+          results.map(({ _id, title, username, author }: any) => {
+            const path = author
+              ? `/project/${slugify(title)}`
+              : `/user/${userify(username)}`;
 
-          return (
-            <Link to={path} key={_id} className="search-tray-item">
-              <FontAwesomeIcon icon={faSearch} />
-              <span className="search-value">{title || username}</span>
-            </Link>
-          );
-        })}
+            return (
+              <Link to={path} key={_id} className="search-tray-item">
+                <FontAwesomeIcon icon={faSearch} />
+                <span className="search-value">{title || username}</span>
+              </Link>
+            );
+          })
+        ) : (
+          <div className="search-tray-noresult">
+            <FontAwesomeIcon icon={faSearch} />
+            <span className="search-value">No results found</span>
+          </div>
+        )}
       </div>
     </div>
   );
