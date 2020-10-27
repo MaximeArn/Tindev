@@ -120,9 +120,9 @@ export interface NavState {
   focused: boolean;
   logout: Function;
   getSearchValue: Function;
-  sendSearch: Function;
   openModal: Function;
   setSearchBarStatus: Function;
+  history: any;
 }
 
 export interface HomeProps {
