@@ -3,6 +3,7 @@ import { Link } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faSearch } from "@fortawesome/free-solid-svg-icons";
 import { SearchTrayProps } from "../../models/search";
+import { useHistory } from "react-router-dom";
 import slugify from "../../utils/slugify";
 import userify from "../../utils/whiteSpaceRemover";
 
@@ -11,6 +12,8 @@ const SearchBarTray = ({
   results,
   sendSearchPreview,
 }: SearchTrayProps) => {
+  const history = useHistory();
+
   useEffect(() => {
     search && sendSearchPreview();
   }, [search]);
@@ -19,7 +22,15 @@ const SearchBarTray = ({
     <div tabIndex={-1} className="search-tray">
       <div className="search-tray-list-item">
         {search && (
-          <div className="search-tray-item">
+          <div
+            onClick={() =>
+              history.push({
+                pathname: "/search",
+                search: `term=${search}`,
+              })
+            }
+            className="search-tray-item-default"
+          >
             <FontAwesomeIcon icon={faSearch} />
             <span className="search-value">{search}</span>
           </div>
