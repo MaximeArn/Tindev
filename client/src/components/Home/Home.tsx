@@ -2,7 +2,7 @@
 
 import React, { useEffect } from "react";
 import ProjectsList from "../containers/ProjectList";
-import VisitorPage from "../VisitorPage/VisitorPage";
+import VisitorPage from "../containers/VisitorPage";
 import { HomeProps } from "../../models/states";
 import CircularProgress from "@material-ui/core/CircularProgress";
 import "./home.scss";
