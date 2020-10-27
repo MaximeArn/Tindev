@@ -12,15 +12,21 @@ const mapState = ({ auth: { user }, search: { search, focused } }: State) => ({
   focused,
 });
 
-const mapDispatch = (dispatch: Dispatch<AnyAction>, { history }: OwnProps) => ({
-  logout: () => dispatch({ type: "DISCONNECT_USER" }),
-  openModal: ({ modalStatus, modal }: AuthModalOpening) => {
-    dispatch({ type: "SET_AUTH_MODAL_STATUS", modalStatus, modal });
-  },
-  getSearchValue: (value: string) =>
-    dispatch({ type: "GET_SEARCH_VALUE", value }),
-  sendSearch: () => dispatch({ type: "SEND_RESEARCH", history }),
-  setSearchBarStatus: (focused: boolean) =>
-    dispatch({ type: "SET_SEARCH_BAR_FOCUS_STATUS", focused }),
-});
+const mapDispatch = (dispatch: Dispatch<AnyAction>, { history }: OwnProps) => {
+  const setSearchBarStatus = (focused: boolean) =>
+    dispatch({ type: "SET_SEARCH_BAR_FOCUS_STATUS", focused });
+
+  history.listen(() => setSearchBarStatus(false));
+
+  return {
+    logout: () => dispatch({ type: "DISCONNECT_USER" }),
+    openModal: ({ modalStatus, modal }: AuthModalOpening) => {
+      dispatch({ type: "SET_AUTH_MODAL_STATUS", modalStatus, modal });
+    },
+    getSearchValue: (value: string) =>
+      dispatch({ type: "GET_SEARCH_VALUE", value }),
+    sendSearch: () => dispatch({ type: "SEND_RESEARCH", history }),
+    setSearchBarStatus,
+  };
+};
 export default withRouter(connect(mapState, mapDispatch)(NavBar));

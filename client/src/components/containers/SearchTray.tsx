@@ -9,12 +9,7 @@ const mapState = ({ search: { search, results } }: State) => ({
 });
 
 const mapDispatch = (dispatch: Dispatch<AnyAction>) => ({
-  sendSearchPreview: () => {
-    console.log("SEARCH TRAY OMEGALUL NEVER WROTE");
-    dispatch({ type: "SEND_SEARCH_PREVIEW" });
-  },
-  setSearchTrayStatus: (focused: boolean) =>
-    dispatch({ type: "SET_SEARCH_BAR_FOCUS_STATUS", focused }),
+  sendSearchPreview: () => dispatch({ type: "SEND_SEARCH_PREVIEW" }),
 });
 
 export default connect(mapState, mapDispatch)(SearchBarTray);

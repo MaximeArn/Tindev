@@ -1,6 +1,12 @@
 /** @format */
 
-import React, { FormEvent, MouseEvent, useEffect, useRef } from "react";
+import React, {
+  FocusEvent,
+  FormEvent,
+  MouseEvent,
+  useEffect,
+  useRef,
+} from "react";
 import { findDOMNode } from "react-dom";
 import { NavLink, Link } from "react-router-dom";
 import { NavState } from "../../models/states";
@@ -257,7 +263,7 @@ const NavBar = ({
               <InputBase
                 ref={searchBar}
                 onFocus={() => setSearchBarStatus(true)}
-                onBlur={(event: any) =>
+                onBlur={(event: FocusEvent<HTMLInputElement>) =>
                   !event.relatedTarget && setSearchBarStatus(false)
                 }
                 name="search"
