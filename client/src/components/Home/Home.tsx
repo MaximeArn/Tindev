@@ -2,21 +2,28 @@
 
 import React, { useEffect } from "react";
 import ProjectsList from "../containers/ProjectList";
+import VisitorPage from "../VisitorPage/VisitorPage";
 import { HomeProps } from "../../models/states";
 import CircularProgress from "@material-ui/core/CircularProgress";
 import "./home.scss";
 
-const Home = ({ loader }: HomeProps) => {
+const Home = ({ loader, user }: HomeProps) => {
   return (
-    <div>
-      {loader && (
-        <div className="project-loading-button">
-          <p className="loading-message">Loading</p>
-          <CircularProgress size={15} />
+    <>
+      {user ? (
+        <div>
+          {loader && (
+            <div className="project-loading-button">
+              <p className="loading-message">Loading</p>
+              <CircularProgress size={15} />
+            </div>
+          )}
+          <ProjectsList />
         </div>
+      ) : (
+        <VisitorPage />
       )}
-      <ProjectsList />
-    </div>
+    </>
   );
 };
 

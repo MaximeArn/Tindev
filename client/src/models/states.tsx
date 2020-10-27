@@ -128,6 +128,7 @@ export interface NavState {
 export interface HomeProps {
   loader: boolean;
   getProjects: Function;
+  user: { email: string; username: string } | null;
 }
 
 export interface CategoriesState {

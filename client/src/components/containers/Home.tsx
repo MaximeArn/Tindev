@@ -1,10 +1,16 @@
+/** @format */
+
 import { connect } from "react-redux";
 import Home from "../Home/Home";
 import { State } from "../../models/states";
 import { AnyAction, Dispatch } from "redux";
 
-const mapState = ({ loaders: { projectListLoader } }: State) => ({
+const mapState = ({
+  loaders: { projectListLoader },
+  auth: { user },
+}: State) => ({
   loader: projectListLoader,
+  user,
 });
 
 const mapDispatch = (dispatch: Dispatch<AnyAction>) => ({
