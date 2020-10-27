@@ -1,6 +1,6 @@
 /** @format */
 
-import React, { FocusEvent, FormEvent, useRef } from "react";
+import React, { ChangeEvent, FocusEvent, FormEvent, useRef } from "react";
 import { NavLink } from "react-router-dom";
 import { NavState } from "../../models/states";
 import {
@@ -144,9 +144,17 @@ const NavBar = ({
     setMobileMoreAnchorEl(event.currentTarget);
   };
 
-  const handleSearch = (event: FormEvent<HTMLFormElement>) => {
+  const handleSearchSubmit = (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault();
     sendSearch();
+  };
+
+  const handleSearchChange = ({
+    target,
+  }: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
+    !focused && setSearchBarStatus(true);
+    !target.value && setSearchBarStatus(false);
+    getSearchValue(target.value);
   };
 
   const menuId = "primary-search-account-menu";
@@ -251,22 +259,17 @@ const NavBar = ({
             <div className={classes.searchIcon}>
               <SearchIcon />
             </div>
-            <form onSubmit={handleSearch}>
+            <form onSubmit={handleSearchSubmit}>
               <InputBase
                 ref={searchBar}
-                onKeyPress={() => {
-                  !focused && setSearchBarStatus(true);
-                }}
-                onFocus={() => {
-                  search && setSearchBarStatus(true);
-                }}
+                onFocus={() => search && setSearchBarStatus(true)}
                 onBlur={(event: FocusEvent<HTMLInputElement>) =>
                   !event.relatedTarget && setSearchBarStatus(false)
                 }
                 name="search"
                 placeholder="Search…"
                 value={search}
-                onChange={({ target }) => getSearchValue(target.value)}
+                onChange={handleSearchChange}
                 classes={{
                   root: classes.inputRoot,
                   input: classes.inputInput,
