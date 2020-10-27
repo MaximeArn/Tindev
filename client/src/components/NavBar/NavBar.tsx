@@ -1,6 +1,12 @@
 /** @format */
 
-import React, { ChangeEvent, FocusEvent, FormEvent, useRef } from "react";
+import React, {
+  ChangeEvent,
+  FocusEvent,
+  FormEvent,
+  useRef,
+  useState,
+} from "react";
 import { NavLink } from "react-router-dom";
 import { NavState } from "../../models/states";
 import {
@@ -24,6 +30,7 @@ import MailIcon from "@material-ui/icons/Mail";
 import NotificationsIcon from "@material-ui/icons/Notifications";
 import MoreIcon from "@material-ui/icons/MoreVert";
 import SearchBarTray from "../containers/SearchTray";
+import Collapse from "@material-ui/core/Collapse";
 import "./navBar.scss";
 
 const useStyles = makeStyles((theme: Theme) =>
@@ -32,7 +39,11 @@ const useStyles = makeStyles((theme: Theme) =>
       flexGrow: 1,
     },
     menuButton: {
+      display: "block",
       marginRight: theme.spacing(2),
+      [theme.breakpoints.up("sm")]: {
+        display: "none",
+      },
     },
     title: {
       display: "none",
@@ -44,14 +55,22 @@ const useStyles = makeStyles((theme: Theme) =>
       display: "none",
       [theme.breakpoints.up("sm")]: {
         display: "block",
-        paddingLeft: ".5rem",
+        paddingLeft: "1.5rem",
       },
+    },
+    leftLinkContainer: {
+      display: "flex",
+      justifyContent: "center",
+      alignItems: "baseline",
     },
     authLinkContainer: {
       display: "flex",
     },
     navBar: {
       backgroundColor: "#333",
+      position: "fixed",
+      top: 0,
+      zIndex: 1000,
     },
     search: {
       position: "relative",
@@ -76,6 +95,12 @@ const useStyles = makeStyles((theme: Theme) =>
       display: "flex",
       alignItems: "center",
       justifyContent: "center",
+    },
+    mainMenu: {
+      width: "100vw",
+      [theme.breakpoints.up("sm")]: {
+        display: "none",
+      },
     },
     inputRoot: {
       color: "inherit",
@@ -118,30 +143,41 @@ const NavBar = ({
 }: NavState) => {
   const searchBar = useRef<HTMLInputElement>(null);
   const classes = useStyles();
-  const [anchorEl, setAnchorEl] = React.useState<null | HTMLElement>(null);
   const [
-    mobileMoreAnchorEl,
-    setMobileMoreAnchorEl,
-  ] = React.useState<null | HTMLElement>(null);
+    accountMenuAnchor,
+    setAccountMenuAnchor,
+  ] = useState<null | HTMLElement>(null);
+  const [
+    mobileRightMenuAnchor,
+    setMobileRightMenuAnchor,
+  ] = useState<null | HTMLElement>(null);
+  const [mainMenuAnchor, setMainMenuAnchor] = useState<null | HTMLElement>(
+    null
+  );
 
-  const isMenuOpen = Boolean(anchorEl);
-  const isMobileMenuOpen = Boolean(mobileMoreAnchorEl);
+  const isAccountMenuOpen = Boolean(accountMenuAnchor);
+  const isMobileRightMenuOpen = Boolean(mobileRightMenuAnchor);
+  const isMainMenuOpen = Boolean(mainMenuAnchor);
 
-  const handleProfileMenuOpen = (event: React.MouseEvent<HTMLElement>) => {
-    setAnchorEl(event.currentTarget);
+  const openAccountMenu = (event: React.MouseEvent<HTMLElement>) => {
+    setAccountMenuAnchor(event.currentTarget);
   };
 
-  const handleMobileMenuClose = () => {
-    setMobileMoreAnchorEl(null);
+  const closeAccountMenu = () => {
+    setAccountMenuAnchor(null);
+    closeMobileRightMenu();
   };
 
-  const handleMenuClose = () => {
-    setAnchorEl(null);
-    handleMobileMenuClose();
+  const closeMobileRightMenu = () => {
+    setMobileRightMenuAnchor(null);
   };
 
-  const handleMobileMenuOpen = (event: React.MouseEvent<HTMLElement>) => {
-    setMobileMoreAnchorEl(event.currentTarget);
+  const openMobileRightMenu = (event: React.MouseEvent<HTMLElement>) => {
+    setMobileRightMenuAnchor(event.currentTarget);
+  };
+
+  const openMainMenu = (event: React.MouseEvent<HTMLElement>) => {
+    setMainMenuAnchor(event.currentTarget);
   };
 
   const handleSearchSubmit = (event: FormEvent<HTMLFormElement>) => {
@@ -157,41 +193,68 @@ const NavBar = ({
     getSearchValue(target.value);
   };
 
-  const menuId = "primary-search-account-menu";
-  const renderMenu = (
+  const closeMainMenu = () => {
+    setMainMenuAnchor(null);
+  };
+
+  const mainMenuId = "mainMenu";
+  const renderMainMenu = (
     <Menu
-      anchorEl={anchorEl}
+      id={mainMenuId}
+      open={isMainMenuOpen}
+      anchorEl={mainMenuAnchor}
+      keepMounted
+      onClose={closeMainMenu}
+      className={classes.mainMenu}
+      TransitionComponent={Collapse}
+    >
+      <NavLink exact to="/">
+        <MenuItem onClick={closeMainMenu}>Home</MenuItem>
+      </NavLink>
+      <NavLink to="/project/create">
+        <MenuItem onClick={closeMainMenu}>Create</MenuItem>
+      </NavLink>
+      <NavLink to="/users">
+        <MenuItem onClick={closeMainMenu}>Users</MenuItem>
+      </NavLink>
+    </Menu>
+  );
+
+  const accountMenuId = "accountMenu";
+  const renderProfileMenu = (
+    <Menu
+      anchorEl={accountMenuAnchor}
       anchorOrigin={{ vertical: "top", horizontal: "right" }}
-      id={menuId}
+      id={accountMenuId}
       keepMounted
       transformOrigin={{ vertical: "top", horizontal: "right" }}
-      open={isMenuOpen}
-      onClose={handleMenuClose}
+      open={isAccountMenuOpen}
+      onClose={closeAccountMenu}
     >
       <div>
         <MenuItem
           onClick={() => {
-            handleMenuClose();
+            closeAccountMenu();
             logout();
           }}
         >
           Logout
         </MenuItem>
-        <MenuItem onClick={handleMenuClose}>My account</MenuItem>
+        <MenuItem onClick={closeAccountMenu}>My account</MenuItem>
       </div>
     </Menu>
   );
 
   const mobileMenuId = "primary-search-account-menu-mobile";
-  const renderMobileMenu = (
+  const renderMobileAuthMenu = (
     <Menu
-      anchorEl={mobileMoreAnchorEl}
+      anchorEl={mobileRightMenuAnchor}
       anchorOrigin={{ vertical: "top", horizontal: "right" }}
       id={mobileMenuId}
       keepMounted
       transformOrigin={{ vertical: "top", horizontal: "right" }}
-      open={isMobileMenuOpen}
-      onClose={handleMobileMenuClose}
+      open={isMobileRightMenuOpen}
+      onClose={closeMobileRightMenu}
     >
       <MenuItem>
         <IconButton aria-label="show 4 new mails" color="inherit">
@@ -223,7 +286,7 @@ const NavBar = ({
           </MenuItem>
         </div>
       ) : (
-        <MenuItem onClick={handleProfileMenuOpen}>
+        <MenuItem onClick={openAccountMenu}>
           <IconButton
             aria-label="account of current user"
             aria-controls="primary-search-account-menu"
@@ -237,6 +300,7 @@ const NavBar = ({
       )}
     </Menu>
   );
+
   return (
     <div className={classes.grow}>
       <AppBar position="static" className={classes.navBar}>
@@ -246,15 +310,26 @@ const NavBar = ({
             className={classes.menuButton}
             color="inherit"
             aria-label="open drawer"
+            aria-controls={mainMenuId}
+            onClick={openMainMenu}
           >
             <MenuIcon />
           </IconButton>
-          <Typography className={classes.title} variant="h6" noWrap>
-            <NavLink to="/">Tindev</NavLink>
-          </Typography>
-          <Typography className={classes.navLink} variant="subtitle1">
-            <NavLink to="/project/create">Create</NavLink>
-          </Typography>
+          <div className={classes.leftLinkContainer}>
+            <Typography className={classes.title} variant="h6" noWrap>
+              <NavLink to="/">Tindev</NavLink>
+            </Typography>
+            {user && (
+              <>
+                <Typography className={classes.navLink} variant="subtitle1">
+                  <NavLink to="/project/create">Create</NavLink>
+                </Typography>
+                <Typography className={classes.navLink} variant="subtitle1">
+                  <NavLink to="/users">Users</NavLink>
+                </Typography>
+              </>
+            )}
+          </div>
           <div className={classes.search}>
             <div className={classes.searchIcon}>
               <SearchIcon />
@@ -319,9 +394,9 @@ const NavBar = ({
               <IconButton
                 edge="end"
                 aria-label="account of current user"
-                aria-controls={menuId}
+                aria-controls={accountMenuId}
                 aria-haspopup="true"
-                onClick={handleProfileMenuOpen}
+                onClick={openAccountMenu}
                 color="inherit"
               >
                 <AccountCircle />
@@ -333,7 +408,7 @@ const NavBar = ({
               aria-label="show more"
               aria-controls={mobileMenuId}
               aria-haspopup="true"
-              onClick={handleMobileMenuOpen}
+              onClick={openMobileRightMenu}
               color="inherit"
             >
               <MoreIcon />
@@ -341,8 +416,9 @@ const NavBar = ({
           </div>
         </Toolbar>
       </AppBar>
-      {renderMobileMenu}
-      {renderMenu}
+      {renderMobileAuthMenu}
+      {renderProfileMenu}
+      {renderMainMenu}
     </div>
   );
 };
