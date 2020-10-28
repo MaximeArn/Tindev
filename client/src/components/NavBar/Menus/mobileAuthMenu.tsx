@@ -54,7 +54,9 @@ export default (
           </MenuItem>
         </div>
       ) : (
-        <MenuItem onClick={openAccountMenu}>
+        <MenuItem
+          onClick={({ currentTarget }) => openAccountMenu(currentTarget)}
+        >
           <IconButton
             aria-label="account of current user"
             aria-controls="primary-search-account-menu"

@@ -32,18 +32,17 @@ const NavBar = ({
   user,
   search,
   focused,
+  account,
   getSearchValue,
   setSearchBarStatus,
   logout,
   openModal,
   history,
+  setAccountMenu,
 }: NavState) => {
   const searchBar = useRef<HTMLInputElement>(null);
   const classes = useStyles();
-  const [
-    accountMenuAnchor,
-    setAccountMenuAnchor,
-  ] = useState<null | HTMLElement>(null);
+
   const [
     mobileRightMenuAnchor,
     setMobileRightMenuAnchor,
@@ -52,12 +51,8 @@ const NavBar = ({
     null
   );
 
-  const openAccountMenu = (event: React.MouseEvent<HTMLElement>) => {
-    setAccountMenuAnchor(event.currentTarget);
-  };
-
   const closeAccountMenu = () => {
-    setAccountMenuAnchor(null);
+    setAccountMenu(null);
     closeMobileRightMenu();
   };
 
@@ -188,7 +183,7 @@ const NavBar = ({
                 aria-label="account of current user"
                 aria-controls={`accountMenu`}
                 aria-haspopup="true"
-                onClick={openAccountMenu}
+                onClick={({ currentTarget }) => setAccountMenu(currentTarget)}
                 color="inherit"
               >
                 <AccountCircle />
@@ -213,9 +208,9 @@ const NavBar = ({
         closeMobileRightMenu,
         user,
         openModal,
-        openAccountMenu
+        setAccountMenu
       )}
-      {renderProfileMenu(accountMenuAnchor, closeAccountMenu, logout)}
+      {renderProfileMenu(account, closeAccountMenu, logout)}
       {renderMainMenu(mainMenuAnchor, closeMainMenu)}
     </div>
   );

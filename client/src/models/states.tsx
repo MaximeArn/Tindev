@@ -36,6 +36,7 @@ export interface State {
   modal: Modals;
   users: UserState;
   search: SearchState;
+  navbar: NavBarState;
 }
 
 export interface Modals {
@@ -119,10 +120,14 @@ export interface NavState {
   search: string;
   focused: boolean;
   logout: Function;
+  account: any;
+  mobile: any;
   getSearchValue: Function;
   openModal: Function;
   setSearchBarStatus: Function;
   history: any;
+  setAccountMenu: Function;
+  setMobileAnchor: Function;
 }
 
 export interface HomeProps {
@@ -156,4 +161,10 @@ export interface SearchState {
   search: string;
   focused: boolean;
   results: User[] | Project[];
+}
+
+export interface NavBarState {
+  main: any;
+  mobile: any;
+  account: any;
 }
