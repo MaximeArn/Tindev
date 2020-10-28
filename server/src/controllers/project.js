@@ -105,6 +105,11 @@ module.exports = {
   deleteById: async ({ params: { id }, cookies: { token } }, res, next) => {
     try {
       const project = await projectDeletionValidator(id, next);
+
+      if (project) {
+        await project.deleteOne();
+        return res.status(200).json({ msg: "Project successfully deleted" });
+      }
     } catch (error) {
       next(error);
     }
