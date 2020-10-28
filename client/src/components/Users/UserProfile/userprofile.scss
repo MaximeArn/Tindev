@@ -9,7 +9,7 @@
     color: #555;
     font-size: 1.2rem;
     width: 100%;
-    margin-bottom: 3rem;
+    margin-bottom: 2rem;
     font-weight: 500;
   }
 
@@ -69,7 +69,7 @@
 
   &-preview {
     height: 100vh;
-    width: 45%;
+    max-width: 536px;
     height: 70vh;
     border-radius: 4px;
     box-shadow: 0 0 3px black;
@@ -83,13 +83,13 @@
   &-description {
     line-height: 1.4;
     text-align: center;
-    max-height: 200px;
+    // max-height: 200px;
     width: 80%;
     overflow: hidden;
     padding: 1rem;
     color: #555;
     margin: auto;
-    height: 100%;
+    height: 40%;
   }
 
   &-introduce {
@@ -103,16 +103,17 @@
   &-social {
     border-top: 1px solid #b6b6b6;
     width: 80%;
+    height: 10%;
     margin: auto;
     display: flex;
     justify-content: center;
+    align-items: center;
   }
 
   &-icon {
     width: 30%;
     display: flex;
     justify-content: space-evenly;
-    margin-top: 2rem;
   }
 }
 
