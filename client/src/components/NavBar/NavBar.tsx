@@ -1,12 +1,6 @@
 /** @format */
 
-import React, {
-  ChangeEvent,
-  FocusEvent,
-  FormEvent,
-  useRef,
-  useState,
-} from "react";
+import React, { ChangeEvent, FocusEvent, FormEvent, useRef } from "react";
 import { NavLink } from "react-router-dom";
 import { NavState } from "../../models/states";
 import AppBar from "@material-ui/core/AppBar";
@@ -41,31 +35,15 @@ const NavBar = ({
   openModal,
   history,
   setAccountMenu,
-  setMobileAnchor,
+  setMobileMenu,
   setMainMenu,
 }: NavState) => {
   const searchBar = useRef<HTMLInputElement>(null);
   const classes = useStyles();
 
-  const [mainMenuAnchor, setMainMenuAnchor] = useState<null | HTMLElement>(
-    null
-  );
-
   const closeAccountMenu = () => {
     setAccountMenu(null);
-    closeMobileRightMenu();
-  };
-
-  const closeMobileRightMenu = () => {
-    setMobileAnchor(null);
-  };
-
-  const openMobileRightMenu = (event: React.MouseEvent<HTMLElement>) => {
-    setMobileAnchor(event.currentTarget);
-  };
-
-  const openMainMenu = (event: React.MouseEvent<HTMLElement>) => {
-    setMainMenu(event.currentTarget);
+    setMobileMenu(null);
   };
 
   const handleSearchSubmit = (event: FormEvent<HTMLFormElement>) => {
@@ -84,10 +62,6 @@ const NavBar = ({
     getSearchValue(target.value);
   };
 
-  const closeMainMenu = () => {
-    setMainMenu(null);
-  };
-
   return (
     <div className={classes.grow}>
       <AppBar position="static" className={classes.navBar}>
@@ -98,7 +72,7 @@ const NavBar = ({
             color="inherit"
             aria-label="open drawer"
             aria-controls={`mainMenu`}
-            onClick={openMainMenu}
+            onClick={({ currentTarget }) => setMainMenu(currentTarget)}
           >
             <MenuIcon />
           </IconButton>
@@ -195,7 +169,7 @@ const NavBar = ({
               aria-label="show more"
               aria-controls={`primary-search-account-menu-mobile`}
               aria-haspopup="true"
-              onClick={openMobileRightMenu}
+              onClick={({ currentTarget }) => setMobileMenu(currentTarget)}
               color="inherit"
             >
               <MoreIcon />
@@ -205,13 +179,13 @@ const NavBar = ({
       </AppBar>
       {renderMobileAuthMenu(
         mobile,
-        closeMobileRightMenu,
+        setMobileMenu,
         user,
         openModal,
         setAccountMenu
       )}
       {renderProfileMenu(account, closeAccountMenu, logout)}
-      {renderMainMenu(main, closeMainMenu)}
+      {renderMainMenu(main, setMainMenu)}
     </div>
   );
 };

@@ -22,7 +22,7 @@ export default (
       keepMounted
       transformOrigin={{ vertical: "top", horizontal: "right" }}
       open={Boolean(mobileRightMenuAnchor)}
-      onClose={closeMobileRightMenu}
+      onClose={() => closeMobileRightMenu(null)}
     >
       <MenuItem>
         <IconButton aria-label="show 4 new mails" color="inherit">

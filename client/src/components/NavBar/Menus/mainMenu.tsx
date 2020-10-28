@@ -5,7 +5,7 @@ import { NavLink } from "react-router-dom";
 import Collapse from "@material-ui/core/Collapse";
 import useStyles from "../../../styles/MUI/navbar";
 
-export default (mainMenuAnchor: HTMLElement | null, closeMainMenu: any) => {
+export default (mainMenuAnchor: any, closeMainMenu: any) => {
   const { mainMenu } = useStyles();
   return (
     <Menu
@@ -13,18 +13,18 @@ export default (mainMenuAnchor: HTMLElement | null, closeMainMenu: any) => {
       open={Boolean(mainMenuAnchor)}
       anchorEl={mainMenuAnchor}
       keepMounted
-      onClose={closeMainMenu}
+      onClose={() => closeMainMenu(null)}
       className={mainMenu}
       TransitionComponent={Collapse}
     >
       <NavLink exact to="/">
-        <MenuItem onClick={closeMainMenu}>Home</MenuItem>
+        <MenuItem onClick={() => closeMainMenu(null)}>Home</MenuItem>
       </NavLink>
       <NavLink to="/project/create">
-        <MenuItem onClick={closeMainMenu}>Create</MenuItem>
+        <MenuItem onClick={() => closeMainMenu(null)}>Create</MenuItem>
       </NavLink>
       <NavLink to="/users">
-        <MenuItem onClick={closeMainMenu}>Users</MenuItem>
+        <MenuItem onClick={() => closeMainMenu(null)}>Users</MenuItem>
       </NavLink>
     </Menu>
   );

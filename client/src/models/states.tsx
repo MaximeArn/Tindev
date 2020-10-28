@@ -120,15 +120,15 @@ export interface NavState {
   search: string;
   focused: boolean;
   logout: Function;
-  account: any;
-  mobile: any;
-  main: any;
+  account: React.MouseEvent<HTMLElement> | null;
+  mobile: React.MouseEvent<HTMLElement> | null;
+  main: React.MouseEvent<HTMLElement> | null;
   getSearchValue: Function;
   openModal: Function;
   setSearchBarStatus: Function;
   history: any;
   setAccountMenu: Function;
-  setMobileAnchor: Function;
+  setMobileMenu: Function;
   setMainMenu: Function;
 }
 
