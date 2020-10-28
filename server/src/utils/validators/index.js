@@ -8,6 +8,7 @@ const projectValidator = require("./projectValidator");
 const tokenValidator = require("./tokenValidator");
 const userValidator = require("./userValidator");
 const searchValidator = require("./searchValidator");
+const projectDeletionValidator = require("./projectDeletionValidator");
 
 module.exports = {
   applicantValidator,
@@ -18,4 +19,5 @@ module.exports = {
   tokenValidator,
   userValidator,
   searchValidator,
+  projectDeletionValidator,
 };

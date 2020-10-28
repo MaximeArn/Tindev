@@ -12,6 +12,7 @@ const {
   acceptApplicant,
   declineApplicant,
   verifyOwner,
+  deleteById,
 } = require("../controllers/project");
 
 router.get("/", getProjects);
@@ -20,5 +21,6 @@ router.post("/apply", apply);
 router.post("/verify_owner", verifyOwner);
 router.patch("/accept_applicant", acceptApplicant);
 router.patch("/decline_applicant", declineApplicant);
+router.delete("/:id", deleteById);
 
 module.exports = router;

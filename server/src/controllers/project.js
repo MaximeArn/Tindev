@@ -6,6 +6,7 @@ const {
   applyValidator,
   tokenValidator,
   applicantValidator,
+  projectDeletionValidator,
 } = require("../utils/validators");
 
 module.exports = {
@@ -100,5 +101,12 @@ module.exports = {
     const { projectAuthor } = body;
     const { username } = await tokenValidator(token, next);
     return username && res.status(200).json(projectAuthor === username);
+  },
+  deleteById: async ({ params: { id }, cookies: { token } }, res, next) => {
+    try {
+      const project = await projectDeletionValidator(id, next);
+    } catch (error) {
+      next(error);
+    }
   },
 };
