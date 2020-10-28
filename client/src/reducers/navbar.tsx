@@ -7,15 +7,14 @@ const initialState: NavBarState = {
   main: null,
 };
 
-const navbar = (
-  state = initialState,
-  { type, target, status }: NavBarAction
-) => {
+const navbar = (state = initialState, { type, status }: NavBarAction) => {
   switch (type) {
-    case "SET_ACCOUNT_MENU_TARGET":
-      return { ...state, account: target };
-    case "SET_MOBILE_ANCHOR":
+    case "SET_ACCOUNT_MENU":
+      return { ...state, account: status };
+    case "SET_MOBILE_MENU":
       return { ...state, mobile: status };
+    case "SET_MAIN_MENU":
+      return { ...state, main: status };
     default:
       return state;
   }

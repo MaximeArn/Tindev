@@ -34,6 +34,7 @@ const NavBar = ({
   focused,
   account,
   mobile,
+  main,
   getSearchValue,
   setSearchBarStatus,
   logout,
@@ -41,6 +42,7 @@ const NavBar = ({
   history,
   setAccountMenu,
   setMobileAnchor,
+  setMainMenu,
 }: NavState) => {
   const searchBar = useRef<HTMLInputElement>(null);
   const classes = useStyles();
@@ -63,7 +65,7 @@ const NavBar = ({
   };
 
   const openMainMenu = (event: React.MouseEvent<HTMLElement>) => {
-    setMainMenuAnchor(event.currentTarget);
+    setMainMenu(event.currentTarget);
   };
 
   const handleSearchSubmit = (event: FormEvent<HTMLFormElement>) => {
@@ -83,7 +85,7 @@ const NavBar = ({
   };
 
   const closeMainMenu = () => {
-    setMainMenuAnchor(null);
+    setMainMenu(null);
   };
 
   return (
@@ -209,7 +211,7 @@ const NavBar = ({
         setAccountMenu
       )}
       {renderProfileMenu(account, closeAccountMenu, logout)}
-      {renderMainMenu(mainMenuAnchor, closeMainMenu)}
+      {renderMainMenu(main, closeMainMenu)}
     </div>
   );
 };

@@ -122,12 +122,14 @@ export interface NavState {
   logout: Function;
   account: any;
   mobile: any;
+  main: any;
   getSearchValue: Function;
   openModal: Function;
   setSearchBarStatus: Function;
   history: any;
   setAccountMenu: Function;
   setMobileAnchor: Function;
+  setMainMenu: Function;
 }
 
 export interface HomeProps {

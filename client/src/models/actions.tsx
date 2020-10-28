@@ -84,6 +84,5 @@ export interface SearchAction {
 
 export interface NavBarAction {
   type: string;
-  target: React.MouseEvent<HTMLElement>;
-  status: boolean;
+  status: React.MouseEvent<HTMLElement> | null;
 }

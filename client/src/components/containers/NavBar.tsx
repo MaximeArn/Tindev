@@ -16,6 +16,7 @@ const mapState = ({
   focused,
   account,
   mobile,
+  main,
 });
 
 const mapDispatch = (dispatch: Dispatch<AnyAction>, { history }: OwnProps) => {
@@ -32,10 +33,12 @@ const mapDispatch = (dispatch: Dispatch<AnyAction>, { history }: OwnProps) => {
     },
     getSearchValue: (value: string) =>
       dispatch({ type: "GET_SEARCH_VALUE", value }),
-    setAccountMenu: (target: React.MouseEvent<HTMLElement> | null) =>
-      dispatch({ type: "SET_ACCOUNT_MENU_TARGET", target }),
+    setAccountMenu: (status: React.MouseEvent<HTMLElement> | null) =>
+      dispatch({ type: "SET_ACCOUNT_MENU", status }),
     setMobileAnchor: (status: React.MouseEvent<HTMLElement> | null) =>
-      dispatch({ type: "SET_MOBILE_ANCHOR", status }),
+      dispatch({ type: "SET_MOBILE_MENU", status }),
+    setMainMenu: (status: React.MouseEvent<HTMLElement> | null) =>
+      dispatch({ type: "SET_MAIN_MENU", status }),
   };
 };
 export default withRouter(connect(mapState, mapDispatch)(NavBar));
