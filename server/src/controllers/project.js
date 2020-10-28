@@ -7,6 +7,7 @@ const {
   tokenValidator,
   applicantValidator,
   projectDeletionValidator,
+  projectUpdateValidator,
 } = require("../utils/validators");
 
 module.exports = {
@@ -116,13 +117,18 @@ module.exports = {
     }
   },
   updateById: async (
-    { body, params: { id }, cookies: { token } },
+    { body: { field }, params: { id }, cookies: { token } },
     res,
     next
   ) => {
     try {
       const user = await tokenValidator(token, next);
-      //TODO projectupdate validation
+      const project = await projectUpdateValidator(id, field, next);
+
+      if (project && user) {
+        await Project.updateOne({ _id: id }, { field });
+        return res.status(200).json({ msg: "Project successfully updated" });
+      }
     } catch (error) {
       next(error);
     }
