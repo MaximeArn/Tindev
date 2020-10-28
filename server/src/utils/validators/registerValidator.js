@@ -30,7 +30,7 @@ module.exports = async (body, next) => {
     }
 
     body.password = await hash(body.password);
-    body.username = body.user.replace(" ", "");
+    body.username = body.username.replace(" ", "");
 
     const user = await User.findOne({
       $or: [{ email: body.email }, { username: body.username }],

@@ -6,10 +6,17 @@ import { withRouter } from "react-router-dom";
 import { AnyAction, Dispatch } from "redux";
 import { OwnProps } from "../../models/connect";
 
-const mapState = ({ auth: { user }, search: { search, focused } }: State) => ({
+const mapState = ({
+  auth: { user },
+  search: { search, focused },
+  navbar: { account, mobile, main },
+}: State) => ({
   user,
   search,
   focused,
+  account,
+  mobile,
+  main,
 });
 
 const mapDispatch = (dispatch: Dispatch<AnyAction>, { history }: OwnProps) => {
@@ -19,13 +26,19 @@ const mapDispatch = (dispatch: Dispatch<AnyAction>, { history }: OwnProps) => {
   history.listen(() => setSearchBarStatus(false));
 
   return {
+    setSearchBarStatus,
     logout: () => dispatch({ type: "DISCONNECT_USER" }),
     openModal: ({ modalStatus, modal }: AuthModalOpening) => {
       dispatch({ type: "SET_AUTH_MODAL_STATUS", modalStatus, modal });
     },
     getSearchValue: (value: string) =>
       dispatch({ type: "GET_SEARCH_VALUE", value }),
-    setSearchBarStatus,
+    setAccountMenu: (status: React.MouseEvent<HTMLElement> | null) =>
+      dispatch({ type: "SET_ACCOUNT_MENU", status }),
+    setMobileMenu: (status: React.MouseEvent<HTMLElement> | null) =>
+      dispatch({ type: "SET_MOBILE_MENU", status }),
+    setMainMenu: (status: React.MouseEvent<HTMLElement> | null) =>
+      dispatch({ type: "SET_MAIN_MENU", status }),
   };
 };
 export default withRouter(connect(mapState, mapDispatch)(NavBar));

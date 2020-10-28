@@ -2,7 +2,7 @@
 
 import { Category } from "./categories";
 import { ProjectState } from "./projects";
-import { UserState } from "./users";
+import { UserState, AuthUserState } from "./users";
 import { User } from "../models/users";
 import { Project } from "../models/projects";
 
@@ -23,7 +23,7 @@ export interface Authentication {
     password: string;
   };
 
-  user: { email: string; username: string } | null;
+  user: AuthUserState | null;
 }
 
 export interface State {
@@ -36,6 +36,7 @@ export interface State {
   modal: Modals;
   users: UserState;
   search: SearchState;
+  navbar: NavBarState;
 }
 
 export interface Modals {
@@ -119,10 +120,16 @@ export interface NavState {
   search: string;
   focused: boolean;
   logout: Function;
+  account: Element | null | undefined;
+  mobile: Element | null | undefined;
+  main: Element | null | undefined;
   getSearchValue: Function;
   openModal: Function;
   setSearchBarStatus: Function;
   history: any;
+  setAccountMenu: Function;
+  setMobileMenu: Function;
+  setMainMenu: Function;
 }
 
 export interface HomeProps {
@@ -157,4 +164,10 @@ export interface SearchState {
   search: string;
   focused: boolean;
   results: User[] | Project[];
+}
+
+export interface NavBarState {
+  main: any;
+  mobile: any;
+  account: any;
 }

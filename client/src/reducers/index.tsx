@@ -9,10 +9,12 @@ import categories from "./categories";
 import modal from "./modal";
 import users from "./users";
 import search from "./search";
+import navbar from "./navbar";
 import { combineReducers } from "redux";
 
 export default combineReducers({
   auth,
+  navbar,
   search,
   project,
   users,

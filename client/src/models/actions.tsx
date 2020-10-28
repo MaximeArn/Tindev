@@ -81,3 +81,8 @@ export interface SearchAction {
   focused: boolean;
   results: (User | Project)[];
 }
+
+export interface NavBarAction {
+  type: string;
+  status: React.MouseEvent<HTMLElement> | null;
+}
