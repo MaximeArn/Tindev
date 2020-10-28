@@ -34,7 +34,7 @@ const mapDispatch = (dispatch: Dispatch<AnyAction>, { history }: OwnProps) => {
       dispatch({ type: "GET_SEARCH_VALUE", value }),
     setAccountMenu: (target: React.MouseEvent<HTMLElement> | null) =>
       dispatch({ type: "SET_ACCOUNT_MENU_TARGET", target }),
-    setMobileAnchor: (status: boolean) =>
+    setMobileAnchor: (status: React.MouseEvent<HTMLElement> | null) =>
       dispatch({ type: "SET_MOBILE_ANCHOR", status }),
   };
 };

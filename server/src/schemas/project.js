@@ -1,8 +1,4 @@
-/** @format */
-
 const { ObjectId } = require("mongodb");
-/** @format */
-
 const { Schema } = require("mongoose");
 
 const projectSchema = new Schema(

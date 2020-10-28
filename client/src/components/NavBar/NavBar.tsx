@@ -33,20 +33,18 @@ const NavBar = ({
   search,
   focused,
   account,
+  mobile,
   getSearchValue,
   setSearchBarStatus,
   logout,
   openModal,
   history,
   setAccountMenu,
+  setMobileAnchor,
 }: NavState) => {
   const searchBar = useRef<HTMLInputElement>(null);
   const classes = useStyles();
 
-  const [
-    mobileRightMenuAnchor,
-    setMobileRightMenuAnchor,
-  ] = useState<null | HTMLElement>(null);
   const [mainMenuAnchor, setMainMenuAnchor] = useState<null | HTMLElement>(
     null
   );
@@ -57,11 +55,11 @@ const NavBar = ({
   };
 
   const closeMobileRightMenu = () => {
-    setMobileRightMenuAnchor(null);
+    setMobileAnchor(null);
   };
 
   const openMobileRightMenu = (event: React.MouseEvent<HTMLElement>) => {
-    setMobileRightMenuAnchor(event.currentTarget);
+    setMobileAnchor(event.currentTarget);
   };
 
   const openMainMenu = (event: React.MouseEvent<HTMLElement>) => {
@@ -204,7 +202,7 @@ const NavBar = ({
         </Toolbar>
       </AppBar>
       {renderMobileAuthMenu(
-        mobileRightMenuAnchor,
+        mobile,
         closeMobileRightMenu,
         user,
         openModal,
