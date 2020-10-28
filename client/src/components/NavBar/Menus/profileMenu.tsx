@@ -2,7 +2,11 @@ import React from "react";
 import Menu from "@material-ui/core/Menu";
 import MenuItem from "@material-ui/core/MenuItem";
 
-export default (accountMenuAnchor: any, closeAccountMenu: any, logout: any) => {
+export default (
+  accountMenuAnchor: Element | null | undefined,
+  closeAccountMenu: any,
+  logout: Function
+) => {
   const accountMenuId = "accountMenu";
   return (
     <Menu

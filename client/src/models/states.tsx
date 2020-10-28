@@ -2,7 +2,7 @@
 
 import { Category } from "./categories";
 import { ProjectState } from "./projects";
-import { UserState } from "./users";
+import { UserState, AuthUserState } from "./users";
 import { User } from "../models/users";
 import { Project } from "../models/projects";
 
@@ -23,7 +23,7 @@ export interface Authentication {
     password: string;
   };
 
-  user: { email: string; username: string } | null;
+  user: AuthUserState | null;
 }
 
 export interface State {
@@ -120,9 +120,9 @@ export interface NavState {
   search: string;
   focused: boolean;
   logout: Function;
-  account: React.MouseEvent<HTMLElement> | null;
-  mobile: React.MouseEvent<HTMLElement> | null;
-  main: React.MouseEvent<HTMLElement> | null;
+  account: Element | null | undefined;
+  mobile: Element | null | undefined;
+  main: Element | null | undefined;
   getSearchValue: Function;
   openModal: Function;
   setSearchBarStatus: Function;

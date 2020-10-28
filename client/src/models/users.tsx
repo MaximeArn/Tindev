@@ -21,3 +21,8 @@ export interface UserProps {
   user: User;
   getUser: Function;
 }
+
+export interface AuthUserState {
+  email: string;
+  username: string;
+}

@@ -1,4 +1,5 @@
 import React from "react";
+import { AuthUserState } from "../../../models/users";
 import Menu from "@material-ui/core/Menu";
 import MenuItem from "@material-ui/core/MenuItem";
 import IconButton from "@material-ui/core/IconButton";
@@ -8,11 +9,11 @@ import NotificationsIcon from "@material-ui/icons/Notifications";
 import AccountCircle from "@material-ui/icons/AccountCircle";
 
 export default (
-  mobileRightMenuAnchor: any,
-  closeMobileRightMenu: any,
-  user: any,
-  openModal: any,
-  openAccountMenu: any
+  mobileRightMenuAnchor: Element | null | undefined,
+  closeMobileRightMenu: Function,
+  user: AuthUserState | null,
+  openModal: Function,
+  openAccountMenu: Function
 ) => {
   return (
     <Menu

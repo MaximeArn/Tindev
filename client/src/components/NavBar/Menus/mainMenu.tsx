@@ -5,7 +5,10 @@ import { NavLink } from "react-router-dom";
 import Collapse from "@material-ui/core/Collapse";
 import useStyles from "../../../styles/MUI/navbar";
 
-export default (mainMenuAnchor: any, closeMainMenu: any) => {
+export default (
+  mainMenuAnchor: Element | null | undefined,
+  closeMainMenu: Function
+) => {
   const { mainMenu } = useStyles();
   return (
     <Menu
