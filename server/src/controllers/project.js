@@ -122,6 +122,7 @@ module.exports = {
   ) => {
     try {
       const user = await tokenValidator(token, next);
+      //TODO projectupdate validation
     } catch (error) {
       next(error);
     }

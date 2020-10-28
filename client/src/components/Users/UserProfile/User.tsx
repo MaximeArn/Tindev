@@ -8,18 +8,38 @@ import {
   faInstagram,
 } from "@fortawesome/free-brands-svg-icons";
 import { faCommentAlt, faCommentDots } from "@fortawesome/free-solid-svg-icons";
+import backgroundImage from "src/assets/user-profile-default.jpg";
 import "./userprofile.scss";
 
 const User = ({ username }: User) => {
-  console.log(username);
   return (
     <>
       <div className="user-profile-preview">
-        <i>
-          <FontAwesomeIcon className="chat" icon={faCommentAlt} size="lg" />
-        </i>
         <div className="user-profile-preview-header">
-          <img src={`${url}/uploads/users/default-image.jpg`} />
+          <div className="user-profile-preview-header-background">
+            <img
+              className="user-profile-background"
+              src={backgroundImage}
+              alt="background-image"
+            />
+            <img
+              className="user-profile-image"
+              src={`${url}/uploads/users/default-image.jpg`}
+            />
+          </div>
+          <div className="user-profile-preview-header-infos">
+            <div className="user-profile-preview-header-username">
+              {username}
+            </div>
+            <div className="user-profile-preview-header-nav">
+              <ul className="infos-list">
+                <li>Description</li>
+                <li>About</li>
+                <li>Experience</li>
+                <li>Technos</li>
+              </ul>
+            </div>
+          </div>
         </div>
 
         <div className="user-profile-description">
