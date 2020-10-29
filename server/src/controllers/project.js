@@ -119,12 +119,12 @@ module.exports = {
     next
   ) => {
     try {
-      const { field, value } = body;
+      const key = Object.keys(body)[0];
       // const user = await tokenValidator(token, next);
       const project = await projectUpdateValidator(id, body, next);
 
       // if (project && user) {
-      //   await Project.updateOne({ _id: id }, { [field]: value });
+      //   await Project.updateOne({ _id: id }, { [key]: body[key] });
       //   return res.status(200).json({ msg: "Project successfully updated" });
       // }
     } catch (error) {
