@@ -114,10 +114,11 @@ module.exports = {
     }
   },
   updateById: async (
-    { body, params: { id }, cookies: { token } },
+    { body, params: { id }, cookies: { token }, file },
     res,
     next
   ) => {
+    console.log(file);
     try {
       const key = Object.keys(body)[0];
       // const user = await tokenValidator(token, next);

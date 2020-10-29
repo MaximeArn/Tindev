@@ -19,6 +19,9 @@ module.exports = async (
     const user = await tokenValidator(token, null);
     const validateFieldsValues = Object.values(body).every((value) => value);
     const dbCategories = await Category.find();
+    const valid = categories.every((name) =>
+      dbCategories.some(({ name: dbName }) => name === dbName)
+    );
 
     if (!user) {
       return callback(new ProjectError("Please sign in.", 403));
@@ -30,12 +33,8 @@ module.exports = async (
       );
     }
 
-    if (
-      !categories.every((name) =>
-        dbCategories.some(({ name: dbName }) => dbName === name)
-      )
-    ) {
-      throw new ProjectError("Invalid Category provided", 400);
+    if (!valid) {
+      return callback(new ProjectError("Invalid Category provided", 400));
     }
 
     if (title.length > 50) {
@@ -44,7 +43,7 @@ module.exports = async (
       );
     }
 
-    if (isNaN(parseInt(size))) {
+    if (isNaN(parseInt(size)) || size < 2) {
       return callback(new ProjectError("Invalid team size provided.", 400));
     }
 

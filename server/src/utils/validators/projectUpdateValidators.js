@@ -4,6 +4,7 @@ const sanitize = require("sanitize-html");
 const sanitizeOptions = require("../../config/sanitize");
 
 module.exports = async (id, body, next) => {
+  console.log("PROJECT UPDATE VALIDATOR LOL");
   try {
     const key = Object.keys(body)[0];
     const exists = Object.values(body).every((value) => value);
