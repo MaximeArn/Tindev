@@ -20,6 +20,7 @@
 .projectCard {
   border-radius: 15px;
   width: 300px;
+  height: 470px;
   margin: 1rem;
   background-color: #fff;
   color: #333;
@@ -34,9 +35,12 @@
   }
 
   .projectCard-image {
+    height: 40%;
+
     img {
       border-radius: 13px 13px 0 0;
       width: 100%;
+      max-height: 100%;
       user-select: none;
     }
   }
@@ -44,6 +48,7 @@
   .projectCard-text {
     padding: 1.5rem;
     text-align: left;
+    height: 50%;
 
     .creation {
       font-weight: 400;
@@ -85,6 +90,7 @@
   text-shadow: 0px 0px 5px rgba(0, 0, 0, 0.5);
   border-radius: 0 0 13px 13px;
   color: #fff;
+  height: 10%;
 
   &-counter {
     font-weight: bolder;

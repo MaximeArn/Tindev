@@ -40,6 +40,7 @@ const Input = ({
         onChange={handleChange}
         value={inputValue}
         required={required}
+        minLength={name === "description" ? 180 : 0}
       />
     </>
   );
