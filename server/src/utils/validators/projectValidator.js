@@ -28,7 +28,7 @@ module.exports = async (body, next) => {
       throw new ProjectError("Project Title characters limit exceeded", 400);
     }
 
-    if (isNaN(parseInt(size))) {
+    if (isNaN(parseInt(size)) || size < 2) {
       throw new ProjectError("Invalid Team size specified", 400);
     }
 

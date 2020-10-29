@@ -20,7 +20,7 @@ module.exports = async (id, body, next) => {
     }
 
     if (field === "size") {
-      if (isNaN(parseInt(value))) {
+      if (isNaN(parseInt(value)) || value < 2) {
         throw new ProjectError("Provided size is invalid", 400);
       }
       body.value = parseInt(body.value);

@@ -40,15 +40,12 @@ module.exports = {
   },
   apply: async ({ body, cookies: { token } }, res, next) => {
     try {
-      const { id } = await tokenValidator(token, next);
+      const { id, username } = await tokenValidator(token, next);
       const apply = await applyValidator({ body, id }, next);
 
       if (apply && id) {
         const { body: validatedBody, project } = apply;
-        const {
-          appliant: { username },
-          message,
-        } = validatedBody;
+        const { message } = validatedBody;
 
         await Project.updateOne(
           { _id: project._id },
