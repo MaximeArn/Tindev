@@ -118,16 +118,19 @@ module.exports = {
     res,
     next
   ) => {
-    console.log(file);
     try {
-      const key = Object.keys(body)[0];
-      // const user = await tokenValidator(token, next);
+      const key = file ? "image" : Object.keys(body)[0];
+      const user = await tokenValidator(token, next);
       const project = await projectUpdateValidator(id, body, next);
 
-      // if (project && user) {
-      //   await Project.updateOne({ _id: id }, { [key]: body[key] });
-      //   return res.status(200).json({ msg: "Project successfully updated" });
-      // }
+      if (project && user) {
+        const updated = await Project.updateOne(
+          { _id: id },
+          { [key]: body[key] || file.filename }
+        );
+
+        return res.status(200).json({ msg: "Project successfully updated" });
+      }
     } catch (error) {
       next(error);
     }

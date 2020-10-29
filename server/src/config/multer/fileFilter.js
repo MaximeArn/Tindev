@@ -51,6 +51,6 @@ module.exports = async (
       ? callback(null, true)
       : callback(new ProjectError("Invalid file format", 400));
   } catch (error) {
-    console.error(error);
+    return callback(new Error(error));
   }
 };

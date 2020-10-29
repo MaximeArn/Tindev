@@ -19,6 +19,17 @@ module.exports = async (
     const project = await Project.findOne({ _id: id });
     const path = pathResolver.join(__dirname, "../../public/uploads");
 
+    const imageRemover = () => {
+      return new Promise(async (resolve, reject) => {
+        try {
+          await fs.unlink(`${path}/${project.image}`);
+          resolve({ message: "Success" });
+        } catch (error) {
+          resolve(error);
+        }
+      });
+    };
+
     if (!user) {
       return callback(new ProjectError("User not found.", 404));
     }
@@ -31,11 +42,10 @@ module.exports = async (
       return callback(new ProjectError("Invalid file format provided", 400));
     }
 
-    project.image !== "image-default.jpeg" &&
-      (await fs.unlink(`${path}/${project.image}`));
+    project.image !== "image-default.jpeg" && (await imageRemover());
 
     return callback(null, true);
   } catch (error) {
-    console.error(error);
+    return callback(new Error(error));
   }
 };
