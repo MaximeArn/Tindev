@@ -6,7 +6,13 @@ import image from "src/assets/home-image.jpg";
 
 const VisitorPage = ({ openModal }: any) => {
   return (
-    <div className="visitor-page" style={{ backgroundImage: `url(${image})` }}>
+    <div
+      className="visitor-page"
+      style={{
+        backgroundImage: `url(${image}) `,
+      }}
+    >
+      <div className="black-filter"></div>
       <div className="content">
         <div className="text">
           <h2 className="title">welcome to tindev</h2>
