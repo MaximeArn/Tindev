@@ -23,9 +23,11 @@ module.exports = async (id, body, next) => {
       if (isNaN(parseInt(value))) {
         throw new ProjectError("Provided size is invalid", 400);
       }
+      body.value = parseInt(body.value);
     }
 
     if (field === "categories") {
+      body.value = JSON.parse(body.value);
       const categories = await Category.find();
       const valid = !value.every((category) => {
         categories.some(({ name }) => name === category);

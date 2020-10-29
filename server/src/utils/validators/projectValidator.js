@@ -30,7 +30,7 @@ module.exports = async (body, next) => {
       throw new ProjectError("Invalid Team size specified", 400);
     }
 
-    parseInt(body.size);
+    body.size = parseInt(body.size);
 
     return body;
   } catch (error) {
