@@ -6,22 +6,8 @@ import { faPlus } from "@fortawesome/free-solid-svg-icons";
 import { ProjectCreationButton } from "../../../models/projects";
 import Button from "@material-ui/core/Button";
 import ButtonGroup from "@material-ui/core/ButtonGroup";
-import { makeStyles, createStyles, Theme } from "@material-ui/core/styles";
-
-const useStyles = makeStyles((theme: Theme) =>
-  createStyles({
-    button: {
-      width: "25%",
-    },
-    buttonGroup: {
-      width: "100%",
-    },
-    lastButton: {
-      width: "25%",
-      padding: 0,
-    },
-  })
-);
+import usestyles from "../../../styles/MUI/TeamSizeButtons";
+import useStyles from "../../../styles/MUI/TeamSizeButtons";
 
 const Buttons = ({ getProjectTeamSize }: ProjectCreationButton) => {
   const handleButtonClick = ({
@@ -32,7 +18,6 @@ const Buttons = ({ getProjectTeamSize }: ProjectCreationButton) => {
   const input = useRef<HTMLInputElement>(null);
   const [lastButtonInput, setLastButtonInput] = useState(false);
   const classes = useStyles();
-
   return (
     <ButtonGroup
       variant="contained"

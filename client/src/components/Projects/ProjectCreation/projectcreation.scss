@@ -163,3 +163,11 @@
   font-weight: 500;
   text-align: center;
 }
+
+@media (max-width: 500px) {
+  .project-container {
+    &-form {
+      // padding: 0;
+    }
+  }
+}
