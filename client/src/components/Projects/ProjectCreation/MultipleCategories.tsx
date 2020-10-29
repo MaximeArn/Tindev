@@ -1,7 +1,6 @@
 /** @format */
 
 import React, { ChangeEvent } from "react";
-import { Category } from "../../../models/categories";
 import { useTheme, Theme } from "@material-ui/core/styles";
 import Input from "@material-ui/core/Input";
 import InputLabel from "@material-ui/core/InputLabel";
@@ -9,35 +8,11 @@ import MenuItem from "@material-ui/core/MenuItem";
 import FormControl from "@material-ui/core/FormControl";
 import Select from "@material-ui/core/Select";
 import Chip from "@material-ui/core/Chip";
-import useStyles from "../../../styles/MUI/MultipleCategories";
-
-interface MultipleCategory {
-  categories: Category[];
-  categoriesFieldValues: Category[];
-  getCategories: Function;
-}
-
-const MenuProps = {
-  PaperProps: {
-    style: {
-      maxHeight: 48 * 4.5 + 8,
-      width: 250,
-    },
-  },
-};
-
-function getStyles(
-  name: string,
-  categoriesFieldValues: Category[],
-  theme: Theme
-) {
-  return {
-    fontWeight:
-      categoriesFieldValues.indexOf({ name }) === -1
-        ? theme.typography.fontWeightRegular
-        : theme.typography.fontWeightMedium,
-  };
-}
+import { MultipleCategory } from "../../../models/categories";
+import useStyles, {
+  MenuProps,
+  getStyles,
+} from "../../../styles/MUI/MultipleCategories";
 
 const MultipleCategories = ({
   categories,
