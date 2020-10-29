@@ -122,13 +122,14 @@ module.exports = {
     next
   ) => {
     try {
-      const user = await tokenValidator(token, next);
+      const { field, value } = body;
+      // const user = await tokenValidator(token, next);
       const project = await projectUpdateValidator(id, body, next);
 
-      if (project && user) {
-        await Project.updateOne({ _id: id }, { field });
-        return res.status(200).json({ msg: "Project successfully updated" });
-      }
+      // if (project && user) {
+      //   await Project.updateOne({ _id: id }, { [field]: value });
+      //   return res.status(200).json({ msg: "Project successfully updated" });
+      // }
     } catch (error) {
       next(error);
     }
