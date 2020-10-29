@@ -117,13 +117,13 @@ module.exports = {
     }
   },
   updateById: async (
-    { body: { field }, params: { id }, cookies: { token } },
+    { body, params: { id }, cookies: { token } },
     res,
     next
   ) => {
     try {
       const user = await tokenValidator(token, next);
-      const project = await projectUpdateValidator(id, field, next);
+      const project = await projectUpdateValidator(id, body, next);
 
       if (project && user) {
         await Project.updateOne({ _id: id }, { field });
