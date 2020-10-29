@@ -124,7 +124,7 @@ module.exports = {
       const project = await projectUpdateValidator(id, body, next);
 
       if (project && user) {
-        const updated = await Project.updateOne(
+        await Project.updateOne(
           { _id: id },
           { [key]: body[key] || file.filename }
         );

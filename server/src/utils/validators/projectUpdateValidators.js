@@ -4,9 +4,9 @@ const sanitize = require("sanitize-html");
 const sanitizeOptions = require("../../config/sanitize");
 
 module.exports = async (id, body, next) => {
-  console.log("PROJECT UPDATE VALIDATOR LOL");
   try {
     const key = Object.keys(body)[0];
+    const project = await Project.findOne({ _id: id });
     const exists = Object.values(body).every((value) => value);
 
     if (!exists) throw new ProjectError("Empty values are not allowed.", 400);
@@ -38,8 +38,6 @@ module.exports = async (id, body, next) => {
         throw new ProjectError("Invalid Category provided", 400);
       }
     }
-
-    const project = await Project.findOne({ _id: id });
 
     if (!project) throw new ProjectError("This project does not exist", 404);
 
