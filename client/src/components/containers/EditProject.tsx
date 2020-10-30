@@ -9,7 +9,12 @@ import EditProject from "../Projects/EditProject/EditProject";
 const mapState = ({ project: { projects } }: State, { match }: any) => {
   const { slug } = match.params;
   const project = projects.find(({ title }) => slugify(title) === slug);
-  return { project };
+  if (project) {
+    const { _id, author, applicants, contributors, __v, ...editable } = project;
+    return { project: editable };
+  } else {
+    return {};
+  }
 };
 
 export default withRouter(connect(mapState)(EditProject));
