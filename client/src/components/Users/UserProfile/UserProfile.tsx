@@ -1,9 +1,9 @@
 import React, { useEffect } from "react";
-import { UserProps } from "../../../models/users";
-import User from "./User";
+import { UserProfileProps } from "../../../models/users";
+import User from "../../containers/User";
 import "./userprofile.scss";
 
-const UserProfile = ({ user, getUser }: UserProps) => {
+const UserProfile = ({ user, getUser }: UserProfileProps) => {
   useEffect(() => {
     getUser();
   }, []);

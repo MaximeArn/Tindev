@@ -2,6 +2,10 @@
 
 @use '../../styles/vars';
 
+.active {
+  color: orange;
+}
+
 body {
   overflow: overlay !important;
   padding: 0 !important;

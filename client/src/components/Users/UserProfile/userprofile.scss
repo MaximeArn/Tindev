@@ -29,15 +29,17 @@
 
   &-nav {
     width: 100%;
-    padding: 0.7rem;
 
-    .infos-list {
-      display: flex;
-      justify-content: space-evenly;
-      color: #555;
+    .infos {
+      &-list {
+        display: flex;
+        justify-content: space-evenly;
+        color: #555;
+      }
 
-      li {
+      &-item {
         cursor: pointer;
+        padding: 0.7rem;
       }
     }
   }
@@ -80,7 +82,7 @@
     position: relative;
   }
 
-  &-description {
+  &-content {
     line-height: 1.4;
     text-align: center;
     display: flex;

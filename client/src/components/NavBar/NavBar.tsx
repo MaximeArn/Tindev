@@ -78,7 +78,9 @@ const NavBar = ({
           </IconButton>
           <div className={classes.leftLinkContainer}>
             <Typography className={classes.title} variant="h6" noWrap>
-              <NavLink to="/">Tindev</NavLink>
+              <NavLink exact to="/">
+                Tindev
+              </NavLink>
             </Typography>
             {user && (
               <>

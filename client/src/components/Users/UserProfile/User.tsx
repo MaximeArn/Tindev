@@ -1,5 +1,5 @@
 import React from "react";
-import { User } from "../../../models/users";
+import { UserProps } from "../../../models/users";
 import { url } from "../../../environments/api";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
@@ -9,9 +9,15 @@ import {
 } from "@fortawesome/free-brands-svg-icons";
 import { faCommentAlt, faCommentDots } from "@fortawesome/free-solid-svg-icons";
 import backgroundImage from "src/assets/user-profile-default.jpg";
+import Description from "./Description";
+import Experience from "./Experience";
+import About from "./About";
+import Technos from "./Technos";
 import "./userprofile.scss";
 
-const User = ({ username }: User) => {
+const User = ({ username, currentContent, getCurrentContent }: UserProps) => {
+  const Content = currentContent;
+  console.log(Content);
   return (
     <>
       <div className="user-profile-preview">
@@ -33,20 +39,37 @@ const User = ({ username }: User) => {
             </div>
             <div className="user-profile-preview-header-nav">
               <ul className="infos-list">
-                <li>Description</li>
-                <li>About</li>
-                <li>Experience</li>
-                <li>Technos</li>
+                <li
+                  onClick={() => getCurrentContent("Description")}
+                  className="infos-item"
+                >
+                  Description
+                </li>
+                <li
+                  onClick={() => getCurrentContent("About")}
+                  className="infos-item"
+                >
+                  About
+                </li>
+                <li
+                  onClick={() => getCurrentContent("Experience")}
+                  className="infos-item"
+                >
+                  Experience
+                </li>
+                <li
+                  onClick={() => getCurrentContent("Technos")}
+                  className="infos-item"
+                >
+                  Technos
+                </li>
               </ul>
             </div>
           </div>
         </div>
 
-        <div className="user-profile-description">
-          Lorem ipsum, dolor sit amet consectetur adipisicing elit. Ipsa laborum
-          necessitatibus harum sit voluptate architecto dicta, illo eveniet
-          perspiciatis reprehenderit, voluptatum nisi nulla animi a voluptatem
-          rem maiores voluptas vero!
+        <div className="user-profile-content">
+          {currentContent && <Content />}
         </div>
 
         <div className="user-profile-social">
