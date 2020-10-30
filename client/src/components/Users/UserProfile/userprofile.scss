@@ -40,6 +40,11 @@
       &-item {
         cursor: pointer;
         padding: 0.7rem;
+
+        &:hover {
+          background-color: vars.$darker-color;
+          color: #fff;
+        }
       }
     }
   }
