@@ -17,7 +17,7 @@ import "./userprofile.scss";
 
 const User = ({ username, currentContent, getCurrentContent }: UserProps) => {
   const Content = currentContent;
-  console.log(Content);
+
   return (
     <>
       <div className="user-profile-preview">
@@ -40,25 +40,25 @@ const User = ({ username, currentContent, getCurrentContent }: UserProps) => {
             <div className="user-profile-preview-header-nav">
               <ul className="infos-list">
                 <li
-                  onClick={() => getCurrentContent("Description")}
+                  onClick={() => getCurrentContent(Description)}
                   className="infos-item"
                 >
                   Description
                 </li>
                 <li
-                  onClick={() => getCurrentContent("About")}
+                  onClick={() => getCurrentContent(About)}
                   className="infos-item"
                 >
                   About
                 </li>
                 <li
-                  onClick={() => getCurrentContent("Experience")}
+                  onClick={() => getCurrentContent(Experience)}
                   className="infos-item"
                 >
                   Experience
                 </li>
                 <li
-                  onClick={() => getCurrentContent("Technos")}
+                  onClick={() => getCurrentContent(Technos)}
                   className="infos-item"
                 >
                   Technos
@@ -69,7 +69,7 @@ const User = ({ username, currentContent, getCurrentContent }: UserProps) => {
         </div>
 
         <div className="user-profile-content">
-          {currentContent && <Content />}
+          {!currentContent ? <Description /> : <Content />}
         </div>
 
         <div className="user-profile-social">
