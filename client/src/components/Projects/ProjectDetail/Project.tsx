@@ -60,7 +60,9 @@ const Project = ({
         <div className="buttons-section">
           {owner ? (
             <>
-              <button className="edit-button">Edit</button>
+              <Link to={`${pathname}/edit`}>
+                <button className="edit-button">Edit</button>
+              </Link>
               <Link to={`${pathname}/manage`}>
                 <button className="manage-button">Manage</button>
               </Link>

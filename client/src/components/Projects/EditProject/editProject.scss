@@ -1,0 +1,26 @@
+.edit-project {
+    margin-top: calc(64px + 4rem);
+    color: #fff;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    .edit-form {
+        // padding: 1rem;
+        width: 90%;
+        border: 1px solid #fff;
+
+        .field {
+            padding: 1rem;
+            display: flex;
+            justify-content: space-between;
+            border-bottom: 1px solid #fff;
+
+            &-name {
+                margin-bottom: 1rem;
+
+                text-transform: uppercase;
+            }
+        }
+    }
+}

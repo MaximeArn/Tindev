@@ -17,6 +17,7 @@ export interface Project {
   size: number;
   contributors: Contributor[];
   applicants: Applicant[];
+  __v: string;
 }
 
 export interface ProjectDetailSubComponent {
