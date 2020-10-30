@@ -46,6 +46,6 @@ module.exports = async (
 
     return callback(null, true);
   } catch (error) {
-    return callback(new Error(error));
+    return callback(new Error(error.message));
   }
 };
