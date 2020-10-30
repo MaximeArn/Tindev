@@ -3,18 +3,15 @@
 import { connect } from "react-redux";
 import { withRouter } from "react-router-dom";
 import { State } from "../../models/states";
+import { OwnProps } from "../../models/connect";
 import slugify from "../../utils/slugify";
 import EditProject from "../Projects/EditProject/EditProject";
 
-const mapState = ({ project: { projects } }: State, { match }: any) => {
+const mapState = ({ project: { projects } }: State, { match }: OwnProps) => {
   const { slug } = match.params;
   const project = projects.find(({ title }) => slugify(title) === slug);
-  if (project) {
-    const { _id, author, applicants, contributors, __v, ...editable } = project;
-    return { project: editable };
-  } else {
-    return {};
-  }
+
+  return { project: project || {} };
 };
 
 export default withRouter(connect(mapState)(EditProject));

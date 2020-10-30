@@ -7,25 +7,23 @@ import randomId from "../../../utils/randomIdGenerator";
 import "./editProject.scss";
 
 const EditProject = ({ project }: any) => {
-  console.log(project);
+  const { _id, author, applicants, contributors, __v, ...editable } = project;
   return (
     <div className="edit-project">
       <form action="" className="edit-form">
         {project &&
-          Object.keys(project).map((field: string) => (
-            <div className="field" key={randomId()}>
+          Object.keys(editable).map((key) => (
+            <div className="field" key={key}>
               <div className="field-text">
-                <p key={randomId()} className="field-name">
-                  {field}:
-                </p>
-                {field === "image" ? (
+                <div className="field-name">{key}</div>
+                {key === "image" ? (
                   <img
                     key={randomId()}
-                    src={`${url}/uploads/${project[field]}`}
+                    src={`${url}/uploads/${project[key]}`}
                     alt="image"
                   />
                 ) : (
-                  <p key={randomId()}>{project[field]}</p>
+                  <div key={randomId()}>{project[key]}</div>
                 )}
               </div>
               <span className="field-edit-icon">
