@@ -6,15 +6,19 @@ import User from "../Users/UserProfile/User";
 const mapState = ({
   users: {
     profile: { content },
+    list,
   },
 }: State) => ({
   currentContent: content,
+  list,
 });
 
 const mapDispatch = (dispatch: Dispatch<AnyAction>) => ({
   getCurrentContent: (content: Function) => {
     dispatch({ type: "SET_CURRENT_CONTENT", content });
   },
+  setSelectedStatus: (listName: string) =>
+    dispatch({ type: "SET_SELECTED_STATUS", listName }),
 });
 
 export default connect(mapState, mapDispatch)(User);

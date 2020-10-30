@@ -1,8 +1,22 @@
 import React from "react";
 
-const ListItem = ({ name, component, getCurrentContent }: any) => {
+const ListItem = ({
+  name,
+  component,
+  selected,
+  getCurrentContent,
+  setSelectedStatus,
+}: any) => {
+  const handleClick = () => {
+    setSelectedStatus(name);
+    getCurrentContent(component);
+  };
+
   return (
-    <li className="infos-item" onClick={() => getCurrentContent(component)}>
+    <li
+      className={!selected ? "infos-item" : "infos-item selected"}
+      onClick={handleClick}
+    >
       {name}
     </li>
   );

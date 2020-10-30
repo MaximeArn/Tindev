@@ -3,10 +3,17 @@
 export interface UserState {
   users: User[];
   user: User | null;
+  list: ListContent[];
   profile: {
     owner: boolean;
     content: Function | null;
   };
+}
+
+export interface ListContent {
+  name: string;
+  component: Function;
+  selected?: boolean;
 }
 
 export interface User {
@@ -29,6 +36,8 @@ export interface UserProfileProps {
 export interface UserProps {
   currentContent: Function;
   getCurrentContent: Function;
+  setSelectedStatus: Function;
+  list: ListContent[];
   _id: string;
   username: string;
   firstname: string;

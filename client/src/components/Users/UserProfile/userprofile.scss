@@ -45,6 +45,10 @@
           background-color: vars.$darker-color;
           color: #fff;
         }
+
+        &.selected {
+          border-bottom: 2px solid orange;
+        }
       }
     }
   }

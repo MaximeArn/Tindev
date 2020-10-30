@@ -5,7 +5,6 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import backgroundImage from "src/assets/user-profile-default.jpg";
 import Description from "./Description";
 import ListItem from "./ListItem";
-import list from "../../../utils/userListContent";
 import { faCommentAlt, faCommentDots } from "@fortawesome/free-solid-svg-icons";
 import {
   faFacebook,
@@ -14,7 +13,13 @@ import {
 } from "@fortawesome/free-brands-svg-icons";
 import "./userprofile.scss";
 
-const User = ({ username, currentContent, getCurrentContent }: UserProps) => {
+const User = ({
+  username,
+  currentContent,
+  list,
+  getCurrentContent,
+  setSelectedStatus,
+}: UserProps) => {
   const Content = currentContent;
 
   return (
@@ -43,6 +48,7 @@ const User = ({ username, currentContent, getCurrentContent }: UserProps) => {
                     key={content.name}
                     {...content}
                     getCurrentContent={getCurrentContent}
+                    setSelectedStatus={setSelectedStatus}
                   />
                 ))}
               </ul>

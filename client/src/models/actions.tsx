@@ -74,6 +74,7 @@ export interface UserAction {
   users: User[];
   user: User;
   content: Function;
+  listName: string;
 }
 
 export interface SearchAction {
