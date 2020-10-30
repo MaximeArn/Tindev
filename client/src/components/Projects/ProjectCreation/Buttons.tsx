@@ -6,16 +6,8 @@ import { faPlus } from "@fortawesome/free-solid-svg-icons";
 import { ProjectCreationButton } from "../../../models/projects";
 import Button from "@material-ui/core/Button";
 import ButtonGroup from "@material-ui/core/ButtonGroup";
-import { makeStyles, createStyles, Theme } from "@material-ui/core/styles";
-
-const useStyles = makeStyles((theme: Theme) =>
-  createStyles({
-    lastButton: {
-      maxWidth: "50px",
-      padding: 0,
-    },
-  })
-);
+import usestyles from "../../../styles/MUI/TeamSizeButtons";
+import useStyles from "../../../styles/MUI/TeamSizeButtons";
 
 const Buttons = ({ getProjectTeamSize }: ProjectCreationButton) => {
   const handleButtonClick = ({
@@ -26,23 +18,26 @@ const Buttons = ({ getProjectTeamSize }: ProjectCreationButton) => {
   const input = useRef<HTMLInputElement>(null);
   const [lastButtonInput, setLastButtonInput] = useState(false);
   const classes = useStyles();
-
   return (
-    <ButtonGroup variant="contained" size="large">
-      <Button value={2} onClick={handleButtonClick}>
+    <ButtonGroup
+      variant="contained"
+      size="large"
+      className={classes.buttonGroup}
+    >
+      <Button className={classes.button} value={2} onClick={handleButtonClick}>
         2
       </Button>
-      <Button value={3} onClick={handleButtonClick}>
+      <Button className={classes.button} value={3} onClick={handleButtonClick}>
         3
       </Button>
-      <Button value={4} onClick={handleButtonClick}>
+      <Button className={classes.button} value={4} onClick={handleButtonClick}>
         4
       </Button>
       <Button
+        className={(classes.button, classes.lastButton)}
         onClick={() => {
           setLastButtonInput(true);
         }}
-        className={classes.lastButton}
         value={input.current?.value}
       >
         {lastButtonInput ? (
