@@ -27,6 +27,7 @@ const useStyles = makeStyles((theme: Theme) =>
     },
     navLink: {
       display: "none",
+      cursor: "pointer",
       [theme.breakpoints.up("sm")]: {
         display: "block",
         paddingLeft: "1.5rem",
