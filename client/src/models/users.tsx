@@ -5,7 +5,7 @@ export interface UserState {
   user: User | null;
   profile: {
     owner: boolean;
-    content: string | null;
+    content: Function | null;
   };
 }
 
@@ -27,7 +27,7 @@ export interface UserProfileProps {
 }
 
 export interface UserProps {
-  currentContent: string;
+  currentContent: Function;
   getCurrentContent: Function;
   _id: string;
   username: string;

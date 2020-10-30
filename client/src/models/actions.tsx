@@ -73,7 +73,7 @@ export interface UserAction {
   type: string;
   users: User[];
   user: User;
-  content: string;
+  content: Function;
 }
 
 export interface SearchAction {

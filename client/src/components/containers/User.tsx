@@ -12,8 +12,9 @@ const mapState = ({
 });
 
 const mapDispatch = (dispatch: Dispatch<AnyAction>) => ({
-  getCurrentContent: (content: string) =>
-    dispatch({ type: "SET_CURRENT_CONTENT", content }),
+  getCurrentContent: (content: Function) => {
+    dispatch({ type: "SET_CURRENT_CONTENT", content });
+  },
 });
 
 export default connect(mapState, mapDispatch)(User);

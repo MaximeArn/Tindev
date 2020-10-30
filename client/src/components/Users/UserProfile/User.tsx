@@ -2,17 +2,19 @@ import React from "react";
 import { UserProps } from "../../../models/users";
 import { url } from "../../../environments/api";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import {
-  faFacebook,
-  faTwitter,
-  faInstagram,
-} from "@fortawesome/free-brands-svg-icons";
-import { faCommentAlt, faCommentDots } from "@fortawesome/free-solid-svg-icons";
 import backgroundImage from "src/assets/user-profile-default.jpg";
 import Description from "./Description";
 import Experience from "./Experience";
 import About from "./About";
 import Technos from "./Technos";
+import ListItem from "./ListItem";
+import list from "../../../utils/userListContent";
+import { faCommentAlt, faCommentDots } from "@fortawesome/free-solid-svg-icons";
+import {
+  faFacebook,
+  faTwitter,
+  faInstagram,
+} from "@fortawesome/free-brands-svg-icons";
 import "./userprofile.scss";
 
 const User = ({ username, currentContent, getCurrentContent }: UserProps) => {
@@ -39,30 +41,13 @@ const User = ({ username, currentContent, getCurrentContent }: UserProps) => {
             </div>
             <div className="user-profile-preview-header-nav">
               <ul className="infos-list">
-                <li
-                  onClick={() => getCurrentContent(Description)}
-                  className="infos-item"
-                >
-                  Description
-                </li>
-                <li
-                  onClick={() => getCurrentContent(About)}
-                  className="infos-item"
-                >
-                  About
-                </li>
-                <li
-                  onClick={() => getCurrentContent(Experience)}
-                  className="infos-item"
-                >
-                  Experience
-                </li>
-                <li
-                  onClick={() => getCurrentContent(Technos)}
-                  className="infos-item"
-                >
-                  Technos
-                </li>
+                {list.map((content) => (
+                  <ListItem
+                    key={content.name}
+                    {...content}
+                    getCurrentContent={getCurrentContent}
+                  />
+                ))}
               </ul>
             </div>
           </div>
@@ -86,9 +71,6 @@ const User = ({ username, currentContent, getCurrentContent }: UserProps) => {
           </div>
         </div>
       </div>
-      {/* <div className="user-profile-introduce">
-        <p>AH OKI 2</p>
-      </div> */}
     </>
   );
 };
