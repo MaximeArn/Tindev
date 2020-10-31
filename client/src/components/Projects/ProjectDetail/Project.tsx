@@ -39,8 +39,8 @@ const Project = ({
         <div className="contributors-section">
           <div className="row-wrapper">
             {typedContributors.length > 0 ? (
-              typedContributors.map(({ username }: Contributor) => (
-                <div className="contributor-row">
+              typedContributors.map(({ username, _id }: Contributor) => (
+                <div key={_id} className="contributor-row">
                   <span>
                     <FontAwesomeIcon icon={faUserCircle} size="lg" />
                   </span>
