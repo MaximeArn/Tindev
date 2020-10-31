@@ -4,9 +4,10 @@ import { url } from "../../../environments/api";
 import capitalize from "../../../utils/capitalizeFirstLetter";
 import typeChecker from "../../../utils/projectEditTypeChecker";
 
-const Field = ({ name, value }: any) => {
+const Field = ({ name, value, categories }: any) => {
   const [isExpanded, setExpanded] = useState(false);
 
+  console.log(categories);
   return (
     <>
       {!isExpanded ? (
