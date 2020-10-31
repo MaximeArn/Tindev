@@ -11,14 +11,16 @@ const Field = ({ name, value }: any) => {
     <>
       {!isExpanded ? (
         <div className="field">
-          <div className="field-text">
-            <div className="field-name">{name}</div>
-            {name === "image" ? (
-              <img src={`${url}/uploads/${value}`} alt="image" />
-            ) : (
-              <div>{value}</div>
-            )}
-          </div>
+          <div className="field-name">{name}</div>
+          {name === "image" ? (
+            <img
+              className="field-edit-image"
+              src={`${url}/uploads/${value}`}
+              alt="image"
+            />
+          ) : (
+            <div>{value}</div>
+          )}
           <button
             className="field-edit-button"
             type="button"
@@ -30,7 +32,11 @@ const Field = ({ name, value }: any) => {
       ) : (
         <div className="field">
           {name === "image" ? (
-            <img src={`${url}/uploads/${value}`} alt="image" />
+            <img
+              className="field-edit-image"
+              src={`${url}/uploads/${value}`}
+              alt="image"
+            />
           ) : (
             <form className="field-edit-form">
               <div className="field-edit-form-infos">
@@ -38,7 +44,7 @@ const Field = ({ name, value }: any) => {
                 <input
                   className={
                     name === "description"
-                      ? "auth-input description"
+                      ? "field-edit-textarea"
                       : "field-edit-input"
                   }
                   type={typeChecker(name)}
@@ -49,7 +55,7 @@ const Field = ({ name, value }: any) => {
 
               <div>
                 <button className="field-edit-button" type="submit">
-                  Confirm Changes
+                  Confirm
                 </button>
                 <button
                   className="field-edit-button"

@@ -6,8 +6,7 @@
   align-items: center;
 
   .edit-form {
-    // padding: 1rem;
-    width: 90%;
+    width: 615px;
     border: 1px solid #fff;
 
     .field {
@@ -20,6 +19,10 @@
         margin-bottom: 1rem;
 
         text-transform: uppercase;
+      }
+
+      &-edit-image {
+        width: 150px;
       }
 
       &-edit-input {
@@ -35,7 +38,7 @@
 
       &-edit-textarea {
         height: 100px;
-        width: 279px;
+        width: 236px;
         color: #404145;
         padding: 0.5rem;
         border: 1px solid #e4e5e7;
