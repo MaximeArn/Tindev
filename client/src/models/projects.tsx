@@ -126,3 +126,7 @@ export interface DeclineApplicantModalProps {
   setModalStatus: Function;
   username: string;
 }
+
+export interface EditProjectProps {
+  project: Project;
+}
