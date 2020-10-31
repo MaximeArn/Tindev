@@ -1,8 +1,6 @@
 /** @format */
 
 import React from "react";
-import EditIcon from "@material-ui/icons/Edit";
-import { url } from "../../../environments/api";
 import { EditProjectProps } from "../../../models/projects";
 import Field from "./Field";
 import fieldChecker from "../../../utils/fieldChecker";
