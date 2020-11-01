@@ -8,6 +8,8 @@ const Field = ({
   value,
   inputValue,
   getProjectEditInputValues,
+  setNewProjectImage,
+  updateProject,
 }: EditFieldProps) => {
   const [isExpanded, setExpanded] = useState(false);
 
@@ -21,6 +23,7 @@ const Field = ({
           setExpanded={setExpanded}
           inputValue={inputValue}
           getProjectEditInputValues={getProjectEditInputValues}
+          setNewProjectImage={setNewProjectImage}
         />
       ) : (
         <EditClosed
@@ -28,7 +31,6 @@ const Field = ({
           value={value}
           isExpanded={isExpanded}
           setExpanded={setExpanded}
-          getProjectEditInputValues={getProjectEditInputValues}
         />
       )}
     </>

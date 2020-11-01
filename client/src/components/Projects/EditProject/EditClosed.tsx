@@ -1,14 +1,13 @@
 import React from "react";
 import { url } from "../../../environments/api";
-import { EditProjectStatus } from "../../../models/projects";
+import { EditProjectStatusClosed } from "../../../models/projects";
 
 const EditClosed = ({
   name,
   value,
   isExpanded,
   setExpanded,
-  getProjectEditInputValues,
-}: EditProjectStatus) => {
+}: EditProjectStatusClosed) => {
   return (
     <div className="field">
       <div className="field-name">{name}</div>

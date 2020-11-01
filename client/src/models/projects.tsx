@@ -139,13 +139,23 @@ export interface EditFieldProps {
   value: string | Category[];
   inputValue: string | number | undefined;
   getProjectEditInputValues: Function;
+  setNewProjectImage: Function;
+  updateProject: Function;
 }
 
-export interface EditProjectStatus {
+export interface EditProjectStatusClosed {
   name: string;
   value: string | Category[];
-  inputValue?: string | number | undefined;
+  isExpanded: boolean;
+  setExpanded: Function;
+}
+
+export interface EditProjectStatusOpen {
+  name: string;
+  value: string | Category[];
+  inputValue: string | number | undefined;
   isExpanded: boolean;
   setExpanded: Function;
   getProjectEditInputValues: Function;
+  setNewProjectImage: Function;
 }

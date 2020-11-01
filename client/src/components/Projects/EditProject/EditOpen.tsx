@@ -1,9 +1,9 @@
-import React, { ChangeEvent, useRef, useState } from "react";
+import React, { ChangeEvent, FormEvent, useRef, useState } from "react";
 import { url } from "../../../environments/api";
 import MultipleCategories from "../../containers/MultipleCategories";
 import capitalize from "../../../utils/capitalizeFirstLetter";
 import typeChecker from "../../../utils/projectEditTypeChecker";
-import { EditProjectStatus } from "../../../models/projects";
+import { EditProjectStatusOpen } from "../../../models/projects";
 
 const EditOpen = ({
   name,
@@ -12,7 +12,8 @@ const EditOpen = ({
   isExpanded,
   setExpanded,
   getProjectEditInputValues,
-}: EditProjectStatus) => {
+  setNewProjectImage,
+}: EditProjectStatusOpen) => {
   const [isImageSet, setImage] = useState(false);
   const imageFileOpener = useRef<any>(null);
   const imagePreview = useRef<any>(null);
@@ -29,6 +30,12 @@ const EditOpen = ({
     };
   };
 
+  const handleSubmit = (event: FormEvent<HTMLFormElement>) => {
+    event.preventDefault();
+    imageFileOpener.current.files &&
+      setNewProjectImage(imageFileOpener.current.files[0]);
+  };
+
   return (
     <>
       <input
@@ -38,7 +45,7 @@ const EditOpen = ({
         onChange={showImagePreview}
       />
       <div className="field">
-        <form className="field-edit-form">
+        <form className="field-edit-form" onSubmit={handleSubmit}>
           <label>{name.toUpperCase()}</label>
           {name === "image" ? (
             <div
