@@ -11,7 +11,7 @@ const initialState: ProjectState = {
     title: "",
     description: "",
     categories: [],
-    size: undefined,
+    size: "",
     image: null,
   },
   projectDetail: {
