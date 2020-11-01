@@ -13,32 +13,20 @@ const EditOpen = ({
 }: EditProjectStatus) => {
   return (
     <div className="field">
-      {name === "image" ? (
-        <img
-          className="field-edit-image"
-          src={`${url}/uploads/${value}`}
-          alt="image"
-        />
-      ) : name === "categories" ? (
-        <>
-          <div className="field-edit-categories">
-            <MultipleCategories />
-          </div>
-          <div>
-            <button className="field-edit-button" type="submit">
-              Confirm
-            </button>
-            <button
-              className="field-edit-button"
-              type="button"
-              onClick={() => setExpanded(!isExpanded)}
-            >
-              Close
-            </button>
-          </div>
-        </>
-      ) : (
-        <form className="field-edit-form">
+      <form className="field-edit-form">
+        {name === "image" ? (
+          <img
+            className="field-edit-image"
+            src={`${url}/uploads/${value}`}
+            alt="image"
+          />
+        ) : name === "categories" ? (
+          <>
+            <div className="field-edit-categories">
+              <MultipleCategories />
+            </div>
+          </>
+        ) : (
           <div className="field-edit-form-infos">
             <label>{capitalize(name)}</label>
             <input
@@ -52,21 +40,20 @@ const EditOpen = ({
               placeholder={`New ${capitalize(name)}...`}
             />
           </div>
-
-          <div>
-            <button className="field-edit-button" type="submit">
-              Confirm
-            </button>
-            <button
-              className="field-edit-button"
-              type="button"
-              onClick={() => setExpanded(!isExpanded)}
-            >
-              Close
-            </button>
-          </div>
-        </form>
-      )}
+        )}
+        <div>
+          <button className="field-edit-button" type="submit">
+            Confirm
+          </button>
+          <button
+            className="field-edit-button"
+            type="button"
+            onClick={() => setExpanded(!isExpanded)}
+          >
+            Close
+          </button>
+        </div>
+      </form>
     </div>
   );
 };

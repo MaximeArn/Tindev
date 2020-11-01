@@ -10,6 +10,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faUserCircle } from "@fortawesome/free-solid-svg-icons";
 import { Link, useLocation } from "react-router-dom";
 import userify from "../../../utils/whiteSpaceRemover";
+import idGenerator from "../../../utils/randomIdGenerator";
 
 const Project = ({
   title,
@@ -54,7 +55,9 @@ const Project = ({
         </div>
         <div className="categories-section">
           {categories.map((name) => (
-            <div className="category">{name}</div>
+            <div key={idGenerator()} className="category">
+              {name}
+            </div>
           ))}
         </div>
         <div className="buttons-section">
