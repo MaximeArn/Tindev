@@ -1,4 +1,4 @@
-import React, { useRef, useState } from "react";
+import React, { ChangeEvent, useRef, useState } from "react";
 import { url } from "../../../environments/api";
 import MultipleCategories from "../../containers/MultipleCategories";
 import capitalize from "../../../utils/capitalizeFirstLetter";
@@ -15,20 +15,15 @@ const EditOpen = ({
   const imageFileOpener = useRef<any>(null);
   const imagePreview = useRef<any>(null);
 
-  const showImagePreview = ({ files }: HTMLInputElement) => {
-    if (files) {
-      setImage(true);
-      const reader = new FileReader();
-      reader.readAsDataURL(files[0]);
-
-      reader.onload = (event) => {
-        imagePreview.current.src = event.target?.result;
-      };
-    }
-  };
-
-  const onFileBrowserClick = () => {
-    imageFileOpener.current.click();
+  const showImagePreview = ({
+    target: { files },
+  }: ChangeEvent<HTMLInputElement>) => {
+    setImage(true);
+    const reader = new FileReader();
+    files && reader.readAsDataURL(files[0]);
+    reader.onload = (event: ProgressEvent<FileReader>) => {
+      imagePreview.current.src = event.target?.result;
+    };
   };
 
   return (
@@ -37,7 +32,7 @@ const EditOpen = ({
         type="file"
         style={{ display: "none" }}
         ref={imageFileOpener}
-        onChange={() => showImagePreview(imageFileOpener.current)}
+        onChange={showImagePreview}
       />
       <div className="field">
         <form className="field-edit-form">
@@ -45,7 +40,7 @@ const EditOpen = ({
           {name === "image" ? (
             <div
               className="field-edit-image-container"
-              onClick={onFileBrowserClick}
+              onClick={() => imageFileOpener.current.click()}
             >
               {isImageSet ? (
                 <img className="field-edit-image" ref={imagePreview} />
