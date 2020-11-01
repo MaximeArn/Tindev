@@ -38,7 +38,7 @@ export interface ProjectCreation {
   description: string;
   image: any;
   categories: Category[] | [];
-  size: number | null;
+  size: number | undefined;
 }
 
 export interface Contributor {
@@ -158,4 +158,5 @@ export interface EditProjectStatusOpen {
   setExpanded: Function;
   getProjectEditInputValues: Function;
   setNewProjectImage: Function;
+  updateProject: Function;
 }

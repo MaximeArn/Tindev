@@ -9,7 +9,8 @@ const mapDispatch = (dispatch: Dispatch<AnyAction>) => ({
     dispatch({ type: "GET_PROJECT_CREATION_VALUE", inputName, inputValue }),
   setNewProjectImage: (image: MutableRefObject<any>) =>
     dispatch({ type: "SET_PROJECT_IMAGE", image }),
-  updateProject: () => dispatch({ type: "UPDATE_PROJECT" }),
+  updateProject: (inputName: string) =>
+    dispatch({ type: "UPDATE_PROJECT", inputName }),
 });
 
 export default connect(null, mapDispatch)(Field);

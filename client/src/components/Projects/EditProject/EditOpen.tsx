@@ -13,6 +13,7 @@ const EditOpen = ({
   setExpanded,
   getProjectEditInputValues,
   setNewProjectImage,
+  updateProject,
 }: EditProjectStatusOpen) => {
   const [isImageSet, setImage] = useState(false);
   const imageFileOpener = useRef<any>(null);
@@ -32,36 +33,42 @@ const EditOpen = ({
 
   const handleSubmit = (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault();
-    imageFileOpener.current.files &&
+
+    if (imageFileOpener.current.files) {
       setNewProjectImage(imageFileOpener.current.files[0]);
+    }
+
+    updateProject(name);
   };
 
   return (
     <>
-      <input
-        type="file"
-        style={{ display: "none" }}
-        ref={imageFileOpener}
-        onChange={showImagePreview}
-      />
       <div className="field">
         <form className="field-edit-form" onSubmit={handleSubmit}>
           <label>{name.toUpperCase()}</label>
           {name === "image" ? (
-            <div
-              className="field-edit-image-container"
-              onClick={() => imageFileOpener.current.click()}
-            >
-              {isImageSet ? (
-                <img className="field-edit-image" ref={imagePreview} />
-              ) : (
-                <img
-                  className="field-edit-image"
-                  src={`${url}/uploads/${value}`}
-                  alt="image"
-                />
-              )}
-            </div>
+            <>
+              <input
+                type="file"
+                style={{ display: "none" }}
+                ref={imageFileOpener}
+                onChange={showImagePreview}
+              />
+              <div
+                className="field-edit-image-container"
+                onClick={() => imageFileOpener.current.click()}
+              >
+                {isImageSet ? (
+                  <img className="field-edit-image" ref={imagePreview} />
+                ) : (
+                  <img
+                    className="field-edit-image"
+                    src={`${url}/uploads/${value}`}
+                    alt="image"
+                  />
+                )}
+              </div>
+            </>
           ) : name === "categories" ? (
             <div className="field-edit-categories">
               <MultipleCategories />

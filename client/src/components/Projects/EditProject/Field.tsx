@@ -24,6 +24,7 @@ const Field = ({
           inputValue={inputValue}
           getProjectEditInputValues={getProjectEditInputValues}
           setNewProjectImage={setNewProjectImage}
+          updateProject={updateProject}
         />
       ) : (
         <EditClosed
