@@ -132,3 +132,8 @@ export interface EditProjectProps {
   categories: Category[];
   getCategories: Function;
 }
+
+export interface EditFieldProps {
+  name: string;
+  value: string | Category[];
+}
