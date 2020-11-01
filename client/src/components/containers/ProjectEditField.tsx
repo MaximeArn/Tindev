@@ -11,8 +11,8 @@ const mapDispatch = (dispatch: Dispatch<AnyAction>) => ({
     console.log("NEW IMAGE SET");
     dispatch({ type: "SET_PROJECT_IMAGE", image });
   },
-  updateProject: (inputName: string) =>
-    dispatch({ type: "UPDATE_PROJECT", inputName }),
+  updateProject: (inputName: string, projectId: string) =>
+    dispatch({ type: "UPDATE_PROJECT", inputName, projectId }),
 });
 
 export default connect(null, mapDispatch)(Field);

@@ -40,7 +40,6 @@ export interface ProjectAction {
   type: string;
   inputName: string;
   inputValue: string | number | string[];
-  categories: Category[];
   image: MutableRefObject<any>;
   projects: Project[];
   project: Project;

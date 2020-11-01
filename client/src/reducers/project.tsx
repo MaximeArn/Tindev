@@ -29,7 +29,6 @@ const project = (
     inputName,
     inputValue,
     image,
-    categories,
     projects,
     project,
     owner,

@@ -121,6 +121,27 @@ const declineApplicant = ({
     });
 };
 
+const updateProject = (
+  { getState, dispatch }: AxiosSubmit,
+  name: string,
+  projectId: string
+) => {
+  const { createProject } = getState().project;
+
+  const formData = new FormData();
+
+  name === "categories"
+    ? formData.append(name, JSON.stringify(createProject[name]))
+    : formData.append(name, createProject[name]);
+
+  axios
+    .patch(`/project/${projectId}`, formData, {
+      headers: { "Content-Type": "multipart/form-data" },
+    })
+    .then((response) => console.log(response))
+    .catch((error) => console.error(error));
+};
+
 const verifyOwner = (projectAuthor: string, dispatch: Dispatch<AnyAction>) => {
   axios
     .post("/project/verify_owner", { projectAuthor })
@@ -129,7 +150,7 @@ const verifyOwner = (projectAuthor: string, dispatch: Dispatch<AnyAction>) => {
 };
 
 const project: Middleware = ({ getState, dispatch }) => (next) => (action) => {
-  const { data, projectAuthor, projectId, history } = action;
+  const { data, projectAuthor, projectId, history, inputName } = action;
 
   switch (action.type) {
     case "SEND_PROJECT":
@@ -137,6 +158,9 @@ const project: Middleware = ({ getState, dispatch }) => (next) => (action) => {
       break;
     case "GET_PROJECTS":
       setProjects(dispatch);
+      break;
+    case "UPDATE_PROJECT":
+      updateProject({ getState, dispatch }, inputName, projectId);
       break;
     case "SEND_USER_APPLY":
       sendApply({ getState, dispatch }, projectId);

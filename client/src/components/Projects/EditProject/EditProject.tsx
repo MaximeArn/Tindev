@@ -24,6 +24,7 @@ const EditProject = ({
               <Field
                 key={key}
                 name={key}
+                projectId={project._id}
                 value={project[key]}
                 inputValue={projectCreationValues[key]}
               />

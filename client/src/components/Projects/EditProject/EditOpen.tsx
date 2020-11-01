@@ -8,6 +8,7 @@ import { EditProjectStatusOpen } from "../../../models/projects";
 const EditOpen = ({
   name,
   value,
+  projectId,
   inputValue,
   isExpanded,
   setExpanded,
@@ -34,7 +35,7 @@ const EditOpen = ({
   const handleSubmit = (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault();
     name === "image" && setNewProjectImage(imageFileOpener.current.files[0]);
-    updateProject(name);
+    updateProject(name, projectId);
   };
 
   return (
@@ -67,7 +68,7 @@ const EditOpen = ({
             </>
           ) : name === "categories" ? (
             <div className="field-edit-categories">
-              <MultipleCategories />
+              <MultipleCategories name={name} />
             </div>
           ) : (
             <div className="field-edit-form-infos">

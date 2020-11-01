@@ -118,6 +118,7 @@ module.exports = {
     res,
     next
   ) => {
+    console.log(body);
     try {
       const key = file ? "image" : Object.keys(body)[0];
       const user = await tokenValidator(token, next);

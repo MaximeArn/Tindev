@@ -137,6 +137,7 @@ export interface EditProjectProps {
 
 export interface EditFieldProps {
   name: string;
+  projectId: string;
   value: string | Category[];
   inputValue: string | number | undefined;
   getProjectEditInputValues: Function;
@@ -154,6 +155,7 @@ export interface EditProjectStatusClosed {
 export interface EditProjectStatusOpen {
   name: string;
   value: string | Category[];
+  projectId: string;
   inputValue: string | number | undefined;
   isExpanded: boolean;
   setExpanded: Function;
