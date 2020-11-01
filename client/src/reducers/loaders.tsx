@@ -9,6 +9,10 @@ const initialState: Loaders = {
   projectListLoader: false,
   projectCreationLoader: false,
   projectCategoriesLoader: false,
+  projectEditionLoader: {
+    fieldName: null,
+    loader: false,
+  },
   manageApplicantLoader: {
     applicantId: null,
     loader: false,

@@ -58,9 +58,13 @@ export interface Loaders {
   projectListLoader: boolean;
   projectCreationLoader: boolean;
   projectCategoriesLoader: boolean;
+  projectEditionLoader: {
+    fieldName: string | null;
+    loader: boolean;
+  };
   manageApplicantLoader: {
     applicantId: null | string;
-    loader: false;
+    loader: boolean;
   };
 }
 
