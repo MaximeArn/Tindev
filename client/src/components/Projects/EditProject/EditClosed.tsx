@@ -18,7 +18,7 @@ const EditClosed = ({
           alt="image"
         />
       ) : (
-        <div>{value}</div>
+        <div className="field-text-content">{value}</div>
       )}
       <button
         className="field-edit-button"
