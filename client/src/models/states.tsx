@@ -103,6 +103,7 @@ export interface ErrorState {
   projectCreationErrorMessage: string;
   projectListErrorMessage: string;
   projectApplyErrorMessage: string;
+  projectEditionErrorMessage: string;
   userProfileErrorMessage: string;
 }
 

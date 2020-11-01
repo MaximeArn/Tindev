@@ -9,13 +9,20 @@ import EditProject from "../Projects/EditProject/EditProject";
 import { AnyAction, Dispatch } from "redux";
 
 const mapState = (
-  { project: { projects, createProject } }: State,
+  {
+    project: { projects, createProject },
+    error: { projectEditionErrorMessage: error },
+  }: State,
   { match }: OwnProps
 ) => {
   const { slug } = match.params;
   const project = projects.find(({ title }) => slugify(title) === slug);
 
-  return { project: project || {}, projectCreationValues: createProject };
+  return {
+    project: project || {},
+    projectCreationValues: createProject,
+    error,
+  };
 };
 
 const mapDispatch = (dispatch: Dispatch<AnyAction>) => ({

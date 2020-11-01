@@ -130,6 +130,7 @@ export interface DeclineApplicantModalProps {
 
 export interface EditProjectProps {
   project: Project;
+  error: string;
   categories: Category[];
   projectCreationValues: ProjectCreation;
   getCategories: Function;

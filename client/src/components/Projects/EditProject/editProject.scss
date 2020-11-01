@@ -1,9 +1,19 @@
-.edit-project {
+@use '../../../styles/vars';
+
+.edit-project-container {
   margin-top: calc(64px + 4rem);
   color: #fff;
   display: flex;
   justify-content: center;
+  flex-direction: column;
   align-items: center;
+}
+
+.edit-project {
+  &-error-message {
+    color: vars.$error-message;
+    margin-bottom: 1rem;
+  }
 
   .edit-form {
     width: 738px;

@@ -143,7 +143,10 @@ const updateProject = (
         history.push(`/project/${slugify(project.title)}/edit`);
       dispatch({ type: "SET_PROJECT", project });
     })
-    .catch((error) => console.error(error));
+    .catch(({ response: { data } }) => {
+      const { msg: error } = data;
+      dispatch({ type: "PROJECT_EDITION_ERROR_HANDLER", error });
+    });
 };
 
 const verifyOwner = (projectAuthor: string, dispatch: Dispatch<AnyAction>) => {
