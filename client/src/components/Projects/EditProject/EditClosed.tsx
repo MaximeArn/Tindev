@@ -7,6 +7,7 @@ const EditClosed = ({
   value,
   isExpanded,
   setExpanded,
+  getProjectEditInputValues,
 }: EditProjectStatus) => {
   return (
     <div className="field">

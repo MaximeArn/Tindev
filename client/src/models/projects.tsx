@@ -130,17 +130,22 @@ export interface DeclineApplicantModalProps {
 export interface EditProjectProps {
   project: Project;
   categories: Category[];
+  projectCreationValues: ProjectCreation;
   getCategories: Function;
 }
 
 export interface EditFieldProps {
   name: string;
   value: string | Category[];
+  inputValue: string | number | undefined;
+  getProjectEditInputValues: Function;
 }
 
 export interface EditProjectStatus {
   name: string;
   value: string | Category[];
+  inputValue?: string | number | undefined;
   isExpanded: boolean;
   setExpanded: Function;
+  getProjectEditInputValues: Function;
 }

@@ -8,8 +8,10 @@ import { EditProjectStatus } from "../../../models/projects";
 const EditOpen = ({
   name,
   value,
+  inputValue,
   isExpanded,
   setExpanded,
+  getProjectEditInputValues,
 }: EditProjectStatus) => {
   const [isImageSet, setImage] = useState(false);
   const imageFileOpener = useRef<any>(null);
@@ -21,6 +23,7 @@ const EditOpen = ({
     setImage(true);
     const reader = new FileReader();
     files && reader.readAsDataURL(files[0]);
+
     reader.onload = (event: ProgressEvent<FileReader>) => {
       imagePreview.current.src = event.target?.result;
     };
@@ -67,6 +70,10 @@ const EditOpen = ({
                 type={typeChecker(name)}
                 name={name}
                 placeholder={`New ${capitalize(name)}...`}
+                value={inputValue}
+                onChange={({ target }) =>
+                  getProjectEditInputValues(name, target.value)
+                }
               />
             </div>
           )}
