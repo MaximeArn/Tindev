@@ -1,7 +1,34 @@
 import React from "react";
+import { url } from "../../../environments/api";
+import { EditProjectStatus } from "../../../models/projects";
 
-const EditClosed = () => {
-  return <div></div>;
+const EditClosed = ({
+  name,
+  value,
+  isExpanded,
+  setExpanded,
+}: EditProjectStatus) => {
+  return (
+    <div className="field">
+      <div className="field-name">{name}</div>
+      {name === "image" ? (
+        <img
+          className="field-edit-image"
+          src={`${url}/uploads/${value}`}
+          alt="image"
+        />
+      ) : (
+        <div>{value}</div>
+      )}
+      <button
+        className="field-edit-button"
+        type="button"
+        onClick={() => setExpanded(!isExpanded)}
+      >
+        Modify
+      </button>
+    </div>
+  );
 };
 
 export default EditClosed;

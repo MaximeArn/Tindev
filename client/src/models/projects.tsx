@@ -137,3 +137,10 @@ export interface EditFieldProps {
   name: string;
   value: string | Category[];
 }
+
+export interface EditProjectStatus {
+  name: string;
+  value: string | Category[];
+  isExpanded: boolean;
+  setExpanded: Function;
+}
