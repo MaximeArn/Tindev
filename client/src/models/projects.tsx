@@ -155,7 +155,6 @@ export interface EditProjectStatusClosed {
 export interface EditProjectStatusOpen {
   name: string;
   value: string | Category[];
-  projectId: string;
   inputValue: string | number | undefined;
   isExpanded: boolean;
   setExpanded: Function;

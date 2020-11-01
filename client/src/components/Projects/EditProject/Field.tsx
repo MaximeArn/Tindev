@@ -6,7 +6,6 @@ import EditClosed from "./EditClosed";
 const Field = ({
   name,
   value,
-  projectId,
   inputValue,
   getProjectEditInputValues,
   setNewProjectImage,
@@ -20,7 +19,6 @@ const Field = ({
         <EditOpen
           name={name}
           value={value}
-          projectId={projectId}
           isExpanded={isExpanded}
           setExpanded={setExpanded}
           inputValue={inputValue}
