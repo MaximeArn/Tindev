@@ -121,12 +121,12 @@ const ProjectCreation = ({
 
                 <section className="category-section">
                   <h3 className="project-creation-title">PROJECT CATEGORY</h3>
-                  <MultipleCategories />
+                  <MultipleCategories name="categories" />
                 </section>
                 <section className="team-size-section">
                   <h3 className="project-creation-title">DESIRED TEAM SIZE</h3>
                   <div className="project-creation-teamsize">
-                    <Buttons />
+                    <Buttons name="size" />
                   </div>
                 </section>
 

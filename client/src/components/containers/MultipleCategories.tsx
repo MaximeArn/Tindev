@@ -15,9 +15,12 @@ const mapState = ({
 
 const mapDispatch = (dispatch: Dispatch<AnyAction>) => {
   return {
-    getCategories: (categories: string[]) =>
-      dispatch({ type: "GET_PROJECT_CREATION_CATEGORIES", categories }),
+    getCategories: (inputName: string, inputValue: string[]) =>
+      dispatch({
+        type: "GET_PROJECT_CREATION_VALUE",
+        inputName,
+        inputValue,
+      }),
   };
 };
-
 export default connect(mapState, mapDispatch)(MultipleCategories);

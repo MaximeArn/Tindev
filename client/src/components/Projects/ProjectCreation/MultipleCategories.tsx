@@ -15,6 +15,7 @@ import useStyles, {
 } from "../../../styles/MUI/MultipleCategories";
 
 const MultipleCategories = ({
+  name,
   categories,
   categoriesFieldValues,
   getCategories,
@@ -22,8 +23,8 @@ const MultipleCategories = ({
   const classes = useStyles();
   const theme = useTheme();
 
-  const handleChange = (event: ChangeEvent<{ value: unknown }>) => {
-    getCategories(event.target.value);
+  const handleChange = ({ target }: ChangeEvent<{ value: unknown }>) => {
+    getCategories(name, target.value);
   };
 
   return (
@@ -33,6 +34,7 @@ const MultipleCategories = ({
           Categories
         </InputLabel>
         <Select
+          required
           labelId="demo-mutiple-chip-label"
           id="demo-mutiple-chip"
           multiple

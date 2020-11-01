@@ -7,8 +7,10 @@ import { MutableRefObject } from "react";
 const mapDispatch = (dispatch: Dispatch<AnyAction>) => ({
   getProjectEditInputValues: (inputName: string, inputValue: string) =>
     dispatch({ type: "GET_PROJECT_CREATION_VALUE", inputName, inputValue }),
-  setNewProjectImage: (image: MutableRefObject<any>) =>
-    dispatch({ type: "SET_PROJECT_IMAGE", image }),
+  setNewProjectImage: (image: MutableRefObject<any>) => {
+    console.log("NEW IMAGE SET");
+    dispatch({ type: "SET_PROJECT_IMAGE", image });
+  },
   updateProject: (inputName: string) =>
     dispatch({ type: "UPDATE_PROJECT", inputName }),
 });

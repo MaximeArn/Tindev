@@ -5,6 +5,7 @@ export interface Category {
 }
 
 export interface MultipleCategory {
+  name: string;
   categories: Category[];
   categoriesFieldValues: Category[];
   getCategories: Function;

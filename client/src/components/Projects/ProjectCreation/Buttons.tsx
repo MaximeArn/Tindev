@@ -6,14 +6,13 @@ import { faPlus } from "@fortawesome/free-solid-svg-icons";
 import { ProjectCreationButton } from "../../../models/projects";
 import Button from "@material-ui/core/Button";
 import ButtonGroup from "@material-ui/core/ButtonGroup";
-import usestyles from "../../../styles/MUI/TeamSizeButtons";
 import useStyles from "../../../styles/MUI/TeamSizeButtons";
 
-const Buttons = ({ getProjectTeamSize }: ProjectCreationButton) => {
+const Buttons = ({ name, getProjectTeamSize }: ProjectCreationButton) => {
   const handleButtonClick = ({
     currentTarget,
   }: MouseEvent<HTMLButtonElement> | ChangeEvent<HTMLInputElement>) => {
-    getProjectTeamSize(currentTarget.value);
+    getProjectTeamSize(name, currentTarget.value);
   };
   const input = useRef<HTMLInputElement>(null);
   const [lastButtonInput, setLastButtonInput] = useState(false);

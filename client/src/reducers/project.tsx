@@ -28,7 +28,6 @@ const project = (
     type,
     inputName,
     inputValue,
-    teamSize,
     image,
     categories,
     projects,
@@ -41,19 +40,6 @@ const project = (
       return {
         ...state,
         createProject: { ...state.createProject, [inputName]: inputValue },
-      };
-    case "GET_PROJECT_CREATION_CATEGORIES":
-      return {
-        ...state,
-        createProject: {
-          ...state.createProject,
-          categories,
-        },
-      };
-    case "GET_PROJECT_CREATION_TEAM_SIZE":
-      return {
-        ...state,
-        createProject: { ...state.createProject, size: teamSize },
       };
     case "RESET_PROJECT_CREATION_VALUES":
       return { ...state, createProject: resetInputs(state.createProject) };
@@ -73,7 +59,6 @@ const project = (
     case "SET_PROJECTS":
       return { ...state, projects };
     case "SET_PROJECT":
-      console.log("UPDATING PROJECT : ", project);
       return { ...state, projects: updateProjects(project, state.projects) };
     case "ADD_PROJECT_ON_PROJECT_CREATION":
       return { ...state, projects: [...state.projects, project] };

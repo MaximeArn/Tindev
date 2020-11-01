@@ -33,11 +33,7 @@ const EditOpen = ({
 
   const handleSubmit = (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault();
-
-    if (imageFileOpener.current.files) {
-      setNewProjectImage(imageFileOpener.current.files[0]);
-    }
-
+    name === "image" && setNewProjectImage(imageFileOpener.current.files[0]);
     updateProject(name);
   };
 
@@ -76,6 +72,7 @@ const EditOpen = ({
           ) : (
             <div className="field-edit-form-infos">
               <input
+                required
                 className={
                   name === "description"
                     ? "field-edit-textarea"

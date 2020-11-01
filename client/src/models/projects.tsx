@@ -65,6 +65,7 @@ export interface ProjectDetail {
   };
 }
 export interface ProjectCreationButton {
+  name: string;
   getProjectTeamSize: Function;
 }
 
