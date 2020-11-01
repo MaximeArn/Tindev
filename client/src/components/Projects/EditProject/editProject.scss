@@ -12,6 +12,7 @@
     .field {
       padding: 1rem;
       display: flex;
+      align-items: center;
       justify-content: space-between;
       border-bottom: 1px solid #fff;
 
@@ -19,6 +20,22 @@
         margin-bottom: 1rem;
 
         text-transform: uppercase;
+      }
+
+      &-edit-categories {
+        display: flex;
+        flex-direction: column;
+        width: 50%;
+
+        select {
+          border-radius: 5px;
+          padding: 0.3rem;
+          color: #fff;
+        }
+
+        h3 {
+          padding-right: 1em;
+        }
       }
 
       &-edit-image {

@@ -6,11 +6,7 @@ import Field from "./Field";
 import fieldChecker from "../../../utils/fieldChecker";
 import "./editProject.scss";
 
-const EditProject = ({
-  project,
-  categories,
-  getCategories,
-}: EditProjectProps) => {
+const EditProject = ({ project, getCategories }: EditProjectProps) => {
   useEffect(() => {
     getCategories();
   }, []);
@@ -20,16 +16,7 @@ const EditProject = ({
         {project &&
           Object.keys(fieldChecker(project)).map((props) => {
             const key = props as keyof typeof EditProject;
-            return key === "categories" ? (
-              <Field
-                key={key}
-                name={key}
-                value={project[key]}
-                categories={categories}
-              />
-            ) : (
-              <Field key={key} name={key} value={project[key]} />
-            );
+            return <Field key={key} name={key} value={project[key]} />;
           })}
       </div>
     </div>

@@ -47,7 +47,7 @@ const project = (
         ...state,
         createProject: {
           ...state.createProject,
-          categories: categories,
+          categories,
         },
       };
     case "GET_PROJECT_CREATION_TEAM_SIZE":

@@ -3,11 +3,11 @@ import EditIcon from "@material-ui/icons/Edit";
 import { url } from "../../../environments/api";
 import capitalize from "../../../utils/capitalizeFirstLetter";
 import typeChecker from "../../../utils/projectEditTypeChecker";
+import MultipleCategories from "../../containers/MultipleCategories";
 
-const Field = ({ name, value, categories }: any) => {
+const Field = ({ name, value }: any) => {
   const [isExpanded, setExpanded] = useState(false);
 
-  console.log(categories);
   return (
     <>
       {!isExpanded ? (
@@ -38,6 +38,24 @@ const Field = ({ name, value, categories }: any) => {
               src={`${url}/uploads/${value}`}
               alt="image"
             />
+          ) : name === "categories" ? (
+            <>
+              <div className="field-edit-categories">
+                <MultipleCategories />
+              </div>
+              <div>
+                <button className="field-edit-button" type="submit">
+                  Confirm
+                </button>
+                <button
+                  className="field-edit-button"
+                  type="button"
+                  onClick={() => setExpanded(!isExpanded)}
+                >
+                  Close
+                </button>
+              </div>
+            </>
           ) : (
             <form className="field-edit-form">
               <div className="field-edit-form-infos">
