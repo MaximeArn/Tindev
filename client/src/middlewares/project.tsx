@@ -138,7 +138,9 @@ const updateProject = (
     .patch(`/project/${projectId}`, formData, {
       headers: { "Content-Type": "multipart/form-data" },
     })
-    .then((response) => console.log(response))
+    .then(({ data: { msg, project } }) => {
+      dispatch({ type: "SET_PROJECT", project });
+    })
     .catch((error) => console.error(error));
 };
 

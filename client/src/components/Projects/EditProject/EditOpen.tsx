@@ -35,6 +35,7 @@ const EditOpen = ({
     event.preventDefault();
     name === "image" && setNewProjectImage(imageFileOpener.current.files[0]);
     updateProject(name);
+    setExpanded(false);
   };
 
   return (

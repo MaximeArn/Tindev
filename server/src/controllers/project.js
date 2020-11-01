@@ -125,12 +125,15 @@ module.exports = {
       const project = await projectUpdateValidator(id, body, next);
 
       if (project && user) {
-        await Project.updateOne(
+        const updated = await Project.findOneAndUpdate(
           { _id: id },
-          { [key]: body[key] || file.filename }
+          { [key]: body[key] || file.filename },
+          { new: true }
         );
 
-        return res.status(200).json({ msg: "Project successfully updated" });
+        return res
+          .status(200)
+          .json({ msg: "Project successfully updated", project: updated });
       }
     } catch (error) {
       next(error);
