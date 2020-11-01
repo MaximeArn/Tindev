@@ -122,12 +122,12 @@ const declineApplicant = ({
 };
 
 const updateProject = (
-  { getState, dispatch }: AxiosSubmit,
+  { getState, dispatch, history }: AxiosSubmit,
   name: string,
-  projectId: string
+  projectId: string,
+  slug: string
 ) => {
   const { createProject } = getState().project;
-
   const formData = new FormData();
 
   name === "categories"
@@ -139,6 +139,8 @@ const updateProject = (
       headers: { "Content-Type": "multipart/form-data" },
     })
     .then(({ data: { msg, project } }) => {
+      !(slugify(project.title) === slug) &&
+        history.push(`/project/${slugify(project.title)}/edit`);
       dispatch({ type: "SET_PROJECT", project });
     })
     .catch((error) => console.error(error));
@@ -152,7 +154,7 @@ const verifyOwner = (projectAuthor: string, dispatch: Dispatch<AnyAction>) => {
 };
 
 const project: Middleware = ({ getState, dispatch }) => (next) => (action) => {
-  const { data, projectAuthor, projectId, history, inputName } = action;
+  const { data, projectAuthor, projectId, history, inputName, slug } = action;
 
   switch (action.type) {
     case "SEND_PROJECT":
@@ -162,7 +164,12 @@ const project: Middleware = ({ getState, dispatch }) => (next) => (action) => {
       setProjects(dispatch);
       break;
     case "UPDATE_PROJECT":
-      updateProject({ getState, dispatch }, inputName, projectId);
+      updateProject(
+        { getState, dispatch, history },
+        inputName,
+        projectId,
+        slug
+      );
       break;
     case "SEND_USER_APPLY":
       sendApply({ getState, dispatch }, projectId);

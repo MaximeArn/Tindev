@@ -11,4 +11,7 @@ export interface ProjectEditFieldOwnProps {
   projectId: string;
   value: string | Category[];
   inputValue: string | number | undefined;
+  history: any;
+  location: any;
+  match: any;
 }
