@@ -41,4 +41,3 @@ server.listen(PORT, () => console.log(`Server running on port ${PORT}`));
 http.listen(SOCKET, () => console.log(`Socket listening on port ${SOCKET}`));
 
 io.on("connection", () => console.log("a user connected"));
-io.on("message", (response) => console.log(response));

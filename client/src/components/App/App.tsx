@@ -32,7 +32,6 @@ function App({
   }, []);
 
   const socket = io(socketUrl);
-  socket.emit("message", "mon message");
 
   return (
     <>
