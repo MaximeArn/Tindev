@@ -21,6 +21,7 @@ export interface LoadersActions {
   type: string;
   value: string;
   applicantId: string;
+  fieldName: string;
 }
 
 export interface ModalAction {

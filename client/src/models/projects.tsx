@@ -139,6 +139,10 @@ export interface EditProjectProps {
 export interface EditFieldProps {
   name: string;
   projectId: string;
+  isLoading: {
+    fieldName: string;
+    loader: boolean;
+  };
   value: string | Category[];
   inputValue: string | number | undefined;
   getProjectEditInputValues: Function;
@@ -150,6 +154,8 @@ export interface EditProjectStatusClosed {
   name: string;
   value: string | Category[];
   isExpanded: boolean;
+  fieldName: string;
+  loader: boolean;
   setExpanded: Function;
 }
 

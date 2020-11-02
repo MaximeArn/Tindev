@@ -1,7 +1,6 @@
 /** @format */
-import React, { FormEvent, MouseEvent, useRef } from "react";
-import { Authentication, RegisterAuth, Loaders } from "../../../models/states";
-import { Link, useHistory } from "react-router-dom";
+import React, { FormEvent, useRef } from "react";
+import { RegisterAuth } from "../../../models/states";
 import googleIcon from "src/assets/icons/googleIcon.svg";
 import modalClickHandler from "../../../utils/modalClickHandler";
 import inputMapper from "../../../utils/inputMapper";

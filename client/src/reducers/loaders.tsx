@@ -21,7 +21,7 @@ const initialState: Loaders = {
 
 const loaders = (
   state = initialState,
-  { type, value, applicantId }: LoadersActions
+  { type, value, applicantId, fieldName }: LoadersActions
 ) => {
   switch (type) {
     case "SET_REGISTER_LOADER":
@@ -44,6 +44,15 @@ const loaders = (
       return {
         ...state,
         manageApplicantLoader: { applicantId, loader: value },
+      };
+    case "SET_PROJECT_EDITION_LOADER":
+      console.log("PROJECT EDITION LOADER");
+      return {
+        ...state,
+        projectEditionLoader: {
+          fieldName,
+          loader: value,
+        },
       };
     default:
       return state;

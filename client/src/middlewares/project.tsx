@@ -134,6 +134,12 @@ const updateProject = (
     ? formData.append(name, JSON.stringify(createProject[name]))
     : formData.append(name, createProject[name]);
 
+  dispatch({
+    type: "SET_PROJECT_EDITION_LOADER",
+    fieldName: name,
+    value: true,
+  });
+
   axios
     .patch(`/project/${projectId}`, formData, {
       headers: { "Content-Type": "multipart/form-data" },
@@ -146,7 +152,14 @@ const updateProject = (
     .catch(({ response: { data } }) => {
       const { msg: error } = data;
       dispatch({ type: "PROJECT_EDITION_ERROR_HANDLER", error });
-    });
+    })
+    .finally(() =>
+      dispatch({
+        type: "SET_PROJECT_EDITION_LOADER",
+        fieldName: null,
+        value: false,
+      })
+    );
 };
 
 const verifyOwner = (projectAuthor: string, dispatch: Dispatch<AnyAction>) => {

@@ -3,7 +3,12 @@ import { AnyAction, Dispatch } from "redux";
 import { withRouter } from "react-router-dom";
 import Field from "../Projects/EditProject/Field";
 import { ProjectEditFieldOwnProps } from "../../models/connect";
+import { State } from "../../models/states";
 import { MutableRefObject } from "react";
+
+const mapState = ({ loaders: { projectEditionLoader } }: State) => ({
+  isLoading: projectEditionLoader,
+});
 
 const mapDispatch = (
   dispatch: Dispatch<AnyAction>,
@@ -20,4 +25,4 @@ const mapDispatch = (
   };
 };
 
-export default withRouter(connect(null, mapDispatch)(Field));
+export default withRouter(connect(mapState, mapDispatch)(Field));

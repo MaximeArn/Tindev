@@ -27,6 +27,20 @@
       border-bottom: 1px solid #fff;
       height: 138px;
 
+      &-loading-button {
+        display: flex;
+        justify-content: center;
+        text-align: center;
+        width: 100%;
+        p {
+          margin-right: 10px;
+        }
+
+        .MuiCircularProgress-indeterminate {
+          color: #fff !important;
+        }
+      }
+
       &-text-content {
         width: 45%;
         text-align: center;
