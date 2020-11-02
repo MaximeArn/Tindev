@@ -12,10 +12,18 @@ const EditProject = ({
   error,
   success,
   getCategories,
+  resetSuccessMessage,
 }: EditProjectProps) => {
   useEffect(() => {
     getCategories();
   }, []);
+
+  useEffect(() => {
+    setTimeout(() => {
+      resetSuccessMessage();
+    }, 3000);
+  }, [success]);
+
   return (
     <div className="edit-project-container">
       {error && <div className="edit-project-error-message">{error}</div>}

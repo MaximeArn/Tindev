@@ -29,6 +29,8 @@ const mapState = (
 
 const mapDispatch = (dispatch: Dispatch<AnyAction>) => ({
   getCategories: () => dispatch({ type: "GET_CATEGORIES" }),
+  resetSuccessMessage: () =>
+    dispatch({ type: "PROJECT_EDITION_SUCCESS_MESSAGE" }),
 });
 
 export default withRouter(connect(mapState, mapDispatch)(EditProject));
