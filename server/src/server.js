@@ -3,6 +3,8 @@
 require("dotenv").config();
 const express = require("express");
 const server = require("express")();
+const http = require("http").createServer(server);
+const io = require("socket.io")(http);
 const cookieParser = require("cookie-parser");
 const notFound = require("./middlewares/NotFound");
 const errorHandler = require("./middlewares/errorHandler");
