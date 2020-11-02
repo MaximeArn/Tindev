@@ -15,7 +15,7 @@ import UsersList from "../containers/UsersList";
 import UserProfile from "../containers/UserProfile";
 import Search from "../containers/Search";
 import EditProject from "../containers/EditProject";
-import socketIo from "socket.io-client";
+import io from "socket.io-client";
 
 function App({
   verifyToken,
@@ -31,7 +31,8 @@ function App({
     getUsers();
   }, []);
 
-  const socket = socketIo(socketUrl);
+  const socket = io(socketUrl);
+  socket.emit("message", "mon message");
 
   return (
     <>
