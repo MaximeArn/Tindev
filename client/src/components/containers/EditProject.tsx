@@ -12,6 +12,7 @@ const mapState = (
   {
     project: { projects, createProject },
     error: { projectEditionErrorMessage: error },
+    success: { projectEditionSuccess: success },
   }: State,
   { match }: OwnProps
 ) => {
@@ -22,6 +23,7 @@ const mapState = (
     project: project || {},
     projectCreationValues: createProject,
     error,
+    success,
   };
 };
 

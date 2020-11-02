@@ -10,6 +10,11 @@
 }
 
 .edit-project {
+  &-success-message {
+    margin-bottom: 1rem;
+    color: #19a463;
+  }
+
   &-error-message {
     color: vars.$error-message;
     margin-bottom: 1rem;

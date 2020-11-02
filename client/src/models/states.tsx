@@ -163,6 +163,7 @@ export interface ModalState {
 export interface SuccessState {
   applySuccess: boolean | string;
   registerSuccess: boolean | string;
+  projectEditionSuccess: boolean | string;
 }
 
 export interface SearchState {

@@ -144,10 +144,11 @@ const updateProject = (
     .patch(`/project/${projectId}`, formData, {
       headers: { "Content-Type": "multipart/form-data" },
     })
-    .then(({ data: { msg, project } }) => {
+    .then(({ data: { msg: message, project } }) => {
+      dispatch({ type: "SET_PROJECT", project });
+      dispatch({ type: "PROJECT_EDITION_SUCCESS_MESSAGE", message });
       !(slugify(project.title) === slug) &&
         history.push(`/project/${slugify(project.title)}/edit`);
-      dispatch({ type: "SET_PROJECT", project });
     })
     .catch(({ response: { data } }) => {
       const { msg: error } = data;

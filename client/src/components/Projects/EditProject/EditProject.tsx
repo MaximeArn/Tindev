@@ -10,6 +10,7 @@ const EditProject = ({
   project,
   projectCreationValues,
   error,
+  success,
   getCategories,
 }: EditProjectProps) => {
   useEffect(() => {
@@ -18,6 +19,7 @@ const EditProject = ({
   return (
     <div className="edit-project-container">
       {error && <div className="edit-project-error-message">{error}</div>}
+      {success && <div className="edit-project-success-message">{success}</div>}
       <div className="edit-project">
         <div className="edit-form">
           {project &&

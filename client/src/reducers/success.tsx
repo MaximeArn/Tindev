@@ -3,6 +3,7 @@ import { SuccessAction } from "../models/actions";
 const initialState: SuccessState = {
   applySuccess: false,
   registerSuccess: false,
+  projectEditionSuccess: false,
 };
 const success = (state = initialState, { type, message }: SuccessAction) => {
   switch (type) {
@@ -13,6 +14,8 @@ const success = (state = initialState, { type, message }: SuccessAction) => {
       return { ...state, registerSuccess: message };
     case "RESET_REGISTER_SUCCESS_MESSAGE":
       return { ...state, registerSuccess: false };
+    case "PROJECT_EDITION_SUCCESS_MESSAGE":
+      return { ...state, projectEditionSuccess: message };
     default:
       return state;
   }
