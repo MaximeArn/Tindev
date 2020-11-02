@@ -4,6 +4,7 @@ import React, { useEffect } from "react";
 import Home from "../containers/Home";
 import { Switch, Route } from "react-router-dom";
 import { AppProps } from "../../models/states";
+import { socketUrl } from "../../environments/api";
 import NavBar from "../containers/NavBar";
 import Register from "../containers/Register";
 import Login from "../containers/Login";
@@ -14,6 +15,7 @@ import UsersList from "../containers/UsersList";
 import UserProfile from "../containers/UserProfile";
 import Search from "../containers/Search";
 import EditProject from "../containers/EditProject";
+import socketIo from "socket.io-client";
 
 function App({
   verifyToken,
@@ -28,6 +30,8 @@ function App({
     getProjects();
     getUsers();
   }, []);
+
+  const socket = socketIo(socketUrl);
 
   return (
     <>
