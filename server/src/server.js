@@ -20,6 +20,7 @@ const {
 } = require("./router");
 
 const PORT = process.env.PORT || 3000;
+const SOCKET = process.env.SOCKET || 3001;
 
 server.use(cors(corsSettings));
 server.use(express.static(`${__dirname}/public`));
@@ -36,6 +37,7 @@ server.use(notFound);
 mongoDB.on("error", () => console.log("Error connecting to database"));
 mongoDB.once("open", () => console.log("Connected to mongo database"));
 
-server.listen(PORT, () => {
-  console.log(`Server running on port ${PORT}`);
-});
+server.listen(PORT, () => console.log(`Server running on port ${PORT}`));
+http.listen(SOCKET, () => console.log(`Socket listening on port ${SOCKET}`));
+
+io.on("connection", (socket) => console.log("a user connected"));
