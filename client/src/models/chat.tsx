@@ -1,6 +1,9 @@
 export interface ChatProps {
-  messages: string[];
-  message: string;
+  chatWindow: { username: string }[];
+  chat: {
+    messages: string[];
+    message: string;
+  };
   getMessageValue: Function;
   sendMessage: Function;
 }
