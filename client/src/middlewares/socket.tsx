@@ -6,10 +6,8 @@ import io from "socket.io-client";
 const socketConnection = ({ getState, dispatch }: AxiosSubmit) => {
   const socket = io(`${socketUrl}/chat`);
 
-  socket.emit("chat-message", "client data");
-
-  socket.on("chat-message", (response: any) => {
-    console.log(response);
+  socket.on("chat-message", (message: any) => {
+    dispatch({ type: "SET_CHAT_MESSAGE", message });
   });
 };
 

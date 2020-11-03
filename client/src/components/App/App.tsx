@@ -4,6 +4,7 @@ import React, { useEffect, useRef } from "react";
 import Home from "../containers/Home";
 import { Switch, Route } from "react-router-dom";
 import { AppProps } from "../../models/states";
+import idGenerator from "../../utils/randomIdGenerator";
 import NavBar from "../containers/NavBar";
 import Register from "../containers/Register";
 import Login from "../containers/Login";
@@ -38,7 +39,7 @@ function App({
       <div className="chat">
         <ul>
           {messages.map((message) => (
-            <li>{message}</li>
+            <li key={idGenerator()}>{message}</li>
           ))}
         </ul>
       </div>

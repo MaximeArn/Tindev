@@ -90,4 +90,5 @@ export interface NavBarAction {
 
 export interface MessageAction {
   type: string;
+  message: string;
 }
