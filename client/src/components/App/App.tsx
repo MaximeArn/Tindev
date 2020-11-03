@@ -27,22 +27,20 @@ function App({
   getProjects,
   getUsers,
 }: AppProps) {
-  let socket: any;
-  const chat = useRef<HTMLUListElement>(null);
   useEffect(() => {
     verifyToken();
     getProjects();
     getUsers();
-    socket = io(`${socketUrl}/messages`);
   }, []);
 
-  socket && socket.on("chat-message", (data: any) => console.log(data));
-  // socket.emit("hey", "cc", (response: any) => texts.push(response));
+  const socket = io(`${socketUrl}/messages`);
+  socket.on("chat-message", (data: any) => console.log(data));
+  socket.emit("chat-message", "cc");
 
   return (
     <>
       <div className="chat">
-        <ul ref={chat}>
+        <ul>
           {messages.map((message) => (
             <li>{message}</li>
           ))}

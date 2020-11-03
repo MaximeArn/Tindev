@@ -8,6 +8,8 @@ const io = require("socket.io")(http);
 const cookieParser = require("cookie-parser");
 const notFound = require("./middlewares/NotFound");
 const errorHandler = require("./middlewares/errorHandler");
+const socketHandler = require("./middlewares/socket/socketConnection");
+const socketFilter = require("./middlewares/socket/socketFilter");
 const mongoDB = require("./config/database");
 const cors = require("cors");
 const corsSettings = require("./config/cors");
@@ -17,7 +19,6 @@ const {
   categoriesRouter,
   projectRouter,
   searchRouter,
-  messagesRouter,
 } = require("./router");
 
 const PORT = process.env.PORT || 3000;
@@ -32,7 +33,6 @@ server.use("/project", projectRouter);
 server.use("/categories", categoriesRouter);
 server.use("/users", usersRouter);
 server.use("/search", searchRouter);
-// server.use("/messages", messagesRouter);
 server.use(errorHandler);
 server.use(notFound);
 
@@ -42,7 +42,10 @@ mongoDB.once("open", () => console.log("Connected to mongo database"));
 server.listen(PORT, () => console.log(`Server running on port ${PORT}`));
 http.listen(SOCKET, () => console.log(`Socket listening on port ${SOCKET}`));
 
-io.of("/messages").on("connection", (socket) => {
-  console.log("USER CONNECTED");
-  socket.on("chat-message", (message) => io.emit("hey", message));
-});
+io.of("/messages")
+  .use(socketHandler)
+  .on("connection", (socket) => {
+    socket.use(socketFilter);
+
+    socket.on("chat-message", (response) => console.log(response));
+  });
