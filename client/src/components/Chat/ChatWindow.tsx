@@ -12,6 +12,7 @@ const ChatWindow = ({
   sendMessage,
   message,
   messages,
+  deleteChatWindow,
 }: ChatWindowProps) => {
   const [chat, setChat] = useState(true);
   const [chatExpanded, setChatExpanded] = useState(false);
@@ -31,7 +32,7 @@ const ChatWindow = ({
         <button
           className="closeIcon"
           onClick={() => {
-            setChat(false);
+            !chatExpanded && deleteChatWindow(username);
           }}
         >
           {chatExpanded ? <ExpandMoreIcon /> : <CloseIcon />}

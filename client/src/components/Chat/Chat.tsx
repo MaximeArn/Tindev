@@ -10,6 +10,7 @@ const Chat = ({
   chat,
   getMessageValue,
   sendMessage,
+  deleteChatWindow,
 }: ChatProps) => {
   return (
     <div className="chat-window-wrapper">
@@ -20,6 +21,7 @@ const Chat = ({
           {...chat}
           getMessageValue={getMessageValue}
           sendMessage={sendMessage}
+          deleteChatWindow={deleteChatWindow}
         />
       ))}
     </div>
