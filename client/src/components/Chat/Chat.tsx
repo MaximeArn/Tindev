@@ -1,7 +1,6 @@
 /** @format */
 
 import React from "react";
-import idGenerator from "../../utils/randomIdGenerator";
 import ChatWindow from "./ChatWindow";
 import { ChatProps } from "../../models/chat";
 import "./chat.scss";
@@ -16,7 +15,7 @@ const Chat = ({
     <>
       {chatWindow.map(({ username }) => (
         <ChatWindow
-          key={idGenerator()}
+          key={username}
           username={username}
           {...chat}
           getMessageValue={getMessageValue}

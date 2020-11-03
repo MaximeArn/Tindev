@@ -21,11 +21,10 @@ const Chat = ({
       <div
         ref={chatHeader}
         className="chatZone-header"
-        onClick={(event) => {
+        onClick={({ target }) => {
           chatExpanded
             ? setChatExpanded(!chatExpanded)
-            : event.target === chatHeader.current &&
-              setChatExpanded(!chatExpanded);
+            : target === chatHeader.current && setChatExpanded(!chatExpanded);
         }}
       >
         <p>{username}</p>
