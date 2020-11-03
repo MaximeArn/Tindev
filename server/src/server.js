@@ -8,7 +8,7 @@ const io = require("socket.io")(http);
 const cookieParser = require("cookie-parser");
 const notFound = require("./middlewares/NotFound");
 const errorHandler = require("./middlewares/errorHandler");
-const socketHandler = require("./middlewares/socket/socketConnection");
+const socketConnection = require("./middlewares/socket/socketConnection");
 const socketFilter = require("./middlewares/socket/socketFilter");
 const mongoDB = require("./config/database");
 const cors = require("cors");
@@ -23,6 +23,7 @@ const {
 
 const PORT = process.env.PORT || 3000;
 const SOCKET = process.env.SOCKET || 3001;
+const ioNameSpace = io.of("/chat");
 
 server.use(cors(corsSettings));
 server.use(express.static(`${__dirname}/public`));
@@ -42,10 +43,8 @@ mongoDB.once("open", () => console.log("Connected to mongo database"));
 server.listen(PORT, () => console.log(`Server running on port ${PORT}`));
 http.listen(SOCKET, () => console.log(`Socket listening on port ${SOCKET}`));
 
-io.of("/messages")
-  .use(socketHandler)
-  .on("connection", (socket) => {
-    socket.use(socketFilter);
-
-    socket.on("chat-message", (response) => console.log(response));
-  });
+ioNameSpace.use(socketConnection).on("connection", (socket) => {
+  console.log("User connected");
+  socket.use(socketFilter);
+  ioNameSpace.emit("chat-message", "SERVER ANSWER RECEIVED");
+});

@@ -33,9 +33,11 @@ function App({
     getUsers();
   }, []);
 
-  const socket = io(`${socketUrl}/messages`);
-  socket.on("chat-message", (data: any) => console.log(data));
-  socket.emit("chat-message", "cc");
+  const socket = io(`${socketUrl}/chat`);
+
+  socket.on("chat-message", (data: any) => {
+    console.log(data);
+  });
 
   return (
     <>
