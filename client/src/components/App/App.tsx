@@ -4,7 +4,6 @@ import React, { useEffect, useRef } from "react";
 import Home from "../containers/Home";
 import { Switch, Route } from "react-router-dom";
 import { AppProps } from "../../models/states";
-import { socketUrl } from "../../environments/api";
 import NavBar from "../containers/NavBar";
 import Register from "../containers/Register";
 import Login from "../containers/Login";
@@ -15,7 +14,6 @@ import UsersList from "../containers/UsersList";
 import UserProfile from "../containers/UserProfile";
 import Search from "../containers/Search";
 import EditProject from "../containers/EditProject";
-import io from "socket.io-client";
 import "./app.scss";
 
 function App({
@@ -34,14 +32,6 @@ function App({
     getProjects();
     getUsers();
   }, []);
-
-  // const socket = io(`${socketUrl}/chat`);
-
-  // socket.emit("chat-message", "client data");
-
-  // socket.on("chat-message", (response: any) => {
-  //   console.log(response);
-  // });
 
   return (
     <>

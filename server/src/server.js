@@ -46,6 +46,6 @@ http.listen(SOCKET, () => console.log(`Socket listening on port ${SOCKET}`));
 ioNameSpace.use(socketConnection).on("connection", (socket) => {
   socket.on("chat-message", (response) => {
     socket.use(socketFilter);
-    ioNameSpace.emit("chat-message", "sending this message to everyone");
+    socket.emit("chat-message", "sending this message to everyone");
   });
 });
