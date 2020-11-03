@@ -47,7 +47,7 @@ http.listen(SOCKET, () => console.log(`Socket listening on port ${SOCKET}`));
 const connectedUsers = {};
 
 ioNameSpace.use(socketConnection).on("connection", (socket) => {
-  console.log("user connected !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!");
+  console.log("connected");
   const { username } = socket.handshake.query;
   connectedUsers[username] = socket.id;
 

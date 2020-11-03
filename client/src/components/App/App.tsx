@@ -4,7 +4,6 @@ import React, { useEffect, useRef } from "react";
 import Home from "../containers/Home";
 import { Switch, Route } from "react-router-dom";
 import { AppProps } from "../../models/states";
-import idGenerator from "../../utils/randomIdGenerator";
 import NavBar from "../containers/NavBar";
 import Register from "../containers/Register";
 import Login from "../containers/Login";
@@ -45,7 +44,7 @@ function App({
       {register && <Register />}
       {user && <Chat />}
       <Switch>
-        {/* <Route exact path="/" component={Home} /> */}
+        <Route exact path="/" component={Home} />
         <Route exact path="/project/create" component={ProjectCreation} />
         <Route path="/project/:slug/manage" component={ManagePage} />
         <Route path="/project/:slug/edit" component={EditProject} />

@@ -1,8 +1,7 @@
 /** @format */
 
-import React, { useState, useRef } from "react";
-import CloseIcon from "@material-ui/icons/Close";
-import ExpandMoreIcon from "@material-ui/icons/ExpandMore";
+import React from "react";
+import idGenerator from "../../utils/randomIdGenerator";
 import ChatWindow from "./ChatWindow";
 import { ChatProps } from "../../models/chat";
 import "./chat.scss";
@@ -17,6 +16,7 @@ const Chat = ({
     <>
       {chatWindow.map(({ username }) => (
         <ChatWindow
+          key={idGenerator()}
           username={username}
           {...chat}
           getMessageValue={getMessageValue}
