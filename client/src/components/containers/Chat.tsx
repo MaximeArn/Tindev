@@ -14,7 +14,8 @@ const mapState = ({ message: { message, messages, chatWindow } }: State) => ({
 const mapDispatch = (dispatch: Dispatch<AnyAction>) => ({
   getMessageValue: (message: string) =>
     dispatch({ type: "SET_CHAT_MESSAGE", message }),
-  sendMessage: () => dispatch({ type: "SEND_CHAT_MESSAGE" }),
+  sendMessage: (target: string) =>
+    dispatch({ type: "SEND_CHAT_MESSAGE", target }),
 });
 
 export default connect(mapState, mapDispatch)(Chat);

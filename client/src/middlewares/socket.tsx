@@ -5,33 +5,35 @@ import { AxiosSubmit } from "../models/axios";
 import { socketUrl } from "../environments/api";
 import io from "socket.io-client";
 
-const getSocketMessage = ({ getState, dispatch }: AxiosSubmit) => {
-  const { username } = getState().auth.user;
-  const socket = io(`${socketUrl}/chat`, { query: { username } });
+let socket: any;
+
+const serverSocketListener = ({ getState, dispatch }: AxiosSubmit) => {
   socket.on("chat-message", (message: string) => {
+    console.log("MESSAGE : ", message);
     dispatch({ type: "SET_CHAT_MESSAGES", message });
   });
 };
 
-const sendSocket = ({ getState, dispatch }: AxiosSubmit) => {
+const sendSocket = ({ getState, dispatch }: AxiosSubmit, target: string) => {
   const { message } = getState().message;
-  const { username } = getState().auth.user;
-  const socket = io(`${socketUrl}/chat`, { query: { username } });
-
-  socket.emit("chat-message", { message });
+  socket.emit("chat-message", { to: target, message });
 };
 
 const socketMiddleware: Middleware = ({ getState, dispatch }) => (next) => (
   action
 ) => {
-  const { type } = action;
+  const { type, target } = action;
+  const { user } = getState().auth;
 
   switch (type) {
-    case "GET_SOCKET_MESSAGE":
-      getSocketMessage({ getState, dispatch });
+    case "SOCKET_CONNECTION":
+      const { username } = user;
+      console.log(username);
+      socket = io(`${socketUrl}/chat`, { query: { username } });
+      serverSocketListener({ getState, dispatch });
       break;
     case "SEND_CHAT_MESSAGE":
-      sendSocket({ getState, dispatch });
+      sendSocket({ getState, dispatch }, target);
       break;
     default:
       next(action);
