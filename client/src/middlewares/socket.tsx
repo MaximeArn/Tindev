@@ -7,7 +7,7 @@ const socketConnection = ({ getState, dispatch }: AxiosSubmit) => {
   const socket = io(`${socketUrl}/chat`);
 
   socket.on("chat-message", (message: any) => {
-    dispatch({ type: "SET_CHAT_MESSAGE", message });
+    dispatch({ type: "SET_CHAT_MESSAGES", message });
   });
 };
 

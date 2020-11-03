@@ -121,6 +121,8 @@ export interface AppProps {
   login: boolean;
   register: boolean;
   messages: string[];
+  message: string;
+  getMessageValue: Function;
 }
 
 export interface NavState {
@@ -183,4 +185,5 @@ export interface NavBarState {
 
 export interface MessageState {
   messages: string[];
+  message: string;
 }
