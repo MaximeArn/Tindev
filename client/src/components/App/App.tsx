@@ -30,10 +30,13 @@ function App({
 }: AppProps) {
   useEffect(() => {
     verifyToken();
-    wsConnection();
     getProjects();
     getUsers();
   }, []);
+
+  useEffect(() => {
+    user && wsConnection();
+  }, [user]);
 
   return (
     <>

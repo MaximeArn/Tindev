@@ -3,6 +3,7 @@
 import React, { useState, useRef } from "react";
 import CloseIcon from "@material-ui/icons/Close";
 import ExpandMoreIcon from "@material-ui/icons/ExpandMore";
+import { ChatWindowProps } from "../../models/chat";
 import "./chat.scss";
 
 const Chat = ({
@@ -11,7 +12,7 @@ const Chat = ({
   sendMessage,
   message,
   messages,
-}) => {
+}: ChatWindowProps) => {
   const [chat, setChat] = useState(true);
   const [chatExpanded, setChatExpanded] = useState(false);
   const chatHeader = useRef(null);
@@ -27,7 +28,7 @@ const Chat = ({
               setChatExpanded(!chatExpanded);
         }}
       >
-        <p>Michel</p>
+        <p>{username}</p>
         <button
           className="closeIcon"
           onClick={() => {
@@ -42,9 +43,14 @@ const Chat = ({
         <form
           onSubmit={(event) => {
             event.preventDefault();
+            sendMessage();
           }}
         >
-          <input type="text" />
+          <input
+            type="text"
+            value={message}
+            onChange={({ target }) => getMessageValue(target.value)}
+          />
         </form>
       </div>
     </div>

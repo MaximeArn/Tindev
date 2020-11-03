@@ -1,13 +1,17 @@
+/** @format */
+
 import { Middleware } from "redux";
 import { AxiosSubmit } from "../models/axios";
 import { socketUrl } from "../environments/api";
 import io from "socket.io-client";
 
-// const getSocketMessage = ({ getState, dispatch }: AxiosSubmit) => {
-//   socket.on("chat-message", (message: string) => {
-//     dispatch({ type: "SET_CHAT_MESSAGES", message });
-//   });
-// };
+const getSocketMessage = ({ getState, dispatch }: AxiosSubmit) => {
+  const { username } = getState().auth.user;
+  const socket = io(`${socketUrl}/chat`, { query: { username } });
+  socket.on("chat-message", (message: string) => {
+    dispatch({ type: "SET_CHAT_MESSAGES", message });
+  });
+};
 
 const sendSocket = ({ getState, dispatch }: AxiosSubmit) => {
   const { message } = getState().message;
@@ -24,7 +28,7 @@ const socketMiddleware: Middleware = ({ getState, dispatch }) => (next) => (
 
   switch (type) {
     case "GET_SOCKET_MESSAGE":
-      // getSocketMessage({ getState, dispatch });
+      getSocketMessage({ getState, dispatch });
       break;
     case "SEND_CHAT_MESSAGE":
       sendSocket({ getState, dispatch });
