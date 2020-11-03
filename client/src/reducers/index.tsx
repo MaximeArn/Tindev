@@ -10,6 +10,7 @@ import modal from "./modal";
 import users from "./users";
 import search from "./search";
 import navbar from "./navbar";
+import message from "./message";
 import { combineReducers } from "redux";
 
 export default combineReducers({
@@ -23,4 +24,5 @@ export default combineReducers({
   modal,
   error,
   success,
+  message,
 });

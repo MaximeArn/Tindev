@@ -19,6 +19,7 @@ const User = ({
   list,
   getCurrentContent,
   setSelectedStatus,
+  openChatWindow,
 }: UserProps) => {
   const Content = currentContent;
 
@@ -70,6 +71,9 @@ const User = ({
             </i>
             <i>
               <FontAwesomeIcon icon={faInstagram} size="lg" />
+            </i>
+            <i onClick={() => openChatWindow(username)}>
+              <FontAwesomeIcon icon={faCommentAlt} size="lg" />
             </i>
           </div>
         </div>

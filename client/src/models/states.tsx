@@ -37,6 +37,7 @@ export interface State {
   users: UserState;
   search: SearchState;
   navbar: NavBarState;
+  message: MessageState;
 }
 
 export interface Modals {
@@ -113,12 +114,17 @@ export interface ErrorState {
 
 export interface AppProps {
   verifyToken: Function;
+  wsConnection: Function;
   showNavbar: boolean;
   getProjects: Function;
   getUsers: Function;
   login: boolean;
   register: boolean;
   user: { email: string; username: string } | null;
+  messages: string[];
+  message: string;
+  getMessageValue: Function;
+  sendMessage: Function;
 }
 
 export interface NavState {
@@ -177,4 +183,10 @@ export interface NavBarState {
   main: any;
   mobile: any;
   account: any;
+}
+
+export interface MessageState {
+  messages: string[];
+  message: string;
+  chatWindow: { username: string }[];
 }
