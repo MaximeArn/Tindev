@@ -3,9 +3,15 @@
 import React, { useState, useRef } from "react";
 import CloseIcon from "@material-ui/icons/Close";
 import ExpandMoreIcon from "@material-ui/icons/ExpandMore";
+import { ChatProps } from "../../models/chat";
 import "./chat.scss";
 
-const Chat = () => {
+const Chat = ({
+  messages,
+  message,
+  getMessageValue,
+  sendMessage,
+}: ChatProps) => {
   const [chat, setChat] = useState(true);
   const [chatExpanded, setChatExpanded] = useState(false);
   const chatHeader = useRef(null);

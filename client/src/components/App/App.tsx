@@ -15,7 +15,7 @@ import UsersList from "../containers/UsersList";
 import UserProfile from "../containers/UserProfile";
 import Search from "../containers/Search";
 import EditProject from "../containers/EditProject";
-import Chat from "../Chat/Chat";
+import Chat from "../containers/Chat";
 import "./app.scss";
 
 function App({
@@ -23,14 +23,10 @@ function App({
   wsConnection,
   showNavbar,
   login,
-  message,
-  messages,
   register,
   getProjects,
   getUsers,
   user,
-  getMessageValue,
-  sendMessage,
 }: AppProps) {
   useEffect(() => {
     verifyToken();

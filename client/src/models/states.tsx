@@ -121,10 +121,6 @@ export interface AppProps {
   login: boolean;
   register: boolean;
   user: { email: string; username: string } | null;
-  messages: string[];
-  message: string;
-  getMessageValue: Function;
-  sendMessage: Function;
 }
 
 export interface NavState {
