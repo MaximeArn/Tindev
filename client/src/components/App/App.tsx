@@ -48,8 +48,8 @@ function App({
           </ul>
         </div>
         <form
-          onSubmit={({ preventDefault }) => {
-            preventDefault();
+          onSubmit={(event) => {
+            event.preventDefault();
             sendMessage();
           }}
         >

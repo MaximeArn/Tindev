@@ -37,6 +37,7 @@ export interface UserProps {
   currentContent: Function;
   getCurrentContent: Function;
   setSelectedStatus: Function;
+  openChatWindow: Function;
   list: ListContent[];
   _id: string;
   username: string;

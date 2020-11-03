@@ -19,7 +19,7 @@ const mapState = ({
 });
 const mapDispatch = (dispatch: any) => ({
   verifyToken: () => dispatch({ type: "TOKEN_VALIDATION" }),
-  wsConnection: () => dispatch({ type: "SOCKET_CONNECTION" }),
+  wsConnection: () => dispatch({ type: "GET_SOCKET_MESSAGE" }),
   getProjects: () => dispatch({ type: "GET_PROJECTS" }),
   getUsers: () => dispatch({ type: "GET_USERS" }),
   getMessageValue: (message: string) =>

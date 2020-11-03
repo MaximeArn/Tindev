@@ -2,31 +2,32 @@ import { Middleware } from "redux";
 import { AxiosSubmit } from "../models/axios";
 import { socketUrl } from "../environments/api";
 import io from "socket.io-client";
+const socket = io(`${socketUrl}/chat`);
 
-const socketConnection = ({ getState, dispatch }: AxiosSubmit) => {
-  const socket = io(`${socketUrl}/chat`);
-
-  socket.on("chat-message", (message: any) => {
-    dispatch({ type: "SET_CHAT_MESSAGES", message });
-  });
-};
+// const getSocketMessage = ({ getState, dispatch }: AxiosSubmit) => {
+//   socket.on("chat-message", (message: string) => {
+//     dispatch({ type: "SET_CHAT_MESSAGES", message });
+//   });
+// };
 
 const sendSocket = ({ getState, dispatch }: AxiosSubmit) => {
   const { message } = getState().message;
-  console.log(message);
-  const socket = io(`${socketUrl}/chat`);
-
-  socket.emit("chat-message", message);
+  const {
+    user: { username },
+  } = getState().auth;
+  socket.emit("chat-message", { username, message });
 };
 
-const socket: Middleware = ({ getState, dispatch }) => (next) => (action) => {
+const socketMiddleware: Middleware = ({ getState, dispatch }) => (next) => (
+  action
+) => {
   const { type } = action;
 
   switch (type) {
-    case "SOCKET_CONNECTION":
-      socketConnection({ getState, dispatch });
+    case "GET_SOCKET_MESSAGE":
+      // getSocketMessage({ getState, dispatch });
       break;
-    case "SEND_MESSAGE":
+    case "SEND_CHAT_MESSAGE":
       sendSocket({ getState, dispatch });
       break;
     default:
@@ -35,4 +36,4 @@ const socket: Middleware = ({ getState, dispatch }) => (next) => (action) => {
   }
 };
 
-export default socket;
+export default socketMiddleware;
