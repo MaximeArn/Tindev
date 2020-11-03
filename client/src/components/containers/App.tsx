@@ -9,7 +9,9 @@ const mapState = ({
     showNavbar,
     authModal: { login, register },
   },
+  auth: { user },
 }: State) => ({
+  user,
   showNavbar,
   login,
   register,

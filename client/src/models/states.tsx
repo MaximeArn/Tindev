@@ -118,6 +118,7 @@ export interface AppProps {
   getUsers: Function;
   login: boolean;
   register: boolean;
+  user: { email: string; username: string } | null;
 }
 
 export interface NavState {

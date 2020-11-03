@@ -14,6 +14,7 @@ import UsersList from "../containers/UsersList";
 import UserProfile from "../containers/UserProfile";
 import Search from "../containers/Search";
 import EditProject from "../containers/EditProject";
+import Chat from "../Chat/Chat";
 
 function App({
   verifyToken,
@@ -22,6 +23,7 @@ function App({
   register,
   getProjects,
   getUsers,
+  user,
 }: AppProps) {
   useEffect(() => {
     verifyToken();
@@ -34,6 +36,7 @@ function App({
       {showNavbar && <NavBar />}
       {login && <Login />}
       {register && <Register />}
+      {user && <Chat />}
       <Switch>
         <Route exact path="/" component={Home} />
         <Route exact path="/project/create" component={ProjectCreation} />
