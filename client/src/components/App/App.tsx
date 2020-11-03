@@ -37,32 +37,6 @@ function App({
 
   return (
     <>
-      <div className="chat">
-        <div>
-          <ul>
-            {messages.map((message) => (
-              <li key={idGenerator()}>{message}</li>
-            ))}
-          </ul>
-        </div>
-        <form
-          onSubmit={(event) => {
-            event.preventDefault();
-            sendMessage();
-          }}
-        >
-          <input
-            className="chat-input"
-            type="text"
-            placeholder="Message..."
-            value={message}
-            onChange={({ target }) => getMessageValue(target.value)}
-          />
-          <button className="chat-button" type="submit">
-            Send
-          </button>
-        </form>
-      </div>
       {showNavbar && <NavBar />}
       {login && <Login />}
       {register && <Register />}
