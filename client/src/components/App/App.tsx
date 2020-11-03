@@ -20,6 +20,7 @@ import "./app.scss";
 
 function App({
   verifyToken,
+  wsConnection,
   showNavbar,
   login,
   messages,
@@ -29,15 +30,18 @@ function App({
 }: AppProps) {
   useEffect(() => {
     verifyToken();
+    wsConnection();
     getProjects();
     getUsers();
   }, []);
 
-  const socket = io(`${socketUrl}/chat`);
+  // const socket = io(`${socketUrl}/chat`);
 
-  socket.on("chat-message", (data: any) => {
-    console.log(data);
-  });
+  // socket.emit("chat-message", "client data");
+
+  // socket.on("chat-message", (response: any) => {
+  //   console.log(response);
+  // });
 
   return (
     <>

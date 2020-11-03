@@ -114,6 +114,7 @@ export interface ErrorState {
 
 export interface AppProps {
   verifyToken: Function;
+  wsConnection: Function;
   showNavbar: boolean;
   getProjects: Function;
   getUsers: Function;
