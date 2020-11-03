@@ -32,7 +32,16 @@
         }
     }
 
-    &-content {
+    .chatZone-content {
+        width: 100%;
+        height: 0px;
+        transition: height .4s;
+    }
+
+}
+
+.chatZone.expanded {
+    .chatZone-content {
         width: 100%;
         height: 160px;
     }
