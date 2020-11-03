@@ -6,7 +6,7 @@ import ExpandMoreIcon from "@material-ui/icons/ExpandMore";
 import { ChatWindowProps } from "../../models/chat";
 import "./chat.scss";
 
-const Chat = ({
+const ChatWindow = ({
   username,
   getMessageValue,
   sendMessage,
@@ -56,4 +56,4 @@ const Chat = ({
   );
 };
 
-export default Chat;
+export default ChatWindow;

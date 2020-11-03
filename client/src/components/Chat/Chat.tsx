@@ -12,7 +12,7 @@ const Chat = ({
   sendMessage,
 }: ChatProps) => {
   return (
-    <>
+    <div className="chat-window-wrapper">
       {chatWindow.map(({ username }) => (
         <ChatWindow
           key={username}
@@ -22,7 +22,7 @@ const Chat = ({
           sendMessage={sendMessage}
         />
       ))}
-    </>
+    </div>
   );
 };
 
