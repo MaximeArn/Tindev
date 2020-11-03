@@ -28,6 +28,7 @@ function App({
   getProjects,
   getUsers,
   getMessageValue,
+  sendMessage,
 }: AppProps) {
   useEffect(() => {
     verifyToken();
@@ -46,7 +47,12 @@ function App({
             ))}
           </ul>
         </div>
-        <form>
+        <form
+          onSubmit={({ preventDefault }) => {
+            preventDefault();
+            sendMessage();
+          }}
+        >
           <input
             className="chat-input"
             type="text"

@@ -123,6 +123,7 @@ export interface AppProps {
   messages: string[];
   message: string;
   getMessageValue: Function;
+  sendMessage: Function;
 }
 
 export interface NavState {

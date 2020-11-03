@@ -23,7 +23,8 @@ const mapDispatch = (dispatch: any) => ({
   getProjects: () => dispatch({ type: "GET_PROJECTS" }),
   getUsers: () => dispatch({ type: "GET_USERS" }),
   getMessageValue: (message: string) =>
-    dispatch({ type: "SET_MESSAGE", message }),
+    dispatch({ type: "SET_CHAT_MESSAGE", message }),
+  sendMessage: () => dispatch({ type: "SEND_CHAT_MESSAGE" }),
 });
 
 export default connect(mapState, mapDispatch)(App);

@@ -11,12 +11,23 @@ const socketConnection = ({ getState, dispatch }: AxiosSubmit) => {
   });
 };
 
+const sendSocket = ({ getState, dispatch }: AxiosSubmit) => {
+  const { message } = getState().message;
+  console.log(message);
+  const socket = io(`${socketUrl}/chat`);
+
+  socket.emit("chat-message", message);
+};
+
 const socket: Middleware = ({ getState, dispatch }) => (next) => (action) => {
   const { type } = action;
 
   switch (type) {
     case "SOCKET_CONNECTION":
       socketConnection({ getState, dispatch });
+      break;
+    case "SEND_MESSAGE":
+      sendSocket({ getState, dispatch });
       break;
     default:
       next(action);

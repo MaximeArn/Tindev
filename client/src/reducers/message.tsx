@@ -10,7 +10,7 @@ const message = (state = initialState, { type, message }: MessageAction) => {
   switch (type) {
     case "SET_CHAT_MESSAGES":
       return { ...state, messages: [...state.messages, message] };
-    case "SET_MESSAGE":
+    case "SET_CHAT_MESSAGE":
       return { ...state, message };
     default:
       return state;
