@@ -37,6 +37,7 @@ export interface State {
   users: UserState;
   search: SearchState;
   navbar: NavBarState;
+  message: MessageState;
 }
 
 export interface Modals {
@@ -118,6 +119,7 @@ export interface AppProps {
   getUsers: Function;
   login: boolean;
   register: boolean;
+  messages: string[];
 }
 
 export interface NavState {
@@ -176,4 +178,8 @@ export interface NavBarState {
   main: any;
   mobile: any;
   account: any;
+}
+
+export interface MessageState {
+  messages: string[];
 }

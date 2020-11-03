@@ -17,6 +17,7 @@ const {
   categoriesRouter,
   projectRouter,
   searchRouter,
+  messagesRouter,
 } = require("./router");
 
 const PORT = process.env.PORT || 3000;
@@ -31,6 +32,7 @@ server.use("/project", projectRouter);
 server.use("/categories", categoriesRouter);
 server.use("/users", usersRouter);
 server.use("/search", searchRouter);
+// server.use("/messages", messagesRouter);
 server.use(errorHandler);
 server.use(notFound);
 
@@ -40,4 +42,7 @@ mongoDB.once("open", () => console.log("Connected to mongo database"));
 server.listen(PORT, () => console.log(`Server running on port ${PORT}`));
 http.listen(SOCKET, () => console.log(`Socket listening on port ${SOCKET}`));
 
-io.on("connection", () => console.log("a user connected"));
+io.of("/messages").on("connection", (socket) => {
+  console.log("USER CONNECTED");
+  socket.on("chat-message", (message) => io.emit("hey", message));
+});

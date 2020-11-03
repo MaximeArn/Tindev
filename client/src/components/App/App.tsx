@@ -1,6 +1,6 @@
 /** @format */
 
-import React, { useEffect } from "react";
+import React, { useEffect, useRef } from "react";
 import Home from "../containers/Home";
 import { Switch, Route } from "react-router-dom";
 import { AppProps } from "../../models/states";
@@ -16,30 +16,43 @@ import UserProfile from "../containers/UserProfile";
 import Search from "../containers/Search";
 import EditProject from "../containers/EditProject";
 import io from "socket.io-client";
+import "./app.scss";
 
 function App({
   verifyToken,
   showNavbar,
   login,
+  messages,
   register,
   getProjects,
   getUsers,
 }: AppProps) {
+  let socket: any;
+  const chat = useRef<HTMLUListElement>(null);
   useEffect(() => {
     verifyToken();
     getProjects();
     getUsers();
+    socket = io(`${socketUrl}/messages`);
   }, []);
 
-  const socket = io(socketUrl);
+  socket && socket.on("chat-message", (data: any) => console.log(data));
+  // socket.emit("hey", "cc", (response: any) => texts.push(response));
 
   return (
     <>
+      <div className="chat">
+        <ul ref={chat}>
+          {messages.map((message) => (
+            <li>{message}</li>
+          ))}
+        </ul>
+      </div>
       {showNavbar && <NavBar />}
       {login && <Login />}
       {register && <Register />}
       <Switch>
-        <Route exact path="/" component={Home} />
+        {/* <Route exact path="/" component={Home} /> */}
         <Route exact path="/project/create" component={ProjectCreation} />
         <Route path="/project/:slug/manage" component={ManagePage} />
         <Route path="/project/:slug/edit" component={EditProject} />

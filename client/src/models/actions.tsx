@@ -87,3 +87,7 @@ export interface NavBarAction {
   type: string;
   status: React.MouseEvent<HTMLElement> | null;
 }
+
+export interface MessageAction {
+  type: string;
+}

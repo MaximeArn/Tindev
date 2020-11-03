@@ -9,10 +9,12 @@ const mapState = ({
     showNavbar,
     authModal: { login, register },
   },
+  message: { messages },
 }: State) => ({
   showNavbar,
   login,
   register,
+  messages,
 });
 const mapDispatch = (dispatch: any) => ({
   verifyToken: () => dispatch({ type: "TOKEN_VALIDATION" }),
