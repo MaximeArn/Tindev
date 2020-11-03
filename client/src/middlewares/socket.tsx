@@ -2,7 +2,6 @@ import { Middleware } from "redux";
 import { AxiosSubmit } from "../models/axios";
 import { socketUrl } from "../environments/api";
 import io from "socket.io-client";
-const socket = io(`${socketUrl}/chat`);
 
 // const getSocketMessage = ({ getState, dispatch }: AxiosSubmit) => {
 //   socket.on("chat-message", (message: string) => {
@@ -15,7 +14,9 @@ const sendSocket = ({ getState, dispatch }: AxiosSubmit) => {
   const {
     user: { username },
   } = getState().auth;
-  socket.emit("chat-message", { username, message });
+  const socket = io(`${socketUrl}/chat`, { query: { username } });
+
+  socket.emit("chat-message", { message });
 };
 
 const socketMiddleware: Middleware = ({ getState, dispatch }) => (next) => (

@@ -20,6 +20,7 @@ const {
   projectRouter,
   searchRouter,
 } = require("./router");
+const { connect } = require("http2");
 
 const PORT = process.env.PORT || 3000;
 const SOCKET = process.env.SOCKET || 3001;
@@ -43,8 +44,19 @@ mongoDB.once("open", () => console.log("Connected to mongo database"));
 server.listen(PORT, () => console.log(`Server running on port ${PORT}`));
 http.listen(SOCKET, () => console.log(`Socket listening on port ${SOCKET}`));
 
-ioNameSpace.use(socketConnection).on("connection", (socket) => {
-  socket.use(socketFilter);
+const connectedUsers = {};
 
-  socket.emit("chat-message", "sending this to everyone");
+ioNameSpace.use(socketConnection).on("connection", (socket) => {
+  const { username } = socket.handshake.query;
+
+  connectedUsers[username] = socket.id;
+  console.log(connectedUsers);
+
+  socket.on("chat-message", (message) => {
+    console.log("message : ", message);
+    socket.use(socketFilter);
+    ioNameSpace.emit("chat-message", message);
+  });
+
+  // socket.emit("chat-message", "sending this to everyone");
 });
