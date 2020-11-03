@@ -11,9 +11,7 @@ import io from "socket.io-client";
 
 const sendSocket = ({ getState, dispatch }: AxiosSubmit) => {
   const { message } = getState().message;
-  const {
-    user: { username },
-  } = getState().auth;
+  const { username } = getState().auth.user;
   const socket = io(`${socketUrl}/chat`, { query: { username } });
 
   socket.emit("chat-message", { message });
