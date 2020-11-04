@@ -13,15 +13,13 @@ module.exports = {
         const { name: toName } = to;
         const date = Date.now();
         const user = await User.findOne({ _id: id });
+        const msg = { from, to: toName, message, date };
 
         user.messages.push({ to, message, date });
         await user.save();
 
-        ioNameSpace
-          .in(connectedUsers[to.name])
-          .emit("chat-message", { from, to: toName, message, date });
-
-        socket.emit("chat-message", { to: toName, from, message, date });
+        ioNameSpace.in(connectedUsers[to.name]).emit("chat-message", msg);
+        socket.emit("chat-message", msg);
       } catch (error) {
         throw new Error(error);
       }
