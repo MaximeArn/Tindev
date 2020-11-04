@@ -1,3 +1,5 @@
+/** @format */
+
 import React from "react";
 import { AuthUserState } from "../../../models/users";
 import Menu from "@material-ui/core/Menu";
@@ -27,17 +29,13 @@ export default (
     >
       <MenuItem>
         <IconButton aria-label="show 4 new mails" color="inherit">
-          <Badge badgeContent={4} color="secondary">
-            <MailIcon />
-          </Badge>
+          <MailIcon />
         </IconButton>
         <p>Messages</p>
       </MenuItem>
       <MenuItem>
         <IconButton aria-label="show 11 new notifications" color="inherit">
-          <Badge badgeContent={11} color="secondary">
-            <NotificationsIcon />
-          </Badge>
+          <NotificationsIcon />
         </IconButton>
         <p>Notifications</p>
       </MenuItem>
