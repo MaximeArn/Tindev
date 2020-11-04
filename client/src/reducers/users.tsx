@@ -22,6 +22,7 @@ const users = (
     case "SET_USERS":
       return { ...state, users };
     case "SET_USER":
+      // console.log("SET USER REDUCER", user);
       return { ...state, user };
     case "SET_CURRENT_CONTENT":
       return { ...state, profile: { ...state.profile, content } };

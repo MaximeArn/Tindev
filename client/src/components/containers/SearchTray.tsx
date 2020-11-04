@@ -10,6 +10,9 @@ const mapState = ({ search: { search, results } }: State) => ({
 
 const mapDispatch = (dispatch: Dispatch<AnyAction>) => ({
   sendSearchPreview: () => dispatch({ type: "SEND_RESEARCH" }),
+  getUser: (username: string) => {
+    dispatch({ type: "GET_USER", username });
+  },
 });
 
 export default connect(mapState, mapDispatch)(SearchTray);

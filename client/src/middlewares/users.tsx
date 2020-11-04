@@ -19,7 +19,9 @@ const getUsers = (dispatch: Dispatch<AnyAction>) => {
 const getUser = (dispatch: Dispatch<AnyAction>, username: string) => {
   axios
     .get(`/users/${username}`)
-    .then(({ data: user }) => dispatch({ type: "SET_USER", user }))
+    .then(({ data: user }) => {
+      dispatch({ type: "SET_USER", user });
+    })
     .catch(({ response: { data: { msg: error } } }) =>
       dispatch({ type: "USER_PROFILE_ERROR_HANDLER", error })
     );
@@ -33,6 +35,7 @@ const project: Middleware = ({ getState, dispatch }) => (next) => (action) => {
       getUsers(dispatch);
       break;
     case "GET_USER":
+      console.log("USERNAME IN MIDDLEWARE : ", username);
       getUser(dispatch, username);
       break;
     default:
