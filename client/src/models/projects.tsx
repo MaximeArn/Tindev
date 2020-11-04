@@ -118,6 +118,7 @@ export interface ApplicantProps {
     loader: boolean;
     applicantId: string;
   };
+  openChatWindow: Function;
 }
 
 export interface DeclineApplicantModalProps {

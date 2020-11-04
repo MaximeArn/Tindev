@@ -7,7 +7,7 @@ import { Link } from "react-router-dom";
 import { Project as ProjectModel } from "../../../models/projects";
 import { url } from "../../../environments/api";
 
-const Project = ({ title, image, description }: ProjectModel) => {
+const Project = ({ title, image, description, size }: ProjectModel) => {
   return (
     <article>
       <Link to={`/project/${slugifier(title)}`} className="projectCard">
@@ -29,7 +29,7 @@ const Project = ({ title, image, description }: ProjectModel) => {
             <p>views</p>
           </div>
           <div className="footer-team">
-            <p className="counter">4</p>
+            <p className="counter">{size}</p>
             <p>people</p>
           </div>
         </footer>

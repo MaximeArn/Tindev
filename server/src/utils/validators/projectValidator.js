@@ -37,10 +37,9 @@ module.exports = async (body, next) => {
     body.size = parseInt(body.size);
 
     for (const key in body) {
-      if (key === "categories") {
-        body[key] = body[key];
+      if (key !== "categories") {
+        body[key] = sanitize(body[key], sanitizeConfig);
       }
-      body[key] = sanitize(body[key], sanitizeConfig);
     }
 
     return body;

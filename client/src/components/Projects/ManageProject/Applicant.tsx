@@ -25,6 +25,7 @@ const Applicant = ({
   setModalStatus,
   declineApplicantModal: { isModalOpen, applicant },
   isLoading: { loader, applicantId },
+  openChatWindow,
 }: ApplicantProps) => {
   const messageRef = useRef<HTMLDivElement>(null);
 
@@ -72,7 +73,10 @@ const Applicant = ({
                 <Link to={`/user/${username}`}>view profile</Link>
               </div>
               <div className="applicant-row-actions">
-                <i className="icon comment">
+                <i
+                  className="icon comment"
+                  onClick={() => openChatWindow(username, userId)}
+                >
                   <FontAwesomeIcon icon={faComment} />
                 </i>
                 <i

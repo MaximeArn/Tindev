@@ -17,7 +17,6 @@ module.exports = {
     try {
       const { username } = await tokenValidator(token, next);
       const valid = await projectValidator(body, next);
-      console.log(valid);
       if (valid && username) {
         const created = await Project.create({
           ...valid,
