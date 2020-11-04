@@ -93,4 +93,5 @@ export interface MessageAction {
   message: string;
   username: string;
   id: string;
+  usernameToDelete: string;
 }

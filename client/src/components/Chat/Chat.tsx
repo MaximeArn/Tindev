@@ -10,18 +10,22 @@ const Chat = ({
   chat,
   getMessageValue,
   sendMessage,
+  deleteChatWindow,
 }: ChatProps) => {
   return (
     <>
-      {chatWindow.map((window) => (
-        <ChatWindow
-          key={window.username}
-          {...window}
-          {...chat}
-          getMessageValue={getMessageValue}
-          sendMessage={sendMessage}
-        />
-      ))}
+      <div className="chat-window-wrapper">
+        {chatWindow.map((window) => (
+          <ChatWindow
+            key={window.username}
+            {...window}
+            {...chat}
+            getMessageValue={getMessageValue}
+            sendMessage={sendMessage}
+            deleteChatWindow={deleteChatWindow}
+          />
+        ))}
+      </div>
     </>
   );
 };

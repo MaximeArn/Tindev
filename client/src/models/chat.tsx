@@ -8,6 +8,7 @@ export interface ChatProps {
   };
   getMessageValue: Function;
   sendMessage: Function;
+  deleteChatWindow: Function;
 }
 
 export interface ChatWindowProps {
@@ -17,4 +18,5 @@ export interface ChatWindowProps {
   message: string;
   getMessageValue: Function;
   sendMessage: Function;
+  deleteChatWindow: Function;
 }

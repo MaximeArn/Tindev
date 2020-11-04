@@ -1,3 +1,5 @@
+/** @format */
+
 import { connect } from "react-redux";
 import { AnyAction, Dispatch } from "redux";
 import { State } from "../../models/states";
@@ -16,6 +18,8 @@ const mapDispatch = (dispatch: Dispatch<AnyAction>) => ({
     dispatch({ type: "SET_CHAT_MESSAGE", message }),
   sendMessage: (name: string, id: string) =>
     dispatch({ type: "SEND_CHAT_MESSAGE", name, id }),
+  deleteChatWindow: (usernameToDelete: string) =>
+    dispatch({ type: "DELETE_CHAT_WINDOW", usernameToDelete }),
 });
 
 export default connect(mapState, mapDispatch)(Chat);
