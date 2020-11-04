@@ -26,7 +26,7 @@ export interface ChatWindowProps {
   deleteChatWindow: Function;
   getMessageHistory: Function;
   history: {
-    from: [{ username: string; date: Date; message: string }] | [];
-    to: [{ username: string; date: Date; message: string }] | [];
+    from: [{ username: string; date: Date; message: string }];
+    to: [{ username: string; date: Date; message: string }];
   };
 }

@@ -46,8 +46,10 @@ const ChatWindow = ({
       </div>
       <div className="chatZone-content">
         {history &&
-          Object.keys(history).map((key) => {
-            return <p>{}</p>;
+          Object.values(history).map((value) => {
+            return value.map(({ date, message }) => (
+              <p title={date.toLocaleDateString()}>{message}</p>
+            ));
           })}
         {messages.map(({ message, date }) => {
           return (
