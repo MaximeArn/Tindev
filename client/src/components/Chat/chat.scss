@@ -89,12 +89,12 @@
             display: inline-flex;
         }
 
-        .from {
+        .to {
             background-color: vars.$primary-color;
             align-self: flex-end;
         }
 
-        .to {
+        .from {
             align-self: flex-start;
             background-color: #fff;
         }

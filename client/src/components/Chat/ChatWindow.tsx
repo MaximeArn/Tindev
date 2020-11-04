@@ -84,7 +84,10 @@ const ChatWindow = ({
           const show = username == to || username == from;
           return (
             show && (
-              <div key={idGenerator()} className="message from">
+              <div
+                key={idGenerator()}
+                className={username == to ? "message to" : "message from"}
+              >
                 <p title={new Date(date).toLocaleString()}>{message}</p>
               </div>
             )
