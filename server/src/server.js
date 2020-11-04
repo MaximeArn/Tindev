@@ -50,5 +50,6 @@ ioNameSpace.use(socketConnection).on("connection", (socket) => {
   console.log("connected");
   const { username } = socket.handshake.query;
   connectedUsers[username] = socket;
+
   // chatHandler(ioNameSpace, socket, connectedUsers);
 });
