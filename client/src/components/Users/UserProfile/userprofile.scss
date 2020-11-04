@@ -27,12 +27,14 @@
     display: flex;
     justify-content: flex-end;
     flex-direction: column;
+    position: relative;
   }
 
   &-nav {
     width: 100%;
 
     .infos {
+
       &-list {
         display: flex;
         justify-content: space-evenly;
@@ -152,4 +154,11 @@
 
 .experience {
   width: 100%;
+}
+
+.chatIcon {
+  position: absolute;
+  top: 0;
+  right: 0;
+  padding: .4rem;
 }

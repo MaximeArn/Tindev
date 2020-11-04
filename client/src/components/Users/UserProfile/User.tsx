@@ -1,3 +1,5 @@
+/** @format */
+
 import React from "react";
 import { UserProps } from "../../../models/users";
 import { url } from "../../../environments/api";
@@ -40,6 +42,12 @@ const User = ({
             src={`${url}/uploads/users/default-image.jpg`}
           />
           <div className="user-profile-preview-header-infos">
+            <i
+              onClick={() => openChatWindow(username, _id)}
+              className="chatIcon"
+            >
+              <FontAwesomeIcon icon={faCommentAlt} size="lg" />
+            </i>
             <div className="user-profile-preview-header-username">
               {username}
             </div>
@@ -72,9 +80,6 @@ const User = ({
             </i>
             <i>
               <FontAwesomeIcon icon={faInstagram} size="lg" />
-            </i>
-            <i onClick={() => openChatWindow(username, _id)}>
-              <FontAwesomeIcon icon={faCommentAlt} size="lg" />
             </i>
           </div>
         </div>
