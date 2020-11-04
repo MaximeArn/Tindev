@@ -31,16 +31,19 @@
       h2 {
         font-weight: bold;
         text-transform: uppercase;
-        background: -webkit-linear-gradient(121deg,
-            rgba(149, 230, 191, 1) 0%,
-            rgba(84, 227, 206, 1) 48%,
-            rgba(0, 212, 255, 1) 100%);
+        background: -webkit-linear-gradient(
+          121deg,
+          rgba(149, 230, 191, 1) 0%,
+          rgba(84, 227, 206, 1) 48%,
+          rgba(0, 212, 255, 1) 100%
+        );
         background-clip: text;
         -webkit-background-clip: text;
         -webkit-text-fill-color: transparent;
       }
 
       p {
+        padding-top: 0.4rem;
         font-size: 0.8em;
         font-style: italic;
         font-weight: 300;
@@ -109,7 +112,7 @@
         color: #333;
         text-align: center;
         min-width: 40%;
-        padding: .8rem;
+        padding: 0.8rem;
         border-radius: 7px;
         margin: 7px 7px;
         font-weight: 500;
@@ -150,15 +153,16 @@
         }
 
         &:hover {
-          background: -webkit-linear-gradient(121deg,
-              rgba(149, 230, 191, 1) 0%,
-              rgba(84, 227, 206, 1) 48%,
-              rgba(0, 212, 255, 1) 100%);
+          background: -webkit-linear-gradient(
+            121deg,
+            rgba(149, 230, 191, 1) 0%,
+            rgba(84, 227, 206, 1) 48%,
+            rgba(0, 212, 255, 1) 100%
+          );
           background-clip: text;
           -webkit-background-clip: text;
           -webkit-text-fill-color: transparent;
         }
-
       }
     }
   }
