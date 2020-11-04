@@ -1,5 +1,3 @@
-/** @format */
-
 import React from "react";
 import { UserProps } from "../../../models/users";
 import { url } from "../../../environments/api";

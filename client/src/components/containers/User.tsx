@@ -13,14 +13,16 @@ const mapState = ({
   list,
 });
 
-const mapDispatch = (dispatch: Dispatch<AnyAction>) => ({
-  getCurrentContent: (content: Function) => {
-    dispatch({ type: "SET_CURRENT_CONTENT", content });
-  },
-  setSelectedStatus: (listName: string) =>
-    dispatch({ type: "SET_SELECTED_STATUS", listName }),
-  openChatWindow: (username: string, id: string) =>
-    dispatch({ type: "OPEN_CHAT_WINDOW", username, id }),
-});
+const mapDispatch = (dispatch: Dispatch<AnyAction>) => {
+  return {
+    getCurrentContent: (content: Function) => {
+      dispatch({ type: "SET_CURRENT_CONTENT", content });
+    },
+    setSelectedStatus: (listName: string) =>
+      dispatch({ type: "SET_SELECTED_STATUS", listName }),
+    openChatWindow: (username: string, id: string) =>
+      dispatch({ type: "OPEN_CHAT_WINDOW", username, id }),
+  };
+};
 
 export default connect(mapState, mapDispatch)(User);

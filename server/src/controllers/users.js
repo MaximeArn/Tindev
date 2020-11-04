@@ -38,15 +38,29 @@ const usersController = {
     try {
       const { id: fromId } = await tokenValidator(token, next);
 
-      const fromUser = User.findOne({ _id: fromId });
-      const toUser = User.findOne({ _id: toId });
+      const fromUser = User.findOne({ _id: fromId }).sort({
+        "messages.date": -1,
+      });
 
-      const [from, to] = await Promise.all([fromUser, toUser]);
+      const toUser = User.findOne({ _id: toId }).sort({
+        "messages.date": -1,
+      });
 
-      const fromMessages = from.messages.filter(({ to: { id } }) => id == toId);
-      const toMessages = to.messages.filter(({ to: { id } }) => id == fromId);
+      const [
+        { messages: fromMessages },
+        { messages: toMessages },
+      ] = await Promise.all([fromUser, toUser]);
 
-      return res.status(200).json({ to: toMessages, from: fromMessages });
+      const sortedFromMessages = fromMessages.filter(
+        ({ to: { id } }) => id == toId
+      );
+      const sortedToMessages = toMessages.filter(
+        ({ to: { id } }) => id == fromId
+      );
+
+      return res
+        .status(200)
+        .json({ to: sortedToMessages, from: sortedFromMessages });
     } catch (error) {
       next(error);
     }

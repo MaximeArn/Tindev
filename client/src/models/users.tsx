@@ -48,6 +48,7 @@ export interface UserProps {
   age: number;
   city: string;
   role: string;
+  getUser: Function;
 }
 
 export interface AuthUserState {
