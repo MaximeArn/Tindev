@@ -8,6 +8,7 @@ import "./chat.scss";
 
 const ChatWindow = ({
   username,
+  id,
   getMessageValue,
   sendMessage,
   message,
@@ -42,7 +43,7 @@ const ChatWindow = ({
         <form
           onSubmit={(event) => {
             event.preventDefault();
-            sendMessage(username);
+            sendMessage(username, id);
           }}
         >
           <input

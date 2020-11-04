@@ -13,10 +13,10 @@ const Chat = ({
 }: ChatProps) => {
   return (
     <>
-      {chatWindow.map(({ username }) => (
+      {chatWindow.map((window) => (
         <ChatWindow
-          key={username}
-          username={username}
+          key={window.username}
+          {...window}
           {...chat}
           getMessageValue={getMessageValue}
           sendMessage={sendMessage}

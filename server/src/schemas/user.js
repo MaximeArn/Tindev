@@ -14,6 +14,9 @@ const userSchema = new Schema(
     city: String,
     role: String,
     project: ObjectId,
+    messages: [
+      { to: { id: ObjectId, name: String }, message: String, date: Date },
+    ],
   },
   { collation: { locale: "en", strength: 2 } }
 );

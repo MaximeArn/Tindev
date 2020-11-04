@@ -1,7 +1,7 @@
 /** @format */
 
 export interface ChatProps {
-  chatWindow: { username: string }[];
+  chatWindow: { username: string; id: string }[];
   chat: {
     messages: string[];
     message: string;
@@ -11,6 +11,7 @@ export interface ChatProps {
 }
 
 export interface ChatWindowProps {
+  id: string;
   username: string;
   messages: string[];
   message: string;

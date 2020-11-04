@@ -14,6 +14,7 @@ import {
 import "./userprofile.scss";
 
 const User = ({
+  _id,
   username,
   currentContent,
   list,
@@ -72,7 +73,7 @@ const User = ({
             <i>
               <FontAwesomeIcon icon={faInstagram} size="lg" />
             </i>
-            <i onClick={() => openChatWindow(username)}>
+            <i onClick={() => openChatWindow(username, _id)}>
               <FontAwesomeIcon icon={faCommentAlt} size="lg" />
             </i>
           </div>

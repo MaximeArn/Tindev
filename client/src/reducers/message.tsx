@@ -9,7 +9,7 @@ const initialState: MessageState = {
 
 const message = (
   state = initialState,
-  { type, message, username }: MessageAction
+  { type, message, username, id }: MessageAction
 ) => {
   switch (type) {
     case "SET_CHAT_MESSAGES":
@@ -17,7 +17,7 @@ const message = (
     case "SET_CHAT_MESSAGE":
       return { ...state, message };
     case "OPEN_CHAT_WINDOW":
-      return { ...state, chatWindow: [...state.chatWindow, { username }] };
+      return { ...state, chatWindow: [...state.chatWindow, { username, id }] };
     default:
       return state;
   }

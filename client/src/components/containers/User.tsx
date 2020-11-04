@@ -19,8 +19,8 @@ const mapDispatch = (dispatch: Dispatch<AnyAction>) => ({
   },
   setSelectedStatus: (listName: string) =>
     dispatch({ type: "SET_SELECTED_STATUS", listName }),
-  openChatWindow: (username: string) =>
-    dispatch({ type: "OPEN_CHAT_WINDOW", username }),
+  openChatWindow: (username: string, id: string) =>
+    dispatch({ type: "OPEN_CHAT_WINDOW", username, id }),
 });
 
 export default connect(mapState, mapDispatch)(User);

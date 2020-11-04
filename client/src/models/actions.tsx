@@ -92,4 +92,5 @@ export interface MessageAction {
   type: string;
   message: string;
   username: string;
+  id: string;
 }

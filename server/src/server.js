@@ -9,7 +9,7 @@ const cookieParser = require("cookie-parser");
 const notFound = require("./middlewares/NotFound");
 const errorHandler = require("./middlewares/errorHandler");
 const socketConnection = require("./middlewares/socket/socketConnection");
-const socketFilter = require("./middlewares/socket/socketFilter");
+const { chatHandler } = require("./controllers/chat");
 const mongoDB = require("./config/database");
 const cors = require("cors");
 const corsSettings = require("./config/cors");
@@ -49,13 +49,6 @@ const connectedUsers = {};
 ioNameSpace.use(socketConnection).on("connection", (socket) => {
   console.log("connected");
   const { username } = socket.handshake.query;
-  const { id } = socket.conn;
-  connectedUsers[username] = id;
-  console.log(connectedUsers);
-
-  socket.on("chat-message", ({ to, message }) => {
-    // socket.use(socketFilter);
-    ioNameSpace.to(connectedUsers[to]).emit("chat-message", message);
-    // connectedUsers[to].emit("chat-message", message);
-  });
+  connectedUsers[username] = socket;
+  chatHandler(ioNameSpace, socket, connectedUsers);
 });
