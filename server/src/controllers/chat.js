@@ -15,7 +15,6 @@ module.exports = {
         const user = await User.findOne({ _id: id });
 
         user.messages.push({ to, message, date });
-
         await user.save();
 
         ioNameSpace

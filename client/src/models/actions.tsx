@@ -91,10 +91,7 @@ export interface NavBarAction {
 export interface MessageAction {
   type: string;
   message: string;
-  date: Date;
   username: string;
   id: string;
-  to: string;
-  from: string;
   usernameToDelete: string;
 }

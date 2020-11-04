@@ -12,23 +12,14 @@ const initialState: MessageState = {
 
 const message = (
   state = initialState,
-  {
-    type,
-    message,
-    date,
-    username,
-    usernameToDelete,
-    id,
-    to,
-    from,
-  }: MessageAction
+  { type, message, username, usernameToDelete, id }: MessageAction
 ) => {
   const msg = message ? message : "";
   switch (type) {
     case "SET_CHAT_MESSAGES":
       return {
         ...state,
-        messages: [...state.messages, { to, from, message, date }],
+        messages: [...state.messages, message],
       };
     case "SET_CHAT_MESSAGE":
       return { ...state, message: msg };

@@ -68,7 +68,6 @@ const ChatWindow = ({
             ));
           })}
         {messages.map(({ to, from, message, date }) => {
-          console.log("USERNAME : ", username);
           const valid = username == to || username == from;
           return (
             valid && (

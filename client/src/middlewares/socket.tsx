@@ -16,13 +16,9 @@ let socket: any;
 const token = Cookies.get("token");
 
 const serverSocketListener = ({ getState, dispatch }: AxiosSubmit) => {
-  socket.on(
-    "chat-message",
-    ({ to, from, message, date }: SocketServerResponse) => {
-      console.log({ to, from });
-      dispatch({ type: "SET_CHAT_MESSAGES", to, from, message, date });
-    }
-  );
+  socket.on("chat-message", (message: SocketServerResponse) => {
+    dispatch({ type: "SET_CHAT_MESSAGES", message });
+  });
 };
 
 const sendSocket = (
@@ -38,7 +34,7 @@ const sendSocket = (
 const socketMiddleware: Middleware = ({ getState, dispatch }) => (next) => (
   action
 ) => {
-  const { type, name, id, toId } = action;
+  const { type, name, id } = action;
   const { user } = getState().auth;
 
   switch (type) {
