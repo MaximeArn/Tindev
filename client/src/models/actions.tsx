@@ -91,7 +91,12 @@ export interface NavBarAction {
 export interface MessageAction {
   type: string;
   message: string;
+  date: Date;
   username: string;
   id: string;
   usernameToDelete: string;
+  chatHistory: {
+    from: [{ username: string; date: Date; message: string }] | [];
+    to: [{ username: string; date: Date; message: string }] | [];
+  };
 }
