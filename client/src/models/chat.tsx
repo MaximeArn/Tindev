@@ -10,10 +10,7 @@ export interface ChatProps {
   sendMessage: Function;
   deleteChatWindow: Function;
   getMessageHistory: Function;
-  chatHistory: {
-    from: [{ username: string; date: Date; message: string }] | [];
-    to: [{ username: string; date: Date; message: string }] | [];
-  };
+  chatHistory: History;
 }
 
 export interface ChatWindowProps {
@@ -25,8 +22,16 @@ export interface ChatWindowProps {
   sendMessage: Function;
   deleteChatWindow: Function;
   getMessageHistory: Function;
-  history: {
-    from: [{ username: string; date: Date; message: string }];
-    to: [{ username: string; date: Date; message: string }];
-  };
+  history: History;
+}
+
+export interface History {
+  from: Message[] | [];
+  to: Message[] | [];
+}
+
+export interface Message {
+  username: string;
+  date: Date;
+  message: string;
 }

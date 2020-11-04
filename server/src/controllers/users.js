@@ -48,6 +48,7 @@ const usersController = {
       const toMessages = to.messages.filter(({ to: { id } }) => id == fromId);
 
       console.log(fromMessages);
+      console.log(toMessages);
       return res.status(200).json({ to: toMessages, from: fromMessages });
     } catch (error) {
       next(error);
