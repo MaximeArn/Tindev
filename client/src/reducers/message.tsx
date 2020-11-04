@@ -8,15 +8,27 @@ const initialState: MessageState = {
   messages: [],
   message: "",
   chatWindow: [],
+  chatHistory: {
+    from: [],
+    to: [],
+  },
 };
 
 const message = (
   state = initialState,
-  { type, message, username, usernameToDelete, id }: MessageAction
+  {
+    type,
+    message,
+    date,
+    username,
+    usernameToDelete,
+    id,
+    chatHistory,
+  }: MessageAction
 ) => {
   switch (type) {
     case "SET_CHAT_MESSAGES":
-      return { ...state, messages: [...state.messages, message] };
+      return { ...state, messages: [...state.messages, { message, date }] };
     case "SET_CHAT_MESSAGE":
       return { ...state, message };
     case "OPEN_CHAT_WINDOW":
@@ -26,6 +38,8 @@ const message = (
         ...state,
         chatWindow: windowFilter([...state.chatWindow], usernameToDelete),
       };
+    case "SET_MESSAGE_HISTORY":
+      return { ...state, chatHistory };
     default:
       return state;
   }

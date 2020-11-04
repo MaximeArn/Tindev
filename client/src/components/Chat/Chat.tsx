@@ -11,6 +11,8 @@ const Chat = ({
   getMessageValue,
   sendMessage,
   deleteChatWindow,
+  getMessageHistory,
+  chatHistory,
 }: ChatProps) => {
   return (
     <>
@@ -20,7 +22,9 @@ const Chat = ({
             key={window.username}
             {...window}
             {...chat}
+            history={chatHistory}
             getMessageValue={getMessageValue}
+            getMessageHistory={getMessageHistory}
             sendMessage={sendMessage}
             deleteChatWindow={deleteChatWindow}
           />
