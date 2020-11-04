@@ -3,6 +3,7 @@
 import React, { useState, useRef, useEffect } from "react";
 import CloseIcon from "@material-ui/icons/Close";
 import ExpandMoreIcon from "@material-ui/icons/ExpandMore";
+import { Message } from "../../models/chat";
 import { ChatWindowProps } from "../../models/chat";
 import "./chat.scss";
 
@@ -46,17 +47,21 @@ const ChatWindow = ({
       </div>
       <div className="chatZone-content">
         {history &&
-          Object.values(history).map((value) => {
-            return value.map(({ date, message }) => (
-              <p title={date.toLocaleDateString()}>{message}</p>
+          Object.entries(history).map(([key, value]) => {
+            return value.map(({ date, message }: Message) => (
+              <span
+                className={`message ${key}`}
+                title={new Date(date).toLocaleDateString()}
+              >
+                {message}
+              </span>
             ));
           })}
         {messages.map(({ message, date }) => {
           return (
-            <>
-              <p>{new Date(date).toLocaleString()}</p>
-              <p>{message}</p>
-            </>
+            <div className="message from">
+              <p title={new Date(date).toLocaleString()}>{message}</p>
+            </div>
           );
         })}
       </div>

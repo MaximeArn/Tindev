@@ -1,3 +1,5 @@
+/** @format */
+
 const { Category } = require("../../models");
 const ProjectError = require("../CustomError");
 const sanitize = require("sanitize-html");
@@ -35,6 +37,9 @@ module.exports = async (body, next) => {
     body.size = parseInt(body.size);
 
     for (const key in body) {
+      if (key === "categories") {
+        body[key] = body[key];
+      }
       body[key] = sanitize(body[key], sanitizeConfig);
     }
 
