@@ -21,6 +21,7 @@ module.exports = {
         ioNameSpace.in(connectedUsers[to.name]).emit("chat-message", msg);
         socket.emit("chat-message", msg);
       } catch (error) {
+        console.log(error.message);
         throw new Error(error);
       }
     });

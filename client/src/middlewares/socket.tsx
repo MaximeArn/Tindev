@@ -40,7 +40,7 @@ const socketMiddleware: Middleware = ({ getState, dispatch }) => (next) => (
   switch (type) {
     case "SOCKET_CONNECTION":
       const { username } = user;
-      socket = io(`${socketUrl}/chat`, { query: { username } });
+      socket = io(`${socketUrl}/chat`, { query: { username, token } });
       serverSocketListener({ getState, dispatch });
       break;
     case "SEND_CHAT_MESSAGE":
