@@ -20,6 +20,7 @@ const Chat = ({
             key={window.username}
             {...window}
             {...chat}
+            chatWindow={chatWindow}
             getMessageValue={getMessageValue}
             sendMessage={sendMessage}
             deleteChatWindow={deleteChatWindow}
