@@ -20,7 +20,6 @@ const {
   projectRouter,
   searchRouter,
 } = require("./router");
-const { connect } = require("http2");
 
 const PORT = process.env.PORT || 3000;
 const SOCKET = process.env.SOCKET || 3001;
@@ -49,6 +48,8 @@ const connectedUsers = {};
 ioNameSpace.use(socketConnection).on("connection", (socket) => {
   console.log("connected");
   const { username } = socket.handshake.query;
-  connectedUsers[username] = socket;
-  chatHandler(ioNameSpace, socket, connectedUsers);
+  const { id } = socket.conn;
+  connectedUsers[username] = id;
+
+  chatHandler(ioNameSpace, socket, connectedUsers, username);
 });

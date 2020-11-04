@@ -4,23 +4,34 @@ import React, { useState, useRef, useEffect } from "react";
 import CloseIcon from "@material-ui/icons/Close";
 import ExpandMoreIcon from "@material-ui/icons/ExpandMore";
 import { Message } from "../../models/chat";
+import axios from "axios";
 import { ChatWindowProps } from "../../models/chat";
+import { url } from "../../environments/api";
+import idGenerator from "../../utils/randomIdGenerator";
 import "./chat.scss";
+axios.defaults.baseURL = url;
+axios.defaults.headers.post["Content-Type"] = "application/json";
+axios.defaults.withCredentials = true;
 
 const ChatWindow = ({
   username,
   id,
   getMessageValue,
   sendMessage,
-  history,
   message,
   messages,
   deleteChatWindow,
-  getMessageHistory,
 }: ChatWindowProps) => {
+  const [chatHistory, setchatHistory] = useState<History | null>(null);
   const [chatExpanded, setChatExpanded] = useState(false);
+  const chatHeader = useRef(null);
+  const messagesArea = useRef<HTMLDivElement>(null);
+
   useEffect(() => {
-    getMessageHistory(id);
+    axios
+      .post("/users/messageHistory", { toId: id })
+      .then(({ data: chatHistory }) => setchatHistory(chatHistory))
+      .catch((error) => console.error(error));
   }, []);
 
   useEffect(() => {
@@ -35,8 +46,6 @@ const ChatWindow = ({
     }
   }, [chatExpanded]);
 
-  const chatHeader = useRef(null);
-  const messagesArea = useRef<HTMLDivElement>(null);
   return (
     <div className={chatExpanded ? "chatZone expanded" : "chatZone"}>
       <div
@@ -58,11 +67,12 @@ const ChatWindow = ({
           {chatExpanded ? <ExpandMoreIcon /> : <CloseIcon />}
         </button>
       </div>
-      <div className="chatZone-content" ref={messagesArea}>
-        {history &&
-          Object.entries(history).map(([key, value]) => {
+      <div ref={messagesArea} className="chatZone-content">
+        {chatHistory &&
+          Object.entries(chatHistory).map(([key, value]) => {
             return value.map(({ date, message }: Message) => (
               <span
+                key={idGenerator()}
                 className={`message ${key}`}
                 title={new Date(date).toLocaleDateString()}
               >
@@ -70,11 +80,14 @@ const ChatWindow = ({
               </span>
             ));
           })}
-        {messages.map(({ message, date }) => {
+        {messages.map(({ to, from, message, date }) => {
+          const show = username == to || username == from;
           return (
-            <div className="message from">
-              <p title={new Date(date).toLocaleString()}>{message}</p>
-            </div>
+            show && (
+              <div key={idGenerator()} className="message from">
+                <p title={new Date(date).toLocaleString()}>{message}</p>
+              </div>
+            )
           );
         })}
       </div>

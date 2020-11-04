@@ -4,6 +4,7 @@ import { Middleware } from "redux";
 import { AxiosSubmit } from "../models/axios";
 import { socketUrl } from "../environments/api";
 import axios from "axios";
+import { SocketServerResponse } from "../models/chat";
 import Cookies from "js-cookie";
 import io from "socket.io-client";
 import { url } from "../environments/api";
@@ -15,13 +16,9 @@ let socket: any;
 const token = Cookies.get("token");
 
 const serverSocketListener = ({ getState, dispatch }: AxiosSubmit) => {
-  socket.on(
-    "chat-message",
-    ({ message, date }: { message: string; date: Date }) => {
-      console.log("MESSAGE : ", message);
-      dispatch({ type: "SET_CHAT_MESSAGES", message, date });
-    }
-  );
+  socket.on("chat-message", (message: SocketServerResponse) => {
+    dispatch({ type: "SET_CHAT_MESSAGES", message });
+  });
 };
 
 const sendSocket = (
@@ -31,24 +28,13 @@ const sendSocket = (
 ) => {
   const { message } = getState().message;
   socket.emit("chat-message", { to: { id, name: target }, message, token });
-};
-
-const getMessageHistory = (
-  { getState, dispatch }: AxiosSubmit,
-  toId: string
-) => {
-  axios
-    .post("/users/messageHistory", { toId })
-    .then(({ data: chatHistory }) =>
-      dispatch({ type: "SET_MESSAGE_HISTORY", chatHistory })
-    )
-    .catch((error) => console.error(error));
+  dispatch({ type: "SET_CHAT_MESSAGE" });
 };
 
 const socketMiddleware: Middleware = ({ getState, dispatch }) => (next) => (
   action
 ) => {
-  const { type, name, id, toId } = action;
+  const { type, name, id } = action;
   const { user } = getState().auth;
 
   switch (type) {
@@ -59,9 +45,6 @@ const socketMiddleware: Middleware = ({ getState, dispatch }) => (next) => (
       break;
     case "SEND_CHAT_MESSAGE":
       sendSocket({ getState, dispatch }, name, id);
-      break;
-    case "GET_MESSAGE_HISTORY":
-      getMessageHistory({ getState, dispatch }, toId);
       break;
     default:
       next(action);
