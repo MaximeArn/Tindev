@@ -5,12 +5,15 @@ import { AnyAction, Dispatch } from "redux";
 import { State } from "../../models/states";
 import Chat from "../Chat/Chat";
 
-const mapState = ({ message: { message, messages, chatWindow } }: State) => ({
+const mapState = ({
+  message: { message, messages, chatWindow, chatHistory },
+}: State) => ({
   chat: {
     message,
     messages,
   },
   chatWindow,
+  chatHistory,
 });
 
 const mapDispatch = (dispatch: Dispatch<AnyAction>) => ({
@@ -20,6 +23,8 @@ const mapDispatch = (dispatch: Dispatch<AnyAction>) => ({
     dispatch({ type: "SEND_CHAT_MESSAGE", name, id }),
   deleteChatWindow: (usernameToDelete: string) =>
     dispatch({ type: "DELETE_CHAT_WINDOW", usernameToDelete }),
+  getMessageHistory: (toId: string) =>
+    dispatch({ type: "GET_MESSAGE_HISTORY", toId }),
 });
 
 export default connect(mapState, mapDispatch)(Chat);

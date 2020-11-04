@@ -1,6 +1,6 @@
 /** @format */
 
-import React, { useState, useRef } from "react";
+import React, { useState, useRef, useEffect } from "react";
 import CloseIcon from "@material-ui/icons/Close";
 import ExpandMoreIcon from "@material-ui/icons/ExpandMore";
 import { ChatWindowProps } from "../../models/chat";
@@ -11,11 +11,16 @@ const ChatWindow = ({
   id,
   getMessageValue,
   sendMessage,
+  history,
   message,
   messages,
   deleteChatWindow,
+  getMessageHistory,
 }: ChatWindowProps) => {
-  const [chat, setChat] = useState(true);
+  useEffect(() => {
+    getMessageHistory(id);
+  }, []);
+
   const [chatExpanded, setChatExpanded] = useState(false);
   const chatHeader = useRef(null);
   return (
@@ -39,7 +44,22 @@ const ChatWindow = ({
           {chatExpanded ? <ExpandMoreIcon /> : <CloseIcon />}
         </button>
       </div>
-      <div className="chatZone-content"></div>
+      <div className="chatZone-content">
+        {history &&
+          Object.values(history).map((value) => {
+            return value.map(({ date, message }) => (
+              <p title={date.toLocaleDateString()}>{message}</p>
+            ));
+          })}
+        {messages.map(({ message, date }) => {
+          return (
+            <>
+              <p>{new Date(date).toLocaleString()}</p>
+              <p>{message}</p>
+            </>
+          );
+        })}
+      </div>
       <div className="chatZone-footer">
         <form
           onSubmit={(event) => {

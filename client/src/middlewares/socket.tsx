@@ -3,16 +3,25 @@
 import { Middleware } from "redux";
 import { AxiosSubmit } from "../models/axios";
 import { socketUrl } from "../environments/api";
+import axios from "axios";
 import Cookies from "js-cookie";
 import io from "socket.io-client";
+import { url } from "../environments/api";
+axios.defaults.baseURL = url;
+axios.defaults.headers.post["Content-Type"] = "application/json";
+axios.defaults.withCredentials = true;
 
 let socket: any;
+const token = Cookies.get("token");
 
 const serverSocketListener = ({ getState, dispatch }: AxiosSubmit) => {
-  socket.on("chat-message", (message: string) => {
-    console.log("MESSAGE : ", message);
-    dispatch({ type: "SET_CHAT_MESSAGES", message });
-  });
+  socket.on(
+    "chat-message",
+    ({ message, date }: { message: string; date: Date }) => {
+      console.log("MESSAGE : ", message);
+      dispatch({ type: "SET_CHAT_MESSAGES", message, date });
+    }
+  );
 };
 
 const sendSocket = (
@@ -21,14 +30,25 @@ const sendSocket = (
   id: string
 ) => {
   const { message } = getState().message;
-  const token = Cookies.get("token");
   socket.emit("chat-message", { to: { id, name: target }, message, token });
+};
+
+const getMessageHistory = (
+  { getState, dispatch }: AxiosSubmit,
+  toId: string
+) => {
+  axios
+    .post("/users/messageHistory", { toId })
+    .then(({ data: chatHistory }) =>
+      dispatch({ type: "SET_MESSAGE_HISTORY", chatHistory })
+    )
+    .catch((error) => console.error(error));
 };
 
 const socketMiddleware: Middleware = ({ getState, dispatch }) => (next) => (
   action
 ) => {
-  const { type, name, id } = action;
+  const { type, name, id, toId } = action;
   const { user } = getState().auth;
 
   switch (type) {
@@ -39,6 +59,9 @@ const socketMiddleware: Middleware = ({ getState, dispatch }) => (next) => (
       break;
     case "SEND_CHAT_MESSAGE":
       sendSocket({ getState, dispatch }, name, id);
+      break;
+    case "GET_MESSAGE_HISTORY":
+      getMessageHistory({ getState, dispatch }, toId);
       break;
     default:
       next(action);
