@@ -34,6 +34,7 @@ function App({
   }, []);
 
   useEffect(() => {
+    getProjects();
     user && wsConnection();
   }, [user]);
 

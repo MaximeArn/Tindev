@@ -6,8 +6,6 @@ const sanitize = require("sanitize-html");
 const sanitizeConfig = require("../../config/sanitize");
 
 module.exports = async (body, next) => {
-    typeof JSON.parse(body.categories)
-  );
   body.categories = JSON.parse(body.categories);
   const { title, size, categories } = body;
 
