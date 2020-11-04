@@ -18,12 +18,25 @@ const ChatWindow = ({
   deleteChatWindow,
   getMessageHistory,
 }: ChatWindowProps) => {
+  const [chatExpanded, setChatExpanded] = useState(false);
   useEffect(() => {
     getMessageHistory(id);
   }, []);
 
-  const [chatExpanded, setChatExpanded] = useState(false);
+  useEffect(() => {
+    if (messagesArea.current) {
+      messagesArea.current.scrollTop = messagesArea.current.scrollHeight;
+    }
+  }, [messages]);
+
+  useEffect(() => {
+    if (messagesArea.current) {
+      messagesArea.current.scrollTop = messagesArea.current.scrollHeight;
+    }
+  }, [chatExpanded]);
+
   const chatHeader = useRef(null);
+  const messagesArea = useRef<HTMLDivElement>(null);
   return (
     <div className={chatExpanded ? "chatZone expanded" : "chatZone"}>
       <div
@@ -45,7 +58,7 @@ const ChatWindow = ({
           {chatExpanded ? <ExpandMoreIcon /> : <CloseIcon />}
         </button>
       </div>
-      <div className="chatZone-content">
+      <div className="chatZone-content" ref={messagesArea}>
         {history &&
           Object.entries(history).map(([key, value]) => {
             return value.map(({ date, message }: Message) => (
