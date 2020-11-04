@@ -1,8 +1,10 @@
 @use '../../../styles/vars';
+
 .user-profile-preview-header {
   height: 50%;
   width: 100%;
   border-bottom: 1px solid #b6b6b6;
+  position: relative;
 
   &-username {
     text-align: center;
@@ -65,12 +67,13 @@
 
   &-image {
     position: absolute;
-    width: 23%;
-    height: 70%;
+    width: 21%;
+    height: 35%;
     border-radius: 50%;
     border: 3px solid #fff;
-    bottom: -32%;
-    right: 40.8%;
+    transform: translate(-50%, -50%);
+    top: 50%;
+    left: 50%;
   }
 
   &-background {

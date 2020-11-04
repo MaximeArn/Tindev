@@ -1,3 +1,5 @@
+/** @format */
+
 import React from "react";
 import { UserProps } from "../../../models/users";
 import { url } from "../../../environments/api";
@@ -34,11 +36,11 @@ const User = ({
               src={backgroundImage}
               alt="background-image"
             />
-            <img
-              className="user-profile-image"
-              src={`${url}/uploads/users/default-image.jpg`}
-            />
           </div>
+          <img
+            className="user-profile-image"
+            src={`${url}/uploads/users/default-image.jpg`}
+          />
           <div className="user-profile-preview-header-infos">
             <div className="user-profile-preview-header-username">
               {username}
