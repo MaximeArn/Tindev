@@ -32,7 +32,9 @@ const Project = ({
         </div>
         <div className="title-section">
           <h2>{title}</h2>
-          <p>by {author}</p>
+          <Link to={`/user/${userify(author)}`}>
+            <p>by {author}</p>
+          </Link>
         </div>
         <div className="description-section">
           <p>{description}</p>
