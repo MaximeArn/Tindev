@@ -48,14 +48,14 @@ const connectedUsers = {};
 
 ioNameSpace.use(socketConnection).on("connection", (socket) => {
   console.log("connected");
-  const { id } = socket.conn;
   const { username } = socket.handshake.query;
+  const { id } = socket.conn;
   connectedUsers[username] = id;
   console.log(connectedUsers);
 
   socket.on("chat-message", ({ to, message }) => {
-    console.log(connectedUsers[to]);
     // socket.use(socketFilter);
-    socket.to(connectedUsers[to]).emit("chat-message", message);
+    ioNameSpace.to(connectedUsers[to]).emit("chat-message", message);
+    // connectedUsers[to].emit("chat-message", message);
   });
 });
