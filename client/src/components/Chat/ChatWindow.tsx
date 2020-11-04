@@ -21,11 +21,13 @@ const ChatWindow = ({
   message,
   messages,
   deleteChatWindow,
+  chatWindow,
 }: ChatWindowProps) => {
   const [chatHistory, setchatHistory] = useState<History | null>(null);
-  const [chatExpanded, setChatExpanded] = useState(false);
+  const [chatExpanded, setChatExpanded] = useState(true);
   const chatHeader = useRef(null);
   const messagesArea = useRef<HTMLDivElement>(null);
+  const scrollDiv = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
     axios
@@ -35,16 +37,10 @@ const ChatWindow = ({
   }, []);
 
   useEffect(() => {
-    if (messagesArea.current) {
-      messagesArea.current.scrollTop = messagesArea.current.scrollHeight;
+    if (scrollDiv.current && chatExpanded) {
+      scrollDiv.current.scrollIntoView({ behavior: "smooth" });
     }
-  }, [messages]);
-
-  useEffect(() => {
-    if (messagesArea.current) {
-      messagesArea.current.scrollTop = messagesArea.current.scrollHeight;
-    }
-  }, [chatExpanded]);
+  }, [messages, chatExpanded, chatHistory]);
 
   return (
     <div className={chatExpanded ? "chatZone expanded" : "chatZone"}>
@@ -74,7 +70,7 @@ const ChatWindow = ({
               <span
                 key={idGenerator()}
                 className={`message ${key}`}
-                title={new Date(date).toLocaleDateString()}
+                title={new Date(date).toLocaleString()}
               >
                 {message}
               </span>
@@ -93,6 +89,7 @@ const ChatWindow = ({
             )
           );
         })}
+        <div className="scrollDiv" ref={scrollDiv}></div>
       </div>
       <div className="chatZone-footer">
         <form
