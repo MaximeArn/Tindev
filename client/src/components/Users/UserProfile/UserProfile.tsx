@@ -6,7 +6,7 @@ import "./userprofile.scss";
 const UserProfile = ({ user, getUser }: UserProfileProps) => {
   useEffect(() => {
     getUser();
-  }, []);
+  }, [user]);
 
   return <div className="user-profile">{user && <User {...user} />}</div>;
 };
