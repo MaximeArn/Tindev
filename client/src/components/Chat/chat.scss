@@ -1,3 +1,5 @@
+@use '../../styles/vars';
+
 .chat-window-wrapper {
     max-width: calc(240px * 3 + 10px * 2);
     bottom: 0;
@@ -50,6 +52,19 @@
         width: 100%;
         height: 0px;
         transition: height 0.4s;
+        overflow-y: scroll;
+        display: inline-flex;
+        flex-direction: column;
+
+        &::-webkit-scrollbar {
+            width: 10px;
+            height: 10px;
+        }
+
+        &::-webkit-scrollbar-thumb {
+            background-color: #444;
+        }
+
     }
 
     &-footer {
@@ -64,6 +79,24 @@
     .chatZone-content {
         width: 100%;
         height: 160px;
+        padding: 10px;
+
+        .message {
+            border-radius: 50px;
+            padding: 10px;
+            margin-bottom: 10px;
+            display: inline-flex;
+        }
+
+        .from {
+            background-color: vars.$primary-color;
+            align-self: flex-end;
+        }
+
+        .to {
+            align-self: flex-start;
+            background-color: #fff;
+        }
     }
 
     .chatZone-footer {
