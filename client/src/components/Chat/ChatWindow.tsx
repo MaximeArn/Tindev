@@ -22,14 +22,14 @@ const ChatWindow = ({
   messages,
   deleteChatWindow,
 }: ChatWindowProps) => {
-  const [historyTest, setHistoryTest] = useState<History | null>(null);
+  const [chatHistory, setchatHistory] = useState<History | null>(null);
   const [chatExpanded, setChatExpanded] = useState(false);
   const chatHeader = useRef(null);
 
   useEffect(() => {
     axios
       .post("/users/messageHistory", { toId: id })
-      .then(({ data: chatHistory }) => setHistoryTest(chatHistory))
+      .then(({ data: chatHistory }) => setchatHistory(chatHistory))
       .catch((error) => console.error(error));
   }, []);
 
@@ -55,8 +55,8 @@ const ChatWindow = ({
         </button>
       </div>
       <div className="chatZone-content">
-        {historyTest &&
-          Object.entries(historyTest).map(([key, value]) => {
+        {chatHistory &&
+          Object.entries(chatHistory).map(([key, value]) => {
             return value.map(({ date, message }: Message) => (
               <span
                 key={idGenerator()}
@@ -68,9 +68,9 @@ const ChatWindow = ({
             ));
           })}
         {messages.map(({ to, from, message, date }) => {
-          const valid = username == to || username == from;
+          const show = username == to || username == from;
           return (
-            valid && (
+            show && (
               <div key={idGenerator()} className="message from">
                 <p title={new Date(date).toLocaleString()}>{message}</p>
               </div>
