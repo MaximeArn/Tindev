@@ -4,22 +4,31 @@ import React, { useState, useRef, useEffect } from "react";
 import CloseIcon from "@material-ui/icons/Close";
 import ExpandMoreIcon from "@material-ui/icons/ExpandMore";
 import { Message } from "../../models/chat";
+import axios from "axios";
 import { ChatWindowProps } from "../../models/chat";
+import { url } from "../../environments/api";
+import idGenerator from "../../utils/randomIdGenerator";
 import "./chat.scss";
+axios.defaults.baseURL = url;
+axios.defaults.headers.post["Content-Type"] = "application/json";
+axios.defaults.withCredentials = true;
 
 const ChatWindow = ({
   username,
   id,
   getMessageValue,
   sendMessage,
-  history,
   message,
   messages,
   deleteChatWindow,
-  getMessageHistory,
 }: ChatWindowProps) => {
+  const [historyTest, setHistoryTest] = useState<History | null>(null);
+
   useEffect(() => {
-    getMessageHistory(id);
+    axios
+      .post("/users/messageHistory", { toId: id })
+      .then(({ data: chatHistory }) => setHistoryTest(chatHistory))
+      .catch((error) => console.error(error));
   }, []);
 
   const [chatExpanded, setChatExpanded] = useState(false);
@@ -46,10 +55,11 @@ const ChatWindow = ({
         </button>
       </div>
       <div className="chatZone-content">
-        {history &&
-          Object.entries(history).map(([key, value]) => {
+        {historyTest &&
+          Object.entries(historyTest).map(([key, value]) => {
             return value.map(({ date, message }: Message) => (
               <span
+                key={idGenerator()}
                 className={`message ${key}`}
                 title={new Date(date).toLocaleDateString()}
               >
@@ -59,7 +69,7 @@ const ChatWindow = ({
           })}
         {messages.map(({ message, date }) => {
           return (
-            <div className="message from">
+            <div key={idGenerator()} className="message from">
               <p title={new Date(date).toLocaleString()}>{message}</p>
             </div>
           );

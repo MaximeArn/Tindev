@@ -21,8 +21,6 @@ export interface ChatWindowProps {
   getMessageValue: Function;
   sendMessage: Function;
   deleteChatWindow: Function;
-  getMessageHistory: Function;
-  history: History;
 }
 
 export interface History {

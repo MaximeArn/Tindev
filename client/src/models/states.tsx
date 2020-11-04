@@ -185,8 +185,4 @@ export interface MessageState {
   messages: { message: string; date: Date }[];
   message: string;
   chatWindow: { username: string }[];
-  chatHistory: {
-    from: [{ username: string; date: Date; message: string }] | [];
-    to: [{ username: string; date: Date; message: string }] | [];
-  };
 }

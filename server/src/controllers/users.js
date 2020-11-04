@@ -36,7 +36,6 @@ const usersController = {
     next
   ) => {
     try {
-      console.log("HISTORY CONTROLLER");
       const { id: fromId } = await tokenValidator(token, next);
 
       const fromUser = User.findOne({ _id: fromId });
@@ -47,8 +46,6 @@ const usersController = {
       const fromMessages = from.messages.filter(({ to: { id } }) => id == toId);
       const toMessages = to.messages.filter(({ to: { id } }) => id == fromId);
 
-      console.log(fromMessages);
-      console.log(toMessages);
       return res.status(200).json({ to: toMessages, from: fromMessages });
     } catch (error) {
       next(error);

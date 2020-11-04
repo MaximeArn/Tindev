@@ -31,18 +31,7 @@ const sendSocket = (
 ) => {
   const { message } = getState().message;
   socket.emit("chat-message", { to: { id, name: target }, message, token });
-};
-
-const getMessageHistory = (
-  { getState, dispatch }: AxiosSubmit,
-  toId: string
-) => {
-  axios
-    .post("/users/messageHistory", { toId })
-    .then(({ data: chatHistory }) =>
-      dispatch({ type: "SET_MESSAGE_HISTORY", chatHistory })
-    )
-    .catch((error) => console.error(error));
+  dispatch({ type: "SET_CHAT_MESSAGE" });
 };
 
 const socketMiddleware: Middleware = ({ getState, dispatch }) => (next) => (
@@ -59,9 +48,6 @@ const socketMiddleware: Middleware = ({ getState, dispatch }) => (next) => (
       break;
     case "SEND_CHAT_MESSAGE":
       sendSocket({ getState, dispatch }, name, id);
-      break;
-    case "GET_MESSAGE_HISTORY":
-      getMessageHistory({ getState, dispatch }, toId);
       break;
     default:
       next(action);
