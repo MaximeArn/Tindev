@@ -172,7 +172,7 @@ export interface SuccessState {
 export interface SearchState {
   search: string;
   focused: boolean;
-  results: User[] | Project[];
+  results: (User | Project)[];
 }
 
 export interface NavBarState {
