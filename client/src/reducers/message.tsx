@@ -19,13 +19,17 @@ const message = (
     username,
     usernameToDelete,
     id,
-    chatHistory,
+    to,
+    from,
   }: MessageAction
 ) => {
   const msg = message ? message : "";
   switch (type) {
     case "SET_CHAT_MESSAGES":
-      return { ...state, messages: [...state.messages, { message, date }] };
+      return {
+        ...state,
+        messages: [...state.messages, { to, from, message, date }],
+      };
     case "SET_CHAT_MESSAGE":
       return { ...state, message: msg };
     case "OPEN_CHAT_WINDOW":

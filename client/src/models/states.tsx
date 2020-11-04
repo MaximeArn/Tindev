@@ -5,6 +5,7 @@ import { ProjectState } from "./projects";
 import { UserState, AuthUserState } from "./users";
 import { User } from "../models/users";
 import { Project } from "../models/projects";
+import { ChatWindow, Messages } from "./chat";
 
 export interface Authentication {
   register: {
@@ -182,7 +183,7 @@ export interface NavBarState {
 }
 
 export interface MessageState {
-  messages: { message: string; date: Date }[];
+  messages: Messages[];
   message: string;
-  chatWindow: { username: string }[];
+  chatWindow: ChatWindow[];
 }

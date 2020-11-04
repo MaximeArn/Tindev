@@ -4,6 +4,7 @@ import { Middleware } from "redux";
 import { AxiosSubmit } from "../models/axios";
 import { socketUrl } from "../environments/api";
 import axios from "axios";
+import { SocketServerResponse } from "../models/chat";
 import Cookies from "js-cookie";
 import io from "socket.io-client";
 import { url } from "../environments/api";
@@ -17,9 +18,9 @@ const token = Cookies.get("token");
 const serverSocketListener = ({ getState, dispatch }: AxiosSubmit) => {
   socket.on(
     "chat-message",
-    ({ message, date }: { message: string; date: Date }) => {
-      console.log("MESSAGE : ", message);
-      dispatch({ type: "SET_CHAT_MESSAGES", message, date });
+    ({ to, from, message, date }: SocketServerResponse) => {
+      console.log({ to, from });
+      dispatch({ type: "SET_CHAT_MESSAGES", to, from, message, date });
     }
   );
 };

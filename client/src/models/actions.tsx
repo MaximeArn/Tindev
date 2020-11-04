@@ -94,9 +94,7 @@ export interface MessageAction {
   date: Date;
   username: string;
   id: string;
+  to: string;
+  from: string;
   usernameToDelete: string;
-  chatHistory: {
-    from: [{ username: string; date: Date; message: string }] | [];
-    to: [{ username: string; date: Date; message: string }] | [];
-  };
 }

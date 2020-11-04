@@ -23,6 +23,8 @@ const ChatWindow = ({
   deleteChatWindow,
 }: ChatWindowProps) => {
   const [historyTest, setHistoryTest] = useState<History | null>(null);
+  const [chatExpanded, setChatExpanded] = useState(false);
+  const chatHeader = useRef(null);
 
   useEffect(() => {
     axios
@@ -31,8 +33,6 @@ const ChatWindow = ({
       .catch((error) => console.error(error));
   }, []);
 
-  const [chatExpanded, setChatExpanded] = useState(false);
-  const chatHeader = useRef(null);
   return (
     <div className={chatExpanded ? "chatZone expanded" : "chatZone"}>
       <div
@@ -67,11 +67,15 @@ const ChatWindow = ({
               </span>
             ));
           })}
-        {messages.map(({ message, date }) => {
+        {messages.map(({ to, from, message, date }) => {
+          console.log("USERNAME : ", username);
+          const valid = username == to || username == from;
           return (
-            <div key={idGenerator()} className="message from">
-              <p title={new Date(date).toLocaleString()}>{message}</p>
-            </div>
+            valid && (
+              <div key={idGenerator()} className="message from">
+                <p title={new Date(date).toLocaleString()}>{message}</p>
+              </div>
+            )
           );
         })}
       </div>

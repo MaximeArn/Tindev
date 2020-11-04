@@ -9,7 +9,8 @@ module.exports = {
 
     socket.on("chat-message", async ({ to, message, token }) => {
       try {
-        const { id } = await tokenValidator(token, null);
+        const { id, username: from } = await tokenValidator(token, null);
+        const { name: toName } = to;
         const date = Date.now();
         const user = await User.findOne({ _id: id });
 
@@ -19,11 +20,9 @@ module.exports = {
 
         ioNameSpace
           .in(connectedUsers[to.name])
-          .emit("chat-message", { message, date });
+          .emit("chat-message", { from, to: toName, message, date });
 
-        // [socket, connectedUsers[to.name]].forEach((socket) =>
-        //   socket.emit("chat-message", { message, date })
-        // );
+        socket.emit("chat-message", { to: toName, from, message, date });
       } catch (error) {
         throw new Error(error);
       }
