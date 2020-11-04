@@ -15,7 +15,7 @@
 
 .chatZone {
     width: 240px;
-    max-height: 220px;
+    max-height: 40px;
     background-color: #555;
     border-radius: 7px 7px 0 0;
     margin-right: 10px;
@@ -75,6 +75,7 @@
 
 .chatZone.expanded {
     padding-bottom: 0.2rem;
+    max-height: 220px;
 
     .chatZone-content {
         width: 100%;
