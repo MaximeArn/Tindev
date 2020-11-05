@@ -7,7 +7,7 @@ import "./footer.scss";
 const Footer = () => {
   return (
     <footer className="footer">
-      <Link to="/legals">legals</Link>
+      <Link to="/legals">Privacy Policy</Link>
     </footer>
   );
 };

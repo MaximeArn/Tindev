@@ -1,0 +1,23 @@
+.contentPrivacy {
+    padding: 2rem;
+    background-color: #333;
+    color: #fff;
+    margin-top: 64px;
+    min-height: calc(100vh - 64px - 50px);
+
+    h2 {
+        font-size: 1.7em;
+        margin-bottom: 2rem;
+    }
+
+    div {
+        margin-bottom: 3.5rem;
+    }
+}
+
+@media (max-width: 600px) {
+    .contentPrivacy {
+        margin-top: 56px;
+        min-height: calc(100vh - 56px - 50px);
+    }
+}
