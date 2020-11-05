@@ -27,10 +27,12 @@ const mapDispatch = (dispatch: Dispatch<AnyAction>, { history }: OwnProps) => {
 
   return {
     setSearchBarStatus,
-    logout: () => dispatch({ type: "DISCONNECT_USER" }),
-    openModal: ({ modalStatus, modal }: AuthModalOpening) => {
-      dispatch({ type: "SET_AUTH_MODAL_STATUS", modalStatus, modal });
+    logout: () => {
+      dispatch({ type: "DISCONNECT_USER" });
+      history.push("/");
     },
+    openModal: ({ modalStatus, modal }: AuthModalOpening) =>
+      dispatch({ type: "SET_AUTH_MODAL_STATUS", modalStatus, modal }),
     getSearchValue: (value: string) =>
       dispatch({ type: "GET_SEARCH_VALUE", value }),
     setAccountMenu: (status: React.MouseEvent<HTMLElement> | null) =>
