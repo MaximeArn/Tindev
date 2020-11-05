@@ -176,6 +176,19 @@
   color: #fff;
 }
 
+.project-detail-loader {
+  display: flex;
+  color: #fff;
+  padding: calc(80px + 2rem) 0 2rem;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+
+  p {
+    margin-right: 1rem;
+  }
+}
+
 @media (min-width: 1000px) {
   .projectDetail-content {
     width: 50%;

@@ -4,6 +4,7 @@ import { AnyAction, Dispatch, Middleware } from "redux";
 import { url } from "../environments/api";
 import { AxiosSubmit, AxiosApplicant } from "../models/axios";
 import slugify from "../utils/slugify";
+import unslugify from "../utils/unslugify";
 import axios from "axios";
 axios.defaults.baseURL = url;
 axios.defaults.headers.post["Content-Type"] = "application/json";
@@ -86,7 +87,10 @@ const acceptApplicant = ({
   });
   axios
     .patch("/project/accept_applicant", { projectId, userId, username })
-    .then(({ data: project }) => dispatch({ type: "SET_PROJECT", project }))
+    .then(({ data: project }) => {
+      console.log("UPDATED PROJECT ON APPLICANT CONFIRMATION : ", project);
+      dispatch({ type: "SET_PROJECT", project });
+    })
     .catch((err) => console.log(err))
     .finally(() => {
       dispatch({
@@ -163,6 +167,19 @@ const updateProject = (
     );
 };
 
+const getProject = ({ getState, dispatch }: AxiosSubmit, slug: string) => {
+  dispatch({ type: "SET_PROJECT_DETAILS_LOADER", value: true });
+  axios
+    .get(`/project/${unslugify(slug)}`)
+    .then(({ data: project }) => dispatch({ type: "SET_PROJECT", project }))
+    .catch(({ response: { data: error } }) =>
+      dispatch({ type: "PROJECT_DETAILS_ERROR_HANDLER", error })
+    )
+    .finally(() =>
+      dispatch({ type: "SET_PROJECT_DETAILS_LOADER", value: false })
+    );
+};
+
 const verifyOwner = (projectAuthor: string, dispatch: Dispatch<AnyAction>) => {
   axios
     .post("/project/verify_owner", { projectAuthor })
@@ -179,6 +196,9 @@ const project: Middleware = ({ getState, dispatch }) => (next) => (action) => {
       break;
     case "GET_PROJECTS":
       setProjects(dispatch);
+      break;
+    case "GET_PROJECT":
+      getProject({ getState, dispatch }, slug);
       break;
     case "UPDATE_PROJECT":
       updateProject(

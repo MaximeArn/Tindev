@@ -58,6 +58,7 @@ export interface Loaders {
   registerLoader: boolean;
   loginLoader: boolean;
   projectListLoader: boolean;
+  projectDetailsLoader: boolean;
   projectCreationLoader: boolean;
   projectCategoriesLoader: boolean;
   projectEditionLoader: {
@@ -106,6 +107,7 @@ export interface ErrorState {
     registerErrorMessage: string;
     loginErrorMessage: string;
   };
+  projectDetailsErrorMessage: string;
   projectCreationErrorMessage: string;
   projectListErrorMessage: string;
   projectApplyErrorMessage: string;

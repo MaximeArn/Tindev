@@ -34,7 +34,6 @@
     width: 100%;
 
     .infos {
-
       &-list {
         display: flex;
         justify-content: space-evenly;
@@ -157,8 +156,9 @@
 }
 
 .chatIcon {
+  cursor: pointer;
   position: absolute;
   top: 0;
   right: 0;
-  padding: .7rem;
+  padding: 0.7rem;
 }

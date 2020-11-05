@@ -2,8 +2,9 @@
 
 import React, { useState, useRef, useEffect } from "react";
 import CloseIcon from "@material-ui/icons/Close";
+import { History } from "../../models/chat";
 import ExpandMoreIcon from "@material-ui/icons/ExpandMore";
-import { Message } from "../../models/chat";
+import { Messages } from "../../models/chat";
 import axios from "axios";
 import { ChatWindowProps } from "../../models/chat";
 import { url } from "../../environments/api";
@@ -21,9 +22,8 @@ const ChatWindow = ({
   message,
   messages,
   deleteChatWindow,
-  chatWindow,
 }: ChatWindowProps) => {
-  const [chatHistory, setchatHistory] = useState<History | null>(null);
+  const [chatHistory, setchatHistory] = useState<Messages[] | null>(null);
   const [chatExpanded, setChatExpanded] = useState(true);
   const chatHeader = useRef(null);
   const messagesArea = useRef<HTMLDivElement>(null);
@@ -32,10 +32,19 @@ const ChatWindow = ({
   useEffect(() => {
     axios
       .post("/users/messageHistory", { toId: id })
-      .then(({ data: chatHistory }) => setchatHistory(chatHistory))
+      .then(({ data: chatHistory }) => {
+        setchatHistory(
+          chatHistory.to
+            .concat(chatHistory.from)
+            .sort((el1: Messages, el2: Messages) =>
+              el1.date < el2.date ? -1 : 1
+            )
+        );
+      })
       .catch((error) => console.error(error));
   }, []);
 
+  chatHistory && console.log(chatHistory);
   useEffect(() => {
     if (scrollDiv.current && chatExpanded) {
       scrollDiv.current.scrollIntoView({ behavior: "smooth" });
@@ -65,17 +74,15 @@ const ChatWindow = ({
       </div>
       <div ref={messagesArea} className="chatZone-content">
         {chatHistory &&
-          Object.entries(chatHistory).map(([key, value]) => {
-            return value.map(({ date, message }: Message) => (
-              <span
-                key={idGenerator()}
-                className={`message ${key}`}
-                title={new Date(date).toLocaleString()}
-              >
-                {message}
-              </span>
-            ));
-          })}
+          chatHistory.map(({ to: { name }, date, message }: any) => (
+            <span
+              key={idGenerator()}
+              className={username === name ? "message to" : "message from"}
+              title={new Date(date).toLocaleString()}
+            >
+              {message}
+            </span>
+          ))}
         {messages.map(({ to, from, message, date }) => {
           const show = username == to || username == from;
           return (

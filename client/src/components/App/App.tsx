@@ -13,6 +13,7 @@ import ManagePage from "../containers/ManageProject";
 import UsersList from "../containers/UsersList";
 import UserProfile from "../containers/UserProfile";
 import Search from "../containers/Search";
+import NotFound from "../NotFound/NotFound";
 import EditProject from "../containers/EditProject";
 import Chat from "../containers/Chat";
 import "./app.scss";
@@ -54,6 +55,7 @@ function App({
         <Route exact path="/users" component={UsersList} />
         <Route exact path="/user/:username" component={UserProfile} />
         <Route path="/search" component={Search} />
+        <Route component={NotFound} />
       </Switch>
     </>
   );
