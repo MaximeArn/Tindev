@@ -24,8 +24,12 @@ const message = (
     case "SET_CHAT_MESSAGE":
       return { ...state, message: msg };
     case "OPEN_CHAT_WINDOW":
-      console.log("OPEN CHAT WINDOW");
-      return { ...state, chatWindow: [...state.chatWindow, { username, id }] };
+      const found = state.chatWindow.find(
+        ({ username: user }) => username == user
+      );
+      return !found
+        ? { ...state, chatWindow: [...state.chatWindow, { username, id }] }
+        : state;
     case "DELETE_CHAT_WINDOW":
       return {
         ...state,

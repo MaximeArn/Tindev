@@ -2,6 +2,7 @@
 
 import { Middleware } from "redux";
 import { AxiosSubmit } from "../models/axios";
+import { ChatWindow } from "../models/chat";
 import { socketUrl } from "../environments/api";
 import axios from "axios";
 import { SocketServerResponse } from "../models/chat";
@@ -20,6 +21,7 @@ const serverSocketListener = ({ getState, dispatch }: AxiosSubmit) => {
   socket.on("chat-message", (message: SocketServerResponse) => {
     message.to == username &&
       dispatch({ type: "OPEN_CHAT_WINDOW", username: message.from });
+
     dispatch({ type: "SET_CHAT_MESSAGES", message });
   });
 };
