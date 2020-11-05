@@ -15,6 +15,7 @@ import UserProfile from "../containers/UserProfile";
 import Search from "../containers/Search";
 import EditProject from "../containers/EditProject";
 import Chat from "../containers/Chat";
+import Footer from "../Footer/Footer";
 import "./app.scss";
 
 function App({
@@ -55,6 +56,7 @@ function App({
         <Route exact path="/user/:username" component={UserProfile} />
         <Route path="/search" component={Search} />
       </Switch>
+      <Footer />
     </>
   );
 }

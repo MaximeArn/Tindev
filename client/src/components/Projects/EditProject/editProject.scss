@@ -11,6 +11,7 @@
 
 .edit-project {
   &-success-message {
+    transition: all 1s;
     margin-bottom: 1rem;
     color: #19a463;
   }
