@@ -17,12 +17,11 @@ const VisitorPage = ({ openModal }: any) => {
         <div className="text">
           <h2 className="title">Welcome to tindev</h2>
           <p className="welcome-text">
-            Réseau social permettant de reunir des devs autour d'un projet
-            commun. Vous pourrez proposer un projet ou vous joindre au projet
-            d'un autre utilisateur. Vous aurez la possibilité de filtrer les
-            recherches selon vos critères. Discutez avec les autres utilisateurs
-            via une messagerie instantanée et créez des groupes afin de
-            faciliter la communication.
+            Social network to bring devs together with a shared project. You can
+            also create a project yourself, or, join another user's project. You
+            will be able to filter any project according to your criterias and
+            discuss with other users through a chat or create groups to
+            communicate easily with each others.
           </p>
         </div>
         <div className="buttons-section">
