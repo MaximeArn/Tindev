@@ -29,13 +29,18 @@ const mapState = (
   };
 };
 
-const mapDispatch = (dispatch: Dispatch<AnyAction>, { match }: OwnProps) => {
+const mapDispatch = (
+  dispatch: Dispatch<AnyAction>,
+  { match: { params } }: OwnProps
+) => {
+  const { slug: slugifiedTitle } = params;
   return {
     setModalStatus: (modalStatus: boolean) =>
       dispatch({ type: "SET_APPLY_MODAL_STATUS", modalStatus }),
     verifyOwner: (projectAuthor: string) =>
       dispatch({ type: "VERIFY_OWNER", projectAuthor }),
-    getProjectDetails: () => dispatch({ type: "GET_PROJECT" }),
+    getProjectDetails: (slug: string) =>
+      dispatch({ type: "GET_PROJECT", slug: slugifiedTitle }),
   };
 };
 

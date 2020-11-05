@@ -4,6 +4,7 @@ import { AnyAction, Dispatch, Middleware } from "redux";
 import { url } from "../environments/api";
 import { AxiosSubmit, AxiosApplicant } from "../models/axios";
 import slugify from "../utils/slugify";
+import unslugify from "../utils/unslugify";
 import axios from "axios";
 axios.defaults.baseURL = url;
 axios.defaults.headers.post["Content-Type"] = "application/json";
@@ -166,7 +167,12 @@ const updateProject = (
     );
 };
 
-const getProject = ({ getState, dispatch }: AxiosSubmit, slug: string) => {};
+const getProject = ({ getState, dispatch }: AxiosSubmit, slug: string) => {
+  axios
+    .get(`/project/${unslugify(slug)}`)
+    .then(({ data }) => console.log(data))
+    .catch((error) => console.log(error));
+};
 
 const verifyOwner = (projectAuthor: string, dispatch: Dispatch<AnyAction>) => {
   axios
