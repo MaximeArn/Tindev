@@ -45,6 +45,7 @@ const EditProject = ({
             })}
         </div>
       </div>
+      <button className="edit-project-delete">Delete</button>
     </div>
   );
 };
