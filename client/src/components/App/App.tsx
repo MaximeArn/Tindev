@@ -16,6 +16,7 @@ import Search from "../containers/Search";
 import NotFound from "../NotFound/NotFound";
 import EditProject from "../containers/EditProject";
 import Chat from "../containers/Chat";
+import Footer from "../Footer/Footer";
 import "./app.scss";
 
 function App({
@@ -57,6 +58,7 @@ function App({
         <Route path="/search" component={Search} />
         <Route component={NotFound} />
       </Switch>
+      <Footer />
     </>
   );
 }
