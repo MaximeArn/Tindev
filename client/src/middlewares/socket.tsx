@@ -16,7 +16,10 @@ let socket: any;
 const token = Cookies.get("token");
 
 const serverSocketListener = ({ getState, dispatch }: AxiosSubmit) => {
+  const { username } = getState().auth.user;
   socket.on("chat-message", (message: SocketServerResponse) => {
+    message.to == username &&
+      dispatch({ type: "OPEN_CHAT_WINDOW", username: message.from });
     dispatch({ type: "SET_CHAT_MESSAGES", message });
   });
 };
