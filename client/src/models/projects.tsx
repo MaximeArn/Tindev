@@ -146,7 +146,7 @@ export interface EditFieldProps {
     fieldName: string;
     loader: boolean;
   };
-  value: string | Category[];
+  value: string | string[];
   inputValue: string | number | undefined;
   getProjectEditInputValues: Function;
   setNewProjectImage: Function;
@@ -155,7 +155,7 @@ export interface EditFieldProps {
 
 export interface EditProjectStatusClosed {
   name: string;
-  value: string | Category[];
+  value: string | string[];
   isExpanded: boolean;
   fieldName: string;
   loader: boolean;
@@ -164,7 +164,7 @@ export interface EditProjectStatusClosed {
 
 export interface EditProjectStatusOpen {
   name: string;
-  value: string | Category[];
+  value: string | string[];
   inputValue: string | number | undefined;
   isExpanded: boolean;
   setExpanded: Function;

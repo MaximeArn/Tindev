@@ -37,6 +37,7 @@
         justify-content: center;
         text-align: center;
         width: 100%;
+
         p {
           margin-right: 10px;
         }
@@ -49,6 +50,12 @@
       &-text-content {
         width: 45%;
         text-align: center;
+        display: flex;
+        justify-content: center;
+
+        p {
+          padding-left: .8rem;
+        }
       }
 
       &-name {
