@@ -4,6 +4,7 @@ import React from "react";
 import { useHistory, Link } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faArrowLeft } from "@fortawesome/free-solid-svg-icons";
+import slugify from "../../../utils/slugify";
 import Applicant from "../../containers/Applicant";
 import "./managePage.scss";
 import randomKey from "../../../utils/randomIdGenerator";
@@ -16,13 +17,13 @@ const ManageProject = ({ project }: ProjectProp) => {
   const history = useHistory();
 
   const pushLastPath = () => {
-    history.goBack();
+    history.push(`/project/${slugify(project.title)}`);
   };
 
   return (
     <div className="applyPage">
       <span className="left-arrow" onClick={pushLastPath}>
-        <FontAwesomeIcon icon={faArrowLeft} size="2x" color="#F7F7F7" />
+        <FontAwesomeIcon icon={faArrowLeft} size="2x" color="#333" />
       </span>
       <div className="applyPage-content">
         <div className="title-section">
