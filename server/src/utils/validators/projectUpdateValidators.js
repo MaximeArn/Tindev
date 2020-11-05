@@ -1,3 +1,5 @@
+/** @format */
+
 const { Project, Category } = require("../../models");
 const ProjectError = require("../CustomError");
 const sanitize = require("sanitize-html");
@@ -41,7 +43,9 @@ module.exports = async (id, body, next) => {
 
     if (!project) throw new ProjectError("This project does not exist", 404);
 
-    body[key] = sanitize(body[key], sanitizeOptions);
+    if (key !== "categories") {
+      body[key] = sanitize(body[key], sanitizeOptions);
+    }
 
     return project;
   } catch (error) {
