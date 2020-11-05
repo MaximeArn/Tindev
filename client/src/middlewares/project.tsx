@@ -86,7 +86,10 @@ const acceptApplicant = ({
   });
   axios
     .patch("/project/accept_applicant", { projectId, userId, username })
-    .then(({ data: project }) => dispatch({ type: "SET_PROJECT", project }))
+    .then(({ data: project }) => {
+      console.log("UPDATED PROJECT ON APPLICANT CONFIRMATION : ", project);
+      dispatch({ type: "SET_PROJECT", project });
+    })
     .catch((err) => console.log(err))
     .finally(() => {
       dispatch({
@@ -163,6 +166,8 @@ const updateProject = (
     );
 };
 
+const getProject = ({ getState, dispatch }: AxiosSubmit, slug: string) => {};
+
 const verifyOwner = (projectAuthor: string, dispatch: Dispatch<AnyAction>) => {
   axios
     .post("/project/verify_owner", { projectAuthor })
@@ -179,6 +184,9 @@ const project: Middleware = ({ getState, dispatch }) => (next) => (action) => {
       break;
     case "GET_PROJECTS":
       setProjects(dispatch);
+      break;
+    case "GET_PROJECT":
+      getProject({ getState, dispatch }, slug);
       break;
     case "UPDATE_PROJECT":
       updateProject(

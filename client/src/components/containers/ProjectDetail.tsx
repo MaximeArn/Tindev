@@ -29,11 +29,14 @@ const mapState = (
   };
 };
 
-const mapDispatch = (dispatch: Dispatch<AnyAction>) => ({
-  setModalStatus: (modalStatus: boolean) =>
-    dispatch({ type: "SET_APPLY_MODAL_STATUS", modalStatus }),
-  verifyOwner: (projectAuthor: string) =>
-    dispatch({ type: "VERIFY_OWNER", projectAuthor }),
-});
+const mapDispatch = (dispatch: Dispatch<AnyAction>, { match }: OwnProps) => {
+  return {
+    setModalStatus: (modalStatus: boolean) =>
+      dispatch({ type: "SET_APPLY_MODAL_STATUS", modalStatus }),
+    verifyOwner: (projectAuthor: string) =>
+      dispatch({ type: "VERIFY_OWNER", projectAuthor }),
+    getProjectDetails: () => dispatch({ type: "GET_PROJECT" }),
+  };
+};
 
 export default withRouter(connect(mapState, mapDispatch)(ProjectDetail));

@@ -7,6 +7,7 @@ import resetInputs from "../utils/resetInputs";
 
 const initialState: ProjectState = {
   projects: [],
+  project: null,
   createProject: {
     title: "",
     description: "",

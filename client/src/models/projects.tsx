@@ -54,6 +54,7 @@ export interface Applicant {
 
 export interface ProjectState {
   projects: Project[];
+  project: Project | null;
   createProject: ProjectCreation;
   projectDetail: ProjectDetail;
 }
@@ -91,6 +92,7 @@ export interface ProjectDetailProps {
   verifyOwner: Function;
   owner: boolean;
   error: string;
+  getProjectDetails: Function;
 }
 
 export interface ProjectProp {
