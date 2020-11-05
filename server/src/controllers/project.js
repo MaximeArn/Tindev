@@ -8,6 +8,7 @@ const {
   applicantValidator,
   projectDeletionValidator,
   projectUpdateValidator,
+  removeContributorValidator,
 } = require("../utils/validators");
 
 module.exports = {
@@ -147,6 +148,25 @@ module.exports = {
         return res
           .status(200)
           .json({ msg: "Project successfully updated", project: updated });
+      }
+    } catch (error) {
+      next(error);
+    }
+  },
+  deleteContributor: async (
+    { body: { id }, cookies: { token } },
+    res,
+    next
+  ) => {
+    try {
+      const { id: userId } = await tokenValidator(token, next);
+      const project = await removeContributorValidator(id, next);
+
+      if (project && userId) {
+        project.contributors.pull(userId);
+        const updated = await project.save();
+
+        return res.status(200).json(updated);
       }
     } catch (error) {
       next(error);

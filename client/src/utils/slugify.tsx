@@ -1,6 +1,7 @@
 /** @format */
 
 const slugify = require("slugify");
+slugify.extend({ é: "é", è: "è" });
 
 export default (string: string) => {
   return slugify(string, {

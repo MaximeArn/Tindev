@@ -16,6 +16,9 @@ const ProjectDetail = ({
   error,
   getProjectDetails,
   loader,
+  contributorLoader,
+  contributing,
+  leaveProject,
 }: ProjectDetailProps) => {
   useEffect(() => {
     getProjectDetails();
@@ -25,7 +28,6 @@ const ProjectDetail = ({
     project && verifyOwner(project.author);
   }, [project]);
 
-  console.log(project);
   return (
     <>
       {isModalOpen && <Modal projectId={project && project._id} />}
@@ -38,6 +40,9 @@ const ProjectDetail = ({
               setModalStatus={setModalStatus}
               {...project}
               owner={owner}
+              contributing={contributing}
+              leaveProject={leaveProject}
+              contributorLoader={contributorLoader}
             />
           ) : (
             <div className="project-detail-loader">
