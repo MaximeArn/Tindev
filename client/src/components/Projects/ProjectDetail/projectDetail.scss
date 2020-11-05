@@ -31,12 +31,10 @@
       h2 {
         font-weight: bold;
         text-transform: uppercase;
-        background: -webkit-linear-gradient(
-          121deg,
-          rgba(149, 230, 191, 1) 0%,
-          rgba(84, 227, 206, 1) 48%,
-          rgba(0, 212, 255, 1) 100%
-        );
+        background: -webkit-linear-gradient(121deg,
+            rgba(149, 230, 191, 1) 0%,
+            rgba(84, 227, 206, 1) 48%,
+            rgba(0, 212, 255, 1) 100%);
         background-clip: text;
         -webkit-background-clip: text;
         -webkit-text-fill-color: transparent;
@@ -153,12 +151,10 @@
         }
 
         &:hover {
-          background: -webkit-linear-gradient(
-            121deg,
-            rgba(149, 230, 191, 1) 0%,
-            rgba(84, 227, 206, 1) 48%,
-            rgba(0, 212, 255, 1) 100%
-          );
+          background: -webkit-linear-gradient(121deg,
+              rgba(149, 230, 191, 1) 0%,
+              rgba(84, 227, 206, 1) 48%,
+              rgba(0, 212, 255, 1) 100%);
           background-clip: text;
           -webkit-background-clip: text;
           -webkit-text-fill-color: transparent;
@@ -191,6 +187,41 @@
             justify-content: center;
             text-align: center;
           }
+        }
+      }
+    }
+  }
+}
+
+
+@media (max-width: 745px) {
+  .projectDetail {
+    padding-top: 56px;
+    padding-bottom: 0;
+
+    &-content {
+      width: 100vw;
+      border-radius: 0;
+      padding-bottom: 1rem;
+
+      .buttons-section {
+        padding: 0 1.5rem;
+        border-top: none;
+        margin-top: 1rem;
+
+        .like-button,
+        .edit-button {
+          border-radius: 0;
+          border-top: 2px solid #fff;
+          border-bottom: 2px solid #fff;
+          border-left: 2px solid #fff;
+
+        }
+
+        .apply-button,
+        .manage-button {
+          border: 2px solid #fff;
+          border-radius: 0;
         }
       }
     }
