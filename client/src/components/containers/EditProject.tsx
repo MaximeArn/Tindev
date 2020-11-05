@@ -13,6 +13,7 @@ const mapState = (
     project: { projects, createProject },
     error: { projectEditionErrorMessage: error },
     success: { projectEditionSuccess: success },
+    modal: { deleteProjectModal: isModalOpen },
   }: State,
   { match }: OwnProps
 ) => {
@@ -24,6 +25,7 @@ const mapState = (
     projectCreationValues: createProject,
     error,
     success,
+    isModalOpen,
   };
 };
 
@@ -32,6 +34,8 @@ const mapDispatch = (dispatch: Dispatch<AnyAction>) => ({
   resetSuccessMessage: () =>
     dispatch({ type: "PROJECT_EDITION_SUCCESS_MESSAGE" }),
   deleteProject: (id: string) => dispatch({ type: "SEND_DELETE_PROJECT", id }),
+  setModalStatus: (modalStatus: boolean) =>
+    dispatch({ type: "SET_PROJECT_DELETE_MODAL", modalStatus }),
 });
 
 export default withRouter(connect(mapState, mapDispatch)(EditProject));

@@ -4,6 +4,7 @@ import React, { useEffect } from "react";
 import { EditProjectProps } from "../../../models/projects";
 import Field from "../../containers/ProjectEditField";
 import fieldChecker from "../../../utils/fieldChecker";
+import Modal from "./Modal";
 import "./editProject.scss";
 
 const EditProject = ({
@@ -11,9 +12,11 @@ const EditProject = ({
   projectCreationValues,
   error,
   success,
+  isModalOpen,
   getCategories,
   resetSuccessMessage,
   deleteProject,
+  setModalStatus,
 }: EditProjectProps) => {
   useEffect(() => {
     getCategories();
@@ -26,33 +29,38 @@ const EditProject = ({
   }, [success]);
 
   return (
-    <div className="edit-project-container">
-      {error && <div className="edit-project-error-message">{error}</div>}
-      {success && <div className="edit-project-success-message">{success}</div>}
-      <div className="edit-project">
-        <div className="edit-form">
-          {project &&
-            Object.keys(fieldChecker(project)).map((props) => {
-              const key = props as keyof typeof EditProject;
-              return (
-                <Field
-                  key={key}
-                  name={key}
-                  projectId={project._id}
-                  value={project[key]}
-                  inputValue={projectCreationValues[key]}
-                />
-              );
-            })}
+    <>
+      {isModalOpen && <Modal />}
+      <div className="edit-project-container">
+        {error && <div className="edit-project-error-message">{error}</div>}
+        {success && (
+          <div className="edit-project-success-message">{success}</div>
+        )}
+        <div className="edit-project">
+          <div className="edit-form">
+            {project &&
+              Object.keys(fieldChecker(project)).map((props) => {
+                const key = props as keyof typeof EditProject;
+                return (
+                  <Field
+                    key={key}
+                    name={key}
+                    projectId={project._id}
+                    value={project[key]}
+                    inputValue={projectCreationValues[key]}
+                  />
+                );
+              })}
+          </div>
         </div>
+        <button
+          onClick={() => setModalStatus(true)}
+          className="edit-project-delete"
+        >
+          Delete
+        </button>
       </div>
-      <button
-        onClick={() => deleteProject(project._id)}
-        className="edit-project-delete"
-      >
-        Delete
-      </button>
-    </div>
+    </>
   );
 };
 

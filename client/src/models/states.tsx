@@ -44,6 +44,7 @@ export interface State {
 export interface Modals {
   showNavbar: boolean;
   applyModal: boolean;
+  deleteProjectModal: boolean;
   authModal: {
     login: boolean;
     register: boolean;
@@ -157,6 +158,7 @@ export interface CategoriesState {
 export interface ModalState {
   showNavbar: boolean;
   applyModal: boolean;
+  deleteProjectModal: boolean;
   authModal: {
     login: boolean;
     register: boolean;

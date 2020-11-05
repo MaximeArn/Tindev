@@ -196,10 +196,10 @@ const leaveProject = (dispatch: Dispatch<AnyAction>, id: string) => {
 };
 
 const deleteProject = (dispatch: Dispatch<AnyAction>, id: string) => {
-  axios
-    .delete(`/project/${id}`)
-    .then(({ data }) => console.log(data))
-    .catch((error) => console.error(error));
+  // axios
+  //   .delete(`/project/${id}`)
+  //   .then(({ data }) => console.log(data))
+  //   .catch((error) => console.error(error));
 };
 
 const verifyOwner = (projectAuthor: string, dispatch: Dispatch<AnyAction>) => {
