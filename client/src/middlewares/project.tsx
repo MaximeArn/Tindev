@@ -183,7 +183,7 @@ const getProject = ({ getState, dispatch }: AxiosSubmit, slug: string) => {
 
 const leaveProject = (dispatch: Dispatch<AnyAction>, id: string) => {
   axios
-    .delete(`/project/${id}`)
+    .patch(`/project/contributor`, { id })
     .then(({ data }) => console.log(data))
     .catch((error) => console.error(error));
 };
