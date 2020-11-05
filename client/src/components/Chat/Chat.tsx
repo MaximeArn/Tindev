@@ -7,8 +7,7 @@ import "./chat.scss";
 
 const Chat = ({
   chatWindow,
-  chat,
-  getMessageValue,
+  messages,
   sendMessage,
   deleteChatWindow,
 }: ChatProps) => {
@@ -19,8 +18,7 @@ const Chat = ({
           <ChatWindow
             key={window.username}
             {...window}
-            {...chat}
-            getMessageValue={getMessageValue}
+            messages={messages}
             sendMessage={sendMessage}
             deleteChatWindow={deleteChatWindow}
           />

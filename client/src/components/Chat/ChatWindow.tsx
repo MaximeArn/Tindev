@@ -17,14 +17,13 @@ axios.defaults.withCredentials = true;
 const ChatWindow = ({
   username,
   id,
-  getMessageValue,
   sendMessage,
-  message,
   messages,
   deleteChatWindow,
 }: ChatWindowProps) => {
   const [chatHistory, setchatHistory] = useState<Messages[] | null>(null);
   const [chatExpanded, setChatExpanded] = useState(true);
+  const [message, setMessage] = useState("");
   const chatHeader = useRef(null);
   const messagesArea = useRef<HTMLDivElement>(null);
   const scrollDiv = useRef<HTMLDivElement>(null);
@@ -102,13 +101,14 @@ const ChatWindow = ({
         <form
           onSubmit={(event) => {
             event.preventDefault();
-            sendMessage(username, id);
+            sendMessage(username, id, message);
+            setMessage("");
           }}
         >
           <input
             type="text"
             value={message}
-            onChange={({ target }) => getMessageValue(target.value)}
+            onChange={({ target }) => setMessage(target.value)}
           />
         </form>
       </div>
