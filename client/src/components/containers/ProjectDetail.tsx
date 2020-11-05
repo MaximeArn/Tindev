@@ -17,10 +17,10 @@ const mapState = ({
   loaders: { projectDetailsLoader: loader },
   auth: { user },
 }: State) => {
-  const { username: connectedUser } = user && user;
-  const contributing = project?.contributors.find(
-    ({ username }) => connectedUser && username === connectedUser
-  );
+  // const { username: connectedUser } = user && user;
+  const contributing =
+    user &&
+    project?.contributors.find(({ username }) => username === user.username);
   return {
     project,
     isModalOpen: applyModal,

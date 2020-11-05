@@ -18,6 +18,7 @@ const ProjectDetail = ({
   loader,
   contributing,
 }: ProjectDetailProps) => {
+  console.log(contributing);
   useEffect(() => {
     getProjectDetails();
   }, []);
