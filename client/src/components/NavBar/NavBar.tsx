@@ -152,16 +152,26 @@ const NavBar = ({
                 </Typography>
               </div>
             ) : (
-              <IconButton
-                edge="end"
-                aria-label="account of current user"
-                aria-controls={`accountMenu`}
-                aria-haspopup="true"
-                onClick={({ currentTarget }) => setAccountMenu(currentTarget)}
-                color="inherit"
-              >
-                <AccountCircle />
-              </IconButton>
+              <>
+                <IconButton
+                  edge="end"
+                  aria-label="account of current user"
+                  aria-controls={`accountMenu`}
+                  aria-haspopup="true"
+                  onClick={({ currentTarget }) => setAccountMenu(currentTarget)}
+                  color="inherit"
+                >
+                  <AccountCircle />
+                </IconButton>
+                <Typography
+                  className={classes.usernameNavLink}
+                  variant="subtitle1"
+                  noWrap
+                  onClick={({ currentTarget }) => setAccountMenu(currentTarget)}
+                >
+                  {user.username}
+                </Typography>
+              </>
             )}
           </div>
           <div className={classes.sectionMobile}>
@@ -184,7 +194,7 @@ const NavBar = ({
         openModal,
         setAccountMenu
       )}
-      {renderProfileMenu(account, closeAccountMenu, logout)}
+      {renderProfileMenu(account, closeAccountMenu, logout, user)}
       {renderMainMenu(main, setMainMenu)}
     </div>
   );

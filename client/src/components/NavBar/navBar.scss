@@ -13,6 +13,11 @@ body {
 
 .nav-item {
   padding-left: 12px;
+
+  &.username {
+    // padding: 0;
+    cursor: pointer;
+  }
 }
 
 .search-tray {

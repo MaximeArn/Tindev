@@ -33,6 +33,14 @@ const useStyles = makeStyles((theme: Theme) =>
         paddingLeft: "1.5rem",
       },
     },
+    usernameNavLink: {
+      display: "none",
+      cursor: "pointer",
+      [theme.breakpoints.up("sm")]: {
+        display: "block",
+        paddingLeft: ".2rem",
+      },
+    },
     leftLinkContainer: {
       display: "flex",
       justifyContent: "center",
