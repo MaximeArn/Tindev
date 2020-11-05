@@ -15,6 +15,7 @@ const ProjectDetail = ({
   owner,
   error,
   getProjectDetails,
+  loader,
 }: ProjectDetailProps) => {
   useEffect(() => {
     getProjectDetails();
@@ -24,6 +25,7 @@ const ProjectDetail = ({
     project && verifyOwner(project.author);
   }, [project]);
 
+  console.log(project);
   return (
     <>
       {isModalOpen && <Modal projectId={project && project._id} />}
@@ -31,14 +33,14 @@ const ProjectDetail = ({
         <p className="error-message">{error}</p>
       ) : (
         <>
-          {project ? (
+          {!loader ? (
             <Project
               setModalStatus={setModalStatus}
               {...project}
               owner={owner}
             />
           ) : (
-            <div className="projectDetail">
+            <div className="project-detail-loader">
               <p>Loading</p>
               <CircularProgress size={15} />
             </div>

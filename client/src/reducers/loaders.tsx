@@ -8,6 +8,7 @@ const initialState: Loaders = {
   loginLoader: false,
   projectListLoader: false,
   projectCreationLoader: false,
+  projectDetailsLoader: false,
   projectCategoriesLoader: false,
   projectEditionLoader: {
     fieldName: null,
@@ -45,6 +46,8 @@ const loaders = (
         ...state,
         manageApplicantLoader: { applicantId, loader: value },
       };
+    case "SET_PROJECT_DETAILS_LOADER":
+      return { ...state, projectDetailsLoader: value };
     case "SET_PROJECT_EDITION_LOADER":
       console.log("PROJECT EDITION LOADER");
       return {

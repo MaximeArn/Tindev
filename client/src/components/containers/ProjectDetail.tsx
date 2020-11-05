@@ -5,27 +5,23 @@ import ProjectDetail from "../Projects/ProjectDetail/ProjectDetail";
 import { State } from "../../models/states";
 import { ProjectDetailProps as OwnProps } from "../../models/projects";
 import { withRouter } from "react-router-dom";
-import slugify from "../../utils/slugify";
 import { AnyAction, Dispatch } from "redux";
 
-const mapState = (
-  {
-    project: {
-      projects,
-      projectDetail: { owner },
-    },
-    modal: { applyModal },
-  }: State,
-  { match }: OwnProps
-) => {
-  const { slug } = match.params;
-  const project = projects.find(({ title }) => slugify(title) === slug);
-  const error = project ? null : "Oops... something went wrong ";
+const mapState = ({
+  project: {
+    project,
+    projectDetail: { owner },
+  },
+  modal: { applyModal },
+  error: { projectDetailsErrorMessage },
+  loaders: { projectDetailsLoader: loader },
+}: State) => {
   return {
     project,
     isModalOpen: applyModal,
     owner,
-    error,
+    error: projectDetailsErrorMessage,
+    loader,
   };
 };
 
@@ -33,14 +29,15 @@ const mapDispatch = (
   dispatch: Dispatch<AnyAction>,
   { match: { params } }: OwnProps
 ) => {
-  const { slug: slugifiedTitle } = params;
+  const { slug } = params;
   return {
     setModalStatus: (modalStatus: boolean) =>
       dispatch({ type: "SET_APPLY_MODAL_STATUS", modalStatus }),
     verifyOwner: (projectAuthor: string) =>
       dispatch({ type: "VERIFY_OWNER", projectAuthor }),
-    getProjectDetails: (slug: string) =>
-      dispatch({ type: "GET_PROJECT", slug: slugifiedTitle }),
+    getProjectDetails: () => {
+      dispatch({ type: "GET_PROJECT", slug });
+    },
   };
 };
 

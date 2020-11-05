@@ -93,6 +93,7 @@ export interface ProjectDetailProps {
   owner: boolean;
   error: string;
   getProjectDetails: Function;
+  loader: boolean;
 }
 
 export interface ProjectProp {

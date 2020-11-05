@@ -59,7 +59,11 @@ const project = (
     case "SET_PROJECTS":
       return { ...state, projects };
     case "SET_PROJECT":
-      return { ...state, projects: updateProjects(project, state.projects) };
+      return {
+        ...state,
+        projects: updateProjects(project, state.projects),
+        project,
+      };
     case "ADD_PROJECT_ON_PROJECT_CREATION":
       return { ...state, projects: [...state.projects, project] };
     case "RESET_PROJECT_APPLY_FORM_VALUES":
