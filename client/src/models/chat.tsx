@@ -37,7 +37,7 @@ export interface Message {
 
 export interface Messages {
   to: string;
-  from: string;
+  from?: string;
   message: string;
   date: Date;
 }

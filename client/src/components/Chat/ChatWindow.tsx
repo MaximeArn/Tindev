@@ -4,7 +4,7 @@ import React, { useState, useRef, useEffect } from "react";
 import CloseIcon from "@material-ui/icons/Close";
 import { History } from "../../models/chat";
 import ExpandMoreIcon from "@material-ui/icons/ExpandMore";
-import { Message } from "../../models/chat";
+import { Messages } from "../../models/chat";
 import axios from "axios";
 import { ChatWindowProps } from "../../models/chat";
 import { url } from "../../environments/api";
@@ -24,7 +24,7 @@ const ChatWindow = ({
   deleteChatWindow,
   chatWindow,
 }: ChatWindowProps) => {
-  const [chatHistory, setchatHistory] = useState<any>(null);
+  const [chatHistory, setchatHistory] = useState<Messages[] | null>(null);
   const [chatExpanded, setChatExpanded] = useState(true);
   const chatHeader = useRef(null);
   const messagesArea = useRef<HTMLDivElement>(null);
@@ -37,7 +37,9 @@ const ChatWindow = ({
         setchatHistory(
           chatHistory.to
             .concat(chatHistory.from)
-            .sort((el1: any, el2: any) => (el1.date < el2.date ? -1 : 1))
+            .sort((el1: Messages, el2: Messages) =>
+              el1.date < el2.date ? -1 : 1
+            )
         );
       })
       .catch((error) => console.error(error));
