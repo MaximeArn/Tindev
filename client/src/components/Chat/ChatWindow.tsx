@@ -22,7 +22,6 @@ const ChatWindow = ({
   message,
   messages,
   deleteChatWindow,
-  chatWindow,
 }: ChatWindowProps) => {
   const [chatHistory, setchatHistory] = useState<Messages[] | null>(null);
   const [chatExpanded, setChatExpanded] = useState(true);

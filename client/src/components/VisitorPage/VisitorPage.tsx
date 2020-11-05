@@ -15,7 +15,7 @@ const VisitorPage = ({ openModal }: any) => {
       <div className="black-filter"></div>
       <div className="content">
         <div className="text">
-          <h2 className="title">welcome to tindev</h2>
+          <h2 className="title">Welcome to tindev</h2>
           <p className="welcome-text">
             Réseau social permettant de reunir des devs autour d'un projet
             commun. Vous pourrez proposer un projet ou vous joindre au projet
