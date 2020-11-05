@@ -20,6 +20,7 @@ const {
   deleteById,
   updateById,
   getProject,
+  deleteContributor,
 } = require("../controllers/project");
 
 router.get("/", getProjects);
@@ -30,6 +31,7 @@ router.post("/verify_owner", verifyOwner);
 router.patch("/accept_applicant", acceptApplicant);
 router.patch("/decline_applicant", declineApplicant);
 router.delete("/:id", deleteById);
+router.delete("/contributor", deleteContributor);
 router.patch("/:id", patchUpload.single("image"), updateById);
 
 module.exports = router;

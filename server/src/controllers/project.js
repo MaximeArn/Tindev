@@ -152,4 +152,5 @@ module.exports = {
       next(error);
     }
   },
+  deleteContributor: async (req, res, next) => {},
 };

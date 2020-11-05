@@ -181,7 +181,12 @@ const getProject = ({ getState, dispatch }: AxiosSubmit, slug: string) => {
     );
 };
 
-const leaveProject = (dispatch: Dispatch<AnyAction>, id: string) => {};
+const leaveProject = (dispatch: Dispatch<AnyAction>, id: string) => {
+  axios
+    .delete(`/project/${id}`)
+    .then(({ data }) => console.log(data))
+    .catch((error) => console.error(error));
+};
 
 const verifyOwner = (projectAuthor: string, dispatch: Dispatch<AnyAction>) => {
   axios
