@@ -14,7 +14,6 @@ module.exports = async (
   { mimetype },
   callback
 ) => {
-  console.log("MULTER PATCH FILE FILTER");
   try {
     const user = await tokenValidator(token, null);
     const project = await Project.findOne({ _id: id });
