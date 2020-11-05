@@ -146,6 +146,7 @@ export interface EditProjectProps {
   projectCreationValues: ProjectCreation;
   getCategories: Function;
   resetSuccessMessage: Function;
+  deleteProject: Function;
 }
 
 export interface EditFieldProps {

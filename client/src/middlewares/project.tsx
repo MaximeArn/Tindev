@@ -195,6 +195,13 @@ const leaveProject = (dispatch: Dispatch<AnyAction>, id: string) => {
     );
 };
 
+const deleteProject = (dispatch: Dispatch<AnyAction>, id: string) => {
+  axios
+    .delete(`/project/${id}`)
+    .then(({ data }) => console.log(data))
+    .catch((error) => console.error(error));
+};
+
 const verifyOwner = (projectAuthor: string, dispatch: Dispatch<AnyAction>) => {
   axios
     .post("/project/verify_owner", { projectAuthor })
@@ -230,6 +237,9 @@ const project: Middleware = ({ getState, dispatch }) => (next) => (action) => {
         projectId,
         slug
       );
+      break;
+    case "SEND_DELETE_PROJECT":
+      deleteProject(dispatch, id);
       break;
     case "LEAVE_PROJECT":
       leaveProject(dispatch, id);

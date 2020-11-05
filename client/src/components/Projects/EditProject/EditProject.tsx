@@ -13,6 +13,7 @@ const EditProject = ({
   success,
   getCategories,
   resetSuccessMessage,
+  deleteProject,
 }: EditProjectProps) => {
   useEffect(() => {
     getCategories();
@@ -45,7 +46,12 @@ const EditProject = ({
             })}
         </div>
       </div>
-      <button className="edit-project-delete">Delete</button>
+      <button
+        onClick={() => deleteProject(project._id)}
+        className="edit-project-delete"
+      >
+        Delete
+      </button>
     </div>
   );
 };
