@@ -19,9 +19,11 @@ const {
   verifyOwner,
   deleteById,
   updateById,
+  getProject,
 } = require("../controllers/project");
 
 router.get("/", getProjects);
+router.get("/:name", getProject);
 router.post("/create", upload.single("image"), create);
 router.post("/apply", apply);
 router.post("/verify_owner", verifyOwner);

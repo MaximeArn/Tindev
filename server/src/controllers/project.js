@@ -39,6 +39,9 @@ module.exports = {
       next(error);
     }
   },
+  getProject: async ({ params: { name } }, res, next) => {
+    console.log(name);
+  },
   apply: async ({ body, cookies: { token } }, res, next) => {
     try {
       const { id, username } = await tokenValidator(token, next);
