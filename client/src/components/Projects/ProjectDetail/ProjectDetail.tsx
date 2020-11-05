@@ -16,6 +16,7 @@ const ProjectDetail = ({
   error,
   getProjectDetails,
   loader,
+  contributorLoader,
   contributing,
   leaveProject,
 }: ProjectDetailProps) => {
@@ -41,6 +42,7 @@ const ProjectDetail = ({
               owner={owner}
               contributing={contributing}
               leaveProject={leaveProject}
+              contributorLoader={contributorLoader}
             />
           ) : (
             <div className="project-detail-loader">

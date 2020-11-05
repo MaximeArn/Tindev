@@ -33,6 +33,7 @@ export interface ProjectDetailSubComponent {
   setModalStatus: Function;
   owner: boolean;
   contributing: undefined | Contributor;
+  contributorLoader: boolean;
   leaveProject: Function;
 }
 export interface ProjectCreation {
@@ -96,6 +97,7 @@ export interface ProjectDetailProps {
   error: string;
   getProjectDetails: Function;
   loader: boolean;
+  contributorLoader: boolean;
   leaveProject: Function;
   contributing: undefined | Contributor;
 }

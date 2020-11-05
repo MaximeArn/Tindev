@@ -11,6 +11,7 @@ import { faUserCircle } from "@fortawesome/free-solid-svg-icons";
 import { Link, useLocation } from "react-router-dom";
 import userify from "../../../utils/whiteSpaceRemover";
 import idGenerator from "../../../utils/randomIdGenerator";
+import CircularProgress from "@material-ui/core/CircularProgress";
 
 const Project = ({
   _id,
@@ -23,8 +24,10 @@ const Project = ({
   setModalStatus,
   owner,
   contributing,
+  contributorLoader,
   leaveProject,
 }: ProjectDetailSubComponent) => {
+  console.log("LOADER : ", contributorLoader);
   const typedContributors: Contributor[] | [] = contributors;
   const { pathname } = useLocation();
   return (
@@ -46,7 +49,12 @@ const Project = ({
             </div>
             <div className="contributors-section">
               <div className="row-wrapper">
-                {typedContributors.length > 0 ? (
+                {contributorLoader ? (
+                  <div className="loader">
+                    <p>Loading</p>
+                    <CircularProgress size={15} />
+                  </div>
+                ) : typedContributors.length ? (
                   typedContributors.map(({ username, _id }: Contributor) => (
                     <div key={_id} className="contributor-row">
                       <span>

@@ -14,7 +14,10 @@ const mapState = ({
   },
   modal: { applyModal },
   error: { projectDetailsErrorMessage },
-  loaders: { projectDetailsLoader: loader },
+  loaders: {
+    projectDetailsLoader: loader,
+    removingContributorLoader: contributorLoader,
+  },
   auth: { user },
 }: State) => {
   const contributing =
@@ -26,6 +29,7 @@ const mapState = ({
     owner,
     error: projectDetailsErrorMessage,
     loader,
+    contributorLoader,
     contributing,
   };
 };
