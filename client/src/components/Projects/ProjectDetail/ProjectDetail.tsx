@@ -17,6 +17,7 @@ const ProjectDetail = ({
   getProjectDetails,
   loader,
   contributing,
+  leaveProject,
 }: ProjectDetailProps) => {
   useEffect(() => {
     getProjectDetails();
@@ -39,6 +40,7 @@ const ProjectDetail = ({
               {...project}
               owner={owner}
               contributing={contributing}
+              leaveProject={leaveProject}
             />
           ) : (
             <div className="project-detail-loader">

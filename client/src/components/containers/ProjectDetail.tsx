@@ -17,7 +17,6 @@ const mapState = ({
   loaders: { projectDetailsLoader: loader },
   auth: { user },
 }: State) => {
-  // const { username: connectedUser } = user && user;
   const contributing =
     user &&
     project?.contributors.find(({ username }) => username === user.username);
@@ -44,6 +43,7 @@ const mapDispatch = (
     getProjectDetails: () => {
       dispatch({ type: "GET_PROJECT", slug });
     },
+    leaveProject: (id: string) => dispatch({ type: "LEAVE_PROJECT", id }),
   };
 };
 

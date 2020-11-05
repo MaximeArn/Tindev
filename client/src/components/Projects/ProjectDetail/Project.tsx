@@ -13,6 +13,7 @@ import userify from "../../../utils/whiteSpaceRemover";
 import idGenerator from "../../../utils/randomIdGenerator";
 
 const Project = ({
+  _id,
   title,
   image,
   description,
@@ -22,6 +23,7 @@ const Project = ({
   setModalStatus,
   owner,
   contributing,
+  leaveProject,
 }: ProjectDetailSubComponent) => {
   const typedContributors: Contributor[] | [] = contributors;
   const { pathname } = useLocation();
@@ -78,7 +80,12 @@ const Project = ({
               ) : contributing ? (
                 <>
                   <button className="edit-button">Like</button>
-                  <button className="manage-button">Leave</button>
+                  <button
+                    onClick={() => leaveProject(_id)}
+                    className="manage-button"
+                  >
+                    Leave
+                  </button>
                 </>
               ) : (
                 <>

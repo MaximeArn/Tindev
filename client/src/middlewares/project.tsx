@@ -181,6 +181,8 @@ const getProject = ({ getState, dispatch }: AxiosSubmit, slug: string) => {
     );
 };
 
+const leaveProject = (dispatch: Dispatch<AnyAction>, id: string) => {};
+
 const verifyOwner = (projectAuthor: string, dispatch: Dispatch<AnyAction>) => {
   axios
     .post("/project/verify_owner", { projectAuthor })
@@ -189,7 +191,15 @@ const verifyOwner = (projectAuthor: string, dispatch: Dispatch<AnyAction>) => {
 };
 
 const project: Middleware = ({ getState, dispatch }) => (next) => (action) => {
-  const { data, projectAuthor, projectId, history, inputName, slug } = action;
+  const {
+    data,
+    projectAuthor,
+    projectId,
+    history,
+    inputName,
+    slug,
+    id,
+  } = action;
 
   switch (action.type) {
     case "SEND_PROJECT":
@@ -208,6 +218,9 @@ const project: Middleware = ({ getState, dispatch }) => (next) => (action) => {
         projectId,
         slug
       );
+      break;
+    case "LEAVE_PROJECT":
+      leaveProject(dispatch, id);
       break;
     case "SEND_USER_APPLY":
       sendApply({ getState, dispatch }, projectId);
