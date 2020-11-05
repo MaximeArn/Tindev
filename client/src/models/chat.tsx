@@ -2,23 +2,16 @@
 
 export interface ChatProps {
   chatWindow: { username: string; id: string }[];
-  chat: {
-    messages: Messages[];
-    message: string;
-  };
-  getMessageValue: Function;
+  messages: Messages[];
   sendMessage: Function;
   deleteChatWindow: Function;
   getMessageHistory: Function;
-  chatHistory: History;
 }
 
 export interface ChatWindowProps {
   id: string;
   username: string;
   messages: Messages[];
-  message: string;
-  getMessageValue: Function;
   sendMessage: Function;
   deleteChatWindow: Function;
 }

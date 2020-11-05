@@ -6,7 +6,6 @@ import windowFilter from "../utils/removeChatWindow";
 
 const initialState: MessageState = {
   messages: [],
-  message: "",
   chatWindow: [],
 };
 
@@ -21,8 +20,6 @@ const message = (
         ...state,
         messages: [...state.messages, message],
       };
-    case "SET_CHAT_MESSAGE":
-      return { ...state, message: msg };
     case "OPEN_CHAT_WINDOW":
       const found = state.chatWindow.find(
         ({ username: user }) => username == user

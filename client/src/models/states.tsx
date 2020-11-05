@@ -186,6 +186,5 @@ export interface NavBarState {
 
 export interface MessageState {
   messages: Messages[];
-  message: string;
   chatWindow: ChatWindow[];
 }
