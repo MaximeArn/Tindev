@@ -26,14 +26,8 @@ const serverSocketListener = ({ getState, dispatch }: AxiosSubmit) => {
   });
 };
 
-const sendSocket = (
-  { getState, dispatch }: AxiosSubmit,
-  target: string,
-  id: string,
-  message: string
-) => {
+const sendSocket = (target: string, id: string, message: string) => {
   socket.emit("chat-message", { to: { id, name: target }, message, token });
-  dispatch({ type: "SET_CHAT_MESSAGE" });
 };
 
 const socketMiddleware: Middleware = ({ getState, dispatch }) => (next) => (
@@ -49,7 +43,7 @@ const socketMiddleware: Middleware = ({ getState, dispatch }) => (next) => (
       serverSocketListener({ getState, dispatch });
       break;
     case "SEND_CHAT_MESSAGE":
-      sendSocket({ getState, dispatch }, name, id, message);
+      sendSocket(name, id, message);
       break;
     default:
       next(action);

@@ -17,9 +17,7 @@ axios.defaults.withCredentials = true;
 const ChatWindow = ({
   username,
   id,
-  getMessageValue,
   sendMessage,
-  // message,
   messages,
   deleteChatWindow,
 }: ChatWindowProps) => {
@@ -104,6 +102,7 @@ const ChatWindow = ({
           onSubmit={(event) => {
             event.preventDefault();
             sendMessage(username, id, message);
+            setMessage("");
           }}
         >
           <input
