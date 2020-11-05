@@ -93,30 +93,32 @@ const NavBar = ({
               </>
             )}
           </div>
-          <div className={classes.search}>
-            <div className={classes.searchIcon}>
-              <SearchIcon />
+          {user && (
+            <div className={classes.search}>
+              <div className={classes.searchIcon}>
+                <SearchIcon />
+              </div>
+              <form onSubmit={handleSearchSubmit}>
+                <InputBase
+                  ref={searchBar}
+                  onFocus={() => search && setSearchBarStatus(true)}
+                  onBlur={(event: FocusEvent<HTMLInputElement>) =>
+                    !event.relatedTarget && setSearchBarStatus(false)
+                  }
+                  name="search"
+                  placeholder="Search…"
+                  value={search}
+                  onChange={handleSearchChange}
+                  classes={{
+                    root: classes.inputRoot,
+                    input: classes.inputInput,
+                  }}
+                  inputProps={{ "aria-label": "search" }}
+                />
+                {focused && <SearchBarTray />}
+              </form>
             </div>
-            <form onSubmit={handleSearchSubmit}>
-              <InputBase
-                ref={searchBar}
-                onFocus={() => search && setSearchBarStatus(true)}
-                onBlur={(event: FocusEvent<HTMLInputElement>) =>
-                  !event.relatedTarget && setSearchBarStatus(false)
-                }
-                name="search"
-                placeholder="Search…"
-                value={search}
-                onChange={handleSearchChange}
-                classes={{
-                  root: classes.inputRoot,
-                  input: classes.inputInput,
-                }}
-                inputProps={{ "aria-label": "search" }}
-              />
-              {focused && <SearchBarTray />}
-            </form>
-          </div>
+          )}
 
           <div className={classes.grow} />
           <div className={classes.sectionDesktop}>
