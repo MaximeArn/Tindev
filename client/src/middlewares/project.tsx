@@ -182,13 +182,17 @@ const getProject = ({ getState, dispatch }: AxiosSubmit, slug: string) => {
 };
 
 const leaveProject = (dispatch: Dispatch<AnyAction>, id: string) => {
+  dispatch({ type: "SET_CONTRIBUTOR_REMOVING_LOADER", value: true });
   axios
     .patch(`/project/contributor`, { id })
     .then(({ data: project }) => {
       console.log(project);
       dispatch({ type: "SET_PROJECT", project });
     })
-    .catch((error) => console.error(error));
+    .catch((error) => console.error(error))
+    .finally(() =>
+      dispatch({ type: "SET_CONTRIBUTOR_REMOVING_LOADER", value: false })
+    );
 };
 
 const verifyOwner = (projectAuthor: string, dispatch: Dispatch<AnyAction>) => {

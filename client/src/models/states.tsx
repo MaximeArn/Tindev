@@ -57,6 +57,7 @@ export interface Modals {
 export interface Loaders {
   registerLoader: boolean;
   loginLoader: boolean;
+  removingContributorLoader: boolean;
   projectListLoader: boolean;
   projectDetailsLoader: boolean;
   projectCreationLoader: boolean;
