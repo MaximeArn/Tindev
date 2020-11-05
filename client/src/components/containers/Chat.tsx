@@ -16,8 +16,8 @@ const mapState = ({ message: { message, messages, chatWindow } }: State) => ({
 const mapDispatch = (dispatch: Dispatch<AnyAction>) => ({
   getMessageValue: (message: string) =>
     dispatch({ type: "SET_CHAT_MESSAGE", message }),
-  sendMessage: (name: string, id: string) =>
-    dispatch({ type: "SEND_CHAT_MESSAGE", name, id }),
+  sendMessage: (name: string, id: string, message: string) =>
+    dispatch({ type: "SEND_CHAT_MESSAGE", name, id, message }),
   deleteChatWindow: (usernameToDelete: string) =>
     dispatch({ type: "DELETE_CHAT_WINDOW", usernameToDelete }),
 });
