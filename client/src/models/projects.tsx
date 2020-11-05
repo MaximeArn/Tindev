@@ -32,6 +32,7 @@ export interface ProjectDetailSubComponent {
   applicants: Applicant[] | [];
   setModalStatus: Function;
   owner: boolean;
+  contributing: undefined | Contributor;
 }
 export interface ProjectCreation {
   title: string;
@@ -94,7 +95,7 @@ export interface ProjectDetailProps {
   error: string;
   getProjectDetails: Function;
   loader: boolean;
-  contributing: boolean;
+  contributing: undefined | Contributor;
 }
 
 export interface ProjectProp {

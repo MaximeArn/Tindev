@@ -18,7 +18,6 @@ const ProjectDetail = ({
   loader,
   contributing,
 }: ProjectDetailProps) => {
-  console.log(contributing);
   useEffect(() => {
     getProjectDetails();
   }, []);
@@ -39,6 +38,7 @@ const ProjectDetail = ({
               setModalStatus={setModalStatus}
               {...project}
               owner={owner}
+              contributing={contributing}
             />
           ) : (
             <div className="project-detail-loader">

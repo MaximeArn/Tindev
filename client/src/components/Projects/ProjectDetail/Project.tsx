@@ -21,6 +21,7 @@ const Project = ({
   author,
   setModalStatus,
   owner,
+  contributing,
 }: ProjectDetailSubComponent) => {
   const typedContributors: Contributor[] | [] = contributors;
   const { pathname } = useLocation();
@@ -73,6 +74,11 @@ const Project = ({
                   <Link to={`${pathname}/manage`}>
                     <button className="manage-button">Manage</button>
                   </Link>
+                </>
+              ) : contributing ? (
+                <>
+                  <button className="edit-button">Like</button>
+                  <button className="manage-button">Leave</button>
                 </>
               ) : (
                 <>
