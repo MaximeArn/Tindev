@@ -15,13 +15,19 @@ const mapState = ({
   modal: { applyModal },
   error: { projectDetailsErrorMessage },
   loaders: { projectDetailsLoader: loader },
+  auth: { user },
 }: State) => {
+  const { username: connectedUser } = user && user;
+  const contributing = project?.contributors.find(
+    ({ username }) => connectedUser && username === connectedUser
+  );
   return {
     project,
     isModalOpen: applyModal,
     owner,
     error: projectDetailsErrorMessage,
     loader,
+    contributing,
   };
 };
 

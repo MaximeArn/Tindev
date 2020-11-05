@@ -24,7 +24,7 @@ export interface Authentication {
     password: string;
   };
 
-  user: AuthUserState | null;
+  user: AuthUserState;
 }
 
 export interface State {

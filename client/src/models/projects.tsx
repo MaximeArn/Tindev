@@ -94,6 +94,7 @@ export interface ProjectDetailProps {
   error: string;
   getProjectDetails: Function;
   loader: boolean;
+  contributing: boolean;
 }
 
 export interface ProjectProp {

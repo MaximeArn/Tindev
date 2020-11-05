@@ -21,8 +21,8 @@
   }
 
   &-content {
+    width: 700px;
     border-radius: 10px;
-    width: 80%;
     background-color: #444;
     padding: 1.5rem 0 0;
     color: #fff;
@@ -174,25 +174,6 @@
   left: 50%;
   transform: translate(-50%, -50%);
   color: #fff;
-}
-
-.project-detail-loader {
-  display: flex;
-  color: #fff;
-  padding: calc(80px + 2rem) 0 2rem;
-  position: absolute;
-  top: 50%;
-  left: 50%;
-
-  p {
-    margin-right: 1rem;
-  }
-}
-
-@media (min-width: 1000px) {
-  .projectDetail-content {
-    width: 50%;
-  }
 }
 
 @media (min-width: 750px) {

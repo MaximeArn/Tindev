@@ -24,7 +24,6 @@ const Project = ({
 }: ProjectDetailSubComponent) => {
   const typedContributors: Contributor[] | [] = contributors;
   const { pathname } = useLocation();
-  console.log("author :", author);
   return (
     <>
       {author && (

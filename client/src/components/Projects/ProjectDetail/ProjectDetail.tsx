@@ -16,6 +16,7 @@ const ProjectDetail = ({
   error,
   getProjectDetails,
   loader,
+  contributing,
 }: ProjectDetailProps) => {
   useEffect(() => {
     getProjectDetails();
@@ -25,7 +26,6 @@ const ProjectDetail = ({
     project && verifyOwner(project.author);
   }, [project]);
 
-  console.log(project);
   return (
     <>
       {isModalOpen && <Modal projectId={project && project._id} />}
