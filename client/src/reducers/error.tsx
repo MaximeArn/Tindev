@@ -18,6 +18,7 @@ const initialState: ErrorState = {
 };
 
 const error = (state = initialState, { type, error }: ErrorAction) => {
+  const err = error ? error : "";
   switch (type) {
     case "REGISTER_ERROR_HANDLER":
       return { ...state, auth: { ...state.auth, registerErrorMessage: error } };
@@ -26,9 +27,8 @@ const error = (state = initialState, { type, error }: ErrorAction) => {
     case "RESET_AUTH_MODAL_ERROR_VALUES":
       return { ...state, auth: resetErrorValues(state.auth) };
     case "PROJECT_LIST_ERROR_HANDLER":
-      return { ...state, projectListErrorMessage: error };
+      return { ...state, projectListErrorMessage: err };
     case "PROJECT_CREATION_ERROR_HANDLER":
-      const err = error ? error : "";
       return { ...state, projectCreationErrorMessage: err };
     case "PROJECT_APPLY_ERROR_HANDLER":
       return { ...state, projectApplyErrorMessage: error };
