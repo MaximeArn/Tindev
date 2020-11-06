@@ -83,9 +83,9 @@
   }
 
   &-preview {
-    height: 100vh;
     max-width: 486px;
     height: 70vh;
+    max-height: 580px;
     border-radius: 4px;
     box-shadow: 0 0 3px black;
     background-color: vars.$secondary-color;
