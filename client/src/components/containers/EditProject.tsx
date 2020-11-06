@@ -12,7 +12,7 @@ const mapState = (
   {
     project: { projects, createProject },
     error: { projectEditionErrorMessage: error },
-    success: { projectEditionSuccess: success },
+    success: { projectEditionSuccess: success, projectDeletionSuccess },
     modal: { deleteProjectModal: isModalOpen },
   }: State,
   { match }: OwnProps
@@ -26,6 +26,7 @@ const mapState = (
     error,
     success,
     isModalOpen,
+    projectDeletionSuccess,
   };
 };
 

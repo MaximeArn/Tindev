@@ -142,6 +142,7 @@ export interface DeleteProjectModalProps {
   deleteProject: Function;
   projectId: string;
   setModalStatus: Function;
+  success: string;
 }
 
 export interface EditProjectProps {
@@ -155,6 +156,7 @@ export interface EditProjectProps {
   resetSuccessMessage: Function;
   deleteProject: Function;
   setModalStatus: Function;
+  projectDeletionSuccess: string;
 }
 
 export interface EditFieldProps {

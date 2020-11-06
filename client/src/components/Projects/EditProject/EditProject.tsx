@@ -17,6 +17,7 @@ const EditProject = ({
   resetSuccessMessage,
   deleteProject,
   setModalStatus,
+  projectDeletionSuccess,
 }: EditProjectProps) => {
   useEffect(() => {
     getCategories();
@@ -35,6 +36,7 @@ const EditProject = ({
           deleteProject={deleteProject}
           projectId={project._id}
           setModalStatus={setModalStatus}
+          success={projectDeletionSuccess}
         />
       )}
       <div className="edit-project-container">

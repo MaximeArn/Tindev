@@ -173,6 +173,7 @@ export interface SuccessState {
   applySuccess: boolean | string;
   registerSuccess: boolean | string;
   projectEditionSuccess: boolean | string;
+  projectDeletionSuccess: boolean | string;
 }
 
 export interface SearchState {
