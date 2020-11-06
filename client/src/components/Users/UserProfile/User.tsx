@@ -7,7 +7,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import backgroundImage from "src/assets/user-profile-default.jpg";
 import Description from "./Description";
 import ListItem from "./ListItem";
-import ChatBubbleOutlineIcon from "@material-ui/icons/ChatBubbleOutline";
+import ChatBubbleIcon from "@material-ui/icons/ChatBubble";
 import {
   faFacebook,
   faTwitter,
@@ -46,7 +46,7 @@ const User = ({
               onClick={() => openChatWindow(username, _id)}
               className="chatIcon"
             >
-              <ChatBubbleOutlineIcon style={{ fontSize: "1.5em" }} />
+              <ChatBubbleIcon style={{ fontSize: "1.5em" }} />
             </i>
             <div className="user-profile-preview-header-username">
               {username}
