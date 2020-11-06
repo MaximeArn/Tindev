@@ -41,6 +41,7 @@ export interface ChatWindow {
 export interface SocketServerResponse {
   to: string;
   from: string;
+  fromId?: string;
   message: string;
   date: Date;
 }

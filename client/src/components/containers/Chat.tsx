@@ -11,8 +11,10 @@ const mapState = ({ message: { messages, chatWindow } }: State) => ({
 });
 
 const mapDispatch = (dispatch: Dispatch<AnyAction>) => ({
-  sendMessage: (name: string, id: string, message: string) =>
-    dispatch({ type: "SEND_CHAT_MESSAGE", name, id, message }),
+  sendMessage: (name: string, id: string, message: string) => {
+    console.log("CHAT CONTAINER ID : ", id);
+    dispatch({ type: "SEND_CHAT_MESSAGE", name, id, message });
+  },
   deleteChatWindow: (usernameToDelete: string) =>
     dispatch({ type: "DELETE_CHAT_WINDOW", usernameToDelete }),
 });
