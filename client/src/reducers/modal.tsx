@@ -5,6 +5,7 @@ import resetInputs from "../utils/resetInputs";
 const initialState: ModalState = {
   showNavbar: true,
   applyModal: false,
+  deleteProjectModal: false,
   authModal: {
     login: false,
     register: false,
@@ -30,6 +31,8 @@ const modal = (
         ...state,
         authModal: { [modal]: modalStatus, [modal2]: !modalStatus },
       };
+    case "SET_PROJECT_DELETE_MODAL":
+      return { ...state, deleteProjectModal: modalStatus };
     case "SET_APPLY_MODAL_STATUS":
       return { ...state, applyModal: modalStatus, showNavbar: !modalStatus };
     case "SET_DECLINE_APPLICANT_MODAL_STATUS":

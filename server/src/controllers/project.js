@@ -43,9 +43,9 @@ module.exports = {
   getProject: async ({ params: { name }, cookies: { token } }, res, next) => {
     try {
       const user = await tokenValidator(token, next);
-
       if (user) {
         const project = await Project.findOne({ title: name });
+        console.log(project);
         return res.status(200).json(project);
       }
     } catch (error) {

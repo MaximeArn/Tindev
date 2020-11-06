@@ -14,8 +14,6 @@ const EditClosed = ({
   isExpanded,
   setExpanded,
 }: EditProjectStatusClosed) => {
-  console.log(value);
-
   return (
     <div className="field">
       {fieldName === name && loader ? (
@@ -35,7 +33,7 @@ const EditClosed = ({
           ) : name === "categories" ? (
             <div className="field-text-content">
               {typeof value !== "string" ? (
-                value.map((name: string) => <p>{name}</p>)
+                value.map((name: string) => <p key={name}>{name}</p>)
               ) : (
                 <p>{value}</p>
               )}

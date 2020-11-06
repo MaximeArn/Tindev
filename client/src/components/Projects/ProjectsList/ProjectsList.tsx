@@ -1,11 +1,14 @@
 /** @format */
 
-import React from "react";
+import React, { useEffect } from "react";
 import "./projectslist.scss";
 import Project from "./Project";
 import { Project as ProjectModel, Projects } from "../../../models/projects";
 
-const ProjectsList = ({ projects, error }: Projects) => {
+const ProjectsList = ({ projects, error, getProjects }: Projects) => {
+  useEffect(() => {
+    getProjects();
+  }, []);
   return (
     <>
       {error ? (

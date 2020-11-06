@@ -186,13 +186,22 @@ const leaveProject = (dispatch: Dispatch<AnyAction>, id: string) => {
   axios
     .patch(`/project/contributor`, { id })
     .then(({ data: project }) => {
-      console.log(project);
       dispatch({ type: "SET_PROJECT", project });
     })
     .catch((error) => console.error(error))
     .finally(() =>
       dispatch({ type: "SET_CONTRIBUTOR_REMOVING_LOADER", value: false })
     );
+};
+
+const deleteProject = (dispatch: Dispatch<AnyAction>, id: string) => {
+  axios
+    .delete(`/project/${id}`)
+    .then(({ data: { msg: message } }) => {
+      dispatch({ type: "PROJECT_DELETION_SUCCESS_MESSAGE", message });
+      // setProjects(dispatch);
+    })
+    .catch((error) => console.error(error));
 };
 
 const verifyOwner = (projectAuthor: string, dispatch: Dispatch<AnyAction>) => {
@@ -230,6 +239,9 @@ const project: Middleware = ({ getState, dispatch }) => (next) => (action) => {
         projectId,
         slug
       );
+      break;
+    case "SEND_DELETE_PROJECT":
+      deleteProject(dispatch, id);
       break;
     case "LEAVE_PROJECT":
       leaveProject(dispatch, id);

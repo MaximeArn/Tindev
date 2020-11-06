@@ -5,6 +5,7 @@ import { Category } from "./categories";
 export interface Projects {
   projects: Project[];
   error: string;
+  getProjects: Function;
 }
 
 export interface Project {
@@ -138,14 +139,25 @@ export interface DeclineApplicantModalProps {
   username: string;
 }
 
+export interface DeleteProjectModalProps {
+  deleteProject: Function;
+  projectId: string;
+  setModalStatus: Function;
+  success: string;
+}
+
 export interface EditProjectProps {
   project: Project;
   error: string;
   success: string;
+  isModalOpen: boolean;
   categories: Category[];
   projectCreationValues: ProjectCreation;
   getCategories: Function;
   resetSuccessMessage: Function;
+  deleteProject: Function;
+  setModalStatus: Function;
+  projectDeletionSuccess: string;
 }
 
 export interface EditFieldProps {
