@@ -138,6 +138,12 @@ export interface DeclineApplicantModalProps {
   username: string;
 }
 
+export interface DeleteProjectModalProps {
+  deleteProject: Function;
+  projectId: string;
+  setModalStatus: Function;
+}
+
 export interface EditProjectProps {
   project: Project;
   error: string;

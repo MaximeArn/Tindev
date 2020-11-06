@@ -30,7 +30,13 @@ const EditProject = ({
 
   return (
     <>
-      {isModalOpen && <Modal />}
+      {isModalOpen && (
+        <Modal
+          deleteProject={deleteProject}
+          projectId={project._id}
+          setModalStatus={setModalStatus}
+        />
+      )}
       <div className="edit-project-container">
         {error && <div className="edit-project-error-message">{error}</div>}
         {success && (

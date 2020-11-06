@@ -1,16 +1,21 @@
 import React, { MouseEvent, useRef } from "react";
-import { DeclineApplicantModalProps } from "../../../models/projects";
+import { DeleteProjectModalProps } from "../../../models/projects";
 
-const Modal = () => {
-  console.log("MODAL");
-  //   const modalContainer = useRef<HTMLDivElement>(null);
-
-  //   const handleModal = (event: MouseEvent<HTMLDivElement>) => {
-  //     event.target === modalContainer.current && setModalStatus(false);
-  //   };
+const Modal = ({
+  deleteProject,
+  projectId,
+  setModalStatus,
+}: DeleteProjectModalProps) => {
+  const modalContainer = useRef<HTMLDivElement>(null);
 
   return (
-    <div className="decline">
+    <div
+      ref={modalContainer}
+      onClick={({ target }) =>
+        target === modalContainer.current && setModalStatus(false)
+      }
+      className="decline"
+    >
       <div className="decline-applicant">
         <div className="project-detail-padding">
           <div className="decline-applicant-message">
@@ -18,10 +23,18 @@ const Modal = () => {
           </div>
         </div>
         <div className="decline-applicant-buttons">
-          <button className="decline-applicant-button" type="button">
+          <button
+            onClick={() => deleteProject(projectId)}
+            className="decline-applicant-button"
+            type="button"
+          >
             Yes
           </button>
-          <button className="decline-applicant-button" type="button">
+          <button
+            onClick={() => setModalStatus(false)}
+            className="decline-applicant-button"
+            type="button"
+          >
             No
           </button>
         </div>
