@@ -1,6 +1,7 @@
 /** @format */
 
 import { connect } from "react-redux";
+import { AnyAction, Dispatch } from "redux";
 import { State } from "../../models/states";
 import ProjectList from "../Projects/ProjectsList/ProjectsList";
 
@@ -10,4 +11,8 @@ const mapState = (state: State) => {
   return { projects, error };
 };
 
-export default connect(mapState)(ProjectList);
+const mapDispatch = (dispatch: Dispatch<AnyAction>) => ({
+  getProjects: () => dispatch({ type: "GET_PROJECTS" }),
+});
+
+export default connect(mapState, mapDispatch)(ProjectList);

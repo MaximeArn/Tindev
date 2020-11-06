@@ -31,9 +31,7 @@ function App({
   user,
 }: AppProps) {
   useEffect(() => {
-    console.log("USE EFFECT");
     verifyToken();
-    getProjects();
     getUsers();
   }, []);
 

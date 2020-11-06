@@ -10,6 +10,7 @@ const Modal = ({
 }: DeleteProjectModalProps) => {
   const modalContainer = useRef<HTMLDivElement>(null);
   const history = useHistory();
+
   return (
     <>
       <div
@@ -45,7 +46,7 @@ const Modal = ({
             </div>
             <div className="decline-applicant-buttons">
               <button
-                onClick={() => history.push("/")}
+                onClick={() => deleteProject(projectId)}
                 className="decline-applicant-button"
                 type="button"
               >

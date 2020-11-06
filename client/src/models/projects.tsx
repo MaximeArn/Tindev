@@ -5,6 +5,7 @@ import { Category } from "./categories";
 export interface Projects {
   projects: Project[];
   error: string;
+  getProjects: Function;
 }
 
 export interface Project {

@@ -186,7 +186,6 @@ const leaveProject = (dispatch: Dispatch<AnyAction>, id: string) => {
   axios
     .patch(`/project/contributor`, { id })
     .then(({ data: project }) => {
-      console.log(project);
       dispatch({ type: "SET_PROJECT", project });
     })
     .catch((error) => console.error(error))
@@ -200,6 +199,7 @@ const deleteProject = (dispatch: Dispatch<AnyAction>, id: string) => {
     .delete(`/project/${id}`)
     .then(({ data: { msg: message } }) => {
       dispatch({ type: "PROJECT_DELETION_SUCCESS_MESSAGE", message });
+      // setProjects(dispatch);
     })
     .catch((error) => console.error(error));
 };
