@@ -20,13 +20,18 @@ const serverSocketListener = ({ getState, dispatch }: AxiosSubmit) => {
   const { username } = getState().auth.user;
   socket.on("chat-message", (message: SocketServerResponse) => {
     message.to == username &&
-      dispatch({ type: "OPEN_CHAT_WINDOW", username: message.from });
+      dispatch({
+        type: "OPEN_CHAT_WINDOW",
+        id: message.fromId,
+        username: message.from,
+      });
 
     dispatch({ type: "SET_CHAT_MESSAGES", message });
   });
 };
 
 const sendSocket = (target: string, id: string, message: string) => {
+  console.log("SENDING MESSAGE TO SOCKET", { to: { id, name: target } });
   socket.emit("chat-message", { to: { id, name: target }, message, token });
 };
 

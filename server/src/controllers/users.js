@@ -38,7 +38,9 @@ const usersController = {
     try {
       const { id: fromId } = await tokenValidator(token, next);
 
-      const fromUser = User.findOne({ _id: fromId }).sort({
+      const fromUser = User.findOne({
+        _id: fromId,
+      }).sort({
         "messages.date": -1,
       });
 

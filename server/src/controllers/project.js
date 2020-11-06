@@ -13,7 +13,6 @@ const {
 
 module.exports = {
   create: async ({ body, cookies: { token }, file }, res, next) => {
-    console.log("body ", body);
     const filename = file ? file.filename : "image-default.jpeg";
     try {
       const { username } = await tokenValidator(token, next);
@@ -45,7 +44,6 @@ module.exports = {
       const user = await tokenValidator(token, next);
       if (user) {
         const project = await Project.findOne({ title: name });
-        console.log(project);
         return res.status(200).json(project);
       }
     } catch (error) {
@@ -132,7 +130,6 @@ module.exports = {
     res,
     next
   ) => {
-    console.log(body);
     try {
       const key = file ? "image" : Object.keys(body)[0];
       const user = await tokenValidator(token, next);
