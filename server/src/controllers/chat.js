@@ -13,7 +13,7 @@ module.exports = {
         const { name: toName } = to;
         const date = Date.now();
         const user = await User.findOne({ _id: id });
-        const msg = { from, to: toName, message, date };
+        const msg = { from, fromId: id, to: toName, message, date };
 
         user.messages.push({ to, message, date });
         await user.save();
