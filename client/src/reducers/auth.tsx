@@ -3,7 +3,6 @@
 import { Authentication } from "../models/states";
 import { AuthenticationAction } from "../models/actions";
 import resetInputs from "../utils/resetInputs";
-import Cookies from "js-cookie";
 
 const initialState: any = {
   register: {
@@ -40,7 +39,6 @@ const auth = (
     case "CONNECT_USER":
       return { ...state, user: credentials };
     case "DISCONNECT_USER":
-      Cookies.remove("token");
       return { ...state, user: null };
     default:
       return { ...state };

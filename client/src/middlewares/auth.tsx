@@ -6,6 +6,7 @@ import { AxiosSubmit } from "../models/axios";
 import { url } from "../environments/api";
 import Cookies from "js-cookie";
 import axios from "axios";
+import { nextTick } from "process";
 axios.defaults.baseURL = url;
 axios.defaults.headers.post["Content-Type"] = "application/json";
 axios.defaults.withCredentials = true;
@@ -73,6 +74,11 @@ const retrieveToken = (dispatch: Dispatch<AnyAction>) => {
       .catch(({ response }) => console.log(response));
 };
 
+const logout = (next: Function, action: AuthMiddleware) => {
+  Cookies.remove("token");
+  axios.get("/auth/logout").finally(() => next(action));
+};
+
 const auth: Middleware = ({ getState, dispatch }) => (next) => (
   action: AuthMiddleware
 ) => {
@@ -85,6 +91,9 @@ const auth: Middleware = ({ getState, dispatch }) => (next) => (
       break;
     case "TOKEN_VALIDATION":
       retrieveToken(dispatch);
+      break;
+    case "DISCONNECT_USER":
+      logout(next, action);
       break;
     default:
       next(action);
