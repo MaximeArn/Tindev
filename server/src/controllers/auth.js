@@ -39,14 +39,24 @@ const authRouter = {
       });
     }
   },
-  logout: (connectedUsers, { cookies: { io } }, res) => {
-    Object.entries(connectedUsers).forEach(
-      ([key, value]) => value == io && delete connectedUsers[key]
-    );
+  logout: async (connectedUsers, { cookies: { token } }, res, next) => {
+    try {
+      const { username } = await tokenValidator(token, next);
 
-    return res
-      .status(200)
-      .json({ message: "Socket successfully disconnected" });
+      if (!username) {
+        return res.status(200).json({ message: "Socket was already deleted" });
+      }
+
+      const { socket } = connectedUsers[username];
+      socket.disconnect(true);
+      delete connectedUsers[username];
+
+      return res
+        .status(200)
+        .json({ message: "Socket successfully disconnected" });
+    } catch (error) {
+      next(error);
+    }
   },
   verify: async ({ cookies: { token } }, res, next) => {
     try {

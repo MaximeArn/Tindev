@@ -75,8 +75,10 @@ const retrieveToken = (dispatch: Dispatch<AnyAction>) => {
 };
 
 const logout = (next: Function, action: AuthMiddleware) => {
-  Cookies.remove("token");
-  axios.get("/auth/logout").finally(() => next(action));
+  axios.get("/auth/logout").finally(() => {
+    Cookies.remove("token");
+    next(action);
+  });
 };
 
 const auth: Middleware = ({ getState, dispatch }) => (next) => (
