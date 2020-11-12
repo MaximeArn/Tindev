@@ -5,7 +5,8 @@ const { tokenValidator } = require("../utils/validators");
 
 module.exports = {
   chatHandler: (ioNameSpace, socket, connectedUsers, username) => {
-    socket.join(connectedUsers[username]);
+    const { id: socketId } = connectedUsers[username];
+    socket.join(socketId);
 
     socket.on("chat-message", async ({ to, message, token }) => {
       try {
@@ -14,11 +15,12 @@ module.exports = {
         const date = Date.now();
         const user = await User.findOne({ _id: id });
         const msg = { from, fromId: id, to: toName, message, date };
+        const { id: room } = connectedUsers[to.name];
 
         user.messages.push({ to, message, date });
         await user.save();
 
-        ioNameSpace.in(connectedUsers[to.name]).emit("chat-message", msg);
+        ioNameSpace.in(room).emit("chat-message", msg);
         socket.emit("chat-message", msg);
       } catch (error) {
         console.log(error.message);
