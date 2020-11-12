@@ -14,7 +14,9 @@ const authRouter = {
 
       if (validator) {
         const result = await User.create(body);
-        res.status(200).json({ result, msg: "Account Successfully created" });
+        return res
+          .status(200)
+          .json({ result, msg: "Account Successfully created" });
       }
     } catch (error) {
       next(error);
@@ -37,7 +39,7 @@ const authRouter = {
       });
     }
   },
-  logout: async (connectedUsers, { cookies: { io } }, res, next) => {
+  logout: (connectedUsers, { cookies: { io } }, res) => {
     Object.entries(connectedUsers).forEach(
       ([key, value]) => value == io && delete connectedUsers[key]
     );
