@@ -32,6 +32,8 @@ const message = (
         ...state,
         chatWindow: windowFilter([...state.chatWindow], usernameToDelete),
       };
+    case "DISCONNECT_USER":
+      return { ...state, chatWindow: [] };
     default:
       return state;
   }

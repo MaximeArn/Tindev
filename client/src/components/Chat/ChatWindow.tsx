@@ -21,7 +21,6 @@ const ChatWindow = ({
   messages,
   deleteChatWindow,
 }: ChatWindowProps) => {
-  console.log("coucou");
   const [chatHistory, setchatHistory] = useState<Messages[] | null>(null);
   const [chatExpanded, setChatExpanded] = useState(true);
   const [message, setMessage] = useState("");
