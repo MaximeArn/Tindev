@@ -1,8 +1,15 @@
 const router = require("express").Router();
-const { login, register, verify } = require("../controllers/auth");
+const { login, logout, register, verify } = require("../controllers/auth");
 
-router.post("/login", login);
-router.post("/register", register);
-router.get("/verify", verify);
+const authRouterWrapper = (connectedUsers) => {
+  router.post("/login", login);
+  router.post("/register", register);
+  router.get("/verify", verify);
+  router.get("/logout", (req, res, next) =>
+    logout(connectedUsers, req, res, next)
+  );
 
-module.exports = router;
+  return router;
+};
+
+module.exports = authRouterWrapper;

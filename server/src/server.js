@@ -24,26 +24,19 @@ const {
 const PORT = process.env.PORT || 3000;
 const SOCKET = process.env.SOCKET || 3001;
 const ioNameSpace = io.of("/chat");
+const connectedUsers = {};
 
 server.use(cors(corsSettings));
 server.use(express.static(`${__dirname}/public`));
 server.use(express.json());
 server.use(cookieParser());
-server.use("/auth", authRouter);
+server.use("/auth", authRouter(connectedUsers));
 server.use("/project", projectRouter);
 server.use("/categories", categoriesRouter);
 server.use("/users", usersRouter);
 server.use("/search", searchRouter);
 server.use(errorHandler);
 server.use(notFound);
-
-mongoDB.on("error", () => console.log("Error connecting to database"));
-mongoDB.once("open", () => console.log("Connected to mongo database"));
-
-server.listen(PORT, () => console.log(`Server running on port ${PORT}`));
-http.listen(SOCKET, () => console.log(`Socket listening on port ${SOCKET}`));
-
-const connectedUsers = {};
 
 ioNameSpace.use(socketConnection).on("connection", (socket) => {
   console.log("connected");
@@ -53,3 +46,9 @@ ioNameSpace.use(socketConnection).on("connection", (socket) => {
 
   chatHandler(ioNameSpace, socket, connectedUsers, username);
 });
+
+mongoDB.on("error", () => console.log("Error connecting to database"));
+mongoDB.once("open", () => console.log("Connected to mongo database"));
+
+server.listen(PORT, () => console.log(`Server running on port ${PORT}`));
+http.listen(SOCKET, () => console.log(`Socket listening on port ${SOCKET}`));
