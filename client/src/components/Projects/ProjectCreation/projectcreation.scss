@@ -14,7 +14,8 @@
 }
 
 .project-container {
-  height: 100vh;
+  // height: 100vh;
+  padding: 2rem 0;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -58,17 +59,6 @@
 
     div {
       position: relative;
-    }
-
-    button {
-      width: 20px;
-      color: #0AD6FB;
-      padding: 0;
-      background-color: transparent;
-      border: none;
-      position: absolute;
-      bottom: -5px;
-      right: -10px;
     }
 
     img {
@@ -164,10 +154,32 @@
   text-align: center;
 }
 
-@media (max-width: 500px) {
+@media (max-width: 670px) {
+  .maxiWrapper {
+    padding-top: 56px;
+
+    .project-container {
+      &-form {
+        border-radius: 0;
+        width: 100vw;
+        min-height: calc(100vh - 56px - 50px);
+      }
+    }
+  }
+}
+
+@media (min-width: 670px) {
   .project-container {
     &-form {
-      // padding: 0;
+      width: 600px;
+    }
+  }
+}
+
+@media (min-width: 1250px) {
+  .project-container {
+    &-form {
+      width: 650px;
     }
   }
 }

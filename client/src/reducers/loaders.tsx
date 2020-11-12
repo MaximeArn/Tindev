@@ -6,6 +6,7 @@ import { LoadersActions } from "../models/actions";
 const initialState: Loaders = {
   registerLoader: false,
   loginLoader: false,
+  removingContributorLoader: false,
   projectListLoader: false,
   projectCreationLoader: false,
   projectDetailsLoader: false,
@@ -35,6 +36,8 @@ const loaders = (
         ...state,
         loginLoader: value,
       };
+    case "SET_CONTRIBUTOR_REMOVING_LOADER":
+      return { ...state, removingContributorLoader: value };
     case "SET_PROJECTLIST_LOADER":
       return { ...state, projectListLoader: value };
     case "SET_PROJECT_CREATION_LOADER":

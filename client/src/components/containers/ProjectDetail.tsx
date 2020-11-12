@@ -14,14 +14,23 @@ const mapState = ({
   },
   modal: { applyModal },
   error: { projectDetailsErrorMessage },
-  loaders: { projectDetailsLoader: loader },
+  loaders: {
+    projectDetailsLoader: loader,
+    removingContributorLoader: contributorLoader,
+  },
+  auth: { user },
 }: State) => {
+  const contributing =
+    user &&
+    project?.contributors.find(({ username }) => username === user.username);
   return {
     project,
     isModalOpen: applyModal,
     owner,
     error: projectDetailsErrorMessage,
     loader,
+    contributorLoader,
+    contributing,
   };
 };
 
@@ -38,6 +47,7 @@ const mapDispatch = (
     getProjectDetails: () => {
       dispatch({ type: "GET_PROJECT", slug });
     },
+    leaveProject: (id: string) => dispatch({ type: "LEAVE_PROJECT", id }),
   };
 };
 

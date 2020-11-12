@@ -40,9 +40,6 @@ const Input = ({
         onChange={handleChange}
         value={inputValue}
         required={required}
-        minLength={
-          name === "description" && formType === "ProjectCreation" ? 180 : 0
-        }
       />
     </>
   );

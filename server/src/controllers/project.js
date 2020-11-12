@@ -8,11 +8,11 @@ const {
   applicantValidator,
   projectDeletionValidator,
   projectUpdateValidator,
+  removeContributorValidator,
 } = require("../utils/validators");
 
 module.exports = {
   create: async ({ body, cookies: { token }, file }, res, next) => {
-    console.log("body ", body);
     const filename = file ? file.filename : "image-default.jpeg";
     try {
       const { username } = await tokenValidator(token, next);
@@ -42,7 +42,6 @@ module.exports = {
   getProject: async ({ params: { name }, cookies: { token } }, res, next) => {
     try {
       const user = await tokenValidator(token, next);
-
       if (user) {
         const project = await Project.findOne({ title: name });
         return res.status(200).json(project);
@@ -131,7 +130,6 @@ module.exports = {
     res,
     next
   ) => {
-    console.log(body);
     try {
       const key = file ? "image" : Object.keys(body)[0];
       const user = await tokenValidator(token, next);
@@ -147,6 +145,25 @@ module.exports = {
         return res
           .status(200)
           .json({ msg: "Project successfully updated", project: updated });
+      }
+    } catch (error) {
+      next(error);
+    }
+  },
+  deleteContributor: async (
+    { body: { id }, cookies: { token } },
+    res,
+    next
+  ) => {
+    try {
+      const { id: userId } = await tokenValidator(token, next);
+      const project = await removeContributorValidator(id, next);
+
+      if (project && userId) {
+        project.contributors.pull(userId);
+        const updated = await project.save();
+
+        return res.status(200).json(updated);
       }
     } catch (error) {
       next(error);

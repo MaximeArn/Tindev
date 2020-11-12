@@ -181,6 +181,29 @@ const getProject = ({ getState, dispatch }: AxiosSubmit, slug: string) => {
     );
 };
 
+const leaveProject = (dispatch: Dispatch<AnyAction>, id: string) => {
+  dispatch({ type: "SET_CONTRIBUTOR_REMOVING_LOADER", value: true });
+  axios
+    .patch(`/project/contributor`, { id })
+    .then(({ data: project }) => {
+      dispatch({ type: "SET_PROJECT", project });
+    })
+    .catch((error) => console.error(error))
+    .finally(() =>
+      dispatch({ type: "SET_CONTRIBUTOR_REMOVING_LOADER", value: false })
+    );
+};
+
+const deleteProject = (dispatch: Dispatch<AnyAction>, id: string) => {
+  axios
+    .delete(`/project/${id}`)
+    .then(({ data: { msg: message } }) => {
+      dispatch({ type: "PROJECT_DELETION_SUCCESS_MESSAGE", message });
+      // setProjects(dispatch);
+    })
+    .catch((error) => console.error(error));
+};
+
 const verifyOwner = (projectAuthor: string, dispatch: Dispatch<AnyAction>) => {
   axios
     .post("/project/verify_owner", { projectAuthor })
@@ -189,7 +212,15 @@ const verifyOwner = (projectAuthor: string, dispatch: Dispatch<AnyAction>) => {
 };
 
 const project: Middleware = ({ getState, dispatch }) => (next) => (action) => {
-  const { data, projectAuthor, projectId, history, inputName, slug } = action;
+  const {
+    data,
+    projectAuthor,
+    projectId,
+    history,
+    inputName,
+    slug,
+    id,
+  } = action;
 
   switch (action.type) {
     case "SEND_PROJECT":
@@ -208,6 +239,12 @@ const project: Middleware = ({ getState, dispatch }) => (next) => (action) => {
         projectId,
         slug
       );
+      break;
+    case "SEND_DELETE_PROJECT":
+      deleteProject(dispatch, id);
+      break;
+    case "LEAVE_PROJECT":
+      leaveProject(dispatch, id);
       break;
     case "SEND_USER_APPLY":
       sendApply({ getState, dispatch }, projectId);

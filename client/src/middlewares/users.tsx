@@ -35,7 +35,6 @@ const project: Middleware = ({ getState, dispatch }) => (next) => (action) => {
       getUsers(dispatch);
       break;
     case "GET_USER":
-      console.log("USERNAME IN MIDDLEWARE : ", username);
       getUser(dispatch, username);
       break;
     default:

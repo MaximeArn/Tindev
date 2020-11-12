@@ -1,1 +1,1 @@
-export default (string: string) => string.replace(" ", "");
+export default (string: string) => string.replace(/ /gi, "");

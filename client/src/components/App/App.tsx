@@ -32,7 +32,6 @@ function App({
 }: AppProps) {
   useEffect(() => {
     verifyToken();
-    getProjects();
     getUsers();
   }, []);
 
