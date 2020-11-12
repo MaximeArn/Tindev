@@ -37,9 +37,10 @@ const authRouter = {
       });
     }
   },
-  logout: async (connectedUsers, { cookies }, res, next) => {
-    console.log("LOGOUT CONTROLLER : ", cookies);
-    console.log("CONNECTED USERS IN LOGOUT CONTROLLER : ", connectedUsers);
+  logout: async (connectedUsers, { cookies: { io } }, res, next) => {
+    Object.entries(connectedUsers).forEach(
+      ([key, value]) => value == io && delete connectedUsers[key]
+    );
   },
   verify: async ({ cookies: { token } }, res, next) => {
     try {
