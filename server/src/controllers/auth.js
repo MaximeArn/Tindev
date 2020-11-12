@@ -41,6 +41,10 @@ const authRouter = {
     Object.entries(connectedUsers).forEach(
       ([key, value]) => value == io && delete connectedUsers[key]
     );
+
+    return res
+      .status(200)
+      .json({ message: "Socket successfully disconnected" });
   },
   verify: async ({ cookies: { token } }, res, next) => {
     try {
