@@ -14,7 +14,6 @@ axios.defaults.headers.post["Content-Type"] = "application/json";
 axios.defaults.withCredentials = true;
 
 let socket: any;
-const token = Cookies.get("token");
 
 const serverSocketListener = ({ getState, dispatch }: AxiosSubmit) => {
   const { username } = getState().auth.user;
@@ -30,7 +29,12 @@ const serverSocketListener = ({ getState, dispatch }: AxiosSubmit) => {
   });
 };
 
-const sendSocket = (target: string, id: string, message: string) => {
+const sendSocket = (
+  target: string,
+  id: string,
+  message: string,
+  token: string
+) => {
   console.log("SENDING MESSAGE TO SOCKET", { to: { id, name: target } });
   socket.emit("chat-message", { to: { id, name: target }, message, token });
 };
@@ -40,15 +44,18 @@ const socketMiddleware: Middleware = ({ getState, dispatch }) => (next) => (
 ) => {
   const { type, name, id, message } = action;
   const { user } = getState().auth;
+  const token = Cookies.get("token");
 
   switch (type) {
     case "SOCKET_CONNECTION":
-      const { username } = user;
-      socket = io(`${socketUrl}/chat`, { query: { username, token } });
-      serverSocketListener({ getState, dispatch });
+      if (user) {
+        const { username } = user;
+        socket = io(`${socketUrl}/chat`, { query: { username, token } });
+        serverSocketListener({ getState, dispatch });
+      }
       break;
     case "SEND_CHAT_MESSAGE":
-      sendSocket(name, id, message);
+      sendSocket(name, id, message, token);
       break;
     default:
       next(action);

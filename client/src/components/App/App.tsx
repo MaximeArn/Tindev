@@ -38,7 +38,7 @@ function App({
   useEffect(() => {
     getUsers();
     getProjects();
-    user && wsConnection();
+    wsConnection();
   }, [user]);
 
   return (
