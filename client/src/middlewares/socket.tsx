@@ -18,6 +18,8 @@ let socket: any;
 const serverSocketListener = ({ getState, dispatch }: AxiosSubmit) => {
   const { username } = getState().auth.user;
   socket.on("chat-message", (message: SocketServerResponse) => {
+    console.log("MESSAGE SENT BY SERVER : ", message);
+
     message.to == username &&
       dispatch({
         type: "OPEN_CHAT_WINDOW",

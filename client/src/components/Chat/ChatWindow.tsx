@@ -23,27 +23,29 @@ const ChatWindow = ({
 }: ChatWindowProps) => {
   const [chatHistory, setchatHistory] = useState<Messages[] | null>(null);
   const [chatExpanded, setChatExpanded] = useState(true);
+  const [isHistoryFetched, setHistoryFetched] = useState(false);
   const [message, setMessage] = useState("");
   const chatHeader = useRef(null);
   const messagesArea = useRef<HTMLDivElement>(null);
   const scrollDiv = useRef<HTMLDivElement>(null);
 
+  console.log("CHAT WINDOWS COMPONENT CALLED");
   useEffect(() => {
     axios
       .post("/users/messageHistory", { toId: id })
-      .then(({ data: chatHistory }) => {
+      .then(({ data: { to, from } }) => {
+        console.log("CHAT HISTORY FETCHED");
         setchatHistory(
-          chatHistory.to
-            .concat(chatHistory.from)
-            .sort((el1: Messages, el2: Messages) =>
-              el1.date < el2.date ? -1 : 1
+          to
+            .concat(from)
+            .sort(({ date: date1 }: Messages, { date: date2 }: Messages) =>
+              date1 < date2 ? -1 : 1
             )
         );
       })
       .catch((error) => console.error(error));
   }, []);
 
-  chatHistory && console.log(chatHistory);
   useEffect(() => {
     if (scrollDiv.current && chatExpanded) {
       scrollDiv.current.scrollIntoView({ behavior: "smooth" });
@@ -82,19 +84,21 @@ const ChatWindow = ({
               {message}
             </span>
           ))}
-        {messages.map(({ to, from, message, date }) => {
-          const show = username == to || username == from;
-          return (
-            show && (
-              <div
-                key={idGenerator()}
-                className={username == to ? "message to" : "message from"}
-              >
-                <p title={new Date(date).toLocaleString()}>{message}</p>
-              </div>
-            )
-          );
-        })}
+        {chatHistory &&
+          messages.map(({ to, from, message, date }) => {
+            console.log("MESSAGE MAPPED : ", message);
+            const show = username == to || username == from;
+            return (
+              show && (
+                <div
+                  key={idGenerator()}
+                  className={username == to ? "message to" : "message from"}
+                >
+                  <p title={new Date(date).toLocaleString()}>{message}</p>
+                </div>
+              )
+            );
+          })}
         <div className="scrollDiv" ref={scrollDiv}></div>
       </div>
       <div className="chatZone-footer">
