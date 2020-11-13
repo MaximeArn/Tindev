@@ -50,8 +50,6 @@ const ChatWindow = ({
     }
   }, [messages, chatExpanded, chatHistory]);
 
-  console.log("CHAT HISTORY : ", chatHistory);
-  console.log("MESSAGES : ", messages);
   return (
     <div className={chatExpanded ? "chatZone expanded" : "chatZone"}>
       <div

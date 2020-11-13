@@ -13,7 +13,6 @@ const message = (
   state = initialState,
   { type, message, username, usernameToDelete, id }: MessageAction
 ) => {
-  const msg = message ? message : "";
   switch (type) {
     case "SET_CHAT_MESSAGES":
       return {

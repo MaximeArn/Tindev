@@ -12,14 +12,11 @@ import { url } from "../environments/api";
 axios.defaults.baseURL = url;
 axios.defaults.headers.post["Content-Type"] = "application/json";
 axios.defaults.withCredentials = true;
-
 let socket: any;
 
 const serverSocketListener = ({ getState, dispatch }: AxiosSubmit) => {
   const { username } = getState().auth.user;
   socket.on("chat-message", (message: SocketServerResponse) => {
-    console.log("MESSAGE SENT BY SERVER : ", message);
-
     message.to == username &&
       dispatch({
         type: "OPEN_CHAT_WINDOW",
