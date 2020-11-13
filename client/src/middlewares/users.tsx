@@ -27,6 +27,13 @@ const getUser = (dispatch: Dispatch<AnyAction>, username: string) => {
     );
 };
 
+const getUserProfile = (dispatch: Dispatch<AnyAction>) => {
+  axios
+    .get("/users/user")
+    .then(({ data: profile }) => console.log(profile))
+    .catch((error) => console.error(error));
+};
+
 const project: Middleware = ({ getState, dispatch }) => (next) => (action) => {
   const { username } = action;
 
@@ -36,6 +43,9 @@ const project: Middleware = ({ getState, dispatch }) => (next) => (action) => {
       break;
     case "GET_USER":
       getUser(dispatch, username);
+      break;
+    case "GET_USER_PROFILE":
+      getUserProfile(dispatch);
       break;
     default:
       next(action);

@@ -15,6 +15,7 @@ const usersController = {
       next(error);
     }
   },
+  getUserProfile: async (req, res, next) => {},
   getUserByUsername: async (
     { params: { username }, cookies: { token } },
     res,
