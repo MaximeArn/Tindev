@@ -18,6 +18,7 @@ import EditProject from "../containers/EditProject";
 import Chat from "../containers/Chat";
 import Footer from "../Footer/Footer";
 import Legals from "../Legals/Legals";
+import EditProfile from "../containers/EditProfile";
 import "./app.scss";
 
 function App({
@@ -56,6 +57,7 @@ function App({
         <Route exact path="/users" component={UsersList} />
         <Route exact path="/user/:username" component={UserProfile} />
         <Route path="/search" component={Search} />
+        <Route path="/account" component={EditProfile} />
         <Route path="/legals" component={Legals} />
         <Route component={NotFound} />
       </Switch>

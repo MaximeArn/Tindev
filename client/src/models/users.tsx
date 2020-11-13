@@ -55,3 +55,7 @@ export interface AuthUserState {
   email: string;
   username: string;
 }
+
+export interface EditUserProfile {
+  getUserProfile: Function;
+}

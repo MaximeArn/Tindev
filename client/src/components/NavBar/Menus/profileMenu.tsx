@@ -33,7 +33,7 @@ export default (
           Logout
         </MenuItem>
         {user && (
-          <Link to={`/user/${userify(user.username)}`}>
+          <Link to="/account">
             <MenuItem onClick={closeAccountMenu}>My account</MenuItem>
           </Link>
         )}
