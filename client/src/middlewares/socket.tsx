@@ -37,7 +37,6 @@ const sendSocket = (
   message: string,
   token: string
 ) => {
-  console.log("SENDING MESSAGE TO SOCKET", { to: { id, name: target } });
   socket.emit("chat-message", { to: { id, name: target }, message, token });
 };
 

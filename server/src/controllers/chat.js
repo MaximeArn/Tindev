@@ -14,11 +14,19 @@ module.exports = {
         const { name: toName } = to;
         const date = Date.now();
         const user = await User.findOne({ _id: id });
-        const msg = { from, fromId: id, to: toName, message, date };
         const { id: room } = connectedUsers[to.name];
 
         user.messages.push({ to, message, date });
         await user.save();
+
+        const msg = {
+          id: user.messages.slice(-1).pop()._id,
+          from,
+          fromId: id,
+          to: toName,
+          message,
+          date,
+        };
 
         ioNameSpace.in(room).emit("chat-message", msg);
         socket.emit("chat-message", msg);

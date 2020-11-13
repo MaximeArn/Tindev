@@ -2,7 +2,7 @@
 
 export interface ChatProps {
   chatWindow: { username: string; id: string }[];
-  messages: Messages[];
+  messages: SocketServerResponse[];
   sendMessage: Function;
   deleteChatWindow: Function;
   getMessageHistory: Function;
@@ -11,7 +11,7 @@ export interface ChatProps {
 export interface ChatWindowProps {
   id: string;
   username: string;
-  messages: Messages[];
+  messages: SocketServerResponse[];
   sendMessage: Function;
   deleteChatWindow: Function;
 }
@@ -28,6 +28,7 @@ export interface Message {
 }
 
 export interface Messages {
+  _id: string;
   to: string;
   from?: string;
   message: string;
@@ -39,6 +40,7 @@ export interface ChatWindow {
 }
 
 export interface SocketServerResponse {
+  id: string;
   to: string;
   from: string;
   fromId?: string;

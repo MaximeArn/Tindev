@@ -23,13 +23,11 @@ const ChatWindow = ({
 }: ChatWindowProps) => {
   const [chatHistory, setchatHistory] = useState<Messages[] | null>(null);
   const [chatExpanded, setChatExpanded] = useState(true);
-  const [isHistoryFetched, setHistoryFetched] = useState(false);
   const [message, setMessage] = useState("");
   const chatHeader = useRef(null);
   const messagesArea = useRef<HTMLDivElement>(null);
   const scrollDiv = useRef<HTMLDivElement>(null);
 
-  console.log("CHAT WINDOWS COMPONENT CALLED");
   useEffect(() => {
     axios
       .post("/users/messageHistory", { toId: id })
@@ -52,6 +50,8 @@ const ChatWindow = ({
     }
   }, [messages, chatExpanded, chatHistory]);
 
+  console.log("CHAT HISTORY : ", chatHistory);
+  console.log("MESSAGES : ", messages);
   return (
     <div className={chatExpanded ? "chatZone expanded" : "chatZone"}>
       <div
@@ -85,11 +85,12 @@ const ChatWindow = ({
             </span>
           ))}
         {chatHistory &&
-          messages.map(({ to, from, message, date }) => {
-            console.log("MESSAGE MAPPED : ", message);
+          messages.map(({ id, to, from, message, date }) => {
+            const exists = chatHistory.find(({ _id }) => _id == id);
             const show = username == to || username == from;
             return (
-              show && (
+              show &&
+              !exists && (
                 <div
                   key={idGenerator()}
                   className={username == to ? "message to" : "message from"}

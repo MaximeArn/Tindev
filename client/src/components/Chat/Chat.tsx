@@ -11,25 +11,19 @@ const Chat = ({
   sendMessage,
   deleteChatWindow,
 }: ChatProps) => {
-  console.log("CHAT COMPONENT CALLED");
-  console.log("CHAT WINDOW IN CHAT COMPONENT : ", chatWindow);
   return (
     <>
       <div className="chat-window-wrapper">
         {chatWindow.length &&
-          chatWindow.map((window) => {
-            console.log(chatWindow.length);
-
-            return (
-              <ChatWindow
-                key={window.username}
-                {...window}
-                messages={messages}
-                sendMessage={sendMessage}
-                deleteChatWindow={deleteChatWindow}
-              />
-            );
-          })}
+          chatWindow.map((window) => (
+            <ChatWindow
+              key={window.username}
+              {...window}
+              messages={messages}
+              sendMessage={sendMessage}
+              deleteChatWindow={deleteChatWindow}
+            />
+          ))}
       </div>
     </>
   );
