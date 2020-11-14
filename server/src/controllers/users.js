@@ -24,11 +24,8 @@ const usersController = {
       const { id } = await tokenValidator(token, next);
       const user = await userProfileValidator(id, next);
 
-      console.log(user);
       if (id && user) {
-        const profile = { ...user };
-        delete profile.messages;
-        console.log(profile);
+        return res.status(200).json(user);
       }
     } catch (error) {
       next(error);

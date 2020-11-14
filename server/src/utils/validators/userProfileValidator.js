@@ -3,7 +3,7 @@ const UserError = require("../CustomError");
 
 module.exports = async (id, next) => {
   try {
-    const user = await User.findById(id);
+    const user = await User.findById(id, { password: 0, messages: 0 });
 
     if (!user) return new UserError("User not found", 404);
 
