@@ -22,10 +22,9 @@ export interface User {
   firstname: string;
   lastname: string;
   email: string;
-  password: string;
-  age: number;
+  password?: string;
+  age?: number;
   city: string;
-  role: string;
 }
 
 export interface UserProfileProps {
@@ -57,5 +56,6 @@ export interface AuthUserState {
 }
 
 export interface EditUserProfile {
+  user: User;
   getUserProfile: Function;
 }

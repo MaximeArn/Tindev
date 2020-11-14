@@ -30,7 +30,7 @@ const getUser = (dispatch: Dispatch<AnyAction>, username: string) => {
 const getUserProfile = (dispatch: Dispatch<AnyAction>) => {
   axios
     .get("/users/user")
-    .then(({ data: profile }) => console.log(profile))
+    .then(({ data: user }) => dispatch({ type: "SET_USER", user }))
     .catch(({ response: { data } }) => console.error(data));
 };
 
