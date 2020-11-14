@@ -1,6 +1,10 @@
 /** @format */
 const { User } = require("../models");
-const { tokenValidator, userValidator } = require("../utils/validators");
+const {
+  tokenValidator,
+  userValidator,
+  userProfileValidator,
+} = require("../utils/validators");
 
 const usersController = {
   getUsers: async ({ cookies: { token } }, res, next) => {
@@ -15,7 +19,21 @@ const usersController = {
       next(error);
     }
   },
-  getUserProfile: async (req, res, next) => {},
+  getUserProfile: async ({ cookies: { token } }, res, next) => {
+    try {
+      const { id } = await tokenValidator(token, next);
+      const user = await userProfileValidator(id, next);
+
+      console.log(user);
+      if (id && user) {
+        const profile = { ...user };
+        delete profile.messages;
+        console.log(profile);
+      }
+    } catch (error) {
+      next(error);
+    }
+  },
   getUserByUsername: async (
     { params: { username }, cookies: { token } },
     res,

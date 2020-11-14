@@ -31,7 +31,7 @@ const getUserProfile = (dispatch: Dispatch<AnyAction>) => {
   axios
     .get("/users/user")
     .then(({ data: profile }) => console.log(profile))
-    .catch((error) => console.error(error));
+    .catch(({ response: { data } }) => console.error(data));
 };
 
 const project: Middleware = ({ getState, dispatch }) => (next) => (action) => {
