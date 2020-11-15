@@ -16,13 +16,13 @@ const EditProfile = ({
     <>
       {user && (
         <div className="profile">
-          {Object.entries(editProfile).map(([props, value]) => {
-            const key = props as keyof typeof EditProfile;
+          {Object.keys(editProfile).map((prop) => {
+            const key = prop as keyof typeof EditProfile;
             return (
               <ProfileField
                 key={key}
                 name={key}
-                value={user[key] ? user[key] : value}
+                value={user[key] ? user[key] : "Not yet specified"}
               />
             );
           })}
