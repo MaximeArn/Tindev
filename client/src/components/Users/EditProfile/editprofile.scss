@@ -16,71 +16,79 @@
 
   &-container {
     display: flex;
-    justify-content: space-between;
     align-items: center;
+    justify-content: space-between;
+    border-bottom: 1px solid #333;
+    height: 138px;
   }
 
-  &-edit-form {
-    display: flex;
-  }
-}
-
-.field {
-  &-name {
-    margin-bottom: 1rem;
-  }
-
-  &-value {
-    margin-left: 2rem;
-  }
-
-  &-separator {
-    border-bottom: 1px solid #000;
-    margin-top: 0.5rem;
-    margin-bottom: 0.5rem;
-
-    &:last-child {
-      border: none;
+  &-edit {
+    &-form {
+      display: flex;
+      width: 100%;
+      justify-content: space-between;
+      align-items: center;
+      margin-left: 1rem;
     }
   }
 
-  &-modify {
-    padding: 0.5rem 0.5rem;
-    border: 1px solid #333;
-    color: #333;
-    border-radius: 7px;
-    transition: all 0.3s;
-    max-height: 38px;
-    margin-right: 0.8rem;
-    width: 66px;
+  .field {
+    &-name {
+      margin-bottom: 1rem;
+    }
 
-    &:hover {
-      background-color: #333;
-      color: #fff;
-      border: 1px solid #fff;
+    &-value {
+      margin-left: 2rem;
+    }
+
+    &-separator {
+      border-bottom: 0.5px solid #000;
+      margin-top: 0.5rem;
+      margin-bottom: 0.5rem;
+
+      &:last-child {
+        border: none;
+      }
+    }
+
+    &-modify {
+      padding: 0.5rem 0.5rem;
+      border: 1px solid #333;
+      color: #333;
+      border-radius: 7px;
+      transition: all 0.3s;
+      max-height: 38px;
+      margin-right: 0.8rem;
+      width: 66px;
+
+      &:hover {
+        background-color: #333;
+        color: #fff;
+        border: 1px solid #fff;
+      }
     }
   }
-}
 
-.input-edit {
-  &-textarea {
-    height: 100px;
-    width: 236px;
-    color: #404145;
-    padding: 0.5rem;
-    border: 1px solid #e4e5e7;
-    border-radius: 5px;
-    transition: border 0.4s ease-in-out;
-  }
+  .input-edit {
+    &-textarea {
+      height: 100px;
+      width: 236px;
+      color: #404145;
+      padding: 0.5rem;
+      border: 1px solid #e4e5e7;
+      border-radius: 5px;
+      transition: border 0.4s ease-in-out;
+    }
 
-  &-input {
-    width: 50%;
-    color: #404145;
-    padding: 0.5rem;
-    border: 1px solid #e4e5e7;
-    background-color: #fff;
-    border-radius: 18px;
-    -webkit-transition: border 0.4s ease-in-out;
-    transition: border 0.4s ease-in-out;
+    &-input {
+      width: 50%;
+      color: #404145;
+      padding: 0.5rem;
+      border: 1px solid #e4e5e7;
+      background-color: #fff;
+      border-radius: 18px;
+      -webkit-transition: border 0.4s ease-in-out;
+      transition: border 0.4s ease-in-out;
+    }
   }
 }

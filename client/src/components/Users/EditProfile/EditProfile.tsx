@@ -15,18 +15,22 @@ const EditProfile = ({
   return (
     <>
       {user && (
-        <div className="profile">
-          {Object.keys(editProfile).map((prop) => {
-            const key = prop as keyof typeof EditProfile;
-            return (
-              <ProfileField
-                key={key}
-                name={key}
-                value={user[key] ? user[key] : "Not yet specified"}
-              />
-            );
-          })}
-        </div>
+        <>
+          <div className="profile">
+            {Object.keys(editProfile).map((prop) => {
+              const key = prop as keyof typeof EditProfile;
+              return (
+                <div key={key} className="profile-container">
+                  <ProfileField
+                    name={key}
+                    value={user[key] ? user[key] : "Not yet specified"}
+                  />
+                </div>
+              );
+            })}
+          </div>
+          <div className="field-separator"></div>
+        </>
       )}
     </>
   );
