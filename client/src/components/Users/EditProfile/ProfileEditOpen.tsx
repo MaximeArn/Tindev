@@ -1,7 +1,11 @@
 import React from "react";
 
 const ProfileEditOpen = () => {
-  return <div></div>;
+  return (
+    <form>
+      <div></div>
+    </form>
+  );
 };
 
 export default ProfileEditOpen;

@@ -4,7 +4,6 @@
   left: 50%;
   border: 1px solid #ededed;
   box-shadow: 0px 0px 2px black;
-  height: 600px;
   width: 500px;
   transform: translate(-50%, -50%);
   background-color: #ededed;
@@ -13,6 +12,12 @@
     display: flex;
     flex-direction: column;
     padding: 0.5rem 0rem 0.5rem 1rem;
+  }
+
+  &-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
   }
 }
 
@@ -23,5 +28,26 @@
 
   &-value {
     margin-left: 2rem;
+  }
+
+  &-separator {
+    border-bottom: 1px solid black;
+    width: 65%;
+  }
+
+  &-modify {
+    padding: 0.6rem 1.9rem;
+    border: 1px solid #333;
+    color: #333;
+    border-radius: 7px;
+    transition: all 0.3s;
+    max-height: 38px;
+    margin-right: 0.8rem;
+
+    &:hover {
+      background-color: #333;
+      color: #fff;
+      border: 1px solid #fff;
+    }
   }
 }

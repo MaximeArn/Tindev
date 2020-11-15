@@ -17,7 +17,6 @@ const initialState: UserState = {
     city: "",
     age: undefined,
     avatar: null,
-    introducing: "",
     experience: "",
     about: "",
   },

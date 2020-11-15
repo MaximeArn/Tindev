@@ -18,7 +18,6 @@ export interface EditProfile {
   city: string;
   age: undefined;
   avatar: null;
-  introducing: string;
   experience: string;
   about: string;
 }
@@ -76,4 +75,5 @@ export interface EditUserProfile {
 export interface UserProfile {
   name: string;
   value: string;
+  setEditStatus?: Function;
 }

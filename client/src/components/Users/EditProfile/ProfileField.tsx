@@ -11,7 +11,11 @@ const Profile = ({ name, value }: UserProfile) => {
       {isEditOpen ? (
         <ProfileEditOpen />
       ) : (
-        <ProfileEditClosed name={name} value={value} />
+        <ProfileEditClosed
+          name={name}
+          value={value}
+          setEditStatus={setEditStatus}
+        />
       )}
     </>
   );

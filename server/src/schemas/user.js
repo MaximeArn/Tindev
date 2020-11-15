@@ -18,7 +18,6 @@ const userSchema = new Schema(
     avatar: String,
     about: String,
     experience: String,
-    introducing: String,
   },
   { collation: { locale: "en", strength: 2 } }
 );
