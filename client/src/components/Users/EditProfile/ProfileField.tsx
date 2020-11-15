@@ -1,15 +1,19 @@
 import React, { useState } from "react";
-import { UserProfile } from "../../../models/users";
+import { Profile } from "../../../models/users";
 import ProfileEditClosed from "./ProfileEditClosed";
 import ProfileEditOpen from "./ProfileEditOpen";
 
-const Profile = ({ name, value }: UserProfile) => {
+const Profile = ({ name, value }: Profile) => {
   const [isEditOpen, setEditStatus] = useState<boolean>(false);
 
   return (
     <>
       {isEditOpen ? (
-        <ProfileEditOpen />
+        <ProfileEditOpen
+          name={name}
+          value={value}
+          setEditStatus={setEditStatus}
+        />
       ) : (
         <ProfileEditClosed
           name={name}

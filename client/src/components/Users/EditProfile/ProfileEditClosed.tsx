@@ -10,10 +10,7 @@ const ProfileEditClosed = ({ name, value, setEditStatus }: UserProfile) => {
           <div className="field-name">{capitalize(name)} :</div>
           <div className="field-value">{value}</div>
         </div>
-        <button
-          className="field-modify"
-          onClick={() => setEditStatus && setEditStatus(true)}
-        >
+        <button className="field-modify" onClick={() => setEditStatus(true)}>
           Modify
         </button>
       </div>

@@ -72,8 +72,13 @@ export interface EditUserProfile {
   getUserProfile: Function;
 }
 
+export interface Profile {
+  name: string;
+  value: string;
+}
+
 export interface UserProfile {
   name: string;
   value: string;
-  setEditStatus?: Function;
+  setEditStatus: Function;
 }
