@@ -1,14 +1,27 @@
 import React, { useEffect } from "react";
 import { EditUserProfile } from "../../../models/users";
-import Profile from "./Profile";
+import ProfileField from "./ProfileField";
 import "./editprofile.scss";
 
-const EditProfile = ({ user, getUserProfile }: EditUserProfile) => {
+const EditProfile = ({
+  user,
+  editProfile,
+  getUserProfile,
+}: EditUserProfile) => {
   useEffect(() => {
     getUserProfile();
   }, []);
 
-  return <>{user && <Profile {...user} />}</>;
+  return (
+    <>
+      {user &&
+        Object.entries(editProfile).map(([key, value]) => {
+          return (
+            <ProfileField key={key} name={key} value={user[key] || value} />
+          );
+        })}
+    </>
+  );
 };
 
 export default EditProfile;

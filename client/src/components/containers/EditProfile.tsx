@@ -3,8 +3,9 @@ import { connect } from "react-redux";
 import { AnyAction, Dispatch } from "redux";
 import { State } from "../../models/states";
 
-const mapState = ({ users: { user } }: State) => ({
+const mapState = ({ users: { user, editProfile } }: State) => ({
   user,
+  editProfile,
 });
 
 const mapDispatch = (dispatch: Dispatch<AnyAction>) => ({

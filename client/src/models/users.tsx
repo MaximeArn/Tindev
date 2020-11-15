@@ -1,15 +1,27 @@
-/** @format */
-
 export interface UserState {
   users: User[];
   user: User | null;
   list: ListContent[];
+  editProfile: EditProfile;
   profile: {
     owner: boolean;
     content: Function | null;
   };
 }
 
+export interface EditProfile {
+  username: string;
+  firstname: string;
+  lastname: string;
+  email: string;
+  password: string;
+  city: string;
+  age: undefined;
+  avatar: null;
+  introducing: string;
+  experience: string;
+  about: string;
+}
 export interface ListContent {
   name: string;
   component: Function;
@@ -57,5 +69,11 @@ export interface AuthUserState {
 
 export interface EditUserProfile {
   user: User;
+  editProfile: EditProfile;
   getUserProfile: Function;
+}
+
+export interface UserProfile {
+  name: string;
+  value: string;
 }

@@ -5,7 +5,6 @@ import ProjectsList from "../containers/ProjectList";
 import VisitorPage from "../containers/VisitorPage";
 import { HomeProps } from "../../models/states";
 import CircularProgress from "@material-ui/core/CircularProgress";
-import Cookies from "js-cookie";
 import "./home.scss";
 
 const Home = ({ loader, user }: HomeProps) => {
