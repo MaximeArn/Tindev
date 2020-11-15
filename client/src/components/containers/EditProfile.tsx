@@ -10,6 +10,8 @@ const mapState = ({ users: { user, editProfile } }: State) => ({
 
 const mapDispatch = (dispatch: Dispatch<AnyAction>) => ({
   getUserProfile: () => dispatch({ type: "GET_USER_PROFILE" }),
+  updateUserProfile: (fieldName: string) =>
+    dispatch({ type: "UPDATE_USER_PROFILE", fieldName }),
 });
 
 export default connect(mapState, mapDispatch)(EditProfile);

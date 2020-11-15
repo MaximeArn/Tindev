@@ -3,7 +3,7 @@ import { Profile } from "../../../models/users";
 import ProfileEditClosed from "./ProfileEditClosed";
 import ProfileEditOpen from "./ProfileEditOpen";
 
-const Profile = ({ name, value }: Profile) => {
+const Profile = ({ name, inputValue, value, updateUserProfile }: Profile) => {
   const [isEditOpen, setEditStatus] = useState<boolean>(false);
 
   return (
@@ -11,8 +11,9 @@ const Profile = ({ name, value }: Profile) => {
       {isEditOpen ? (
         <ProfileEditOpen
           name={name}
-          value={value}
+          value={inputValue}
           setEditStatus={setEditStatus}
+          updateUserProfile={updateUserProfile}
         />
       ) : (
         <ProfileEditClosed

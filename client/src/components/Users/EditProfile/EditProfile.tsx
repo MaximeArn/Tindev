@@ -7,6 +7,7 @@ const EditProfile = ({
   user,
   editProfile,
   getUserProfile,
+  updateUserProfile,
 }: EditUserProfile) => {
   useEffect(() => {
     getUserProfile();
@@ -17,12 +18,14 @@ const EditProfile = ({
       {user && (
         <>
           <div className="profile">
-            {Object.keys(editProfile).map((prop) => {
+            {Object.entries(editProfile).map(([prop, value]) => {
               const key = prop as keyof typeof EditProfile;
               return (
                 <div key={key} className="profile-container">
                   <ProfileField
+                    updateUserProfile={updateUserProfile}
                     name={key}
+                    inputValue={value}
                     value={user[key] ? user[key] : "Not yet specified"}
                   />
                 </div>

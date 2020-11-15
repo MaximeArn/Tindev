@@ -70,15 +70,19 @@ export interface EditUserProfile {
   user: User;
   editProfile: EditProfile;
   getUserProfile: Function;
+  updateUserProfile: Function;
 }
 
 export interface Profile {
   name: string;
+  inputValue: string | undefined | null;
   value: string;
+  updateUserProfile: Function;
 }
 
 export interface UserProfile {
   name: string;
-  value: string;
+  value: string | undefined | null;
   setEditStatus: Function;
+  updateUserProfile?: Function;
 }

@@ -3,7 +3,12 @@ import typeChecker from "../../../utils/inputType";
 import { UserProfile } from "../../../models/users";
 import capitalize from "../../../utils/capitalizeFirstLetter";
 
-const ProfileEditOpen = ({ name, value, setEditStatus }: UserProfile) => {
+const ProfileEditOpen = ({
+  name,
+  value,
+  setEditStatus,
+  updateUserProfile,
+}: UserProfile) => {
   const fileInput = useRef<HTMLInputElement>(null);
   const filePreview = useRef<any>(null);
   const [isImageSelected, setImageStatus] = useState<boolean>(false);
@@ -29,7 +34,10 @@ const ProfileEditOpen = ({ name, value, setEditStatus }: UserProfile) => {
         style={{ display: "none" }}
         onChange={handleImageSelect}
       />
-      <form className="profile-edit-form">
+      <form
+        className="profile-edit-form"
+        onSubmit={() => updateUserProfile && updateUserProfile(name)}
+      >
         {name === "avatar" ? (
           <>
             {!isImageSelected ? (
