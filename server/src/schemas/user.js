@@ -15,6 +15,10 @@ const userSchema = new Schema(
     messages: [
       { to: { id: ObjectId, name: String }, message: String, date: Date },
     ],
+    avatar: String,
+    about: String,
+    experience: String,
+    introducing: String,
   },
   { collation: { locale: "en", strength: 2 } }
 );
