@@ -47,6 +47,9 @@ const project: Middleware = ({ getState, dispatch }) => (next) => (action) => {
     case "GET_USER_PROFILE":
       getUserProfile(dispatch);
       break;
+    case "UPDATE_USER_PROFILE":
+      //TODO: create profile edition function
+      break;
     default:
       next(action);
       break;

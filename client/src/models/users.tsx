@@ -16,8 +16,8 @@ export interface EditProfile {
   email: string;
   password: string;
   city: string;
-  age: undefined;
-  avatar: null;
+  age: string;
+  avatar: undefined;
   experience: string;
   about: string;
 }
@@ -75,14 +75,14 @@ export interface EditUserProfile {
 
 export interface Profile {
   name: string;
-  inputValue: string | undefined | null;
+  inputValue: string | undefined;
   value: string;
   updateUserProfile: Function;
 }
 
 export interface UserProfile {
   name: string;
-  value: string | undefined | null;
+  value: string | undefined;
   setEditStatus: Function;
   updateUserProfile?: Function;
 }

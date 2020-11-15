@@ -75,6 +75,8 @@ export interface UserAction {
   user: User;
   content: Function;
   listName: string;
+  inputName: string;
+  inputValue: string;
 }
 
 export interface SearchAction {

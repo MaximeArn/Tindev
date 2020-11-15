@@ -58,8 +58,10 @@ const ProfileEditOpen = ({
                 ? "input-edit-textarea"
                 : "input-edit-input"
             }
+            name={name}
             type={typeChecker(name)}
             placeholder={`${capitalize(name)}...`}
+            value={value}
           />
         )}
         <div className="profile-edit-open-buttons">
