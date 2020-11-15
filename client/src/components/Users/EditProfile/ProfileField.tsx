@@ -3,8 +3,9 @@ import { UserProfile } from "../../../models/users";
 
 const Profile = ({ name, value }: UserProfile) => {
   return (
-    <div className="profile">
-      {name} {value}
+    <div className="profile-field">
+      <div>{name}</div>
+      <div>{value}</div>
     </div>
   );
 };

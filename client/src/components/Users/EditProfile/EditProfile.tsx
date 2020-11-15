@@ -1,5 +1,5 @@
 import React, { useEffect } from "react";
-import { EditUserProfile } from "../../../models/users";
+import { EditUserProfile, EditProfile } from "../../../models/users";
 import ProfileField from "./ProfileField";
 import "./editprofile.scss";
 
@@ -14,12 +14,20 @@ const EditProfile = ({
 
   return (
     <>
-      {user &&
-        Object.entries(editProfile).map(([key, value]) => {
-          return (
-            <ProfileField key={key} name={key} value={user[key] || value} />
-          );
-        })}
+      {user && (
+        <div className="profile">
+          {Object.entries(editProfile).map(([props, value]) => {
+            const key = props as keyof typeof EditProfile;
+            return (
+              <ProfileField
+                key={key}
+                name={key}
+                value={user[key] ? user[key] : value}
+              />
+            );
+          })}
+        </div>
+      )}
     </>
   );
 };
