@@ -13,7 +13,10 @@ const initialState: UserState = {
     firstname: "",
     lastname: "",
     email: "",
-    password: "",
+    password: {
+      password: "",
+      confirmPassword: "",
+    },
     city: "",
     age: "",
     avatar: undefined,

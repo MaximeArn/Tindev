@@ -56,6 +56,21 @@ const ProfileEditOpen = ({
               <img className="profile-edit-image-preview" ref={filePreview} />
             )}
           </>
+        ) : name === "password" ? (
+          Object.entries(value).map(([key, val]) => {
+            return (
+              <input
+                className="input-edit-input"
+                type={typeChecker(name)}
+                name={key}
+                placeholder={capitalize(key)}
+                value={val}
+                onChange={({ target }) =>
+                  getEditProfileValue(name, target.value, key)
+                }
+              />
+            );
+          })
         ) : (
           <input
             className={

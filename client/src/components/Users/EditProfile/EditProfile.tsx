@@ -28,7 +28,13 @@ const EditProfile = ({
                     name={key}
                     inputValue={value}
                     getEditProfileValue={getEditProfileValue}
-                    value={user[key] ? user[key] : "Not yet specified"}
+                    value={
+                      user[key]
+                        ? user[key]
+                        : key === "password"
+                        ? "Change your password"
+                        : "Not yet specified"
+                    }
                   />
                 </div>
               );

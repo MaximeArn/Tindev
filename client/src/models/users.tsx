@@ -14,13 +14,17 @@ export interface EditProfile {
   firstname: string;
   lastname: string;
   email: string;
-  password: string;
+  password: {
+    password: string;
+    confirmPassword: string;
+  };
   city: string;
   age: string;
   avatar: undefined;
   experience: string;
   about: string;
 }
+
 export interface ListContent {
   name: string;
   component: Function;
