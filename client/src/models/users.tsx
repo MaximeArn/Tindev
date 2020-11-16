@@ -71,6 +71,7 @@ export interface EditUserProfile {
   editProfile: EditProfile;
   getUserProfile: Function;
   updateUserProfile: Function;
+  getEditProfileValue: Function;
 }
 
 export interface Profile {
@@ -78,11 +79,19 @@ export interface Profile {
   inputValue: string | undefined;
   value: string;
   updateUserProfile: Function;
+  getEditProfileValue: Function;
 }
 
-export interface UserProfile {
+export interface UserProfileOpen {
   name: string;
   value: string | undefined;
   setEditStatus: Function;
-  updateUserProfile?: Function;
+  updateUserProfile: Function;
+  getEditProfileValue: Function;
+}
+
+export interface UserProfileClosed {
+  name: string;
+  value: string | undefined;
+  setEditStatus: Function;
 }

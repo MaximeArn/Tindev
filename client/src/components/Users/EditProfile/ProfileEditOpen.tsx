@@ -1,6 +1,6 @@
 import React, { ChangeEvent, useRef, useState } from "react";
 import typeChecker from "../../../utils/inputType";
-import { UserProfile } from "../../../models/users";
+import { UserProfileOpen } from "../../../models/users";
 import capitalize from "../../../utils/capitalizeFirstLetter";
 
 const ProfileEditOpen = ({
@@ -8,7 +8,8 @@ const ProfileEditOpen = ({
   value,
   setEditStatus,
   updateUserProfile,
-}: UserProfile) => {
+  getEditProfileValue,
+}: UserProfileOpen) => {
   const fileInput = useRef<HTMLInputElement>(null);
   const filePreview = useRef<any>(null);
   const [isImageSelected, setImageStatus] = useState<boolean>(false);
@@ -17,8 +18,8 @@ const ProfileEditOpen = ({
     target: { files },
   }: ChangeEvent<HTMLInputElement>) => {
     const reader = new FileReader();
-
     files && reader.readAsDataURL(files[0]);
+
     reader.onload = ({ target }: ProgressEvent<FileReader>) => {
       filePreview.current.src = target?.result;
     };
@@ -36,7 +37,11 @@ const ProfileEditOpen = ({
       />
       <form
         className="profile-edit-form"
-        onSubmit={() => updateUserProfile && updateUserProfile(name)}
+        onSubmit={(event) => {
+          event.preventDefault();
+          updateUserProfile(name);
+          setEditStatus(false);
+        }}
       >
         {name === "avatar" ? (
           <>
@@ -62,10 +67,13 @@ const ProfileEditOpen = ({
             type={typeChecker(name)}
             placeholder={`${capitalize(name)}...`}
             value={value}
+            onChange={({ target }) => getEditProfileValue(name, target.value)}
           />
         )}
         <div className="profile-edit-open-buttons">
-          <button className="field-modify">Confirm</button>
+          <button className="field-modify" type="submit">
+            Confirm
+          </button>
           <button className="field-modify" onClick={() => setEditStatus(false)}>
             Close
           </button>

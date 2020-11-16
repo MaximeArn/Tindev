@@ -8,6 +8,7 @@ const EditProfile = ({
   editProfile,
   getUserProfile,
   updateUserProfile,
+  getEditProfileValue,
 }: EditUserProfile) => {
   useEffect(() => {
     getUserProfile();
@@ -26,6 +27,7 @@ const EditProfile = ({
                     updateUserProfile={updateUserProfile}
                     name={key}
                     inputValue={value}
+                    getEditProfileValue={getEditProfileValue}
                     value={user[key] ? user[key] : "Not yet specified"}
                   />
                 </div>

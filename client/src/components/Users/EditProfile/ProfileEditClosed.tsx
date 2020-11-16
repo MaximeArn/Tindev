@@ -1,8 +1,12 @@
 import React from "react";
-import { UserProfile } from "../../../models/users";
+import { UserProfileClosed } from "../../../models/users";
 import capitalize from "../../../utils/capitalizeFirstLetter";
 
-const ProfileEditClosed = ({ name, value, setEditStatus }: UserProfile) => {
+const ProfileEditClosed = ({
+  name,
+  value,
+  setEditStatus,
+}: UserProfileClosed) => {
   return (
     <>
       <div className="profile-field">
