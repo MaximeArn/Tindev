@@ -1,5 +1,7 @@
 const router = require("express").Router();
-const upload = require("multer")();
+const storage = require("../config/multer/userStorage");
+const fileFilter = require("../config/multer/userFileFilter");
+const upload = require("multer")({ storage, fileFilter });
 const {
   getUsers,
   getUserByUsername,
