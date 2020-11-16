@@ -74,7 +74,13 @@ const ProfileEditOpen = ({
           <button className="field-modify" type="submit">
             Confirm
           </button>
-          <button className="field-modify" onClick={() => setEditStatus(false)}>
+          <button
+            className="field-modify"
+            onClick={() => {
+              name !== "avatar" && getEditProfileValue(name, "");
+              setEditStatus(false);
+            }}
+          >
             Close
           </button>
         </div>

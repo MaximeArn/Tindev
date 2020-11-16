@@ -83,6 +83,9 @@ const usersController = {
       next(error);
     }
   },
+  update: async ({ body, cookies: { token } }, res, next) => {
+    console.log(body);
+  },
 };
 
 module.exports = usersController;

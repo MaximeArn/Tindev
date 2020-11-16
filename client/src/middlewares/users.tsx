@@ -3,6 +3,7 @@
 import { AnyAction, Dispatch, Middleware } from "redux";
 import { url } from "../environments/api";
 import axios from "axios";
+import { AxiosSubmit } from "../models/axios";
 axios.defaults.baseURL = url;
 axios.defaults.headers.post["Content-Type"] = "application/json";
 axios.defaults.withCredentials = true;
@@ -34,8 +35,20 @@ const getUserProfile = (dispatch: Dispatch<AnyAction>) => {
     .catch(({ response: { data } }) => console.error(data));
 };
 
+const updateUserProfile = (
+  { getState, dispatch }: AxiosSubmit,
+  fieldName: string
+) => {
+  const { editProfile } = getState().users;
+  axios.patch(
+    "/users/update",
+    { [fieldName]: editProfile[fieldName] },
+    { headers: { "Content-Type": "multipart/form-data" } }
+  );
+};
+
 const project: Middleware = ({ getState, dispatch }) => (next) => (action) => {
-  const { username } = action;
+  const { username, fieldName } = action;
 
   switch (action.type) {
     case "GET_USERS":
@@ -48,7 +61,7 @@ const project: Middleware = ({ getState, dispatch }) => (next) => (action) => {
       getUserProfile(dispatch);
       break;
     case "UPDATE_USER_PROFILE":
-      //TODO: create profile edition function
+      updateUserProfile({ getState, dispatch }, fieldName);
       break;
     default:
       next(action);
