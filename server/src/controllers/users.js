@@ -4,6 +4,7 @@ const {
   tokenValidator,
   userValidator,
   userProfileValidator,
+  userUpdateValidator,
 } = require("../utils/validators");
 
 const usersController = {
@@ -84,7 +85,12 @@ const usersController = {
     }
   },
   update: async ({ body, cookies: { token } }, res, next) => {
-    console.log(body);
+    try {
+      const user = await tokenValidator(token, next);
+      const updated = await userUpdateValidator(body, next);
+    } catch (error) {
+      next(error);
+    }
   },
 };
 
