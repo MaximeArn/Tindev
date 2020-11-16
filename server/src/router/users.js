@@ -1,6 +1,5 @@
-/** @format */
-
 const router = require("express").Router();
+const upload = require("multer")();
 const {
   getUsers,
   getUserByUsername,
@@ -13,6 +12,6 @@ router.get("/", getUsers);
 router.get("/user", getUserProfile);
 router.get("/:username", getUserByUsername);
 router.post("/messageHistory", getMessageHistory);
-router.patch("/update", update);
+router.patch("/update", upload.single("avatar"), update);
 
 module.exports = router;

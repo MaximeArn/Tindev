@@ -40,11 +40,15 @@ const updateUserProfile = (
   fieldName: string
 ) => {
   const { editProfile } = getState().users;
-  axios.patch(
-    "/users/update",
-    { [fieldName]: editProfile[fieldName] },
-    { headers: { "Content-Type": "multipart/form-data" } }
-  );
+  const formData = new FormData();
+  formData.append(fieldName, editProfile[fieldName]);
+
+  axios
+    .patch("/users/update", formData, {
+      headers: { "Content-Type": "multipart/form-data" },
+    })
+    .then(({ data }) => console.log(data))
+    .catch(({ response: { data } }) => console.log(data));
 };
 
 const project: Middleware = ({ getState, dispatch }) => (next) => (action) => {

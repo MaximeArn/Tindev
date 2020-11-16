@@ -1,7 +1,7 @@
 /** @format */
 
 const router = require("express").Router();
-const imageDiskStorage = require("../config/multer/multer");
+const imageDiskStorage = require("../config/multer/projectStorage");
 const fileFilter = require("../config/multer/fileFilter");
 const patchFileFilter = require("../config/multer/patchFileFilter");
 const multer = require("multer");
