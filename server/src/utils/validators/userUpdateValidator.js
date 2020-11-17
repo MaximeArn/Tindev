@@ -2,6 +2,7 @@ const sanitize = require("sanitize-html");
 const { User } = require("../../models");
 const UserError = require("../CustomError");
 const sanitizeConfig = require("../../config/sanitize");
+const hash = require("../hashPassword.js");
 const emailRegex = new RegExp(
   /^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+$/g
 );
@@ -41,7 +42,18 @@ module.exports = async (body, next) => {
       }
     }
 
-    body[key] = sanitize(value, sanitizeConfig);
+    if (key === "password") {
+      const { password, confirmPassword } = value;
+      if (!(password === confirmPassword)) {
+        throw new UserError("Passwords do not match", 400);
+      }
+
+      body[key] = await hash(sanitize(password, sanitizeConfig));
+    }
+
+    if (key !== "password") body[key] = sanitize(value, sanitizeConfig);
+
+    return true;
   } catch (error) {
     next(error);
   }
