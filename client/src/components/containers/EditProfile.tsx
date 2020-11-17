@@ -10,11 +10,13 @@ const mapState = ({ users: { user, editProfile } }: State) => ({
 
 const mapDispatch = (dispatch: Dispatch<AnyAction>) => ({
   getUserProfile: () => dispatch({ type: "GET_USER_PROFILE" }),
-  getEditProfileValue: (
-    inputName: string,
-    inputValue: string,
-    inputValue2?: string
-  ) => dispatch({ type: "SET_USER_PROFILE_VALUES", inputName, inputValue }),
+  getEditProfileValue: (inputName: string, inputValue: string, key?: string) =>
+    dispatch({
+      type: "SET_USER_PROFILE_VALUES",
+      inputName,
+      inputValue,
+      key,
+    }),
   updateUserProfile: (fieldName: string) =>
     dispatch({ type: "UPDATE_USER_PROFILE", fieldName }),
 });

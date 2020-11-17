@@ -77,6 +77,7 @@ export interface UserAction {
   listName: string;
   inputName: string;
   inputValue: string;
+  key?: string;
 }
 
 export interface SearchAction {

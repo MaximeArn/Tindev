@@ -88,7 +88,7 @@ export interface Profile {
 
 export interface UserProfileOpen {
   name: string;
-  value: string | undefined;
+  value: any;
   setEditStatus: Function;
   updateUserProfile: Function;
   getEditProfileValue: Function;

@@ -31,7 +31,16 @@ const initialState: UserState = {
 
 const users = (
   state = initialState,
-  { type, users, user, content, listName, inputName, inputValue }: UserAction
+  {
+    type,
+    users,
+    user,
+    content,
+    listName,
+    inputName,
+    inputValue,
+    key,
+  }: UserAction
 ) => {
   switch (type) {
     case "SET_USERS":
@@ -43,10 +52,18 @@ const users = (
     case "SET_SELECTED_STATUS":
       return { ...state, list: updateListStyle(state.list, listName) };
     case "SET_USER_PROFILE_VALUES":
-      return {
-        ...state,
-        editProfile: { ...state.editProfile, [inputName]: inputValue },
-      };
+      return key
+        ? {
+            ...state,
+            editProfile: {
+              ...state.editProfile,
+              [inputName]: { ...state.editProfile.password, [key]: inputValue },
+            },
+          }
+        : {
+            ...state,
+            editProfile: { ...state.editProfile, [inputName]: inputValue },
+          };
     default:
       return state;
   }

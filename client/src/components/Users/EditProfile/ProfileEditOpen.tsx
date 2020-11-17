@@ -57,9 +57,10 @@ const ProfileEditOpen = ({
             )}
           </>
         ) : name === "password" ? (
-          Object.entries(value).map(([key, val]) => {
+          Object.entries(value).map(([key, val]: any) => {
             return (
               <input
+                key={key}
                 className="input-edit-input"
                 type={typeChecker(name)}
                 name={key}
