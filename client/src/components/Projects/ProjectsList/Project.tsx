@@ -12,9 +12,9 @@ const Project = ({ title, image, description, size }: ProjectModel) => {
   const cardRef = useRef(null)
   useEffect(() => {
     sr.reveal(cardRef.current, {
-      delay: 50,
+      delay:100,
       reset: true
-    }, 500)
+    }, 50)
   }, [])
   return (
     <article ref={cardRef}>
