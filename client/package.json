@@ -60,6 +60,7 @@
     "react-router-dom": "^5.2.0",
     "react-scripts": "3.4.3",
     "redux": "^4.0.5",
+    "scrollreveal": "^4.0.7",
     "slugify": "^1.4.5",
     "socket.io-client": "^2.3.1",
     "ts-loader": "^8.0.3",

@@ -10,3 +10,4 @@ declare module "uuid";
 declare module "js-cookie";
 declare module "slugify";
 declare module "socket.io-client";
+declare module "scrollreveal";
