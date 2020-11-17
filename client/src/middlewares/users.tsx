@@ -41,7 +41,10 @@ const updateUserProfile = (
 ) => {
   const { editProfile } = getState().users;
   const formData = new FormData();
-  formData.append(fieldName, editProfile[fieldName]);
+
+  fieldName === "password"
+    ? formData.append(fieldName, JSON.stringify(editProfile[fieldName]))
+    : formData.append(fieldName, editProfile[fieldName]);
 
   axios
     .patch("/users/update", formData, {
