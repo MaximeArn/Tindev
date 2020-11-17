@@ -6,7 +6,8 @@ import modalClickHandler from "../../../utils/modalClickHandler";
 import inputMapper from "../../../utils/inputMapper";
 import "../modal.scss";
 import CircularProgress from "@material-ui/core/CircularProgress";
-
+import { GoogleLogin } from 'react-google-login';
+ 
 const Register = ({
   register,
   error,
@@ -30,11 +31,11 @@ const Register = ({
       onMouseDown={(event) => modalClickHandler({ event, modal, closeModal })}
     >
       <div className="modal" id="modal">
-        <form method="POST" onSubmit={handleSubmit}>
           <div className="modal-padding">
             <h1 className="modal-title">Create Account</h1>
             {error && <span className="modal-error-message">{error}</span>}
             <div className="fields">{inputMapper(register, mandatory)}</div>
+        <form method="POST" onSubmit={handleSubmit}>
             {registerLoader ? (
               <button type="submit" className="submitButton" disabled>
                 <div className="loading-button">
@@ -47,6 +48,7 @@ const Register = ({
                 Register
               </button>
             )}
+              </form>
           </div>
           <footer className="modal-footer">
             <p>
@@ -66,13 +68,20 @@ const Register = ({
             </div>
 
             <div className="social-media">
-              <button className="google-connect">
-                <img src={googleIcon} alt="google icon" />
+              {/* <button className="google-connect">
+                <img src={googleIcon} alt="google icon"/>
                 <span>Connect with Google</span>
-              </button>
+              </button> */}
+              <div className="g-signin2" data-onsuccess="onSignIn"></div>
+               <GoogleLogin
+                  clientId="1046564133373-v6mejve3j4alr13o2hult3lomphkor4e.apps.googleusercontent.com"
+                  buttonText="Login"
+                  onSuccess={() => console.log('Succes')}
+                  onFailure={() => console.log('Failure')}
+                  cookiePolicy={'single_host_origin'}
+                />
             </div>
           </footer>
-        </form>
       </div>
     </div>
   );
