@@ -50,7 +50,10 @@ const updateUserProfile = (
     .patch("/users/update", formData, {
       headers: { "Content-Type": "multipart/form-data" },
     })
-    .then(({ data }) => console.log(data))
+    .then(({ data: { msg, user } }) => {
+      console.log(user);
+      dispatch({ type: "SET_USER", user });
+    })
     .catch(({ response: { data } }) => console.log(data));
 };
 
