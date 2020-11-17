@@ -86,11 +86,22 @@ const usersController = {
   },
   update: async ({ body, cookies: { token } }, res, next) => {
     try {
-      // const user = await tokenValidator(token, next);
-      const updated = await userUpdateValidator(body, next);
+      const { id } = await tokenValidator(token, next);
+      const valid = await userUpdateValidator(body, next);
 
-      // if (user && updated) {
-      // }
+      if (id && valid) {
+        const [key, value] = Object.entries(body)[0];
+        const profile = await User.findOneAndUpdate(
+          { _id: id },
+          { [key]: value },
+          { new: true }
+        );
+
+        //TODO: postman tests revealed to be ok and working , now need to perform tests on client side
+        return res
+          .status(200)
+          .json({ msg: "Profile successfully updated", profile });
+      }
     } catch (error) {
       next(error);
     }

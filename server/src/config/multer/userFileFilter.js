@@ -19,7 +19,7 @@ module.exports = async (
 
     if (!id) return callback(new UserError("User not found", 404));
 
-    if (!body.avatar) return callback(new UserError("Image not found", 400));
+    if (!mimetype) return callback(new UserError("Image not found", 400));
 
     if (!ALLOWED_MIME_TYPE[mimetype]) {
       return callback(new UserError("Invalid file format", 400));
