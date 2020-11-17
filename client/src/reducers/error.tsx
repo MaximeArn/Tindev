@@ -15,6 +15,7 @@ const initialState: ErrorState = {
   projectApplyErrorMessage: "",
   projectEditionErrorMessage: "",
   userProfileErrorMessage: "",
+  userProfileEditionErrorMessage: "",
 };
 
 const error = (state = initialState, { type, error }: ErrorAction) => {
@@ -38,6 +39,8 @@ const error = (state = initialState, { type, error }: ErrorAction) => {
       return { ...state, projectEditionErrorMessage: error };
     case "PROJECT_DETAILS_ERROR_HANDLER":
       return { ...state, projectDetailsErrorMessage: error };
+    case "SET_USER_PROFILE_EDITION_ERROR_HANDLER":
+      return { ...state, userProfileEditionErrorMessage: err };
     default:
       return state;
   }

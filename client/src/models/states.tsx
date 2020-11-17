@@ -113,6 +113,7 @@ export interface ErrorState {
   projectApplyErrorMessage: string;
   projectEditionErrorMessage: string;
   userProfileErrorMessage: string;
+  userProfileEditionErrorMessage: string;
 }
 
 export interface AppProps {

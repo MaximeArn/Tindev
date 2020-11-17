@@ -54,7 +54,9 @@ const updateUserProfile = (
       console.log(user);
       dispatch({ type: "SET_USER", user });
     })
-    .catch(({ response: { data } }) => console.log(data));
+    .catch(({ response: { data: { msg: error } } }) =>
+      dispatch({ type: "SET_USER_PROFILE_EDITION_ERROR_HANDLER", error })
+    );
 };
 
 const project: Middleware = ({ getState, dispatch }) => (next) => (action) => {
