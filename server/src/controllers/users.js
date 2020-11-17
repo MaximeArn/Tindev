@@ -86,8 +86,11 @@ const usersController = {
   },
   update: async ({ body, cookies: { token } }, res, next) => {
     try {
-      const user = await tokenValidator(token, next);
+      // const user = await tokenValidator(token, next);
       const updated = await userUpdateValidator(body, next);
+
+      // if (user && updated) {
+      // }
     } catch (error) {
       next(error);
     }

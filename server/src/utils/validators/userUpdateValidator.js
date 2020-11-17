@@ -43,7 +43,7 @@ module.exports = async (body, next) => {
     }
 
     if (key === "password") {
-      const { password, confirmPassword } = value;
+      const { password, confirmPassword } = JSON.parse(value);
       if (!(password === confirmPassword)) {
         throw new UserError("Passwords do not match", 400);
       }
