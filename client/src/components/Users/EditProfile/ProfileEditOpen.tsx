@@ -57,21 +57,23 @@ const ProfileEditOpen = ({
             )}
           </>
         ) : name === "password" ? (
-          Object.entries(value).map(([key, val]: any) => {
-            return (
-              <input
-                key={key}
-                className="input-edit-input"
-                type={typeChecker(name)}
-                name={key}
-                placeholder={capitalize(key)}
-                value={val}
-                onChange={({ target }) =>
-                  getEditProfileValue(name, target.value, key)
-                }
-              />
-            );
-          })
+          <div className="profile-edit-password">
+            {Object.entries(value).map(([key, val]: any) => {
+              return (
+                <input
+                  key={key}
+                  className="profile-edit-password-input"
+                  type={typeChecker(name)}
+                  name={key}
+                  placeholder={capitalize(key)}
+                  value={val}
+                  onChange={({ target }) =>
+                    getEditProfileValue(name, target.value, key)
+                  }
+                />
+              );
+            })}
+          </div>
         ) : (
           <input
             className={
@@ -93,7 +95,11 @@ const ProfileEditOpen = ({
           <button
             className="field-modify"
             onClick={() => {
-              name !== "avatar" && getEditProfileValue(name, "");
+              name !== "avatar" && name === "password"
+                ? Object.keys(value).forEach((key) =>
+                    getEditProfileValue(name, "", key)
+                  )
+                : getEditProfileValue(name, "");
               setEditStatus(false);
             }}
           >
