@@ -99,3 +99,8 @@ export interface UserProfileClosed {
   value: string | undefined;
   setEditStatus: Function;
 }
+
+export interface UserListProps {
+  users: User[];
+  getUsers: Function;
+}

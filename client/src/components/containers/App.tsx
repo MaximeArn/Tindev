@@ -22,7 +22,6 @@ const mapDispatch = (dispatch: Dispatch<AnyAction>) => ({
   verifyToken: () => dispatch({ type: "TOKEN_VALIDATION" }),
   wsConnection: () => dispatch({ type: "SOCKET_CONNECTION" }),
   getProjects: () => dispatch({ type: "GET_PROJECTS" }),
-  getUsers: () => dispatch({ type: "GET_USERS" }),
 });
 
 export default connect(mapState, mapDispatch)(App);

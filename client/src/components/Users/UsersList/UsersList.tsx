@@ -1,11 +1,15 @@
 /** @format */
 
-import React from "react";
+import React, { useEffect } from "react";
 import "./userslist.scss";
-import { User, UserState } from "../../../models/users";
+import { UserListProps } from "../../../models/users";
 import UserCard from "./userCard";
 
-const UsersList = ({ users }: UserState) => {
+const UsersList = ({ users, getUsers }: UserListProps) => {
+  useEffect(() => {
+    getUsers();
+  }, []);
+
   return (
     <div className="users-list">
       {users.map((user) => (

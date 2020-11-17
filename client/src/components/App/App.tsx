@@ -28,17 +28,14 @@ function App({
   login,
   register,
   getProjects,
-  getUsers,
   user,
 }: AppProps) {
   useEffect(() => {
     verifyToken();
-    getUsers();
   }, []);
 
   useEffect(() => {
-    getUsers();
-    getProjects();
+    user && getProjects();
     user && wsConnection();
   }, [user]);
 

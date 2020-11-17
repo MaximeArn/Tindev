@@ -18,12 +18,10 @@ export interface Authentication {
     city?: string;
     age?: number | undefined;
   };
-
   login: {
     email: string;
     password: string;
   };
-
   user: AuthUserState;
 }
 
@@ -122,7 +120,6 @@ export interface AppProps {
   wsConnection: Function;
   showNavbar: boolean;
   getProjects: Function;
-  getUsers: Function;
   login: boolean;
   register: boolean;
   user: { email: string; username: string } | null;
