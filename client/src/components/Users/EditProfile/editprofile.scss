@@ -1,3 +1,5 @@
+@use 'src/styles/vars';
+
 .profile {
   position: absolute;
   top: 81%;
@@ -49,6 +51,21 @@
 
     &-image-preview {
       width: 120px;
+    }
+
+    &-error {
+      color: vars.$error-message;
+      color: #e22525;
+      position: absolute;
+      top: 8%;
+      left: 46%;
+    }
+
+    &-success {
+      color: green;
+      position: absolute;
+      top: 8%;
+      left: 46%;
     }
   }
 

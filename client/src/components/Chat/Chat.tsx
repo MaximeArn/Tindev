@@ -14,7 +14,7 @@ const Chat = ({
   return (
     <>
       <div className="chat-window-wrapper">
-        {chatWindow.length &&
+        {chatWindow.length > 0 &&
           chatWindow.map((window) => (
             <ChatWindow
               key={window.username}

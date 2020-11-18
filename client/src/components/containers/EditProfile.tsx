@@ -6,14 +6,20 @@ import { State } from "../../models/states";
 const mapState = ({
   users: { user, editProfile },
   error: { userProfileEditionErrorMessage: error },
+  success: { userEditionSuccess: success },
 }: State) => ({
   user,
   editProfile,
   error,
+  success,
 });
 
 const mapDispatch = (dispatch: Dispatch<AnyAction>) => ({
   getUserProfile: () => dispatch({ type: "GET_USER_PROFILE" }),
+  resetMessages: () => {
+    dispatch({ type: "USER_EDITION_SUCCESS_MESSAGE" });
+    dispatch({ type: "SET_USER_PROFILE_EDITION_ERROR_HANDLER" });
+  },
   getEditProfileValue: (inputName: string, inputValue: string, key?: string) =>
     dispatch({
       type: "SET_USER_PROFILE_VALUES",

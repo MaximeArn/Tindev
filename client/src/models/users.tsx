@@ -72,10 +72,13 @@ export interface AuthUserState {
 
 export interface EditUserProfile {
   user: User;
+  error: string;
+  success: boolean | string;
   editProfile: EditProfile;
   getUserProfile: Function;
   updateUserProfile: Function;
   getEditProfileValue: Function;
+  resetMessages: Function;
 }
 
 export interface Profile {
