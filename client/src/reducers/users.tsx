@@ -19,7 +19,7 @@ const initialState: UserState = {
     },
     city: "",
     age: "",
-    avatar: undefined,
+    avatar: null,
     experience: "",
     about: "",
   },

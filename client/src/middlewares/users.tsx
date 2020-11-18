@@ -42,6 +42,15 @@ const updateUserProfile = (
   const { editProfile } = getState().users;
   const formData = new FormData();
 
+  const resetInputValues = (key?: string) => {
+    dispatch({
+      type: "SET_USER_PROFILE_VALUES",
+      inputName: fieldName,
+      inputValue: "",
+      key: key || null,
+    });
+  };
+
   fieldName === "password"
     ? formData.append(fieldName, JSON.stringify(editProfile[fieldName]))
     : formData.append(fieldName, editProfile[fieldName]);
@@ -56,7 +65,14 @@ const updateUserProfile = (
     })
     .catch(({ response: { data: { msg: error } } }) =>
       dispatch({ type: "SET_USER_PROFILE_EDITION_ERROR_HANDLER", error })
-    );
+    )
+    .finally(() => {
+      fieldName === "password"
+        ? Object.keys(editProfile[fieldName]).forEach((key) =>
+            resetInputValues(key)
+          )
+        : resetInputValues();
+    });
 };
 
 const project: Middleware = ({ getState, dispatch }) => (next) => (action) => {
@@ -73,6 +89,7 @@ const project: Middleware = ({ getState, dispatch }) => (next) => (action) => {
       getUserProfile(dispatch);
       break;
     case "UPDATE_USER_PROFILE":
+      console.log("UPDATE PROFILE");
       updateUserProfile({ getState, dispatch }, fieldName);
       break;
     default:

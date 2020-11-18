@@ -46,7 +46,6 @@ const ProfileEditOpen = ({
           event.preventDefault();
           updateUserProfile(name);
           setEditStatus(false);
-          resetInputValues();
         }}
       >
         {name === "avatar" ? (

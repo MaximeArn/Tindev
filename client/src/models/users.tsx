@@ -20,7 +20,7 @@ export interface EditProfile {
   };
   city: string;
   age: string;
-  avatar: undefined;
+  avatar: null;
   experience: string;
   about: string;
 }
