@@ -89,7 +89,6 @@ const project: Middleware = ({ getState, dispatch }) => (next) => (action) => {
       getUserProfile(dispatch);
       break;
     case "UPDATE_USER_PROFILE":
-      console.log("UPDATE PROFILE");
       updateUserProfile({ getState, dispatch }, fieldName);
       break;
     default:

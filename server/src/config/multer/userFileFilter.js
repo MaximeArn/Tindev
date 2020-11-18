@@ -14,6 +14,7 @@ module.exports = async (
   { mimetype },
   callback
 ) => {
+  console.log("USER FILE FILTER CALLED");
   try {
     const { id } = await tokenValidator(token, null);
 

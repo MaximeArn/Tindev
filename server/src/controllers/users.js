@@ -89,18 +89,18 @@ const usersController = {
       const { id } = await tokenValidator(token, next);
       const valid = await userUpdateValidator(body, next);
 
-      if (id && valid) {
-        const [key, value] = Object.entries(body)[0];
-        const user = await User.findOneAndUpdate(
-          { _id: id },
-          { [key]: value },
-          { new: true, fields: { password: 0, messages: 0 } }
-        );
+      // if (id && valid) {
+      //   const [key, value] = Object.entries(body)[0];
+      //   const user = await User.findOneAndUpdate(
+      //     { _id: id },
+      //     { [key]: value },
+      //     { new: true, fields: { password: 0, messages: 0 } }
+      //   );
 
-        return res
-          .status(200)
-          .json({ msg: "Profile successfully updated", user });
-      }
+      //   return res
+      //     .status(200)
+      //     .json({ msg: "Profile successfully updated", user });
+      // }
     } catch (error) {
       next(error);
     }

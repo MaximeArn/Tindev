@@ -18,7 +18,11 @@ const ProfileEditOpen = ({
     target: { files },
   }: ChangeEvent<HTMLInputElement>) => {
     const reader = new FileReader();
-    files && reader.readAsDataURL(files[0]);
+
+    if (files) {
+      reader.readAsDataURL(files[0]);
+      getEditProfileValue(name, files[0]);
+    }
 
     reader.onload = ({ target }: ProgressEvent<FileReader>) => {
       filePreview.current.src = target?.result;
@@ -32,6 +36,7 @@ const ProfileEditOpen = ({
       ? Object.keys(value).forEach((key) => getEditProfileValue(name, "", key))
       : getEditProfileValue(name, "");
   };
+
   return (
     <>
       <input
