@@ -92,6 +92,7 @@ export interface Profile {
 export interface UserProfileOpen {
   name: string;
   value: any;
+  avatar: string | false;
   setEditStatus: Function;
   updateUserProfile: Function;
   getEditProfileValue: Function;

@@ -18,6 +18,7 @@ const Profile = ({
         <ProfileEditOpen
           name={name}
           value={inputValue}
+          avatar={name === "avatar" && value}
           setEditStatus={setEditStatus}
           updateUserProfile={updateUserProfile}
           getEditProfileValue={getEditProfileValue}

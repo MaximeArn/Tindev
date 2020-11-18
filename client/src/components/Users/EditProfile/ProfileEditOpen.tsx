@@ -2,10 +2,12 @@ import React, { ChangeEvent, useRef, useState } from "react";
 import typeChecker from "../../../utils/inputType";
 import { UserProfileOpen } from "../../../models/users";
 import capitalize from "../../../utils/capitalizeFirstLetter";
+import { url } from "../../../environments/api";
 
 const ProfileEditOpen = ({
   name,
   value,
+  avatar,
   setEditStatus,
   updateUserProfile,
   getEditProfileValue,
@@ -56,12 +58,21 @@ const ProfileEditOpen = ({
         {name === "avatar" ? (
           <>
             {!isImageSelected ? (
-              <img
-                className="profile-edit-image-preview"
-                onClick={() => fileInput.current?.click()}
-                src="https://user-images.githubusercontent.com/2351721/31314483-7611c488-ac0e-11e7-97d1-3cfc1c79610e.png"
-                alt="preview-image"
-              />
+              avatar ? (
+                <img
+                  className="profile-edit-image-preview"
+                  onClick={() => fileInput.current?.click()}
+                  src={`${url}/uploads/users/${avatar}`}
+                  alt="profile-avatar-preview"
+                />
+              ) : (
+                <img
+                  className="profile-edit-image-preview"
+                  onClick={() => fileInput.current?.click()}
+                  src="https://user-images.githubusercontent.com/2351721/31314483-7611c488-ac0e-11e7-97d1-3cfc1c79610e.png"
+                  alt="preview-image"
+                />
+              )
             ) : (
               <img className="profile-edit-image-preview" ref={filePreview} />
             )}
