@@ -27,6 +27,11 @@ const ProfileEditOpen = ({
     setImageStatus(true);
   };
 
+  const resetInputValues = () => {
+    name === "password"
+      ? Object.keys(value).forEach((key) => getEditProfileValue(name, "", key))
+      : getEditProfileValue(name, "");
+  };
   return (
     <>
       <input
@@ -41,6 +46,7 @@ const ProfileEditOpen = ({
           event.preventDefault();
           updateUserProfile(name);
           setEditStatus(false);
+          resetInputValues();
         }}
       >
         {name === "avatar" ? (
@@ -93,14 +99,11 @@ const ProfileEditOpen = ({
             Confirm
           </button>
           <button
+            type="button"
             className="field-modify"
             onClick={() => {
-              name !== "avatar" && name === "password"
-                ? Object.keys(value).forEach((key) =>
-                    getEditProfileValue(name, "", key)
-                  )
-                : getEditProfileValue(name, "");
               setEditStatus(false);
+              resetInputValues();
             }}
           >
             Close
