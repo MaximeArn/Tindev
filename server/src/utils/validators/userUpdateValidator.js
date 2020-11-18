@@ -8,7 +8,6 @@ const emailRegex = new RegExp(
 );
 
 module.exports = async (body, next) => {
-  console.log("USER VALIDATOR CALLED", body);
   try {
     const key = Object.keys(body)[0];
 
