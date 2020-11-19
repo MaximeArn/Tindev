@@ -122,11 +122,13 @@ const NavBar = ({
 
           <div className={classes.grow} />
           <div className={classes.sectionDesktop}>
-            <IconButton color="inherit">
+            {/* <IconButton color="inherit">
               <MailIcon />
-            </IconButton>
+            </IconButton> */}
             <IconButton color="inherit">
-              <NotificationsIcon />
+              <Badge badgeContent={1} color="secondary">
+                <NotificationsIcon />
+              </Badge>
             </IconButton>
             {!user ? (
               <div className={classes.authLinkContainer}>
