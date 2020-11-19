@@ -56,6 +56,7 @@ module.exports = {
       const project = await applyValidator({ body, id }, next);
 
       if (project && id) {
+        console.log("PROJECT :", project);
         const { _id, applicants } = project;
         const { message } = body;
 

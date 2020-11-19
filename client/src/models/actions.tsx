@@ -102,4 +102,5 @@ export interface MessageAction {
 
 export interface NotificationAction {
   type: string;
+  message: string;
 }

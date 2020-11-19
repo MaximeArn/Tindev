@@ -2,11 +2,22 @@ import { NotificationAction } from "../models/actions";
 import { NotificationState } from "../models/states";
 
 const initialState: NotificationState = {
-  notifications: null,
+  notifications: {
+    count: 0,
+    message: "",
+  },
 };
 
-const notifications = (state = initialState, { type }: NotificationAction) => {
+const notifications = (
+  state = initialState,
+  { type, message }: NotificationAction
+) => {
   switch (type) {
+    case "SET_NOTIFICATIONS":
+      return {
+        ...state,
+        notifications: { count: state.notifications.count + 1, message },
+      };
     default:
       return state;
   }

@@ -6,6 +6,7 @@ import { UserState, AuthUserState } from "./users";
 import { User } from "../models/users";
 import { Project } from "../models/projects";
 import { ChatWindow, Messages } from "./chat";
+import { Notification } from "./notifications";
 
 export interface Authentication {
   register: {
@@ -198,5 +199,5 @@ export interface MessageState {
 }
 
 export interface NotificationState {
-  notifications: number | null;
+  notifications: Notification;
 }

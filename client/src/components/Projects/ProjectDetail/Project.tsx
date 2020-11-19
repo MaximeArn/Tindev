@@ -27,7 +27,6 @@ const Project = ({
   contributorLoader,
   leaveProject,
 }: ProjectDetailSubComponent) => {
-  console.log("LOADER : ", contributorLoader);
   const typedContributors: Contributor[] | [] = contributors;
   const { pathname } = useLocation();
   return (
