@@ -39,7 +39,7 @@ const Login = ({
               <h1 className="modal-title">Sign In</h1>
               {success && <p className="success-message">{success}</p>}
               {error && <span className="modal-error-message">{error}</span>}
-              <div className="fields">{inputMapper(login, login)}</div>
+              <div className="fields">{inputMapper(login)}</div>
               {loginLoader ? (
                 <button type="submit" className="submitButton" disabled>
                   <div className="loading-button">

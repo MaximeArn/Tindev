@@ -1,5 +1,3 @@
-/** @format */
-
 const applicantValidator = require("./applicantValidator");
 const applyValidator = require("./applyValidator");
 const registerValidator = require("./registerValidator");
@@ -11,6 +9,8 @@ const searchValidator = require("./searchValidator");
 const projectDeletionValidator = require("./projectDeletionValidator");
 const projectUpdateValidator = require("./projectUpdateValidators");
 const removeContributorValidator = require("./removeContributorValidator");
+const userProfileValidator = require("./userProfileValidator");
+const userUpdateValidator = require("./userUpdateValidator");
 
 module.exports = {
   applicantValidator,
@@ -24,4 +24,6 @@ module.exports = {
   projectDeletionValidator,
   projectUpdateValidator,
   removeContributorValidator,
+  userProfileValidator,
+  userUpdateValidator,
 };

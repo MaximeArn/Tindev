@@ -1,12 +1,16 @@
 /** @format */
 
 import { connect } from "react-redux";
+import { AnyAction, Dispatch } from "redux";
 import { State } from "../../models/states";
 import UsersList from "../Users/UsersList/UsersList";
 
-const mapState = (state: State) => {
-  const { users } = state.users;
-  return { users };
-};
+const mapState = ({ users: { users } }: State) => ({
+  users,
+});
 
-export default connect(mapState)(UsersList);
+const mapDispatch = (dispatch: Dispatch<AnyAction>) => ({
+  getUsers: () => dispatch({ type: "GET_USERS" }),
+});
+
+export default connect(mapState, mapDispatch)(UsersList);

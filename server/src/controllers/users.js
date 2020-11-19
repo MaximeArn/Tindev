@@ -1,6 +1,11 @@
 /** @format */
 const { User } = require("../models");
-const { tokenValidator, userValidator } = require("../utils/validators");
+const {
+  tokenValidator,
+  userValidator,
+  userProfileValidator,
+  userUpdateValidator,
+} = require("../utils/validators");
 
 const usersController = {
   getUsers: async ({ cookies: { token } }, res, next) => {
@@ -10,6 +15,18 @@ const usersController = {
       if (user) {
         const users = await User.find();
         return res.status(200).json(users);
+      }
+    } catch (error) {
+      next(error);
+    }
+  },
+  getUserProfile: async ({ cookies: { token } }, res, next) => {
+    try {
+      const { id } = await tokenValidator(token, next);
+      const user = await userProfileValidator(id, next);
+
+      if (id && user) {
+        return res.status(200).json(user);
       }
     } catch (error) {
       next(error);
@@ -63,6 +80,27 @@ const usersController = {
       return res
         .status(200)
         .json({ to: sortedToMessages, from: sortedFromMessages });
+    } catch (error) {
+      next(error);
+    }
+  },
+  update: async ({ body, file, cookies: { token } }, res, next) => {
+    try {
+      const { id } = await tokenValidator(token, next);
+      const valid = await userUpdateValidator(body, next);
+
+      if (id && valid) {
+        const key = file ? file.fieldname : Object.keys(body)[0];
+        const user = await User.findOneAndUpdate(
+          { _id: id },
+          { [key]: file ? file.filename : body[key] },
+          { new: true, fields: { password: 0, messages: 0 } }
+        );
+
+        return res
+          .status(200)
+          .json({ msg: "Profile successfully updated", user });
+      }
     } catch (error) {
       next(error);
     }

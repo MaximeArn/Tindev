@@ -18,12 +18,10 @@ export interface Authentication {
     city?: string;
     age?: number | undefined;
   };
-
   login: {
     email: string;
     password: string;
   };
-
   user: AuthUserState;
 }
 
@@ -63,6 +61,11 @@ export interface Loaders {
   projectDetailsLoader: boolean;
   projectCreationLoader: boolean;
   projectCategoriesLoader: boolean;
+  userProfileLoader: boolean;
+  userProfileEditionLoader: {
+    fieldName: string | null;
+    status: boolean;
+  };
   projectEditionLoader: {
     fieldName: string | null;
     loader: boolean;
@@ -115,6 +118,7 @@ export interface ErrorState {
   projectApplyErrorMessage: string;
   projectEditionErrorMessage: string;
   userProfileErrorMessage: string;
+  userProfileEditionErrorMessage: string;
 }
 
 export interface AppProps {
@@ -122,7 +126,6 @@ export interface AppProps {
   wsConnection: Function;
   showNavbar: boolean;
   getProjects: Function;
-  getUsers: Function;
   login: boolean;
   register: boolean;
   user: { email: string; username: string } | null;
@@ -174,6 +177,7 @@ export interface SuccessState {
   registerSuccess: boolean | string;
   projectEditionSuccess: boolean | string;
   projectDeletionSuccess: boolean | string;
+  userEditionSuccess: boolean | string;
 }
 
 export interface SearchState {

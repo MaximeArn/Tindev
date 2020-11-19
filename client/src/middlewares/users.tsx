@@ -3,6 +3,7 @@
 import { AnyAction, Dispatch, Middleware } from "redux";
 import { url } from "../environments/api";
 import axios from "axios";
+import { AxiosSubmit } from "../models/axios";
 axios.defaults.baseURL = url;
 axios.defaults.headers.post["Content-Type"] = "application/json";
 axios.defaults.withCredentials = true;
@@ -27,8 +28,59 @@ const getUser = (dispatch: Dispatch<AnyAction>, username: string) => {
     );
 };
 
+const getUserProfile = (dispatch: Dispatch<AnyAction>) => {
+  dispatch({ type: "SET_USER_PROFILE_LOADER", value: true });
+  axios
+    .get("/users/user")
+    .then(({ data: user }) => dispatch({ type: "SET_USER", user }))
+    .catch(({ response: { data } }) => console.error(data))
+    .finally(() => dispatch({ type: "SET_USER_PROFILE_LOADER", value: false }));
+};
+
+const updateUserProfile = (
+  { getState, dispatch }: AxiosSubmit,
+  fieldName: string
+) => {
+  const { editProfile } = getState().users;
+  const formData = new FormData();
+
+  const resetInputValues = (key?: string) => {
+    dispatch({
+      type: "SET_USER_PROFILE_VALUES",
+      inputName: fieldName,
+      inputValue: "",
+      key: key || null,
+    });
+  };
+
+  fieldName === "password"
+    ? formData.append(fieldName, JSON.stringify(editProfile[fieldName]))
+    : formData.append(fieldName, editProfile[fieldName]);
+
+  dispatch({ type: "SET_USER_PROFILE_EDITION_LOADER", value: true, fieldName });
+  axios
+    .patch("/users/update", formData, {
+      headers: { "Content-Type": "multipart/form-data" },
+    })
+    .then(({ data: { msg: message, user } }) => {
+      dispatch({ type: "SET_USER", user });
+      dispatch({ type: "USER_EDITION_SUCCESS_MESSAGE", message });
+    })
+    .catch(({ response: { data: { msg: error } } }) =>
+      dispatch({ type: "SET_USER_PROFILE_EDITION_ERROR_HANDLER", error })
+    )
+    .finally(() => {
+      dispatch({ type: "SET_USER_PROFILE_EDITION_LOADER", value: false });
+      fieldName === "password"
+        ? Object.keys(editProfile[fieldName]).forEach((key) =>
+            resetInputValues(key)
+          )
+        : resetInputValues();
+    });
+};
+
 const project: Middleware = ({ getState, dispatch }) => (next) => (action) => {
-  const { username } = action;
+  const { username, fieldName } = action;
 
   switch (action.type) {
     case "GET_USERS":
@@ -36,6 +88,12 @@ const project: Middleware = ({ getState, dispatch }) => (next) => (action) => {
       break;
     case "GET_USER":
       getUser(dispatch, username);
+      break;
+    case "GET_USER_PROFILE":
+      getUserProfile(dispatch);
+      break;
+    case "UPDATE_USER_PROFILE":
+      updateUserProfile({ getState, dispatch }, fieldName);
       break;
     default:
       next(action);

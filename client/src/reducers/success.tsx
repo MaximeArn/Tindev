@@ -5,6 +5,7 @@ const initialState: SuccessState = {
   registerSuccess: false,
   projectEditionSuccess: false,
   projectDeletionSuccess: false,
+  userEditionSuccess: false,
 };
 const success = (state = initialState, { type, message }: SuccessAction) => {
   const msg = message ? message : false;
@@ -19,6 +20,8 @@ const success = (state = initialState, { type, message }: SuccessAction) => {
       return { ...state, projectEditionSuccess: msg };
     case "PROJECT_DELETION_SUCCESS_MESSAGE":
       return { ...state, projectDeletionSuccess: msg };
+    case "USER_EDITION_SUCCESS_MESSAGE":
+      return { ...state, userEditionSuccess: msg };
     default:
       return state;
   }
