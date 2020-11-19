@@ -22,6 +22,7 @@ const ProjectDetail = ({
 }: ProjectDetailProps) => {
   useEffect(() => {
     getProjectDetails();
+    console.log("PROJECTS FETCHED !!!");
   }, []);
 
   useEffect(() => {

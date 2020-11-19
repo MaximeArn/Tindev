@@ -9,7 +9,7 @@ import Register from "../containers/Register";
 import Login from "../containers/Login";
 import ProjectCreation from "../containers/ProjectCreation";
 import ProjectDetail from "../containers/ProjectDetail";
-import ManagePage from "../containers/ManageProject";
+import ManageProject from "../containers/ManageProject";
 import UsersList from "../containers/UsersList";
 import UserProfile from "../containers/UserProfile";
 import Search from "../containers/Search";
@@ -48,7 +48,7 @@ function App({
       <Switch>
         <Route exact path="/" component={Home} />
         <Route exact path="/project/create" component={ProjectCreation} />
-        <Route path="/project/:slug/manage" component={ManagePage} />
+        <Route path="/project/:slug/manage" component={ManageProject} />
         <Route path="/project/:slug/edit" component={EditProject} />
         <Route path="/project/:slug" component={ProjectDetail} />
         <Route exact path="/users" component={UsersList} />

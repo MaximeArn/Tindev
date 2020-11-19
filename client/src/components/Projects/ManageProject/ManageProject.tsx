@@ -1,5 +1,3 @@
-/** @format */
-
 import React from "react";
 import { useHistory, Link } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
@@ -9,11 +7,9 @@ import Applicant from "../../containers/Applicant";
 import "./managePage.scss";
 import randomKey from "../../../utils/randomIdGenerator";
 import { ApplicantRow, ProjectProp } from "../../../models/projects";
-import { Applicant as ApplicantModel } from "../../../models/projects";
 
 const ManageProject = ({ project }: ProjectProp) => {
-  const typedApplicants: ApplicantModel[] | [] = project && project.applicants;
-
+  //TODO: fetch project from db to get newly added applicants
   const history = useHistory();
 
   const pushLastPath = () => {
