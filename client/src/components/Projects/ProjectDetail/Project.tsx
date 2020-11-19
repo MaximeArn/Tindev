@@ -36,7 +36,10 @@ const Project = ({
         <div className="projectDetail">
           <div className="projectDetail-content">
             <div className="image-section">
-              <img src={`${url}/uploads/${image}`} alt="project image" />
+              <img
+                src={`${url}/uploads/projects/${image}`}
+                alt="project image"
+              />
             </div>
             <div className="title-section">
               <h2>{title}</h2>

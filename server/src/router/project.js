@@ -27,7 +27,9 @@ const projectRouterWrapper = (connectedUsers) => {
   router.get("/", getProjects);
   router.get("/:name", getProject);
   router.post("/create", upload.single("image"), create);
-  router.post("/apply", apply);
+  router.post("/apply", (req, res, next) =>
+    apply(connectedUsers, req, res, next)
+  );
   router.post("/verify_owner", verifyOwner);
   router.patch("/accept_applicant", acceptApplicant);
   router.patch("/decline_applicant", declineApplicant);

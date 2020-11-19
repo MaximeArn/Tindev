@@ -50,7 +50,7 @@ module.exports = {
       next(error);
     }
   },
-  apply: async ({ body, cookies: { token } }, res, next) => {
+  apply: async (sockets, { body, cookies: { token } }, res, next) => {
     try {
       const { id, username } = await tokenValidator(token, next);
       const apply = await applyValidator({ body, id }, next);
@@ -59,13 +59,15 @@ module.exports = {
         const { body: validatedBody, project } = apply;
         const { message } = validatedBody;
 
-        await Project.updateOne(
+        const author = await Project.findOneAndUpdate(
           { _id: project._id },
           {
             applicants: [...project.applicants, { _id: id, username, message }],
-          }
+          },
+          { projection: author }
         );
 
+        console.log("AUTHOR : ", author);
         return res.status(200).json({
           msg: "Thank you for your apply.",
         });
