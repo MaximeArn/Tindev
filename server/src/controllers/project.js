@@ -51,6 +51,7 @@ module.exports = {
     }
   },
   apply: async (sockets, { body, cookies: { token } }, res, next) => {
+    console.log("APPLY METHOD CALLED");
     try {
       const { id, username } = await tokenValidator(token, next);
       const apply = await applyValidator({ body, id }, next);
@@ -59,15 +60,19 @@ module.exports = {
         const { body: validatedBody, project } = apply;
         const { message } = validatedBody;
 
-        const author = await Project.findOneAndUpdate(
+        const { author: owner } = await Project.findOneAndUpdate(
           { _id: project._id },
           {
             applicants: [...project.applicants, { _id: id, username, message }],
           },
-          { projection: author }
+          { new: true, fields: { author: 1 } }
         );
 
-        console.log("AUTHOR : ", author);
+        sockets[owner].socket.emit(
+          "notification",
+          "Someone applied to your project"
+        );
+
         return res.status(200).json({
           msg: "Thank you for your apply.",
         });
