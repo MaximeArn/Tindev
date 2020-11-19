@@ -23,15 +23,19 @@ const {
   deleteContributor,
 } = require("../controllers/project");
 
-router.get("/", getProjects);
-router.get("/:name", getProject);
-router.post("/create", upload.single("image"), create);
-router.post("/apply", apply);
-router.post("/verify_owner", verifyOwner);
-router.patch("/accept_applicant", acceptApplicant);
-router.patch("/decline_applicant", declineApplicant);
-router.patch("/contributor", deleteContributor);
-router.delete("/:id", deleteById);
-router.patch("/:id", patchUpload.single("image"), updateById);
+const projectRouterWrapper = (connectedUsers) => {
+  router.get("/", getProjects);
+  router.get("/:name", getProject);
+  router.post("/create", upload.single("image"), create);
+  router.post("/apply", apply);
+  router.post("/verify_owner", verifyOwner);
+  router.patch("/accept_applicant", acceptApplicant);
+  router.patch("/decline_applicant", declineApplicant);
+  router.patch("/contributor", deleteContributor);
+  router.delete("/:id", deleteById);
+  router.patch("/:id", patchUpload.single("image"), updateById);
 
-module.exports = router;
+  return router;
+};
+
+module.exports = projectRouterWrapper;

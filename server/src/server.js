@@ -31,7 +31,7 @@ server.use(express.static(`${__dirname}/public`));
 server.use(express.json());
 server.use(cookieParser());
 server.use("/auth", authRouter(connectedUsers));
-server.use("/project", projectRouter);
+server.use("/project", projectRouter(connectedUsers));
 server.use("/categories", categoriesRouter);
 server.use("/users", usersRouter);
 server.use("/search", searchRouter);
