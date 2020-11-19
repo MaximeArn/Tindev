@@ -15,7 +15,6 @@ const Register = ({
   closeModal,
   swapModal,
 }: RegisterAuth) => {
-  const { firstname, lastname, age, city, ...mandatory } = register;
   const modal = useRef<HTMLDivElement>(null);
 
   const handleSubmit = (event: FormEvent<HTMLFormElement>) => {
@@ -34,7 +33,7 @@ const Register = ({
           <div className="modal-padding">
             <h1 className="modal-title">Create Account</h1>
             {error && <span className="modal-error-message">{error}</span>}
-            <div className="fields">{inputMapper(register, mandatory)}</div>
+            <div className="fields">{inputMapper(register)}</div>
             {registerLoader ? (
               <button type="submit" className="submitButton" disabled>
                 <div className="loading-button">

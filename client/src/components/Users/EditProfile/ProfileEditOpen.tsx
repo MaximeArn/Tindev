@@ -3,6 +3,7 @@ import typeChecker from "../../../utils/inputType";
 import { UserProfileOpen } from "../../../models/users";
 import capitalize from "../../../utils/capitalizeFirstLetter";
 import { url } from "../../../environments/api";
+import isRequired from "../../../utils/registerMandatoryFields";
 
 const ProfileEditOpen = ({
   name,
@@ -88,6 +89,7 @@ const ProfileEditOpen = ({
                   name={key}
                   placeholder={capitalize(key)}
                   value={val}
+                  required={isRequired(key)}
                   onChange={({ target }) =>
                     getEditProfileValue(name, target.value, key)
                   }
@@ -107,6 +109,7 @@ const ProfileEditOpen = ({
             placeholder={`${capitalize(name)}...`}
             value={value}
             onChange={({ target }) => getEditProfileValue(name, target.value)}
+            required={isRequired(name)}
           />
         )}
         <div className="profile-edit-open-buttons">
