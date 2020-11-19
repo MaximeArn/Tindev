@@ -196,3 +196,7 @@ export interface MessageState {
   messages: Messages[];
   chatWindow: ChatWindow[];
 }
+
+export interface NotificationState {
+  notifications: number | null;
+}

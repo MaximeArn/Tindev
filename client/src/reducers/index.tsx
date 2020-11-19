@@ -11,6 +11,7 @@ import users from "./users";
 import search from "./search";
 import navbar from "./navbar";
 import message from "./message";
+import notifications from "./notifications";
 import { combineReducers } from "redux";
 
 export default combineReducers({
@@ -25,4 +26,5 @@ export default combineReducers({
   error,
   success,
   message,
+  notifications,
 });

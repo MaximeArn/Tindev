@@ -99,3 +99,7 @@ export interface MessageAction {
   id: string;
   usernameToDelete: string;
 }
+
+export interface NotificationAction {
+  type: string;
+}
