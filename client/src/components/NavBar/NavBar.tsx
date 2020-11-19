@@ -122,9 +122,6 @@ const NavBar = ({
 
           <div className={classes.grow} />
           <div className={classes.sectionDesktop}>
-            {/* <IconButton color="inherit">
-              <MailIcon />
-            </IconButton> */}
             <IconButton color="inherit">
               <Badge badgeContent={1} color="secondary">
                 <NotificationsIcon />

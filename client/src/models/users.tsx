@@ -39,7 +39,10 @@ export interface User {
   email: string;
   password?: string;
   age?: number;
-  city: string;
+  city?: string;
+  experience?: string;
+  about?: string;
+  avatar?: string;
 }
 
 export interface UserProfileProps {
@@ -61,7 +64,6 @@ export interface UserProps {
   password: string;
   age: number;
   city: string;
-  role: string;
   getUser: Function;
 }
 
