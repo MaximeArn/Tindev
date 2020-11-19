@@ -11,6 +11,11 @@ const initialState: Loaders = {
   projectCreationLoader: false,
   projectDetailsLoader: false,
   projectCategoriesLoader: false,
+  userProfileLoader: false,
+  userProfileEditionLoader: {
+    fieldName: null,
+    status: false,
+  },
   projectEditionLoader: {
     fieldName: null,
     loader: false,
@@ -44,6 +49,15 @@ const loaders = (
       return { ...state, projectCreationLoader: value };
     case "SET_PROJECT_CATEGORIES_LOADER":
       return { ...state, projectCategoriesLoader: value };
+    case "SET_USER_PROFILE_EDITION_LOADER":
+      return {
+        ...state,
+        userProfileEditionLoader: fieldName
+          ? { fieldName, status: value }
+          : { fieldName: null, status: value },
+      };
+    case "SET_USER_PROFILE_LOADER":
+      return { ...state, userProfileLoader: value };
     case "SET_PROJECT_MANAGE_LOADER":
       return {
         ...state,
@@ -52,7 +66,6 @@ const loaders = (
     case "SET_PROJECT_DETAILS_LOADER":
       return { ...state, projectDetailsLoader: value };
     case "SET_PROJECT_EDITION_LOADER":
-      console.log("PROJECT EDITION LOADER");
       return {
         ...state,
         projectEditionLoader: {

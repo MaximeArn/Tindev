@@ -7,11 +7,14 @@ const mapState = ({
   users: { user, editProfile },
   error: { userProfileEditionErrorMessage: error },
   success: { userEditionSuccess: success },
+  loaders: { userProfileEditionLoader: loader, userProfileLoader: isLoading },
 }: State) => ({
   user,
   editProfile,
   error,
   success,
+  isLoading,
+  loader,
 });
 
 const mapDispatch = (dispatch: Dispatch<AnyAction>) => ({

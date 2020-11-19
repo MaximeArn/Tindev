@@ -29,10 +29,12 @@ const getUser = (dispatch: Dispatch<AnyAction>, username: string) => {
 };
 
 const getUserProfile = (dispatch: Dispatch<AnyAction>) => {
+  dispatch({ type: "SET_USER_PROFILE_LOADER", value: true });
   axios
     .get("/users/user")
     .then(({ data: user }) => dispatch({ type: "SET_USER", user }))
-    .catch(({ response: { data } }) => console.error(data));
+    .catch(({ response: { data } }) => console.error(data))
+    .finally(() => dispatch({ type: "SET_USER_PROFILE_LOADER", value: false }));
 };
 
 const updateUserProfile = (
@@ -55,6 +57,7 @@ const updateUserProfile = (
     ? formData.append(fieldName, JSON.stringify(editProfile[fieldName]))
     : formData.append(fieldName, editProfile[fieldName]);
 
+  dispatch({ type: "SET_USER_PROFILE_EDITION_LOADER", value: true, fieldName });
   axios
     .patch("/users/update", formData, {
       headers: { "Content-Type": "multipart/form-data" },
@@ -67,6 +70,7 @@ const updateUserProfile = (
       dispatch({ type: "SET_USER_PROFILE_EDITION_ERROR_HANDLER", error })
     )
     .finally(() => {
+      dispatch({ type: "SET_USER_PROFILE_EDITION_LOADER", value: false });
       fieldName === "password"
         ? Object.keys(editProfile[fieldName]).forEach((key) =>
             resetInputValues(key)

@@ -1,12 +1,15 @@
 import React, { useEffect } from "react";
 import { EditUserProfile, EditProfile } from "../../../models/users";
 import ProfileField from "./ProfileField";
+import CircularProgress from "@material-ui/core/CircularProgress";
 import "./editprofile.scss";
 
 const EditProfile = ({
   user,
   error,
   success,
+  isLoading,
+  loader,
   editProfile,
   getUserProfile,
   updateUserProfile,
@@ -25,6 +28,12 @@ const EditProfile = ({
     <>
       {user && (
         <>
+          {isLoading && (
+            <div className="loading-button">
+              <p>Loading</p>
+              <CircularProgress size={15} />
+            </div>
+          )}
           {success && <div className="profile-edit-success">{success}</div>}
           {error && <div className="profile-edit-error">{error}</div>}
           <div className="profile">
@@ -35,6 +44,7 @@ const EditProfile = ({
                   <ProfileField
                     updateUserProfile={updateUserProfile}
                     name={key}
+                    loader={loader}
                     inputValue={value}
                     getEditProfileValue={getEditProfileValue}
                     value={

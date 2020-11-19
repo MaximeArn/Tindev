@@ -7,6 +7,7 @@ const Profile = ({
   name,
   inputValue,
   value,
+  loader,
   updateUserProfile,
   getEditProfileValue,
 }: Profile) => {

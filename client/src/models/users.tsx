@@ -74,6 +74,8 @@ export interface EditUserProfile {
   user: User;
   error: string;
   success: boolean | string;
+  isLoading: boolean;
+  loader: boolean;
   editProfile: EditProfile;
   getUserProfile: Function;
   updateUserProfile: Function;
@@ -83,6 +85,7 @@ export interface EditUserProfile {
 
 export interface Profile {
   name: string;
+  loader: boolean;
   inputValue: string | undefined;
   value: string;
   updateUserProfile: Function;
