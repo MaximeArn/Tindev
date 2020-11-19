@@ -26,43 +26,43 @@ const EditProfile = ({
 
   return (
     <>
-      {user && (
+      {isLoading ? (
+        <div className="profile-loader">
+          <p>Loading</p>
+          <CircularProgress size={15} />
+        </div>
+      ) : (
         <>
-          {isLoading && (
-            <div className="loading-button">
-              <p>Loading</p>
-              <CircularProgress size={15} />
-            </div>
-          )}
           {success && <div className="profile-edit-success">{success}</div>}
           {error && <div className="profile-edit-error">{error}</div>}
-          <div className="profile">
-            {Object.entries(editProfile).map(([prop, value]) => {
-              const key = prop as keyof typeof EditProfile;
-              return (
-                <div key={key} className="profile-container">
-                  <ProfileField
-                    updateUserProfile={updateUserProfile}
-                    name={key}
-                    loader={loader}
-                    inputValue={value}
-                    getEditProfileValue={getEditProfileValue}
-                    value={
-                      user[key]
-                        ? user[key]
-                        : key === "password"
-                        ? "Change your password"
-                        : "Not yet specified"
-                    }
-                  />
-                </div>
-              );
-            })}
-          </div>
+          {user && (
+            <div className="profile">
+              {Object.entries(editProfile).map(([prop, value]) => {
+                const key = prop as keyof typeof EditProfile;
+                return (
+                  <div key={key} className="profile-container">
+                    <ProfileField
+                      updateUserProfile={updateUserProfile}
+                      name={key}
+                      loader={loader}
+                      inputValue={value}
+                      getEditProfileValue={getEditProfileValue}
+                      value={
+                        user[key]
+                          ? user[key]
+                          : key === "password"
+                          ? "Change your password"
+                          : "Not yet specified"
+                      }
+                    />
+                  </div>
+                );
+              })}
+            </div>
+          )}
         </>
       )}
     </>
   );
 };
-
 export default EditProfile;

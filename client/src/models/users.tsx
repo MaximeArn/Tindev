@@ -75,7 +75,10 @@ export interface EditUserProfile {
   error: string;
   success: boolean | string;
   isLoading: boolean;
-  loader: boolean;
+  loader: {
+    fieldName: string | null;
+    status: boolean;
+  };
   editProfile: EditProfile;
   getUserProfile: Function;
   updateUserProfile: Function;
@@ -85,7 +88,10 @@ export interface EditUserProfile {
 
 export interface Profile {
   name: string;
-  loader: boolean;
+  loader: {
+    fieldName: string | null;
+    status: boolean;
+  };
   inputValue: string | undefined;
   value: string;
   updateUserProfile: Function;

@@ -2,12 +2,13 @@ import React, { useState } from "react";
 import { Profile } from "../../../models/users";
 import ProfileEditClosed from "./ProfileEditClosed";
 import ProfileEditOpen from "./ProfileEditOpen";
+import CircularProgress from "@material-ui/core/CircularProgress";
 
 const Profile = ({
   name,
   inputValue,
   value,
-  loader,
+  loader: { fieldName, status },
   updateUserProfile,
   getEditProfileValue,
 }: Profile) => {
@@ -15,7 +16,12 @@ const Profile = ({
 
   return (
     <>
-      {isEditOpen ? (
+      {status && fieldName === name ? (
+        <div className="loading-button">
+          <p>Loading</p>
+          <CircularProgress size={15} />
+        </div>
+      ) : isEditOpen ? (
         <ProfileEditOpen
           name={name}
           value={inputValue}
