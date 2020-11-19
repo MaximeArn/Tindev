@@ -26,6 +26,11 @@ const serverSocketListener = ({ getState, dispatch }: AxiosSubmit) => {
 
     dispatch({ type: "SET_CHAT_MESSAGES", message });
   });
+
+  socket.on("notification", (message: string) => {
+    console.log("NOTIFICATION : ", message);
+    dispatch({ type: "SET_NOTIFICATIONS", message });
+  });
 };
 
 const sendSocket = (
