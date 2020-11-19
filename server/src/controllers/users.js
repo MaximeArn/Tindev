@@ -84,20 +84,16 @@ const usersController = {
       next(error);
     }
   },
-  update: async (
-    { body, file: { fieldname, filename }, cookies: { token } },
-    res,
-    next
-  ) => {
+  update: async ({ body, file, cookies: { token } }, res, next) => {
     try {
       const { id } = await tokenValidator(token, next);
       const valid = await userUpdateValidator(body, next);
 
       if (id && valid) {
-        const key = fieldname ? fieldname : Object.keys(body)[0];
+        const key = file ? file.fieldname : Object.keys(body)[0];
         const user = await User.findOneAndUpdate(
           { _id: id },
-          { [key]: filename || body[key] },
+          { [key]: file ? file.filename : body[key] },
           { new: true, fields: { password: 0, messages: 0 } }
         );
 

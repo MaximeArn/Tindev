@@ -17,7 +17,7 @@ const Profile = ({
   return (
     <>
       {status && fieldName === name ? (
-        <div className="loading-button">
+        <div className="profile-edit-loading">
           <p>Loading</p>
           <CircularProgress size={15} />
         </div>

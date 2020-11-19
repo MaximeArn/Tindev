@@ -10,6 +10,10 @@
   transform: translate(-50%, -50%);
   background-color: #ededed;
 
+  &-edit-loading {
+    margin: auto;
+  }
+
   &-loader {
     position: absolute;
     top: 50%;
