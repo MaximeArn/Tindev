@@ -76,8 +76,8 @@ const Register = ({
                <GoogleLogin
                   clientId="1046564133373-v6mejve3j4alr13o2hult3lomphkor4e.apps.googleusercontent.com"
                   buttonText="Login"
-                  onSuccess={() => console.log('Succes')}
-                  onFailure={() => console.log('Failure')}
+                  onSuccess={(response) => console.log(response)}
+                  onFailure={(error) => console.log(error)}
                   cookiePolicy={'single_host_origin'}
                 />
             </div>
