@@ -105,6 +105,7 @@ export interface ProjectDetailProps {
 
 export interface ProjectProp {
   project: Project;
+  getProject: Function;
 }
 
 export interface ApplicantRow {

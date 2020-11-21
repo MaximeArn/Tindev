@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { useHistory, Link } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faArrowLeft } from "@fortawesome/free-solid-svg-icons";
@@ -8,8 +8,11 @@ import "./managePage.scss";
 import randomKey from "../../../utils/randomIdGenerator";
 import { ApplicantRow, ProjectProp } from "../../../models/projects";
 
-const ManageProject = ({ project }: ProjectProp) => {
-  //TODO: fetch project from db to get newly added applicants
+const ManageProject = ({ project, getProject }: ProjectProp) => {
+  useEffect(() => {
+    getProject();
+  }, []);
+
   const history = useHistory();
 
   const pushLastPath = () => {
