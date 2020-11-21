@@ -18,6 +18,7 @@ const userSchema = new Schema(
     avatar: String,
     about: String,
     experience: String,
+    notifications: { counter: Number, tooltips: [String] },
   },
   { collation: { locale: "en", strength: 2 } }
 );
