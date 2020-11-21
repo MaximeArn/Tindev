@@ -1,6 +1,6 @@
 /** @format */
 
-const { Project } = require("../models");
+const { Project, User } = require("../models");
 const {
   projectValidator,
   applyValidator,
@@ -53,25 +53,30 @@ module.exports = {
   apply: async (sockets, { body, cookies: { token } }, res, next) => {
     try {
       const { id, username } = await tokenValidator(token, next);
-      const project = await applyValidator({ body, id }, next);
+      const { owner, project } = await applyValidator({ body, id }, next);
+      const tooltip = `${username} applied to your project`;
 
       if (project && id) {
-        console.log("PROJECT :", project);
         const { _id, applicants } = project;
         const { message } = body;
 
-        const { author: owner } = await Project.findOneAndUpdate(
+        await Project.findOneAndUpdate(
           { _id },
           {
             applicants: [...applicants, { _id: id, username, message }],
-          },
-          { new: true, fields: { author: 1 } }
+          }
         );
 
-        sockets[owner].socket.emit(
-          "notification",
-          `${username} applied to your project`
-        );
+        const user = await User.findOne({ username: body.owner });
+
+        user.notifications = {
+          counter: user.notifications.counter + 1,
+          tooltips: [...user.notifications, tooltip],
+        };
+
+        await user.save();
+
+        sockets[owner].socket.emit("notification", tooltip);
 
         return res.status(200).json({
           msg: "Thank you for your apply.",
