@@ -18,9 +18,9 @@ const userSchema = new Schema(
     avatar: String,
     about: String,
     experience: String,
-    notifications: { counter: Number, tooltips: [String] },
+    notifications: { counter: Number, tooltips: [{ tooltip: String }] },
   },
-  { collation: { locale: "en", strength: 2 } }
+  { collation: { locale: "en", strength: 2 }, timestamps: true }
 );
 
 module.exports = userSchema;

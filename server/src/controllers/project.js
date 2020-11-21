@@ -60,21 +60,22 @@ module.exports = {
         const { _id, applicants } = project;
         const { message } = body;
 
-        await Project.findOneAndUpdate(
+        const updateProject = Project.findOneAndUpdate(
           { _id },
           {
             applicants: [...applicants, { _id: id, username, message }],
           }
         );
 
-        const user = await User.findOne({ username: body.owner });
-
-        user.notifications = {
-          counter: user.notifications.counter + 1,
-          tooltips: [...user.notifications, tooltip],
+        owner.notifications = {
+          counter: owner.notifications.counter + 1,
+          tooltips: [...owner.notifications.tooltips, { tooltip }],
         };
 
-        await user.save();
+        const [updatedProject, updatedOwner] = await Promise.all([
+          updateProject,
+          owner.save(),
+        ]);
 
         sockets[owner].socket.emit("notification", tooltip);
 
