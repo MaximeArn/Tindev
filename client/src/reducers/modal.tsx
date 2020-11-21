@@ -1,6 +1,5 @@
 import { ModalAction } from "../models/actions";
 import { ModalState } from "../models/states";
-import resetInputs from "../utils/resetInputs";
 
 const initialState: ModalState = {
   showNavbar: true,

@@ -3,7 +3,7 @@ import { NotificationState } from "../models/states";
 
 const initialState: NotificationState = {
   notifications: {
-    count: 0,
+    counter: 0,
     message: "",
   },
 };
@@ -16,7 +16,7 @@ const notifications = (
     case "SET_NOTIFICATIONS":
       return {
         ...state,
-        notifications: { count: state.notifications.count + 1, message },
+        notifications: { counter: state.notifications.counter + 1, message },
       };
     default:
       return state;

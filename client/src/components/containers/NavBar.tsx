@@ -10,6 +10,9 @@ const mapState = ({
   auth: { user },
   search: { search, focused },
   navbar: { account, mobile, main },
+  notifications: {
+    notifications: { counter },
+  },
 }: State) => ({
   user,
   search,
@@ -17,6 +20,7 @@ const mapState = ({
   account,
   mobile,
   main,
+  counter,
 });
 
 const mapDispatch = (dispatch: Dispatch<AnyAction>, { history }: OwnProps) => {

@@ -29,6 +29,7 @@ const NavBar = ({
   account,
   mobile,
   main,
+  counter,
   getSearchValue,
   setSearchBarStatus,
   logout,
@@ -123,7 +124,7 @@ const NavBar = ({
           <div className={classes.grow} />
           <div className={classes.sectionDesktop}>
             <IconButton color="inherit">
-              <Badge badgeContent={1} color="secondary">
+              <Badge badgeContent={counter && counter} color="secondary">
                 <NotificationsIcon />
               </Badge>
             </IconButton>

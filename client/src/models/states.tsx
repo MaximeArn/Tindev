@@ -38,6 +38,7 @@ export interface State {
   search: SearchState;
   navbar: NavBarState;
   message: MessageState;
+  notifications: NotificationState;
 }
 
 export interface Modals {
@@ -137,6 +138,7 @@ export interface NavState {
   search: string;
   focused: boolean;
   logout: Function;
+  counter: number;
   account: Element | null | undefined;
   mobile: Element | null | undefined;
   main: Element | null | undefined;

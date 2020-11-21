@@ -1,4 +1,4 @@
 export interface Notification {
-  count: number;
+  counter: number;
   message: string;
 }
