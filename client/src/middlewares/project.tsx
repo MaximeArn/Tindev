@@ -168,7 +168,7 @@ const updateProject = (
     );
 };
 
-const getProject = ({ getState, dispatch }: AxiosSubmit, slug: string) => {
+const getProject = (dispatch: Dispatch<AnyAction>, slug: string) => {
   dispatch({ type: "SET_PROJECT_DETAILS_LOADER", value: true });
   axios
     .get(`/project/${unslugify(slug)}`)
@@ -199,7 +199,7 @@ const deleteProject = (dispatch: Dispatch<AnyAction>, id: string) => {
     .delete(`/project/${id}`)
     .then(({ data: { msg: message } }) => {
       dispatch({ type: "PROJECT_DELETION_SUCCESS_MESSAGE", message });
-      // setProjects(dispatch);
+      setProjects(dispatch);
     })
     .catch((error) => console.error(error));
 };
@@ -230,7 +230,7 @@ const project: Middleware = ({ getState, dispatch }) => (next) => (action) => {
       setProjects(dispatch);
       break;
     case "GET_PROJECT":
-      getProject({ getState, dispatch }, slug);
+      getProject(dispatch, slug);
       break;
     case "UPDATE_PROJECT":
       updateProject(
