@@ -20,7 +20,7 @@ const userSchema = new Schema(
     experience: String,
     notifications: {
       counter: { type: String, default: 0 },
-      tooltips: [{ tooltip: String }],
+      tooltips: [{ tooltip: String, createdAt: Date }],
     },
   },
   { collation: { locale: "en", strength: 2 }, timestamps: true }

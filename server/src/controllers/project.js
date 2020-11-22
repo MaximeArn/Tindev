@@ -70,20 +70,19 @@ module.exports = {
 
         owner.notifications = {
           counter: parseInt(counter + 1),
-          tooltips: [...tooltips, { tooltip }],
+          tooltips: [...tooltips, { tooltip, createdAt: Date.now() }],
         };
 
-        const [{ username: projectOwner, notifications }] = await Promise.all([
-          owner.save(),
-          updateProject,
-        ]);
+        const [
+          {
+            username: projectOwner,
+            notifications: { tooltips: notifications },
+          },
+        ] = await Promise.all([owner.save(), updateProject]);
 
-        const notification = notifications.tooltips.slice(-1).pop();
+        const notification = notifications.slice(-1).pop();
 
-        sockets[projectOwner].socket.emit("notification", {
-          ...notification,
-          createdAt: notification._id.getTimestamp(),
-        });
+        sockets[projectOwner].socket.emit("notification", notification);
 
         return res.status(200).json({
           msg: "Thank you for your apply.",

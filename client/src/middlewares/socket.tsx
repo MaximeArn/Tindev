@@ -2,13 +2,14 @@
 
 import { Middleware } from "redux";
 import { AxiosSubmit } from "../models/axios";
-import { ChatWindow } from "../models/chat";
 import { socketUrl } from "../environments/api";
 import axios from "axios";
 import { SocketServerResponse } from "../models/chat";
 import Cookies from "js-cookie";
 import io from "socket.io-client";
 import { url } from "../environments/api";
+import { NotificationSocket } from "../models/socket";
+
 axios.defaults.baseURL = url;
 axios.defaults.headers.post["Content-Type"] = "application/json";
 axios.defaults.withCredentials = true;
@@ -27,10 +28,9 @@ const serverSocketListener = ({ getState, dispatch }: AxiosSubmit) => {
     dispatch({ type: "SET_CHAT_MESSAGES", message });
   });
 
-  socket.on("notification", (message: string) => {
-    console.log("NOTIFICATION : ", message);
-    dispatch({ type: "SET_NOTIFICATIONS", message });
-  });
+  socket.on("notification", (tooltip: NotificationSocket) =>
+    dispatch({ type: "SET_NOTIFICATIONS", tooltip })
+  );
 };
 
 const sendSocket = (

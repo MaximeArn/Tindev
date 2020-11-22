@@ -4,19 +4,22 @@ import { NotificationState } from "../models/states";
 const initialState: NotificationState = {
   notifications: {
     counter: 0,
-    message: "",
+    tooltips: [],
   },
 };
 
 const notifications = (
   state = initialState,
-  { type, message }: NotificationAction
+  { type, tooltip }: NotificationAction
 ) => {
   switch (type) {
     case "SET_NOTIFICATIONS":
       return {
         ...state,
-        notifications: { counter: state.notifications.counter + 1, message },
+        notifications: {
+          counter: state.notifications.counter + 1,
+          tooltips: [...state.notifications.tooltips, tooltip],
+        },
       };
     default:
       return state;
