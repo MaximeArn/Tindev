@@ -128,6 +128,7 @@ export interface AppProps {
   wsConnection: Function;
   showNavbar: boolean;
   getProjects: Function;
+  getNotifications: Function;
   login: boolean;
   register: boolean;
   user: { email: string; username: string } | null;

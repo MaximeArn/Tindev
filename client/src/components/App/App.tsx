@@ -28,6 +28,7 @@ function App({
   login,
   register,
   getProjects,
+  getNotifications,
   user,
 }: AppProps) {
   useEffect(() => {
@@ -35,8 +36,11 @@ function App({
   }, []);
 
   useEffect(() => {
-    user && getProjects();
-    user && wsConnection();
+    if (user) {
+      getProjects();
+      wsConnection();
+      getNotifications();
+    }
   }, [user]);
 
   return (
