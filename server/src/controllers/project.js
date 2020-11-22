@@ -51,6 +51,7 @@ module.exports = {
     }
   },
   apply: async (sockets, { body, cookies: { token } }, res, next) => {
+    console.log("APPLY CONTROLLER CALLED");
     try {
       const { id, username } = await tokenValidator(token, next);
       const { owner, project } = await applyValidator({ body, id }, next);
@@ -72,10 +73,14 @@ module.exports = {
           tooltips: [...owner.notifications.tooltips, { tooltip }],
         };
 
-        const [updatedProject, updatedOwner] = await Promise.all([
-          updateProject,
+        const [{ notifications }] = await Promise.all([
           owner.save(),
+          updateProject,
         ]);
+
+        const notification = notifications.tooltips.slice(-1).pop();
+
+        console.log("LAST NOTIF FOUND :", notification);
 
         sockets[owner].socket.emit("notification", tooltip);
 
