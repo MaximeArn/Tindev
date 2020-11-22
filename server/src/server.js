@@ -19,6 +19,7 @@ const {
   categoriesRouter,
   projectRouter,
   searchRouter,
+  notificationsRouter,
 } = require("./router");
 
 const PORT = process.env.PORT || 3000;
@@ -35,6 +36,7 @@ server.use("/project", projectRouter(connectedUsers));
 server.use("/categories", categoriesRouter);
 server.use("/users", usersRouter);
 server.use("/search", searchRouter);
+server.use("/notifications", notificationsRouter);
 server.use(errorHandler);
 server.use(notFound);
 
