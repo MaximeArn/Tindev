@@ -51,7 +51,6 @@ module.exports = {
     }
   },
   apply: async (sockets, { body, cookies: { token } }, res, next) => {
-    console.log("APPLY CONTROLLER CALLED");
     try {
       const { id, username } = await tokenValidator(token, next);
       const { owner, project } = await applyValidator({ body, id }, next);
@@ -59,6 +58,7 @@ module.exports = {
 
       if (project && id) {
         const { _id, applicants } = project;
+        const { counter, tooltips } = owner.notifications;
         const { message } = body;
 
         const updateProject = Project.findOneAndUpdate(
@@ -69,20 +69,21 @@ module.exports = {
         );
 
         owner.notifications = {
-          counter: owner.notifications.counter + 1,
-          tooltips: [...owner.notifications.tooltips, { tooltip }],
+          counter: parseInt(counter + 1),
+          tooltips: [...tooltips, { tooltip }],
         };
 
-        const [{ notifications }] = await Promise.all([
+        const [{ username: projectOwner, notifications }] = await Promise.all([
           owner.save(),
           updateProject,
         ]);
 
         const notification = notifications.tooltips.slice(-1).pop();
 
-        console.log("LAST NOTIF FOUND :", notification);
-
-        sockets[owner].socket.emit("notification", tooltip);
+        sockets[projectOwner].socket.emit("notification", {
+          ...notification,
+          createdAt: notification._id.getTimestamp(),
+        });
 
         return res.status(200).json({
           msg: "Thank you for your apply.",

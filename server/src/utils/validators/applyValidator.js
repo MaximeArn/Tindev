@@ -7,8 +7,11 @@ module.exports = async ({ body, id }, next) => {
   const { appliant, message, project: projectId } = body;
 
   try {
-    const { _id, applicants } = await Project.findOne({ _id: projectId });
-    const owner = await User.findOne({ username: project.author });
+    const { _id, applicants, author } = await Project.findOne({
+      _id: projectId,
+    });
+
+    const owner = await User.findOne({ username: author });
 
     if (!appliant) throw new ApplyError("User not found", 403);
 

@@ -18,7 +18,10 @@ const userSchema = new Schema(
     avatar: String,
     about: String,
     experience: String,
-    notifications: { counter: Number, tooltips: [{ tooltip: String }] },
+    notifications: {
+      counter: { type: String, default: 0 },
+      tooltips: [{ tooltip: String }],
+    },
   },
   { collation: { locale: "en", strength: 2 }, timestamps: true }
 );
