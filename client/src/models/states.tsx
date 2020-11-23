@@ -150,6 +150,7 @@ export interface NavState {
   setAccountMenu: Function;
   setMobileMenu: Function;
   setMainMenu: Function;
+  setTrayStatus: Function;
 }
 
 export interface HomeProps {
@@ -203,4 +204,5 @@ export interface MessageState {
 
 export interface NotificationState {
   notifications: Notification;
+  tray: boolean;
 }

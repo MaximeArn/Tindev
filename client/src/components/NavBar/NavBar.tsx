@@ -39,6 +39,7 @@ const NavBar = ({
   setAccountMenu,
   setMobileMenu,
   setMainMenu,
+  setTrayStatus,
 }: NavState) => {
   const searchBar = useRef<HTMLInputElement>(null);
   const classes = useStyles();

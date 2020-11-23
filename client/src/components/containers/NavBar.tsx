@@ -35,6 +35,8 @@ const mapDispatch = (dispatch: Dispatch<AnyAction>, { history }: OwnProps) => {
       dispatch({ type: "DISCONNECT_USER" });
       history.push("/");
     },
+    setTrayStatus: (value: boolean) =>
+      dispatch({ type: "SET_TRAY_STATUS", value }),
     openModal: ({ modalStatus, modal }: AuthModalOpening) =>
       dispatch({ type: "SET_AUTH_MODAL_STATUS", modalStatus, modal }),
     getSearchValue: (value: string) =>

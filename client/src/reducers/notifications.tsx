@@ -6,6 +6,7 @@ const initialState: NotificationState = {
     counter: 0,
     tooltips: [],
   },
+  tray: false,
 };
 
 const notifications = (
@@ -23,6 +24,8 @@ const notifications = (
       };
     case "SET_NOTIFICATIONS":
       return { ...state, notifications };
+    case "SET_TRAY_STATUS":
+      return { ...state };
     default:
       return state;
   }
