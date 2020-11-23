@@ -1,8 +1,5 @@
 const { User } = require("../models");
 const tokenValidator = require("../utils/validators/tokenValidator");
-const {
-  mongo: { ObjectId },
-} = require("mongoose");
 
 module.exports = {
   notifications: async ({ cookies: { token } }, res, next) => {

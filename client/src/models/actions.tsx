@@ -5,6 +5,7 @@ import { Project } from "./projects";
 import { Category } from "./categories";
 import { User } from "./users";
 import { SocketServerResponse } from "./chat";
+import { Notification } from "./notifications";
 
 export interface AuthenticationAction {
   type: string;
@@ -103,4 +104,5 @@ export interface MessageAction {
 export interface NotificationAction {
   type: string;
   tooltip: string;
+  notifications: Notification;
 }

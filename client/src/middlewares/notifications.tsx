@@ -8,10 +8,14 @@ axios.defaults.withCredentials = true;
 
 const getNotifications = async (dispatch: Dispatch<AnyAction>) => {
   try {
-    const { data } = await axios.get("/notifications");
-    console.log(data);
-  } catch ({ response }) {
-    console.log(response);
+    const { data: notifications } = await axios.get("/notifications");
+    dispatch({ type: "SET_NOTIFICATIONS", notifications });
+  } catch ({
+    response: {
+      data: { msg },
+    },
+  }) {
+    console.log(msg);
   }
 };
 

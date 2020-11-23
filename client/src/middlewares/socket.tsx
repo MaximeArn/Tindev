@@ -8,7 +8,7 @@ import { SocketServerResponse } from "../models/chat";
 import Cookies from "js-cookie";
 import io from "socket.io-client";
 import { url } from "../environments/api";
-import { NotificationSocket } from "../models/socket";
+import { Notification } from "../models/notifications";
 
 axios.defaults.baseURL = url;
 axios.defaults.headers.post["Content-Type"] = "application/json";
@@ -28,8 +28,8 @@ const serverSocketListener = ({ getState, dispatch }: AxiosSubmit) => {
     dispatch({ type: "SET_CHAT_MESSAGES", message });
   });
 
-  socket.on("notification", (tooltip: NotificationSocket) =>
-    dispatch({ type: "SET_NOTIFICATIONS", tooltip })
+  socket.on("notification", (tooltip: Notification) =>
+    dispatch({ type: "SET_NOTIFICATION", tooltip })
   );
 };
 
