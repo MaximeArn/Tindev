@@ -58,7 +58,7 @@ module.exports = {
 
       if (project && id) {
         const { _id, applicants } = project;
-        const { counter, tooltips } = owner.notifications;
+        let { counter, tooltips } = owner.notifications;
         const { message } = body;
 
         const updateProject = Project.findOneAndUpdate(
@@ -69,7 +69,7 @@ module.exports = {
         );
 
         owner.notifications = {
-          counter: parseInt(counter + 1),
+          counter: ++counter,
           tooltips: [...tooltips, { tooltip, createdAt: Date.now() }],
         };
 

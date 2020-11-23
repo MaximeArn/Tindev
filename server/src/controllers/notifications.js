@@ -1,18 +1,28 @@
 const { User } = require("../models");
 const tokenValidator = require("../utils/validators/tokenValidator");
+const {
+  mongo: { ObjectId },
+} = require("mongoose");
 
 module.exports = {
   notifications: async ({ cookies: { token } }, res, next) => {
-    console.log("notifications called");
     try {
       const { id } = await tokenValidator(token, next);
 
       if (id) {
-        const { notifications } = await User.findById(id, {
+        const {
+          notifications: { tooltips, counter },
+        } = await User.findById(id, {
           notifications: 1,
-        }).sort({ notifications: { tooltips: "desc" } });
-        console.log("NOTIFS : ", notifications);
-        return res.status(200).json(notifications);
+        });
+
+        return res.status(200).json({
+          counter,
+          tooltips: tooltips.sort(
+            ({ createdAt: createdAt1 }, { createdAt: createdAt2 }) =>
+              createdAt1 > createdAt2 ? -1 : 1
+          ),
+        });
       }
     } catch (error) {
       next(error);
