@@ -10,12 +10,8 @@ const getNotifications = async (dispatch: Dispatch<AnyAction>) => {
   try {
     const { data: notifications } = await axios.get("/notifications");
     dispatch({ type: "SET_NOTIFICATIONS", notifications });
-  } catch ({
-    response: {
-      data: { msg },
-    },
-  }) {
-    console.log(msg);
+  } catch ({ response }) {
+    console.log(response);
   }
 };
 

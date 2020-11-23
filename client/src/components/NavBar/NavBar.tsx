@@ -20,6 +20,7 @@ import useStyles from "../../styles/MUI/navbar";
 import renderMainMenu from "./Menus/mainMenu";
 import renderProfileMenu from "./Menus/profileMenu";
 import renderMobileAuthMenu from "./Menus/mobileAuthMenu";
+import NotificationTray from "../Notifications/NotificationsTray";
 import "./navBar.scss";
 
 const NavBar = ({
@@ -123,7 +124,7 @@ const NavBar = ({
 
           <div className={classes.grow} />
           <div className={classes.sectionDesktop}>
-            <IconButton color="inherit">
+            <IconButton onClick={() => console.log("oki")} color="inherit">
               <Badge badgeContent={counter && counter} color="secondary">
                 <NotificationsIcon />
               </Badge>
