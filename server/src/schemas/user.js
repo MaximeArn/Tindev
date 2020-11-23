@@ -19,7 +19,7 @@ const userSchema = new Schema(
     about: String,
     experience: String,
     notifications: {
-      counter: { type: String, default: 0 },
+      counter: { type: Number, default: 0 },
       tooltips: [{ tooltip: String, createdAt: Date }],
     },
   },
