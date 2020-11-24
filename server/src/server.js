@@ -22,8 +22,8 @@ const {
   notificationsRouter,
 } = require("./router");
 
-const PORT = process.env.PORT || 3000;
-const SOCKET = process.env.SOCKET || 3001;
+const PORT = process.env.PORT || 7000;
+const SOCKET = process.env.SOCKET || 6000;
 const ioNameSpace = io.of("/chat");
 const connectedUsers = {};
 

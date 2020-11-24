@@ -21,7 +21,7 @@ const deleteNotification = async (
 ) => {
   try {
     const { data: notifications } = await axios.get(`/notifications/${id}`);
-    console.log(notifications);
+    dispatch({ type: "SET_NOTIFICATIONS", notifications });
   } catch ({ response }) {
     console.log(response);
   }

@@ -28,6 +28,7 @@ const NotificationsTray = ({
             <div className="notification-content-container">{tooltip}</div>
             <div>
               <CloseIcon
+                style={{ cursor: "pointer" }}
                 onClick={() => deleteNotification(_id)}
                 fontSize="small"
               />

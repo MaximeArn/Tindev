@@ -25,10 +25,28 @@ module.exports = {
       next(error);
     }
   },
-  deleteNotification: async ({ cookies: { token } }, res, next) => {
-    console.log("DELETE NOTIFICATION METHOD CALLED");
+  deleteNotification: async (
+    { params: { id }, cookies: { token } },
+    res,
+    next
+  ) => {
     try {
-      const { id } = await tokenValidator(token, next);
+      const { id: userId } = await tokenValidator(token, next);
+
+      if (userId) {
+        const user = await User.findById(userId);
+        const {
+          notifications: { tooltips },
+        } = user;
+
+        user.notifications.tooltips = tooltips.filter(
+          ({ _id }) => !(_id == id)
+        );
+
+        const { notifications } = await user.save();
+
+        return res.status(200).json(notifications);
+      }
     } catch (error) {
       next(error);
     }
