@@ -7,24 +7,20 @@ const NotificationsTray = ({
   tooltips,
   setTrayStatus,
 }: NotificationTrayProps) => {
-  const tray = useRef<HTMLDivElement>(null);
+  const trayContent = useRef<any>(null);
 
   const clickHandler = (event: MouseEvent) => {
-    console.log("CLICK LISTENER CALLED");
-    !(event.target === tray.current) && setTrayStatus();
+    !trayContent.current?.contains(event.target) && setTrayStatus();
   };
 
   useEffect(() => {
-    document.addEventListener("click", clickHandler, true);
+    document.addEventListener("click", clickHandler);
 
-    return () => {
-      console.log("CLEANING FUNCTION CALLED");
-      document.removeEventListener("click", clickHandler, true);
-    };
+    return () => document.removeEventListener("click", clickHandler);
   }, []);
 
   return (
-    <div className="notification-tray" ref={tray}>
+    <div ref={trayContent} className="notification-tray">
       {tooltips.length > 0 &&
         tooltips.map(({ _id, tooltip }) => (
           <div key={_id} className="notification-content">
