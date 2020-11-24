@@ -140,6 +140,7 @@ export interface NavState {
   focused: boolean;
   logout: Function;
   counter: number;
+  tray: boolean;
   account: Element | null | undefined;
   mobile: Element | null | undefined;
   main: Element | null | undefined;

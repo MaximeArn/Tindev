@@ -12,6 +12,7 @@ const mapState = ({
   navbar: { account, mobile, main },
   notifications: {
     notifications: { counter },
+    tray,
   },
 }: State) => ({
   user,
@@ -21,6 +22,7 @@ const mapState = ({
   mobile,
   main,
   counter,
+  tray,
 });
 
 const mapDispatch = (dispatch: Dispatch<AnyAction>, { history }: OwnProps) => {

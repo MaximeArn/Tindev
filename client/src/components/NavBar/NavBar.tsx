@@ -31,6 +31,7 @@ const NavBar = ({
   mobile,
   main,
   counter,
+  tray,
   getSearchValue,
   setSearchBarStatus,
   logout,
@@ -125,11 +126,15 @@ const NavBar = ({
 
           <div className={classes.grow} />
           <div className={classes.sectionDesktop}>
-            <IconButton onClick={() => setTrayStatus()} color="inherit">
-              <Badge badgeContent={counter && counter} color="secondary">
-                <NotificationsIcon />
-              </Badge>
-            </IconButton>
+            <div className="bell-container">
+              <IconButton onClick={() => setTrayStatus()} color="inherit">
+                <Badge badgeContent={counter && counter} color="secondary">
+                  <NotificationsIcon />
+                </Badge>
+              </IconButton>
+              {tray && <NotificationTray />}
+            </div>
+
             {!user ? (
               <div className={classes.authLinkContainer}>
                 <Typography
