@@ -25,7 +25,7 @@ const notifications = (
     case "SET_NOTIFICATIONS":
       return { ...state, notifications };
     case "SET_TRAY_STATUS":
-      return { ...state };
+      return { ...state, tray: !state.tray };
     default:
       return state;
   }

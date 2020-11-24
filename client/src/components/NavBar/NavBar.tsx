@@ -125,7 +125,7 @@ const NavBar = ({
 
           <div className={classes.grow} />
           <div className={classes.sectionDesktop}>
-            <IconButton onClick={() => console.log("oki")} color="inherit">
+            <IconButton onClick={() => setTrayStatus()} color="inherit">
               <Badge badgeContent={counter && counter} color="secondary">
                 <NotificationsIcon />
               </Badge>
