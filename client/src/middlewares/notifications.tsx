@@ -15,14 +15,29 @@ const getNotifications = async (dispatch: Dispatch<AnyAction>) => {
   }
 };
 
+const deleteNotification = async (
+  dispatch: Dispatch<AnyAction>,
+  id: string
+) => {
+  try {
+    const { data: notifications } = await axios.get(`/notifications/${id}`);
+    console.log(notifications);
+  } catch ({ response }) {
+    console.log(response);
+  }
+};
+
 const notifications: Middleware = ({ getState, dispatch }) => (next) => (
   action
 ) => {
-  const { type } = action;
+  const { type, id } = action;
 
   switch (type) {
     case "GET_NOTIFICATIONS":
       getNotifications(dispatch);
+      break;
+    case "DELETE_NOTIFICATION":
+      deleteNotification(dispatch, id);
       break;
     default:
       next(action);

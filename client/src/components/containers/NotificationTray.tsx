@@ -13,6 +13,8 @@ const mapState = ({
 
 const mapDispatch = (dispatch: Dispatch<AnyAction>) => ({
   setTrayStatus: () => dispatch({ type: "SET_TRAY_STATUS" }),
+  deleteNotification: (id: string) =>
+    dispatch({ type: "DELETE_NOTIFICATION", id }),
 });
 
 export default connect(mapState, mapDispatch)(NotificationTray);

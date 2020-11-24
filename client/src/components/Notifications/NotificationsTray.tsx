@@ -6,6 +6,7 @@ import { NotificationTrayProps } from "../../models/notifications";
 const NotificationsTray = ({
   tooltips,
   setTrayStatus,
+  deleteNotification,
 }: NotificationTrayProps) => {
   const trayContent = useRef<any>(null);
 
@@ -26,7 +27,10 @@ const NotificationsTray = ({
           <div key={_id} className="notification-content">
             <div className="notification-content-container">{tooltip}</div>
             <div>
-              <CloseIcon fontSize="small" />
+              <CloseIcon
+                onClick={() => deleteNotification(_id)}
+                fontSize="small"
+              />
             </div>
           </div>
         ))}
