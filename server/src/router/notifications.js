@@ -1,6 +1,10 @@
 const router = require("express").Router();
-const { notifications } = require("../controllers/notifications");
+const {
+  notifications,
+  deleteNotification,
+} = require("../controllers/notifications");
 
 router.get("/", notifications);
+router.get("/:id", deleteNotification);
 
 module.exports = router;

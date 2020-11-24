@@ -1,5 +1,5 @@
 const { User } = require("../models");
-const tokenValidator = require("../utils/validators/tokenValidator");
+const { tokenValidator } = require("../utils/validators");
 
 module.exports = {
   notifications: async ({ cookies: { token } }, res, next) => {
@@ -21,6 +21,14 @@ module.exports = {
           ),
         });
       }
+    } catch (error) {
+      next(error);
+    }
+  },
+  deleteNotification: async ({ cookies: { token } }, res, next) => {
+    console.log("DELETE NOTIFICATION METHOD CALLED");
+    try {
+      const { id } = await tokenValidator(token, next);
     } catch (error) {
       next(error);
     }
