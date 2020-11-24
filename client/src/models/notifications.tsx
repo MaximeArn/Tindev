@@ -7,3 +7,7 @@ export interface Notification {
   counter: number;
   tooltips: Tooltip[] | [];
 }
+
+export interface NotificationTrayProps {
+  tooltips: Tooltip[];
+}
