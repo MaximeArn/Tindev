@@ -20,7 +20,7 @@ import useStyles from "../../styles/MUI/navbar";
 import renderMainMenu from "./Menus/mainMenu";
 import renderProfileMenu from "./Menus/profileMenu";
 import renderMobileAuthMenu from "./Menus/mobileAuthMenu";
-import NotificationTray from "../Notifications/NotificationsTray";
+import NotificationTray from "../containers/NotificationTray";
 import "./navBar.scss";
 
 const NavBar = ({
