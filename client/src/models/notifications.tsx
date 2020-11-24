@@ -10,4 +10,5 @@ export interface Notification {
 
 export interface NotificationTrayProps {
   tooltips: Tooltip[];
+  setTrayStatus: Function;
 }

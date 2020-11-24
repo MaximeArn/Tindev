@@ -1,4 +1,5 @@
 import { connect } from "react-redux";
+import { AnyAction, Dispatch } from "redux";
 import { State } from "../../models/states";
 import NotificationTray from "../Notifications/NotificationsTray";
 
@@ -10,4 +11,8 @@ const mapState = ({
   tooltips,
 });
 
-export default connect(mapState)(NotificationTray);
+const mapDispatch = (dispatch: Dispatch<AnyAction>) => ({
+  setTrayStatus: () => dispatch({ type: "SET_TRAY_STATUS" }),
+});
+
+export default connect(mapState, mapDispatch)(NotificationTray);
