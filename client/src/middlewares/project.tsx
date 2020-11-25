@@ -182,6 +182,7 @@ const getProject = (dispatch: Dispatch<AnyAction>, slug: string) => {
 };
 
 const leaveProject = (dispatch: Dispatch<AnyAction>, id: string) => {
+  console.log("AH OKI");
   dispatch({ type: "SET_CONTRIBUTOR_REMOVING_LOADER", value: true });
   axios
     .patch(`/project/contributor`, { id })

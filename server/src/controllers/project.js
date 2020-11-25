@@ -179,7 +179,7 @@ module.exports = {
       const { project, user } = await removeContributorValidator(id, next);
 
       if (project && userId) {
-        const {
+        let {
           notifications: { counter, tooltips },
         } = user;
 
@@ -196,16 +196,15 @@ module.exports = {
         };
 
         const updated = await project.save();
-        const updatedOwner = await user.save();
+        const {
+          username: owner,
+          notifications: { tooltips: ownerTooltips },
+        } = await user.save();
 
-        const notification = updatedOwner.notifications.tooltips
-          .slice(-1)
-          .pop();
+        const notification = ownerTooltips.slice(-1).pop();
 
-        sockets[updatedOwner.username].socket.emit(
-          "notification",
-          notification
-        );
+        sockets[owner].socket.emit("notification", notification);
+
         return res.status(200).json(updated);
       }
     } catch (error) {

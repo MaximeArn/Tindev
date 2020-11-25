@@ -28,17 +28,16 @@ const projectRouterWrapper = (connectedUsers) => {
   router.get("/:name", getProject);
   router.post("/create", upload.single("image"), create);
   router.post("/verify_owner", verifyOwner);
-  router.patch("/accept_applicant", acceptApplicant);
-  router.patch("/decline_applicant", declineApplicant);
-  router.delete("/:id", deleteById);
-  router.patch("/:id", patchUpload.single("image"), updateById);
   router.post("/apply", (req, res, next) =>
     apply(connectedUsers, req, res, next)
   );
   router.patch("/contributor", (req, res, next) =>
     deleteContributor(connectedUsers, req, res, next)
   );
-
+  router.patch("/accept_applicant", acceptApplicant);
+  router.patch("/decline_applicant", declineApplicant);
+  router.patch("/:id", patchUpload.single("image"), updateById);
+  router.delete("/:id", deleteById);
   return router;
 };
 
