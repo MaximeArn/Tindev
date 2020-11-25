@@ -1,16 +1,11 @@
 const { Project, User } = require("../../models");
 const ProjectError = require("../CustomError");
-const UserError = require("../CustomError");
-module.exports = async (id, userId, next) => {
+module.exports = async (id, next) => {
   try {
-    const [project, user] = await Promise.all([
-      Project.findById(id),
-      User.findById(userId),
-    ]);
+    const project = await Project.findById(id);
+    const user = await User.findOne({ username: project.author });
 
     if (!project) throw new ProjectError("This project does not exist.", 404);
-
-    if (!user) throw new UserError("This user does not exist", 404);
 
     return { project, user };
   } catch (error) {

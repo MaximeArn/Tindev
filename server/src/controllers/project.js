@@ -182,17 +182,22 @@ module.exports = {
           notifications: { counter, tooltips },
         } = user;
 
+        project.contributors.pull(userId);
         user.notifications = {
           counter: ++counter,
           tooltips: [
             ...tooltips,
-            { tooltip: `${username} has left your project ${project.title}` },
+            {
+              tooltip: `${username} has left your project ${project.title}`,
+              createdAt: Date.now(),
+            },
           ],
         };
-        // project.contributors.pull(userId);
-        // const updated = await project.save();
 
-        // return res.status(200).json(updated);
+        const updated = await project.save();
+        const notification = await user.save();
+
+        return res.status(200).json(updated);
       }
     } catch (error) {
       next(error);
