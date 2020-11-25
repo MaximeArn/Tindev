@@ -169,6 +169,7 @@ module.exports = {
     }
   },
   deleteContributor: async (
+    sockets,
     { body: { id }, cookies: { token } },
     res,
     next
@@ -195,8 +196,16 @@ module.exports = {
         };
 
         const updated = await project.save();
-        const notification = await user.save();
+        const updatedOwner = await user.save();
 
+        const notification = updatedOwner.notifications.tooltips
+          .slice(-1)
+          .pop();
+
+        sockets[updatedOwner.username].socket.emit(
+          "notification",
+          notification
+        );
         return res.status(200).json(updated);
       }
     } catch (error) {
