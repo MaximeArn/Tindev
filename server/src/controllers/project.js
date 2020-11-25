@@ -174,14 +174,25 @@ module.exports = {
     next
   ) => {
     try {
-      const { id: userId } = await tokenValidator(token, next);
-      const project = await removeContributorValidator(id, next);
+      const { id: userId, username } = await tokenValidator(token, next);
+      const { project, user } = await removeContributorValidator(id, next);
 
       if (project && userId) {
-        project.contributors.pull(userId);
-        const updated = await project.save();
+        const {
+          notifications: { counter, tooltips },
+        } = user;
 
-        return res.status(200).json(updated);
+        user.notifications = {
+          counter: ++counter,
+          tooltips: [
+            ...tooltips,
+            { tooltip: `${username} has left your project ${project.title}` },
+          ],
+        };
+        // project.contributors.pull(userId);
+        // const updated = await project.save();
+
+        // return res.status(200).json(updated);
       }
     } catch (error) {
       next(error);
