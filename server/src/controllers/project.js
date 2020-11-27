@@ -1,6 +1,5 @@
-/** @format */
-
 const { Project, User } = require("../models");
+const { setNotification } = require("./notifications");
 const {
   projectValidator,
   applyValidator,
@@ -54,35 +53,19 @@ module.exports = {
     try {
       const { id, username } = await tokenValidator(token, next);
       const { owner, project } = await applyValidator({ body, id }, next);
-      const tooltip = `${username} applied to your project`;
 
       if (project && id) {
         const { _id, applicants } = project;
-        let { counter, tooltips } = owner.notifications;
         const { message } = body;
+        const tooltip = `${username} applied to your project`;
+        setNotification(sockets, owner, tooltip, next);
 
-        const updateProject = Project.findOneAndUpdate(
+        await Project.findOneAndUpdate(
           { _id },
           {
             applicants: [...applicants, { _id: id, username, message }],
           }
         );
-
-        tooltips.unshift({ tooltip, createdAt: Date.now() });
-
-        owner.notifications = {
-          counter: ++counter,
-          tooltips,
-        };
-
-        const [{ username: projectOwner, notifications }] = await Promise.all([
-          owner.save(),
-          updateProject,
-        ]);
-
-        console.log(notifications);
-
-        sockets[projectOwner].socket.emit("notification", notifications);
 
         return res.status(200).json({
           msg: "Thank you for your apply.",
@@ -185,6 +168,7 @@ module.exports = {
         } = user;
 
         project.contributors.pull(userId);
+
         user.notifications = {
           counter: ++counter,
           tooltips: [

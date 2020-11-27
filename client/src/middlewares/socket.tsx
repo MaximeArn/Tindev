@@ -28,8 +28,8 @@ const serverSocketListener = ({ getState, dispatch }: AxiosSubmit) => {
     dispatch({ type: "SET_CHAT_MESSAGES", message });
   });
 
-  socket.on("notification", (tooltip: Notification) =>
-    dispatch({ type: "SET_NOTIFICATION", tooltip })
+  socket.on("notification", (notifications: Notification) =>
+    dispatch({ type: "SET_NOTIFICATIONS", notifications })
   );
 };
 

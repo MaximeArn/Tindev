@@ -51,4 +51,18 @@ module.exports = {
       next(error);
     }
   },
+  setNotification: async (sockets, owner, tooltip, next) => {
+    try {
+      let { counter, tooltips } = owner.notifications;
+      tooltips.unshift({ tooltip, createdAt: Date.now() });
+
+      owner.notifications = { counter: ++counter, tooltips };
+
+      const { notifications, username } = await owner.save();
+
+      sockets[username].socket.emit("notification", notifications);
+    } catch (error) {
+      next(error);
+    }
+  },
 };

@@ -11,17 +11,9 @@ const initialState: NotificationState = {
 
 const notifications = (
   state = initialState,
-  { type, tooltip, notifications }: NotificationAction
+  { type, notifications }: NotificationAction
 ) => {
   switch (type) {
-    case "SET_NOTIFICATION":
-      return {
-        ...state,
-        notifications: {
-          counter: state.notifications.counter + 1,
-          tooltips: [...state.notifications.tooltips, tooltip],
-        },
-      };
     case "SET_NOTIFICATIONS":
       return { ...state, notifications };
     case "SET_TRAY_STATUS":
