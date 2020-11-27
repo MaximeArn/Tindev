@@ -128,7 +128,7 @@ const NavBar = ({
           <div className={classes.sectionDesktop}>
             <div className="bell-container">
               <IconButton onClick={() => setTrayStatus()} color="inherit">
-                <Badge badgeContent={counter && counter} color="secondary">
+                <Badge badgeContent={tray ? 0 : counter} color="secondary">
                   <NotificationsIcon />
                 </Badge>
               </IconButton>
