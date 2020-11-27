@@ -52,7 +52,6 @@ module.exports = {
     }
   },
   setNotification: async (sockets, owner, tooltip, next) => {
-    console.log("SET NOTIFICATION CONTROLLER MEHOD CALLED");
     try {
       let { counter, tooltips } = owner.notifications;
       tooltips.unshift({ tooltip, createdAt: Date.now() });
@@ -64,6 +63,24 @@ module.exports = {
       sockets[username].socket.emit("notification", notifications);
     } catch (error) {
       if (!next) throw new Error(error);
+      next(error);
+    }
+  },
+  reset: async ({ cookies: { token } }, res, next) => {
+    try {
+      const { id } = await tokenValidator(token, next);
+      const owner = await User.findById(id);
+      const { tooltips } = owner.notifications;
+
+      owner.notifications = {
+        counter: 0,
+        tooltips,
+      };
+
+      const { notifications } = await owner.save();
+
+      return res.status(200).json(notifications);
+    } catch (error) {
       next(error);
     }
   },
