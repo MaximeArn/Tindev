@@ -1,4 +1,4 @@
-const { Project, User } = require("../models");
+const { Project } = require("../models");
 const { setNotification } = require("./notifications");
 const {
   projectValidator,
