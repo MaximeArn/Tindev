@@ -68,21 +68,21 @@ module.exports = {
           }
         );
 
+        tooltips.unshift({ tooltip, createdAt: Date.now() });
+
         owner.notifications = {
           counter: ++counter,
-          tooltips: [...tooltips, { tooltip, createdAt: Date.now() }],
+          tooltips,
         };
 
-        const [
-          {
-            username: projectOwner,
-            notifications: { tooltips: notifications },
-          },
-        ] = await Promise.all([owner.save(), updateProject]);
+        const [{ username: projectOwner, notifications }] = await Promise.all([
+          owner.save(),
+          updateProject,
+        ]);
 
-        const notification = notifications.slice(-1).pop();
+        console.log(notifications);
 
-        sockets[projectOwner].socket.emit("notification", notification);
+        sockets[projectOwner].socket.emit("notification", notifications);
 
         return res.status(200).json({
           msg: "Thank you for your apply.",
@@ -177,6 +177,7 @@ module.exports = {
     try {
       const { id: userId, username } = await tokenValidator(token, next);
       const { project, user } = await removeContributorValidator(id, next);
+      const tooltip = `${username} has left your project ${project.title}`;
 
       if (project && userId) {
         let {
@@ -189,7 +190,7 @@ module.exports = {
           tooltips: [
             ...tooltips,
             {
-              tooltip: `${username} has left your project ${project.title}`,
+              tooltip,
               createdAt: Date.now(),
             },
           ],
