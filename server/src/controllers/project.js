@@ -163,32 +163,11 @@ module.exports = {
       const tooltip = `${username} has left your project ${project.title}`;
 
       if (project && userId) {
-        let {
-          notifications: { counter, tooltips },
-        } = user;
+        setNotification(sockets, user, tooltip, next);
 
         project.contributors.pull(userId);
 
-        user.notifications = {
-          counter: ++counter,
-          tooltips: [
-            ...tooltips,
-            {
-              tooltip,
-              createdAt: Date.now(),
-            },
-          ],
-        };
-
         const updated = await project.save();
-        const {
-          username: owner,
-          notifications: { tooltips: ownerTooltips },
-        } = await user.save();
-
-        const notification = ownerTooltips.slice(-1).pop();
-
-        sockets[owner].socket.emit("notification", notification);
 
         return res.status(200).json(updated);
       }
