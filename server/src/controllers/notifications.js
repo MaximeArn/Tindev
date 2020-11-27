@@ -52,6 +52,7 @@ module.exports = {
     }
   },
   setNotification: async (sockets, owner, tooltip, next) => {
+    console.log("SET NOTIFICATION CONTROLLER MEHOD CALLED");
     try {
       let { counter, tooltips } = owner.notifications;
       tooltips.unshift({ tooltip, createdAt: Date.now() });

@@ -14,10 +14,12 @@ module.exports = {
         const date = Date.now();
         const user = await User.findOne({ _id: id });
         const { id: room } = connectedUsers[toName];
-        const tooltip = `${from} sent you a message`;
+        const notification = `${from} sent you a message`;
         const owner = await User.findById(toId);
 
-        setNotification(connectedUsers, owner, tooltip, null);
+        !owner.notifications.tooltips.find(
+          ({ tooltip }) => tooltip === notification
+        ) && setNotification(connectedUsers, owner, notification, null);
 
         user.messages.push({ to, message, date });
         await user.save();
