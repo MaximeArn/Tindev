@@ -28,10 +28,11 @@ const deleteNotification = async (
 
 const resetNotifications = async (dispatch: Dispatch<AnyAction>) => {
   try {
-    const notifications = await axios.patch("/notifications/reset");
+    const { data: notifications } = await axios.patch("/notifications/reset");
     console.log(notifications);
+    dispatch({ type: "SET_NOTIFICATIONS", notifications });
   } catch ({ response }) {
-    console.error(response.data);
+    console.error(response);
   }
 };
 
