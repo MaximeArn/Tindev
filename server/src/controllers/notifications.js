@@ -63,10 +63,7 @@ module.exports = {
 
       sockets[username].socket.emit("notification", notifications);
     } catch (error) {
-      if (!next) {
-        console.log(error.message);
-        throw new Error(error);
-      }
+      if (!next) throw new Error(error);
       next(error);
     }
   },

@@ -1,6 +1,5 @@
 import { AnyAction, Dispatch, Middleware } from "redux";
 import { url } from "../environments/api";
-import { AxiosSubmit } from "../models/axios";
 import axios from "axios";
 axios.defaults.baseURL = url;
 axios.defaults.headers.post["Content-Type"] = "application/json";
@@ -27,6 +26,15 @@ const deleteNotification = async (
   }
 };
 
+const resetNotifications = async (dispatch: Dispatch<AnyAction>) => {
+  try {
+    const notifications = await axios.patch("/notifications/reset");
+    console.log(notifications);
+  } catch ({ response }) {
+    console.error(response.data);
+  }
+};
+
 const notifications: Middleware = ({ getState, dispatch }) => (next) => (
   action
 ) => {
@@ -38,6 +46,9 @@ const notifications: Middleware = ({ getState, dispatch }) => (next) => (
       break;
     case "DELETE_NOTIFICATION":
       deleteNotification(dispatch, id);
+      break;
+    case "RESET_NOTIFICATION_COUNTER":
+      resetNotifications(dispatch);
       break;
     default:
       next(action);

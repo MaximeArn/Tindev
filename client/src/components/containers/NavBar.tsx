@@ -38,6 +38,7 @@ const mapDispatch = (dispatch: Dispatch<AnyAction>, { history }: OwnProps) => {
       history.push("/");
     },
     setTrayStatus: () => dispatch({ type: "SET_TRAY_STATUS" }),
+    resetNotifications: () => dispatch({ type: "RESET_NOTIFICATION_COUNTER" }),
     openModal: ({ modalStatus, modal }: AuthModalOpening) =>
       dispatch({ type: "SET_AUTH_MODAL_STATUS", modalStatus, modal }),
     getSearchValue: (value: string) =>
@@ -50,4 +51,5 @@ const mapDispatch = (dispatch: Dispatch<AnyAction>, { history }: OwnProps) => {
       dispatch({ type: "SET_MAIN_MENU", status }),
   };
 };
+
 export default withRouter(connect(mapState, mapDispatch)(NavBar));
