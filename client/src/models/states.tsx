@@ -152,7 +152,6 @@ export interface NavState {
   setMobileMenu: Function;
   setMainMenu: Function;
   setTrayStatus: Function;
-  resetNotifications: Function;
 }
 
 export interface HomeProps {

@@ -12,7 +12,10 @@ const mapState = ({
 });
 
 const mapDispatch = (dispatch: Dispatch<AnyAction>) => ({
-  setTrayStatus: () => dispatch({ type: "SET_TRAY_STATUS" }),
+  setTrayStatus: () => {
+    dispatch({ type: "RESET_NOTIFICATION_COUNTER" });
+    dispatch({ type: "SET_TRAY_STATUS" });
+  },
   deleteNotification: (id: string) =>
     dispatch({ type: "DELETE_NOTIFICATION", id }),
 });

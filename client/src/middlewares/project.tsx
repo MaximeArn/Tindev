@@ -89,7 +89,6 @@ const acceptApplicant = ({
   axios
     .patch("/project/accept_applicant", { projectId, userId, username })
     .then(({ data: project }) => {
-      console.log("UPDATED PROJECT ON APPLICANT CONFIRMATION : ", project);
       dispatch({ type: "SET_PROJECT", project });
     })
     .catch((err) => console.log(err))

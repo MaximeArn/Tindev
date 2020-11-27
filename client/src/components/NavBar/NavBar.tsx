@@ -41,7 +41,6 @@ const NavBar = ({
   setMobileMenu,
   setMainMenu,
   setTrayStatus,
-  resetNotifications,
 }: NavState) => {
   const searchBar = useRef<HTMLInputElement>(null);
   const classes = useStyles();
@@ -128,13 +127,7 @@ const NavBar = ({
           <div className={classes.grow} />
           <div className={classes.sectionDesktop}>
             <div className="bell-container">
-              <IconButton
-                onClick={() => {
-                  resetNotifications();
-                  setTrayStatus();
-                }}
-                color="inherit"
-              >
+              <IconButton onClick={() => setTrayStatus()} color="inherit">
                 <Badge badgeContent={counter && counter} color="secondary">
                   <NotificationsIcon />
                 </Badge>
