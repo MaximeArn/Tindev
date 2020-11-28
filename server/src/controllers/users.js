@@ -5,6 +5,7 @@ const {
   userValidator,
   userProfileValidator,
   userUpdateValidator,
+  deleteProfileValidator,
 } = require("../utils/validators");
 
 const usersController = {
@@ -100,6 +101,18 @@ const usersController = {
         return res
           .status(200)
           .json({ msg: "Profile successfully updated", user });
+      }
+    } catch (error) {
+      next(error);
+    }
+  },
+  deleteProfile: async ({ params: { id } }, res, next) => {
+    try {
+      const user = await deleteProfileValidator(id, next);
+
+      if (user) {
+        await user.remove();
+        return res.status(200).json({ msg: "Account successfully deleted" });
       }
     } catch (error) {
       next(error);

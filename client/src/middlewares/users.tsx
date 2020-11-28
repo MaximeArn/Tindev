@@ -102,7 +102,7 @@ const project: Middleware = ({ getState, dispatch }) => (next) => (action) => {
     case "UPDATE_USER_PROFILE":
       updateUserProfile({ getState, dispatch }, fieldName);
       break;
-    case "DELETE_USER_PROFILE":
+    case "DELETE_USER_ACCOUNT":
       deleteProfile(dispatch, id);
       break;
     default:

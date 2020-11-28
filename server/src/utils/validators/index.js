@@ -11,6 +11,7 @@ const projectUpdateValidator = require("./projectUpdateValidators");
 const removeContributorValidator = require("./removeContributorValidator");
 const userProfileValidator = require("./userProfileValidator");
 const userUpdateValidator = require("./userUpdateValidator");
+const deleteProfileValidator = require("./deleteProfileValidator");
 
 module.exports = {
   applicantValidator,
@@ -26,4 +27,5 @@ module.exports = {
   removeContributorValidator,
   userProfileValidator,
   userUpdateValidator,
+  deleteProfileValidator,
 };
