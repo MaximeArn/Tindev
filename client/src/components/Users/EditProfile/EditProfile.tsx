@@ -37,27 +37,32 @@ const EditProfile = ({
           {error && <div className="profile-edit-error">{error}</div>}
           {user && (
             <div className="profile">
-              {Object.entries(editProfile).map(([prop, value]) => {
-                const key = prop as keyof typeof EditProfile;
-                return (
-                  <div key={key} className="profile-container">
-                    <ProfileField
-                      updateUserProfile={updateUserProfile}
-                      name={key}
-                      loader={loader}
-                      inputValue={value}
-                      getEditProfileValue={getEditProfileValue}
-                      value={
-                        user[key]
-                          ? user[key]
-                          : key === "password"
-                          ? "Change your password"
-                          : "Not yet specified"
-                      }
-                    />
-                  </div>
-                );
-              })}
+              <div className="profile-edit-container">
+                {Object.entries(editProfile).map(([prop, value]) => {
+                  const key = prop as keyof typeof EditProfile;
+                  return (
+                    <div key={key} className="profile-container">
+                      <ProfileField
+                        updateUserProfile={updateUserProfile}
+                        name={key}
+                        loader={loader}
+                        inputValue={value}
+                        getEditProfileValue={getEditProfileValue}
+                        value={
+                          user[key]
+                            ? user[key]
+                            : key === "password"
+                            ? "Change your password"
+                            : "Not yet specified"
+                        }
+                      />
+                    </div>
+                  );
+                })}
+              </div>
+              <div className="profile-edit-delete-button">
+                <div>Close this account</div>
+              </div>
             </div>
           )}
         </>
