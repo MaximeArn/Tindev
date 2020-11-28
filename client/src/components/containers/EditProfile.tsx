@@ -32,6 +32,10 @@ const mapDispatch = (dispatch: Dispatch<AnyAction>) => ({
     }),
   updateUserProfile: (fieldName: string) =>
     dispatch({ type: "UPDATE_USER_PROFILE", fieldName }),
+  deleteAccount: (id: string) => {
+    console.log("DELETE ACCOUNT METHOD CALLED");
+    dispatch({ type: "DELETE_USER_ACCOUNT", id });
+  },
 });
 
 export default connect(mapState, mapDispatch)(EditProfile);

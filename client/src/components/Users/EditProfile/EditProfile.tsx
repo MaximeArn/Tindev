@@ -15,6 +15,7 @@ const EditProfile = ({
   updateUserProfile,
   getEditProfileValue,
   resetMessages,
+  deleteAccount,
 }: EditUserProfile) => {
   useEffect(() => {
     getUserProfile();
@@ -60,7 +61,10 @@ const EditProfile = ({
                   );
                 })}
               </div>
-              <div className="profile-edit-delete-button">
+              <div
+                className="profile-edit-delete-button"
+                onClick={() => deleteAccount(user._id)}
+              >
                 <div>Close this account</div>
               </div>
             </div>

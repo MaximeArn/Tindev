@@ -32,7 +32,6 @@ function App({
   user,
 }: AppProps) {
   useEffect(() => {
-    console.log("EMPTY DEPENDENCY USE EFFECT");
     verifyToken();
   }, []);
 

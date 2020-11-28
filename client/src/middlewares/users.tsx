@@ -79,10 +79,17 @@ const updateUserProfile = (
     });
 };
 
-const project: Middleware = ({ getState, dispatch }) => (next) => (action) => {
-  const { username, fieldName } = action;
+const deleteProfile = (dispatch: Dispatch<AnyAction>, id: string) => {
+  axios
+    .delete(`/users/${id}`)
+    .then(({ data: { msg } }) => console.log(msg))
+    .catch((error) => console.error(error));
+};
 
-  switch (action.type) {
+const project: Middleware = ({ getState, dispatch }) => (next) => (action) => {
+  const { type, username, fieldName, id } = action;
+
+  switch (type) {
     case "GET_USERS":
       getUsers(dispatch);
       break;
@@ -94,6 +101,9 @@ const project: Middleware = ({ getState, dispatch }) => (next) => (action) => {
       break;
     case "UPDATE_USER_PROFILE":
       updateUserProfile({ getState, dispatch }, fieldName);
+      break;
+    case "DELETE_USER_PROFILE":
+      deleteProfile(dispatch, id);
       break;
     default:
       next(action);
