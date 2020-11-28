@@ -22,7 +22,7 @@ const NotificationsTray = ({
 
   return (
     <div ref={trayContent} className="notification-tray">
-      {tooltips.length > 0 &&
+      {tooltips.length > 0 ? (
         tooltips.map(({ _id, tooltip }) => (
           <div key={_id} className="notification-content">
             <div className="notification-content-container">{tooltip}</div>
@@ -34,7 +34,12 @@ const NotificationsTray = ({
               />
             </div>
           </div>
-        ))}
+        ))
+      ) : (
+        <div className="notification-content">
+          <div className="notification-content-empty">No notifications</div>
+        </div>
+      )}
     </div>
   );
 };
