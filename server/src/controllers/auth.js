@@ -59,8 +59,10 @@ const authRouter = {
     }
   },
   verify: async ({ cookies: { token } }, res, next) => {
+    console.log("VERIFY METHOD");
     try {
       const { username, email } = await tokenValidator(token, next);
+      console.log("SHOULD BE AFTER TOKEN VALIDATOR METHOD");
       return email && username && res.status(200).json({ username, email });
     } catch (error) {
       next(error);

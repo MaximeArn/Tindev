@@ -1,5 +1,3 @@
-/** @format */
-
 require("dotenv").config();
 const express = require("express");
 const server = require("express")();
@@ -13,6 +11,7 @@ const { chatHandler } = require("./controllers/chat");
 const mongoDB = require("./config/database");
 const cors = require("cors");
 const corsSettings = require("./config/cors");
+const { tokenValidator } = require("./utils/validators");
 const {
   authRouter,
   usersRouter,
