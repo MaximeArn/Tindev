@@ -73,10 +73,10 @@ const retrieveToken = (dispatch: Dispatch<AnyAction>) => {
       .catch(({ response }) => console.log(response));
 };
 
-const logout = (next: Function, action: AuthMiddleware) => {
-  axios.get("/auth/logout").finally(() => {
+const logout = (dispatch: Dispatch<AnyAction>) => {
+  axios.delete("/auth/logout").finally(() => {
     Cookies.remove("token");
-    next(action);
+    dispatch({ type: "DISCONNECTION" });
   });
 };
 
@@ -94,7 +94,7 @@ const auth: Middleware = ({ getState, dispatch }) => (next) => (
       retrieveToken(dispatch);
       break;
     case "DISCONNECT_USER":
-      logout(next, action);
+      logout(dispatch);
       break;
     default:
       next(action);

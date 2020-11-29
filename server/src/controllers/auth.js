@@ -44,7 +44,7 @@ const authRouter = {
       const { username } = await tokenValidator(token, next);
 
       if (!username) {
-        return res.status(200).json({ message: "Socket was already deleted" });
+        return res.status(200).json({ message: "User was already logged out" });
       }
 
       const { socket } = connectedUsers[username];

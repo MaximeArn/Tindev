@@ -4,6 +4,7 @@ import { AnyAction, Dispatch, Middleware } from "redux";
 import { url } from "../environments/api";
 import axios from "axios";
 import { AxiosSubmit } from "../models/axios";
+import Cookies from "js-cookie";
 axios.defaults.baseURL = url;
 axios.defaults.headers.post["Content-Type"] = "application/json";
 axios.defaults.withCredentials = true;
@@ -84,11 +85,11 @@ const deleteProfile = (dispatch: Dispatch<AnyAction>, id: string) => {
   axios
     .delete(`/users/${id}`)
     .then(({ data: { msg: message } }) => {
-      axios
-        .get("/auth/logout")
-        .then(() =>
-          dispatch({ type: "USER_DELETION_SUCCESS_MESSAGE", message })
-        );
+      axios.delete("/auth/logout").finally(() => {
+        Cookies.remove("token");
+        dispatch({ type: "DISCONNECTION" });
+        dispatch({ type: "USER_DELETION_SUCCESS_MESSAGE", message });
+      });
     })
     .catch((error) => console.error(error))
     .finally(() =>
