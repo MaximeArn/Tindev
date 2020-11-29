@@ -11,6 +11,7 @@ const EditProfile = ({
   success,
   isLoading,
   loader,
+  deleteModal,
   editProfile,
   getUserProfile,
   updateUserProfile,
@@ -36,6 +37,7 @@ const EditProfile = ({
         </div>
       ) : (
         <>
+          {deleteModal && <DeletionModal />}
           {success && <div className="profile-edit-success">{success}</div>}
           {error && <div className="profile-edit-error">{error}</div>}
           {user && (

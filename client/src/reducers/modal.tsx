@@ -41,6 +41,8 @@ const modal = (
         declineApplicantModal: { isModalOpen: modalStatus, applicant },
         showNavbar: !modalStatus,
       };
+    case "SET_ACCOUNT_DELETION_MODAL_STATUS":
+      return { ...state, closeAccountModal: modalStatus };
     default:
       return state;
   }

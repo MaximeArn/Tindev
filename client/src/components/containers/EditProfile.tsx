@@ -8,12 +8,14 @@ const mapState = ({
   error: { userProfileEditionErrorMessage: error },
   success: { userEditionSuccess: success },
   loaders: { userProfileEditionLoader: loader, userProfileLoader: isLoading },
+  modal: { closeAccountModal: deleteModal },
 }: State) => ({
   user,
   editProfile,
   error,
   success,
   isLoading,
+  deleteModal,
   loader,
 });
 
