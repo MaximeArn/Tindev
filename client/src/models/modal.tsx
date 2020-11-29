@@ -24,3 +24,7 @@ export interface ProjectDetailModal {
   error: string;
   success: boolean | string;
 }
+
+export interface ProfileDeletionModal {
+  setDeleteModalStatus: Function;
+}

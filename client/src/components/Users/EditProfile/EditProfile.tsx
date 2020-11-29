@@ -37,7 +37,9 @@ const EditProfile = ({
         </div>
       ) : (
         <>
-          {deleteModal && <DeletionModal />}
+          {deleteModal && (
+            <DeletionModal setDeleteModalStatus={setDeleteModalStatus} />
+          )}
           {success && <div className="profile-edit-success">{success}</div>}
           {error && <div className="profile-edit-error">{error}</div>}
           {user && (
