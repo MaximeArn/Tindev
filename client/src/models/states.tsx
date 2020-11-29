@@ -184,6 +184,7 @@ export interface SuccessState {
   projectEditionSuccess: boolean | string;
   projectDeletionSuccess: boolean | string;
   userEditionSuccess: boolean | string;
+  userDeletionSuccess: boolean | string;
 }
 
 export interface SearchState {

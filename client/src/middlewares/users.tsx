@@ -82,7 +82,13 @@ const updateUserProfile = (
 const deleteProfile = (dispatch: Dispatch<AnyAction>, id: string) => {
   axios
     .delete(`/users/${id}`)
-    .then(({ data: { msg } }) => console.log(msg))
+    .then(({ data: { msg: message } }) => {
+      axios
+        .get("/auth/logout")
+        .then(() =>
+          dispatch({ type: "USER_DELETION_SUCCESS_MESSAGE", message })
+        );
+    })
     .catch((error) => console.error(error));
 };
 
