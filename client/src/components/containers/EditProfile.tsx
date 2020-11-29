@@ -33,6 +33,8 @@ const mapDispatch = (dispatch: Dispatch<AnyAction>) => ({
   updateUserProfile: (fieldName: string) =>
     dispatch({ type: "UPDATE_USER_PROFILE", fieldName }),
   deleteAccount: (id: string) => dispatch({ type: "DELETE_USER_ACCOUNT", id }),
+  setDeleteModalStatus: (modalStatus: boolean) =>
+    dispatch({ type: "SET_ACCOUNT_DELETION_MODAL_STATUS", modalStatus }),
 });
 
 export default connect(mapState, mapDispatch)(EditProfile);

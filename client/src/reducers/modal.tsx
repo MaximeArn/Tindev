@@ -5,6 +5,7 @@ const initialState: ModalState = {
   showNavbar: true,
   applyModal: false,
   deleteProjectModal: false,
+  closeAccountModal: false,
   authModal: {
     login: false,
     register: false,

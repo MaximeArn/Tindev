@@ -2,6 +2,7 @@ import React, { useEffect } from "react";
 import { EditUserProfile, EditProfile } from "../../../models/users";
 import ProfileField from "./ProfileField";
 import CircularProgress from "@material-ui/core/CircularProgress";
+import DeletionModal from "./DeletionModal";
 import "./editprofile.scss";
 
 const EditProfile = ({
@@ -16,6 +17,7 @@ const EditProfile = ({
   getEditProfileValue,
   resetMessages,
   deleteAccount,
+  setDeleteModalStatus,
 }: EditUserProfile) => {
   useEffect(() => {
     getUserProfile();
@@ -63,7 +65,7 @@ const EditProfile = ({
               </div>
               <div
                 className="profile-edit-delete-button"
-                onClick={() => deleteAccount(user._id)}
+                onClick={() => setDeleteModalStatus(true)}
               >
                 <div>Close this account</div>
               </div>

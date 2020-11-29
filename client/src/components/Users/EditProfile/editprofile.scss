@@ -9,6 +9,13 @@
   flex-direction: column;
   align-items: center;
 
+  &-deletion-modal {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    z-index: 999;
+  }
+
   &-edit-loading {
     margin: auto;
   }

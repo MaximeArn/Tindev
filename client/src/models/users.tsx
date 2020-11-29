@@ -87,6 +87,7 @@ export interface EditUserProfile {
   getEditProfileValue: Function;
   resetMessages: Function;
   deleteAccount: Function;
+  setDeleteModalStatus: Function;
 }
 
 export interface Profile {

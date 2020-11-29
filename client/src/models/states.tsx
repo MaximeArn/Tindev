@@ -169,6 +169,7 @@ export interface ModalState {
   showNavbar: boolean;
   applyModal: boolean;
   deleteProjectModal: boolean;
+  closeAccountModal: boolean;
   authModal: {
     login: boolean;
     register: boolean;
