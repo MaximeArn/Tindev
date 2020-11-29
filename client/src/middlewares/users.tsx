@@ -80,6 +80,7 @@ const updateUserProfile = (
 };
 
 const deleteProfile = (dispatch: Dispatch<AnyAction>, id: string) => {
+  dispatch({ type: "SET_USER_DELETION_LOADER", value: true });
   axios
     .delete(`/users/${id}`)
     .then(({ data: { msg: message } }) => {
@@ -89,7 +90,10 @@ const deleteProfile = (dispatch: Dispatch<AnyAction>, id: string) => {
           dispatch({ type: "USER_DELETION_SUCCESS_MESSAGE", message })
         );
     })
-    .catch((error) => console.error(error));
+    .catch((error) => console.error(error))
+    .finally(() =>
+      dispatch({ type: "SET_USER_DELETION_LOADER", value: false })
+    );
 };
 
 const project: Middleware = ({ getState, dispatch }) => (next) => (action) => {
@@ -108,9 +112,9 @@ const project: Middleware = ({ getState, dispatch }) => (next) => (action) => {
     case "UPDATE_USER_PROFILE":
       updateUserProfile({ getState, dispatch }, fieldName);
       break;
-    case "DELETE_USER_ACCOUNT":
-      deleteProfile(dispatch, id);
-      break;
+    // case "DELETE_USER_ACCOUNT":
+    //   deleteProfile(dispatch, id);
+    //   break;
     default:
       next(action);
       break;

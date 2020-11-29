@@ -12,6 +12,7 @@ const initialState: Loaders = {
   projectDetailsLoader: false,
   projectCategoriesLoader: false,
   userProfileLoader: false,
+  userAccountDeletionLoader: false,
   userProfileEditionLoader: {
     fieldName: null,
     status: false,
@@ -73,6 +74,8 @@ const loaders = (
           loader: value,
         },
       };
+    case "SET_USER_DELETION_LOADER":
+      return { ...state, userAccountDeletionLoader: value };
     default:
       return state;
   }

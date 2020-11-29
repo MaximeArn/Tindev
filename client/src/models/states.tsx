@@ -64,6 +64,7 @@ export interface Loaders {
   projectCreationLoader: boolean;
   projectCategoriesLoader: boolean;
   userProfileLoader: boolean;
+  userAccountDeletionLoader: boolean;
   userProfileEditionLoader: {
     fieldName: string | null;
     status: boolean;
