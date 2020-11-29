@@ -6,7 +6,7 @@ import { State } from "../../models/states";
 const mapState = ({
   users: { user, editProfile },
   error: { userProfileEditionErrorMessage: error },
-  success: { userEditionSuccess: success },
+  success: { userEditionSuccess: success, userDeletionSuccess: deleteSuccess },
   loaders: { userProfileEditionLoader: loader, userProfileLoader: isLoading },
   modal: { closeAccountModal: deleteModal },
 }: State) => ({
@@ -14,6 +14,7 @@ const mapState = ({
   editProfile,
   error,
   success,
+  deleteSuccess,
   isLoading,
   deleteModal,
   loader,

@@ -77,6 +77,7 @@ export interface EditUserProfile {
   error: string;
   success: boolean | string;
   isLoading: boolean;
+  deleteSuccess: boolean | string;
   loader: {
     fieldName: string | null;
     status: boolean;

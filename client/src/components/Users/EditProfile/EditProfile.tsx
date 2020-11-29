@@ -12,6 +12,7 @@ const EditProfile = ({
   isLoading,
   loader,
   deleteModal,
+  deleteSuccess,
   editProfile,
   getUserProfile,
   updateUserProfile,
@@ -40,7 +41,9 @@ const EditProfile = ({
           {deleteModal && (
             <DeletionModal
               setDeleteModalStatus={setDeleteModalStatus}
+              success={deleteSuccess}
               deleteAccount={deleteAccount}
+              accountId={user._id}
             />
           )}
           {success && <div className="profile-edit-success">{success}</div>}
