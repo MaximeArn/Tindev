@@ -11,7 +11,7 @@ const ProfileEditClosed = ({
   return (
     <>
       <div className="profile-field">
-        <div className="field-name">{capitalize(name)} :</div>
+        <div className="field-name">{capitalize(name)}&nbsp;:</div>
         {name === "avatar" ? (
           <img
             className="profile-avatar"

@@ -36,28 +36,30 @@ const EditProfile = ({
           {success && <div className="profile-edit-success">{success}</div>}
           {error && <div className="profile-edit-error">{error}</div>}
           {user && (
-            <div className="profile">
-              {Object.entries(editProfile).map(([prop, value]) => {
-                const key = prop as keyof typeof EditProfile;
-                return (
-                  <div key={key} className="profile-container">
-                    <ProfileField
-                      updateUserProfile={updateUserProfile}
-                      name={key}
-                      loader={loader}
-                      inputValue={value}
-                      getEditProfileValue={getEditProfileValue}
-                      value={
-                        user[key]
-                          ? user[key]
-                          : key === "password"
-                          ? "Change your password"
-                          : "Not yet specified"
-                      }
-                    />
-                  </div>
-                );
-              })}
+            <div className="profileContainer">
+              <div className="profile">
+                {Object.entries(editProfile).map(([prop, value]) => {
+                  const key = prop as keyof typeof EditProfile;
+                  return (
+                    <div key={key} className={`profile-container avatar-section ${key}`}>
+                      <ProfileField
+                        updateUserProfile={updateUserProfile}
+                        name={key}
+                        loader={loader}
+                        inputValue={value}
+                        getEditProfileValue={getEditProfileValue}
+                        value={
+                          user[key]
+                            ? user[key]
+                            : key === "password"
+                            ? "Change your password"
+                            : "Not yet specified"
+                        }
+                      />
+                    </div>
+                  );
+                })}
+              </div>
             </div>
           )}
         </>
