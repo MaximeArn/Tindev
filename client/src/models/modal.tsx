@@ -27,4 +27,5 @@ export interface ProjectDetailModal {
 
 export interface ProfileDeletionModal {
   setDeleteModalStatus: Function;
+  deleteAccount: Function;
 }

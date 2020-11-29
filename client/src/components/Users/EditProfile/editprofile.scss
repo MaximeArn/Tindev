@@ -87,6 +87,10 @@
     justify-content: space-between;
     border-bottom: 1px solid #333;
     height: 138px;
+
+    &:last-child {
+      border-bottom: none;
+    }
   }
 
   &-edit {

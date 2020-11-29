@@ -1,7 +1,10 @@
 import React, { useEffect, useRef } from "react";
 import { ProfileDeletionModal } from "../../../models/modal";
 
-const DeletionModal = ({ setDeleteModalStatus }: ProfileDeletionModal) => {
+const DeletionModal = ({
+  setDeleteModalStatus,
+  deleteAccount,
+}: ProfileDeletionModal) => {
   const modal = useRef<any>(null);
 
   useEffect(() => {
@@ -10,7 +13,6 @@ const DeletionModal = ({ setDeleteModalStatus }: ProfileDeletionModal) => {
   }, []);
 
   const clickHandler = (event: MouseEvent) => {
-    console.log("CLICKED");
     !modal.current?.contains(event.target) && setDeleteModalStatus(false);
   };
 
