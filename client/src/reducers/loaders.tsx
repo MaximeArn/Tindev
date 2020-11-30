@@ -1,5 +1,3 @@
-/** @format */
-
 import { Loaders } from "../models/states";
 import { LoadersActions } from "../models/actions";
 
