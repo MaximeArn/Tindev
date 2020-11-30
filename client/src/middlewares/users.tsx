@@ -87,7 +87,6 @@ const deleteProfile = (dispatch: Dispatch<AnyAction>, id: string) => {
     .then(({ data: { msg: message } }) => {
       axios.delete("/auth/logout").finally(() => {
         Cookies.remove("token");
-        dispatch({ type: "DISCONNECTION" });
         dispatch({ type: "USER_DELETION_SUCCESS_MESSAGE", message });
       });
     })
@@ -113,9 +112,9 @@ const project: Middleware = ({ getState, dispatch }) => (next) => (action) => {
     case "UPDATE_USER_PROFILE":
       updateUserProfile({ getState, dispatch }, fieldName);
       break;
-    // case "DELETE_USER_ACCOUNT":
-    //   deleteProfile(dispatch, id);
-    //   break;
+    case "DELETE_USER_ACCOUNT":
+      deleteProfile(dispatch, id);
+      break;
     default:
       next(action);
       break;

@@ -12,6 +12,7 @@ const removeContributorValidator = require("./removeContributorValidator");
 const userProfileValidator = require("./userProfileValidator");
 const userUpdateValidator = require("./userUpdateValidator");
 const deleteProfileValidator = require("./deleteProfileValidator");
+const logoutValidator = require("./logoutValidator");
 
 module.exports = {
   applicantValidator,
@@ -28,4 +29,5 @@ module.exports = {
   userProfileValidator,
   userUpdateValidator,
   deleteProfileValidator,
+  logoutValidator,
 };
