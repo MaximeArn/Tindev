@@ -8,9 +8,11 @@ import { AnyAction, Dispatch } from "redux";
 const mapState = ({
   loaders: { projectListLoader },
   auth: { user },
+  success: { userDeletionSuccess: success },
 }: State) => ({
   loader: projectListLoader,
   user,
+  success,
 });
 
 const mapDispatch = (dispatch: Dispatch<AnyAction>) => ({

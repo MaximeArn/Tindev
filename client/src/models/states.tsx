@@ -159,6 +159,7 @@ export interface NavState {
 export interface HomeProps {
   loader: boolean;
   getProjects: Function;
+  success: boolean | string;
   user: { email: string; username: string } | null;
 }
 

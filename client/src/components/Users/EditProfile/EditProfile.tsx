@@ -20,6 +20,7 @@ const EditProfile = ({
   resetMessages,
   deleteAccount,
   setDeleteModalStatus,
+  onModalClosing,
 }: EditUserProfile) => {
   useEffect(() => {
     getUserProfile();
@@ -43,6 +44,7 @@ const EditProfile = ({
               setDeleteModalStatus={setDeleteModalStatus}
               success={deleteSuccess}
               deleteAccount={deleteAccount}
+              onModalClosing={onModalClosing}
               accountId={user._id}
             />
           )}
