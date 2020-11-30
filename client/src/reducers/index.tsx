@@ -14,7 +14,7 @@ import message from "./message";
 import notifications from "./notifications";
 import { combineReducers } from "redux";
 
-export default combineReducers({
+const rootReducer = combineReducers({
   auth,
   navbar,
   search,
@@ -28,3 +28,8 @@ export default combineReducers({
   message,
   notifications,
 });
+
+export default (
+  state: ReturnType<typeof rootReducer> | undefined,
+  action: any
+) => rootReducer(action.type === "DISCONNECT_USER" ? undefined : state, action);

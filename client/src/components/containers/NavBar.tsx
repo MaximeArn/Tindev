@@ -26,8 +26,9 @@ const mapState = ({
 });
 
 const mapDispatch = (dispatch: Dispatch<AnyAction>, { history }: OwnProps) => {
-  const setSearchBarStatus = (focused: boolean) =>
+  const setSearchBarStatus = (focused: boolean) => {
     dispatch({ type: "SET_SEARCH_BAR_FOCUS_STATUS", focused });
+  };
 
   history.listen(() => setSearchBarStatus(false));
 
