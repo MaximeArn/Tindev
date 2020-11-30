@@ -1,5 +1,3 @@
-/** @format */
-
 import { Authentication } from "../models/states";
 import { AuthenticationAction } from "../models/actions";
 import resetInputs from "../utils/resetInputs";
@@ -38,8 +36,6 @@ const auth = (
       return { ...state, [authType]: resetInputs(state[authType]) };
     case "CONNECT_USER":
       return { ...state, user: credentials };
-    case "DISCONNECTION":
-      return { ...state, user: null };
     default:
       return { ...state };
   }

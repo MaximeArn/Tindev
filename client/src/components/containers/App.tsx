@@ -1,5 +1,3 @@
-/** @format */
-
 import { connect } from "react-redux";
 import { AnyAction, Dispatch } from "redux";
 import { State } from "../../models/states";

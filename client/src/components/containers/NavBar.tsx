@@ -34,7 +34,10 @@ const mapDispatch = (dispatch: Dispatch<AnyAction>, { history }: OwnProps) => {
 
   return {
     setSearchBarStatus,
-    logout: () => dispatch({ type: "DISCONNECT_USER", history }),
+    logout: () => {
+      dispatch({ type: "DISCONNECT_USER", history });
+      dispatch({ type: "ROOT_DISCONNECT" });
+    },
     setTrayStatus: () => {
       dispatch({ type: "RESET_NOTIFICATION_COUNTER" });
       dispatch({ type: "SET_TRAY_STATUS" });

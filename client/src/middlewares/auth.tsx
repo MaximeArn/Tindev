@@ -6,6 +6,7 @@ import { AxiosSubmit } from "../models/axios";
 import { url } from "../environments/api";
 import Cookies from "js-cookie";
 import axios from "axios";
+import { nextTick } from "process";
 axios.defaults.baseURL = url;
 axios.defaults.headers.post["Content-Type"] = "application/json";
 axios.defaults.withCredentials = true;
@@ -76,7 +77,7 @@ const retrieveToken = (dispatch: Dispatch<AnyAction>) => {
 const logout = ({ dispatch, history }: AxiosSubmit) => {
   axios.delete("/auth/logout").finally(() => {
     Cookies.remove("token");
-    dispatch({ type: "DISCONNECTION" });
+    dispatch({ type: "RESET_GLOBAL_STATE" });
     history.push("/");
   });
 };

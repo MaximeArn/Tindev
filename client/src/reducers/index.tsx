@@ -1,5 +1,3 @@
-/** @format */
-
 import auth from "./auth";
 import error from "./error";
 import success from "./success";
@@ -32,4 +30,5 @@ const rootReducer = combineReducers({
 export default (
   state: ReturnType<typeof rootReducer> | undefined,
   action: any
-) => rootReducer(action.type === "DISCONNECT_USER" ? undefined : state, action);
+) =>
+  rootReducer(action.type === "RESET_GLOBAL_STATE" ? undefined : state, action);
