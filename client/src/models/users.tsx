@@ -77,7 +77,6 @@ export interface EditUserProfile {
   error: string;
   success: boolean | string;
   isLoading: boolean;
-  deleteSuccess: boolean | string;
   loader: {
     fieldName: string | null;
     status: boolean;
@@ -90,7 +89,6 @@ export interface EditUserProfile {
   resetMessages: Function;
   deleteAccount: Function;
   setDeleteModalStatus: Function;
-  onModalClosing: Function;
 }
 
 export interface Profile {

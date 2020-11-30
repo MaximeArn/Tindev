@@ -8,7 +8,7 @@ import { OwnProps } from "../../models/connect";
 const mapState = ({
   users: { user, editProfile },
   error: { userProfileEditionErrorMessage: error },
-  success: { userEditionSuccess: success, userDeletionSuccess: deleteSuccess },
+  success: { userEditionSuccess: success },
   loaders: { userProfileEditionLoader: loader, userProfileLoader: isLoading },
   modal: { closeAccountModal: deleteModal },
 }: State) => ({
@@ -16,7 +16,6 @@ const mapState = ({
   editProfile,
   error,
   success,
-  deleteSuccess,
   isLoading,
   deleteModal,
   loader,
@@ -41,7 +40,6 @@ const mapDispatch = (dispatch: Dispatch<AnyAction>, { history }: OwnProps) => ({
     dispatch({ type: "DELETE_USER_ACCOUNT", id, history }),
   setDeleteModalStatus: (modalStatus: boolean) =>
     dispatch({ type: "SET_ACCOUNT_DELETION_MODAL_STATUS", modalStatus }),
-  onModalClosing: () => dispatch({ type: "RESET_GLOBAL_STATE" }),
 });
 
 export default withRouter(connect(mapState, mapDispatch)(EditProfile));
