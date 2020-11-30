@@ -1,4 +1,4 @@
-import React, { useEffect, useRef } from "react";
+import React, { MouseEvent, useEffect, useRef } from "react";
 import { ProfileDeletionModal } from "../../../models/modal";
 import { useHistory } from "react-router-dom";
 
@@ -16,9 +16,10 @@ const DeletionModal = ({
     return () => document.removeEventListener("click", clickHandler);
   }, []);
 
-  const clickHandler = (event: MouseEvent) => {
-    !modal.current?.contains(event.target) && setDeleteModalStatus(false);
+  const clickHandler = ({ target }: globalThis.MouseEvent) => {
+    !modal.current?.contains(target) && setDeleteModalStatus(false);
     success && history.push("/");
+    // // !modal.current.contains(target) && success ? maMethode() : setDeleteModalStatus(false)
   };
 
   return (

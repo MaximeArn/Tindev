@@ -91,7 +91,7 @@ const deleteProfile = (dispatch: Dispatch<AnyAction>, id: string) => {
         dispatch({ type: "USER_DELETION_SUCCESS_MESSAGE", message });
       });
     })
-    .catch((error) => console.error(error))
+    .catch(({ response }) => console.error(response))
     .finally(() =>
       dispatch({ type: "SET_USER_DELETION_LOADER", value: false })
     );
