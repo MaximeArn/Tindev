@@ -1,12 +1,9 @@
-/** @format */
-
 import { AnyAction, Dispatch, Middleware } from "redux";
 import { AuthMiddleware } from "../models/actions";
 import { AxiosSubmit } from "../models/axios";
 import { url } from "../environments/api";
 import Cookies from "js-cookie";
 import axios from "axios";
-import { nextTick } from "process";
 axios.defaults.baseURL = url;
 axios.defaults.headers.post["Content-Type"] = "application/json";
 axios.defaults.withCredentials = true;
@@ -74,7 +71,7 @@ const retrieveToken = (dispatch: Dispatch<AnyAction>) => {
       .catch(({ response }) => console.log(response));
 };
 
-const logout = ({ getState, dispatch }: AxiosSubmit) => {
+const logout = (dispatch: Dispatch<AnyAction>) => {
   axios.delete("/auth/logout").finally(() => {
     Cookies.remove("token");
     dispatch({ type: "RESET_GLOBAL_STATE" });
@@ -96,7 +93,7 @@ const auth: Middleware = ({ getState, dispatch }) => (next) => (
       retrieveToken(dispatch);
       break;
     case "DISCONNECT_USER":
-      logout({ getState, dispatch });
+      logout(dispatch);
       break;
     default:
       next(action);

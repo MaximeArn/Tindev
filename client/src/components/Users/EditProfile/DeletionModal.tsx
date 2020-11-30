@@ -1,15 +1,14 @@
-import React, { MouseEvent, useEffect, useRef } from "react";
+import React, { useEffect, useRef } from "react";
 import { ProfileDeletionModal } from "../../../models/modal";
-import { useHistory } from "react-router-dom";
 
 const DeletionModal = ({
   accountId,
   success,
   setDeleteModalStatus,
   deleteAccount,
+  onModalClosing,
 }: ProfileDeletionModal) => {
   const modal = useRef<any>(null);
-  const history = useHistory();
 
   useEffect(() => {
     document.addEventListener("click", clickHandler);
@@ -17,9 +16,9 @@ const DeletionModal = ({
   }, []);
 
   const clickHandler = ({ target }: globalThis.MouseEvent) => {
-    !modal.current?.contains(target) && setDeleteModalStatus(false);
-    success && history.push("/");
-    // // !modal.current.contains(target) && success ? maMethode() : setDeleteModalStatus(false)
+    !modal.current.contains(target) && success
+      ? onModalClosing()
+      : setDeleteModalStatus(false);
   };
 
   return (
@@ -31,10 +30,7 @@ const DeletionModal = ({
             <div className="profile-deletion-modal-buttons">
               <button
                 className="profile-deletion-modal-button"
-                onClick={() => {
-                  setDeleteModalStatus(false);
-                  history.push("/");
-                }}
+                onClick={() => onModalClosing()}
               >
                 Close
               </button>

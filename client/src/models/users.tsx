@@ -90,6 +90,7 @@ export interface EditUserProfile {
   resetMessages: Function;
   deleteAccount: Function;
   setDeleteModalStatus: Function;
+  onModalClosing: Function;
 }
 
 export interface Profile {

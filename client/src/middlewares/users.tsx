@@ -80,24 +80,26 @@ const updateUserProfile = (
     });
 };
 
-const deleteProfile = (dispatch: Dispatch<AnyAction>, id: string) => {
+const deleteProfile = ({ dispatch, history }: AxiosSubmit, id: string) => {
   dispatch({ type: "SET_USER_DELETION_LOADER", value: true });
   axios
     .delete(`/users/${id}`)
     .then(({ data: { msg: message } }) => {
       axios.delete("/auth/logout").finally(() => {
         Cookies.remove("token");
+        dispatch({ type: "DISCONNECTION" });
         dispatch({ type: "USER_DELETION_SUCCESS_MESSAGE", message });
       });
     })
     .catch(({ response }) => console.error(response))
-    .finally(() =>
-      dispatch({ type: "SET_USER_DELETION_LOADER", value: false })
-    );
+    .finally(() => {
+      dispatch({ type: "SET_USER_DELETION_LOADER", value: false });
+      history.push("/");
+    });
 };
 
 const project: Middleware = ({ getState, dispatch }) => (next) => (action) => {
-  const { type, username, fieldName, id } = action;
+  const { type, username, fieldName, id, history } = action;
 
   switch (type) {
     case "GET_USERS":
@@ -113,7 +115,7 @@ const project: Middleware = ({ getState, dispatch }) => (next) => (action) => {
       updateUserProfile({ getState, dispatch }, fieldName);
       break;
     case "DELETE_USER_ACCOUNT":
-      deleteProfile(dispatch, id);
+      deleteProfile({ dispatch, history }, id);
       break;
     default:
       next(action);

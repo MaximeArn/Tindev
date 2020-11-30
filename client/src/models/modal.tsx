@@ -30,4 +30,5 @@ export interface ProfileDeletionModal {
   success: boolean | string;
   setDeleteModalStatus: Function;
   deleteAccount: Function;
+  onModalClosing: Function;
 }
