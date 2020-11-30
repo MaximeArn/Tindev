@@ -1,6 +1,10 @@
 import React, { useEffect, useRef } from "react";
+import { ProfileDeletionSuccessModal } from "../../../models/modal";
 
-const DeletionSuccess = ({ success, onModalClosing }) => {
+const DeletionSuccess = ({
+  success,
+  onModalClosing,
+}: ProfileDeletionSuccessModal) => {
   const modal = useRef<any>(null);
 
   const handleOutsideClick = ({ target }: globalThis.MouseEvent) => {

@@ -159,7 +159,8 @@ export interface NavState {
 export interface HomeProps {
   loader: boolean;
   getProjects: Function;
-  success: boolean | string;
+  userDeletionSuccess: boolean | string;
+  onModalClosing: Function;
   user: { email: string; username: string } | null;
 }
 
