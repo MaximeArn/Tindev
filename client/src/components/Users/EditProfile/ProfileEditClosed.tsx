@@ -8,7 +8,6 @@ const ProfileEditClosed = ({
   value,
   setEditStatus,
 }: UserProfileClosed) => {
-  console.log({ name, value });
   return (
     <>
       <div className="profile-field">

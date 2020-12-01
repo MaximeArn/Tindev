@@ -106,8 +106,8 @@ export interface Profile {
 
 export interface UserProfileOpen {
   name: string;
-  value: any;
-  avatar: string | false;
+  inputValue: any;
+  value: string;
   setEditStatus: Function;
   updateUserProfile: Function;
   getEditProfileValue: Function;

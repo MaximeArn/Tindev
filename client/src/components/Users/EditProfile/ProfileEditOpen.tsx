@@ -7,8 +7,8 @@ import isRequired from "../../../utils/registerMandatoryFields";
 
 const ProfileEditOpen = ({
   name,
+  inputValue,
   value,
-  avatar,
   setEditStatus,
   updateUserProfile,
   getEditProfileValue,
@@ -25,18 +25,20 @@ const ProfileEditOpen = ({
     if (files) {
       reader.readAsDataURL(files[0]);
       getEditProfileValue(name, files[0]);
+
+      reader.onload = ({ target }: ProgressEvent<FileReader>) => {
+        filePreview.current.src = target?.result;
+      };
+
+      setImageStatus(true);
     }
-
-    reader.onload = ({ target }: ProgressEvent<FileReader>) => {
-      filePreview.current.src = target?.result;
-    };
-
-    setImageStatus(true);
   };
 
   const resetInputValues = () => {
     name === "password"
-      ? Object.keys(value).forEach((key) => getEditProfileValue(name, "", key))
+      ? Object.keys(inputValue).forEach((key) =>
+          getEditProfileValue(name, "", key)
+        )
       : getEditProfileValue(name, "");
   };
 
@@ -59,11 +61,11 @@ const ProfileEditOpen = ({
         {name === "avatar" ? (
           <>
             {!isImageSelected ? (
-              avatar ? (
+              value?.includes("-") ? (
                 <img
                   className="profile-edit-image-preview"
                   onClick={() => fileInput.current?.click()}
-                  src={`${url}/uploads/users/${avatar}`}
+                  src={`${url}/uploads/users/${value}`}
                   alt="profile-avatar-preview"
                 />
               ) : (
@@ -80,7 +82,7 @@ const ProfileEditOpen = ({
           </>
         ) : name === "password" ? (
           <div className="profile-edit-password">
-            {Object.entries(value).map(([key, val]: any) => {
+            {Object.entries(inputValue).map(([key, val]: any) => {
               return (
                 <input
                   key={key}
@@ -107,7 +109,7 @@ const ProfileEditOpen = ({
             name={name}
             type={typeChecker(name)}
             placeholder={`${capitalize(name)}...`}
-            value={value}
+            value={inputValue}
             onChange={({ target }) => getEditProfileValue(name, target.value)}
             required={isRequired(name)}
           />

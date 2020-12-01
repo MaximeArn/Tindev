@@ -24,8 +24,8 @@ const Profile = ({
       ) : isEditOpen ? (
         <ProfileEditOpen
           name={name}
-          value={inputValue}
-          avatar={name === "avatar" && value}
+          inputValue={inputValue}
+          value={value}
           setEditStatus={setEditStatus}
           updateUserProfile={updateUserProfile}
           getEditProfileValue={getEditProfileValue}
