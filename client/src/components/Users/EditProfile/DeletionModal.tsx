@@ -10,14 +10,17 @@ const DeletionModal = ({
 }: ProfileDeletionModal) => {
   const modal = useRef<any>(null);
 
-  // useEffect(() => {
-  //   document.addEventListener("click", clickHandler);
-  //   return () => document.removeEventListener("click", clickHandler);
-  // }, []);
+  useEffect(() => {
+    document.addEventListener("click", clickHandler);
+    return () => document.removeEventListener("click", clickHandler);
+  }, []);
 
-  // const clickHandler = ({ target }: globalThis.MouseEvent) => {
-  // //   !modal.current.contains(target) && setDeleteModalStatus(false);
-  // };
+  const clickHandler = ({ target }: globalThis.MouseEvent) => {
+    const button = target as HTMLButtonElement;
+    !modal.current.contains(target) &&
+      !(button.className === "profile-deletion-modal-button") &&
+      setDeleteModalStatus(false);
+  };
 
   return (
     <div className="profile-deletion">
@@ -40,12 +43,12 @@ const DeletionModal = ({
               >
                 Yes
               </button>
-              {/* <button
+              <button
                 className="profile-deletion-modal-button"
                 onClick={() => setDeleteModalStatus(false)}
               >
                 No
-              </button> */}
+              </button>
             </div>
           </>
         )}
