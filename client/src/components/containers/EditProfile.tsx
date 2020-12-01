@@ -9,7 +9,11 @@ const mapState = ({
   users: { user, editProfile },
   error: { userProfileEditionErrorMessage: error },
   success: { userEditionSuccess: success },
-  loaders: { userProfileEditionLoader: loader, userProfileLoader: isLoading },
+  loaders: {
+    userProfileEditionLoader: loader,
+    userProfileLoader: isLoading,
+    userAccountDeletionLoader: deletionLoader,
+  },
   modal: { closeAccountModal: deleteModal },
 }: State) => ({
   user,
@@ -19,6 +23,7 @@ const mapState = ({
   isLoading,
   deleteModal,
   loader,
+  deletionLoader,
 });
 
 const mapDispatch = (dispatch: Dispatch<AnyAction>, { history }: OwnProps) => ({

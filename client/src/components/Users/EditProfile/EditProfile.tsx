@@ -12,6 +12,7 @@ const EditProfile = ({
   isLoading,
   loader,
   deleteModal,
+  deletionLoader,
   editProfile,
   getUserProfile,
   updateUserProfile,
@@ -41,6 +42,7 @@ const EditProfile = ({
             <DeletionModal
               setDeleteModalStatus={setDeleteModalStatus}
               deleteAccount={deleteAccount}
+              loader={deletionLoader}
               accountId={user._id}
             />
           )}

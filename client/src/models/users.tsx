@@ -82,6 +82,7 @@ export interface EditUserProfile {
     status: boolean;
   };
   deleteModal: boolean;
+  deletionLoader: boolean;
   editProfile: EditProfile;
   getUserProfile: Function;
   updateUserProfile: Function;

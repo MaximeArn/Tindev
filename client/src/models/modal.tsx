@@ -28,6 +28,7 @@ export interface ProjectDetailModal {
 export interface ProfileDeletionModal {
   accountId: string;
   setDeleteModalStatus: Function;
+  loader: boolean;
   deleteAccount: Function;
 }
 
