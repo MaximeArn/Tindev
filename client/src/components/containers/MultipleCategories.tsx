@@ -24,6 +24,8 @@ const mapDispatch = (dispatch: Dispatch<AnyAction>) => {
         inputName,
         inputValue,
       }),
+    getUserTechnos: (inputName: string, inputValue: string[]) =>
+      dispatch({ type: "SET_USER_PROFILE_VALUES", inputName, inputValue }),
   };
 };
 export default connect(mapState, mapDispatch)(MultipleCategories);

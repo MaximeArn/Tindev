@@ -19,6 +19,7 @@ const MultipleCategories = ({
   categoriesFieldValues,
   loader,
   getCategories,
+  getUserTechnos,
   fetchCategories,
 }: MultipleCategory) => {
   console.log("MULTIPLE CATEGORIES CALLED");
@@ -30,7 +31,9 @@ const MultipleCategories = ({
   }, []);
 
   const handleChange = ({ target }: ChangeEvent<{ value: unknown }>) => {
-    getCategories(name, target.value);
+    name === "technos"
+      ? getUserTechnos(name, target.value)
+      : getCategories(name, target.value);
   };
 
   return (

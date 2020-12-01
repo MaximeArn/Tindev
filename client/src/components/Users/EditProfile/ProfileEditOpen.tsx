@@ -101,7 +101,9 @@ const ProfileEditOpen = ({
             })}
           </div>
         ) : name === "technos" ? (
-          <MultipleCategories name={name} />
+          <div className="profile-edit-open-technos">
+            <MultipleCategories name={name} />
+          </div>
         ) : (
           <input
             className={

@@ -10,5 +10,6 @@ export interface MultipleCategory {
   categoriesFieldValues: Category[];
   loader: boolean;
   getCategories: Function;
+  getUserTechnos: Function;
   fetchCategories: Function;
 }
