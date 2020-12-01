@@ -100,6 +100,8 @@ const ProfileEditOpen = ({
               );
             })}
           </div>
+        ) : name === "technos" ? (
+          <MultipleCategories name={name} />
         ) : (
           <input
             className={

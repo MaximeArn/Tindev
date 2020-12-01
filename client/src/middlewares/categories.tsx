@@ -21,9 +21,12 @@ const getCategories = (dispatch: Dispatch<AnyAction>) => {
 const categories: Middleware = ({ getState, dispatch }) => (next) => (
   action
 ) => {
-  switch (action.type) {
+  const { type } = action;
+  const { categories } = getState().categories;
+
+  switch (type) {
     case "GET_CATEGORIES":
-      getCategories(dispatch);
+      !categories.length && getCategories(dispatch);
       break;
     default:
       next(action);
