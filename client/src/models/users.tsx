@@ -115,7 +115,7 @@ export interface UserProfileOpen {
 
 export interface UserProfileClosed {
   name: string;
-  value: string | undefined;
+  value: string;
   setEditStatus: Function;
 }
 

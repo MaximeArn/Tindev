@@ -66,6 +66,8 @@ const EditProfile = ({
                             ? user[key]
                             : key === "password"
                             ? "Change your password"
+                            : key === "avatar"
+                            ? "Add a new avatar"
                             : "Not yet specified"
                         }
                       />
