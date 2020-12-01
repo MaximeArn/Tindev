@@ -8,5 +8,7 @@ export interface MultipleCategory {
   name: string;
   categories: Category[];
   categoriesFieldValues: Category[];
+  loader: boolean;
   getCategories: Function;
+  fetchCategories: Function;
 }

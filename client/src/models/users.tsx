@@ -23,6 +23,7 @@ export interface EditProfile {
   avatar: null;
   experience: string;
   about: string;
+  technos: string;
 }
 
 export interface ListContent {

@@ -1,8 +1,4 @@
-/** @format */
-
 import React, { FormEvent, MouseEvent, useEffect, useRef } from "react";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faCamera } from "@fortawesome/free-solid-svg-icons";
 import { ProjectCreationProps } from "../../../models/projects";
 import capitalizeFirstLetter from "../../../utils/capitalizeFirstLetter";
 import MultipleCategories from "../../containers/MultipleCategories";
@@ -16,17 +12,14 @@ const ProjectCreation = ({
   error,
   history: { listen },
   loading,
-  categoriesLoader,
   setProjectImage,
   sendProject,
-  getCategories,
   onUrlChange,
 }: ProjectCreationProps) => {
   const fileInput = useRef<any>(null);
   const imagePreview = useRef<any>(null);
 
   useEffect(() => {
-    getCategories();
     listen(() => {
       location.pathname !== "/project/create" && onUrlChange();
     });
@@ -70,81 +63,82 @@ const ProjectCreation = ({
       <div className="maxiWrapper">
         <div className="project-container">
           <div className="project-container-form">
-            {categoriesLoader ? (
+            {/* {categoriesLoader ? (
               <div className="loader">
                 <p>Loading</p>
                 <CircularProgress size={15} />
               </div>
-            ) : (
-              <form onSubmit={handleSubmit}>
-                {error && (
-                  <div className="project-creation-error-message">{error}</div>
-                )}
-                <section className="image-section">
-                  <div onClick={onFileBrowserClick}>
-                    <img
-                      ref={imagePreview}
-                      src="https://user-images.githubusercontent.com/2351721/31314483-7611c488-ac0e-11e7-97d1-3cfc1c79610e.png"
-                      alt="your image"
-                      className="image-preview"
-                    />
-                  </div>
-                </section>
-                <section className="title-section">
-                  <div className="title-wrapper">
-                    <h3 className="project-creation-title-entry">
-                      PROJECT TITLE
-                    </h3>
-                  </div>
-                  <Input
-                    name="title"
-                    placeHolder={capitalizeFirstLetter("title")}
-                    inputValue={projectInputs["title"]}
-                    formType="ProjectCreation"
+            ) : ( */}
+            <form onSubmit={handleSubmit}>
+              {error && (
+                <div className="project-creation-error-message">{error}</div>
+              )}
+              <section className="image-section">
+                <div onClick={onFileBrowserClick}>
+                  <img
+                    ref={imagePreview}
+                    src="https://user-images.githubusercontent.com/2351721/31314483-7611c488-ac0e-11e7-97d1-3cfc1c79610e.png"
+                    alt="your image"
+                    className="image-preview"
                   />
-                </section>
-
-                <section className="description-section">
-                  <h3 className="project-creation-title">
-                    PROJECT DESCRIPTION - try to be as detailed as possible
+                </div>
+              </section>
+              <section className="title-section">
+                <div className="title-wrapper">
+                  <h3 className="project-creation-title-entry">
+                    PROJECT TITLE
                   </h3>
+                </div>
+                <Input
+                  name="title"
+                  placeHolder={capitalizeFirstLetter("title")}
+                  inputValue={projectInputs["title"]}
+                  formType="ProjectCreation"
+                />
+              </section>
 
-                  <Input
-                    name="description"
-                    inputValue={projectInputs["description"]}
-                    formType="ProjectCreation"
-                  />
-                </section>
+              <section className="description-section">
+                <h3 className="project-creation-title">
+                  PROJECT DESCRIPTION - try to be as detailed as possible
+                </h3>
 
-                <section className="category-section">
-                  <h3 className="project-creation-title">PROJECT CATEGORY</h3>
-                  <MultipleCategories name="categories" />
-                </section>
-                <section className="team-size-section">
-                  <h3 className="project-creation-title">DESIRED TEAM SIZE</h3>
-                  <div className="project-creation-teamsize">
-                    <Buttons name="size" />
-                  </div>
-                </section>
+                <Input
+                  name="description"
+                  inputValue={projectInputs["description"]}
+                  formType="ProjectCreation"
+                />
+              </section>
 
-                <section className="submit-section">
-                  <button
-                    type="submit"
-                    className="project-creation-button submit"
-                    disabled={loading}
-                  >
-                    {!loading ? (
-                      <p>Submit</p>
-                    ) : (
-                      <div className="loader">
-                        <p>Loading</p>
-                        <CircularProgress size={15} />
-                      </div>
-                    )}
-                  </button>
-                </section>
-              </form>
-            )}
+              <section className="category-section">
+                <h3 className="project-creation-title">PROJECT CATEGORY</h3>
+                <MultipleCategories name="categories" />
+              </section>
+
+              <section className="team-size-section">
+                <h3 className="project-creation-title">DESIRED TEAM SIZE</h3>
+                <div className="project-creation-teamsize">
+                  <Buttons name="size" />
+                </div>
+              </section>
+
+              <section className="submit-section">
+                <button
+                  type="submit"
+                  className="project-creation-button submit"
+                  disabled={loading}
+                >
+                  {!loading ? (
+                    <p>Submit</p>
+                  ) : (
+                    <div className="loader">
+                      <p>Loading</p>
+                      <CircularProgress size={15} />
+                    </div>
+                  )}
+                </button>
+              </section>
+            </form>
+            {/* // )} */}
           </div>
         </div>
       </div>

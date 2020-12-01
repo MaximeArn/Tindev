@@ -22,6 +22,7 @@ const initialState: UserState = {
     avatar: null,
     experience: "",
     about: "",
+    technos: "",
   },
   profile: {
     owner: false,

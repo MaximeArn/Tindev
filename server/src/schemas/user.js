@@ -18,6 +18,7 @@ const userSchema = new Schema(
     avatar: String,
     about: String,
     experience: String,
+    technos: String,
     notifications: {
       counter: { type: Number, default: 0 },
       tooltips: [{ tooltip: String, createdAt: Date }],

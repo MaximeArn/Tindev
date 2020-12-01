@@ -78,11 +78,9 @@ export interface ProjectCreationProps {
   projectInputs: Project;
   error: string;
   loading: boolean;
-  categoriesLoader: boolean;
   sendProject: Function;
   history: any;
   setProjectImage: Function;
-  getCategories: Function;
   onUrlChange: Function;
 }
 
@@ -154,7 +152,6 @@ export interface EditProjectProps {
   isModalOpen: boolean;
   categories: Category[];
   projectCreationValues: ProjectCreation;
-  getCategories: Function;
   resetSuccessMessage: Function;
   deleteProject: Function;
   setModalStatus: Function;

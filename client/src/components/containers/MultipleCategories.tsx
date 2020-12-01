@@ -8,13 +8,16 @@ const mapState = ({
   project: {
     createProject: { categories: categoriesFieldValues },
   },
+  loaders: { projectCategoriesLoader: loader },
 }: State) => ({
   categories,
   categoriesFieldValues,
+  loader,
 });
 
 const mapDispatch = (dispatch: Dispatch<AnyAction>) => {
   return {
+    fetchCategories: () => dispatch({ type: "GET_CATEGORIES" }),
     getCategories: (inputName: string, inputValue: string[]) =>
       dispatch({
         type: "GET_PROJECT_CREATION_VALUE",
