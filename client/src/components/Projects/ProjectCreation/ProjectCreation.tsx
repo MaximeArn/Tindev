@@ -63,12 +63,6 @@ const ProjectCreation = ({
       <div className="maxiWrapper">
         <div className="project-container">
           <div className="project-container-form">
-            {/* {categoriesLoader ? (
-              <div className="loader">
-                <p>Loading</p>
-                <CircularProgress size={15} />
-              </div>
-            ) : ( */}
             <form onSubmit={handleSubmit}>
               {error && (
                 <div className="project-creation-error-message">{error}</div>
@@ -138,7 +132,6 @@ const ProjectCreation = ({
                 </button>
               </section>
             </form>
-            {/* // )} */}
           </div>
         </div>
       </div>

@@ -21,7 +21,6 @@ const MultipleCategories = ({
   getCategories,
   fetchCategories,
 }: MultipleCategory) => {
-  console.log("MULTIPLE CATEGORIES COMPONENT CALLED");
   const classes = useStyles();
   const theme = useTheme();
 
