@@ -8,6 +8,7 @@ const ProfileEditClosed = ({
   value,
   setEditStatus,
 }: UserProfileClosed) => {
+  console.log({ name, value });
   return (
     <>
       <div className="profile-field">
@@ -19,7 +20,9 @@ const ProfileEditClosed = ({
             alt="user-avatar"
           />
         ) : (
-          <div className="field-value">{value}</div>
+          <div className="field-value">
+            {Array.isArray(value) && value.length ? value : "Not yet specified"}
+          </div>
         )}
       </div>
       <button className="field-modify" onClick={() => setEditStatus(true)}>

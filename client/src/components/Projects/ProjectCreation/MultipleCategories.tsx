@@ -48,7 +48,7 @@ const MultipleCategories = ({
         <FormControl className={classes.formControl}>
           <InputLabel
             className={
-              name === "technos" ? classes.userLabel : classes.projectLabel
+              classes[name === "technos" ? "userLabel" : "projectLabel"]
             }
             id="demo-mutiple-chip-label"
           >

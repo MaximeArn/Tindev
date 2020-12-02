@@ -40,6 +40,8 @@ const ProfileEditOpen = ({
       ? Object.keys(inputValue).forEach((key) =>
           getEditProfileValue(name, "", key)
         )
+      : name === "technos"
+      ? getEditProfileValue(name, [])
       : getEditProfileValue(name, "");
   };
 
