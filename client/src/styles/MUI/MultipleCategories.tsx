@@ -18,8 +18,11 @@ const useStyles = makeStyles((theme: Theme) =>
       minWidth: "85px",
       borderRadius: "7px",
     },
-    label: {
+    projectLabel: {
       color: "#fff",
+    },
+    userLabel: {
+      color: "#000",
     },
   })
 );

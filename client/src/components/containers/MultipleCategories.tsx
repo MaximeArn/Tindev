@@ -9,9 +9,13 @@ const mapState = ({
     createProject: { categories: categoriesFieldValues },
   },
   loaders: { projectCategoriesLoader: loader },
+  users: {
+    editProfile: { technos },
+  },
 }: State) => ({
   categories,
   categoriesFieldValues,
+  technos,
   loader,
 });
 

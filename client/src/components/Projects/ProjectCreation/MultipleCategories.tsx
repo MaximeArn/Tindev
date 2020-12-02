@@ -17,6 +17,7 @@ const MultipleCategories = ({
   name,
   categories,
   categoriesFieldValues,
+  technos,
   loader,
   getCategories,
   getUserTechnos,
@@ -45,7 +46,12 @@ const MultipleCategories = ({
         </div>
       ) : (
         <FormControl className={classes.formControl}>
-          <InputLabel className={classes.label} id="demo-mutiple-chip-label">
+          <InputLabel
+            className={
+              name === "technos" ? classes.userLabel : classes.projectLabel
+            }
+            id="demo-mutiple-chip-label"
+          >
             Categories
           </InputLabel>
           <Select
@@ -53,7 +59,7 @@ const MultipleCategories = ({
             labelId="demo-mutiple-chip-label"
             id="demo-mutiple-chip"
             multiple
-            value={categoriesFieldValues}
+            value={name === "technos" ? technos : categoriesFieldValues}
             onChange={handleChange}
             input={<Input id="select-multiple-chip" />}
             renderValue={(selected: any) => {

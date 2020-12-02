@@ -1,5 +1,3 @@
-/** @format */
-
 import { ProjectState } from "../models/projects";
 import { ProjectAction } from "../models/actions";
 import updateProjects from "../utils/updateProjects";
