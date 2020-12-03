@@ -1,5 +1,5 @@
 const sanitize = require("sanitize-html");
-const { User } = require("../../models");
+const { User, Category } = require("../../models");
 const UserError = require("../CustomError");
 const sanitizeConfig = require("../../config/sanitize");
 const hash = require("../hashPassword.js");
@@ -10,6 +10,7 @@ const emailRegex = new RegExp(
 module.exports = async (body, next) => {
   try {
     const key = Object.keys(body)[0];
+    const categories = await Category.find();
 
     if (key === "username") {
       const exists = await User.findOne({ username: body[key] });
@@ -52,10 +53,21 @@ module.exports = async (body, next) => {
     }
 
     if (key === "technos") {
-      //TODO: check if selected technos exists in db categories , and also make sure the sanitize is working as expected
+      body[key] = JSON.parse(body[key]).map((value) =>
+        sanitize(value, sanitizeConfig)
+      );
+
+      if (
+        !body[key].every((techno) =>
+          categories.some(({ name }) => name === techno)
+        )
+      ) {
+        throw new UserError("These Technos are invalid.", 400);
+      }
     }
 
-    if (key !== "password") body[key] = sanitize(body[key], sanitizeConfig);
+    if (key !== "password" && key !== "technos")
+      body[key] = sanitize(body[key], sanitizeConfig);
 
     return true;
   } catch (error) {
