@@ -4,7 +4,7 @@ import CircularProgress from "@material-ui/core/CircularProgress";
 import User from "../../containers/User";
 import "./userprofile.scss";
 
-const UserProfile = ({ error, loader, getUser }: UserProfileProps) => {
+const UserProfile = ({ user, error, loader, getUser }: UserProfileProps) => {
   useEffect(() => {
     getUser();
   }, []);
@@ -21,9 +21,13 @@ const UserProfile = ({ error, loader, getUser }: UserProfileProps) => {
           {error ? (
             <div className="user-profile-error">{error}</div>
           ) : (
-            <div className="user-profile">
-              <User />
-            </div>
+            <>
+              {user && (
+                <div className="user-profile">
+                  <User />
+                </div>
+              )}
+            </>
           )}
         </>
       )}

@@ -40,6 +40,7 @@ export interface User {
 }
 
 export interface UserProfileProps {
+  user: User;
   error: string;
   loader: boolean;
   getUser: Function;

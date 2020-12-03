@@ -11,7 +11,7 @@ const mapState = ({
 }: State) => {
   const infos = ["about", "technos", "experience"].map((name: string) => ({
     name,
-    value: (user && user[name]) || null,
+    value: user[name] || null,
   }));
 
   return {

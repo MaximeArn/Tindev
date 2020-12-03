@@ -6,9 +6,11 @@ import { withRouter } from "react-router-dom";
 import { OwnProps } from "../../models/connect";
 
 const mapState = ({
+  users: { user },
   error: { userProfileErrorMessage: error },
   loaders: { userProfileLoader: loader },
 }: State) => ({
+  user,
   error,
   loader,
 });
