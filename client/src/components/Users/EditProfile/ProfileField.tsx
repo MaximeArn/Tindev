@@ -11,6 +11,7 @@ const Profile = ({
   loader: { fieldName, status },
   updateUserProfile,
   getEditProfileValue,
+  resetEditProfileValue,
 }: Profile) => {
   const [isEditOpen, setEditStatus] = useState<boolean>(false);
 
@@ -29,6 +30,7 @@ const Profile = ({
           setEditStatus={setEditStatus}
           updateUserProfile={updateUserProfile}
           getEditProfileValue={getEditProfileValue}
+          resetEditProfileValue={resetEditProfileValue}
         />
       ) : (
         <ProfileEditClosed

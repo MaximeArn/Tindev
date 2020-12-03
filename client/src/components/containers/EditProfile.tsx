@@ -39,6 +39,13 @@ const mapDispatch = (dispatch: Dispatch<AnyAction>, { history }: OwnProps) => ({
       inputValue,
       key,
     }),
+  resetEditProfileValue: (inputName: string, key?: string) =>
+    dispatch({
+      type: "SET_USER_PROFILE_VALUES",
+      inputName,
+      inputValue: inputName === "technos" ? [] : "",
+      key,
+    }),
   updateUserProfile: (fieldName: string) =>
     dispatch({ type: "UPDATE_USER_PROFILE", fieldName }),
   deleteAccount: (id: string) =>

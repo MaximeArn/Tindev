@@ -54,7 +54,7 @@ const updateUserProfile = (
     });
   };
 
-  fieldName === "password"
+  fieldName === "password" || "technos"
     ? formData.append(fieldName, JSON.stringify(editProfile[fieldName]))
     : formData.append(fieldName, editProfile[fieldName]);
 

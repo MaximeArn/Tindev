@@ -23,7 +23,6 @@ const MultipleCategories = ({
   getUserTechnos,
   fetchCategories,
 }: MultipleCategory) => {
-  console.log("MULTIPLE CATEGORIES CALLED");
   const classes = useStyles();
   const theme = useTheme();
 

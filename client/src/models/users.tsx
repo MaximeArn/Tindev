@@ -88,6 +88,7 @@ export interface EditUserProfile {
   getUserProfile: Function;
   updateUserProfile: Function;
   getEditProfileValue: Function;
+  resetEditProfileValue: Function;
   resetMessages: Function;
   deleteAccount: Function;
   setDeleteModalStatus: Function;
@@ -103,6 +104,7 @@ export interface Profile {
   value: string;
   updateUserProfile: Function;
   getEditProfileValue: Function;
+  resetEditProfileValue: Function;
 }
 
 export interface UserProfileOpen {
@@ -112,6 +114,7 @@ export interface UserProfileOpen {
   setEditStatus: Function;
   updateUserProfile: Function;
   getEditProfileValue: Function;
+  resetEditProfileValue: Function;
 }
 
 export interface UserProfileClosed {

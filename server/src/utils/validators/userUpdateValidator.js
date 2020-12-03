@@ -51,6 +51,10 @@ module.exports = async (body, next) => {
       body[key] = await hash(sanitize(password, sanitizeConfig));
     }
 
+    if (key === "technos") {
+      //TODO: check if selected technos exists in db categories , and also make sure the sanitize is working as expected
+    }
+
     if (key !== "password") body[key] = sanitize(body[key], sanitizeConfig);
 
     return true;

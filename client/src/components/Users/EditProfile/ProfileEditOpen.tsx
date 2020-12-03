@@ -13,6 +13,7 @@ const ProfileEditOpen = ({
   setEditStatus,
   updateUserProfile,
   getEditProfileValue,
+  resetEditProfileValue,
 }: UserProfileOpen) => {
   const fileInput = useRef<HTMLInputElement>(null);
   const filePreview = useRef<any>(null);
@@ -38,11 +39,9 @@ const ProfileEditOpen = ({
   const resetInputValues = () => {
     name === "password"
       ? Object.keys(inputValue).forEach((key) =>
-          getEditProfileValue(name, "", key)
+          resetEditProfileValue(name, key)
         )
-      : name === "technos"
-      ? getEditProfileValue(name, [])
-      : getEditProfileValue(name, "");
+      : resetEditProfileValue(name);
   };
 
   return (

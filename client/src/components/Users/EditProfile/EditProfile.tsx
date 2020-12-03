@@ -17,6 +17,7 @@ const EditProfile = ({
   getUserProfile,
   updateUserProfile,
   getEditProfileValue,
+  resetEditProfileValue,
   resetMessages,
   deleteAccount,
   setDeleteModalStatus,
@@ -61,6 +62,7 @@ const EditProfile = ({
                         loader={loader}
                         inputValue={value}
                         getEditProfileValue={getEditProfileValue}
+                        resetEditProfileValue={resetEditProfileValue}
                         value={
                           user[key]
                             ? user[key]
