@@ -19,6 +19,7 @@ const getUsers = (dispatch: Dispatch<AnyAction>) => {
 };
 
 const getUser = (dispatch: Dispatch<AnyAction>, username: string) => {
+  dispatch({ type: "SET_USER_PROFILE_LOADER", value: true });
   axios
     .get(`/users/${username}`)
     .then(({ data: user }) => {
@@ -26,7 +27,8 @@ const getUser = (dispatch: Dispatch<AnyAction>, username: string) => {
     })
     .catch(({ response: { data: { msg: error } } }) =>
       dispatch({ type: "USER_PROFILE_ERROR_HANDLER", error })
-    );
+    )
+    .finally(() => dispatch({ type: "SET_USER_PROFILE_LOADER", value: false }));
 };
 
 const getUserProfile = (dispatch: Dispatch<AnyAction>) => {
