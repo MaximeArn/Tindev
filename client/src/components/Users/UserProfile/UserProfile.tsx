@@ -3,12 +3,16 @@ import { UserProfileProps } from "../../../models/users";
 import User from "../../containers/User";
 import "./userprofile.scss";
 
-const UserProfile = ({ user, getUser }: UserProfileProps) => {
+const UserProfile = ({ getUser }: UserProfileProps) => {
   useEffect(() => {
     getUser();
   }, []);
 
-  return <div className="user-profile">{user && <User {...user} />}</div>;
+  return (
+    <div className="user-profile">
+      <User />
+    </div>
+  );
 };
 
 export default UserProfile;

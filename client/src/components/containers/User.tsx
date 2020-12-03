@@ -6,12 +6,19 @@ import User from "../Users/UserProfile/User";
 const mapState = ({
   users: {
     profile: { content },
-    list,
+    user,
   },
-}: State) => ({
-  currentContent: content,
-  list,
-});
+}: State) => {
+  const infos = ["about", "technos", "experience"].map((name: string) => ({
+    name,
+    value: (user && user[name]) || null,
+  }));
+
+  return {
+    currentContent: content,
+    infos,
+  };
+};
 
 const mapDispatch = (dispatch: Dispatch<AnyAction>) => {
   return {

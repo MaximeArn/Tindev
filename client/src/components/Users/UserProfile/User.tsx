@@ -19,12 +19,13 @@ const User = ({
   _id,
   username,
   currentContent,
-  list,
+  infos,
   getCurrentContent,
   setSelectedStatus,
   openChatWindow,
 }: UserProps) => {
   const Content = currentContent;
+  console.log("INFOS : ", infos);
 
   return (
     <>
@@ -51,7 +52,7 @@ const User = ({
             <div className="user-profile-preview-header-username">
               {username}
             </div>
-            <div className="user-profile-preview-header-nav">
+            {/* <div className="user-profile-preview-header-nav">
               <ul className="infos-list">
                 {list.map((content) => (
                   <ListItem
@@ -62,7 +63,7 @@ const User = ({
                   />
                 ))}
               </ul>
-            </div>
+            </div> */}
           </div>
         </div>
 

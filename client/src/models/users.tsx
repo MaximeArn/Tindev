@@ -1,7 +1,6 @@
 export interface UserState {
   users: User[];
-  user: User | null;
-  list: ListContent[];
+  user: any | null;
   editProfile: EditProfile;
   profile: {
     owner: boolean;
@@ -26,12 +25,6 @@ export interface EditProfile {
   technos: string[] | [];
 }
 
-export interface ListContent {
-  name: string;
-  component: Function;
-  selected?: boolean;
-}
-
 export interface User {
   _id: string;
   username: string;
@@ -51,12 +44,17 @@ export interface UserProfileProps {
   getUser: Function;
 }
 
+export interface UserProfileInfos {
+  name: string;
+  value: string | string[];
+}
+
 export interface UserProps {
   currentContent: Function;
   getCurrentContent: Function;
   setSelectedStatus: Function;
   openChatWindow: Function;
-  list: ListContent[];
+  infos: UserProfileInfos[];
   _id: string;
   username: string;
   firstname: string;

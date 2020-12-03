@@ -5,8 +5,12 @@ import { State } from "../../models/states";
 import { withRouter } from "react-router-dom";
 import { OwnProps } from "../../models/connect";
 
-const mapState = ({ users: { user } }: State) => ({
+const mapState = ({
+  users: { user },
+  error: { userProfileErrorMessage: error },
+}: State) => ({
   user,
+  error,
 });
 
 const mapDispatch = (

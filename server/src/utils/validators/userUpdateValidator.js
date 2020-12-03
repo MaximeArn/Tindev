@@ -66,8 +66,9 @@ module.exports = async (body, next) => {
       }
     }
 
-    if (key !== "password" && key !== "technos")
+    if (key !== "password" && key !== "technos") {
       body[key] = sanitize(body[key], sanitizeConfig);
+    }
 
     return true;
   } catch (error) {
