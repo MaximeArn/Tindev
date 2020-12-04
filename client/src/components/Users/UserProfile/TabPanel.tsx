@@ -1,8 +1,9 @@
 import React from "react";
 import { UserTabPanelProps } from "../../../models/users";
+import { faLock } from "@fortawesome/free-solid-svg-icons";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 const TabPanel = ({ content: { value } }: UserTabPanelProps) => {
-  //TODO: make condition check to verify if value is null or, if it is an array , check if the array length is positive , otherwise display default information private message with lock icon
   return (
     <>
       {Array.isArray(value) && value.length ? (
@@ -13,9 +14,16 @@ const TabPanel = ({ content: { value } }: UserTabPanelProps) => {
         </ul>
       ) : (
         <div className="user-profile-content-list">
-          {!value || Array.isArray(value)
-            ? "This information is private"
-            : value}
+          {!value || !value.length ? (
+            <>
+              <i className="user-profile-lock-icon">
+                <FontAwesomeIcon icon={faLock} size="lg" />
+              </i>
+              <div>This information is private</div>
+            </>
+          ) : (
+            value
+          )}
         </div>
       )}
     </>
