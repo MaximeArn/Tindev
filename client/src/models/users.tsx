@@ -126,3 +126,10 @@ export interface UserListProps {
   users: User[];
   getUsers: Function;
 }
+
+export interface UserTabProps {
+  name: string;
+  selected: string;
+  setSelectedStatus: Function;
+  content: string | string[];
+}

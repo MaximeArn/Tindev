@@ -13,7 +13,9 @@ import {
 import "./userprofile.scss";
 
 const User = ({ _id, username, infos, openChatWindow }: UserProps) => {
-  const [selected, setSelectedStatus] = useState<string>("About");
+  const [selected, setSelectedStatus] = useState<string>("about");
+
+  console.log("SELECTED : ", selected);
 
   return (
     <>

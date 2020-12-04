@@ -1,25 +1,16 @@
 import React from "react";
+import { UserTabProps } from "../../../models/users";
+import capitalize from "../../../utils/capitalizeFirstLetter";
 
-const ListItem = ({
-  name,
-  component,
-  selected,
-  getCurrentContent,
-  setSelectedStatus,
-}: any) => {
-  const handleClick = () => {
-    setSelectedStatus(name);
-    getCurrentContent(component);
-  };
-
+const Tab = ({ name, selected, setSelectedStatus }: UserTabProps) => {
   return (
     <li
-      className={!selected ? "infos-item" : "infos-item selected"}
-      onClick={handleClick}
+      className={selected === name ? "infos-item selected" : "infos-item"}
+      onClick={() => setSelectedStatus(name)}
     >
-      {name}
+      {capitalize(name)}
     </li>
   );
 };
 
-export default ListItem;
+export default Tab;
