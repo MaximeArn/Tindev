@@ -1,7 +1,7 @@
 import React from "react";
 
 const About = () => {
-  return <ul className="content-infos">About</ul>;
+  return <ul className="user-profile-content-list">About</ul>;
 };
 
 export default About;

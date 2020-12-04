@@ -4,6 +4,7 @@ import { url } from "../../../environments/api";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import backgroundImage from "src/assets/user-profile-default.jpg";
 import Tab from "./Tab";
+import TabPanel from "./TabPanel";
 import ChatBubbleIcon from "@material-ui/icons/ChatBubble";
 import {
   faFacebook,
@@ -14,8 +15,6 @@ import "./userprofile.scss";
 
 const User = ({ _id, username, infos, openChatWindow }: UserProps) => {
   const [selected, setSelectedStatus] = useState<string>("about");
-
-  console.log("SELECTED : ", selected);
 
   return (
     <>
@@ -44,11 +43,10 @@ const User = ({ _id, username, infos, openChatWindow }: UserProps) => {
             </div>
             <div className="user-profile-preview-header-nav">
               <ul className="infos-list">
-                {infos.map(({ name, value }) => (
+                {infos.map(({ name }) => (
                   <Tab
                     key={name}
                     name={name}
-                    content={value}
                     selected={selected}
                     setSelectedStatus={setSelectedStatus}
                   />
@@ -59,7 +57,7 @@ const User = ({ _id, username, infos, openChatWindow }: UserProps) => {
         </div>
 
         <div className="user-profile-content">
-          {/* {!currentContent ? <Description /> : <Content />} */}
+          <TabPanel content={infos.find(({ name }) => name === selected)} />
         </div>
 
         <div className="user-profile-social">

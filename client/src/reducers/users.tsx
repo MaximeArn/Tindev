@@ -20,34 +20,17 @@ const initialState: UserState = {
     about: "",
     technos: [],
   },
-  profile: {
-    owner: false,
-    content: null,
-  },
 };
 
 const users = (
   state = initialState,
-  {
-    type,
-    users,
-    user,
-    content,
-    listName,
-    inputName,
-    inputValue,
-    key,
-  }: UserAction
+  { type, users, user, inputName, inputValue, key }: UserAction
 ) => {
   switch (type) {
     case "SET_USERS":
       return { ...state, users };
     case "SET_USER":
       return { ...state, user };
-    case "SET_CURRENT_CONTENT":
-      return { ...state, profile: { ...state.profile, content } };
-    // case "SET_SELECTED_STATUS":
-    //   return { ...state, list: updateListStyle(state.list, listName) };
     case "SET_USER_PROFILE_VALUES":
       return key
         ? {

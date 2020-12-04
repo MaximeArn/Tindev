@@ -2,10 +2,6 @@ export interface UserState {
   users: User[];
   user: any | null;
   editProfile: EditProfile;
-  profile: {
-    owner: boolean;
-    content: Function | null;
-  };
 }
 
 export interface EditProfile {
@@ -131,5 +127,8 @@ export interface UserTabProps {
   name: string;
   selected: string;
   setSelectedStatus: Function;
-  content: string | string[];
+}
+
+export interface UserTabPanelProps {
+  content: any;
 }

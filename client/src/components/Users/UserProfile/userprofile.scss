@@ -114,6 +114,10 @@
     color: #555;
     margin: auto;
     height: 40%;
+
+    &-list {
+      width: 100%;
+    }
   }
 
   &-introduce {
@@ -153,10 +157,6 @@
   position: absolute;
   right: 5%;
   top: 5%;
-}
-
-.content-infos {
-  width: 100%;
 }
 
 .experience {
