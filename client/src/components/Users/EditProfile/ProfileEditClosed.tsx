@@ -8,6 +8,7 @@ const ProfileEditClosed = ({
   value,
   setEditStatus,
 }: UserProfileClosed) => {
+  console.log({ name, value });
   return (
     <>
       <div className="profile-field">
@@ -20,7 +21,7 @@ const ProfileEditClosed = ({
           />
         ) : (
           <div className="field-value">
-            {Array.isArray(value) && value.length ? value : "Not yet specified"}
+            {!value || !value.length ? "Not yet specified" : value}
           </div>
         )}
       </div>

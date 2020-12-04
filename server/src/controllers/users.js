@@ -86,7 +86,6 @@ const usersController = {
     }
   },
   update: async ({ body, file, cookies: { token } }, res, next) => {
-    console.log(body);
     try {
       const { id } = await tokenValidator(token, next);
       const valid = await userUpdateValidator(body, next);
