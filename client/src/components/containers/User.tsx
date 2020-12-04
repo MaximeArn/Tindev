@@ -15,8 +15,9 @@ const mapState = ({
   }));
 
   return {
-    currentContent: content,
+    ...user,
     infos,
+    currentContent: content,
   };
 };
 

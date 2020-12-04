@@ -1,12 +1,9 @@
-/** @format */
-
-import React from "react";
+import React, { useState } from "react";
 import { UserProps } from "../../../models/users";
 import { url } from "../../../environments/api";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import backgroundImage from "src/assets/user-profile-default.jpg";
-import Description from "./Description";
-import ListItem from "./ListItem";
+import Tab from "./Tab";
 import ChatBubbleIcon from "@material-ui/icons/ChatBubble";
 import {
   faFacebook,
@@ -15,17 +12,8 @@ import {
 } from "@fortawesome/free-brands-svg-icons";
 import "./userprofile.scss";
 
-const User = ({
-  _id,
-  username,
-  currentContent,
-  infos,
-  getCurrentContent,
-  setSelectedStatus,
-  openChatWindow,
-}: UserProps) => {
-  const Content = currentContent;
-  console.log("INFOS : ", infos);
+const User = ({ _id, username, infos, openChatWindow }: UserProps) => {
+  const [selected, setSelectedStatus] = useState<string>("About");
 
   return (
     <>
@@ -52,23 +40,24 @@ const User = ({
             <div className="user-profile-preview-header-username">
               {username}
             </div>
-            {/* <div className="user-profile-preview-header-nav">
+            <div className="user-profile-preview-header-nav">
               <ul className="infos-list">
-                {list.map((content) => (
-                  <ListItem
-                    key={content.name}
-                    {...content}
-                    getCurrentContent={getCurrentContent}
+                {infos.map(({ name, value }) => (
+                  <Tab
+                    key={name}
+                    name={name}
+                    content={value}
+                    selected={selected}
                     setSelectedStatus={setSelectedStatus}
                   />
                 ))}
               </ul>
-            </div> */}
+            </div>
           </div>
         </div>
 
         <div className="user-profile-content">
-          {!currentContent ? <Description /> : <Content />}
+          {/* {!currentContent ? <Description /> : <Content />} */}
         </div>
 
         <div className="user-profile-social">

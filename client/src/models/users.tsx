@@ -52,9 +52,6 @@ export interface UserProfileInfos {
 }
 
 export interface UserProps {
-  currentContent: Function;
-  getCurrentContent: Function;
-  setSelectedStatus: Function;
   openChatWindow: Function;
   infos: UserProfileInfos[];
   _id: string;
@@ -65,7 +62,9 @@ export interface UserProps {
   password: string;
   age: number;
   city: string;
-  getUser: Function;
+  experience?: string;
+  technos?: string[];
+  about?: string;
 }
 
 export interface AuthUserState {
