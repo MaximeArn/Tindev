@@ -21,7 +21,7 @@ const mapDispatch = (
 ) => {
   const { username } = params;
   return {
-    getUser: () => dispatch({ type: "GET_USER", username }),
+    getUser: () => dispatch({ type: "GET_USER_PROFILE", username }),
   };
 };
 

@@ -1,5 +1,3 @@
-/** @format */
-
 import { AnyAction, Dispatch, Middleware } from "redux";
 import { url } from "../environments/api";
 import axios from "axios";
@@ -18,25 +16,42 @@ const getUsers = (dispatch: Dispatch<AnyAction>) => {
     .catch((error) => console.log(error));
 };
 
-const getUser = (dispatch: Dispatch<AnyAction>, username: string) => {
+// const getUser = (dispatch: Dispatch<AnyAction>, username: string) => {
+//   dispatch({ type: "SET_USER_PROFILE_LOADER", value: true });
+//   axios
+//     .get(`/users/${username}`)
+//     .then(({ data: user }) => {
+//       dispatch({ type: "SET_USER", user });
+//     })
+//     .catch(({ response: { data: { msg: error } } }) =>
+//       dispatch({ type: "USER_PROFILE_ERROR_HANDLER", error })
+//     )
+//     .finally(() => dispatch({ type: "SET_USER_PROFILE_LOADER", value: false }));
+// };
+
+// const getUserProfile = (dispatch: Dispatch<AnyAction>) => {
+//   dispatch({ type: "SET_USER_PROFILE_LOADER", value: true });
+//   axios
+//     .get("/users/user")
+//     .then(({ data: user }) => dispatch({ type: "SET_USER", user }))
+//     .catch(({ response: { data } }) => console.error(data))
+//     .finally(() => dispatch({ type: "SET_USER_PROFILE_LOADER", value: false }));
+// };
+
+const getUserProfile = (
+  { dispatch, getState }: AxiosSubmit,
+  username?: string
+) => {
+  const { user } = getState().auth;
+  const name = username || user;
+
   dispatch({ type: "SET_USER_PROFILE_LOADER", value: true });
   axios
-    .get(`/users/${username}`)
-    .then(({ data: user }) => {
-      dispatch({ type: "SET_USER", user });
-    })
+    .get(`/users/${name}`)
+    .then(({ data }) => dispatch({ type: "SET_USER", user: data }))
     .catch(({ response: { data: { msg: error } } }) =>
       dispatch({ type: "USER_PROFILE_ERROR_HANDLER", error })
     )
-    .finally(() => dispatch({ type: "SET_USER_PROFILE_LOADER", value: false }));
-};
-
-const getUserProfile = (dispatch: Dispatch<AnyAction>) => {
-  dispatch({ type: "SET_USER_PROFILE_LOADER", value: true });
-  axios
-    .get("/users/user")
-    .then(({ data: user }) => dispatch({ type: "SET_USER", user }))
-    .catch(({ response: { data } }) => console.error(data))
     .finally(() => dispatch({ type: "SET_USER_PROFILE_LOADER", value: false }));
 };
 
@@ -107,11 +122,8 @@ const project: Middleware = ({ getState, dispatch }) => (next) => (action) => {
     case "GET_USERS":
       getUsers(dispatch);
       break;
-    case "GET_USER":
-      getUser(dispatch, username);
-      break;
     case "GET_USER_PROFILE":
-      getUserProfile(dispatch);
+      getUserProfile({ dispatch, getState }, username);
       break;
     case "UPDATE_USER_PROFILE":
       updateUserProfile({ getState, dispatch }, fieldName);
