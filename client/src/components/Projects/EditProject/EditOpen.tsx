@@ -96,7 +96,10 @@ const EditOpen = ({
             <button
               className="field-edit-button"
               type="button"
-              onClick={() => setExpanded(!isExpanded)}
+              onClick={() => {
+                setExpanded(!isExpanded);
+                getProjectEditInputValues(name);
+              }}
             >
               Close
             </button>

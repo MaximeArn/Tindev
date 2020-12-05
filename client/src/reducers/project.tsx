@@ -37,7 +37,10 @@ const project = (
     case "GET_PROJECT_CREATION_VALUE":
       return {
         ...state,
-        createProject: { ...state.createProject, [inputName]: inputValue },
+        createProject: {
+          ...state.createProject,
+          [inputName]: inputValue || inputName === "categories" ? [] : "",
+        },
       };
     case "RESET_PROJECT_CREATION_VALUES":
       return { ...state, createProject: resetInputs(state.createProject) };
