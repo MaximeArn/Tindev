@@ -24,6 +24,7 @@ export interface Authentication {
     password: string;
   };
   user: AuthUserState;
+  verified: boolean;
 }
 
 export interface State {
@@ -133,6 +134,7 @@ export interface AppProps {
   getNotifications: Function;
   login: boolean;
   register: boolean;
+  verified: boolean;
   user: { email: string; username: string } | null;
 }
 

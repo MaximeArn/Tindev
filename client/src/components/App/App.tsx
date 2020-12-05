@@ -30,6 +30,7 @@ function App({
   getProjects,
   getNotifications,
   user,
+  verified,
 }: AppProps) {
   useEffect(() => {
     verifyToken();
@@ -45,24 +46,28 @@ function App({
 
   return (
     <>
-      {showNavbar && <NavBar />}
-      {login && <Login />}
-      {register && <Register />}
-      {user && <Chat />}
-      <Switch>
-        <Route exact path="/" component={Home} />
-        <Route exact path="/project/create" component={ProjectCreation} />
-        <Route path="/project/:slug/manage" component={ManageProject} />
-        <Route path="/project/:slug/edit" component={EditProject} />
-        <Route path="/project/:slug" component={ProjectDetail} />
-        <Route exact path="/users" component={UsersList} />
-        <Route exact path="/user/:username" component={UserProfile} />
-        <Route path="/search" component={Search} />
-        <Route path="/account" component={EditProfile} />
-        <Route path="/legals" component={Legals} />
-        <Route component={NotFound} />
-      </Switch>
-      <Footer />
+      {verified && (
+        <>
+          {showNavbar && <NavBar />}
+          {login && <Login />}
+          {register && <Register />}
+          {user && <Chat />}
+          <Switch>
+            <Route exact path="/" component={Home} />
+            <Route exact path="/project/create" component={ProjectCreation} />
+            <Route path="/project/:slug/manage" component={ManageProject} />
+            <Route path="/project/:slug/edit" component={EditProject} />
+            <Route path="/project/:slug" component={ProjectDetail} />
+            <Route exact path="/users" component={UsersList} />
+            <Route exact path="/user/:username" component={UserProfile} />
+            <Route path="/search" component={Search} />
+            <Route path="/account" component={EditProfile} />
+            <Route path="/legals" component={Legals} />
+            <Route component={NotFound} />
+          </Switch>
+          <Footer />
+        </>
+      )}
     </>
   );
 }

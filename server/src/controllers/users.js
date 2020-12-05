@@ -19,23 +19,12 @@ const usersController = {
       next(error);
     }
   },
-  // getUserProfile: async ({ cookies: { token } }, res, next) => {
-  //   try {
-  //     const { id } = await tokenValidator(token, next);
-  //     const user = await userProfileValidator(id, next);
-
-  //     if (id && user) {
-  //       return res.status(200).json(user);
-  //     }
-  //   } catch (error) {
-  //     next(error);
-  //   }
-  // },
   getUserByUsername: async (
     { params: { username }, cookies: { token } },
     res,
     next
   ) => {
+    console.log(username);
     try {
       const { id } = await tokenValidator(token, next);
       const user = await userProfileValidator(username, next);

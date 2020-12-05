@@ -18,6 +18,7 @@ const initialState: any = {
     password: "",
   },
   user: null,
+  verified: false,
 };
 
 const auth = (
@@ -36,6 +37,8 @@ const auth = (
       return { ...state, [authType]: resetInputs(state[authType]) };
     case "CONNECT_USER":
       return { ...state, user: credentials };
+    case "SET_VERIFIED_STATUS":
+      return { ...state, verified: true };
     case "DISCONNECTION":
       return initialState;
     default:

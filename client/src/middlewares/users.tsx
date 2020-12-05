@@ -16,33 +16,11 @@ const getUsers = (dispatch: Dispatch<AnyAction>) => {
     .catch((error) => console.log(error));
 };
 
-// const getUser = (dispatch: Dispatch<AnyAction>, username: string) => {
-//   dispatch({ type: "SET_USER_PROFILE_LOADER", value: true });
-//   axios
-//     .get(`/users/${username}`)
-//     .then(({ data: user }) => {
-//       dispatch({ type: "SET_USER", user });
-//     })
-//     .catch(({ response: { data: { msg: error } } }) =>
-//       dispatch({ type: "USER_PROFILE_ERROR_HANDLER", error })
-//     )
-//     .finally(() => dispatch({ type: "SET_USER_PROFILE_LOADER", value: false }));
-// };
-
-// const getUserProfile = (dispatch: Dispatch<AnyAction>) => {
-//   dispatch({ type: "SET_USER_PROFILE_LOADER", value: true });
-//   axios
-//     .get("/users/user")
-//     .then(({ data: user }) => dispatch({ type: "SET_USER", user }))
-//     .catch(({ response: { data } }) => console.error(data))
-//     .finally(() => dispatch({ type: "SET_USER_PROFILE_LOADER", value: false }));
-// };
-
 const getUserProfile = (
   { dispatch, getState }: AxiosSubmit,
   username?: string
 ) => {
-  const { user } = getState().auth;
+  const { username: user } = getState().auth.user;
   const name = username || user;
 
   dispatch({ type: "SET_USER_PROFILE_LOADER", value: true });
