@@ -1,5 +1,3 @@
-/** @format */
-
 import React, { useEffect, useRef } from "react";
 import Home from "../containers/Home";
 import { Switch, Route } from "react-router-dom";
