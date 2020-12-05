@@ -68,7 +68,7 @@ const EditProfile = ({
                             ? user[key]
                             : key === "password"
                             ? "Change your password"
-                            : "Not yet specified"
+                            : null
                         }
                       />
                     </div>

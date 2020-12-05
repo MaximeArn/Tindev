@@ -96,7 +96,7 @@ export interface Profile {
     status: boolean;
   };
   inputValue: string | undefined;
-  value: string;
+  value: string | null;
   updateUserProfile: Function;
   getEditProfileValue: Function;
   resetEditProfileValue: Function;
@@ -105,7 +105,7 @@ export interface Profile {
 export interface UserProfileOpen {
   name: string;
   inputValue: any;
-  value: string;
+  value: string | null;
   setEditStatus: Function;
   updateUserProfile: Function;
   getEditProfileValue: Function;
@@ -114,7 +114,7 @@ export interface UserProfileOpen {
 
 export interface UserProfileClosed {
   name: string;
-  value: string;
+  value: string | null;
   setEditStatus: Function;
 }
 
