@@ -1,12 +1,9 @@
-/** @format */
-
 import { AnyAction, Dispatch, Middleware } from "redux";
 import { AuthMiddleware } from "../models/actions";
 import { AxiosSubmit } from "../models/axios";
 import { url } from "../environments/api";
 import Cookies from "js-cookie";
 import axios from "axios";
-import { nextTick } from "process";
 axios.defaults.baseURL = url;
 axios.defaults.headers.post["Content-Type"] = "application/json";
 axios.defaults.withCredentials = true;
@@ -71,20 +68,22 @@ const retrieveToken = (dispatch: Dispatch<AnyAction>) => {
       .then(({ data: credentials }) => {
         dispatch({ type: "CONNECT_USER", credentials });
       })
-      .catch(({ response }) => console.log(response));
+      .catch(({ response }) => console.log(response))
+      .finally(() => dispatch({ type: "SET_VERIFIED_STATUS" }));
 };
 
-const logout = (next: Function, action: AuthMiddleware) => {
-  axios.get("/auth/logout").finally(() => {
+const logout = (dispatch: Dispatch<AnyAction>) => {
+  axios.delete("/auth/logout").finally(() => {
     Cookies.remove("token");
-    next(action);
+    dispatch({ type: "RESET_GLOBAL_STATE" });
   });
 };
 
 const auth: Middleware = ({ getState, dispatch }) => (next) => (
   action: AuthMiddleware
 ) => {
-  switch (action.type) {
+  const { type } = action;
+  switch (type) {
     case "SUBMIT_REGISTER":
       setUser({ getState, dispatch });
       break;
@@ -95,7 +94,7 @@ const auth: Middleware = ({ getState, dispatch }) => (next) => (
       retrieveToken(dispatch);
       break;
     case "DISCONNECT_USER":
-      logout(next, action);
+      logout(dispatch);
       break;
     default:
       next(action);

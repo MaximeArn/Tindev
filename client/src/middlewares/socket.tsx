@@ -6,6 +6,7 @@ import { SocketServerResponse } from "../models/chat";
 import Cookies from "js-cookie";
 import io from "socket.io-client";
 import { url, socketUrl } from "../environments/api";
+import { Notification } from "../models/notifications";
 axios.defaults.baseURL = url;
 axios.defaults.headers.post["Content-Type"] = "application/json";
 axios.defaults.withCredentials = true;
@@ -23,6 +24,10 @@ const serverSocketListener = ({ getState, dispatch }: AxiosSubmit) => {
 
     dispatch({ type: "SET_CHAT_MESSAGES", message });
   });
+
+  socket.on("notification", (notifications: Notification) =>
+    dispatch({ type: "SET_NOTIFICATIONS", notifications })
+  );
 };
 
 const sendSocket = (

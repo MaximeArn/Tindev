@@ -5,6 +5,7 @@ import { Project } from "./projects";
 import { Category } from "./categories";
 import { User } from "./users";
 import { SocketServerResponse } from "./chat";
+import { Notification } from "./notifications";
 
 export interface AuthenticationAction {
   type: string;
@@ -73,8 +74,6 @@ export interface UserAction {
   type: string;
   users: User[];
   user: User;
-  content: Function;
-  listName: string;
   inputName: string;
   inputValue: string;
   key?: string;
@@ -98,4 +97,9 @@ export interface MessageAction {
   username: string;
   id: string;
   usernameToDelete: string;
+}
+
+export interface NotificationAction {
+  type: string;
+  notifications: Notification;
 }

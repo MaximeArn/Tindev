@@ -18,8 +18,13 @@ const userSchema = new Schema(
     avatar: String,
     about: String,
     experience: String,
+    technos: [String],
+    notifications: {
+      counter: { type: Number, default: 0 },
+      tooltips: [{ tooltip: String, createdAt: Date }],
+    },
   },
-  { collation: { locale: "en", strength: 2 } }
+  { collation: { locale: "en", strength: 2 }, timestamps: true }
 );
 
 module.exports = userSchema;

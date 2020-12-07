@@ -1,9 +1,8 @@
-/** @format */
-
 import { AnyAction, Dispatch, Middleware } from "redux";
 import { url } from "../environments/api";
 import axios from "axios";
 import { AxiosSubmit } from "../models/axios";
+import Cookies from "js-cookie";
 axios.defaults.baseURL = url;
 axios.defaults.headers.post["Content-Type"] = "application/json";
 axios.defaults.withCredentials = true;
@@ -17,23 +16,20 @@ const getUsers = (dispatch: Dispatch<AnyAction>) => {
     .catch((error) => console.log(error));
 };
 
-const getUser = (dispatch: Dispatch<AnyAction>, username: string) => {
-  axios
-    .get(`/users/${username}`)
-    .then(({ data: user }) => {
-      dispatch({ type: "SET_USER", user });
-    })
-    .catch(({ response: { data: { msg: error } } }) =>
-      dispatch({ type: "USER_PROFILE_ERROR_HANDLER", error })
-    );
-};
+const getUserProfile = (
+  { dispatch, getState }: AxiosSubmit,
+  username?: string
+) => {
+  const { username: user } = getState().auth.user;
+  const name = username || user;
 
-const getUserProfile = (dispatch: Dispatch<AnyAction>) => {
   dispatch({ type: "SET_USER_PROFILE_LOADER", value: true });
   axios
-    .get("/users/user")
-    .then(({ data: user }) => dispatch({ type: "SET_USER", user }))
-    .catch(({ response: { data } }) => console.error(data))
+    .get(`/users/${name}`)
+    .then(({ data }) => dispatch({ type: "SET_USER", user: data }))
+    .catch(({ response: { data: { msg: error } } }) =>
+      dispatch({ type: "USER_PROFILE_ERROR_HANDLER", error })
+    )
     .finally(() => dispatch({ type: "SET_USER_PROFILE_LOADER", value: false }));
 };
 
@@ -53,7 +49,7 @@ const updateUserProfile = (
     });
   };
 
-  fieldName === "password"
+  fieldName === "password" || fieldName === "technos"
     ? formData.append(fieldName, JSON.stringify(editProfile[fieldName]))
     : formData.append(fieldName, editProfile[fieldName]);
 
@@ -79,21 +75,39 @@ const updateUserProfile = (
     });
 };
 
-const project: Middleware = ({ getState, dispatch }) => (next) => (action) => {
-  const { username, fieldName } = action;
+const deleteProfile = ({ dispatch, history }: AxiosSubmit, id: string) => {
+  dispatch({ type: "SET_USER_DELETION_LOADER", value: true });
+  axios
+    .delete(`/users/${id}`)
+    .then(({ data: { msg: message } }) => {
+      axios.delete("/auth/logout").finally(() => {
+        Cookies.remove("token");
+        dispatch({ type: "DISCONNECTION" });
+        dispatch({ type: "USER_DELETION_SUCCESS_MESSAGE", message });
+      });
+    })
+    .catch(({ response }) => console.error(response))
+    .finally(() => {
+      dispatch({ type: "SET_USER_DELETION_LOADER", value: false });
+      history.push("/");
+    });
+};
 
-  switch (action.type) {
+const project: Middleware = ({ getState, dispatch }) => (next) => (action) => {
+  const { type, username, fieldName, id, history } = action;
+
+  switch (type) {
     case "GET_USERS":
       getUsers(dispatch);
       break;
-    case "GET_USER":
-      getUser(dispatch, username);
-      break;
     case "GET_USER_PROFILE":
-      getUserProfile(dispatch);
+      getUserProfile({ dispatch, getState }, username);
       break;
     case "UPDATE_USER_PROFILE":
       updateUserProfile({ getState, dispatch }, fieldName);
+      break;
+    case "DELETE_USER_ACCOUNT":
+      deleteProfile({ dispatch, history }, id);
       break;
     default:
       next(action);

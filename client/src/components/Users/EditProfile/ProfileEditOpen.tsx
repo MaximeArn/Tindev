@@ -4,14 +4,16 @@ import { UserProfileOpen } from "../../../models/users";
 import capitalize from "../../../utils/capitalizeFirstLetter";
 import { url } from "../../../environments/api";
 import isRequired from "../../../utils/registerMandatoryFields";
+import MultipleCategories from "../../containers/MultipleCategories";
 
 const ProfileEditOpen = ({
   name,
+  inputValue,
   value,
-  avatar,
   setEditStatus,
   updateUserProfile,
   getEditProfileValue,
+  resetEditProfileValue,
 }: UserProfileOpen) => {
   const fileInput = useRef<HTMLInputElement>(null);
   const filePreview = useRef<any>(null);
@@ -25,19 +27,21 @@ const ProfileEditOpen = ({
     if (files) {
       reader.readAsDataURL(files[0]);
       getEditProfileValue(name, files[0]);
+
+      reader.onload = ({ target }: ProgressEvent<FileReader>) => {
+        filePreview.current.src = target?.result;
+      };
+
+      setImageStatus(true);
     }
-
-    reader.onload = ({ target }: ProgressEvent<FileReader>) => {
-      filePreview.current.src = target?.result;
-    };
-
-    setImageStatus(true);
   };
 
   const resetInputValues = () => {
     name === "password"
-      ? Object.keys(value).forEach((key) => getEditProfileValue(name, "", key))
-      : getEditProfileValue(name, "");
+      ? Object.keys(inputValue).forEach((key) =>
+          resetEditProfileValue(name, key)
+        )
+      : resetEditProfileValue(name);
   };
 
   return (
@@ -59,11 +63,11 @@ const ProfileEditOpen = ({
         {name === "avatar" ? (
           <>
             {!isImageSelected ? (
-              avatar ? (
+              value?.includes("-") ? (
                 <img
                   className="profile-edit-image-preview"
                   onClick={() => fileInput.current?.click()}
-                  src={`${url}/uploads/users/${avatar}`}
+                  src={`${url}/uploads/users/${value}`}
                   alt="profile-avatar-preview"
                 />
               ) : (
@@ -80,7 +84,7 @@ const ProfileEditOpen = ({
           </>
         ) : name === "password" ? (
           <div className="profile-edit-password">
-            {Object.entries(value).map(([key, val]: any) => {
+            {Object.entries(inputValue).map(([key, val]: any) => {
               return (
                 <input
                   key={key}
@@ -97,6 +101,10 @@ const ProfileEditOpen = ({
               );
             })}
           </div>
+        ) : name === "technos" ? (
+          <div className="profile-edit-open-technos">
+            <MultipleCategories name={name} />
+          </div>
         ) : (
           <input
             className={
@@ -107,7 +115,7 @@ const ProfileEditOpen = ({
             name={name}
             type={typeChecker(name)}
             placeholder={`${capitalize(name)}...`}
-            value={value}
+            value={inputValue}
             onChange={({ target }) => getEditProfileValue(name, target.value)}
             required={isRequired(name)}
           />

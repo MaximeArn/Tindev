@@ -1,10 +1,9 @@
-/** @format */
 const { User } = require("../models");
 const {
   tokenValidator,
-  userValidator,
   userProfileValidator,
   userUpdateValidator,
+  deleteProfileValidator,
 } = require("../utils/validators");
 
 const usersController = {
@@ -20,26 +19,16 @@ const usersController = {
       next(error);
     }
   },
-  getUserProfile: async ({ cookies: { token } }, res, next) => {
-    try {
-      const { id } = await tokenValidator(token, next);
-      const user = await userProfileValidator(id, next);
-
-      if (id && user) {
-        return res.status(200).json(user);
-      }
-    } catch (error) {
-      next(error);
-    }
-  },
   getUserByUsername: async (
     { params: { username }, cookies: { token } },
     res,
     next
   ) => {
+    console.log(username);
     try {
       const { id } = await tokenValidator(token, next);
-      const user = await userValidator(username, next);
+      const user = await userProfileValidator(username, next);
+
       if (id && user) {
         return res.status(200).json(user);
       }
@@ -100,6 +89,18 @@ const usersController = {
         return res
           .status(200)
           .json({ msg: "Profile successfully updated", user });
+      }
+    } catch (error) {
+      next(error);
+    }
+  },
+  deleteProfile: async ({ params: { id } }, res, next) => {
+    try {
+      const user = await deleteProfileValidator(id, next);
+
+      if (user) {
+        await user.remove();
+        return res.status(200).json({ msg: "Account successfully deleted" });
       }
     } catch (error) {
       next(error);

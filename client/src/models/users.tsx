@@ -1,12 +1,7 @@
 export interface UserState {
   users: User[];
-  user: User | null;
-  list: ListContent[];
+  user: any | null;
   editProfile: EditProfile;
-  profile: {
-    owner: boolean;
-    content: Function | null;
-  };
 }
 
 export interface EditProfile {
@@ -23,12 +18,7 @@ export interface EditProfile {
   avatar: null;
   experience: string;
   about: string;
-}
-
-export interface ListContent {
-  name: string;
-  component: Function;
-  selected?: boolean;
+  technos: string[] | [];
 }
 
 export interface User {
@@ -39,20 +29,27 @@ export interface User {
   email: string;
   password?: string;
   age?: number;
-  city: string;
+  city?: string;
+  experience?: string;
+  about?: string;
+  avatar?: string;
 }
 
 export interface UserProfileProps {
   user: User;
+  error: string;
+  loader: boolean;
   getUser: Function;
 }
 
+export interface UserProfileInfos {
+  name: string;
+  value: string | string[];
+}
+
 export interface UserProps {
-  currentContent: Function;
-  getCurrentContent: Function;
-  setSelectedStatus: Function;
   openChatWindow: Function;
-  list: ListContent[];
+  infos: UserProfileInfos[];
   _id: string;
   username: string;
   firstname: string;
@@ -61,8 +58,9 @@ export interface UserProps {
   password: string;
   age: number;
   city: string;
-  role: string;
-  getUser: Function;
+  experience?: string;
+  technos?: string[];
+  about?: string;
 }
 
 export interface AuthUserState {
@@ -79,11 +77,16 @@ export interface EditUserProfile {
     fieldName: string | null;
     status: boolean;
   };
+  deleteModal: boolean;
+  deletionLoader: boolean;
   editProfile: EditProfile;
   getUserProfile: Function;
   updateUserProfile: Function;
   getEditProfileValue: Function;
+  resetEditProfileValue: Function;
   resetMessages: Function;
+  deleteAccount: Function;
+  setDeleteModalStatus: Function;
 }
 
 export interface Profile {
@@ -93,27 +96,39 @@ export interface Profile {
     status: boolean;
   };
   inputValue: string | undefined;
-  value: string;
+  value: string | null;
   updateUserProfile: Function;
   getEditProfileValue: Function;
+  resetEditProfileValue: Function;
 }
 
 export interface UserProfileOpen {
   name: string;
-  value: any;
-  avatar: string | false;
+  inputValue: any;
+  value: string | null;
   setEditStatus: Function;
   updateUserProfile: Function;
   getEditProfileValue: Function;
+  resetEditProfileValue: Function;
 }
 
 export interface UserProfileClosed {
   name: string;
-  value: string | undefined;
+  value: string | null;
   setEditStatus: Function;
 }
 
 export interface UserListProps {
   users: User[];
   getUsers: Function;
+}
+
+export interface UserTabProps {
+  name: string;
+  selected: string;
+  setSelectedStatus: Function;
+}
+
+export interface UserTabPanelProps {
+  content: any;
 }

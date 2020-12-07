@@ -27,7 +27,7 @@ const EditClosed = ({
           {name === "image" ? (
             <img
               className="field-edit-image"
-              src={`${url}/uploads/${value}`}
+              src={`${url}/uploads/projects/${value}`}
               alt="image"
             />
           ) : name === "categories" ? (

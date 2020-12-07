@@ -20,6 +20,7 @@ import useStyles from "../../styles/MUI/navbar";
 import renderMainMenu from "./Menus/mainMenu";
 import renderProfileMenu from "./Menus/profileMenu";
 import renderMobileAuthMenu from "./Menus/mobileAuthMenu";
+import NotificationTray from "../containers/NotificationTray";
 import "./navBar.scss";
 
 const NavBar = ({
@@ -29,6 +30,8 @@ const NavBar = ({
   account,
   mobile,
   main,
+  counter,
+  tray,
   getSearchValue,
   setSearchBarStatus,
   logout,
@@ -37,6 +40,7 @@ const NavBar = ({
   setAccountMenu,
   setMobileMenu,
   setMainMenu,
+  setTrayStatus,
 }: NavState) => {
   const searchBar = useRef<HTMLInputElement>(null);
   const classes = useStyles();
@@ -122,14 +126,15 @@ const NavBar = ({
 
           <div className={classes.grow} />
           <div className={classes.sectionDesktop}>
-            {/* <IconButton color="inherit">
-              <MailIcon />
-            </IconButton> */}
-            <IconButton color="inherit">
-              <Badge badgeContent={1} color="secondary">
-                <NotificationsIcon />
-              </Badge>
-            </IconButton>
+            <div className="bell-container">
+              <IconButton onClick={() => setTrayStatus()} color="inherit">
+                <Badge badgeContent={tray ? 0 : counter} color="secondary">
+                  <NotificationsIcon />
+                </Badge>
+              </IconButton>
+              {tray && <NotificationTray />}
+            </div>
+
             {!user ? (
               <div className={classes.authLinkContainer}>
                 <Typography

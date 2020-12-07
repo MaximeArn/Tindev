@@ -5,8 +5,14 @@ import { State } from "../../models/states";
 import { withRouter } from "react-router-dom";
 import { OwnProps } from "../../models/connect";
 
-const mapState = ({ users: { user } }: State) => ({
+const mapState = ({
+  users: { user },
+  error: { userProfileErrorMessage: error },
+  loaders: { userProfileLoader: loader },
+}: State) => ({
   user,
+  error,
+  loader,
 });
 
 const mapDispatch = (
@@ -15,7 +21,7 @@ const mapDispatch = (
 ) => {
   const { username } = params;
   return {
-    getUser: () => dispatch({ type: "GET_USER", username }),
+    getUser: () => dispatch({ type: "GET_USER_PROFILE", username }),
   };
 };
 

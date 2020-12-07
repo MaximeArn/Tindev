@@ -31,7 +31,6 @@ const mapState = (
 };
 
 const mapDispatch = (dispatch: Dispatch<AnyAction>) => ({
-  getCategories: () => dispatch({ type: "GET_CATEGORIES" }),
   resetSuccessMessage: () =>
     dispatch({ type: "PROJECT_EDITION_SUCCESS_MESSAGE" }),
   deleteProject: (id: string) => dispatch({ type: "SEND_DELETE_PROJECT", id }),

@@ -1,12 +1,10 @@
-/** @format */
-
-import React from "react";
+import React, { useState } from "react";
 import { UserProps } from "../../../models/users";
 import { url } from "../../../environments/api";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import backgroundImage from "src/assets/user-profile-default.jpg";
-import Description from "./Description";
-import ListItem from "./ListItem";
+import Tab from "./Tab";
+import TabPanel from "./TabPanel";
 import ChatBubbleIcon from "@material-ui/icons/ChatBubble";
 import {
   faFacebook,
@@ -15,16 +13,8 @@ import {
 } from "@fortawesome/free-brands-svg-icons";
 import "./userprofile.scss";
 
-const User = ({
-  _id,
-  username,
-  currentContent,
-  list,
-  getCurrentContent,
-  setSelectedStatus,
-  openChatWindow,
-}: UserProps) => {
-  const Content = currentContent;
+const User = ({ _id, username, infos, openChatWindow }: UserProps) => {
+  const [selected, setSelectedStatus] = useState<string>("about");
 
   return (
     <>
@@ -53,11 +43,11 @@ const User = ({
             </div>
             <div className="user-profile-preview-header-nav">
               <ul className="infos-list">
-                {list.map((content) => (
-                  <ListItem
-                    key={content.name}
-                    {...content}
-                    getCurrentContent={getCurrentContent}
+                {infos.map(({ name }) => (
+                  <Tab
+                    key={name}
+                    name={name}
+                    selected={selected}
                     setSelectedStatus={setSelectedStatus}
                   />
                 ))}
@@ -67,7 +57,7 @@ const User = ({
         </div>
 
         <div className="user-profile-content">
-          {!currentContent ? <Description /> : <Content />}
+          <TabPanel content={infos.find(({ name }) => name === selected)} />
         </div>
 
         <div className="user-profile-social">

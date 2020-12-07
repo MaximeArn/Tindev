@@ -24,3 +24,15 @@ export interface ProjectDetailModal {
   error: string;
   success: boolean | string;
 }
+
+export interface ProfileDeletionModal {
+  accountId: string;
+  setDeleteModalStatus: Function;
+  loader: boolean;
+  deleteAccount: Function;
+}
+
+export interface ProfileDeletionSuccessModal {
+  success: string | boolean;
+  onModalClosing: Function;
+}

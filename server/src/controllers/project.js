@@ -1,6 +1,5 @@
-/** @format */
-
 const { Project } = require("../models");
+const { setNotification } = require("./notifications");
 const {
   projectValidator,
   applyValidator,
@@ -50,19 +49,21 @@ module.exports = {
       next(error);
     }
   },
-  apply: async ({ body, cookies: { token } }, res, next) => {
+  apply: async (sockets, { body, cookies: { token } }, res, next) => {
     try {
       const { id, username } = await tokenValidator(token, next);
-      const apply = await applyValidator({ body, id }, next);
+      const { owner, project } = await applyValidator({ body, id }, next);
 
-      if (apply && id) {
-        const { body: validatedBody, project } = apply;
-        const { message } = validatedBody;
+      if (project && id) {
+        const { _id, applicants } = project;
+        const { message } = body;
+        const tooltip = `${username} applied to your project`;
+        setNotification(sockets, owner, tooltip, next);
 
-        await Project.updateOne(
-          { _id: project._id },
+        await Project.findOneAndUpdate(
+          { _id },
           {
-            applicants: [...project.applicants, { _id: id, username, message }],
+            applicants: [...applicants, { _id: id, username, message }],
           }
         );
 
@@ -151,16 +152,21 @@ module.exports = {
     }
   },
   deleteContributor: async (
+    sockets,
     { body: { id }, cookies: { token } },
     res,
     next
   ) => {
     try {
-      const { id: userId } = await tokenValidator(token, next);
-      const project = await removeContributorValidator(id, next);
+      const { id: userId, username } = await tokenValidator(token, next);
+      const { project, user } = await removeContributorValidator(id, next);
+      const tooltip = `${username} has left your project ${project.title}`;
 
       if (project && userId) {
+        setNotification(sockets, user, tooltip, next);
+
         project.contributors.pull(userId);
+
         const updated = await project.save();
 
         return res.status(200).json(updated);

@@ -1,7 +1,6 @@
-/** @format */
-
 const { User } = require("../models");
 const { tokenValidator } = require("../utils/validators");
+const { setNotification } = require("./notifications");
 
 module.exports = {
   chatHandler: (ioNameSpace, socket, connectedUsers, username) => {
@@ -11,10 +10,16 @@ module.exports = {
     socket.on("chat-message", async ({ to, message, token }) => {
       try {
         const { id, username: from } = await tokenValidator(token, null);
-        const { name: toName } = to;
+        const { name: toName, id: toId } = to;
         const date = Date.now();
         const user = await User.findOne({ _id: id });
-        const { id: room } = connectedUsers[to.name];
+        const { id: room } = connectedUsers[toName];
+        const notification = `${from} sent you a message`;
+        const owner = await User.findById(toId);
+
+        !owner.notifications.tooltips.find(
+          ({ tooltip }) => tooltip === notification
+        ) && setNotification(connectedUsers, owner, notification, null);
 
         user.messages.push({ to, message, date });
         await user.save();
@@ -31,7 +36,6 @@ module.exports = {
         ioNameSpace.in(room).emit("chat-message", msg);
         socket.emit("chat-message", msg);
       } catch (error) {
-        console.log(error.message);
         throw new Error(error);
       }
     });

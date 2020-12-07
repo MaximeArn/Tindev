@@ -27,7 +27,6 @@ const Project = ({
   contributorLoader,
   leaveProject,
 }: ProjectDetailSubComponent) => {
-  console.log("LOADER : ", contributorLoader);
   const typedContributors: Contributor[] | [] = contributors;
   const { pathname } = useLocation();
   return (
@@ -36,7 +35,10 @@ const Project = ({
         <div className="projectDetail">
           <div className="projectDetail-content">
             <div className="image-section">
-              <img src={`${url}/uploads/${image}`} alt="project image" />
+              <img
+                src={`${url}/uploads/projects/${image}`}
+                alt="project image"
+              />
             </div>
             <div className="title-section">
               <h2>{title}</h2>

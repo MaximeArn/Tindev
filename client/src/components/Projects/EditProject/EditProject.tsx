@@ -13,16 +13,11 @@ const EditProject = ({
   error,
   success,
   isModalOpen,
-  getCategories,
   resetSuccessMessage,
   deleteProject,
   setModalStatus,
   projectDeletionSuccess,
 }: EditProjectProps) => {
-  useEffect(() => {
-    getCategories();
-  }, []);
-
   useEffect(() => {
     setTimeout(() => {
       resetSuccessMessage();

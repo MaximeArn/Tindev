@@ -1,5 +1,3 @@
-/** @format */
-
 require("dotenv").config();
 const express = require("express");
 const server = require("express")();
@@ -13,16 +11,18 @@ const { chatHandler } = require("./controllers/chat");
 const mongoDB = require("./config/database");
 const cors = require("cors");
 const corsSettings = require("./config/cors");
+const { tokenValidator } = require("./utils/validators");
 const {
   authRouter,
   usersRouter,
   categoriesRouter,
   projectRouter,
   searchRouter,
+  notificationsRouter,
 } = require("./router");
 
-const PORT = process.env.PORT || 3000;
-const SOCKET = process.env.SOCKET || 3001;
+const PORT = process.env.PORT || 7000;
+const SOCKET = process.env.SOCKET || 6000;
 const ioNameSpace = io.of("/chat");
 const connectedUsers = {};
 
@@ -31,10 +31,11 @@ server.use(express.static(`${__dirname}/public`));
 server.use(express.json());
 server.use(cookieParser());
 server.use("/auth", authRouter(connectedUsers));
-server.use("/project", projectRouter);
+server.use("/project", projectRouter(connectedUsers));
 server.use("/categories", categoriesRouter);
 server.use("/users", usersRouter);
 server.use("/search", searchRouter);
+server.use("/notifications", notificationsRouter);
 server.use(errorHandler);
 server.use(notFound);
 

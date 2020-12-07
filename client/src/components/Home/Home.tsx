@@ -5,9 +5,15 @@ import ProjectsList from "../containers/ProjectList";
 import VisitorPage from "../containers/VisitorPage";
 import { HomeProps } from "../../models/states";
 import CircularProgress from "@material-ui/core/CircularProgress";
+import AccountDeletionModal from "../Users/EditProfile/DeletionSuccess";
 import "./home.scss";
 
-const Home = ({ loader, user }: HomeProps) => {
+const Home = ({
+  loader,
+  user,
+  userDeletionSuccess,
+  onModalClosing,
+}: HomeProps) => {
   return (
     <>
       {user ? (
@@ -21,7 +27,15 @@ const Home = ({ loader, user }: HomeProps) => {
           <ProjectsList />
         </div>
       ) : (
-        <VisitorPage />
+        <>
+          {userDeletionSuccess && (
+            <AccountDeletionModal
+              success={userDeletionSuccess}
+              onModalClosing={onModalClosing}
+            />
+          )}
+          <VisitorPage />
+        </>
       )}
     </>
   );

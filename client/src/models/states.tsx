@@ -6,6 +6,7 @@ import { UserState, AuthUserState } from "./users";
 import { User } from "../models/users";
 import { Project } from "../models/projects";
 import { ChatWindow, Messages } from "./chat";
+import { Notification } from "./notifications";
 
 export interface Authentication {
   register: {
@@ -23,6 +24,7 @@ export interface Authentication {
     password: string;
   };
   user: AuthUserState;
+  verified: boolean;
 }
 
 export interface State {
@@ -37,12 +39,14 @@ export interface State {
   search: SearchState;
   navbar: NavBarState;
   message: MessageState;
+  notifications: NotificationState;
 }
 
 export interface Modals {
   showNavbar: boolean;
   applyModal: boolean;
   deleteProjectModal: boolean;
+  closeAccountModal: boolean;
   authModal: {
     login: boolean;
     register: boolean;
@@ -62,6 +66,7 @@ export interface Loaders {
   projectCreationLoader: boolean;
   projectCategoriesLoader: boolean;
   userProfileLoader: boolean;
+  userAccountDeletionLoader: boolean;
   userProfileEditionLoader: {
     fieldName: string | null;
     status: boolean;
@@ -126,8 +131,10 @@ export interface AppProps {
   wsConnection: Function;
   showNavbar: boolean;
   getProjects: Function;
+  getNotifications: Function;
   login: boolean;
   register: boolean;
+  verified: boolean;
   user: { email: string; username: string } | null;
 }
 
@@ -136,6 +143,8 @@ export interface NavState {
   search: string;
   focused: boolean;
   logout: Function;
+  counter: number;
+  tray: boolean;
   account: Element | null | undefined;
   mobile: Element | null | undefined;
   main: Element | null | undefined;
@@ -146,11 +155,14 @@ export interface NavState {
   setAccountMenu: Function;
   setMobileMenu: Function;
   setMainMenu: Function;
+  setTrayStatus: Function;
 }
 
 export interface HomeProps {
   loader: boolean;
   getProjects: Function;
+  userDeletionSuccess: boolean | string;
+  onModalClosing: Function;
   user: { email: string; username: string } | null;
 }
 
@@ -162,6 +174,7 @@ export interface ModalState {
   showNavbar: boolean;
   applyModal: boolean;
   deleteProjectModal: boolean;
+  closeAccountModal: boolean;
   authModal: {
     login: boolean;
     register: boolean;
@@ -178,6 +191,7 @@ export interface SuccessState {
   projectEditionSuccess: boolean | string;
   projectDeletionSuccess: boolean | string;
   userEditionSuccess: boolean | string;
+  userDeletionSuccess: boolean | string;
 }
 
 export interface SearchState {
@@ -195,4 +209,9 @@ export interface NavBarState {
 export interface MessageState {
   messages: Messages[];
   chatWindow: ChatWindow[];
+}
+
+export interface NotificationState {
+  notifications: Notification;
+  tray: boolean;
 }

@@ -5,7 +5,7 @@ const authRouterWrapper = (connectedUsers) => {
   router.post("/login", login);
   router.post("/register", register);
   router.get("/verify", verify);
-  router.get("/logout", (req, res, next) =>
+  router.delete("/logout", (req, res, next) =>
     logout(connectedUsers, req, res, next)
   );
 

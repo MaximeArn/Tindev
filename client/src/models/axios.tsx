@@ -2,7 +2,7 @@ import { AnyAction, Dispatch } from "redux";
 import { AuthMiddleware } from "./actions";
 
 export interface AxiosSubmit {
-  getState: any;
+  getState?: any;
   dispatch: Dispatch<AnyAction>;
   history?: any;
 }

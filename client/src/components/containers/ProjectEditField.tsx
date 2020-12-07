@@ -16,7 +16,7 @@ const mapDispatch = (
 ) => {
   const { slug } = params;
   return {
-    getProjectEditInputValues: (inputName: string, inputValue: string) =>
+    getProjectEditInputValues: (inputName: string, inputValue?: string) =>
       dispatch({ type: "GET_PROJECT_CREATION_VALUE", inputName, inputValue }),
     setNewProjectImage: (image: MutableRefObject<any>) =>
       dispatch({ type: "SET_PROJECT_IMAGE", image }),

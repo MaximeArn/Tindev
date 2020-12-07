@@ -1,6 +1,4 @@
-/** @format */
-
-import React from "react";
+import React, { useEffect } from "react";
 import { useHistory, Link } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faArrowLeft } from "@fortawesome/free-solid-svg-icons";
@@ -9,10 +7,11 @@ import Applicant from "../../containers/Applicant";
 import "./managePage.scss";
 import randomKey from "../../../utils/randomIdGenerator";
 import { ApplicantRow, ProjectProp } from "../../../models/projects";
-import { Applicant as ApplicantModel } from "../../../models/projects";
 
-const ManageProject = ({ project }: ProjectProp) => {
-  const typedApplicants: ApplicantModel[] | [] = project && project.applicants;
+const ManageProject = ({ project, getProject }: ProjectProp) => {
+  useEffect(() => {
+    getProject();
+  }, []);
 
   const history = useHistory();
 

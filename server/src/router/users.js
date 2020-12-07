@@ -6,14 +6,14 @@ const {
   getUsers,
   getUserByUsername,
   getMessageHistory,
-  getUserProfile,
   update,
+  deleteProfile,
 } = require("../controllers/users");
 
 router.get("/", getUsers);
-router.get("/user", getUserProfile);
 router.get("/:username", getUserByUsername);
 router.post("/messageHistory", getMessageHistory);
 router.patch("/update", upload.single("avatar"), update);
+router.delete("/:id", deleteProfile);
 
 module.exports = router;
