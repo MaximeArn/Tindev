@@ -133,6 +133,8 @@ export interface AppProps {
   getNotifications: Function;
   login: boolean;
   register: boolean;
+  onAccountClosing: Function;
+  userDeletionSuccess: string | boolean;
   user: { email: string; username: string } | null;
 }
 
@@ -159,9 +161,6 @@ export interface NavState {
 export interface HomeProps {
   loader: boolean;
   getProjects: Function;
-  userDeletionSuccess: boolean | string;
-  onModalClosing: Function;
-  user: { email: string; username: string } | null;
 }
 
 export interface CategoriesState {

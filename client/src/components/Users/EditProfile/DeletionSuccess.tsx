@@ -3,12 +3,12 @@ import { ProfileDeletionSuccessModal } from "../../../models/modal";
 
 const DeletionSuccess = ({
   success,
-  onModalClosing,
+  onAccountClosing,
 }: ProfileDeletionSuccessModal) => {
   const modal = useRef<any>(null);
 
   const handleOutsideClick = ({ target }: globalThis.MouseEvent) => {
-    !modal.current.contains(target) && onModalClosing();
+    !modal.current.contains(target) && onAccountClosing();
   };
 
   useEffect(() => {
@@ -23,7 +23,7 @@ const DeletionSuccess = ({
         <div className="profile-deletion-modal-buttons">
           <button
             className="profile-deletion-modal-button"
-            onClick={() => onModalClosing()}
+            onClick={() => onAccountClosing()}
           >
             Close
           </button>

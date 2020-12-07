@@ -9,11 +9,13 @@ const mapState = ({
     authModal: { login, register },
   },
   auth: { user },
+  success: { userDeletionSuccess },
 }: State) => ({
   user,
   showNavbar,
   login,
   register,
+  userDeletionSuccess,
 });
 
 const mapDispatch = (dispatch: Dispatch<AnyAction>) => ({
@@ -21,6 +23,7 @@ const mapDispatch = (dispatch: Dispatch<AnyAction>) => ({
   wsConnection: () => dispatch({ type: "SOCKET_CONNECTION" }),
   getProjects: () => dispatch({ type: "GET_PROJECTS" }),
   getNotifications: () => dispatch({ type: "GET_NOTIFICATIONS" }),
+  onAccountClosing: () => dispatch({ type: "RESET_GLOBAL_STATE" }),
 });
 
 export default connect(mapState, mapDispatch)(App);

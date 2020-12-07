@@ -19,6 +19,7 @@ import Legals from "../Legals/Legals";
 import EditProfile from "../containers/EditProfile";
 import "./app.scss";
 import VisitorPage from "../containers/VisitorPage";
+import AccountDeletionModal from "../Users/EditProfile/DeletionSuccess";
 
 function App({
   verifyToken,
@@ -26,9 +27,11 @@ function App({
   showNavbar,
   login,
   register,
+  userDeletionSuccess,
   getProjects,
   getNotifications,
   user,
+  onAccountClosing,
 }: AppProps) {
   useEffect(() => {
     verifyToken();
@@ -42,7 +45,6 @@ function App({
     }
   }, [user]);
 
-  //TODO: check verified logical && check on home component cuz it will fuck some of the visitor page behavior
   return (
     <>
       {showNavbar && <NavBar />}
@@ -66,7 +68,15 @@ function App({
           </Switch>
         </>
       ) : (
-        <VisitorPage />
+        <>
+          {userDeletionSuccess && (
+            <AccountDeletionModal
+              success={userDeletionSuccess}
+              onAccountClosing={onAccountClosing}
+            />
+          )}
+          <VisitorPage />
+        </>
       )}
       <Footer />
     </>
