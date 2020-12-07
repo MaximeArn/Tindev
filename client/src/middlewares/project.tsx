@@ -38,7 +38,7 @@ const sendProject = ({ getState, dispatch, history }: AxiosSubmit) => {
     );
 };
 
-const setProjects = (dispatch: Dispatch<AnyAction>) => {
+const getProjects = (dispatch: Dispatch<AnyAction>) => {
   dispatch({ type: "SET_PROJECTLIST_LOADER", value: true });
   axios
     .get("/project")
@@ -199,7 +199,7 @@ const deleteProject = (dispatch: Dispatch<AnyAction>, id: string) => {
     .delete(`/project/${id}`)
     .then(({ data: { msg: message } }) => {
       dispatch({ type: "PROJECT_DELETION_SUCCESS_MESSAGE", message });
-      setProjects(dispatch);
+      getProjects(dispatch);
     })
     .catch((error) => console.error(error));
 };
@@ -227,7 +227,7 @@ const project: Middleware = ({ getState, dispatch }) => (next) => (action) => {
       sendProject({ getState, dispatch, history });
       break;
     case "GET_PROJECTS":
-      setProjects(dispatch);
+      getProjects(dispatch);
       break;
     case "GET_PROJECT":
       getProject(dispatch, slug);
