@@ -1,14 +1,11 @@
-/** @format */
-
 import { Middleware } from "redux";
 import { AxiosSubmit } from "../models/axios";
 import { ChatWindow } from "../models/chat";
-import { socketUrl } from "../environments/api";
 import axios from "axios";
 import { SocketServerResponse } from "../models/chat";
 import Cookies from "js-cookie";
 import io from "socket.io-client";
-import { url } from "../environments/api";
+import { url, socketUrl } from "../environments/api";
 axios.defaults.baseURL = url;
 axios.defaults.headers.post["Content-Type"] = "application/json";
 axios.defaults.withCredentials = true;
