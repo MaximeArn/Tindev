@@ -7,16 +7,16 @@ const Modal = ({
   inputValue,
   sendApply,
   setModalStatus,
-  resetApplySuccessState,
+  reset,
   error,
   success,
 }: ProjectDetailModal) => {
   const modal = useRef<HTMLDivElement>(null);
 
-  const handleMouseDown = (event: any) => {
+  const handleOutsideClick = (event: any) => {
     if (event.target === modal.current) {
       setModalStatus(false);
-      resetApplySuccessState();
+      reset();
     }
   };
   const handleSubmit = (event: FormEvent<HTMLFormElement>) => {
@@ -25,7 +25,11 @@ const Modal = ({
   };
 
   return (
-    <div ref={modal} onMouseDown={handleMouseDown} className="project-detail">
+    <div
+      ref={modal}
+      onMouseDown={handleOutsideClick}
+      className="project-detail"
+    >
       {!success ? (
         <div className="project-detail-modal">
           <form onSubmit={handleSubmit}>
@@ -53,7 +57,7 @@ const Modal = ({
             type="button"
             onClick={() => {
               setModalStatus(false);
-              resetApplySuccessState();
+              reset();
             }}
           >
             Close

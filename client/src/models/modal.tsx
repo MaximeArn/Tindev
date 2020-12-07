@@ -20,7 +20,7 @@ export interface ProjectDetailModal {
   inputValue: string;
   sendApply: Function;
   setModalStatus: Function;
-  resetApplySuccessState: Function;
+  reset: Function;
   error: string;
   success: boolean | string;
 }
