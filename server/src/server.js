@@ -11,7 +11,6 @@ const { chatHandler } = require("./controllers/chat");
 const mongoDB = require("./config/database");
 const cors = require("cors");
 const corsSettings = require("./config/cors");
-const { tokenValidator } = require("./utils/validators");
 const {
   authRouter,
   usersRouter,

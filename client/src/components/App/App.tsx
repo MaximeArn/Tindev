@@ -18,6 +18,7 @@ import Footer from "../Footer/Footer";
 import Legals from "../Legals/Legals";
 import EditProfile from "../containers/EditProfile";
 import "./app.scss";
+import VisitorPage from "../containers/VisitorPage";
 
 function App({
   verifyToken,
@@ -28,7 +29,6 @@ function App({
   getProjects,
   getNotifications,
   user,
-  verified,
 }: AppProps) {
   useEffect(() => {
     verifyToken();
@@ -42,14 +42,15 @@ function App({
     }
   }, [user]);
 
+  //TODO: check verified logical && check on home component cuz it will fuck some of the visitor page behavior
   return (
     <>
-      {verified && (
+      {showNavbar && <NavBar />}
+      {login && <Login />}
+      {register && <Register />}
+      {user ? (
         <>
-          {showNavbar && <NavBar />}
-          {login && <Login />}
-          {register && <Register />}
-          {user && <Chat />}
+          <Chat />
           <Switch>
             <Route exact path="/" component={Home} />
             <Route exact path="/project/create" component={ProjectCreation} />
@@ -63,9 +64,11 @@ function App({
             <Route path="/legals" component={Legals} />
             <Route component={NotFound} />
           </Switch>
-          <Footer />
         </>
+      ) : (
+        <VisitorPage />
       )}
+      <Footer />
     </>
   );
 }

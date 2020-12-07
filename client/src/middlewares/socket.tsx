@@ -1,6 +1,5 @@
 import { Middleware } from "redux";
 import { AxiosSubmit } from "../models/axios";
-import { ChatWindow } from "../models/chat";
 import axios from "axios";
 import { SocketServerResponse } from "../models/chat";
 import Cookies from "js-cookie";

@@ -68,8 +68,7 @@ const retrieveToken = (dispatch: Dispatch<AnyAction>) => {
       .then(({ data: credentials }) => {
         dispatch({ type: "CONNECT_USER", credentials });
       })
-      .catch(({ response }) => console.log(response))
-      .finally(() => dispatch({ type: "SET_VERIFIED_STATUS" }));
+      .catch(({ response }) => console.log(response));
 };
 
 const logout = (dispatch: Dispatch<AnyAction>) => {

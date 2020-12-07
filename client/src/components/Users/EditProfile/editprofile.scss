@@ -9,15 +9,6 @@
 }
 
 .profile {
-<<<<<<< HEAD
-  margin: 2rem auto;
-  border: 1px solid #ededed;
-  box-shadow: 0px 0px 2px black;
-  width: 500px;
-  background-color: #ededed;
-  display: flex;
-  flex-direction: column;
-=======
   position: absolute;
   top: 81%;
   left: 50%;
@@ -82,7 +73,6 @@
       }
     }
   }
->>>>>>> dc1ba6c8920fd325b22230a5e2b73416cd10aa64
 
   &-edit-loading {
     margin: auto;
@@ -288,13 +278,10 @@
     justify-content: space-between;
 
     &-container {
-      // padding: 1rem;
       width: 50%;
-      // background-color: #fff;
 
       &:nth-child(2n + 1) {
         border-right: 1px solid #333;
-        // background-color: blue;
       }
     }
   }

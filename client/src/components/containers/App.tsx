@@ -8,13 +8,12 @@ const mapState = ({
     showNavbar,
     authModal: { login, register },
   },
-  auth: { user, verified },
+  auth: { user },
 }: State) => ({
   user,
   showNavbar,
   login,
   register,
-  verified,
 });
 
 const mapDispatch = (dispatch: Dispatch<AnyAction>) => ({
