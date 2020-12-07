@@ -32,7 +32,10 @@ module.exports = {
   },
   getProjects: async (req, res, next) => {
     try {
-      const projects = await Project.find();
+      const projects = (await Project.find()).filter(
+        ({ size, contributors }) => size > contributors.length
+      );
+
       return res.status(200).json(projects);
     } catch (error) {
       next(error);
