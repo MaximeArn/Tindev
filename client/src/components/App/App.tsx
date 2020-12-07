@@ -1,5 +1,5 @@
 import React, { useEffect, useRef } from "react";
-import Home from "../containers/Home";
+import ProjectList from "../containers/ProjectList";
 import { Switch, Route } from "react-router-dom";
 import { AppProps } from "../../models/states";
 import NavBar from "../containers/NavBar";
@@ -17,9 +17,9 @@ import Chat from "../containers/Chat";
 import Footer from "../Footer/Footer";
 import Legals from "../Legals/Legals";
 import EditProfile from "../containers/EditProfile";
-import "./app.scss";
 import VisitorPage from "../containers/VisitorPage";
 import AccountDeletionModal from "../Users/EditProfile/DeletionSuccess";
+import "./app.scss";
 
 function App({
   verifyToken,
@@ -54,7 +54,7 @@ function App({
         <>
           <Chat />
           <Switch>
-            <Route exact path="/" component={Home} />
+            <Route exact path="/" component={ProjectList} />
             <Route exact path="/project/create" component={ProjectCreation} />
             <Route path="/project/:slug/manage" component={ManageProject} />
             <Route path="/project/:slug/edit" component={EditProject} />

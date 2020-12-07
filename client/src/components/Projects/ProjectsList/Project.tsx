@@ -1,5 +1,3 @@
-/** @format */
-
 import React, { useEffect, useRef } from "react";
 import slugifier from "../../../utils/slugify";
 import shortify from "../../../utils/shortifyString";

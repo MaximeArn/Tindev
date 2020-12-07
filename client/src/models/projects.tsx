@@ -6,6 +6,7 @@ export interface Projects {
   projects: Project[];
   error: string;
   getProjects: Function;
+  loader: boolean;
 }
 
 export interface Project {
