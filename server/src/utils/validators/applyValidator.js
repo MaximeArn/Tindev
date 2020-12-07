@@ -7,7 +7,7 @@ module.exports = async ({ body, id }, next) => {
   const { appliant, message, project: projectId } = body;
 
   try {
-    const { _id, applicants, author } = await Project.findOne({
+    const { _id, applicants, contributors, author } = await Project.findOne({
       _id: projectId,
     });
 
@@ -21,6 +21,10 @@ module.exports = async ({ body, id }, next) => {
 
     if (applicants.find(({ _id }) => _id == id)) {
       throw new ApplyError("You already applied to this project.", 400);
+    }
+
+    if (contributors.find(({ username }) => username === appliant.username)) {
+      throw new ApplyError("You are already part of this project", 400);
     }
 
     if (!owner) throw new ApplyError("Project owner does not exist", 404);
