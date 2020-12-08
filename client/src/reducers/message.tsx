@@ -9,7 +9,7 @@ const initialState: MessageState = {
 
 const message = (
   state = initialState,
-  { type, message, username, usernameToDelete, id }: MessageAction
+  { type, message, usernameToDelete, windows }: MessageAction
 ) => {
   switch (type) {
     case "SET_CHAT_MESSAGES":
@@ -17,6 +17,8 @@ const message = (
         ...state,
         messages: [...state.messages, message],
       };
+    case "SET_CHAT_WINDOW":
+      return { ...state, chatWindows: windows };
     case "DELETE_CHAT_WINDOW":
       return {
         ...state,

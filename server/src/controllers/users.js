@@ -108,6 +108,7 @@ const usersController = {
     }
   },
   setChatWindow: async ({ body, cookies: { token } }, res, next) => {
+    console.log("BODY : ", body);
     const { id } = await tokenValidator(token, next);
     const target = await chatWindowValidator(body, next);
 
@@ -115,10 +116,8 @@ const usersController = {
       const { chatWindows } = await User.findByIdAndUpdate(
         id,
         { $push: { chatWindows: target } },
-        { new: true }
+        { new: true, fields: { _id: 0 } }
       );
-
-      console.log(chatWindows);
 
       return res.status(200).json(chatWindows);
     }

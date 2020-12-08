@@ -17,7 +17,9 @@ const setChatWindow = (
   !chatWindows.some(({ id: _id }: ChatWindow) => id == _id) &&
     axios
       .patch("/users/chat_window", { id, username })
-      .then(({ data }) => console.log(data))
+      .then(({ data: windows }) =>
+        dispatch({ type: "SET_CHAT_WINDOW", windows })
+      )
       .catch(({ response: { data } }) => console.log(data));
 };
 

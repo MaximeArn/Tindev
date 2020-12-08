@@ -4,7 +4,7 @@ import { MutableRefObject } from "react";
 import { Project } from "./projects";
 import { Category } from "./categories";
 import { User } from "./users";
-import { SocketServerResponse } from "./chat";
+import { ChatWindow, SocketServerResponse } from "./chat";
 import { Notification } from "./notifications";
 
 export interface AuthenticationAction {
@@ -94,9 +94,8 @@ export interface NavBarAction {
 export interface MessageAction {
   type: string;
   message: SocketServerResponse;
-  username: string;
-  id: string;
   usernameToDelete: string;
+  windows: ChatWindow[];
 }
 
 export interface NotificationAction {
