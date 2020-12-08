@@ -1,13 +1,11 @@
-/** @format */
-
 import { connect } from "react-redux";
 import { AnyAction, Dispatch } from "redux";
 import { State } from "../../models/states";
 import Chat from "../Chat/Chat";
 
-const mapState = ({ message: { messages, chatWindow } }: State) => ({
+const mapState = ({ message: { messages, chatWindows } }: State) => ({
   messages,
-  chatWindow,
+  chatWindows,
 });
 
 const mapDispatch = (dispatch: Dispatch<AnyAction>) => ({

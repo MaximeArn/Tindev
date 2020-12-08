@@ -205,7 +205,7 @@ export interface NavBarState {
 
 export interface MessageState {
   messages: Messages[];
-  chatWindow: ChatWindow[];
+  chatWindows: ChatWindow[];
 }
 
 export interface NotificationState {

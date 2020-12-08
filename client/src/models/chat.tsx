@@ -1,7 +1,5 @@
-/** @format */
-
 export interface ChatProps {
-  chatWindow: { username: string; id: string }[];
+  chatWindows: ChatWindow[];
   messages: SocketServerResponse[];
   sendMessage: Function;
   deleteChatWindow: Function;
@@ -36,6 +34,7 @@ export interface Messages {
 }
 
 export interface ChatWindow {
+  id: string;
   username: string;
 }
 

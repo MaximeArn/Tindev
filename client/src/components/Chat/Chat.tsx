@@ -6,7 +6,7 @@ import { ChatProps } from "../../models/chat";
 import "./chat.scss";
 
 const Chat = ({
-  chatWindow,
+  chatWindows,
   messages,
   sendMessage,
   deleteChatWindow,
@@ -14,8 +14,8 @@ const Chat = ({
   return (
     <>
       <div className="chat-window-wrapper">
-        {chatWindow.length > 0 &&
-          chatWindow.map((window) => (
+        {chatWindows.length > 0 &&
+          chatWindows.map((window) => (
             <ChatWindow
               key={window.username}
               {...window}

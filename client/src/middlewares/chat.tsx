@@ -2,6 +2,7 @@ import { Middleware } from "redux";
 import { AxiosSubmit } from "../models/axios";
 import axios from "axios";
 import { url } from "../environments/api";
+import { ChatWindow } from "../models/chat";
 axios.defaults.baseURL = url;
 axios.defaults.headers.post["Content-Type"] = "application/json";
 axios.defaults.withCredentials = true;
@@ -11,10 +12,13 @@ const setChatWindow = (
   id: string,
   username: string
 ) => {
-  axios
-    .patch("/users/chat_window", { id, username })
-    .then(({ data }) => console.log(data))
-    .catch(({ response: { data } }) => console.log(data));
+  const { chatWindows } = getState().message;
+
+  !chatWindows.some(({ id: _id }: ChatWindow) => id == _id) &&
+    axios
+      .patch("/users/chat_window", { id, username })
+      .then(({ data }) => console.log(data))
+      .catch(({ response: { data } }) => console.log(data));
 };
 
 const chat: Middleware = ({ getState, dispatch }) => (next) => (action) => {
