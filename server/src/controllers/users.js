@@ -4,6 +4,7 @@ const {
   userProfileValidator,
   userUpdateValidator,
   deleteProfileValidator,
+  chatWindowValidator,
 } = require("../utils/validators");
 
 const usersController = {
@@ -104,6 +105,22 @@ const usersController = {
       }
     } catch (error) {
       next(error);
+    }
+  },
+  setChatWindow: async ({ body, cookies: { token } }, res, next) => {
+    const { id } = await tokenValidator(token, next);
+    const target = await chatWindowValidator(body, next);
+
+    if (id && target) {
+      const { chatWindows } = await User.findByIdAndUpdate(
+        id,
+        { $push: { chatWindows: target } },
+        { new: true }
+      );
+
+      console.log(chatWindows);
+
+      return res.status(200).json(chatWindows);
     }
   },
 };

@@ -10,7 +10,12 @@ const setChatWindow = (
   { getState, dispatch }: AxiosSubmit,
   id: string,
   username: string
-) => {};
+) => {
+  axios
+    .patch("/users/chat_window", { id, username })
+    .then(({ data }) => console.log(data))
+    .catch(({ response: { data } }) => console.log(data));
+};
 
 const chat: Middleware = ({ getState, dispatch }) => (next) => (action) => {
   const { type, id, username } = action;
