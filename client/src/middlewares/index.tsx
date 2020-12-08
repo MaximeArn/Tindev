@@ -4,6 +4,7 @@ import categories from "./categories";
 import users from "./users";
 import search from "./search";
 import socket from "./socket";
+import chat from "./chat";
 import notifications from "./notifications";
 import { compose, applyMiddleware } from "redux";
 
@@ -17,6 +18,7 @@ export default storeEnhancer(
     search,
     project,
     users,
-    categories
+    categories,
+    chat
   )
 );

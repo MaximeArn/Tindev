@@ -17,13 +17,13 @@ const message = (
         ...state,
         messages: [...state.messages, message],
       };
-    case "OPEN_CHAT_WINDOW":
-      const found = state.chatWindow.find(
-        ({ username: user }) => username == user
-      );
-      return !found
-        ? { ...state, chatWindow: [...state.chatWindow, { username, id }] }
-        : state;
+    // case "OPEN_CHAT_WINDOW":
+    //   const found = state.chatWindow.find(
+    //     ({ username: user }) => username == user
+    //   );
+    //   return !found
+    // ? { ...state, chatWindow: [...state.chatWindow, { username, id }] }
+    //     : state;
     case "DELETE_CHAT_WINDOW":
       return {
         ...state,

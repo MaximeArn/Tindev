@@ -19,6 +19,7 @@ const userSchema = new Schema(
     about: String,
     experience: String,
     technos: [String],
+    chatWindows: [{ id: String, username: String }],
     notifications: {
       counter: { type: Number, default: 0 },
       tooltips: [{ tooltip: String, createdAt: Date }],
