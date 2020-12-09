@@ -11,8 +11,7 @@ const mapState = ({ message: { messages, chatWindows } }: State) => ({
 const mapDispatch = (dispatch: Dispatch<AnyAction>) => ({
   sendMessage: (name: string, id: string, message: string) =>
     dispatch({ type: "SEND_CHAT_MESSAGE", name, id, message }),
-  deleteChatWindow: (usernameToDelete: string) =>
-    dispatch({ type: "DELETE_CHAT_WINDOW", usernameToDelete }),
+  closeChatWindow: (id: string) => dispatch({ type: "CLOSE_CHAT_WINDOW", id }),
 });
 
 export default connect(mapState, mapDispatch)(Chat);

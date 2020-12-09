@@ -1,6 +1,5 @@
 import { MessageAction } from "../models/actions";
 import { MessageState } from "../models/states";
-import windowFilter from "../utils/removeChatWindow";
 
 const initialState: MessageState = {
   messages: [],
@@ -9,7 +8,7 @@ const initialState: MessageState = {
 
 const message = (
   state = initialState,
-  { type, message, usernameToDelete, windows }: MessageAction
+  { type, message, windows }: MessageAction
 ) => {
   switch (type) {
     case "SET_CHAT_MESSAGES":
@@ -19,11 +18,6 @@ const message = (
       };
     case "SET_CHAT_WINDOWS":
       return { ...state, chatWindows: windows };
-    case "DELETE_CHAT_WINDOW":
-      return {
-        ...state,
-        chatWindows: windowFilter([...state.chatWindows], usernameToDelete),
-      };
     default:
       return state;
   }

@@ -1,8 +1,5 @@
-/** @format */
-
 import React, { useState, useRef, useEffect } from "react";
 import CloseIcon from "@material-ui/icons/Close";
-import { History } from "../../models/chat";
 import ExpandMoreIcon from "@material-ui/icons/ExpandMore";
 import { Messages } from "../../models/chat";
 import axios from "axios";
@@ -19,7 +16,7 @@ const ChatWindow = ({
   id,
   sendMessage,
   messages,
-  deleteChatWindow,
+  closeChatWindow,
 }: ChatWindowProps) => {
   const [chatHistory, setchatHistory] = useState<Messages[] | null>(null);
   const [chatExpanded, setChatExpanded] = useState(true);
@@ -32,7 +29,6 @@ const ChatWindow = ({
     axios
       .post("/users/messageHistory", { toId: id })
       .then(({ data: { to, from } }) => {
-        console.log("CHAT HISTORY FETCHED");
         setchatHistory(
           to
             .concat(from)
@@ -65,7 +61,7 @@ const ChatWindow = ({
         <button
           className="closeIcon"
           onClick={() => {
-            !chatExpanded && deleteChatWindow(username);
+            !chatExpanded && closeChatWindow(id);
           }}
         >
           {chatExpanded ? <ExpandMoreIcon /> : <CloseIcon />}

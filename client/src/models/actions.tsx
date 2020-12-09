@@ -94,7 +94,6 @@ export interface NavBarAction {
 export interface MessageAction {
   type: string;
   message: SocketServerResponse;
-  usernameToDelete: string;
   windows: ChatWindow[];
 }
 

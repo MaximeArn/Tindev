@@ -9,7 +9,7 @@ const Chat = ({
   chatWindows,
   messages,
   sendMessage,
-  deleteChatWindow,
+  closeChatWindow,
 }: ChatProps) => {
   return (
     <>
@@ -21,7 +21,7 @@ const Chat = ({
               {...window}
               messages={messages}
               sendMessage={sendMessage}
-              deleteChatWindow={deleteChatWindow}
+              closeChatWindow={closeChatWindow}
             />
           ))}
       </div>

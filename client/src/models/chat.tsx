@@ -2,7 +2,7 @@ export interface ChatProps {
   chatWindows: ChatWindow[];
   messages: SocketServerResponse[];
   sendMessage: Function;
-  deleteChatWindow: Function;
+  closeChatWindow: Function;
   getMessageHistory: Function;
 }
 
@@ -11,7 +11,7 @@ export interface ChatWindowProps {
   username: string;
   messages: SocketServerResponse[];
   sendMessage: Function;
-  deleteChatWindow: Function;
+  closeChatWindow: Function;
 }
 
 export interface History {
