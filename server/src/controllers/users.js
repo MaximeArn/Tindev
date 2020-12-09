@@ -138,7 +138,7 @@ const usersController = {
     try {
       const { id: userId } = await tokenValidator(token, next);
 
-      if (user) {
+      if (userId) {
         const { chatWindows } = await User.findByIdAndUpdate(
           userId,
           { $pull: { chatWindows: { id } } },

@@ -33,7 +33,9 @@ const getChatWindows = (dispatch: Dispatch<AnyAction>) => {
 const closeChatWindow = (dispatch: Dispatch<AnyAction>, id: string) => {
   axios
     .patch("/users/close_window", { id })
-    .then(({ data }) => console.log(data))
+    .then(({ data: windows }) =>
+      dispatch({ type: "SET_CHAT_WINDOWS", windows })
+    )
     .catch(({ response: { data } }) => console.error(data));
 };
 
