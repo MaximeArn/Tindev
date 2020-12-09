@@ -107,19 +107,32 @@ const usersController = {
       next(error);
     }
   },
-  setChatWindow: async ({ body, cookies: { token } }, res, next) => {
-    console.log("BODY : ", body);
-    const { id } = await tokenValidator(token, next);
-    const target = await chatWindowValidator(body, next);
-
-    if (id && target) {
-      const { chatWindows } = await User.findByIdAndUpdate(
-        id,
-        { $push: { chatWindows: target } },
-        { new: true, fields: { _id: 0 } }
-      );
+  getChatWindows: async ({ cookies: { token } }, res, next) => {
+    try {
+      const { id } = await tokenValidator(token, next);
+      const { chatWindows } = await User.findById(id);
 
       return res.status(200).json(chatWindows);
+    } catch (error) {
+      next(error);
+    }
+  },
+  setChatWindow: async ({ body, cookies: { token } }, res, next) => {
+    try {
+      const { id } = await tokenValidator(token, next);
+      const target = await chatWindowValidator(body, next);
+
+      if (id && target) {
+        const { chatWindows } = await User.findByIdAndUpdate(
+          id,
+          { $push: { chatWindows: target } },
+          { new: true, fields: { _id: 0 } }
+        );
+
+        return res.status(200).json(chatWindows);
+      }
+    } catch (error) {
+      next(error);
     }
   },
 };
