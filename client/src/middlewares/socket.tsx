@@ -1,4 +1,4 @@
-import { Middleware } from "redux";
+import { AnyAction, Dispatch, Middleware } from "redux";
 import { AxiosSubmit } from "../models/axios";
 import axios from "axios";
 import { ChatWindow, SocketServerResponse } from "../models/chat";
@@ -11,26 +11,18 @@ axios.defaults.headers.post["Content-Type"] = "application/json";
 axios.defaults.withCredentials = true;
 let socket: any;
 
-const serverSocketListener = ({ getState, dispatch }: AxiosSubmit) => {
-  const { username } = getState().auth.user;
-  socket.on("chat-message", (message: SocketServerResponse) => {
-    // message.to == username &&
-    //   dispatch({
-    //     type: "OPEN_CHAT_WINDOW",
-    //     id: message.fromId,
-    //     username: message.from,
-    //   });
-    dispatch({ type: "SET_CHAT_MESSAGES", message });
-  });
+const serverSocketListener = (dispatch: Dispatch<AnyAction>) => {
+  socket.on("chat-message", (message: SocketServerResponse) =>
+    dispatch({ type: "SET_CHAT_MESSAGES", message })
+  );
 
   socket.on("notification", (notifications: Notification) =>
     dispatch({ type: "SET_NOTIFICATIONS", notifications })
   );
 
-  socket.on("chat-popup", (windows: ChatWindow[]) => {
-    console.log("WINDOW POP UP SOCKET EVENT : ", windows);
-    dispatch({ type: "SET_CHAT_WINDOWS", windows });
-  });
+  socket.on("chat-popup", (windows: ChatWindow[]) =>
+    dispatch({ type: "SET_CHAT_WINDOWS", windows })
+  );
 };
 
 const sendSocket = (
@@ -53,7 +45,7 @@ const socketMiddleware: Middleware = ({ getState, dispatch }) => (next) => (
     case "SOCKET_CONNECTION":
       const { username } = user;
       socket = io(`${socketUrl}/chat`, { query: { username, token } });
-      serverSocketListener({ getState, dispatch });
+      serverSocketListener(dispatch);
       break;
     case "SEND_CHAT_MESSAGE":
       sendSocket(name, id, message, token);
