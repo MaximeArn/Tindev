@@ -1,7 +1,7 @@
 import { Middleware } from "redux";
 import { AxiosSubmit } from "../models/axios";
 import axios from "axios";
-import { SocketServerResponse } from "../models/chat";
+import { ChatWindow, SocketServerResponse } from "../models/chat";
 import Cookies from "js-cookie";
 import io from "socket.io-client";
 import { url, socketUrl } from "../environments/api";
@@ -14,19 +14,23 @@ let socket: any;
 const serverSocketListener = ({ getState, dispatch }: AxiosSubmit) => {
   const { username } = getState().auth.user;
   socket.on("chat-message", (message: SocketServerResponse) => {
-    message.to == username &&
-      dispatch({
-        type: "OPEN_CHAT_WINDOW",
-        id: message.fromId,
-        username: message.from,
-      });
-
+    // message.to == username &&
+    //   dispatch({
+    //     type: "OPEN_CHAT_WINDOW",
+    //     id: message.fromId,
+    //     username: message.from,
+    //   });
     dispatch({ type: "SET_CHAT_MESSAGES", message });
   });
 
   socket.on("notification", (notifications: Notification) =>
     dispatch({ type: "SET_NOTIFICATIONS", notifications })
   );
+
+  socket.on("chat-popup", (windows: ChatWindow[]) => {
+    console.log("WINDOW POP UP SOCKET EVENT : ", windows);
+    dispatch({ type: "SET_CHAT_WINDOWS", windows });
+  });
 };
 
 const sendSocket = (

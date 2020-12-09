@@ -1,6 +1,7 @@
 const { User } = require("../models");
 const { tokenValidator } = require("../utils/validators");
 const { setNotification } = require("./notifications");
+const chatPopUp = require("../utils/chatPopUp");
 
 module.exports = {
   chatHandler: (ioNameSpace, socket, connectedUsers, username) => {
@@ -15,11 +16,14 @@ module.exports = {
         const user = await User.findOne({ _id: id });
         const { id: room } = connectedUsers[toName];
         const notification = `${from} sent you a message`;
-        const owner = await User.findById(toId);
+        const target = await User.findById(toId);
 
-        !owner.notifications.tooltips.find(
+        !target.notifications.tooltips.find(
           ({ tooltip }) => tooltip === notification
-        ) && setNotification(connectedUsers, owner, notification, null);
+        ) && setNotification(connectedUsers, target, notification, null);
+
+        !target.chatWindows.some(({ id: windowId }) => windowId == id) &&
+          chatPopUp(connectedUsers[toName], target, { id, username: from });
 
         user.messages.push({ to, message, date });
         await user.save();

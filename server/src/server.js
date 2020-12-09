@@ -19,6 +19,7 @@ const {
   searchRouter,
   notificationsRouter,
 } = require("./router");
+const { name } = require("./config/database");
 
 const PORT = process.env.PORT || 7000;
 const SOCKET = process.env.SOCKET || 6000;
