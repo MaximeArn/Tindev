@@ -12,9 +12,9 @@ axios.defaults.withCredentials = true;
 let socket: any;
 
 const serverSocketListener = (dispatch: Dispatch<AnyAction>) => {
-  socket.on("chat-message", (message: SocketServerResponse) =>
-    dispatch({ type: "SET_CHAT_MESSAGES", message })
-  );
+  socket.on("chat-message", (message: SocketServerResponse) => {
+    dispatch({ type: "SET_CHAT_MESSAGES", message });
+  });
 
   socket.on("notification", (notifications: Notification) =>
     dispatch({ type: "SET_NOTIFICATIONS", notifications })

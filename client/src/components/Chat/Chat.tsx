@@ -1,5 +1,3 @@
-/** @format */
-
 import React from "react";
 import ChatWindow from "./ChatWindow";
 import { ChatProps } from "../../models/chat";
