@@ -22,8 +22,15 @@ module.exports = {
           ({ tooltip }) => tooltip === notification
         ) && setNotification(connectedUsers, target, notification, null);
 
+        console.log("BEFORE CHAT WINDOWS POP", target.chatWindows);
+        console.log(
+          target.chatWindows.some(({ id: windoww }) => windoww == id)
+        );
+
         !target.chatWindows.some(({ id: windowId }) => windowId == id) &&
-          chatPopUp(connectedUsers[toName], target, { id, username: from });
+          chatPopUp(connectedUsers[toName], toId, { id, username: from });
+
+        console.log("AFTER CHAT WINDOWS POP");
 
         user.messages.push({ to, message, date });
         await user.save();
