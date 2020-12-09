@@ -25,7 +25,6 @@ const usersController = {
     res,
     next
   ) => {
-    console.log(username);
     try {
       const { id } = await tokenValidator(token, next);
       const user = await userProfileValidator(username, next);
@@ -126,6 +125,23 @@ const usersController = {
         const { chatWindows } = await User.findByIdAndUpdate(
           id,
           { $push: { chatWindows: target } },
+          { new: true, fields: { _id: 0 } }
+        );
+
+        return res.status(200).json(chatWindows);
+      }
+    } catch (error) {
+      next(error);
+    }
+  },
+  deleteChatWindow: async ({ body: { id }, cookies: { token } }, res, next) => {
+    try {
+      const { id: userId } = await tokenValidator(token, next);
+
+      if (user) {
+        const { chatWindows } = await User.findByIdAndUpdate(
+          userId,
+          { $pull: { chatWindows: { id } } },
           { new: true, fields: { _id: 0 } }
         );
 

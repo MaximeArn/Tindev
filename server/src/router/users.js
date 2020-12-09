@@ -10,6 +10,7 @@ const {
   deleteProfile,
   getChatWindows,
   setChatWindow,
+  deleteChatWindow,
 } = require("../controllers/users");
 
 router.get("/", getUsers);
@@ -18,6 +19,7 @@ router.get("/:username", getUserByUsername);
 router.post("/messageHistory", getMessageHistory);
 router.patch("/update", upload.single("avatar"), update);
 router.patch("/chat_window", setChatWindow);
+router.patch("/close_window", deleteChatWindow);
 router.delete("/:id", deleteProfile);
 
 module.exports = router;

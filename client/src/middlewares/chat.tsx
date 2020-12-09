@@ -30,6 +30,13 @@ const getChatWindows = (dispatch: Dispatch<AnyAction>) => {
     );
 };
 
+const closeChatWindow = (dispatch: Dispatch<AnyAction>, id: string) => {
+  axios
+    .patch("/users/close_window", { id })
+    .then(({ data }) => console.log(data))
+    .catch(({ response: { data } }) => console.error(data));
+};
+
 const chat: Middleware = ({ getState, dispatch }) => (next) => (action) => {
   const { type, id, username } = action;
 
@@ -39,6 +46,9 @@ const chat: Middleware = ({ getState, dispatch }) => (next) => (action) => {
       break;
     case "GET_CHAT_WINDOWS":
       getChatWindows(dispatch);
+      break;
+    case "CLOSE_CHAT_WINDOW":
+      closeChatWindow(dispatch, id);
       break;
     default:
       next(action);
