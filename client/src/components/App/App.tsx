@@ -30,6 +30,7 @@ function App({
   userDeletionSuccess,
   getProjects,
   getNotifications,
+  getChatWindows,
   user,
   onAccountClosing,
 }: AppProps) {
@@ -42,6 +43,7 @@ function App({
       getProjects();
       wsConnection();
       getNotifications();
+      getChatWindows();
     }
   }, [user]);
 

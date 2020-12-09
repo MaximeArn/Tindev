@@ -1,4 +1,4 @@
-import { Middleware } from "redux";
+import { AnyAction, Dispatch, Middleware } from "redux";
 import { AxiosSubmit } from "../models/axios";
 import axios from "axios";
 import { url } from "../environments/api";
@@ -18,9 +18,16 @@ const setChatWindow = (
     axios
       .patch("/users/chat_window", { id, username })
       .then(({ data: windows }) =>
-        dispatch({ type: "SET_CHAT_WINDOW", windows })
-      )
-      .catch(({ response: { data } }) => console.log(data));
+        dispatch({ type: "SET_CHAT_WINDOWS", windows })
+      );
+};
+
+const getChatWindows = (dispatch: Dispatch<AnyAction>) => {
+  axios
+    .get("/users/chat_windows")
+    .then(({ data: windows }) =>
+      dispatch({ type: "SET_CHAT_WINDOWS", windows })
+    );
 };
 
 const chat: Middleware = ({ getState, dispatch }) => (next) => (action) => {
@@ -29,6 +36,9 @@ const chat: Middleware = ({ getState, dispatch }) => (next) => (action) => {
   switch (type) {
     case "OPEN_CHAT_WINDOW":
       setChatWindow({ dispatch, getState }, id, username);
+      break;
+    case "GET_CHAT_WINDOWS":
+      getChatWindows(dispatch);
       break;
     default:
       next(action);

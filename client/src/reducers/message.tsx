@@ -17,7 +17,7 @@ const message = (
         ...state,
         messages: [...state.messages, message],
       };
-    case "SET_CHAT_WINDOW":
+    case "SET_CHAT_WINDOWS":
       return { ...state, chatWindows: windows };
     case "DELETE_CHAT_WINDOW":
       return {

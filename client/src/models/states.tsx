@@ -131,6 +131,7 @@ export interface AppProps {
   showNavbar: boolean;
   getProjects: Function;
   getNotifications: Function;
+  getChatWindows: Function;
   login: boolean;
   register: boolean;
   onAccountClosing: Function;
