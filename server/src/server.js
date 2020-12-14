@@ -52,8 +52,3 @@ mongoDB.once("open", () => console.log("Connected to mongo database"));
 
 server.listen(PORT, () => console.log(`Server running on port ${PORT}`));
 http.listen(SOCKET, () => console.log(`Socket listening on port ${SOCKET}`));
-
-const tab1 = ["zizi", "zozo"];
-const tab2 = ["zaza", 1, "zuzu", 2, 3, 4];
-
-console.log(tab1.concat(tab2.filter((element) => isNaN(element))));
