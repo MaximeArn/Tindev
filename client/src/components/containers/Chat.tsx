@@ -3,9 +3,15 @@ import { AnyAction, Dispatch } from "redux";
 import { State } from "../../models/states";
 import Chat from "../Chat/Chat";
 
-const mapState = ({ message: { messages, chatWindows } }: State) => ({
+const mapState = ({
+  message: { messages, chatWindows },
+  users: {
+    user: { username },
+  },
+}: State) => ({
   messages,
   chatWindows,
+  username,
 });
 
 const mapDispatch = (dispatch: Dispatch<AnyAction>) => ({

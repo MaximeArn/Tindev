@@ -68,31 +68,31 @@ const ChatWindow = ({
         </button>
       </div>
       <div ref={messagesArea} className="chatZone-content">
-        {chatHistory &&
-          chatHistory.map(({ to: { name }, date, message }: any) => (
-            <span
-              key={idGenerator()}
-              className={username === name ? "message to" : "message from"}
-              title={new Date(date).toLocaleString()}
-            >
-              {message}
-            </span>
-          ))}
-        {chatHistory &&
-          messages &&
-          messages.map(({ id, to, message, date }) => {
-            const exists = chatHistory.find(({ _id }) => _id == id);
-            return (
-              !exists && (
-                <div
-                  key={idGenerator()}
-                  className={username == to ? "message to" : "message from"}
-                >
-                  <p title={new Date(date).toLocaleString()}>{message}</p>
-                </div>
-              )
-            );
-          })}
+        {chatHistory && (
+          <>
+            {chatHistory.map(({ to: { name }, date, message }: any) => (
+              <span
+                key={idGenerator()}
+                className={username === name ? "message to" : "message from"}
+                title={new Date(date).toLocaleString()}
+              >
+                {message}
+              </span>
+            ))}
+            {messages &&
+              messages.map(
+                ({ id, to, message, date }) =>
+                  !chatHistory.find(({ _id }) => _id == id) && (
+                    <div
+                      key={idGenerator()}
+                      className={username == to ? "message to" : "message from"}
+                    >
+                      <p title={new Date(date).toLocaleString()}>{message}</p>
+                    </div>
+                  )
+              )}
+          </>
+        )}
         <div className="scrollDiv" ref={scrollDiv}></div>
       </div>
       <div className="chatZone-footer">

@@ -1,9 +1,9 @@
 export interface ChatProps {
   chatWindows: ChatWindow[];
-  messages: SocketServerResponse[];
+  messages: any;
+  username: string;
   sendMessage: Function;
   closeChatWindow: Function;
-  getMessageHistory: Function;
 }
 
 export interface ChatWindowProps {
