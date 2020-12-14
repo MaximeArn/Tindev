@@ -17,7 +17,9 @@ const message = (
         ...state,
         messages: {
           ...state.messages,
-          [to]: [...state.messages[to], message],
+          [to]: state.messages[to]
+            ? [...state.messages[to], message]
+            : [message],
         },
       };
     case "SET_CHAT_WINDOWS":

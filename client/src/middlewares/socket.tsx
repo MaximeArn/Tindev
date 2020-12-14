@@ -1,5 +1,4 @@
 import { AnyAction, Dispatch, Middleware } from "redux";
-import { AxiosSubmit } from "../models/axios";
 import axios from "axios";
 import { ChatWindow, SocketServerResponse } from "../models/chat";
 import Cookies from "js-cookie";
@@ -13,6 +12,7 @@ let socket: any;
 
 const serverSocketListener = (dispatch: Dispatch<AnyAction>) => {
   socket.on("chat-message", (message: SocketServerResponse) => {
+    console.log("MESSAGE RECEIVED FROM SERVER : ", message);
     dispatch({ type: "SET_CHAT_MESSAGES", message });
   });
 
@@ -25,7 +25,7 @@ const serverSocketListener = (dispatch: Dispatch<AnyAction>) => {
   );
 };
 
-const sendSocket = (
+const sendMessage = (
   target: string,
   id: string,
   message: string,
@@ -48,7 +48,7 @@ const socketMiddleware: Middleware = ({ getState, dispatch }) => (next) => (
       serverSocketListener(dispatch);
       break;
     case "SEND_CHAT_MESSAGE":
-      sendSocket(name, id, message, token);
+      sendMessage(name, id, message, token);
       break;
     default:
       next(action);

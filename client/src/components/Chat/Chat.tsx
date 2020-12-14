@@ -1,5 +1,5 @@
 import React from "react";
-import ChatWindow from "./ChatWindow";
+import ChatWindows from "./ChatWindow";
 import { ChatProps } from "../../models/chat";
 import "./chat.scss";
 
@@ -13,11 +13,11 @@ const Chat = ({
     <>
       <div className="chat-window-wrapper">
         {chatWindows.length > 0 &&
-          chatWindows.map((window) => (
-            <ChatWindow
+          chatWindows.map((window: any) => (
+            <ChatWindows
               key={window.username}
               {...window}
-              messages={messages}
+              messages={messages[window.username]}
               sendMessage={sendMessage}
               closeChatWindow={closeChatWindow}
             />

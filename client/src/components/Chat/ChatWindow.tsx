@@ -79,12 +79,10 @@ const ChatWindow = ({
             </span>
           ))}
         {chatHistory &&
-          messages.map(({ id, to, from, message, date }) => {
+          messages &&
+          messages.map(({ id, to, message, date }) => {
             const exists = chatHistory.find(({ _id }) => _id == id);
-            //TODO: reflechir si tu pourrais mieux aménager messages dans le global state pour eviter de mapper sur tous les messages meme sur les window qui sont pas concernées
-            const show = username == to || username == from;
             return (
-              show &&
               !exists && (
                 <div
                   key={idGenerator()}
