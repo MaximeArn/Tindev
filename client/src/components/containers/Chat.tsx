@@ -5,7 +5,7 @@ import Chat from "../Chat/Chat";
 
 const mapState = ({
   message: { messages, chatWindows },
-  users: {
+  auth: {
     user: { username },
   },
 }: State) => ({
