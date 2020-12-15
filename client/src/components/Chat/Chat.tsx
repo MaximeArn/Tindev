@@ -33,7 +33,7 @@ const Chat = ({
                     (
                       { date: date1 }: SocketServerResponse,
                       { date: date2 }: SocketServerResponse
-                    ) => (date1 > date2 ? -1 : 1)
+                    ) => (date1 < date2 ? -1 : 1)
                   )}
                 sendMessage={sendMessage}
                 closeChatWindow={closeChatWindow}
