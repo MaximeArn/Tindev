@@ -7,6 +7,8 @@ const {
 const jwt = require("jsonwebtoken");
 const secret = process.env.SECRET;
 const { User } = require("../models");
+const SHA256 = require("crypto-js/sha256");
+const { createTransport } = require("nodemailer");
 
 const authRouter = {
   register: async ({ body }, res, next) => {
