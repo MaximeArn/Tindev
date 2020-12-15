@@ -10,10 +10,14 @@ const {
 const usersController = {
   getUsers: async ({ cookies: { token } }, res, next) => {
     try {
-      const user = await tokenValidator(token, next);
+      const { username } = await tokenValidator(token, next);
 
-      if (user) {
-        const users = await User.find();
+      if (username) {
+        const users = await User.find(
+          { username: { $ne: username } },
+          { password: 0 }
+        );
+
         return res.status(200).json(users);
       }
     } catch (error) {
