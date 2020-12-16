@@ -67,10 +67,6 @@ function App({
             <Route path="/search" component={Search} />
             <Route path="/account" component={EditProfile} />
             <Route path="/legals" component={Legals} />
-            <Route
-              path="/account/verify/:token"
-              component={AccountVerification}
-            />
             <Route component={NotFound} />
           </Switch>
         </>
@@ -82,7 +78,14 @@ function App({
               onAccountClosing={onAccountClosing}
             />
           )}
-          <VisitorPage />
+          <Switch>
+            <Route
+              exact
+              path="/account/verify/:token"
+              component={AccountVerification}
+            />
+            <Route component={VisitorPage} />
+          </Switch>
         </>
       )}
       <Footer />
