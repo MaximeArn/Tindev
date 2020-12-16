@@ -19,6 +19,7 @@ import Legals from "../Legals/Legals";
 import EditProfile from "../containers/EditProfile";
 import VisitorPage from "../containers/VisitorPage";
 import AccountDeletionModal from "../Users/EditProfile/DeletionSuccess";
+import AccountVerification from "../Account/Verification";
 import "./app.scss";
 
 function App({
@@ -66,6 +67,10 @@ function App({
             <Route path="/search" component={Search} />
             <Route path="/account" component={EditProfile} />
             <Route path="/legals" component={Legals} />
+            <Route
+              path="/account/verify/:token"
+              component={AccountVerification}
+            />
             <Route component={NotFound} />
           </Switch>
         </>
