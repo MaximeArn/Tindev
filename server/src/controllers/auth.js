@@ -69,6 +69,7 @@ const authRouter = {
       next(error);
     }
   },
+  verifyAccount: async (req, res, next) => {},
 };
 
 module.exports = authRouter;
