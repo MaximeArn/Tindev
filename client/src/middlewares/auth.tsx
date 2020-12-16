@@ -78,16 +78,30 @@ const logout = (dispatch: Dispatch<AnyAction>) => {
   });
 };
 
+const activateAccount = (dispatch: Dispatch<AnyAction>, token: string) => {
+  dispatch({ type: "ACCOUNT_ACTIVATION_LOADER", value: true });
+  axios
+    .get(`/auth/verify_account/${token}`)
+    .then(({ data }) => console.log(data))
+    .catch(({ response: { data } }) => console.error(data))
+    .finally(() =>
+      dispatch({ type: "ACCOUNT_ACTIVATION_LOADER", value: false })
+    );
+};
+
 const auth: Middleware = ({ getState, dispatch }) => (next) => (
   action: AuthMiddleware
 ) => {
-  const { type } = action;
+  const { type, token } = action;
   switch (type) {
     case "SUBMIT_REGISTER":
       setUser({ getState, dispatch });
       break;
     case "SUBMIT_LOGIN":
       setLogin({ getState, dispatch });
+      break;
+    case "ACCOUNT_VERIFICATION":
+      activateAccount(dispatch, token);
       break;
     case "TOKEN_VALIDATION":
       retrieveToken(dispatch);

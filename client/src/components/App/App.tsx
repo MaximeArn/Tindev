@@ -19,7 +19,7 @@ import Legals from "../Legals/Legals";
 import EditProfile from "../containers/EditProfile";
 import VisitorPage from "../containers/VisitorPage";
 import AccountDeletionModal from "../Users/EditProfile/DeletionSuccess";
-import AccountVerification from "../Account/Verification";
+import AccountVerification from "../containers/Verification";
 import "./app.scss";
 
 function App({

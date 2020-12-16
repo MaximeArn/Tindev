@@ -9,7 +9,9 @@ const mapDispatch = (
   { match: { params } }: OwnProps
 ) => {
   const { token } = params;
-  return { activateAccount: () => dispatch({ type: "ACCOUNT_VERIFICATION" }) };
+  return {
+    activateAccount: () => dispatch({ type: "ACCOUNT_VERIFICATION", token }),
+  };
 };
 
 export default withRouter(connect(null, mapDispatch)(AccountVerification));

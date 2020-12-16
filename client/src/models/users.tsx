@@ -132,3 +132,7 @@ export interface UserTabProps {
 export interface UserTabPanelProps {
   content: any;
 }
+
+export interface AccountVerification {
+  activateAccount: Function;
+}
