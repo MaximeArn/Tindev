@@ -24,6 +24,7 @@ const userSchema = new Schema(
       counter: { type: Number, default: 0 },
       tooltips: [{ tooltip: String, createdAt: Date }],
     },
+    activated: { type: Boolean, default: false },
   },
   { collation: { locale: "en", strength: 2 }, timestamps: true }
 );
