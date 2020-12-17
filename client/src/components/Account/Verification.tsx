@@ -14,16 +14,24 @@ const Verification = ({
       {error ? (
         <div className="verification-error">{error}</div>
       ) : (
-        <button
-          className="verification-button"
-          onClick={() => activateAccount()}
-        >
-          {loader ? (
-            <CircularProgress size={15} />
+        <>
+          {success ? (
+            //TODO: customize success message with another redirect button to home page etc..
+            <div className="verification-success">{success}</div>
           ) : (
-            "Click Here to activate your account"
+            <button
+              className="verification-button"
+              onClick={() => activateAccount()}
+              disabled={loader}
+            >
+              {loader ? (
+                <CircularProgress size={15} />
+              ) : (
+                "Click Here to activate your account"
+              )}
+            </button>
           )}
-        </button>
+        </>
       )}
     </div>
   );

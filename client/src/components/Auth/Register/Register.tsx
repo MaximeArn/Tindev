@@ -49,7 +49,7 @@ const Register = ({
           </div>
           <footer className="modal-footer">
             <p>
-              Already have an Account ?{" "}
+              Already have an Account ?
               <a
                 className="auth-modal"
                 onClick={() =>
