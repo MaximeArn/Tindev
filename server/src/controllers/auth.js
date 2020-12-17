@@ -6,7 +6,7 @@ const {
 } = require("../utils/validators");
 const jwt = require("jsonwebtoken");
 const secret = process.env.SECRET;
-const { User } = require("../models");
+const { User, Token } = require("../models");
 const SHA256 = require("crypto-js/sha256");
 const { createTransport } = require("nodemailer");
 
@@ -16,10 +16,16 @@ const authRouter = {
       const validator = await registerValidator(body, next);
 
       if (validator) {
-        const result = await User.create(body);
-        return res
-          .status(200)
-          .json({ result, msg: "Account Successfully created" });
+        const { _id: userId } = await User.create(body);
+
+        const valToken = await Token.create({
+          userId,
+          token: SHA256(userId),
+        });
+
+        console.log(valToken);
+
+        return res.status(200).json({ msg: "Account Successfully created" });
       }
     } catch (error) {
       next(error);
@@ -69,7 +75,13 @@ const authRouter = {
       next(error);
     }
   },
-  verifyAccount: async (req, res, next) => {},
+  verifyAccount: async ({ params: { token } }, res, next) => {
+    try {
+      console.log(token);
+    } catch (error) {
+      next(error);
+    }
+  },
 };
 
 module.exports = authRouter;
