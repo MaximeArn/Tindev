@@ -100,6 +100,10 @@ const authRouter = {
       const user = await verifyAccountValidator(token, next);
 
       if (user) {
+        user.activated = true;
+        await user.save();
+
+        return res.status(200).json({ msg: "Account successfully activated" });
       }
     } catch (error) {
       next(error);

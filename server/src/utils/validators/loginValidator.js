@@ -13,6 +13,13 @@ module.exports = async (body, next) => {
 
     if (!isPasswordMatching) throw new UserError("Incorrect Email or Password");
 
+    if (!user.activated) {
+      throw new UserError(
+        "Please verify your email address to activate your account.",
+        403
+      );
+    }
+
     return user;
   } catch (error) {
     next(error);
