@@ -13,6 +13,7 @@ const userUpdateValidator = require("./userUpdateValidator");
 const deleteProfileValidator = require("./deleteProfileValidator");
 const logoutValidator = require("./logoutValidator");
 const chatWindowValidator = require("./chatWindowValidator");
+const verifyAccountValidator = require("./verifyAccountValidator");
 
 module.exports = {
   applicantValidator,
@@ -30,4 +31,5 @@ module.exports = {
   deleteProfileValidator,
   logoutValidator,
   chatWindowValidator,
+  verifyAccountValidator,
 };

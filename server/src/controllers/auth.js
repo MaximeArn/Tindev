@@ -1,14 +1,15 @@
-const {
-  loginValidator,
-  registerValidator,
-  tokenValidator,
-  logoutValidator,
-} = require("../utils/validators");
 const jwt = require("jsonwebtoken");
 const secret = process.env.SECRET;
 const { User, Token } = require("../models");
 const SHA256 = require("crypto-js/sha256");
 const { createTransport } = require("nodemailer");
+const {
+  loginValidator,
+  registerValidator,
+  tokenValidator,
+  logoutValidator,
+  verifyAccountValidator,
+} = require("../utils/validators");
 
 const authRouter = {
   register: async ({ body }, res, next) => {
@@ -43,13 +44,14 @@ const authRouter = {
           html: `<div>Your account is almost ready. </div> <br /> <div>There is one last thing you need to do : </div> <br /> <div>Click <a href="http://localhost:8080/account/verification/${token}">here</a> to activate your account.</div>`,
         });
 
-        return res.status(200).json({ msg: "Account Successfully created" });
+        return res
+          .status(200)
+          .json({ msg: "An email has been sent to your email address" });
       }
     } catch (error) {
       next(error);
     }
   },
-
   login: async ({ body }, res, next) => {
     const user = await loginValidator(body, next);
 
@@ -95,7 +97,10 @@ const authRouter = {
   },
   verifyAccount: async ({ params: { token } }, res, next) => {
     try {
-      console.log(token);
+      const user = await verifyAccountValidator(token, next);
+
+      if (user) {
+      }
     } catch (error) {
       next(error);
     }
