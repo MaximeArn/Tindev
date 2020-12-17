@@ -3,6 +3,17 @@ import { AnyAction, Dispatch } from "redux";
 import AccountVerification from "../Account/Verification";
 import { withRouter } from "react-router-dom";
 import { OwnProps } from "../../models/connect";
+import { State } from "../../models/states";
+
+const mapState = ({
+  loaders: { userAccountActivationLoader: loader },
+  success: { accountActivationSuccess: success },
+  error: { accountActivationErrorMessage: error },
+}: State) => ({
+  loader,
+  success,
+  error,
+});
 
 const mapDispatch = (
   dispatch: Dispatch<AnyAction>,
@@ -14,4 +25,4 @@ const mapDispatch = (
   };
 };
 
-export default withRouter(connect(null, mapDispatch)(AccountVerification));
+export default withRouter(connect(mapState, mapDispatch)(AccountVerification));

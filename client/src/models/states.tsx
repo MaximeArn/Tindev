@@ -124,6 +124,7 @@ export interface ErrorState {
   projectEditionErrorMessage: string;
   userProfileErrorMessage: string;
   userProfileEditionErrorMessage: string;
+  accountActivationErrorMessage: string;
 }
 
 export interface AppProps {

@@ -134,5 +134,8 @@ export interface UserTabPanelProps {
 }
 
 export interface AccountVerification {
+  success: boolean | string;
+  error: string;
+  loader: boolean;
   activateAccount: Function;
 }

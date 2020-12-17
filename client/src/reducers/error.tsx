@@ -1,5 +1,3 @@
-/** @format */
-
 import { ErrorAction } from "../models/actions";
 import { ErrorState } from "../models/states";
 import resetErrorValues from "../utils/resetInputs";
@@ -16,6 +14,7 @@ const initialState: ErrorState = {
   projectEditionErrorMessage: "",
   userProfileErrorMessage: "",
   userProfileEditionErrorMessage: "",
+  accountActivationErrorMessage: "",
 };
 
 const error = (state = initialState, { type, error }: ErrorAction) => {
@@ -41,6 +40,8 @@ const error = (state = initialState, { type, error }: ErrorAction) => {
       return { ...state, projectDetailsErrorMessage: error };
     case "SET_USER_PROFILE_EDITION_ERROR_HANDLER":
       return { ...state, userProfileEditionErrorMessage: err };
+    case "ACCOUNT_ACTIVATION_ERROR_HANDLER":
+      return { ...state, accountActivationErrorMessage: error };
     default:
       return state;
   }

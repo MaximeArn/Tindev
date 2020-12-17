@@ -82,8 +82,12 @@ const activateAccount = (dispatch: Dispatch<AnyAction>, token: string) => {
   dispatch({ type: "ACCOUNT_ACTIVATION_LOADER", value: true });
   axios
     .get(`/auth/verify_account/${token}`)
-    .then(({ data }) => console.log(data))
-    .catch(({ response: { data } }) => console.error(data))
+    .then(({ data: { msg } }) =>
+      dispatch({ type: "ACCOUNT_ACTIVATION_SUCCESS_MESSAGE", message: msg })
+    )
+    .catch(({ response: { data: { msg: error } } }) =>
+      dispatch({ type: "ACCOUNT_ACTIVATION_ERROR_HANDLER", error })
+    )
     .finally(() =>
       dispatch({ type: "ACCOUNT_ACTIVATION_LOADER", value: false })
     );
