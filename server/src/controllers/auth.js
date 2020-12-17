@@ -16,14 +16,32 @@ const authRouter = {
       const validator = await registerValidator(body, next);
 
       if (validator) {
-        const { _id: userId } = await User.create(body);
+        const transporter = createTransport({
+          host: "smtp.gmail.com",
+          port: 587,
+          secure: false,
+          auth: {
+            user: process.env.EMAILER,
+            pass: process.env.EMAILERPW,
+          },
+        });
 
-        const valToken = await Token.create({
+        const { _id: userId, email } = await User.create(body);
+
+        const { token } = await Token.create({
           userId,
           token: SHA256(userId),
         });
 
-        console.log(valToken);
+        await transporter.sendMail({
+          from: {
+            name: "Tindev",
+            address: process.env.EMAILER,
+          },
+          to: email,
+          subject: "Account activation",
+          html: `<div>Your account is almost ready. </div> <br /> <div>There is one last thing you need to do : </div> <br /> <div>Click <a href="http://localhost:8080/account/verification/${token}">here</a> to activate your account.</div>`,
+        });
 
         return res.status(200).json({ msg: "Account Successfully created" });
       }

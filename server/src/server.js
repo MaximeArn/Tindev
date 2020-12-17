@@ -21,7 +21,6 @@ const {
   searchRouter,
   notificationsRouter,
 } = require("./router");
-const { name } = require("./config/database");
 
 const PORT = process.env.PORT || 7000;
 const SOCKET = process.env.SOCKET || 6000;
@@ -56,29 +55,29 @@ mongoDB.once("open", () => console.log("Connected to mongo database"));
 server.listen(PORT, () => console.log(`Server running on port ${PORT}`));
 http.listen(SOCKET, () => console.log(`Socket listening on port ${SOCKET}`));
 
-// const cipher = AES.encrypt("secretkey", "secret123").toString();
-// console.log(AES.decrypt(cipher, "secret123").toString(enc.Utf8));
-
 const sendMail = async () => {
   try {
-    console.log(process.env.GMAILADDRESS);
     const transporter = createTransport({
       host: "smtp.gmail.com",
       port: 587,
       secure: false,
       requireTLS: true,
       auth: {
-        user: process.env.GMAILADDRESS,
-        pass: process.env.GMAILPW,
+        user: process.env.EMAILER,
+        pass: process.env.EMAILERPW,
       },
     });
 
     const info = await transporter.sendMail({
-      from: "Tindev <noreply@tindev.com>",
-      to: "anthololz31@yahoo.fr",
+      from: {
+        name: "<no-reply@tindev.com>",
+        address: process.env.EMAILER,
+      },
+      to: "krysyx31@gmail.com",
       subject: "Account verification",
       text: "Plain version",
-      html: "<div>Html version</div>",
+      html:
+        "<div>Your account is almost ready. </div> <br /> <div>There is one last thing you need to do : </div> <br /> <div>Click <a href=`http://localhost:8080/account/verification/25sz74a856e`>here</a> to activate your account.</div>",
     });
 
     console.log(info);
