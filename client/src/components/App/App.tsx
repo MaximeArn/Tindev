@@ -54,40 +54,36 @@ function App({
       {login && <Login />}
       {register && <Register />}
       {user ? (
-        <>
+        <Switch>
           <Chat />
-          <Switch>
-            <Route exact path="/" component={ProjectList} />
-            <Route exact path="/project/create" component={ProjectCreation} />
-            <Route path="/project/:slug/manage" component={ManageProject} />
-            <Route path="/project/:slug/edit" component={EditProject} />
-            <Route path="/project/:slug" component={ProjectDetail} />
-            <Route exact path="/users" component={UsersList} />
-            <Route exact path="/user/:username" component={UserProfile} />
-            <Route path="/search" component={Search} />
-            <Route path="/account" component={EditProfile} />
-            <Route path="/legals" component={Legals} />
-            <Route component={NotFound} />
-          </Switch>
-        </>
+          <Route exact path="/" component={ProjectList} />
+          <Route exact path="/project/create" component={ProjectCreation} />
+          <Route path="/project/:slug/manage" component={ManageProject} />
+          <Route path="/project/:slug/edit" component={EditProject} />
+          <Route path="/project/:slug" component={ProjectDetail} />
+          <Route exact path="/users" component={UsersList} />
+          <Route exact path="/user/:username" component={UserProfile} />
+          <Route path="/search" component={Search} />
+          <Route path="/account" component={EditProfile} />
+          <Route path="/legals" component={Legals} />
+          <Route component={NotFound} />
+        </Switch>
       ) : (
-        <>
+        <Switch>
           {userDeletionSuccess && (
             <AccountDeletionModal
               success={userDeletionSuccess}
               onAccountClosing={onAccountClosing}
             />
           )}
-          <Switch>
-            <Route
-              exact
-              path="/account/verify/:token"
-              component={AccountVerification}
-            />
-            <Route exact path="/" component={VisitorPage} />
-            <Route component={NotFound} />
-          </Switch>
-        </>
+          <Route exact path="/" component={VisitorPage} />
+          <Route
+            exact
+            path="/account/verify/:token"
+            component={AccountVerification}
+          />
+          <Route component={NotFound} />
+        </Switch>
       )}
       <Footer />
     </>
