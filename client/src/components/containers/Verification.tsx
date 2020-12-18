@@ -21,6 +21,8 @@ const mapDispatch = (
 ) => {
   const { token } = params;
   return {
+    checkTokenValidity: () =>
+      dispatch({ type: "VERIFY_ACCOUNT_TOKEN_VALIDITY", token }),
     activateAccount: () => dispatch({ type: "ACCOUNT_VERIFICATION", token }),
   };
 };

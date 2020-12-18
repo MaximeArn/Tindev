@@ -99,6 +99,16 @@ const activateAccount = (dispatch: Dispatch<AnyAction>, token: string) => {
     );
 };
 
+const checkAccountTokenValidity = (
+  dispatch: Dispatch<AnyAction>,
+  token: string
+) => {
+  axios
+    .get(`/auth/token_validity/${token}`)
+    .then(({ data }) => console.log(data))
+    .catch(({ response: { data } }) => console.error(data));
+};
+
 const auth: Middleware = ({ getState, dispatch }) => (next) => (
   action: AuthMiddleware
 ) => {
@@ -112,6 +122,9 @@ const auth: Middleware = ({ getState, dispatch }) => (next) => (
       break;
     case "ACCOUNT_VERIFICATION":
       activateAccount(dispatch, token);
+      break;
+    case "VERIFY_ACCOUNT_TOKEN_VALIDITY":
+      checkAccountTokenValidity(dispatch, token);
       break;
     case "TOKEN_VALIDATION":
       retrieveToken(dispatch);

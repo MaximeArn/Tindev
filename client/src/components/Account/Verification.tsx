@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { AccountVerification } from "../../models/users";
 import CircularProgress from "@material-ui/core/CircularProgress";
 import "./verification.scss";
@@ -8,7 +8,12 @@ const Verification = ({
   error,
   loader,
   activateAccount,
+  checkTokenValidity,
 }: AccountVerification) => {
+  useEffect(() => {
+    checkTokenValidity();
+  }, []);
+
   return (
     <div className="verification">
       {error ? (

@@ -216,3 +216,7 @@ export interface NotificationState {
   notifications: Notification;
   tray: boolean;
 }
+
+export interface AccountTokenState {
+  validity: null | boolean;
+}

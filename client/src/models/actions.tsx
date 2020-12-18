@@ -102,3 +102,8 @@ export interface NotificationAction {
   type: string;
   notifications: Notification;
 }
+
+export interface AccountTokenAction {
+  type: string;
+  validity: boolean;
+}

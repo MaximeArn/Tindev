@@ -138,4 +138,5 @@ export interface AccountVerification {
   error: string;
   loader: boolean;
   activateAccount: Function;
+  checkTokenValidity: Function;
 }
