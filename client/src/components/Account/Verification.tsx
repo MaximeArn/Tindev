@@ -34,7 +34,7 @@ const Verification = ({
               disabled={loader}
             >
               {loader ? (
-                <CircularProgress size={15} />
+                <CircularProgress size={15} style={{ color: "white" }} />
               ) : (
                 "Click Here to activate your account"
               )}
