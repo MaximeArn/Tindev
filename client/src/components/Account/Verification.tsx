@@ -16,8 +16,12 @@ const Verification = ({
       ) : (
         <>
           {success ? (
-            //TODO: customize success message with another redirect button to home page etc..
-            <div className="verification-success">{success}</div>
+            <>
+              <div className="verification-success">{success}</div>
+              <button className="verification-button">
+                Return to home page
+              </button>
+            </>
           ) : (
             <button
               className="verification-button"

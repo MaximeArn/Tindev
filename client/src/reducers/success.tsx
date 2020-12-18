@@ -15,9 +15,7 @@ const success = (state = initialState, { type, message }: SuccessAction) => {
     case "APPLY_SUCCESS_MESSAGE":
       return { ...state, applySuccess: msg };
     case "REGISTER_SUCCESS_MESSAGE":
-      return { ...state, registerSuccess: message };
-    case "RESET_REGISTER_SUCCESS_MESSAGE":
-      return { ...state, registerSuccess: false };
+      return { ...state, registerSuccess: msg };
     case "PROJECT_EDITION_SUCCESS_MESSAGE":
       return { ...state, projectEditionSuccess: msg };
     case "PROJECT_DELETION_SUCCESS_MESSAGE":

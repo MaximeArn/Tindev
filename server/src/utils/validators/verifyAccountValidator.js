@@ -5,11 +5,11 @@ module.exports = async (token, next) => {
   try {
     const token = await Token.findOne({ token });
 
-    if (!token.userId) {
+    if (!token) {
       throw new AccountError("This Activation link is not valid anymore.", 400);
     }
 
-    const user = await User.findById(userId);
+    const user = await User.findById(token.userId);
 
     await token.remove();
 

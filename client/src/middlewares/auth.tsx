@@ -52,10 +52,16 @@ const setLogin = ({ getState, dispatch }: AxiosSubmit) => {
       dispatch({ type: "RESET_AUTH_MODAL_ERROR_VALUES" });
       dispatch({ type: "RESET_REGISTER_SUCCESS_MESSAGE" });
     })
-    .catch(({ response }) => {
-      const { msg: error } = response.data;
-      dispatch({ type: "LOGIN_ERROR_HANDLER", error });
-    })
+    .catch(
+      ({
+        response: {
+          data: { msg: error },
+        },
+      }) => {
+        dispatch({ type: "LOGIN_ERROR_HANDLER", error });
+        dispatch({ type: "REGISTER_SUCCESS_MESSAGE" });
+      }
+    )
     .finally(() => {
       dispatch({ type: "SET_LOGIN_LOADER", value: false });
     });
