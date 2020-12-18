@@ -28,6 +28,7 @@ function App({
   showNavbar,
   login,
   register,
+  validity,
   userDeletionSuccess,
   getProjects,
   getNotifications,
@@ -80,7 +81,7 @@ function App({
           <Route
             exact
             path="/account/verify/:token"
-            component={AccountVerification}
+            component={validity ? AccountVerification : NotFound}
           />
           <Route component={NotFound} />
         </Switch>

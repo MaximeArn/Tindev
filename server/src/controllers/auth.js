@@ -9,6 +9,7 @@ const {
   tokenValidator,
   logoutValidator,
   verifyAccountValidator,
+  accountTokenValidator,
 } = require("../utils/validators");
 
 const authRouter = {
@@ -91,6 +92,14 @@ const authRouter = {
     try {
       const { username, email } = await tokenValidator(token, next);
       return email && username && res.status(200).json({ username, email });
+    } catch (error) {
+      next(error);
+    }
+  },
+  verifyAccountToken: async ({ params: { token } }, res, next) => {
+    try {
+      const valid = await accountTokenValidator(token, next);
+      return valid && res.status(200).json({ validity: valid });
     } catch (error) {
       next(error);
     }

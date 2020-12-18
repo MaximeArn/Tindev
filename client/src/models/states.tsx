@@ -39,6 +39,7 @@ export interface State {
   navbar: NavBarState;
   message: MessageState;
   notifications: NotificationState;
+  token: AccountTokenState;
 }
 
 export interface Modals {
@@ -133,6 +134,7 @@ export interface AppProps {
   showNavbar: boolean;
   getProjects: Function;
   getNotifications: Function;
+  validity: boolean;
   getChatWindows: Function;
   login: boolean;
   register: boolean;
@@ -218,5 +220,5 @@ export interface NotificationState {
 }
 
 export interface AccountTokenState {
-  validity: null | boolean;
+  validity: boolean;
 }

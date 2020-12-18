@@ -10,6 +10,7 @@ import search from "./search";
 import navbar from "./navbar";
 import message from "./message";
 import notifications from "./notifications";
+import token from "./token";
 import { combineReducers } from "redux";
 
 const rootReducer = combineReducers({
@@ -25,6 +26,7 @@ const rootReducer = combineReducers({
   success,
   message,
   notifications,
+  token,
 });
 
 export default (
