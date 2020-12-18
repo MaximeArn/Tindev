@@ -54,36 +54,3 @@ mongoDB.once("open", () => console.log("Connected to mongo database"));
 
 server.listen(PORT, () => console.log(`Server running on port ${PORT}`));
 http.listen(SOCKET, () => console.log(`Socket listening on port ${SOCKET}`));
-
-const sendMail = async () => {
-  try {
-    const transporter = createTransport({
-      host: "smtp.gmail.com",
-      port: 587,
-      secure: false,
-      requireTLS: true,
-      auth: {
-        user: process.env.EMAILER,
-        pass: process.env.EMAILERPW,
-      },
-    });
-
-    const info = await transporter.sendMail({
-      from: {
-        name: "<no-reply@tindev.com>",
-        address: process.env.EMAILER,
-      },
-      to: "krysyx31@gmail.com",
-      subject: "Account verification",
-      text: "Plain version",
-      html:
-        "<div>Your account is almost ready. </div> <br /> <div>There is one last thing you need to do : </div> <br /> <div>Click <a href=`http://localhost:8080/account/verification/25sz74a856e`>here</a> to activate your account.</div>",
-    });
-
-    console.log(info);
-  } catch (error) {
-    console.error(error);
-  }
-};
-
-// sendMail();

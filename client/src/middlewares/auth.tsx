@@ -105,8 +105,12 @@ const checkAccountTokenValidity = (
 ) => {
   axios
     .get(`/auth/token_validity/${token}`)
-    .then(({ data }) => console.log(data))
-    .catch(({ response: { data } }) => console.error(data));
+    .then(({ data: { validity } }) =>
+      dispatch({ type: "SET_ACCOUNT_TOKEN_VALIDITY", validity })
+    )
+    .catch((error) =>
+      dispatch({ type: "SET_ACCOUNT_TOKEN_VALIDITY", validity: false })
+    );
 };
 
 const auth: Middleware = ({ getState, dispatch }) => (next) => (

@@ -2,7 +2,7 @@ import { AccountTokenAction } from "../models/actions";
 import { AccountTokenState } from "../models/states";
 
 const initialState: AccountTokenState = {
-  validity: false,
+  validity: true,
 };
 
 const token = (
