@@ -41,7 +41,7 @@ const authRouter = {
           },
           to: email,
           subject: "Account activation",
-          html: `<div>Your account is almost ready. </div> <br /> <div>There is one last thing you need to do : </div> <br /> <div>Click <a href="http://localhost:8080/account/verification/${token}">here</a> to activate your account.</div>`,
+          html: `<div>Your account is almost ready. </div> <br /> <div>There is one last thing you need to do : </div> <br /> <div>Click <a href="http://localhost:8080/account/verify/${token}">here</a> to activate your account.</div>`,
         });
 
         return res

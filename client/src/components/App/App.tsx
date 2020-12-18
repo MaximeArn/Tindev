@@ -84,7 +84,8 @@ function App({
               path="/account/verify/:token"
               component={AccountVerification}
             />
-            <Route component={VisitorPage} />
+            <Route exact path="/" component={VisitorPage} />
+            <Route component={NotFound} />
           </Switch>
         </>
       )}

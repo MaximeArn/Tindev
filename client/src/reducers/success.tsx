@@ -23,7 +23,7 @@ const success = (state = initialState, { type, message }: SuccessAction) => {
     case "USER_EDITION_SUCCESS_MESSAGE":
       return { ...state, userEditionSuccess: msg };
     case "USER_DELETION_SUCCESS_MESSAGE":
-      return { ...state, userDeletionSuccess: message };
+      return { ...state, userDeletionSuccess: msg };
     case "ACCOUNT_ACTIVATION_SUCCESS_MESSAGE":
       return { ...state, accountActivationSuccess: msg };
     default:
