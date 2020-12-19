@@ -1,4 +1,4 @@
-import React, { useEffect, useRef } from "react";
+import React, { useEffect } from "react";
 import ProjectList from "../containers/ProjectList";
 import { Switch, Route } from "react-router-dom";
 import { AppProps } from "../../models/states";
@@ -55,20 +55,22 @@ function App({
       {login && <Login />}
       {register && <Register />}
       {user ? (
-        <Switch>
+        <>
           <Chat />
-          <Route exact path="/" component={ProjectList} />
-          <Route exact path="/project/create" component={ProjectCreation} />
-          <Route path="/project/:slug/manage" component={ManageProject} />
-          <Route path="/project/:slug/edit" component={EditProject} />
-          <Route path="/project/:slug" component={ProjectDetail} />
-          <Route exact path="/users" component={UsersList} />
-          <Route exact path="/user/:username" component={UserProfile} />
-          <Route path="/search" component={Search} />
-          <Route path="/account" component={EditProfile} />
-          <Route path="/legals" component={Legals} />
-          <Route component={NotFound} />
-        </Switch>
+          <Switch>
+            <Route exact path="/" component={ProjectList} />
+            <Route exact path="/project/create" component={ProjectCreation} />
+            <Route path="/project/:slug/manage" component={ManageProject} />
+            <Route path="/project/:slug/edit" component={EditProject} />
+            <Route path="/project/:slug" component={ProjectDetail} />
+            <Route exact path="/users" component={UsersList} />
+            <Route exact path="/user/:username" component={UserProfile} />
+            <Route path="/search" component={Search} />
+            <Route path="/account" component={EditProfile} />
+            <Route path="/legals" component={Legals} />
+            <Route component={NotFound} />
+          </Switch>
+        </>
       ) : (
         <Switch>
           {userDeletionSuccess && (
@@ -92,31 +94,3 @@ function App({
 }
 
 export default App;
-
-// <Switch>
-// {user ? (
-//   <>
-//     <Chat />
-//     <Route exact path="/" component={ProjectList} />
-//     <Route exact path="/project/create" component={ProjectCreation} />
-//     <Route path="/project/:slug/manage" component={ManageProject} />
-//     <Route path="/project/:slug/edit" component={EditProject} />
-//     <Route path="/project/:slug" component={ProjectDetail} />
-//     <Route exact path="/users" component={UsersList} />
-//     <Route exact path="/user/:username" component={UserProfile} />
-//     <Route path="/search" component={Search} />
-//     <Route path="/account" component={EditProfile} />
-//     <Route path="/legals" component={Legals} />
-//   </>
-// ) : (
-//   <>
-//     <Route exact path="/" component={VisitorPage} />
-//     <Route
-//       exact
-//       path="/account/verify/:token"
-//       component={AccountVerification}
-//     />
-//   </>
-//     )}
-//   <Route component={NotFound} />
-// </Switch>

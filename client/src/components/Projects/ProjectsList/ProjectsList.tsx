@@ -5,6 +5,7 @@ import CircularProgress from "@material-ui/core/CircularProgress";
 import { Project as ProjectModel, Projects } from "../../../models/projects";
 
 const ProjectsList = ({ projects, error, getProjects, loader }: Projects) => {
+  console.log("PROJECTS : ", projects);
   const projectListRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {

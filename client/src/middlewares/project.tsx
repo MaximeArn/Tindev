@@ -227,6 +227,7 @@ const project: Middleware = ({ getState, dispatch }) => (next) => (action) => {
       sendProject({ getState, dispatch, history });
       break;
     case "GET_PROJECTS":
+      console.log("GET PROJECTS MIDDLEWARE");
       getProjects(dispatch);
       break;
     case "GET_PROJECT":
