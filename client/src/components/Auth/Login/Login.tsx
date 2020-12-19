@@ -1,8 +1,5 @@
-/** @format */
-
 import React, { FormEvent, MouseEvent, useRef } from "react";
 import { LoginAuth } from "../../../models/states";
-import { Link } from "react-router-dom";
 import googleIcon from "src/assets/icons/googleIcon.svg";
 import modalClickHandler from "../../../utils/modalClickHandler";
 import inputMapper from "../../../utils/inputMapper";

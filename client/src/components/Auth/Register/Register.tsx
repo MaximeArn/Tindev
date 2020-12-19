@@ -1,4 +1,3 @@
-/** @format */
 import React, { FormEvent, useRef } from "react";
 import { RegisterAuth } from "../../../models/states";
 import googleIcon from "src/assets/icons/googleIcon.svg";

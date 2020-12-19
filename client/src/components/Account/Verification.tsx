@@ -1,6 +1,7 @@
 import React, { useEffect } from "react";
 import { AccountVerification } from "../../models/users";
 import CircularProgress from "@material-ui/core/CircularProgress";
+import { useHistory } from "react-router-dom";
 import "./verification.scss";
 
 const Verification = ({
@@ -10,6 +11,8 @@ const Verification = ({
   activateAccount,
   checkTokenValidity,
 }: AccountVerification) => {
+  const history = useHistory();
+
   useEffect(() => {
     checkTokenValidity();
   }, []);
@@ -23,7 +26,10 @@ const Verification = ({
           {success ? (
             <>
               <div className="verification-success">{success}</div>
-              <button className="verification-button">
+              <button
+                className="verification-button"
+                onClick={() => history.push("/")}
+              >
                 Return to home page
               </button>
             </>

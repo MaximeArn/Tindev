@@ -3,15 +3,15 @@ const AccountError = require("../CustomError");
 
 module.exports = async (token, next) => {
   try {
-    const token = await Token.findOne({ token });
+    const activation = await Token.findOne({ token });
 
-    if (!token) {
+    if (!activation) {
       throw new AccountError("This Activation link is not valid anymore.", 400);
     }
 
-    const user = await User.findById(token.userId);
+    const user = await User.findById(activation.userId);
 
-    await token.remove();
+    await activation.remove();
 
     return user;
   } catch (error) {
