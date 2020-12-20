@@ -5,7 +5,7 @@ import { ProjectState } from "./projects";
 import { UserState, AuthUserState } from "./users";
 import { User } from "../models/users";
 import { Project } from "../models/projects";
-import { ChatWindow, Messages } from "./chat";
+import { ChatWindow } from "./chat";
 import { Notification } from "./notifications";
 
 export interface Authentication {

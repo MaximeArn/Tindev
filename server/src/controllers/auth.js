@@ -3,6 +3,7 @@ const secret = process.env.SECRET;
 const { User, Token } = require("../models");
 const SHA256 = require("crypto-js/sha256");
 const { createTransport } = require("nodemailer");
+const sendMail = require("../utils/sendEmail");
 const {
   loginValidator,
   registerValidator,
@@ -10,6 +11,7 @@ const {
   logoutValidator,
   verifyAccountValidator,
   accountTokenValidator,
+  activationLinkValidator,
 } = require("../utils/validators");
 
 const authRouter = {
@@ -18,16 +20,6 @@ const authRouter = {
       const validator = await registerValidator(body, next);
 
       if (validator) {
-        const transporter = createTransport({
-          host: "smtp.gmail.com",
-          port: 587,
-          secure: false,
-          auth: {
-            user: process.env.EMAILER,
-            pass: process.env.EMAILERPW,
-          },
-        });
-
         const { _id: userId, email } = await User.create(body);
 
         const { token } = await Token.create({
@@ -36,15 +28,7 @@ const authRouter = {
           expire: Date.now() + 15 * 60,
         });
 
-        await transporter.sendMail({
-          from: {
-            name: "Tindev",
-            address: "no-reply@tindev.com",
-          },
-          to: email,
-          subject: "Account activation",
-          html: `<div>Your account is almost ready. </div> <br /> <div>There is one last thing you need to do : </div> <br /> <div>Click <a href="http://localhost:8080/account/verify/${token}">here</a> to activate your account.</div>`,
-        });
+        await sendMail(email, token);
 
         return res
           .status(200)
@@ -107,6 +91,7 @@ const authRouter = {
   },
   verifyAccount: async ({ params: { token } }, res, next) => {
     try {
+      //TODO: also verify if the token is not expired before activating it , else just throw error to resend new activation link
       const user = await verifyAccountValidator(token, res, next);
 
       if (user) {
@@ -114,6 +99,28 @@ const authRouter = {
         await user.save();
 
         return res.status(200).json({ msg: "Account successfully activated" });
+      }
+    } catch (error) {
+      next(error);
+    }
+  },
+  sendActivationLink: async ({ params: { userId } }, res, next) => {
+    try {
+      const email = await activationLinkValidator(userId, next);
+
+      if (email) {
+        const { token } = await Token.create({
+          userId,
+          token: SHA256(userId),
+          expire: Date.now() + 15 * 60,
+        });
+
+        await sendMail(email, token);
+
+        return res.status(200).json({
+          message:
+            "A new activation link has been sent to your email address. Please follow the instructions",
+        });
       }
     } catch (error) {
       next(error);

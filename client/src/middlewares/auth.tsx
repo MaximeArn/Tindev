@@ -113,10 +113,12 @@ const checkAccountTokenValidity = (
     );
 };
 
-const sendActivationLink = (
-  dispatch: Dispatch<AnyAction>,
-  userId: string
-) => {};
+const sendActivationLink = (dispatch: Dispatch<AnyAction>, userId: string) => {
+  axios
+    .get(`/auth/send_token/${userId}`)
+    .then(({ data }) => console.log(data))
+    .catch((error) => console.error(error));
+};
 
 const auth: Middleware = ({ getState, dispatch }) => (next) => (
   action: AuthMiddleware
