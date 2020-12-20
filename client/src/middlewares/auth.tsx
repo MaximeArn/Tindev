@@ -108,15 +108,20 @@ const checkAccountTokenValidity = (
     .then(({ data: { validity } }) =>
       dispatch({ type: "SET_ACCOUNT_TOKEN_VALIDITY", validity })
     )
-    .catch((error) =>
-      dispatch({ type: "SET_ACCOUNT_TOKEN_VALIDITY", validity: false })
+    .catch(({ response: { data: error } }) =>
+      dispatch({ type: "ACCOUNT_TOKEN_ERROR_HANDLER", error })
     );
 };
+
+const sendActivationLink = (
+  dispatch: Dispatch<AnyAction>,
+  userId: string
+) => {};
 
 const auth: Middleware = ({ getState, dispatch }) => (next) => (
   action: AuthMiddleware
 ) => {
-  const { type, token } = action;
+  const { type, token, userId } = action;
   switch (type) {
     case "SUBMIT_REGISTER":
       setUser({ getState, dispatch });
@@ -129,6 +134,9 @@ const auth: Middleware = ({ getState, dispatch }) => (next) => (
       break;
     case "VERIFY_ACCOUNT_TOKEN_VALIDITY":
       checkAccountTokenValidity(dispatch, token);
+      break;
+    case "SEND_ACCOUNT_ACTIVATION_LINK":
+      sendActivationLink(dispatch, userId);
       break;
     case "TOKEN_VALIDATION":
       retrieveToken(dispatch);

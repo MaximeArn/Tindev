@@ -16,7 +16,10 @@ const initialState: ErrorState = {
   userProfileEditionErrorMessage: "",
   accountActivationErrorMessage: {
     message: "",
-    userId: null,
+    email: null,
+  },
+  accountTokenErrorMessage: {
+    msg: "",
   },
 };
 
@@ -45,6 +48,8 @@ const error = (state = initialState, { type, error }: ErrorAction) => {
       return { ...state, userProfileEditionErrorMessage: err };
     case "ACCOUNT_ACTIVATION_ERROR_HANDLER":
       return { ...state, accountActivationErrorMessage: error };
+    case "ACCOUNT_TOKEN_ERROR_HANDLER":
+      return { ...state, accountTokenErrorMessage: error };
     default:
       return state;
   }

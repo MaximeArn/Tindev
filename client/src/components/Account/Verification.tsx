@@ -6,10 +6,11 @@ import "./verification.scss";
 
 const Verification = ({
   success,
-  error,
+  error: { msg: errorMessage, userId },
   loader,
   activateAccount,
   checkTokenValidity,
+  sendActivationLink,
 }: AccountVerification) => {
   const history = useHistory();
 
@@ -19,8 +20,23 @@ const Verification = ({
 
   return (
     <div className="verification">
-      {error ? (
-        <div className="verification-error">{error}</div>
+      {errorMessage ? (
+        <>
+          <div className="verification-error">{errorMessage}</div>
+          {userId && (
+            <div className="verification-expired">
+              <div className="verification-expired-message">
+                Click on the button below to send another activation link
+              </div>
+              <button
+                className="verification-expired-button"
+                onClick={() => sendActivationLink(userId)}
+              >
+                Send link
+              </button>
+            </div>
+          )}
+        </>
       ) : (
         <>
           {success ? (

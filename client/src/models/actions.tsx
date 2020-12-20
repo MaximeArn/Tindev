@@ -52,6 +52,7 @@ export interface ProjectAction {
 export interface AuthMiddleware {
   type: string;
   token: string;
+  userId: string;
   history: any;
 }
 

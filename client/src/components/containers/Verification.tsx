@@ -8,7 +8,7 @@ import { State } from "../../models/states";
 const mapState = ({
   loaders: { userAccountActivationLoader: loader },
   success: { accountActivationSuccess: success },
-  error: { accountActivationErrorMessage: error },
+  error: { accountTokenErrorMessage: error },
 }: State) => ({
   loader,
   success,
@@ -24,6 +24,8 @@ const mapDispatch = (
     checkTokenValidity: () =>
       dispatch({ type: "VERIFY_ACCOUNT_TOKEN_VALIDITY", token }),
     activateAccount: () => dispatch({ type: "ACCOUNT_VERIFICATION", token }),
+    sendActivationLink: (userId: string) =>
+      dispatch({ type: "SEND_ACCOUNT_ACTIVATION_LINK", userId }),
   };
 };
 
