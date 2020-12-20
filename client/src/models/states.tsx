@@ -127,7 +127,7 @@ export interface ErrorState {
   userProfileEditionErrorMessage: string;
   accountActivationErrorMessage: {
     message: string;
-    email: null | string;
+    userId: null | string;
   };
 }
 

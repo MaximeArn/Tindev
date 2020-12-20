@@ -16,7 +16,7 @@ const initialState: ErrorState = {
   userProfileEditionErrorMessage: "",
   accountActivationErrorMessage: {
     message: "",
-    email: null,
+    userId: null,
   },
 };
 

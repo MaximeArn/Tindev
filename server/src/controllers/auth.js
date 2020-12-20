@@ -107,7 +107,7 @@ const authRouter = {
   },
   verifyAccount: async ({ params: { token } }, res, next) => {
     try {
-      const user = await verifyAccountValidator(token, next);
+      const user = await verifyAccountValidator(token, res, next);
 
       if (user) {
         user.activated = true;
