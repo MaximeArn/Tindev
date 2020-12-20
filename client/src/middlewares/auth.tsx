@@ -85,7 +85,7 @@ const logout = (dispatch: Dispatch<AnyAction>) => {
 };
 
 const activateAccount = (dispatch: Dispatch<AnyAction>, token: string) => {
-  dispatch({ type: "ACCOUNT_ACTIVATION_LOADER", value: true });
+  dispatch({ type: "SET_ACCOUNT_ACTIVATION_LOADER", value: true });
   axios
     .get(`/auth/verify_account/${token}`)
     .then(({ data: { msg } }) =>
@@ -95,7 +95,7 @@ const activateAccount = (dispatch: Dispatch<AnyAction>, token: string) => {
       dispatch({ type: "ACCOUNT_ACTIVATION_ERROR_HANDLER", error })
     )
     .finally(() =>
-      dispatch({ type: "ACCOUNT_ACTIVATION_LOADER", value: false })
+      dispatch({ type: "SET_ACCOUNT_ACTIVATION_LOADER", value: false })
     );
 };
 
@@ -114,10 +114,14 @@ const checkAccountTokenValidity = (
 };
 
 const sendActivationLink = (dispatch: Dispatch<AnyAction>, userId: string) => {
+  dispatch({ type: "SET_NEW_ACTIVATION_LINK_LOADER", value: true });
   axios
     .get(`/auth/send_token/${userId}`)
-    .then(({ data }) => console.log(data))
-    .catch((error) => console.error(error));
+    .then(({ data: { message } }) => console.log(data))
+    .catch((error) => console.error(error))
+    .finally(() =>
+      dispatch({ type: "SET_NEW_ACTIVATION_LINK_LOADER", value: false })
+    );
 };
 
 const auth: Middleware = ({ getState, dispatch }) => (next) => (

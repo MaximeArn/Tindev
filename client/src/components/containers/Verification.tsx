@@ -6,11 +6,12 @@ import { OwnProps } from "../../models/connect";
 import { State } from "../../models/states";
 
 const mapState = ({
-  loaders: { userAccountActivationLoader: loader },
+  loaders: { accountActivationLoader, activationLinkLoader },
   success: { accountActivationSuccess: success },
   error: { accountTokenErrorMessage: error },
 }: State) => ({
-  loader,
+  accountActivationLoader,
+  activationLinkLoader,
   success,
   error,
 });

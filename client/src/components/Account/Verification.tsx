@@ -7,7 +7,8 @@ import "./verification.scss";
 const Verification = ({
   success,
   error: { msg: errorMessage, userId },
-  loader,
+  accountActivationLoader,
+  activationLinkLoader,
   activateAccount,
   checkTokenValidity,
   sendActivationLink,
@@ -53,9 +54,9 @@ const Verification = ({
             <button
               className="verification-button"
               onClick={() => activateAccount()}
-              disabled={loader}
+              disabled={accountActivationLoader}
             >
-              {loader ? (
+              {accountActivationLoader ? (
                 <CircularProgress size={15} style={{ color: "white" }} />
               ) : (
                 "Click Here to activate your account"

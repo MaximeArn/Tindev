@@ -139,7 +139,8 @@ export interface AccountVerification {
     msg: string;
     userId?: string;
   };
-  loader: boolean;
+  accountActivationLoader: boolean;
+  activationLinkLoader: boolean;
   activateAccount: Function;
   checkTokenValidity: Function;
   sendActivationLink: Function;
