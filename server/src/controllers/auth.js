@@ -33,12 +33,13 @@ const authRouter = {
         const { token } = await Token.create({
           userId,
           token: SHA256(userId),
+          expire: Date.now() + 15 * 60,
         });
 
         await transporter.sendMail({
           from: {
             name: "Tindev",
-            address: process.env.EMAILER,
+            address: "no-reply@tindev.com",
           },
           to: email,
           subject: "Account activation",

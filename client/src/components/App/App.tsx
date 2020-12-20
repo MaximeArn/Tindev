@@ -72,21 +72,23 @@ function App({
           </Switch>
         </>
       ) : (
-        <Switch>
+        <>
           {userDeletionSuccess && (
             <AccountDeletionModal
               success={userDeletionSuccess}
               onAccountClosing={onAccountClosing}
             />
           )}
-          <Route exact path="/" component={VisitorPage} />
-          <Route
-            exact
-            path="/account/verify/:token"
-            component={validity ? AccountVerification : NotFound}
-          />
-          <Route component={NotFound} />
-        </Switch>
+          <Switch>
+            <Route exact path="/" component={VisitorPage} />
+            <Route
+              exact
+              path="/account/verify/:token"
+              component={validity ? AccountVerification : NotFound}
+            />
+            <Route component={NotFound} />
+          </Switch>
+        </>
       )}
       <Footer />
     </>

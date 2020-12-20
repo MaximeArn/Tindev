@@ -14,7 +14,10 @@ const initialState: ErrorState = {
   projectEditionErrorMessage: "",
   userProfileErrorMessage: "",
   userProfileEditionErrorMessage: "",
-  accountActivationErrorMessage: "",
+  accountActivationErrorMessage: {
+    message: "",
+    email: null,
+  },
 };
 
 const error = (state = initialState, { type, error }: ErrorAction) => {
