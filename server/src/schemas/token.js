@@ -4,7 +4,7 @@ const { Schema } = require("mongoose");
 const tokenSchema = new Schema({
   userId: ObjectId,
   token: String,
-  expire: Date,
+  expire: Number,
 });
 
 module.exports = tokenSchema;

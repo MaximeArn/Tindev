@@ -12,12 +12,12 @@ module.exports = async (t, res, next) => {
       );
     }
 
-    if (Date.now() > token.expire) {
-      const userId = token.userId;
-      await token.remove();
-      console.error(new Error("This token has expired"));
-      return res.status(403).json({ msg: "This token has expired", userId });
-    }
+    // if (Date.now() > token.expire) {
+    //   const userId = token.userId;
+    //   await token.remove();
+    //   console.error(new Error("This token has expired"));
+    //   return res.status(403).json({ msg: "This token has expired", userId });
+    // }
 
     return true;
   } catch (error) {

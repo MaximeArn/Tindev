@@ -15,7 +15,7 @@ module.exports = async (email, token) => {
     return await transporter.sendMail({
       from: {
         name: "Tindev",
-        address: "<no-reply@tindev.com>",
+        address: process.env.EMAILER,
       },
       to: email,
       subject: "Account activation",

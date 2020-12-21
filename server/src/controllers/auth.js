@@ -83,7 +83,7 @@ const authRouter = {
   },
   verifyAccountToken: async ({ params: { token } }, res, next) => {
     try {
-      const validity = await accountTokenValidator(token, next);
+      const validity = await accountTokenValidator(token, res, next);
       return validity && res.status(200).json({ validity });
     } catch (error) {
       next(error);
@@ -91,7 +91,7 @@ const authRouter = {
   },
   activateAccount: async ({ params: { token } }, res, next) => {
     try {
-      const user = await verifyAccountValidator(token, res, next);
+      const user = await verifyAccountValidator(token, next);
 
       if (user) {
         user.activated = true;

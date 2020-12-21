@@ -49,9 +49,9 @@ const error = (state = initialState, { type, error }: ErrorAction) => {
     case "ACCOUNT_TOKEN_ERROR_HANDLER":
       return {
         ...state,
-        activationLinkErrorMessage: error
+        accountTokenVerificationErrorMessage: error
           ? error
-          : initialState.activationLinkErrorMessage,
+          : initialState.accountTokenVerificationErrorMessage,
       };
     default:
       return state;
