@@ -20,11 +20,12 @@ const initialState: ErrorState = {
   },
   accountTokenErrorMessage: {
     msg: "",
+    userId: null,
   },
 };
 
 const error = (state = initialState, { type, error }: ErrorAction) => {
-  const err = error ? error : "";
+  const err = error || "";
   switch (type) {
     case "REGISTER_ERROR_HANDLER":
       return { ...state, auth: { ...state.auth, registerErrorMessage: error } };
@@ -49,7 +50,12 @@ const error = (state = initialState, { type, error }: ErrorAction) => {
     case "ACCOUNT_ACTIVATION_ERROR_HANDLER":
       return { ...state, accountActivationErrorMessage: error };
     case "ACCOUNT_TOKEN_ERROR_HANDLER":
-      return { ...state, accountTokenErrorMessage: error };
+      return {
+        ...state,
+        accountTokenErrorMessage: error
+          ? error
+          : initialState.accountTokenErrorMessage,
+      };
     default:
       return state;
   }

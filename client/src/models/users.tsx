@@ -135,6 +135,7 @@ export interface UserTabPanelProps {
 
 export interface AccountVerification {
   success: boolean | string;
+  activationSuccess: boolean | string;
   error: {
     msg: string;
     userId?: string;

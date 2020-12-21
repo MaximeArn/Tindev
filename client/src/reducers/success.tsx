@@ -8,6 +8,7 @@ const initialState: SuccessState = {
   userEditionSuccess: false,
   userDeletionSuccess: false,
   accountActivationSuccess: false,
+  activationLinkSuccess: false,
 };
 const success = (state = initialState, { type, message }: SuccessAction) => {
   const msg = message || false;
@@ -26,6 +27,8 @@ const success = (state = initialState, { type, message }: SuccessAction) => {
       return { ...state, userDeletionSuccess: msg };
     case "ACCOUNT_ACTIVATION_SUCCESS_MESSAGE":
       return { ...state, accountActivationSuccess: msg };
+    case "ACTIVATION_LINK_SUCCESS_MESSAGE":
+      return { ...state, activationLinkSuccess: msg };
     default:
       return state;
   }

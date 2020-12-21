@@ -6,6 +6,7 @@ import "./verification.scss";
 
 const Verification = ({
   success,
+  activationSuccess,
   error: { msg: errorMessage, userId },
   accountActivationLoader,
   activationLinkLoader,
@@ -40,9 +41,11 @@ const Verification = ({
         </>
       ) : (
         <>
-          {success ? (
+          {activationSuccess ? (
             <>
-              <div className="verification-success">{success}</div>
+              <div className="verification-activationSuccess">
+                {activationSuccess}
+              </div>
               <button
                 className="verification-button"
                 onClick={() => history.push("/")}

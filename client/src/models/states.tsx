@@ -132,7 +132,7 @@ export interface ErrorState {
   };
   accountTokenErrorMessage: {
     msg: string;
-    userId?: string;
+    userId?: null | string;
   };
 }
 
@@ -203,6 +203,7 @@ export interface SuccessState {
   userEditionSuccess: boolean | string;
   userDeletionSuccess: boolean | string;
   accountActivationSuccess: boolean | string;
+  activationLinkSuccess: boolean | string;
 }
 
 export interface SearchState {
