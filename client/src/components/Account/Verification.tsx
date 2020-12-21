@@ -5,7 +5,7 @@ import { useHistory } from "react-router-dom";
 import "./verification.scss";
 
 const Verification = ({
-  success,
+  activationLinkSuccess,
   activationSuccess,
   error: { msg: errorMessage, userId },
   accountActivationLoader,
@@ -34,13 +34,23 @@ const Verification = ({
                 className="verification-expired-button"
                 onClick={() => sendActivationLink(userId)}
               >
-                Send link
+                {activationLinkLoader ? (
+                  <CircularProgress size={15} style={{ color: "white" }} />
+                ) : (
+                  "Send link"
+                )}
               </button>
             </div>
           )}
         </>
-      ) : (
+      ) : activationLinkSuccess ? (
         <>
+          <div className="verification-expired-success">
+            {activationLinkSuccess}
+          </div>
+        </>
+      ) : (
+        <div>
           {activationSuccess ? (
             <>
               <div className="verification-activationSuccess">
@@ -66,7 +76,7 @@ const Verification = ({
               )}
             </button>
           )}
-        </>
+        </div>
       )}
     </div>
   );

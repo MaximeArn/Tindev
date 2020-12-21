@@ -8,14 +8,14 @@ import { State } from "../../models/states";
 const mapState = ({
   loaders: { accountActivationLoader, activationLinkLoader },
   success: {
-    activationLinkSuccess: success,
+    activationLinkSuccess,
     accountActivationSuccess: activationSuccess,
   },
   error: { accountTokenErrorMessage: error },
 }: State) => ({
   accountActivationLoader,
   activationLinkLoader,
-  success,
+  activationLinkSuccess,
   activationSuccess,
   error,
 });
