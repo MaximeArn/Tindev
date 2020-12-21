@@ -25,7 +25,7 @@ const authRouter = {
         const { token } = await Token.create({
           userId,
           token: SHA256(userId),
-          expire: Date.now() + 15 * 60,
+          expire: Date.now() + 15 * 60000,
         });
 
         await sendMail(email, token);
@@ -111,7 +111,7 @@ const authRouter = {
         const { token } = await Token.create({
           userId,
           token: SHA256(userId),
-          expire: Date.now() + 15 * 60,
+          expire: Date.now() + 15 * 60000,
         });
 
         await sendMail(email, token);
