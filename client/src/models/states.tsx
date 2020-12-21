@@ -127,7 +127,7 @@ export interface ErrorState {
   userProfileErrorMessage: string;
   userProfileEditionErrorMessage: string;
   accountActivationErrorMessage: string;
-  activationLinkErrorMessage: {
+  accountTokenVerificationErrorMessage: {
     msg: string;
     userId?: null | string;
   };

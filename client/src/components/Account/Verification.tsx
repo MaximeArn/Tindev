@@ -7,8 +7,8 @@ import "./verification.scss";
 const Verification = ({
   activationLinkSuccess,
   activationSuccess,
-  activationLinkErrorMessage: { msg: errorMessage, userId },
-  accountActivationErrorMessage,
+  accountTokenVerificationErrorMessage: { msg: tokenVerificationError, userId },
+  accountActivationErrorMessage: activationError,
   accountActivationLoader,
   activationLinkLoader,
   activateAccount,
@@ -23,9 +23,9 @@ const Verification = ({
 
   return (
     <div className="verification">
-      {errorMessage ? (
+      {tokenVerificationError ? (
         <>
-          <div className="verification-error">{errorMessage}</div>
+          <div className="verification-error">{tokenVerificationError}</div>
           {userId && (
             <div className="verification-expired">
               <div className="verification-expired-message">
@@ -63,6 +63,12 @@ const Verification = ({
               >
                 Return to home page
               </button>
+            </>
+          ) : activationError ? (
+            <>
+              <div className="verification-activation-error">
+                {activationError}
+              </div>
             </>
           ) : (
             <button

@@ -6,6 +6,10 @@
   left: 50%;
   transform: translate(-50%, -50%);
 
+  &-activation-error {
+    color: vars.$error-message;
+  }
+
   &-expired {
     display: flex;
     flex-direction: column;
@@ -34,9 +38,6 @@
         background-color: #fff;
         border-radius: 5px;
       }
-    }
-
-    &-success {
     }
   }
 

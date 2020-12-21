@@ -15,7 +15,7 @@ const initialState: ErrorState = {
   userProfileErrorMessage: "",
   userProfileEditionErrorMessage: "",
   accountActivationErrorMessage: "",
-  activationLinkErrorMessage: {
+  accountTokenVerificationErrorMessage: {
     msg: "",
     userId: null,
   },

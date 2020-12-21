@@ -11,13 +11,16 @@ const mapState = ({
     activationLinkSuccess,
     accountActivationSuccess: activationSuccess,
   },
-  error: { activationLinkErrorMessage, accountActivationErrorMessage },
+  error: {
+    accountTokenVerificationErrorMessage,
+    accountActivationErrorMessage,
+  },
 }: State) => ({
   accountActivationLoader,
   activationLinkLoader,
   activationLinkSuccess,
   activationSuccess,
-  activationLinkErrorMessage,
+  accountTokenVerificationErrorMessage,
   accountActivationErrorMessage,
 });
 
