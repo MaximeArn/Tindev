@@ -7,7 +7,8 @@ import "./verification.scss";
 const Verification = ({
   activationLinkSuccess,
   activationSuccess,
-  error: { msg: errorMessage, userId },
+  activationLinkErrorMessage: { msg: errorMessage, userId },
+  accountActivationErrorMessage,
   accountActivationLoader,
   activationLinkLoader,
   activateAccount,

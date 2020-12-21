@@ -126,11 +126,8 @@ export interface ErrorState {
   projectEditionErrorMessage: string;
   userProfileErrorMessage: string;
   userProfileEditionErrorMessage: string;
-  accountActivationErrorMessage: {
-    message: string;
-    email: null | string;
-  };
-  accountTokenErrorMessage: {
+  accountActivationErrorMessage: string;
+  activationLinkErrorMessage: {
     msg: string;
     userId?: null | string;
   };

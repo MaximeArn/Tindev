@@ -91,7 +91,6 @@ const authRouter = {
   },
   activateAccount: async ({ params: { token } }, res, next) => {
     try {
-      //TODO: also verify if the token is not expired before activating it , else just throw error to resend new activation link
       const user = await verifyAccountValidator(token, res, next);
 
       if (user) {

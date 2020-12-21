@@ -136,10 +136,11 @@ export interface UserTabPanelProps {
 export interface AccountVerification {
   activationLinkSuccess: boolean | string;
   activationSuccess: boolean | string;
-  error: {
+  activationLinkErrorMessage: {
     msg: string;
     userId?: string;
   };
+  accountActivationErrorMessage: string;
   accountActivationLoader: boolean;
   activationLinkLoader: boolean;
   activateAccount: Function;
