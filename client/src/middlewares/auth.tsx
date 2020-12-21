@@ -87,7 +87,7 @@ const logout = (dispatch: Dispatch<AnyAction>) => {
 const activateAccount = (dispatch: Dispatch<AnyAction>, token: string) => {
   dispatch({ type: "SET_ACCOUNT_ACTIVATION_LOADER", value: true });
   axios
-    .get(`/auth/verify_account/${token}`)
+    .get(`/auth/activate_account/${token}`)
     .then(({ data: { msg } }) =>
       dispatch({ type: "ACCOUNT_ACTIVATION_SUCCESS_MESSAGE", message: msg })
     )

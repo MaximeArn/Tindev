@@ -1,17 +1,22 @@
 const { Token, User } = require("../../models");
 const AccountError = require("../CustomError");
 
-module.exports = async (token, next) => {
+module.exports = async (t, next) => {
   try {
-    const activation = await Token.findOne({ token });
+    const token = await Token.findOne({ token: t });
 
-    if (!activation) {
-      throw new AccountError("This Activation link is not valid anymore.", 400);
+    if (!token) {
+      throw new AccountError("This Activation link is not valid anymore.", 403);
     }
 
-    const user = await User.findById(activation.userId);
+    if (Date.now() > token.expire) {
+      await token.remove();
+      throw new AccountError("This activation link has expired.", 403);
+    }
 
-    await activation.remove();
+    const user = await User.findById(token.userId);
+
+    await token.remove();
 
     return user;
   } catch (error) {
