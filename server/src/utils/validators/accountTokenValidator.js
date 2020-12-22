@@ -4,7 +4,6 @@ const TokenError = require("../CustomError");
 module.exports = async (t, res, next) => {
   try {
     const token = await Token.findOne({ token: t });
-    const { userId, expire } = token;
 
     if (!token) {
       throw new TokenError(
@@ -13,9 +12,11 @@ module.exports = async (t, res, next) => {
       );
     }
 
-    if (Date.now() > expire) {
+    if (Date.now() > token.expire) {
       console.error(new Error("This token has expired"));
-      res.status(403).json({ msg: "This token has expired", userId });
+      res
+        .status(403)
+        .json({ msg: "This token has expired", userId: token.userId });
 
       await token.remove();
 

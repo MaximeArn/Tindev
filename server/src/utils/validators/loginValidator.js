@@ -2,7 +2,7 @@ const { User } = require("../../models");
 const UserError = require("../CustomError");
 const compareHashed = require("../compareHashed");
 
-module.exports = async (body, next) => {
+module.exports = async (body, res, next) => {
   try {
     const { password, email } = body;
     const user = await User.findOne({ email });
@@ -14,10 +14,12 @@ module.exports = async (body, next) => {
     if (!isPasswordMatching) throw new UserError("Incorrect Email or Password");
 
     if (!user.activated) {
-      throw new UserError(
-        "Please verify your email address to activate your account.",
-        403
-      );
+      res.status(403).json({
+        msg: "Please verify your email address to activate your account",
+        email: user.email,
+      });
+
+      return null;
     }
 
     return user;
