@@ -8,11 +8,12 @@ import CircularProgress from "@material-ui/core/CircularProgress";
 
 const Login = ({
   login,
-  error: { msg: errorMessage, email },
+  error: { msg: errorMessage, userId },
   submitLogin,
   loginLoader,
   closeModal,
   success,
+  sendActivationLink,
   swapModal,
 }: LoginAuth) => {
   const modal = useRef<HTMLDivElement>(null);
@@ -38,9 +39,15 @@ const Login = ({
               {errorMessage && (
                 <>
                   <span className="modal-error-message">{errorMessage}</span>
-                  {email && (
-                    <div>
-                      Didn't receive any email ? <span>Send a new link</span>
+                  {userId && (
+                    <div className="modal-error-activationLink">
+                      Didn't receive any email ?
+                      <span
+                        className="modal-error-newLink"
+                        onClick={() => sendActivationLink(userId)}
+                      >
+                        Send a new link
+                      </span>
                     </div>
                   )}
                 </>

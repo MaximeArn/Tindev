@@ -1,13 +1,12 @@
 import { ErrorAction } from "../models/actions";
 import { ErrorState } from "../models/states";
-import resetErrorValues from "../utils/resetInputs";
 
 const initialState: ErrorState = {
   auth: {
     registerErrorMessage: "",
     loginErrorMessage: {
       msg: "",
-      email: null,
+      userId: null,
     },
   },
   projectDetailsErrorMessage: "",

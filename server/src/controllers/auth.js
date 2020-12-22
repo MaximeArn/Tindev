@@ -13,6 +13,7 @@ const {
   accountTokenValidator,
   activationLinkValidator,
 } = require("../utils/validators");
+const { Model } = require("mongoose");
 
 const authRouter = {
   register: async ({ body }, res, next) => {

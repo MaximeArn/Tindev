@@ -67,6 +67,20 @@
     font-weight: 400;
     margin-bottom: 1rem;
   }
+
+  &-error {
+    &-activationLink {
+      margin-top: 1rem;
+    }
+
+    &-newLink {
+      cursor: pointer;
+
+      &:hover {
+        color: blue;
+      }
+    }
+  }
 }
 
 .submitButton {

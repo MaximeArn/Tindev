@@ -18,7 +18,7 @@ module.exports = async (body, res, next) => {
     if (!user.activated) {
       res.status(403).json({
         msg: "Please verify your email address to activate your account",
-        email: user.email,
+        userId: user._id,
       });
 
       return null;

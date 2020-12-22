@@ -53,7 +53,6 @@ export interface AuthMiddleware {
   type: string;
   token: string;
   userId: string;
-  history: any;
 }
 
 export interface CategoriesAction {

@@ -110,11 +110,12 @@ export interface LoginAuth {
   submitLogin: Function;
   error: {
     msg: string;
-    email?: null | string;
+    userId?: null | string;
   };
   closeModal: Function;
   success: boolean | string;
   swapModal: Function;
+  sendActivationLink: Function;
 }
 
 export interface ErrorState {
@@ -122,7 +123,7 @@ export interface ErrorState {
     registerErrorMessage: string;
     loginErrorMessage: {
       msg: string;
-      email?: null | string;
+      userId?: null | string;
     };
   };
   projectDetailsErrorMessage: string;
