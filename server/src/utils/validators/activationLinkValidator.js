@@ -3,13 +3,13 @@ const UserError = require("../CustomError");
 
 module.exports = async (userId, next) => {
   try {
-    const { email } = await User.findById(userId);
+    const user = await User.findById(userId);
 
-    if (!email) {
+    if (!user) {
       throw new UserError("This user doesn't exists", 404);
     }
 
-    return email;
+    return user.email;
   } catch (error) {
     next(error);
   }
