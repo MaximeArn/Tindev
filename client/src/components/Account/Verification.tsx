@@ -54,7 +54,7 @@ const Verification = ({
         <div>
           {activationSuccess ? (
             <>
-              <div className="verification-activationSuccess">
+              <div className="verification-activation-success">
                 {activationSuccess}
               </div>
               <button

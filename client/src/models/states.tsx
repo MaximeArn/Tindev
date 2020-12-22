@@ -108,7 +108,10 @@ export interface LoginAuth {
   };
   loginLoader: boolean;
   submitLogin: Function;
-  error: string;
+  error: {
+    msg: string;
+    email?: null | string;
+  };
   closeModal: Function;
   success: boolean | string;
   swapModal: Function;

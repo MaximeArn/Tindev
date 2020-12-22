@@ -6,6 +6,10 @@
   left: 50%;
   transform: translate(-50%, -50%);
 
+  &-activation-success {
+    margin-bottom: 1rem;
+  }
+
   &-activation-error {
     color: vars.$error-message;
   }

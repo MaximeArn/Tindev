@@ -8,7 +8,7 @@ import CircularProgress from "@material-ui/core/CircularProgress";
 
 const Login = ({
   login,
-  error,
+  error: { msg: errorMessage, email },
   submitLogin,
   loginLoader,
   closeModal,
@@ -35,7 +35,16 @@ const Login = ({
             <div className="modal-padding">
               <h1 className="modal-title">Sign In</h1>
               {success && <p className="success-message">{success}</p>}
-              {error && <span className="modal-error-message">{error}</span>}
+              {errorMessage && (
+                <>
+                  <span className="modal-error-message">{errorMessage}</span>
+                  {email && (
+                    <div>
+                      Didn't receive any email ? <span>Send a new link</span>
+                    </div>
+                  )}
+                </>
+              )}
               <div className="fields">{inputMapper(login)}</div>
               {loginLoader ? (
                 <button type="submit" className="submitButton" disabled>
