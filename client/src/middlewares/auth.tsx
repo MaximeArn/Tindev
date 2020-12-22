@@ -114,6 +114,7 @@ const sendActivationLink = (dispatch: Dispatch<AnyAction>, userId: string) => {
     .then(({ data: { message } }) => {
       dispatch({ type: "ACTIVATION_LINK_SUCCESS_MESSAGE", message });
       dispatch({ type: "ACCOUNT_TOKEN_ERROR_HANDLER" });
+      dispatch({ type: "LOGIN_ERROR_HANDLER" });
     })
     .catch((error) => console.error(error))
     .finally(() =>

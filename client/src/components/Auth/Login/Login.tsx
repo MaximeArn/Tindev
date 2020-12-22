@@ -12,7 +12,8 @@ const Login = ({
   submitLogin,
   loginLoader,
   closeModal,
-  success,
+  registerSuccess,
+  activationLinkSuccess,
   sendActivationLink,
   swapModal,
 }: LoginAuth) => {
@@ -35,22 +36,29 @@ const Login = ({
           <form method="POST" onSubmit={handleSubmit}>
             <div className="modal-padding">
               <h1 className="modal-title">Sign In</h1>
-              {success && <p className="success-message">{success}</p>}
+              {registerSuccess && (
+                <p className="success-message">{registerSuccess}</p>
+              )}
               {errorMessage && (
                 <>
                   <span className="modal-error-message">{errorMessage}</span>
                   {userId && (
-                    <div className="modal-error-activationLink">
-                      Didn't receive any email ?
+                    <>
+                      <div className="modal-error-activationLink">
+                        Didn't receive any email ?
+                      </div>
                       <span
                         className="modal-error-newLink"
                         onClick={() => sendActivationLink(userId)}
                       >
                         Send a new link
                       </span>
-                    </div>
+                    </>
                   )}
                 </>
+              )}
+              {activationLinkSuccess && (
+                <p className="success-message">{activationLinkSuccess}</p>
               )}
               <div className="fields">{inputMapper(login)}</div>
               {loginLoader ? (

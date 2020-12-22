@@ -113,7 +113,8 @@ export interface LoginAuth {
     userId?: null | string;
   };
   closeModal: Function;
-  success: boolean | string;
+  registerSuccess: boolean | string;
+  activationLinkSuccess: boolean | string;
   swapModal: Function;
   sendActivationLink: Function;
 }

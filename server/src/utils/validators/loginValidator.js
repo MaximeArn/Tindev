@@ -9,9 +9,7 @@ module.exports = async (body, res, next) => {
 
     if (!user) throw new UserError("Incorrect Email or Password", 400);
 
-    const isPasswordMatching = await compareHashed(password, user.password);
-
-    if (!isPasswordMatching) {
+    if (!(await compareHashed(password, user.password))) {
       throw new UserError("Incorrect Email or Password", 400);
     }
 
