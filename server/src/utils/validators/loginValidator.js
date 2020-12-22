@@ -7,11 +7,13 @@ module.exports = async (body, res, next) => {
     const { password, email } = body;
     const user = await User.findOne({ email });
 
-    if (!user) throw new UserError("Incorrect Email or Password");
+    if (!user) throw new UserError("Incorrect Email or Password", 400);
 
     const isPasswordMatching = await compareHashed(password, user.password);
 
-    if (!isPasswordMatching) throw new UserError("Incorrect Email or Password");
+    if (!isPasswordMatching) {
+      throw new UserError("Incorrect Email or Password", 400);
+    }
 
     if (!user.activated) {
       res.status(403).json({

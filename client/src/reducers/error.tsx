@@ -5,7 +5,10 @@ import resetErrorValues from "../utils/resetInputs";
 const initialState: ErrorState = {
   auth: {
     registerErrorMessage: "",
-    loginErrorMessage: "",
+    loginErrorMessage: {
+      msg: "",
+      email: null,
+    },
   },
   projectDetailsErrorMessage: "",
   projectCreationErrorMessage: "",
@@ -29,7 +32,7 @@ const error = (state = initialState, { type, error }: ErrorAction) => {
     case "LOGIN_ERROR_HANDLER":
       return { ...state, auth: { ...state.auth, loginErrorMessage: error } };
     case "RESET_AUTH_MODAL_ERROR_VALUES":
-      return { ...state, auth: resetErrorValues(state.auth) };
+      return { ...state, auth: initialState.auth };
     case "PROJECT_LIST_ERROR_HANDLER":
       return { ...state, projectListErrorMessage: err };
     case "PROJECT_CREATION_ERROR_HANDLER":
@@ -49,9 +52,8 @@ const error = (state = initialState, { type, error }: ErrorAction) => {
     case "ACCOUNT_TOKEN_ERROR_HANDLER":
       return {
         ...state,
-        accountTokenVerificationErrorMessage: error
-          ? error
-          : initialState.accountTokenVerificationErrorMessage,
+        accountTokenVerificationErrorMessage:
+          error || initialState.accountTokenVerificationErrorMessage,
       };
     default:
       return state;

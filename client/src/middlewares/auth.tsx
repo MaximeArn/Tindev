@@ -8,7 +8,7 @@ axios.defaults.baseURL = url;
 axios.defaults.headers.post["Content-Type"] = "application/json";
 axios.defaults.withCredentials = true;
 
-const setUser = ({ getState, dispatch }: AxiosSubmit) => {
+const createUser = ({ getState, dispatch }: AxiosSubmit) => {
   const { register } = getState().auth;
   dispatch({ type: "SET_REGISTER_LOADER", value: true });
   axios
@@ -34,7 +34,7 @@ const setUser = ({ getState, dispatch }: AxiosSubmit) => {
     });
 };
 
-const setLogin = ({ getState, dispatch }: AxiosSubmit) => {
+const login = ({ getState, dispatch }: AxiosSubmit) => {
   const { login } = getState().auth;
   dispatch({ type: "SET_LOGIN_LOADER", value: true });
   axios
@@ -52,16 +52,10 @@ const setLogin = ({ getState, dispatch }: AxiosSubmit) => {
       dispatch({ type: "RESET_AUTH_MODAL_ERROR_VALUES" });
       dispatch({ type: "RESET_REGISTER_SUCCESS_MESSAGE" });
     })
-    .catch(
-      ({
-        response: {
-          data: { msg: error },
-        },
-      }) => {
-        dispatch({ type: "LOGIN_ERROR_HANDLER", error });
-        dispatch({ type: "REGISTER_SUCCESS_MESSAGE" });
-      }
-    )
+    .catch(({ response: { data: error } }) => {
+      dispatch({ type: "LOGIN_ERROR_HANDLER", error });
+      dispatch({ type: "REGISTER_SUCCESS_MESSAGE" });
+    })
     .finally(() => {
       dispatch({ type: "SET_LOGIN_LOADER", value: false });
     });
@@ -133,10 +127,10 @@ const auth: Middleware = ({ getState, dispatch }) => (next) => (
   const { type, token, userId } = action;
   switch (type) {
     case "SUBMIT_REGISTER":
-      setUser({ getState, dispatch });
+      createUser({ getState, dispatch });
       break;
     case "SUBMIT_LOGIN":
-      setLogin({ getState, dispatch });
+      login({ getState, dispatch });
       break;
     case "ACCOUNT_VERIFICATION":
       activateAccount(dispatch, token);
