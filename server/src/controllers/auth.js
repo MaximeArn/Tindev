@@ -94,11 +94,13 @@ const authRouter = {
   },
   activateAccount: async ({ params: { token } }, res, next) => {
     try {
-      const user = await verifyAccountValidator(token, next);
+      const userId = await verifyAccountValidator(token, next);
 
-      if (user) {
-        user.activated = true;
-        await user.save();
+      if (userId) {
+        await User.updateOne(
+          { _id: userId },
+          { $unset: { expire_at: 1 }, activated: true }
+        );
 
         return res
           .status(200)
@@ -126,17 +128,6 @@ const authRouter = {
             "A new activation link has been sent to your email address. Please follow the instructions",
         });
       }
-    } catch (error) {
-      next(error);
-    }
-  },
-  cancelExpiration: async ({ body: { id } }, res, next) => {
-    try {
-      const before = await User.findById(id);
-
-      console.log(before);
-
-      await User.updateOne({ _id: id }, { $unset: { expire_at: 1 } });
     } catch (error) {
       next(error);
     }

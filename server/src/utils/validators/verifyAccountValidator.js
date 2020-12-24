@@ -18,7 +18,7 @@ module.exports = async (t, next) => {
 
     await token.remove();
 
-    return user;
+    return user._id;
   } catch (error) {
     next(error);
   }
