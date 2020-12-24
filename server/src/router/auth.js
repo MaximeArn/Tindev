@@ -7,6 +7,7 @@ const {
   activateAccount,
   verifyAccountToken,
   sendActivationLink,
+  cancelExpiration,
 } = require("../controllers/auth");
 
 const authRouterWrapper = (connectedUsers) => {
@@ -16,6 +17,7 @@ const authRouterWrapper = (connectedUsers) => {
   router.get("/token_validity/:token", verifyAccountToken);
   router.get("/activate_account/:token", activateAccount);
   router.get("/send_token/:userId", sendActivationLink);
+  router.delete("/expire", cancelExpiration);
   router.delete("/logout", (req, res, next) =>
     logout(connectedUsers, req, res, next)
   );

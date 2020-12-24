@@ -100,7 +100,9 @@ const authRouter = {
         user.activated = true;
         await user.save();
 
-        return res.status(200).json({ msg: "Account successfully activated" });
+        return res
+          .status(200)
+          .json({ msg: "Account successfully activated, you can now login." });
       }
     } catch (error) {
       next(error);
@@ -124,6 +126,17 @@ const authRouter = {
             "A new activation link has been sent to your email address. Please follow the instructions",
         });
       }
+    } catch (error) {
+      next(error);
+    }
+  },
+  cancelExpiration: async ({ body: { id } }, res, next) => {
+    try {
+      const before = await User.findById(id);
+
+      console.log(before);
+
+      await User.updateOne({ _id: id }, { $unset: { expire_at: 1 } });
     } catch (error) {
       next(error);
     }
