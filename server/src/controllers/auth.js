@@ -99,7 +99,7 @@ const authRouter = {
       if (userId) {
         await User.updateOne(
           { _id: userId },
-          { $unset: { expire_at: 1 }, activated: true }
+          { $unset: { expire_at: "" }, activated: true }
         );
 
         return res
