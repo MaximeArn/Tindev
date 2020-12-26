@@ -10,14 +10,12 @@ const mapState = ({
   },
   auth: { user },
   success: { userDeletionSuccess },
-  token: { validity },
 }: State) => ({
   user,
   showNavbar,
   login,
   register,
   userDeletionSuccess,
-  validity,
 });
 
 const mapDispatch = (dispatch: Dispatch<AnyAction>) => ({

@@ -19,7 +19,6 @@ module.exports = async (t, res, next) => {
         .json({ msg: "This token has expired", userId: token.userId });
 
       await token.remove();
-
       return false;
     }
 

@@ -99,9 +99,6 @@ const checkAccountTokenValidity = (
 ) => {
   axios
     .get(`/auth/token_validity/${token}`)
-    .then(({ data: { validity } }) =>
-      dispatch({ type: "SET_ACCOUNT_TOKEN_VALIDITY", validity })
-    )
     .catch(({ response: { data: error } }) =>
       dispatch({ type: "ACCOUNT_TOKEN_ERROR_HANDLER", error })
     );
