@@ -11,8 +11,7 @@ const { chatHandler } = require("./controllers/chat");
 const mongoDB = require("./config/database");
 const cors = require("cors");
 const corsSettings = require("./config/cors");
-const { SHA256, AES, enc } = require("crypto-js");
-const { createTransport } = require("nodemailer");
+const { User } = require("./models");
 const {
   authRouter,
   usersRouter,
@@ -21,6 +20,7 @@ const {
   searchRouter,
   notificationsRouter,
 } = require("./router");
+const { rejects } = require("assert");
 
 const PORT = process.env.PORT || 7000;
 const SOCKET = process.env.SOCKET || 6000;
