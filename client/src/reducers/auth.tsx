@@ -2,7 +2,7 @@ import { Authentication } from "../models/states";
 import { AuthenticationAction } from "../models/actions";
 import resetInputs from "../utils/resetInputs";
 
-const initialState: any = {
+export const initialState: any = {
   register: {
     username: "",
     firstname: "",
@@ -22,7 +22,7 @@ const initialState: any = {
 
 const auth = (
   state = initialState,
-  { type, inputName, inputValue, credentials, authType }: AuthenticationAction
+  { type, inputName, inputValue, credentials, authType }: any
 ): Authentication => {
   switch (type) {
     case "GET_REGISTER_INPUT_VALUE":
@@ -39,7 +39,7 @@ const auth = (
     case "DISCONNECTION":
       return initialState;
     default:
-      return { ...state };
+      return state;
   }
 };
 
