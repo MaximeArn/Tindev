@@ -11,3 +11,4 @@ declare module "socket.io-client";
 declare module "scrollreveal";
 declare module "enzyme";
 declare module "enzyme-adapter-react-16";
+declare module "sinon";
