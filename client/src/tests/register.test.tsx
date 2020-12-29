@@ -9,6 +9,6 @@ configure({ adapter: new Adapter() });
 describe("VisitorPage Component", () => {
   const componentWrapper = shallow(<VisitorPage openModal={() => {}} />);
   it("should have a container with 'content' class", () => {
-    expect(componentWrapper.hasClass(".content")).toEqual(true);
+    expect(componentWrapper.find(".content")).toHaveLength(1);
   });
 });
