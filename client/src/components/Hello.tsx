@@ -1,7 +1,7 @@
 import React from "react";
 
-const Hello = ({ name }: any) => {
-  return <div>Hello, {name || "Stranger"}</div>;
+const Hello = ({ children }: any) => {
+  return <div>{children}</div>;
 };
 
 export default Hello;

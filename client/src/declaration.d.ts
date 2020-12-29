@@ -9,3 +9,5 @@ declare module "js-cookie";
 declare module "slugify";
 declare module "socket.io-client";
 declare module "scrollreveal";
+declare module "enzyme";
+declare module "enzyme-adapter-react-16";

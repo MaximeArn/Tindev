@@ -1,5 +1,3 @@
-/** @format */
-
 import React, { ChangeEvent } from "react";
 import { InputModel } from "../../models/inputs";
 import convertInputType from "../../utils/inputType";

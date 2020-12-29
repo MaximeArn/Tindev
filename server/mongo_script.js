@@ -1,5 +1,3 @@
-/** @format */
-
 let users = [
   {
     username: "Etienne",
