@@ -21,15 +21,15 @@ const authRouter = {
       const validator = await registerValidator(body, next);
 
       if (validator) {
-        const { _id: userId, email } = await User.create(body);
+        // const { _id: userId, email } = await User.create(body);
 
-        const { token } = await Token.create({
-          userId,
-          token: SHA256(userId),
-          expire: Date.now() + 15 * 60000,
-        });
+        // const { token } = await Token.create({
+        //   userId,
+        //   token: SHA256(userId),
+        //   expire: Date.now() + 15 * 60000,
+        // });
 
-        await sendMail(email, token);
+        // await sendMail(email, token);
 
         return res
           .status(200)

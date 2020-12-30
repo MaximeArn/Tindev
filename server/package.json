@@ -19,7 +19,7 @@
     "socket.io": "^2.3.0"
   },
   "scripts": {
-    "start": "nodemon src/server.js",
+    "start": "nodemon src/start.js",
     "test": "jest"
   },
   "devDependencies": {

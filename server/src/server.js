@@ -20,8 +20,6 @@ const {
   notificationsRouter,
 } = require("./router");
 
-const PORT = process.env.PORT || 7000;
-const SOCKET = process.env.SOCKET || 6000;
 const ioNameSpace = io.of("/chat");
 const connectedUsers = {};
 
@@ -43,14 +41,10 @@ ioNameSpace.use(socketConnection).on("connection", (socket) => {
   const { username } = socket.handshake.query;
   const { id } = socket.conn;
   connectedUsers[username] = { id, socket };
-
   chatHandler(ioNameSpace, socket, connectedUsers, username);
 });
 
 mongoDB.on("error", () => console.log("Error connecting to database"));
 mongoDB.once("open", () => console.log("Connected to mongo database"));
 
-server.listen(PORT, () => console.log(`Server running on port ${PORT}`));
-http.listen(SOCKET, () => console.log(`Socket listening on port ${SOCKET}`));
-
-module.exports = server;
+module.exports = { server, http };
