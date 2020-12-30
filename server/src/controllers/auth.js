@@ -2,7 +2,6 @@ const jwt = require("jsonwebtoken");
 const secret = process.env.SECRET;
 const { User, Token } = require("../models");
 const SHA256 = require("crypto-js/sha256");
-const { createTransport } = require("nodemailer");
 const sendMail = require("../utils/sendEmail");
 const {
   loginValidator,
@@ -13,7 +12,6 @@ const {
   accountTokenValidator,
   activationLinkValidator,
 } = require("../utils/validators");
-const { Model } = require("mongoose");
 
 const authRouter = {
   register: async ({ body }, res, next) => {
@@ -21,15 +19,15 @@ const authRouter = {
       const validator = await registerValidator(body, next);
 
       if (validator) {
-        // const { _id: userId, email } = await User.create(body);
+        const { _id: userId, email } = await User.create(body);
 
-        // const { token } = await Token.create({
-        //   userId,
-        //   token: SHA256(userId),
-        //   expire: Date.now() + 15 * 60000,
-        // });
+        const { token } = await Token.create({
+          userId,
+          token: SHA256(userId),
+          expire: Date.now() + 15 * 60000,
+        });
 
-        // await sendMail(email, token);
+        await sendMail(email, token);
 
         return res
           .status(200)
