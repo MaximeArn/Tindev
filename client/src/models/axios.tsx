@@ -1,5 +1,4 @@
 import { AnyAction, Dispatch } from "redux";
-import { AuthMiddleware } from "./actions";
 
 export interface AxiosSubmit {
   getState?: any;
