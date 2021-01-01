@@ -1,4 +1,3 @@
-/** @format */
 import React, { FormEvent, useRef } from "react";
 import { RegisterAuth } from "../../../models/states";
 import googleIcon from "src/assets/icons/googleIcon.svg";
@@ -49,7 +48,7 @@ const Register = ({
           </div>
           <footer className="modal-footer">
             <p>
-              Already have an Account ?{" "}
+              Already have an Account ?
               <a
                 className="auth-modal"
                 onClick={() =>

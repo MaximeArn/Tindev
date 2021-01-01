@@ -2,7 +2,6 @@ import React, { useState } from "react";
 import { EditFieldProps } from "../../../models/projects";
 import EditOpen from "./EditOpen";
 import EditClosed from "./EditClosed";
-import Modal from "./Modal";
 
 const Field = ({
   name,

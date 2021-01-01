@@ -1,11 +1,9 @@
-/** @format */
-
 export interface ChatProps {
-  chatWindow: { username: string; id: string }[];
-  messages: SocketServerResponse[];
+  chatWindows: ChatWindow[];
+  messages: any;
+  username: string;
   sendMessage: Function;
-  deleteChatWindow: Function;
-  getMessageHistory: Function;
+  closeChatWindow: Function;
 }
 
 export interface ChatWindowProps {
@@ -13,7 +11,7 @@ export interface ChatWindowProps {
   username: string;
   messages: SocketServerResponse[];
   sendMessage: Function;
-  deleteChatWindow: Function;
+  closeChatWindow: Function;
 }
 
 export interface History {
@@ -36,6 +34,7 @@ export interface Messages {
 }
 
 export interface ChatWindow {
+  id: string;
   username: string;
 }
 

@@ -60,7 +60,7 @@ const EditOpen = ({
                 ) : (
                   <img
                     className="field-edit-image"
-                    src={`${url}/uploads/${value}`}
+                    src={`${url}/uploads/projects/${value}`}
                     alt="image"
                   />
                 )}
@@ -96,7 +96,10 @@ const EditOpen = ({
             <button
               className="field-edit-button"
               type="button"
-              onClick={() => setExpanded(!isExpanded)}
+              onClick={() => {
+                setExpanded(!isExpanded);
+                getProjectEditInputValues(name);
+              }}
             >
               Close
             </button>

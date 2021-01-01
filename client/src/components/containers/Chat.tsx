@@ -1,22 +1,23 @@
-/** @format */
-
 import { connect } from "react-redux";
 import { AnyAction, Dispatch } from "redux";
 import { State } from "../../models/states";
 import Chat from "../Chat/Chat";
 
-const mapState = ({ message: { messages, chatWindow } }: State) => ({
+const mapState = ({
+  message: { messages, chatWindows },
+  auth: {
+    user: { username },
+  },
+}: State) => ({
   messages,
-  chatWindow,
+  chatWindows,
+  username,
 });
 
 const mapDispatch = (dispatch: Dispatch<AnyAction>) => ({
-  sendMessage: (name: string, id: string, message: string) => {
-    console.log("CHAT CONTAINER ID : ", id);
-    dispatch({ type: "SEND_CHAT_MESSAGE", name, id, message });
-  },
-  deleteChatWindow: (usernameToDelete: string) =>
-    dispatch({ type: "DELETE_CHAT_WINDOW", usernameToDelete }),
+  sendMessage: (name: string, id: string, message: string) =>
+    dispatch({ type: "SEND_CHAT_MESSAGE", name, id, message }),
+  closeChatWindow: (id: string) => dispatch({ type: "CLOSE_CHAT_WINDOW", id }),
 });
 
 export default connect(mapState, mapDispatch)(Chat);

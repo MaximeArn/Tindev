@@ -1,5 +1,3 @@
-/** @format */
-
 const slugify = require("slugify");
 slugify.extend({ é: "é", è: "è" });
 

@@ -18,8 +18,20 @@ const userSchema = new Schema(
     avatar: String,
     about: String,
     experience: String,
+    technos: [String],
+    chatWindows: [{ id: String, username: String }],
+    notifications: {
+      counter: { type: Number, default: 0 },
+      tooltips: [{ tooltip: String, createdAt: Date }],
+    },
+    activated: { type: Boolean, default: false },
+    expire_at: {
+      type: Date,
+      default: Date.now,
+      index: { expires: 60 * 60 * 24 },
+    },
   },
-  { collation: { locale: "en", strength: 2 } }
+  { collation: { locale: "en", strength: 2 }, timestamps: true }
 );
 
 module.exports = userSchema;

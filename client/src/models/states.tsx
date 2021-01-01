@@ -5,7 +5,8 @@ import { ProjectState } from "./projects";
 import { UserState, AuthUserState } from "./users";
 import { User } from "../models/users";
 import { Project } from "../models/projects";
-import { ChatWindow, Messages } from "./chat";
+import { ChatWindow } from "./chat";
+import { Notification } from "./notifications";
 
 export interface Authentication {
   register: {
@@ -37,12 +38,14 @@ export interface State {
   search: SearchState;
   navbar: NavBarState;
   message: MessageState;
+  notifications: NotificationState;
 }
 
 export interface Modals {
   showNavbar: boolean;
   applyModal: boolean;
   deleteProjectModal: boolean;
+  closeAccountModal: boolean;
   authModal: {
     login: boolean;
     register: boolean;
@@ -62,6 +65,9 @@ export interface Loaders {
   projectCreationLoader: boolean;
   projectCategoriesLoader: boolean;
   userProfileLoader: boolean;
+  userAccountDeletionLoader: boolean;
+  accountActivationLoader: boolean;
+  activationLinkLoader: boolean;
   userProfileEditionLoader: {
     fieldName: string | null;
     status: boolean;
@@ -101,16 +107,24 @@ export interface LoginAuth {
   };
   loginLoader: boolean;
   submitLogin: Function;
-  error: string;
+  error: {
+    msg: string;
+    userId?: null | string;
+  };
   closeModal: Function;
-  success: boolean | string;
+  registerSuccess: boolean | string;
+  activationLinkSuccess: boolean | string;
   swapModal: Function;
+  sendActivationLink: Function;
 }
 
 export interface ErrorState {
   auth: {
     registerErrorMessage: string;
-    loginErrorMessage: string;
+    loginErrorMessage: {
+      msg: string;
+      userId?: null | string;
+    };
   };
   projectDetailsErrorMessage: string;
   projectCreationErrorMessage: string;
@@ -119,6 +133,11 @@ export interface ErrorState {
   projectEditionErrorMessage: string;
   userProfileErrorMessage: string;
   userProfileEditionErrorMessage: string;
+  accountActivationErrorMessage: string;
+  accountTokenVerificationErrorMessage: {
+    msg: string;
+    userId?: null | string;
+  };
 }
 
 export interface AppProps {
@@ -126,8 +145,12 @@ export interface AppProps {
   wsConnection: Function;
   showNavbar: boolean;
   getProjects: Function;
+  getNotifications: Function;
+  getChatWindows: Function;
   login: boolean;
   register: boolean;
+  onAccountClosing: Function;
+  userDeletionSuccess: string | boolean;
   user: { email: string; username: string } | null;
 }
 
@@ -136,6 +159,8 @@ export interface NavState {
   search: string;
   focused: boolean;
   logout: Function;
+  counter: number;
+  tray: boolean;
   account: Element | null | undefined;
   mobile: Element | null | undefined;
   main: Element | null | undefined;
@@ -146,12 +171,12 @@ export interface NavState {
   setAccountMenu: Function;
   setMobileMenu: Function;
   setMainMenu: Function;
+  setTrayStatus: Function;
 }
 
 export interface HomeProps {
   loader: boolean;
   getProjects: Function;
-  user: { email: string; username: string } | null;
 }
 
 export interface CategoriesState {
@@ -162,6 +187,7 @@ export interface ModalState {
   showNavbar: boolean;
   applyModal: boolean;
   deleteProjectModal: boolean;
+  closeAccountModal: boolean;
   authModal: {
     login: boolean;
     register: boolean;
@@ -178,6 +204,9 @@ export interface SuccessState {
   projectEditionSuccess: boolean | string;
   projectDeletionSuccess: boolean | string;
   userEditionSuccess: boolean | string;
+  userDeletionSuccess: boolean | string;
+  accountActivationSuccess: boolean | string;
+  activationLinkSuccess: boolean | string;
 }
 
 export interface SearchState {
@@ -193,6 +222,11 @@ export interface NavBarState {
 }
 
 export interface MessageState {
-  messages: Messages[];
-  chatWindow: ChatWindow[];
+  messages: { [key: string]: ChatWindow[] | [] };
+  chatWindows: ChatWindow[];
+}
+
+export interface NotificationState {
+  notifications: Notification;
+  tray: boolean;
 }

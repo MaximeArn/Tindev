@@ -14,7 +14,6 @@
 }
 
 .project-container {
-  // height: 100vh;
   padding: 2rem 0;
   display: flex;
   justify-content: center;
@@ -120,11 +119,11 @@
     padding: 0;
 
     button {
-      padding: .7rem 2rem;
+      padding: 0.7rem 2rem;
       border: 1px solid #333;
       color: #333;
       border-radius: 7px;
-      transition: all .5s;
+      transition: all 0.5s;
 
       &:hover {
         background-color: #333;
@@ -137,12 +136,12 @@
 
 .loader {
   display: flex;
+  justify-content: center;
 
   p {
     margin-right: 0.5rem;
   }
 }
-
 
 .teamSize-Input {
   box-shadow: none !important;

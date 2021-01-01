@@ -1,5 +1,3 @@
-/** @format */
-
 const { model } = require("mongoose");
 const categorySchema = require("../schemas/category");
 

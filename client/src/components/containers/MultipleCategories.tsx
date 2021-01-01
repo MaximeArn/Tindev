@@ -8,19 +8,28 @@ const mapState = ({
   project: {
     createProject: { categories: categoriesFieldValues },
   },
+  loaders: { projectCategoriesLoader: loader },
+  users: {
+    editProfile: { technos },
+  },
 }: State) => ({
   categories,
   categoriesFieldValues,
+  technos,
+  loader,
 });
 
 const mapDispatch = (dispatch: Dispatch<AnyAction>) => {
   return {
+    fetchCategories: () => dispatch({ type: "GET_CATEGORIES" }),
     getCategories: (inputName: string, inputValue: string[]) =>
       dispatch({
         type: "GET_PROJECT_CREATION_VALUE",
         inputName,
         inputValue,
       }),
+    getUserTechnos: (inputName: string, inputValue: string[]) =>
+      dispatch({ type: "SET_USER_PROFILE_VALUES", inputName, inputValue }),
   };
 };
 export default connect(mapState, mapDispatch)(MultipleCategories);

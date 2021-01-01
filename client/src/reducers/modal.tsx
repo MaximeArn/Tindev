@@ -1,11 +1,11 @@
 import { ModalAction } from "../models/actions";
 import { ModalState } from "../models/states";
-import resetInputs from "../utils/resetInputs";
 
 const initialState: ModalState = {
   showNavbar: true,
   applyModal: false,
   deleteProjectModal: false,
+  closeAccountModal: false,
   authModal: {
     login: false,
     register: false,
@@ -41,6 +41,8 @@ const modal = (
         declineApplicantModal: { isModalOpen: modalStatus, applicant },
         showNavbar: !modalStatus,
       };
+    case "SET_ACCOUNT_DELETION_MODAL_STATUS":
+      return { ...state, closeAccountModal: modalStatus };
     default:
       return state;
   }

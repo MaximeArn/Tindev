@@ -1,5 +1,3 @@
-/** @format */
-
 import { ProjectState } from "../models/projects";
 import { ProjectAction } from "../models/actions";
 import updateProjects from "../utils/updateProjects";
@@ -39,7 +37,14 @@ const project = (
     case "GET_PROJECT_CREATION_VALUE":
       return {
         ...state,
-        createProject: { ...state.createProject, [inputName]: inputValue },
+        createProject: {
+          ...state.createProject,
+          [inputName]: inputValue
+            ? inputValue
+            : inputName === "categories"
+            ? []
+            : "",
+        },
       };
     case "RESET_PROJECT_CREATION_VALUES":
       return { ...state, createProject: resetInputs(state.createProject) };

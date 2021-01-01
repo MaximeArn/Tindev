@@ -1,8 +1,5 @@
-/** @format */
-
 import React, { useState, useRef, useEffect } from "react";
 import CloseIcon from "@material-ui/icons/Close";
-import { History } from "../../models/chat";
 import ExpandMoreIcon from "@material-ui/icons/ExpandMore";
 import { Messages } from "../../models/chat";
 import axios from "axios";
@@ -19,7 +16,7 @@ const ChatWindow = ({
   id,
   sendMessage,
   messages,
-  deleteChatWindow,
+  closeChatWindow,
 }: ChatWindowProps) => {
   const [chatHistory, setchatHistory] = useState<Messages[] | null>(null);
   const [chatExpanded, setChatExpanded] = useState(true);
@@ -32,7 +29,6 @@ const ChatWindow = ({
     axios
       .post("/users/messageHistory", { toId: id })
       .then(({ data: { to, from } }) => {
-        console.log("CHAT HISTORY FETCHED");
         setchatHistory(
           to
             .concat(from)
@@ -65,39 +61,38 @@ const ChatWindow = ({
         <button
           className="closeIcon"
           onClick={() => {
-            !chatExpanded && deleteChatWindow(username);
+            !chatExpanded && closeChatWindow(id);
           }}
         >
           {chatExpanded ? <ExpandMoreIcon /> : <CloseIcon />}
         </button>
       </div>
       <div ref={messagesArea} className="chatZone-content">
-        {chatHistory &&
-          chatHistory.map(({ to: { name }, date, message }: any) => (
-            <span
-              key={idGenerator()}
-              className={username === name ? "message to" : "message from"}
-              title={new Date(date).toLocaleString()}
-            >
-              {message}
-            </span>
-          ))}
-        {chatHistory &&
-          messages.map(({ id, to, from, message, date }) => {
-            const exists = chatHistory.find(({ _id }) => _id == id);
-            const show = username == to || username == from;
-            return (
-              show &&
-              !exists && (
-                <div
-                  key={idGenerator()}
-                  className={username == to ? "message to" : "message from"}
-                >
-                  <p title={new Date(date).toLocaleString()}>{message}</p>
-                </div>
-              )
-            );
-          })}
+        {chatHistory && (
+          <>
+            {chatHistory.map(({ to: { name }, date, message }: any) => (
+              <span
+                key={idGenerator()}
+                className={username === name ? "message to" : "message from"}
+                title={new Date(date).toLocaleString()}
+              >
+                {message}
+              </span>
+            ))}
+            {messages &&
+              messages.map(
+                ({ id, to, message, date }) =>
+                  !chatHistory.find(({ _id }) => _id == id) && (
+                    <div
+                      key={idGenerator()}
+                      className={username == to ? "message to" : "message from"}
+                    >
+                      <p title={new Date(date).toLocaleString()}>{message}</p>
+                    </div>
+                  )
+              )}
+          </>
+        )}
         <div className="scrollDiv" ref={scrollDiv}></div>
       </div>
       <div className="chatZone-footer">

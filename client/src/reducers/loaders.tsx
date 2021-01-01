@@ -1,5 +1,3 @@
-/** @format */
-
 import { Loaders } from "../models/states";
 import { LoadersActions } from "../models/actions";
 
@@ -12,6 +10,9 @@ const initialState: Loaders = {
   projectDetailsLoader: false,
   projectCategoriesLoader: false,
   userProfileLoader: false,
+  userAccountDeletionLoader: false,
+  accountActivationLoader: false,
+  activationLinkLoader: false,
   userProfileEditionLoader: {
     fieldName: null,
     status: false,
@@ -43,6 +44,10 @@ const loaders = (
       };
     case "SET_CONTRIBUTOR_REMOVING_LOADER":
       return { ...state, removingContributorLoader: value };
+    case "SET_ACCOUNT_ACTIVATION_LOADER":
+      return { ...state, accountActivationLoader: value };
+    case "SET_NEW_ACTIVATION_LINK_LOADER":
+      return { ...state, activationLinkLoader: value };
     case "SET_PROJECTLIST_LOADER":
       return { ...state, projectListLoader: value };
     case "SET_PROJECT_CREATION_LOADER":
@@ -73,6 +78,8 @@ const loaders = (
           loader: value,
         },
       };
+    case "SET_USER_DELETION_LOADER":
+      return { ...state, userAccountDeletionLoader: value };
     default:
       return state;
   }

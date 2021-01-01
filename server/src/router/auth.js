@@ -1,11 +1,22 @@
 const router = require("express").Router();
-const { login, logout, register, verify } = require("../controllers/auth");
+const {
+  login,
+  logout,
+  register,
+  verify,
+  activateAccount,
+  verifyAccountToken,
+  sendActivationLink,
+} = require("../controllers/auth");
 
 const authRouterWrapper = (connectedUsers) => {
   router.post("/login", login);
   router.post("/register", register);
   router.get("/verify", verify);
-  router.get("/logout", (req, res, next) =>
+  router.get("/token_validity/:token", verifyAccountToken);
+  router.get("/activate_account/:token", activateAccount);
+  router.get("/send_token/:userId", sendActivationLink);
+  router.delete("/logout", (req, res, next) =>
     logout(connectedUsers, req, res, next)
   );
 

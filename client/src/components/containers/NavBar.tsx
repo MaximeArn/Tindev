@@ -10,6 +10,10 @@ const mapState = ({
   auth: { user },
   search: { search, focused },
   navbar: { account, mobile, main },
+  notifications: {
+    notifications: { counter },
+    tray,
+  },
 }: State) => ({
   user,
   search,
@@ -17,11 +21,14 @@ const mapState = ({
   account,
   mobile,
   main,
+  counter,
+  tray,
 });
 
 const mapDispatch = (dispatch: Dispatch<AnyAction>, { history }: OwnProps) => {
-  const setSearchBarStatus = (focused: boolean) =>
+  const setSearchBarStatus = (focused: boolean) => {
     dispatch({ type: "SET_SEARCH_BAR_FOCUS_STATUS", focused });
+  };
 
   history.listen(() => setSearchBarStatus(false));
 
@@ -30,6 +37,10 @@ const mapDispatch = (dispatch: Dispatch<AnyAction>, { history }: OwnProps) => {
     logout: () => {
       dispatch({ type: "DISCONNECT_USER" });
       history.push("/");
+    },
+    setTrayStatus: () => {
+      dispatch({ type: "RESET_NOTIFICATION_COUNTER" });
+      dispatch({ type: "SET_TRAY_STATUS" });
     },
     openModal: ({ modalStatus, modal }: AuthModalOpening) =>
       dispatch({ type: "SET_AUTH_MODAL_STATUS", modalStatus, modal }),
@@ -43,4 +54,5 @@ const mapDispatch = (dispatch: Dispatch<AnyAction>, { history }: OwnProps) => {
       dispatch({ type: "SET_MAIN_MENU", status }),
   };
 };
+
 export default withRouter(connect(mapState, mapDispatch)(NavBar));

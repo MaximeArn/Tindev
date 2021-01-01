@@ -1,0 +1,27 @@
+@use 'src/styles/vars';
+
+.notification {
+  &-tray {
+    position: absolute;
+    background-color: vars.$navbar-color;
+    right: -221%;
+    width: 300px;
+  }
+
+  &-content {
+    padding: 1rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    &-empty {
+      width: 100%;
+      text-align: center;
+    }
+
+    &:hover {
+      background-color: #666666;
+      transition: 0.2s ease-in-out;
+    }
+  }
+}

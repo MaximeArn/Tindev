@@ -1,5 +1,3 @@
-/** @format */
-
 const comparePasswords = require("../comparePasswords");
 const hash = require("../hashPassword");
 const { User } = require("../../models");

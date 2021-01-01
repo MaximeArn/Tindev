@@ -1,5 +1,3 @@
-/** @format */
-
 import React from "react";
 import "./visitorPage.scss";
 import image from "src/assets/home-image.jpg";

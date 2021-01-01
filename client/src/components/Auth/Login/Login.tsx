@@ -1,8 +1,5 @@
-/** @format */
-
 import React, { FormEvent, MouseEvent, useRef } from "react";
 import { LoginAuth } from "../../../models/states";
-import { Link } from "react-router-dom";
 import googleIcon from "src/assets/icons/googleIcon.svg";
 import modalClickHandler from "../../../utils/modalClickHandler";
 import inputMapper from "../../../utils/inputMapper";
@@ -11,11 +8,13 @@ import CircularProgress from "@material-ui/core/CircularProgress";
 
 const Login = ({
   login,
-  error,
+  error: { msg: errorMessage, userId },
   submitLogin,
   loginLoader,
   closeModal,
-  success,
+  registerSuccess,
+  activationLinkSuccess,
+  sendActivationLink,
   swapModal,
 }: LoginAuth) => {
   const modal = useRef<HTMLDivElement>(null);
@@ -37,8 +36,30 @@ const Login = ({
           <form method="POST" onSubmit={handleSubmit}>
             <div className="modal-padding">
               <h1 className="modal-title">Sign In</h1>
-              {success && <p className="success-message">{success}</p>}
-              {error && <span className="modal-error-message">{error}</span>}
+              {registerSuccess && (
+                <p className="success-message">{registerSuccess}</p>
+              )}
+              {errorMessage && (
+                <>
+                  <span className="modal-error-message">{errorMessage}</span>
+                  {userId && (
+                    <>
+                      <div className="modal-error-activationLink">
+                        Didn't receive any email ?
+                      </div>
+                      <span
+                        className="modal-error-newLink"
+                        onClick={() => sendActivationLink(userId)}
+                      >
+                        Send a new link
+                      </span>
+                    </>
+                  )}
+                </>
+              )}
+              {activationLinkSuccess && (
+                <p className="success-message">{activationLinkSuccess}</p>
+              )}
               <div className="fields">{inputMapper(login)}</div>
               {loginLoader ? (
                 <button type="submit" className="submitButton" disabled>

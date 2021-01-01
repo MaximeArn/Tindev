@@ -1,6 +1,4 @@
-/** @format */
-
-import React, {useEffect, useRef} from "react";
+import React, { useEffect, useRef } from "react";
 import { User } from "../../../models/users";
 import { Link } from "react-router-dom";
 import { url } from "../../../environments/api";
@@ -8,22 +6,14 @@ import MailOutlineOutlinedIcon from "@material-ui/icons/MailOutlineOutlined";
 import PermIdentityOutlinedIcon from "@material-ui/icons/PermIdentityOutlined";
 import LocationCityOutlinedIcon from "@material-ui/icons/LocationCityOutlined";
 import userify from "../../../utils/whiteSpaceRemover";
-import sr, {cardOptions} from '../../../utils/scrollReveal'
+import sr, { cardOptions } from "../../../utils/scrollReveal";
 
-
-const userCard = ({
-  username,
-  firstname,
-  lastname,
-  email,
-  age,
-  city,
-}: User) => {
-  const profileCardRef = useRef(null)
+const userCard = ({ username, firstname, lastname, email, city }: User) => {
+  const profileCardRef = useRef(null);
 
   useEffect(() => {
-    sr.reveal(profileCardRef.current, cardOptions, 50)
-  }, [])
+    sr.reveal(profileCardRef.current, cardOptions, 50);
+  }, []);
 
   return (
     <article className="card" ref={profileCardRef}>

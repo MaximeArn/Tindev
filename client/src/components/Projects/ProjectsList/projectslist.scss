@@ -77,7 +77,6 @@
   justify-content: space-evenly;
   text-align: center;
   background-color: #444;
-  // padding: 5px 0;
   text-shadow: 0px 0px 5px rgba(0, 0, 0, 0.5);
   border-radius: 0 0 13px 13px;
   color: #fff;
@@ -111,4 +110,17 @@
   left: 50%;
   transform: translate(-50%, -50%);
   color: #fff;
+}
+
+.project-loading-button {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  display: flex;
+}
+
+.loading-message {
+  color: white;
+  margin-right: 1rem;
 }
