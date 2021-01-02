@@ -1,10 +1,7 @@
-/** @format */
-
 import React from "react";
 import Menu from "@material-ui/core/Menu";
 import MenuItem from "@material-ui/core/MenuItem";
 import { Link } from "react-router-dom";
-import userify from "../../../utils/whiteSpaceRemover";
 
 export default (
   accountMenuAnchor: Element | null | undefined,
@@ -33,7 +30,7 @@ export default (
           Logout
         </MenuItem>
         {user && (
-          <Link to={`/user/${userify(user.username)}`}>
+          <Link to="/account">
             <MenuItem onClick={closeAccountMenu}>My account</MenuItem>
           </Link>
         )}

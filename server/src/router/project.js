@@ -1,7 +1,5 @@
-/** @format */
-
 const router = require("express").Router();
-const imageDiskStorage = require("../config/multer/multer");
+const imageDiskStorage = require("../config/multer/projectStorage");
 const fileFilter = require("../config/multer/fileFilter");
 const patchFileFilter = require("../config/multer/patchFileFilter");
 const multer = require("multer");
@@ -20,16 +18,26 @@ const {
   deleteById,
   updateById,
   getProject,
+  deleteContributor,
 } = require("../controllers/project");
 
-router.get("/", getProjects);
-router.get("/:name", getProject);
-router.post("/create", upload.single("image"), create);
-router.post("/apply", apply);
-router.post("/verify_owner", verifyOwner);
-router.patch("/accept_applicant", acceptApplicant);
-router.patch("/decline_applicant", declineApplicant);
-router.delete("/:id", deleteById);
-router.patch("/:id", patchUpload.single("image"), updateById);
+const projectRouterWrapper = (connectedUsers) => {
+  router.get("/", getProjects);
+  router.get("/:name", getProject);
+  router.post("/create", upload.single("image"), create);
+  router.post("/verify_owner", verifyOwner);
+  router.post("/apply", (req, res, next) =>
+    apply(connectedUsers, req, res, next)
+  );
+  router.patch("/contributor", (req, res, next) =>
+    deleteContributor(connectedUsers, req, res, next)
+  );
+  router.patch("/accept_applicant", acceptApplicant);
+  router.patch("/decline_applicant", declineApplicant);
+  router.patch("/:id", patchUpload.single("image"), updateById);
+  router.delete("/:id", deleteById);
 
-module.exports = router;
+  return router;
+};
+
+module.exports = projectRouterWrapper;

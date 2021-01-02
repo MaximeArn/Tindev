@@ -1,13 +1,9 @@
-/** @format */
-
 import Input from "../components/containers/Input";
 import React from "react";
-import { Login, Register, InputMapperRequiredFields } from "../models/inputs";
+import isRequired from "./registerMandatoryFields";
+import { Login, Register } from "../models/inputs";
 
-export default (
-  input: Login | Register,
-  requiredFields: InputMapperRequiredFields
-) => {
+export default (input: Login | Register) => {
   const typeChecking = (inputType: Login | Register) =>
     "confirmPassword" in inputType ? "Register" : "Login";
 
@@ -20,7 +16,7 @@ export default (
         name={key}
         inputValue={input[key]}
         formType={typeChecking(input)}
-        required={requiredFields.hasOwnProperty(key)}
+        required={isRequired(key)}
       />
     );
   });

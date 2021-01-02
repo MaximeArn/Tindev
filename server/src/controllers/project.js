@@ -1,6 +1,5 @@
-/** @format */
-
 const { Project } = require("../models");
+const { setNotification } = require("./notifications");
 const {
   projectValidator,
   applyValidator,
@@ -8,11 +7,11 @@ const {
   applicantValidator,
   projectDeletionValidator,
   projectUpdateValidator,
+  removeContributorValidator,
 } = require("../utils/validators");
 
 module.exports = {
   create: async ({ body, cookies: { token }, file }, res, next) => {
-    console.log("body ", body);
     const filename = file ? file.filename : "image-default.jpeg";
     try {
       const { username } = await tokenValidator(token, next);
@@ -33,7 +32,10 @@ module.exports = {
   },
   getProjects: async (req, res, next) => {
     try {
-      const projects = await Project.find();
+      const projects = (await Project.find()).filter(
+        ({ size, contributors }) => size > contributors.length
+      );
+
       return res.status(200).json(projects);
     } catch (error) {
       next(error);
@@ -42,7 +44,6 @@ module.exports = {
   getProject: async ({ params: { name }, cookies: { token } }, res, next) => {
     try {
       const user = await tokenValidator(token, next);
-
       if (user) {
         const project = await Project.findOne({ title: name });
         return res.status(200).json(project);
@@ -51,19 +52,21 @@ module.exports = {
       next(error);
     }
   },
-  apply: async ({ body, cookies: { token } }, res, next) => {
+  apply: async (sockets, { body, cookies: { token } }, res, next) => {
     try {
       const { id, username } = await tokenValidator(token, next);
-      const apply = await applyValidator({ body, id }, next);
+      const { owner, project } = await applyValidator({ body, id }, next);
 
-      if (apply && id) {
-        const { body: validatedBody, project } = apply;
-        const { message } = validatedBody;
+      if (project && id) {
+        const { _id, applicants } = project;
+        const { message } = body;
+        const tooltip = `${username} applied to your project`;
+        setNotification(sockets, owner, tooltip, next);
 
-        await Project.updateOne(
-          { _id: project._id },
+        await Project.findOneAndUpdate(
+          { _id },
           {
-            applicants: [...project.applicants, { _id: id, username, message }],
+            applicants: [...applicants, { _id: id, username, message }],
           }
         );
 
@@ -131,7 +134,6 @@ module.exports = {
     res,
     next
   ) => {
-    console.log(body);
     try {
       const key = file ? "image" : Object.keys(body)[0];
       const user = await tokenValidator(token, next);
@@ -147,6 +149,30 @@ module.exports = {
         return res
           .status(200)
           .json({ msg: "Project successfully updated", project: updated });
+      }
+    } catch (error) {
+      next(error);
+    }
+  },
+  deleteContributor: async (
+    sockets,
+    { body: { id }, cookies: { token } },
+    res,
+    next
+  ) => {
+    try {
+      const { id: userId, username } = await tokenValidator(token, next);
+      const { project, user } = await removeContributorValidator(id, next);
+      const tooltip = `${username} has left your project ${project.title}`;
+
+      if (project && userId) {
+        setNotification(sockets, user, tooltip, next);
+
+        project.contributors.pull(userId);
+
+        const updated = await project.save();
+
+        return res.status(200).json(updated);
       }
     } catch (error) {
       next(error);

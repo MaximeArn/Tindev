@@ -1,13 +1,13 @@
-/** @format */
-
 import { ErrorAction } from "../models/actions";
 import { ErrorState } from "../models/states";
-import resetErrorValues from "../utils/resetInputs";
 
 const initialState: ErrorState = {
   auth: {
     registerErrorMessage: "",
-    loginErrorMessage: "",
+    loginErrorMessage: {
+      msg: "",
+      userId: null,
+    },
   },
   projectDetailsErrorMessage: "",
   projectCreationErrorMessage: "",
@@ -15,17 +15,30 @@ const initialState: ErrorState = {
   projectApplyErrorMessage: "",
   projectEditionErrorMessage: "",
   userProfileErrorMessage: "",
+  userProfileEditionErrorMessage: "",
+  accountActivationErrorMessage: "",
+  accountTokenVerificationErrorMessage: {
+    msg: "",
+    userId: null,
+  },
 };
 
 const error = (state = initialState, { type, error }: ErrorAction) => {
-  const err = error ? error : "";
+  const err = error || "";
   switch (type) {
     case "REGISTER_ERROR_HANDLER":
       return { ...state, auth: { ...state.auth, registerErrorMessage: error } };
     case "LOGIN_ERROR_HANDLER":
-      return { ...state, auth: { ...state.auth, loginErrorMessage: error } };
+      const { loginErrorMessage } = initialState.auth;
+      return {
+        ...state,
+        auth: {
+          ...state.auth,
+          loginErrorMessage: error || loginErrorMessage,
+        },
+      };
     case "RESET_AUTH_MODAL_ERROR_VALUES":
-      return { ...state, auth: resetErrorValues(state.auth) };
+      return { ...state, auth: initialState.auth };
     case "PROJECT_LIST_ERROR_HANDLER":
       return { ...state, projectListErrorMessage: err };
     case "PROJECT_CREATION_ERROR_HANDLER":
@@ -38,6 +51,16 @@ const error = (state = initialState, { type, error }: ErrorAction) => {
       return { ...state, projectEditionErrorMessage: error };
     case "PROJECT_DETAILS_ERROR_HANDLER":
       return { ...state, projectDetailsErrorMessage: error };
+    case "SET_USER_PROFILE_EDITION_ERROR_HANDLER":
+      return { ...state, userProfileEditionErrorMessage: err };
+    case "ACCOUNT_ACTIVATION_ERROR_HANDLER":
+      return { ...state, accountActivationErrorMessage: err };
+    case "ACCOUNT_TOKEN_ERROR_HANDLER":
+      return {
+        ...state,
+        accountTokenVerificationErrorMessage:
+          error || initialState.accountTokenVerificationErrorMessage,
+      };
     default:
       return state;
   }

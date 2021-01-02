@@ -14,8 +14,6 @@ const EditClosed = ({
   isExpanded,
   setExpanded,
 }: EditProjectStatusClosed) => {
-  console.log(value);
-
   return (
     <div className="field">
       {fieldName === name && loader ? (
@@ -29,13 +27,13 @@ const EditClosed = ({
           {name === "image" ? (
             <img
               className="field-edit-image"
-              src={`${url}/uploads/${value}`}
+              src={`${url}/uploads/projects/${value}`}
               alt="image"
             />
           ) : name === "categories" ? (
             <div className="field-text-content">
               {typeof value !== "string" ? (
-                value.map((name: string) => <p>{name}</p>)
+                value.map((name: string) => <p key={name}>{name}</p>)
               ) : (
                 <p>{value}</p>
               )}

@@ -17,7 +17,7 @@ module.exports = async (
   try {
     const user = await tokenValidator(token, null);
     const project = await Project.findOne({ _id: id });
-    const path = pathResolver.join(__dirname, "../../public/uploads");
+    const path = pathResolver.join(__dirname, "../../public/uploads/projects");
 
     const imageRemover = () => {
       return new Promise(async (resolve, reject) => {

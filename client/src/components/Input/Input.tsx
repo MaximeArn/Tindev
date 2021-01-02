@@ -1,5 +1,3 @@
-/** @format */
-
 import React, { ChangeEvent } from "react";
 import { InputModel } from "../../models/inputs";
 import convertInputType from "../../utils/inputType";
@@ -40,9 +38,6 @@ const Input = ({
         onChange={handleChange}
         value={inputValue}
         required={required}
-        minLength={
-          name === "description" && formType === "ProjectCreation" ? 180 : 0
-        }
       />
     </>
   );

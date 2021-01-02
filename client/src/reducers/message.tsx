@@ -1,37 +1,29 @@
-/** @format */
-
 import { MessageAction } from "../models/actions";
 import { MessageState } from "../models/states";
-import windowFilter from "../utils/removeChatWindow";
 
 const initialState: MessageState = {
-  messages: [],
-  chatWindow: [],
+  messages: {},
+  chatWindows: [],
 };
 
 const message = (
   state = initialState,
-  { type, message, username, usernameToDelete, id }: MessageAction
+  { type, message, windows }: MessageAction
 ) => {
-  const msg = message ? message : "";
   switch (type) {
     case "SET_CHAT_MESSAGES":
+      const { to } = message;
       return {
         ...state,
-        messages: [...state.messages, message],
+        messages: {
+          ...state.messages,
+          [to]: state.messages[to]
+            ? [...state.messages[to], message]
+            : [message],
+        },
       };
-    case "OPEN_CHAT_WINDOW":
-      const found = state.chatWindow.find(
-        ({ username: user }) => username == user
-      );
-      return !found
-        ? { ...state, chatWindow: [...state.chatWindow, { username, id }] }
-        : state;
-    case "DELETE_CHAT_WINDOW":
-      return {
-        ...state,
-        chatWindow: windowFilter([...state.chatWindow], usernameToDelete),
-      };
+    case "SET_CHAT_WINDOWS":
+      return { ...state, chatWindows: windows };
     default:
       return state;
   }

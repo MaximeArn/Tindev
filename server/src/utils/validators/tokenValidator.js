@@ -3,20 +3,18 @@ const UserError = require("../CustomError");
 const { User } = require("../../models");
 const secret = process.env.SECRET;
 
-module.exports = (token, next) => {
+module.exports = async (token, next) => {
   try {
-    return new Promise((resolve, reject) => {
-      jwt.verify(token, secret, async (error, decoded) => {
-        if (error) {
-          return reject(new UserError("User not found, please sign in.", 403));
-        }
+    return jwt.verify(token, secret, async (error, decoded) => {
+      if (error) {
+        throw new UserError("User not found, please sign in.", 403);
+      }
 
-        const exists = await User.findById(decoded.id);
+      const exists = await User.findById(decoded.id);
 
-        if (!exists) return reject(new UserError("User does not exists.", 403));
+      if (!exists) throw new UserError("User does not exists.", 403);
 
-        resolve(decoded);
-      });
+      return decoded;
     });
   } catch (error) {
     next(error);

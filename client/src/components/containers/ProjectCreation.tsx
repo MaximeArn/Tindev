@@ -6,19 +6,15 @@ import { MutableRefObject } from "react";
 import { withRouter } from "react-router-dom";
 import { AnyAction, Dispatch } from "redux";
 
-const mapState = (state: State) => {
-  const { createProject } = state.project;
-  const { projectCreationErrorMessage: error } = state.error;
-  const {
-    projectCreationLoader: loading,
-    projectCategoriesLoader: categoriesLoader,
-  } = state.loaders;
-
+const mapState = ({
+  project: { createProject },
+  error: { projectCreationErrorMessage: error },
+  loaders: { projectCreationLoader: loading },
+}: State) => {
   return {
     projectInputs: createProject,
     error,
     loading,
-    categoriesLoader,
   };
 };
 
@@ -27,7 +23,6 @@ const mapDispatch = (dispatch: Dispatch<AnyAction>, { history }: OwnProps) => {
     setProjectImage: (image: MutableRefObject<any>) =>
       dispatch({ type: "SET_PROJECT_IMAGE", image }),
     sendProject: () => dispatch({ type: "SEND_PROJECT", history }),
-    getCategories: () => dispatch({ type: "GET_CATEGORIES" }),
     onUrlChange: () => {
       dispatch({ type: "PROJECT_CREATION_ERROR_HANDLER" });
       dispatch({ type: "RESET_PROJECT_CREATION_VALUES" });

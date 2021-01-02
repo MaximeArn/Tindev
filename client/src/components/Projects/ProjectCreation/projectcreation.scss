@@ -14,7 +14,7 @@
 }
 
 .project-container {
-  height: 100vh;
+  padding: 2rem 0;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -58,17 +58,6 @@
 
     div {
       position: relative;
-    }
-
-    button {
-      width: 20px;
-      color: #0AD6FB;
-      padding: 0;
-      background-color: transparent;
-      border: none;
-      position: absolute;
-      bottom: -5px;
-      right: -10px;
     }
 
     img {
@@ -130,11 +119,11 @@
     padding: 0;
 
     button {
-      padding: .7rem 2rem;
+      padding: 0.7rem 2rem;
       border: 1px solid #333;
       color: #333;
       border-radius: 7px;
-      transition: all .5s;
+      transition: all 0.5s;
 
       &:hover {
         background-color: #333;
@@ -147,12 +136,12 @@
 
 .loader {
   display: flex;
+  justify-content: center;
 
   p {
     margin-right: 0.5rem;
   }
 }
-
 
 .teamSize-Input {
   box-shadow: none !important;
@@ -164,10 +153,32 @@
   text-align: center;
 }
 
-@media (max-width: 500px) {
+@media (max-width: 670px) {
+  .maxiWrapper {
+    padding-top: 56px;
+
+    .project-container {
+      &-form {
+        border-radius: 0;
+        width: 100vw;
+        min-height: calc(100vh - 56px - 50px);
+      }
+    }
+  }
+}
+
+@media (min-width: 670px) {
   .project-container {
     &-form {
-      // padding: 0;
+      width: 600px;
+    }
+  }
+}
+
+@media (min-width: 1250px) {
+  .project-container {
+    &-form {
+      width: 650px;
     }
   }
 }

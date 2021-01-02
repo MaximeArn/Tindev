@@ -1,1 +1,1 @@
-export default (slug: string) => slug.replace("-", " ");
+export default (slug: string) => slug.replace(/-/g, " ");

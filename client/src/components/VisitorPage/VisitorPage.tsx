@@ -1,10 +1,11 @@
-/** @format */
-
 import React from "react";
 import "./visitorPage.scss";
 import image from "src/assets/home-image.jpg";
+interface Visitor {
+  openModal: Function;
+}
 
-const VisitorPage = ({ openModal }: any) => {
+const VisitorPage = ({ openModal }: Visitor) => {
   return (
     <div
       className="visitor-page"

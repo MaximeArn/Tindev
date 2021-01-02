@@ -1,18 +1,27 @@
-/** @format */
-
-import React from "react";
+import React, { useEffect, useRef } from "react";
 import slugifier from "../../../utils/slugify";
 import shortify from "../../../utils/shortifyString";
 import { Link } from "react-router-dom";
 import { Project as ProjectModel } from "../../../models/projects";
 import { url } from "../../../environments/api";
+import sr, { cardOptions } from "../../../utils/scrollReveal";
 
 const Project = ({ title, image, description, size }: ProjectModel) => {
+  const ProjectCardRef = useRef(null);
+
+  useEffect(() => {
+    sr.reveal(ProjectCardRef.current, cardOptions, 50);
+  }, []);
+
   return (
-    <article>
+    <article ref={ProjectCardRef}>
       <Link to={`/project/${slugifier(title)}`} className="projectCard">
         <div className="projectCard-image">
-          <img src={`${url}/uploads/${image}`} alt={image} draggable="false" />
+          <img
+            src={`${url}/uploads/projects/${image}`}
+            alt={image}
+            draggable="false"
+          />
         </div>
         <div className="projectCard-text">
           <h2 className="title">{title}</h2>

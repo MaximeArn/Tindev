@@ -4,6 +4,8 @@ import { MutableRefObject } from "react";
 import { Project } from "./projects";
 import { Category } from "./categories";
 import { User } from "./users";
+import { ChatWindow, SocketServerResponse } from "./chat";
+import { Notification } from "./notifications";
 
 export interface AuthenticationAction {
   type: string;
@@ -49,7 +51,8 @@ export interface ProjectAction {
 
 export interface AuthMiddleware {
   type: string;
-  history: any;
+  token: string;
+  userId: string;
 }
 
 export interface CategoriesAction {
@@ -72,8 +75,9 @@ export interface UserAction {
   type: string;
   users: User[];
   user: User;
-  content: Function;
-  listName: string;
+  inputName: string;
+  inputValue: string;
+  key?: string;
 }
 
 export interface SearchAction {
@@ -90,8 +94,11 @@ export interface NavBarAction {
 
 export interface MessageAction {
   type: string;
-  message: string;
-  username: string;
-  id: string;
-  usernameToDelete: string;
+  message: SocketServerResponse;
+  windows: ChatWindow[];
+}
+
+export interface NotificationAction {
+  type: string;
+  notifications: Notification;
 }

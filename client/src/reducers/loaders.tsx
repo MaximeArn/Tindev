@@ -1,15 +1,22 @@
-/** @format */
-
 import { Loaders } from "../models/states";
 import { LoadersActions } from "../models/actions";
 
 const initialState: Loaders = {
   registerLoader: false,
   loginLoader: false,
+  removingContributorLoader: false,
   projectListLoader: false,
   projectCreationLoader: false,
   projectDetailsLoader: false,
   projectCategoriesLoader: false,
+  userProfileLoader: false,
+  userAccountDeletionLoader: false,
+  accountActivationLoader: false,
+  activationLinkLoader: false,
+  userProfileEditionLoader: {
+    fieldName: null,
+    status: false,
+  },
   projectEditionLoader: {
     fieldName: null,
     loader: false,
@@ -35,12 +42,27 @@ const loaders = (
         ...state,
         loginLoader: value,
       };
+    case "SET_CONTRIBUTOR_REMOVING_LOADER":
+      return { ...state, removingContributorLoader: value };
+    case "SET_ACCOUNT_ACTIVATION_LOADER":
+      return { ...state, accountActivationLoader: value };
+    case "SET_NEW_ACTIVATION_LINK_LOADER":
+      return { ...state, activationLinkLoader: value };
     case "SET_PROJECTLIST_LOADER":
       return { ...state, projectListLoader: value };
     case "SET_PROJECT_CREATION_LOADER":
       return { ...state, projectCreationLoader: value };
     case "SET_PROJECT_CATEGORIES_LOADER":
       return { ...state, projectCategoriesLoader: value };
+    case "SET_USER_PROFILE_EDITION_LOADER":
+      return {
+        ...state,
+        userProfileEditionLoader: fieldName
+          ? { fieldName, status: value }
+          : { fieldName: null, status: value },
+      };
+    case "SET_USER_PROFILE_LOADER":
+      return { ...state, userProfileLoader: value };
     case "SET_PROJECT_MANAGE_LOADER":
       return {
         ...state,
@@ -49,7 +71,6 @@ const loaders = (
     case "SET_PROJECT_DETAILS_LOADER":
       return { ...state, projectDetailsLoader: value };
     case "SET_PROJECT_EDITION_LOADER":
-      console.log("PROJECT EDITION LOADER");
       return {
         ...state,
         projectEditionLoader: {
@@ -57,6 +78,8 @@ const loaders = (
           loader: value,
         },
       };
+    case "SET_USER_DELETION_LOADER":
+      return { ...state, userAccountDeletionLoader: value };
     default:
       return state;
   }

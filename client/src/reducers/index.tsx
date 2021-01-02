@@ -1,5 +1,3 @@
-/** @format */
-
 import auth from "./auth";
 import error from "./error";
 import success from "./success";
@@ -11,9 +9,10 @@ import users from "./users";
 import search from "./search";
 import navbar from "./navbar";
 import message from "./message";
+import notifications from "./notifications";
 import { combineReducers } from "redux";
 
-export default combineReducers({
+const rootReducer = combineReducers({
   auth,
   navbar,
   search,
@@ -25,4 +24,11 @@ export default combineReducers({
   error,
   success,
   message,
+  notifications,
 });
+
+export default (
+  state: ReturnType<typeof rootReducer> | undefined,
+  action: any
+) =>
+  rootReducer(action.type === "RESET_GLOBAL_STATE" ? undefined : state, action);

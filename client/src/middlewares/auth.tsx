@@ -1,5 +1,3 @@
-/** @format */
-
 import { AnyAction, Dispatch, Middleware } from "redux";
 import { AuthMiddleware } from "../models/actions";
 import { AxiosSubmit } from "../models/axios";
@@ -10,7 +8,7 @@ axios.defaults.baseURL = url;
 axios.defaults.headers.post["Content-Type"] = "application/json";
 axios.defaults.withCredentials = true;
 
-const setUser = ({ getState, dispatch }: AxiosSubmit) => {
+const createUser = ({ getState, dispatch }: AxiosSubmit) => {
   const { register } = getState().auth;
   dispatch({ type: "SET_REGISTER_LOADER", value: true });
   axios
@@ -36,7 +34,7 @@ const setUser = ({ getState, dispatch }: AxiosSubmit) => {
     });
 };
 
-const setLogin = ({ getState, dispatch }: AxiosSubmit) => {
+const login = ({ getState, dispatch }: AxiosSubmit) => {
   const { login } = getState().auth;
   dispatch({ type: "SET_LOGIN_LOADER", value: true });
   axios
@@ -54,9 +52,9 @@ const setLogin = ({ getState, dispatch }: AxiosSubmit) => {
       dispatch({ type: "RESET_AUTH_MODAL_ERROR_VALUES" });
       dispatch({ type: "RESET_REGISTER_SUCCESS_MESSAGE" });
     })
-    .catch(({ response }) => {
-      const { msg: error } = response.data;
+    .catch(({ response: { data: error } }) => {
       dispatch({ type: "LOGIN_ERROR_HANDLER", error });
+      dispatch({ type: "REGISTER_SUCCESS_MESSAGE" });
     })
     .finally(() => {
       dispatch({ type: "SET_LOGIN_LOADER", value: false });
@@ -73,18 +71,79 @@ const retrieveToken = (dispatch: Dispatch<AnyAction>) => {
       .catch(({ response }) => console.log(response));
 };
 
+const logout = (dispatch: Dispatch<AnyAction>) => {
+  axios.delete("/auth/logout").finally(() => {
+    Cookies.remove("token");
+    dispatch({ type: "RESET_GLOBAL_STATE" });
+  });
+};
+
+const activateAccount = (dispatch: Dispatch<AnyAction>, token: string) => {
+  dispatch({ type: "SET_ACCOUNT_ACTIVATION_LOADER", value: true });
+  axios
+    .get(`/auth/activate_account/${token}`)
+    .then(({ data: { msg } }) =>
+      dispatch({ type: "ACCOUNT_ACTIVATION_SUCCESS_MESSAGE", message: msg })
+    )
+    .catch(({ response: { data: { msg: error } } }) =>
+      dispatch({ type: "ACCOUNT_ACTIVATION_ERROR_HANDLER", error })
+    )
+    .finally(() =>
+      dispatch({ type: "SET_ACCOUNT_ACTIVATION_LOADER", value: false })
+    );
+};
+
+const checkAccountTokenValidity = (
+  dispatch: Dispatch<AnyAction>,
+  token: string
+) => {
+  axios
+    .get(`/auth/token_validity/${token}`)
+    .catch(({ response: { data: error } }) =>
+      dispatch({ type: "ACCOUNT_TOKEN_ERROR_HANDLER", error })
+    );
+};
+
+const sendActivationLink = (dispatch: Dispatch<AnyAction>, userId: string) => {
+  dispatch({ type: "SET_NEW_ACTIVATION_LINK_LOADER", value: true });
+  axios
+    .get(`/auth/send_token/${userId}`)
+    .then(({ data: { message } }) => {
+      dispatch({ type: "ACTIVATION_LINK_SUCCESS_MESSAGE", message });
+      dispatch({ type: "ACCOUNT_TOKEN_ERROR_HANDLER" });
+      dispatch({ type: "LOGIN_ERROR_HANDLER" });
+    })
+    .catch((error) => console.error(error))
+    .finally(() =>
+      dispatch({ type: "SET_NEW_ACTIVATION_LINK_LOADER", value: false })
+    );
+};
+
 const auth: Middleware = ({ getState, dispatch }) => (next) => (
   action: AuthMiddleware
 ) => {
-  switch (action.type) {
+  const { type, token, userId } = action;
+  switch (type) {
     case "SUBMIT_REGISTER":
-      setUser({ getState, dispatch });
+      createUser({ getState, dispatch });
       break;
     case "SUBMIT_LOGIN":
-      setLogin({ getState, dispatch });
+      login({ getState, dispatch });
+      break;
+    case "ACCOUNT_VERIFICATION":
+      activateAccount(dispatch, token);
+      break;
+    case "VERIFY_ACCOUNT_TOKEN_VALIDITY":
+      checkAccountTokenValidity(dispatch, token);
+      break;
+    case "SEND_ACCOUNT_ACTIVATION_LINK":
+      sendActivationLink(dispatch, userId);
       break;
     case "TOKEN_VALIDATION":
       retrieveToken(dispatch);
+      break;
+    case "DISCONNECT_USER":
+      logout(dispatch);
       break;
     default:
       next(action);

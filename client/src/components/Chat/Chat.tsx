@@ -1,28 +1,45 @@
-/** @format */
-
 import React from "react";
-import ChatWindow from "./ChatWindow";
-import { ChatProps } from "../../models/chat";
+import ChatWindows from "./ChatWindow";
+import { ChatProps, SocketServerResponse } from "../../models/chat";
 import "./chat.scss";
 
 const Chat = ({
-  chatWindow,
+  chatWindows,
   messages,
+  username,
   sendMessage,
-  deleteChatWindow,
+  closeChatWindow,
 }: ChatProps) => {
+  const receivedMessages = messages[username] || [];
+
   return (
     <>
       <div className="chat-window-wrapper">
-        {chatWindow.map((window) => (
-          <ChatWindow
-            key={window.username}
-            {...window}
-            messages={messages}
-            sendMessage={sendMessage}
-            deleteChatWindow={deleteChatWindow}
-          />
-        ))}
+        {chatWindows.length > 0 &&
+          chatWindows.map((window: any) => {
+            const sentMessages = messages[window.username] || [];
+            return (
+              <ChatWindows
+                key={window.username}
+                {...window}
+                messages={sentMessages
+                  .concat(
+                    receivedMessages.filter(
+                      ({ from }: SocketServerResponse) =>
+                        from === window.username
+                    )
+                  )
+                  .sort(
+                    (
+                      { date: date1 }: SocketServerResponse,
+                      { date: date2 }: SocketServerResponse
+                    ) => (date1 < date2 ? -1 : 1)
+                  )}
+                sendMessage={sendMessage}
+                closeChatWindow={closeChatWindow}
+              />
+            );
+          })}
       </div>
     </>
   );

@@ -5,11 +5,11 @@ const PROJECT_CREATION: any = {
 };
 
 export default (inputs: any) => {
-  const inputsCopy = { ...inputs };
-  for (const key in inputsCopy) {
+  const copy = { ...inputs };
+  for (const key in copy) {
     PROJECT_CREATION.hasOwnProperty(key)
-      ? (inputsCopy[key] = PROJECT_CREATION[key])
-      : (inputsCopy[key] = "");
+      ? (copy[key] = PROJECT_CREATION[key])
+      : (copy[key] = "");
   }
-  return inputsCopy;
+  return copy;
 };

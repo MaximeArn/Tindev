@@ -1,4 +1,3 @@
-/** @format */
 import React, { FormEvent, useRef } from "react";
 import { RegisterAuth } from "../../../models/states";
 import googleIcon from "src/assets/icons/googleIcon.svg";
@@ -15,7 +14,6 @@ const Register = ({
   closeModal,
   swapModal,
 }: RegisterAuth) => {
-  const { firstname, lastname, age, city, ...mandatory } = register;
   const modal = useRef<HTMLDivElement>(null);
 
   const handleSubmit = (event: FormEvent<HTMLFormElement>) => {
@@ -34,7 +32,7 @@ const Register = ({
           <div className="modal-padding">
             <h1 className="modal-title">Create Account</h1>
             {error && <span className="modal-error-message">{error}</span>}
-            <div className="fields">{inputMapper(register, mandatory)}</div>
+            <div className="fields">{inputMapper(register)}</div>
             {registerLoader ? (
               <button type="submit" className="submitButton" disabled>
                 <div className="loading-button">
@@ -50,7 +48,7 @@ const Register = ({
           </div>
           <footer className="modal-footer">
             <p>
-              Already have an Account ?{" "}
+              Already have an Account ?
               <a
                 className="auth-modal"
                 onClick={() =>

@@ -2,16 +2,25 @@ const { User } = require("../../models");
 const UserError = require("../CustomError");
 const compareHashed = require("../compareHashed");
 
-module.exports = async (body, next) => {
+module.exports = async (body, res, next) => {
   try {
     const { password, email } = body;
     const user = await User.findOne({ email });
 
-    if (!user) throw new UserError("Incorrect Email or Password");
+    if (!user) throw new UserError("Incorrect Email or Password", 400);
 
-    const isPasswordMatching = await compareHashed(password, user.password);
+    if (!(await compareHashed(password, user.password))) {
+      throw new UserError("Incorrect Email or Password", 400);
+    }
 
-    if (!isPasswordMatching) throw new UserError("Incorrect Email or Password");
+    if (!user.activated) {
+      res.status(403).json({
+        msg: "Please verify your email address to activate your account",
+        userId: user._id,
+      });
+
+      return null;
+    }
 
     return user;
   } catch (error) {

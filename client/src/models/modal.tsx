@@ -20,7 +20,19 @@ export interface ProjectDetailModal {
   inputValue: string;
   sendApply: Function;
   setModalStatus: Function;
-  resetApplySuccessState: Function;
+  reset: Function;
   error: string;
   success: boolean | string;
+}
+
+export interface ProfileDeletionModal {
+  accountId: string;
+  setDeleteModalStatus: Function;
+  loader: boolean;
+  deleteAccount: Function;
+}
+
+export interface ProfileDeletionSuccessModal {
+  success: string | boolean;
+  onAccountClosing: Function;
 }

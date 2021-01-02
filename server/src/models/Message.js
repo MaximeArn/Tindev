@@ -1,5 +1,3 @@
-/** @format */
-
 const { model } = require("mongoose");
 const messageSchema = require("../schemas/message");
 
