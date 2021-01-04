@@ -20,6 +20,7 @@ import EditProfile from "../containers/EditProfile";
 import VisitorPage from "../containers/VisitorPage";
 import AccountDeletionModal from "../Users/EditProfile/DeletionSuccess";
 import AccountVerification from "../containers/Verification";
+import ForgotPassword from "../Auth/ForgotPassword/ForgotPassword";
 import "./app.scss";
 
 function App({
@@ -54,6 +55,7 @@ function App({
       {showNavbar && <NavBar />}
       {login && <Login />}
       {register && <Register />}
+      {forgotPasswordModal && <ForgotPassword />}
       {user ? (
         <>
           <Chat />
