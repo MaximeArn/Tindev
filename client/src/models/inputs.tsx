@@ -8,6 +8,7 @@ export interface InputModel {
   getLoginInputValue: Function;
   getProjectInputValue: Function;
   getProjectDetailValue: Function;
+  getForgotPasswordInputValue: Function;
 }
 
 export interface Login {

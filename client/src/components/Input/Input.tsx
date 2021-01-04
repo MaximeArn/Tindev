@@ -13,6 +13,7 @@ const Input = ({
   getLoginInputValue,
   getProjectInputValue,
   getProjectDetailValue,
+  getForgotPasswordInputValue,
 }: InputModel) => {
   const handleChange = ({
     target,
@@ -23,6 +24,8 @@ const Input = ({
       ? getLoginInputValue(name, target.value)
       : formType === "ProjectCreation"
       ? getProjectInputValue(name, target.value)
+      : formType === "ForgotPassword"
+      ? getForgotPasswordInputValue(name, target.value)
       : getProjectDetailValue(name, target.value);
   };
 

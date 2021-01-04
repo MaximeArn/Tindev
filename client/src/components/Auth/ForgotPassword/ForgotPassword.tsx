@@ -5,17 +5,24 @@ import "./forgotpassword.scss";
 
 const ForgotPassword = ({ inputValue }: ForgotPasswordProps) => {
   return (
-    <div className="modal" id="modal">
-      <div className="modal-padding">
-        <h1 className="modal-title">Reset Account Password</h1>
-        <Input
-          name="email"
-          formType="forgotPassword"
-          inputValue={inputValue}
-          required={true}
-        />
+    <div className="fpw-modal">
+      <div className="fpw-modal-container" id="modal">
+        <div className="modal-padding">
+          <h1 className="fpw-modal-title">Reset Account Password</h1>
+          <form action="" onSubmit={() => {}}>
+            <Input
+              name="email"
+              formType="ForgotPassword"
+              inputValue={inputValue}
+              required={true}
+            />
+          </form>
+
+          <button type="submit" className="fpw-modal-submit">
+            Confirm
+          </button>
+        </div>
       </div>
-      <footer className="modal-footer"></footer>
     </div>
   );
 };
