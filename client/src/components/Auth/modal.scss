@@ -56,6 +56,16 @@
   background-color: #fff;
   box-shadow: 15px 15px 14px 2px rgba(0, 0, 0, 0.3);
 
+  &-forgot-password {
+    cursor: pointer;
+    padding-left: 5px;
+
+    &:hover {
+      color: blue;
+      text-decoration: underline;
+    }
+  }
+
   &-padding {
     padding: 2rem 2rem 1rem;
   }

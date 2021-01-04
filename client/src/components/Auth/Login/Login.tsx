@@ -76,6 +76,10 @@ const Login = ({
             </div>
             <footer className="modal-footer">
               <p>
+                Forgot password ?
+                <span className="modal-forgot-password">Click here</span>
+              </p>
+              <p>
                 Not a member yet ?
                 <a
                   className="auth-modal"
