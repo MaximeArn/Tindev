@@ -16,6 +16,7 @@ const Login = ({
   activationLinkSuccess,
   sendActivationLink,
   swapModal,
+  setForgotPasswordModalStatus,
 }: LoginAuth) => {
   const modal = useRef<HTMLDivElement>(null);
 
@@ -77,7 +78,12 @@ const Login = ({
             <footer className="modal-footer">
               <p>
                 Forgot password ?
-                <span className="modal-forgot-password">Click here</span>
+                <span
+                  className="modal-forgot-password"
+                  onClick={() => setForgotPasswordModalStatus(true)}
+                >
+                  Click here
+                </span>
               </p>
               <p>
                 Not a member yet ?

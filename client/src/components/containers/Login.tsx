@@ -23,6 +23,8 @@ const mapState = ({
 
 const mapDispatch = (dispatch: Dispatch<AnyAction>) => ({
   submitLogin: () => dispatch({ type: "SUBMIT_LOGIN" }),
+  setForgotPasswordModalStatus: (modalStatus: boolean) =>
+    dispatch({ type: "SET_FORGOT_PASSWORD_MODAL_STATUS", modalStatus }),
   closeModal: (modalStatus: boolean) => {
     dispatch({ type: "RESET_AUTH_MODAL_ERROR_VALUES" });
     dispatch({

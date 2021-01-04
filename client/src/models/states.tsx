@@ -33,27 +33,12 @@ export interface State {
   categories: CategoriesState;
   project: ProjectState;
   loaders: Loaders;
-  modal: Modals;
+  modal: ModalState;
   users: UserState;
   search: SearchState;
   navbar: NavBarState;
   message: MessageState;
   notifications: NotificationState;
-}
-
-export interface Modals {
-  showNavbar: boolean;
-  applyModal: boolean;
-  deleteProjectModal: boolean;
-  closeAccountModal: boolean;
-  authModal: {
-    login: boolean;
-    register: boolean;
-  };
-  declineApplicantModal: {
-    isModalOpen: boolean;
-    applicantId: string | null;
-  };
 }
 
 export interface Loaders {
@@ -116,6 +101,7 @@ export interface LoginAuth {
   activationLinkSuccess: boolean | string;
   swapModal: Function;
   sendActivationLink: Function;
+  setForgotPasswordModalStatus: Function;
 }
 
 export interface ErrorState {
@@ -144,6 +130,7 @@ export interface AppProps {
   verifyToken: Function;
   wsConnection: Function;
   showNavbar: boolean;
+  forgotPasswordModal: boolean;
   getProjects: Function;
   getNotifications: Function;
   getChatWindows: Function;
@@ -188,6 +175,7 @@ export interface ModalState {
   applyModal: boolean;
   deleteProjectModal: boolean;
   closeAccountModal: boolean;
+  forgotPasswordModal: boolean;
   authModal: {
     login: boolean;
     register: boolean;

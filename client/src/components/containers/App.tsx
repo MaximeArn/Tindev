@@ -7,6 +7,7 @@ const mapState = ({
   modal: {
     showNavbar,
     authModal: { login, register },
+    forgotPasswordModal,
   },
   auth: { user },
   success: { userDeletionSuccess },
@@ -15,6 +16,7 @@ const mapState = ({
   showNavbar,
   login,
   register,
+  forgotPasswordModal,
   userDeletionSuccess,
 });
 

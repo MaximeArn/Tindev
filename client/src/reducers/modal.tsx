@@ -6,6 +6,7 @@ const initialState: ModalState = {
   applyModal: false,
   deleteProjectModal: false,
   closeAccountModal: false,
+  forgotPasswordModal: false,
   authModal: {
     login: false,
     register: false,

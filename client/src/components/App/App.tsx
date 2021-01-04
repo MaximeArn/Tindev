@@ -28,6 +28,7 @@ function App({
   showNavbar,
   login,
   register,
+  forgotPasswordModal,
   userDeletionSuccess,
   getProjects,
   getNotifications,
