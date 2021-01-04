@@ -1,6 +1,5 @@
 import { connect } from "react-redux";
 import Input from "../Input/Input";
-import { State } from "../../models/states";
 
 const mapDispatch = (dispatch: any) => ({
   getRegisterInputValue: (inputName: string, inputValue: string) =>

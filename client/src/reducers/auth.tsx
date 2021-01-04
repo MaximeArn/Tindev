@@ -17,6 +17,9 @@ export const initialState: any = {
     email: "",
     password: "",
   },
+  forgotPassword: {
+    email: "",
+  },
   user: null,
 };
 

@@ -23,6 +23,9 @@ export interface Authentication {
     email: string;
     password: string;
   };
+  forgotPassword: {
+    email: string;
+  };
   user: AuthUserState;
 }
 

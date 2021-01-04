@@ -36,3 +36,7 @@ export interface ProfileDeletionSuccessModal {
   success: string | boolean;
   onAccountClosing: Function;
 }
+
+export interface ForgotPasswordProps {
+  inputValue: string;
+}
