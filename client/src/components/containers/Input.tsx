@@ -12,6 +12,12 @@ const mapDispatch = (dispatch: any) => ({
   },
   getProjectDetailValue: (inputName: string, inputValue: string) =>
     dispatch({ type: "GET_PROJECT_DETAIL_MODAL_VALUE", inputName, inputValue }),
+  getForgotPasswordInputValue: (inputName: string, inputValue: string) =>
+    dispatch({
+      type: "GET_FORGOT_PASSWORD_INPUT_VALUE",
+      inputName,
+      inputValue,
+    }),
 });
 
 export default connect(null, mapDispatch)(Input);
