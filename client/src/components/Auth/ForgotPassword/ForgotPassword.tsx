@@ -6,6 +6,7 @@ import "./forgotpassword.scss";
 const ForgotPassword = ({
   inputValue,
   setModalStatus,
+  resetPassword,
 }: ForgotPasswordProps) => {
   const modal = useRef<any>(null);
 
@@ -19,7 +20,7 @@ const ForgotPassword = ({
       <div ref={modal} className="fpw-modal-container" id="modal">
         <div className="modal-padding">
           <h1 className="fpw-modal-title">Reset Account Password</h1>
-          <form action="" onSubmit={() => {}}>
+          <form action="" onSubmit={() => resetPassword()}>
             <Input
               name="email"
               formType="ForgotPassword"

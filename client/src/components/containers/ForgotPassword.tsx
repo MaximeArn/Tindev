@@ -14,6 +14,7 @@ const mapState = ({
 const mapDispatch = (dispatch: Dispatch<AnyAction>) => ({
   setModalStatus: (modalStatus: boolean) =>
     dispatch({ type: "SET_FORGOT_PASSWORD_MODAL_STATUS", modalStatus }),
+  resetPassword: () => dispatch({ type: "RESET_USER_PASSWORD" }),
 });
 
 export default connect(mapState, mapDispatch)(ForgotPassword);
