@@ -36,11 +36,17 @@ const modal = (
       return { ...state, deleteProjectModal: modalStatus };
     case "SET_APPLY_MODAL_STATUS":
       return { ...state, applyModal: modalStatus, showNavbar: !modalStatus };
-    case "SET_FORGOT_PASSWORD_MODAL_STATUS":
+    case "FORGOT_PASSWORD_MODAL_SWAP":
       return {
         ...state,
         forgotPasswordModal: modalStatus,
         authModal: { ...state.authModal, login: !modalStatus },
+      };
+    case "SET_FORGOT_PASSWORD_MODAL_STATUS":
+      return {
+        ...state,
+        forgotPasswordModal: modalStatus,
+        showNavbar: !modalStatus,
       };
     case "SET_DECLINE_APPLICANT_MODAL_STATUS":
       return {

@@ -39,4 +39,5 @@ export interface ProfileDeletionSuccessModal {
 
 export interface ForgotPasswordProps {
   inputValue: string;
+  setModalStatus: Function;
 }

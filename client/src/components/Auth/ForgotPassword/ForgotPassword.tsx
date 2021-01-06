@@ -3,7 +3,10 @@ import { ForgotPasswordProps } from "../../../models/modal";
 import Input from "../../containers/Input";
 import "./forgotpassword.scss";
 
-const ForgotPassword = ({ inputValue }: ForgotPasswordProps) => {
+const ForgotPassword = ({
+  inputValue,
+  setModalStatus,
+}: ForgotPasswordProps) => {
   return (
     <div className="fpw-modal">
       <div className="fpw-modal-container" id="modal">
@@ -20,6 +23,13 @@ const ForgotPassword = ({ inputValue }: ForgotPasswordProps) => {
 
           <button type="submit" className="fpw-modal-submit">
             Confirm
+          </button>
+          <button
+            type="button"
+            className="fpw-modal-submit"
+            onClick={() => setModalStatus(false)}
+          >
+            Close
           </button>
         </div>
       </div>
