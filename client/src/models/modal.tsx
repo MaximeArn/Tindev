@@ -41,4 +41,5 @@ export interface ForgotPasswordProps {
   inputValue: string;
   setModalStatus: Function;
   resetPassword: Function;
+  error: string;
 }

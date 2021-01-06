@@ -123,6 +123,7 @@ export interface ErrorState {
   userProfileErrorMessage: string;
   userProfileEditionErrorMessage: string;
   accountActivationErrorMessage: string;
+  forgotPasswordErrorMessage: string;
   accountTokenVerificationErrorMessage: {
     msg: string;
     userId?: null | string;

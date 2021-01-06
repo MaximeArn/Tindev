@@ -132,22 +132,23 @@ const authRouter = {
   },
   forgotPassword: async ({ body: { email } }, res, next) => {
     try {
-      const { _id: userId, email: userEmail } = await forgotPasswordValidator(
-        email,
-        next
-      );
+      const user = await forgotPasswordValidator(email, next);
 
-      const { token } = await Token.create({
-        userId,
-        token: SHA256(userId),
-      });
+      if (user) {
+        const { _id: userId, email: userEmail } = user;
 
-      await transporter.sendMail({
-        from: "'Tindev' <no-reply@tindev.com>",
-        to: userEmail,
-        subject: "Forgotten Password",
-        html: `<div>We received a request to reset your password. </div> <br /> <div>Click <a href="http://localhost:8080/account/verify/${token}">here</a> to reset your password.</div> <br /> <div>If the origin of the request wasn't yours, please ignore this message.</div>`,
-      });
+        const { token } = await Token.create({
+          userId: userId,
+          token: SHA256(userId),
+        });
+
+        await transporter.sendMail({
+          from: "'Tindev' <no-reply@tindev.com>",
+          to: userEmail,
+          subject: "Forgotten Password",
+          html: `<div>We received a request to reset your password. </div> <br /> <div>Click <a href="http://localhost:8080/account/verify/${token}">here</a> to reset your password.</div> <br /> <div>If the origin of the request wasn't yours, please ignore this message.</div>`,
+        });
+      }
     } catch (error) {
       next(error);
     }

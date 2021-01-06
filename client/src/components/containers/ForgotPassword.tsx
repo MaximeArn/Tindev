@@ -7,8 +7,10 @@ const mapState = ({
   auth: {
     forgotPassword: { email: inputValue },
   },
+  error: { forgotPasswordErrorMessage: error },
 }: State) => ({
   inputValue,
+  error,
 });
 
 const mapDispatch = (dispatch: Dispatch<AnyAction>) => ({
