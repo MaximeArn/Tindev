@@ -123,6 +123,7 @@ const resetUserPassword = async ({ getState, dispatch }: AxiosSubmit) => {
   try {
     const { email } = getState().auth.forgotPassword;
     const { data } = await axios.post("/auth/forgot_password", { email });
+    dispatch({ type: "FORGOT_PASSWORD_ERROR_HANDLER" });
     console.log(data);
   } catch ({
     response: {
