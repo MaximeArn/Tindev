@@ -1,17 +1,7 @@
-const { createTransport } = require("nodemailer");
+const transporter = require("./nodeMailerTransporter");
 
 module.exports = async (email, token) => {
   try {
-    const transporter = createTransport({
-      host: "smtp.mailtrap.io",
-      port: 587,
-      secure: false,
-      auth: {
-        user: process.env.EMAILER,
-        pass: process.env.EMAILERPW,
-      },
-    });
-
     return await transporter.sendMail({
       from: "'Tindev' <no-reply@tindev.com>",
       to: email,

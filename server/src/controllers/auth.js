@@ -2,7 +2,8 @@ const jwt = require("jsonwebtoken");
 const secret = process.env.SECRET;
 const { User, Token } = require("../models");
 const SHA256 = require("crypto-js/sha256");
-const sendMail = require("../utils/sendEmail");
+const sendMail = require("../utils/sendEmailAccountConfirmation");
+const transporter = require("../utils/nodeMailerTransporter");
 const {
   loginValidator,
   registerValidator,
@@ -139,6 +140,13 @@ const authRouter = {
       const { token } = await Token.create({
         userId,
         token: SHA256(userId),
+      });
+
+      await transporter.sendMail({
+        from: "'Tindev' <no-reply@tindev.com>",
+        to: userEmail,
+        subject: "Forgotten Password",
+        html: `<div>We received a request to reset your password. </div> <br /> <div>Click <a href="http://localhost:8080/account/verify/${token}">here</a> to reset your password.</div> <br /> <div>If the origin of the request wasn't yours, please ignore this message.</div>`,
       });
     } catch (error) {
       next(error);
