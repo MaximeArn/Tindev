@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useRef } from "react";
 import { ForgotPasswordProps } from "../../../models/modal";
 import Input from "../../containers/Input";
 import "./forgotpassword.scss";
@@ -7,9 +7,16 @@ const ForgotPassword = ({
   inputValue,
   setModalStatus,
 }: ForgotPasswordProps) => {
+  const modal = useRef<any>(null);
+
   return (
-    <div className="fpw-modal">
-      <div className="fpw-modal-container" id="modal">
+    <div
+      className="fpw-modal"
+      onClick={({ target }) =>
+        !modal.current?.contains(target) && setModalStatus(false)
+      }
+    >
+      <div ref={modal} className="fpw-modal-container" id="modal">
         <div className="modal-padding">
           <h1 className="fpw-modal-title">Reset Account Password</h1>
           <form action="" onSubmit={() => {}}>
