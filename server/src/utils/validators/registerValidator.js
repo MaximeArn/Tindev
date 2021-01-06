@@ -4,9 +4,7 @@ const { User } = require("../../models");
 const UserError = require("../CustomError");
 const sanitize = require("sanitize-html");
 const sanitizeConfig = require("../../config/sanitize");
-const emailRegex = new RegExp(
-  /^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+$/g
-);
+const emailRegex = require("../emailRegex");
 
 module.exports = async (body, next) => {
   try {

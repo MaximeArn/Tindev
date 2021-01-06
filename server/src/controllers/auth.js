@@ -11,6 +11,7 @@ const {
   verifyAccountValidator,
   accountTokenValidator,
   activationLinkValidator,
+  forgotPasswordValidator,
 } = require("../utils/validators");
 
 const authRouter = {
@@ -126,6 +127,13 @@ const authRouter = {
             "A new activation link has been sent to your email address. Please follow the instructions",
         });
       }
+    } catch (error) {
+      next(error);
+    }
+  },
+  forgotPassword: async ({ body: { email } }, res, next) => {
+    try {
+      const valid = await forgotPasswordValidator(email, next);
     } catch (error) {
       next(error);
     }

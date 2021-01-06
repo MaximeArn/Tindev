@@ -7,11 +7,13 @@ const {
   activateAccount,
   verifyAccountToken,
   sendActivationLink,
+  forgotPassword,
 } = require("../controllers/auth");
 
 const authRouterWrapper = (connectedUsers) => {
   router.post("/login", login);
   router.post("/register", register);
+  router.post("/forgot_password", forgotPassword);
   router.get("/verify", verify);
   router.get("/token_validity/:token", verifyAccountToken);
   router.get("/activate_account/:token", activateAccount);
