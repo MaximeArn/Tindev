@@ -25,7 +25,6 @@ const authRouter = {
         const { token } = await Token.create({
           userId,
           token: SHA256(userId),
-          expire: Date.now() + 15 * 60000,
         });
 
         await sendMail(email, token);
@@ -117,7 +116,6 @@ const authRouter = {
         const { token } = await Token.create({
           userId,
           token: SHA256(userId),
-          expire: Date.now() + 15 * 60000,
         });
 
         await sendMail(email, token);
@@ -133,7 +131,15 @@ const authRouter = {
   },
   forgotPassword: async ({ body: { email } }, res, next) => {
     try {
-      const valid = await forgotPasswordValidator(email, next);
+      const { _id: userId, email: userEmail } = await forgotPasswordValidator(
+        email,
+        next
+      );
+
+      const { token } = await Token.create({
+        userId,
+        token: SHA256(userId),
+      });
     } catch (error) {
       next(error);
     }

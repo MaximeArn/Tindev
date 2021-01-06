@@ -6,19 +6,20 @@ const sanitize = require("sanitize-html");
 module.exports = async (email, next) => {
   try {
     email = sanitize(email);
+    const user = await User.findOne({ email });
 
     if (!email.match(regex)) {
       throw new UserError("This email is invalid.", 400);
     }
 
-    if (!(await User.findOne({ email }))) {
+    if (!user) {
       throw new UserError(
         "There is no account associated with this email address.",
         400
       );
     }
 
-    return email;
+    return user;
   } catch (error) {
     next(error);
   }
