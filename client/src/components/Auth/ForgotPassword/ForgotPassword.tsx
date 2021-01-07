@@ -1,6 +1,7 @@
 import React, { useRef } from "react";
 import { ForgotPasswordProps } from "../../../models/modal";
 import Input from "../../containers/Input";
+import CircularProgress from "@material-ui/core/CircularProgress";
 import "./forgotpassword.scss";
 
 const ForgotPassword = ({
@@ -9,6 +10,7 @@ const ForgotPassword = ({
   resetPassword,
   error,
   success,
+  loader,
 }: ForgotPasswordProps) => {
   const modal = useRef<any>(null);
 
@@ -50,7 +52,14 @@ const ForgotPassword = ({
               ) : (
                 <>
                   <button type="submit" className="fpw-modal-submit">
-                    Confirm
+                    {loader ? (
+                      <div className="loading-button">
+                        <p>Loading</p>
+                        <CircularProgress size={15} />
+                      </div>
+                    ) : (
+                      "Confirm"
+                    )}
                   </button>
                   <button
                     type="button"

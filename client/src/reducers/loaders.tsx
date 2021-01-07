@@ -13,6 +13,7 @@ const initialState: Loaders = {
   userAccountDeletionLoader: false,
   accountActivationLoader: false,
   activationLinkLoader: false,
+  forgotPasswordLoader: false,
   userProfileEditionLoader: {
     fieldName: null,
     status: false,
@@ -80,6 +81,8 @@ const loaders = (
       };
     case "SET_USER_DELETION_LOADER":
       return { ...state, userAccountDeletionLoader: value };
+    case "SET_FORGOT_PASSWORD_LOADER":
+      return { ...state, forgotPasswordLoader: value };
     default:
       return state;
   }

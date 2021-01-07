@@ -43,4 +43,5 @@ export interface ForgotPasswordProps {
   resetPassword: Function;
   error: string;
   success: boolean | string;
+  loader: boolean;
 }

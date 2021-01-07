@@ -59,6 +59,7 @@ export interface Loaders {
   userProfileLoader: boolean;
   userAccountDeletionLoader: boolean;
   accountActivationLoader: boolean;
+  forgotPasswordLoader: boolean;
   activationLinkLoader: boolean;
   userProfileEditionLoader: {
     fieldName: string | null;

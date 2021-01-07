@@ -9,10 +9,12 @@ const mapState = ({
   },
   error: { forgotPasswordErrorMessage: error },
   success: { forgotPasswordSuccess: success },
+  loaders: { forgotPasswordLoader: loader },
 }: State) => ({
   inputValue,
   error,
   success,
+  loader,
 });
 
 const mapDispatch = (dispatch: Dispatch<AnyAction>) => ({

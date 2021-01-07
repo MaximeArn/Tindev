@@ -122,6 +122,8 @@ const sendActivationLink = (dispatch: Dispatch<AnyAction>, userId: string) => {
 const resetUserPassword = async ({ getState, dispatch }: AxiosSubmit) => {
   try {
     const { email } = getState().auth.forgotPassword;
+
+    dispatch({ type: "SET_FORGOT_PASSWORD_LOADER", value: true });
     const {
       data: { message },
     } = await axios.post("/auth/forgot_password", { email });
@@ -138,6 +140,8 @@ const resetUserPassword = async ({ getState, dispatch }: AxiosSubmit) => {
     },
   }) {
     dispatch({ type: "FORGOT_PASSWORD_ERROR_HANDLER", error });
+  } finally {
+    dispatch({ type: "SET_FORGOT_PASSWORD_LOADER", value: false });
   }
 };
 
