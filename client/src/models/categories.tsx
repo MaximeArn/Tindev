@@ -1,5 +1,3 @@
-/** @format */
-
 export interface Category {
   name: string;
 }

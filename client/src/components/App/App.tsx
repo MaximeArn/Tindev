@@ -21,7 +21,7 @@ import VisitorPage from "../containers/VisitorPage";
 import AccountDeletionModal from "../Users/EditProfile/DeletionSuccess";
 import AccountVerification from "../containers/Verification";
 import ForgotPassword from "../containers/ForgotPassword";
-import ResetPassword from "../ResetPassword/ResetPassword";
+import ResetPassword from "../containers/ResetPassword";
 import "./app.scss";
 
 function App({

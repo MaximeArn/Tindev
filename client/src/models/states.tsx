@@ -227,3 +227,10 @@ export interface NotificationState {
   notifications: Notification;
   tray: boolean;
 }
+
+export interface ResetPasswordProps {
+  inputs: {
+    password: string;
+    confirmPassword: string;
+  };
+}
