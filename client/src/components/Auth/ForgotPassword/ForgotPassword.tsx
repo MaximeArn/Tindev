@@ -39,16 +39,28 @@ const ForgotPassword = ({
             />
 
             <div className="fpw-modal-buttons">
-              <button type="submit" className="fpw-modal-submit">
-                Confirm
-              </button>
-              <button
-                type="button"
-                className="fpw-modal-submit"
-                onClick={() => setModalStatus(false)}
-              >
-                Close
-              </button>
+              {success ? (
+                <button
+                  type="button"
+                  className="fpw-modal-submit"
+                  onClick={() => setModalStatus(false)}
+                >
+                  Close
+                </button>
+              ) : (
+                <>
+                  <button type="submit" className="fpw-modal-submit">
+                    Confirm
+                  </button>
+                  <button
+                    type="button"
+                    className="fpw-modal-submit"
+                    onClick={() => setModalStatus(false)}
+                  >
+                    Close
+                  </button>
+                </>
+              )}
             </div>
           </form>
         </div>

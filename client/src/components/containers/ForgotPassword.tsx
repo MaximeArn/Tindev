@@ -20,6 +20,11 @@ const mapDispatch = (dispatch: Dispatch<AnyAction>) => ({
     dispatch({ type: "SET_FORGOT_PASSWORD_MODAL_STATUS", modalStatus });
     dispatch({ type: "FORGOT_PASSWORD_ERROR_HANDLER" });
     dispatch({ type: "FORGOT_PASSWORD_SUCCESS_MESSAGE" });
+    dispatch({
+      type: "GET_FORGOT_PASSWORD_INPUT_VALUE",
+      inputName: "email",
+      inputValue: "",
+    });
   },
   resetPassword: () => dispatch({ type: "RESET_USER_PASSWORD" }),
 });
