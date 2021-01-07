@@ -51,7 +51,11 @@ const ForgotPassword = ({
                 </button>
               ) : (
                 <>
-                  <button type="submit" className="fpw-modal-submit">
+                  <button
+                    type="submit"
+                    className="fpw-modal-submit"
+                    disabled={loader}
+                  >
                     {loader ? (
                       <div className="loading-button">
                         <p>Loading</p>
@@ -62,6 +66,7 @@ const ForgotPassword = ({
                     )}
                   </button>
                   <button
+                    disabled={loader}
                     type="button"
                     className="fpw-modal-submit"
                     onClick={() => setModalStatus(false)}
