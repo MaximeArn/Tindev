@@ -137,26 +137,24 @@ const authRouter = {
       if (user) {
         const { _id: userId, email: userEmail } = user;
 
-        const { token } = await Token.create({
-          userId: userId,
-          token: SHA256(userId),
-        });
+        // const { token } = await Token.create({
+        //   userId: userId,
+        //   token: SHA256(userId),
+        // });
 
-        const response = await transporter.sendMail({
-          from: "'Tindev' <no-reply@tindev.com>",
-          to: userEmail,
-          subject: "Forgotten Password",
-          html: `<div>We received a request to reset your password. </div> <br /> <div>Click <a href="http://localhost:8080/account/verify/${token}">here</a> to reset your password.</div> <br /> <div>If the origin of the request wasn't yours, please ignore this message.</div>`,
-        });
+        // const response = await transporter.sendMail({
+        //   from: "'Tindev' <no-reply@tindev.com>",
+        //   to: userEmail,
+        //   subject: "Forgotten Password",
+        //   html: `<div>We received a request to reset your password. </div> <br /> <div>Click <a href="http://localhost:8080/account/verify/${token}">here</a> to reset your password.</div> <br /> <div>If the origin of the request wasn't yours, please ignore this message.</div>`,
+        // });
 
-        console.log("TRANSPORTER RESPONSE : ", response);
+        //TODO: check if transporter is returning falsy value if email emition failed and adjust response accordingly
+        // console.log("TRANSPORTER RESPONSE : ", response);
 
-        return (
-          response &&
-          res
-            .status(200)
-            .json({ message: "An email has been sent to your email address" })
-        );
+        return res
+          .status(200)
+          .json({ message: "An email has been sent to your email address" });
       }
     } catch (error) {
       next(error);

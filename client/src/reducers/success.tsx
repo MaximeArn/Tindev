@@ -1,5 +1,6 @@
 import { SuccessState } from "../models/states";
 import { SuccessAction } from "../models/actions";
+
 const initialState: SuccessState = {
   applySuccess: false,
   registerSuccess: false,
@@ -9,7 +10,9 @@ const initialState: SuccessState = {
   userDeletionSuccess: false,
   accountActivationSuccess: false,
   activationLinkSuccess: false,
+  forgotPasswordSuccess: false,
 };
+
 const success = (state = initialState, { type, message }: SuccessAction) => {
   const msg = message || false;
   switch (type) {
@@ -29,6 +32,8 @@ const success = (state = initialState, { type, message }: SuccessAction) => {
       return { ...state, accountActivationSuccess: msg };
     case "ACTIVATION_LINK_SUCCESS_MESSAGE":
       return { ...state, activationLinkSuccess: msg };
+    case "FORGOT_PASSWORD_SUCCESS_MESSAGE":
+      return { ...state, forgotPasswordSuccess: msg };
     default:
       return state;
   }

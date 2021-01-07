@@ -8,15 +8,18 @@ const mapState = ({
     forgotPassword: { email: inputValue },
   },
   error: { forgotPasswordErrorMessage: error },
+  success: { forgotPasswordSuccess: success },
 }: State) => ({
   inputValue,
   error,
+  success,
 });
 
 const mapDispatch = (dispatch: Dispatch<AnyAction>) => ({
   setModalStatus: (modalStatus: boolean) => {
     dispatch({ type: "SET_FORGOT_PASSWORD_MODAL_STATUS", modalStatus });
     dispatch({ type: "FORGOT_PASSWORD_ERROR_HANDLER" });
+    dispatch({ type: "" });
   },
   resetPassword: () => dispatch({ type: "RESET_USER_PASSWORD" }),
 });

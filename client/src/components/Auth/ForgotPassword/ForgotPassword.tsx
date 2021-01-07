@@ -8,6 +8,7 @@ const ForgotPassword = ({
   setModalStatus,
   resetPassword,
   error,
+  success,
 }: ForgotPasswordProps) => {
   const modal = useRef<any>(null);
 
@@ -22,6 +23,7 @@ const ForgotPassword = ({
         <div className="modal-padding">
           <h1 className="fpw-modal-title">Reset Account Password</h1>
           {error && <div className="fpw-modal-error">{error}</div>}
+          {success && <div className="fpw-modal-success">{success}</div>}
           <form
             action=""
             onSubmit={(event) => {

@@ -199,6 +199,7 @@ export interface SuccessState {
   userDeletionSuccess: boolean | string;
   accountActivationSuccess: boolean | string;
   activationLinkSuccess: boolean | string;
+  forgotPasswordSuccess: boolean | string;
 }
 
 export interface SearchState {
