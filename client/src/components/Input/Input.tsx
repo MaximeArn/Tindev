@@ -1,5 +1,5 @@
 import React, { ChangeEvent } from "react";
-import { InputModel } from "../../models/inputs";
+import { GetInputValues, InputModel } from "../../models/inputs";
 import convertInputType from "../../utils/inputType";
 import capitalizeFirstLetter from "../../utils/capitalizeFirstLetter";
 import "./input.scss";
@@ -9,27 +9,15 @@ const Input = ({
   name,
   inputValue,
   required,
-  getRegisterInputValue,
-  getLoginInputValue,
-  getProjectInputValue,
-  getProjectDetailValue,
-  getForgotPasswordInputValue,
-  getResetPasswordInputValues,
+  getInputValues,
 }: InputModel) => {
   const handleChange = ({
     target,
   }: ChangeEvent<HTMLInputElement | HTMLSelectElement>) => {
-    return formType === "Register"
-      ? getRegisterInputValue(name, target.value)
-      : formType === "Login"
-      ? getLoginInputValue(name, target.value)
-      : formType === "ProjectCreation"
-      ? getProjectInputValue(name, target.value)
-      : formType === "ForgotPassword"
-      ? getForgotPasswordInputValue(name, target.value)
-      : formType === "ResetPassword"
-      ? getResetPasswordInputValues(name, target.value)
-      : getProjectDetailValue(name, target.value);
+    Object.keys(getInputValues).forEach((key) => {
+      key.includes(formType) &&
+        getInputValues[key as keyof GetInputValues](name, target.value);
+    });
   };
 
   return (

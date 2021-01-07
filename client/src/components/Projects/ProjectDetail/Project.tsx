@@ -1,4 +1,3 @@
-/** @format */
 import {
   Project as ProjectModel,
   Contributor,

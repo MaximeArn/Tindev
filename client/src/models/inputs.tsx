@@ -1,15 +1,17 @@
-import { Category } from "../models/categories";
-export interface InputModel {
-  formType: string;
-  name: string;
-  inputValue: string | number | undefined;
-  required: boolean;
+export interface GetInputValues {
   getRegisterInputValue: Function;
   getLoginInputValue: Function;
   getProjectInputValue: Function;
   getProjectDetailValue: Function;
   getForgotPasswordInputValue: Function;
   getResetPasswordInputValues: Function;
+}
+export interface InputModel {
+  formType: string;
+  name: string;
+  inputValue: string | number | undefined;
+  required: boolean;
+  getInputValues: GetInputValues;
 }
 
 export interface Login {
