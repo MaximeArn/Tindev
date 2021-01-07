@@ -21,6 +21,7 @@ import VisitorPage from "../containers/VisitorPage";
 import AccountDeletionModal from "../Users/EditProfile/DeletionSuccess";
 import AccountVerification from "../containers/Verification";
 import ForgotPassword from "../containers/ForgotPassword";
+import ResetPassword from "../ResetPassword/ResetPassword";
 import "./app.scss";
 
 function App({
@@ -87,6 +88,11 @@ function App({
               exact
               path="/account/verify/:token"
               component={AccountVerification}
+            />
+            <Route
+              exact
+              path="/account/reset_password/:token"
+              component={ResetPassword}
             />
             <Route component={NotFound} />
           </Switch>

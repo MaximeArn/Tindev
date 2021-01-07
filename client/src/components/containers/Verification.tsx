@@ -1,6 +1,6 @@
 import { connect } from "react-redux";
 import { AnyAction, Dispatch } from "redux";
-import AccountVerification from "../Account/Verification";
+import AccountVerification from "../AccountVerification/Verification";
 import { withRouter } from "react-router-dom";
 import { OwnProps } from "../../models/connect";
 import { State } from "../../models/states";

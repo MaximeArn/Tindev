@@ -20,6 +20,10 @@ export const initialState: any = {
   forgotPassword: {
     email: "",
   },
+  resetPassword: {
+    password: "",
+    confirmPassword: "",
+  },
   user: null,
 };
 
