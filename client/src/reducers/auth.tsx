@@ -41,6 +41,11 @@ const auth = (
       return { ...state, login: { ...state.login, [inputName]: inputValue } };
     case "GET_FORGOT_PASSWORD_INPUT_VALUE":
       return { ...state, forgotPassword: { [inputName]: inputValue } };
+    case "GET_RESET_PASSWORD_INPUT_VALUE":
+      return {
+        ...state,
+        resetPassword: { ...state.resetPassword, [inputName]: inputValue },
+      };
     case "RESET_AUTH_INPUTS_VALUES":
       return { ...state, [authType]: resetInputs(state[authType]) };
     case "CONNECT_USER":
