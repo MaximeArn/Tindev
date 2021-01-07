@@ -9,6 +9,7 @@ export interface InputModel {
   getProjectInputValue: Function;
   getProjectDetailValue: Function;
   getForgotPasswordInputValue: Function;
+  getResetPasswordInputValues: Function;
 }
 
 export interface Login {

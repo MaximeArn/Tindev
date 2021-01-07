@@ -14,6 +14,7 @@ const Input = ({
   getProjectInputValue,
   getProjectDetailValue,
   getForgotPasswordInputValue,
+  getResetPasswordInputValues,
 }: InputModel) => {
   const handleChange = ({
     target,
@@ -26,6 +27,8 @@ const Input = ({
       ? getProjectInputValue(name, target.value)
       : formType === "ForgotPassword"
       ? getForgotPasswordInputValue(name, target.value)
+      : formType === "ResetPassword"
+      ? getResetPasswordInputValues(name, target.value)
       : getProjectDetailValue(name, target.value);
   };
 

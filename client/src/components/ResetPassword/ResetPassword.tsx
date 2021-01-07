@@ -14,7 +14,7 @@ const ResetPassword = ({ inputs }: ResetPasswordProps) => {
               name={key}
               inputValue={value}
               required={true}
-              formType="resetPassword"
+              formType="ResetPassword"
             />
           );
         })}

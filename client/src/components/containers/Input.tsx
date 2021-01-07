@@ -17,6 +17,8 @@ const mapDispatch = (dispatch: any) => ({
       inputName,
       inputValue,
     }),
+  getResetPasswordInputValues: (inputName: string, inputValue: string) =>
+    dispatch({ type: "GET_RESET_PASSWORD_INPUT_VALUE", inputName, inputValue }),
 });
 
 export default connect(null, mapDispatch)(Input);
