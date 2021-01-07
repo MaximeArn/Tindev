@@ -1,5 +1,9 @@
 .auth-modal {
   cursor: pointer;
+
+  &:hover {
+    text-decoration: underline;
+  }
 }
 
 .fields {
@@ -59,9 +63,9 @@
   &-forgot-password {
     cursor: pointer;
     padding-left: 5px;
+    color: #19a463;
 
     &:hover {
-      color: blue;
       text-decoration: underline;
     }
   }
