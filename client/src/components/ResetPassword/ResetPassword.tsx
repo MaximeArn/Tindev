@@ -7,7 +7,7 @@ const ResetPassword = ({ inputs }: ResetPasswordProps) => {
   console.log(inputs);
   return (
     <div className="reset-password">
-      <form action="">
+      <form action="" className="reset-password-form">
         {Object.entries(inputs).map(([key, value]) => {
           return (
             <Input
@@ -18,6 +18,10 @@ const ResetPassword = ({ inputs }: ResetPasswordProps) => {
             />
           );
         })}
+
+        <button type="submit" className="reset-password-button">
+          Confirm
+        </button>
       </form>
     </div>
   );
