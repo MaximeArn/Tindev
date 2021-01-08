@@ -77,12 +77,12 @@ const EditProfile = ({
                   })}
                 </div>
 
-                <div
-                  className="profile-edit-delete-button"
+                <button
+                  className="profile-delete-button"
                   onClick={() => setDeleteModalStatus(true)}
                 >
-                  <div>Close this account</div>
-                </div>
+                  Close this account
+                </button>
               </div>
             </div>
           )}
