@@ -6,7 +6,10 @@ const mapDispatch = (dispatch: any) => {
     dispatch({ type: "GET_REGISTER_INPUT_VALUE", inputName, inputValue });
   const getLoginInputValue = (inputName: string, inputValue: string) =>
     dispatch({ type: "GET_LOGIN_INPUT_VALUE", inputName, inputValue });
-  const getProjectInputValue = (inputName: string, inputValue: string) => {
+  const getProjectCreationInputValue = (
+    inputName: string,
+    inputValue: string
+  ) => {
     dispatch({ type: "GET_PROJECT_CREATION_VALUE", inputName, inputValue });
   };
   const getProjectDetailValue = (inputName: string, inputValue: string) =>
@@ -24,7 +27,7 @@ const mapDispatch = (dispatch: any) => {
     getInputValues: {
       getRegisterInputValue,
       getLoginInputValue,
-      getProjectInputValue,
+      getProjectCreationInputValue,
       getProjectDetailValue,
       getForgotPasswordInputValue,
       getResetPasswordInputValues,

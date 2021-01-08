@@ -1,5 +1,3 @@
-/** @format */
-
 import React, { useEffect } from "react";
 import "./projectDetail.scss";
 import Modal from "../../containers/ProjectDetailModal";
