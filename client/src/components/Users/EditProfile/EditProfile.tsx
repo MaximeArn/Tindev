@@ -47,10 +47,10 @@ const EditProfile = ({
               accountId={user._id}
             />
           )}
-          {success && <div className="profile-edit-success">{success}</div>}
-          {error && <div className="profile-edit-error">{error}</div>}
           {user && (
             <div className="profile-wrapper">
+              {success && <div className="profile-edit-success">{success}</div>}
+              {error && <div className="profile-edit-error">{error}</div>}
               <div className="profile">
                 <div className="profile-edit-container">
                   {Object.entries(editProfile).map(([prop, value]) => {
