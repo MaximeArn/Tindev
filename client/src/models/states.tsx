@@ -234,4 +234,5 @@ export interface ResetPasswordProps {
     password: string;
     confirmPassword: string;
   };
+  submitForm: Function;
 }

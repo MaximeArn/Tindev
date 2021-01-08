@@ -145,6 +145,8 @@ const resetUserPassword = async ({ getState, dispatch }: AxiosSubmit) => {
   }
 };
 
+const sendNewPassword = ({ getState, dispatch }: AxiosSubmit) => {};
+
 const auth: Middleware = ({ getState, dispatch }) => (next) => (
   action: AuthMiddleware
 ) => {
@@ -167,6 +169,9 @@ const auth: Middleware = ({ getState, dispatch }) => (next) => (
       break;
     case "RESET_USER_PASSWORD":
       resetUserPassword({ getState, dispatch });
+      break;
+    case "SEND_RESET_PASSWORD_REQUEST":
+      sendNewPassword({ getState, dispatch });
       break;
     case "TOKEN_VALIDATION":
       retrieveToken(dispatch);

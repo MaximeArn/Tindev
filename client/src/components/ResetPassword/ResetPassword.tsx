@@ -3,10 +3,14 @@ import { ResetPasswordProps } from "../../models/states";
 import Input from "../containers/Input";
 import "./resetpassword.scss";
 
-const ResetPassword = ({ inputs }: ResetPasswordProps) => {
+const ResetPassword = ({ inputs, submitForm }: ResetPasswordProps) => {
   return (
     <div className="reset-password">
-      <form action="" className="reset-password-form">
+      <form
+        action=""
+        className="reset-password-form"
+        onSubmit={() => submitForm()}
+      >
         {Object.entries(inputs).map(([key, value]) => {
           return (
             <Input
