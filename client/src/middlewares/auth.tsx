@@ -146,9 +146,9 @@ const resetUserPassword = async ({ getState, dispatch }: AxiosSubmit) => {
 };
 
 const sendNewPassword = async ({ getState, dispatch }: AxiosSubmit) => {
-  const { password, confirmPassword } = getState().auth.resetPassword;
+  const { resetPassword } = getState().auth;
   try {
-    const { data } = await axios.post("");
+    const { data } = await axios.post("/auth/reset_password", resetPassword);
   } catch ({
     response: {
       data: { msg: error },

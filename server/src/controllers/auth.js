@@ -157,7 +157,10 @@ const authRouter = {
       next(error);
     }
   },
-  resetPassword: async (req, res, next) => {},
+  resetPassword: async ({ body }, res, next) => {
+    console.log(body);
+    //TODO: NEED TO CREATE RESET PASSWORD VALIDATOR AND CHECK IF PASSWORD ARE MATCHING + HASH IT AND UPDATE USER
+  },
 };
 
 module.exports = authRouter;
