@@ -14,28 +14,47 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  padding-top: 64px;
+  padding-top: calc(64px + 4rem);
+  padding-bottom: 4rem;
 
   .profile {
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    width: 600px;
+    background-color: grey;
+    padding: 50px;
+    width: 700px;
+
+    &-delete-button {
+      margin-top: 2rem;
+      padding: 1rem;
+      background-color: rgb(177, 0, 0);
+      border: 1px solid red;
+      color: #fff;
+      font-weight: bold;
+      text-transform: uppercase;
+    }
 
     &-edit-container {
       width: 100%;
 
       .profile-container {
-        margin-bottom: 1rem;
+        padding: 1.5rem 0.5rem;
+        // margin-bottom: 1rem;
         width: 100%;
         display: flex;
         justify-content: space-between;
+        border-bottom: 1px solid #fff;
 
         .profile-field {
           width: 70%;
           display: flex;
-          justify-content: space-between;
+          // justify-content: space-between;
+
+          .field-name {
+            width: 50%;
+          }
         }
       }
     }
