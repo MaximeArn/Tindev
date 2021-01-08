@@ -157,6 +157,7 @@ const authRouter = {
       next(error);
     }
   },
+  resetPassword: async (req, res, next) => {},
 };
 
 module.exports = authRouter;
