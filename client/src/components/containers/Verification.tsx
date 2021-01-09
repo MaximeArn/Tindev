@@ -34,7 +34,11 @@ const mapDispatch = (
       dispatch({ type: "VERIFY_ACCOUNT_TOKEN_VALIDITY", token }),
     activateAccount: () => dispatch({ type: "ACCOUNT_VERIFICATION", token }),
     sendActivationLink: (userId: string) =>
-      dispatch({ type: "SEND_ACCOUNT_ACTIVATION_LINK", userId }),
+      dispatch({
+        type: "SEND_ACCOUNT_ACTIVATION_LINK",
+        userId,
+        linkType: "accountActivation",
+      }),
   };
 };
 

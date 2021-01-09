@@ -104,10 +104,14 @@ const checkAccountTokenValidity = (
     );
 };
 
-const sendActivationLink = (dispatch: Dispatch<AnyAction>, userId: string) => {
+const sendActivationLink = (
+  dispatch: Dispatch<AnyAction>,
+  userId: string,
+  type: string
+) => {
   dispatch({ type: "SET_NEW_ACTIVATION_LINK_LOADER", value: true });
   axios
-    .get(`/auth/send_token/${userId}`)
+    .post("/auth/send_new_token", { userId, type })
     .then(({ data: { message } }) => {
       dispatch({ type: "ACTIVATION_LINK_SUCCESS_MESSAGE", message });
       dispatch({ type: "ACCOUNT_TOKEN_ERROR_HANDLER" });
@@ -168,7 +172,7 @@ const sendNewPassword = async (
 const auth: Middleware = ({ getState, dispatch }) => (next) => (
   action: AuthMiddleware
 ) => {
-  const { type, token, userId } = action;
+  const { type, token, userId, linkType } = action;
   switch (type) {
     case "SUBMIT_REGISTER":
       createUser({ getState, dispatch });
@@ -183,7 +187,7 @@ const auth: Middleware = ({ getState, dispatch }) => (next) => (
       checkAccountTokenValidity(dispatch, token);
       break;
     case "SEND_ACCOUNT_ACTIVATION_LINK":
-      sendActivationLink(dispatch, userId);
+      sendActivationLink(dispatch, userId, linkType);
       break;
     case "RESET_USER_PASSWORD":
       resetUserPassword({ getState, dispatch });

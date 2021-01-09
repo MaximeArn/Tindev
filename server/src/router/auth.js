@@ -16,10 +16,10 @@ const authRouterWrapper = (connectedUsers) => {
   router.post("/register", register);
   router.post("/forgot_password", forgotPassword);
   router.post("/reset_password", resetPassword);
+  router.post("/send_new_token", sendActivationLink);
   router.get("/verify", verify);
   router.get("/token_validity/:token", verifyAccountToken);
   router.get("/activate_account/:token", activateAccount);
-  router.get("/send_token/:userId", sendActivationLink);
   router.delete("/logout", (req, res, next) =>
     logout(connectedUsers, req, res, next)
   );

@@ -53,6 +53,7 @@ export interface AuthMiddleware {
   type: string;
   token: string;
   userId: string;
+  linkType: string;
 }
 
 export interface CategoriesAction {

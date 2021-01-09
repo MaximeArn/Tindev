@@ -1,5 +1,6 @@
 import React, { useEffect } from "react";
 import { ResetPasswordProps } from "../../models/states";
+import CircularProgress from "@material-ui/core/CircularProgress";
 import Input from "../containers/Input";
 import "./resetpassword.scss";
 
@@ -7,6 +8,7 @@ const ResetPassword = ({
   inputs,
   error: { msg: errorMessage, userId },
   submitForm,
+  resetPasswordLinkLoader,
   verifyTokenValidity,
   sendNewResetPasswordLink,
 }: ResetPasswordProps) => {
@@ -28,8 +30,13 @@ const ResetPassword = ({
               <button
                 className="reset-password-new-link"
                 onClick={() => sendNewResetPasswordLink(userId)}
+                disabled={resetPasswordLinkLoader}
               >
-                Send a new link
+                {resetPasswordLinkLoader ? (
+                  <CircularProgress size={15} style={{ color: "white" }} />
+                ) : (
+                  "Send a new link"
+                )}
               </button>
             </div>
           )}

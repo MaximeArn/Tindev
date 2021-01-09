@@ -8,9 +8,11 @@ import { OwnProps } from "../../models/connect";
 const mapState = ({
   auth: { resetPassword: inputs },
   error: { accountTokenVerificationErrorMessage: error },
+  loaders: { activationLinkLoader: resetPasswordLinkLoader },
 }: State) => ({
   inputs,
   error,
+  resetPasswordLinkLoader,
 });
 
 const mapDispatch = (
@@ -25,7 +27,11 @@ const mapDispatch = (
     dispatch({ type: "VERIFY_ACCOUNT_TOKEN_VALIDITY", token }),
   submitForm: () => dispatch({ type: "SEND_RESET_PASSWORD_REQUEST", token }),
   sendNewResetPasswordLink: (userId: string) =>
-    dispatch({ type: "SEND_ACCOUNT_ACTIVATION_LINK", userId }),
+    dispatch({
+      type: "SEND_ACCOUNT_ACTIVATION_LINK",
+      userId,
+      linkType: "resetPassword",
+    }),
 });
 
 export default withRouter(connect(mapState, mapDispatch)(ResetPassword));

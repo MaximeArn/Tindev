@@ -34,6 +34,7 @@ const Verification = ({
               <button
                 className="verification-expired-button"
                 onClick={() => sendActivationLink(userId)}
+                disabled={activationLinkLoader}
               >
                 {activationLinkLoader ? (
                   <CircularProgress size={15} style={{ color: "white" }} />

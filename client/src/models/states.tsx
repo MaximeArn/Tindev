@@ -239,6 +239,7 @@ export interface ResetPasswordProps {
     userId?: null | string;
   };
   submitForm: Function;
+  resetPasswordLinkLoader: boolean;
   verifyTokenValidity: Function;
   sendNewResetPasswordLink: Function;
 }

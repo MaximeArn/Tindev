@@ -163,13 +163,11 @@ const authRouter = {
       const credentials = await resetPasswordValidator(body, next);
 
       if (credentials) {
-        const { password, userId: _id } = credentials;
-
-        await User.update({ _id }, { password });
-
-        return res
-          .status(200)
-          .json({ message: "Password successfully updated" });
+        // const { password, userId: _id } = credentials;
+        // await User.update({ _id }, { password });
+        // return res
+        //   .status(200)
+        //   .json({ message: "Password successfully updated" });
       }
     } catch (error) {
       next(error);
