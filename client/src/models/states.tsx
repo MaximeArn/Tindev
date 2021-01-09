@@ -234,5 +234,11 @@ export interface ResetPasswordProps {
     password: string;
     confirmPassword: string;
   };
+  error: {
+    msg: string;
+    userId?: null | string;
+  };
   submitForm: Function;
+  verifyTokenValidity: Function;
+  sendNewResetPasswordLink: Function;
 }
