@@ -9,10 +9,12 @@ const mapState = ({
   auth: { resetPassword: inputs },
   error: { accountTokenVerificationErrorMessage: error },
   loaders: { activationLinkLoader: resetPasswordLinkLoader },
+  success: { activationLinkSuccess: newResetLinkSuccess },
 }: State) => ({
   inputs,
   error,
   resetPasswordLinkLoader,
+  newResetLinkSuccess,
 });
 
 const mapDispatch = (

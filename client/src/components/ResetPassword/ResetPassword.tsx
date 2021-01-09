@@ -7,6 +7,7 @@ import "./resetpassword.scss";
 const ResetPassword = ({
   inputs,
   error: { msg: errorMessage, userId },
+  newResetLinkSuccess,
   submitForm,
   resetPasswordLinkLoader,
   verifyTokenValidity,
@@ -28,7 +29,7 @@ const ResetPassword = ({
                 address
               </div>
               <button
-                className="reset-password-new-link"
+                className="reset-password-new-link-button"
                 onClick={() => sendNewResetPasswordLink(userId)}
                 disabled={resetPasswordLinkLoader}
               >
@@ -41,6 +42,10 @@ const ResetPassword = ({
             </div>
           )}
         </>
+      ) : newResetLinkSuccess ? (
+        <div className="reset-password-success-message">
+          {newResetLinkSuccess}
+        </div>
       ) : (
         <form
           action=""

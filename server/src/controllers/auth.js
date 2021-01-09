@@ -5,7 +5,6 @@ const SHA256 = require("crypto-js/sha256");
 const sendAccountActivationEmail = require("../utils/sendAccountConfirmationEmail");
 const sendResetPasswordEmail = require("../utils/sendResetPasswordEmail");
 const mailSender = require("../utils/mailSender");
-const transporter = require("../utils/nodeMailerTransporter");
 const {
   loginValidator,
   registerValidator,
@@ -31,7 +30,7 @@ const authRouter = {
           token: SHA256(userId),
         });
 
-        await sendMail(email, token);
+        await sendAccountActivationEmail(email, token);
 
         return res
           .status(200)
