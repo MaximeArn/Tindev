@@ -163,7 +163,6 @@ const authRouter = {
       const hashedPassword = await resetPasswordValidator(body, next);
 
       if (hashedPassword) {
-        console.log("NEW HASHED PASSWORD : ", hashedPassword);
       }
     } catch (error) {
       next(error);
