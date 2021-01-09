@@ -17,6 +17,7 @@ const verifyAccountValidator = require("./verifyAccountValidator");
 const accountTokenValidator = require("./accountTokenValidator");
 const activationLinkValidator = require("./activationLinkValidator");
 const forgotPasswordValidator = require("./forgotPasswordValidator");
+const resetPasswordValidator = require("./resetPasswordValidator");
 
 module.exports = {
   applicantValidator,
@@ -38,4 +39,5 @@ module.exports = {
   accountTokenValidator,
   activationLinkValidator,
   forgotPasswordValidator,
+  resetPasswordValidator,
 };

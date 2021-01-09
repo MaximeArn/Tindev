@@ -13,6 +13,7 @@ const {
   accountTokenValidator,
   activationLinkValidator,
   forgotPasswordValidator,
+  resetPasswordValidator,
 } = require("../utils/validators");
 
 const authRouter = {
@@ -158,8 +159,15 @@ const authRouter = {
     }
   },
   resetPassword: async ({ body }, res, next) => {
-    console.log(body);
-    //TODO: NEED TO CREATE RESET PASSWORD VALIDATOR AND CHECK IF PASSWORD ARE MATCHING + HASH IT AND UPDATE USER
+    try {
+      const hashedPassword = await resetPasswordValidator(body, next);
+
+      if (hashedPassword) {
+        console.log("NEW HASHED PASSWORD : ", hashedPassword);
+      }
+    } catch (error) {
+      next(error);
+    }
   },
 };
 
