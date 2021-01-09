@@ -160,9 +160,16 @@ const authRouter = {
   },
   resetPassword: async ({ body }, res, next) => {
     try {
-      const hashedPassword = await resetPasswordValidator(body, next);
+      const credentials = await resetPasswordValidator(body, next);
 
-      if (hashedPassword) {
+      if (credentials) {
+        const { password, userId: _id } = credentials;
+
+        await User.update({ _id }, { password });
+
+        return res
+          .status(200)
+          .json({ message: "Password successfully updated" });
       }
     } catch (error) {
       next(error);
