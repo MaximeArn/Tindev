@@ -7,14 +7,26 @@ import { OwnProps } from "../../models/connect";
 
 const mapState = ({
   auth: { resetPassword: inputs },
-  error: { accountTokenVerificationErrorMessage: error },
-  loaders: { activationLinkLoader: resetPasswordLinkLoader },
-  success: { activationLinkSuccess: newResetLinkSuccess },
+  error: {
+    accountTokenVerificationErrorMessage: validityError,
+    resetPasswordErrorMessage: error,
+  },
+  loaders: {
+    activationLinkLoader: resetPasswordLinkLoader,
+    resetPasswordLoader,
+  },
+  success: {
+    activationLinkSuccess: newResetLinkSuccess,
+    resetPasswordSuccess: success,
+  },
 }: State) => ({
   inputs,
+  validityError,
   error,
   resetPasswordLinkLoader,
+  resetPasswordLoader,
   newResetLinkSuccess,
+  success,
 });
 
 const mapDispatch = (

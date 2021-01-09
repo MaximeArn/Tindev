@@ -11,6 +11,7 @@ const initialState: SuccessState = {
   accountActivationSuccess: false,
   activationLinkSuccess: false,
   forgotPasswordSuccess: false,
+  resetPasswordSuccess: false,
 };
 
 const success = (state = initialState, { type, message }: SuccessAction) => {
@@ -34,6 +35,8 @@ const success = (state = initialState, { type, message }: SuccessAction) => {
       return { ...state, activationLinkSuccess: msg };
     case "FORGOT_PASSWORD_SUCCESS_MESSAGE":
       return { ...state, forgotPasswordSuccess: msg };
+    case "RESET_PASSWORD_SUCCESS_MESSAGE":
+      return { ...state, resetPasswordSuccess: message ?? false };
     default:
       return state;
   }

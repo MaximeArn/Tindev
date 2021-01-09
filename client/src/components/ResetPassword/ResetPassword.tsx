@@ -2,17 +2,23 @@ import React, { useEffect } from "react";
 import { ResetPasswordProps } from "../../models/states";
 import CircularProgress from "@material-ui/core/CircularProgress";
 import Input from "../containers/Input";
+import { useHistory } from "react-router-dom";
 import "./resetpassword.scss";
 
 const ResetPassword = ({
   inputs,
-  error: { msg: errorMessage, userId },
+  validityError: { msg: errorMessage, userId },
+  error,
   newResetLinkSuccess,
+  success,
   submitForm,
   resetPasswordLinkLoader,
+  resetPasswordLoader,
   verifyTokenValidity,
   sendNewResetPasswordLink,
 }: ResetPasswordProps) => {
+  const history = useHistory();
+
   useEffect(() => {
     verifyTokenValidity();
   }, []);
@@ -46,31 +52,53 @@ const ResetPassword = ({
         <div className="reset-password-success-message">
           {newResetLinkSuccess}
         </div>
-      ) : (
-        <form
-          action=""
-          className="reset-password-form"
-          onSubmit={(event) => {
-            event.preventDefault();
-            submitForm();
-          }}
-        >
-          {Object.entries(inputs).map(([key, value]) => {
-            return (
-              <Input
-                key={key}
-                name={key}
-                inputValue={value}
-                required={true}
-                formType="ResetPassword"
-              />
-            );
-          })}
-
-          <button type="submit" className="reset-password-button">
-            Confirm
+      ) : success ? (
+        <>
+          <div className="reset-password-success">{success}</div>
+          <button
+            type="button"
+            className="reset-password-button"
+            onClick={() => history.push("/")}
+          >
+            Return to home page
           </button>
-        </form>
+        </>
+      ) : (
+        <div>
+          {error && <div className="reset-password-error">{error}</div>}
+          <form
+            action=""
+            className="reset-password-form"
+            onSubmit={(event) => {
+              event.preventDefault();
+              submitForm();
+            }}
+          >
+            {Object.entries(inputs).map(([key, value]) => {
+              return (
+                <Input
+                  key={key}
+                  name={key}
+                  inputValue={value}
+                  required={true}
+                  formType="ResetPassword"
+                />
+              );
+            })}
+
+            <button
+              type="submit"
+              className="reset-password-button"
+              disabled={resetPasswordLoader}
+            >
+              {resetPasswordLoader ? (
+                <CircularProgress size={15} style={{ color: "white" }} />
+              ) : (
+                "Confirm"
+              )}
+            </button>
+          </form>
+        </div>
       )}
     </div>
   );

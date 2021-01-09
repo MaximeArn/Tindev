@@ -207,6 +207,7 @@ export interface SuccessState {
   accountActivationSuccess: boolean | string;
   activationLinkSuccess: boolean | string;
   forgotPasswordSuccess: boolean | string;
+  resetPasswordSuccess: boolean | string;
 }
 
 export interface SearchState {
@@ -236,13 +237,16 @@ export interface ResetPasswordProps {
     password: string;
     confirmPassword: string;
   };
-  error: {
+  validityError: {
     msg: string;
     userId?: null | string;
   };
+  error: string;
   submitForm: Function;
   newResetLinkSuccess: boolean | string;
+  success: boolean | string;
   resetPasswordLinkLoader: boolean;
+  resetPasswordLoader: boolean;
   verifyTokenValidity: Function;
   sendNewResetPasswordLink: Function;
 }
