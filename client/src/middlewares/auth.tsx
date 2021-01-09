@@ -155,6 +155,7 @@ const sendNewPassword = async (
 ) => {
   const { password, confirmPassword } = getState().auth.resetPassword;
   try {
+    dispatch({ type: "SET_RESET_PASSWORD_LOADER", value: true });
     const { data } = await axios.post("/auth/reset_password", {
       password,
       confirmPassword,
@@ -165,7 +166,9 @@ const sendNewPassword = async (
       data: { msg: error },
     },
   }) {
-    console.error(error);
+    dispatch({ type: "RESET_PASSWORD_ERROR_HANDLER", error });
+  } finally {
+    dispatch({ type: "SET_RESET_PASSWORD_LOADER", value: false });
   }
 };
 

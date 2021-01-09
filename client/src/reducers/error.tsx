@@ -18,6 +18,7 @@ const initialState: ErrorState = {
   userProfileEditionErrorMessage: "",
   accountActivationErrorMessage: "",
   forgotPasswordErrorMessage: "",
+  resetPasswordErrorMessage: "",
   accountTokenVerificationErrorMessage: {
     msg: "",
     userId: null,
@@ -64,6 +65,8 @@ const error = (state = initialState, { type, error }: ErrorAction) => {
       };
     case "FORGOT_PASSWORD_ERROR_HANDLER":
       return { ...state, forgotPasswordErrorMessage: error || "" };
+    case "RESET_PASSWORD_ERROR_HANDLER":
+      return { ...state, resetPasswordErrorMessage: error ?? "" };
     default:
       return state;
   }

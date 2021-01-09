@@ -60,6 +60,7 @@ export interface Loaders {
   userAccountDeletionLoader: boolean;
   accountActivationLoader: boolean;
   forgotPasswordLoader: boolean;
+  resetPasswordLoader: boolean;
   activationLinkLoader: boolean;
   userProfileEditionLoader: {
     fieldName: string | null;
@@ -129,6 +130,7 @@ export interface ErrorState {
   userProfileEditionErrorMessage: string;
   accountActivationErrorMessage: string;
   forgotPasswordErrorMessage: string;
+  resetPasswordErrorMessage: string;
   accountTokenVerificationErrorMessage: {
     msg: string;
     userId?: null | string;
