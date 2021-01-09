@@ -9,7 +9,10 @@ const ResetPassword = ({ inputs, submitForm }: ResetPasswordProps) => {
       <form
         action=""
         className="reset-password-form"
-        onSubmit={() => submitForm()}
+        onSubmit={(event) => {
+          event.preventDefault();
+          submitForm();
+        }}
       >
         {Object.entries(inputs).map(([key, value]) => {
           return (

@@ -153,7 +153,9 @@ const sendNewPassword = async ({ getState, dispatch }: AxiosSubmit) => {
     response: {
       data: { msg: error },
     },
-  }) {}
+  }) {
+    console.error(error);
+  }
 };
 
 const auth: Middleware = ({ getState, dispatch }) => (next) => (
