@@ -145,10 +145,17 @@ const resetUserPassword = async ({ getState, dispatch }: AxiosSubmit) => {
   }
 };
 
-const sendNewPassword = async ({ getState, dispatch }: AxiosSubmit) => {
-  const { resetPassword } = getState().auth;
+const sendNewPassword = async (
+  { getState, dispatch }: AxiosSubmit,
+  token: string
+) => {
+  const { password, confirmPassword } = getState().auth.resetPassword;
   try {
-    const { data } = await axios.post("/auth/reset_password", resetPassword);
+    const { data } = await axios.post("/auth/reset_password", {
+      password,
+      confirmPassword,
+      token,
+    });
   } catch ({
     response: {
       data: { msg: error },
@@ -182,7 +189,7 @@ const auth: Middleware = ({ getState, dispatch }) => (next) => (
       resetUserPassword({ getState, dispatch });
       break;
     case "SEND_RESET_PASSWORD_REQUEST":
-      sendNewPassword({ getState, dispatch });
+      sendNewPassword({ getState, dispatch }, token);
       break;
     case "TOKEN_VALIDATION":
       retrieveToken(dispatch);
