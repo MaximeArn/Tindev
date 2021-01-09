@@ -2,7 +2,9 @@ const jwt = require("jsonwebtoken");
 const secret = process.env.SECRET;
 const { User, Token } = require("../models");
 const SHA256 = require("crypto-js/sha256");
-const sendMail = require("../utils/sendEmailAccountConfirmation");
+const sendAccountActivationEmail = require("../utils/sendAccountConfirmationEmail");
+const sendResetPasswordEmail = require("../utils/sendResetPasswordEmail");
+const mailSender = require("../utils/mailSender");
 const transporter = require("../utils/nodeMailerTransporter");
 const {
   loginValidator,
@@ -110,7 +112,7 @@ const authRouter = {
       next(error);
     }
   },
-  sendActivationLink: async ({ params: { userId } }, res, next) => {
+  sendActivationLink: async ({ body: { userId, type } }, res, next) => {
     try {
       const email = await activationLinkValidator(userId, next);
 
@@ -120,11 +122,10 @@ const authRouter = {
           token: SHA256(userId),
         });
 
-        await sendMail(email, token);
+        const message = await mailSender(email, token, type);
 
         return res.status(200).json({
-          message:
-            "A new activation link has been sent to your email address. Please follow the instructions",
+          message,
         });
       }
     } catch (error) {
@@ -143,16 +144,9 @@ const authRouter = {
           token: SHA256(userId),
         });
 
-        await transporter.sendMail({
-          from: "'Tindev' <no-reply@tindev.com>",
-          to: userEmail,
-          subject: "Forgotten Password",
-          html: `<div>We received a request to reset your password. </div> <br /> <div>Click <a href="http://localhost:8080/account/reset_password/${token}">here</a> to reset your password.</div> <br /> <div>If the origin of the request wasn't yours, please ignore this message.</div>`,
-        });
+        const message = await sendResetPasswordEmail(userEmail, token);
 
-        return res
-          .status(200)
-          .json({ message: "An email has been sent to your email address" });
+        return res.status(200).json({ message });
       }
     } catch (error) {
       next(error);

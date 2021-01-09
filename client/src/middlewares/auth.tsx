@@ -111,7 +111,7 @@ const sendActivationLink = (
 ) => {
   dispatch({ type: "SET_NEW_ACTIVATION_LINK_LOADER", value: true });
   axios
-    .post("/auth/send_new_token", { userId, type })
+    .post("/auth/send_token", { userId, type })
     .then(({ data: { message } }) => {
       dispatch({ type: "ACTIVATION_LINK_SUCCESS_MESSAGE", message });
       dispatch({ type: "ACCOUNT_TOKEN_ERROR_HANDLER" });
