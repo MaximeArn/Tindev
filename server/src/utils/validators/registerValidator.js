@@ -9,7 +9,9 @@ const emailRegex = require("../emailRegex");
 module.exports = async (body, next) => {
   try {
     const { age, city, lastname, firstname, ...mandatory } = body;
-    const requiredFields = Object.values(mandatory).every((value) => value);
+    const requiredFields = Object.values(mandatory).every((value) =>
+      value.trim()
+    );
     body.username = body.username.replace(" ", "");
 
     if (!requiredFields) {
