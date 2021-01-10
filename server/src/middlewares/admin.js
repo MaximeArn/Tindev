@@ -9,17 +9,17 @@ module.exports = ({ cookies: { token } }, res, next) => {
         throw new TokenError("Corrupted Token", 403);
       }
 
-      const user = await User.findById(id);
-
-      if (!user) {
+      if (!(await User.findById(id))) {
         throw new TokenError("This token is invalid", 400);
       }
 
-      if (!(role === "Admin")) {
+      if (role !== "Admin") {
         throw new TokenError("Unauthorized access", 403);
       }
 
       next();
     });
-  } catch (error) {}
+  } catch (error) {
+    next(error);
+  }
 };
