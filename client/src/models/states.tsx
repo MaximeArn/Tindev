@@ -62,6 +62,7 @@ export interface Loaders {
   forgotPasswordLoader: boolean;
   resetPasswordLoader: boolean;
   activationLinkLoader: boolean;
+  adminDeletionLoader: boolean;
   userProfileEditionLoader: {
     fieldName: string | null;
     status: boolean;
@@ -256,5 +257,8 @@ export interface ResetPasswordProps {
 export interface AdminOverlayProps {
   id: string;
   collection: string;
+  error: string;
+  loader: boolean;
+  success: boolean | string;
   deleteProject: Function;
 }

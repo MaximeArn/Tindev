@@ -14,6 +14,7 @@ const admin: Middleware = ({ getState, dispatch }) => (next) => (action) => {
         .delete(`/admin/project/${id}`)
         .then(({ data: { message } }) => {
           dispatch({ type: "ADMIN_DELETION_SUCCESS_MESSAGE", message });
+          dispatch({ type: "ADMIN_PANEL_ERROR_HANDLER" });
           dispatch({ type: "GET_PROJECTS" });
         })
         .catch(({ response: { data: { msg: error } } }) =>
