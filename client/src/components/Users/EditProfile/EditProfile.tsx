@@ -47,40 +47,42 @@ const EditProfile = ({
               accountId={user._id}
             />
           )}
-          {success && <div className="profile-edit-success">{success}</div>}
-          {error && <div className="profile-edit-error">{error}</div>}
           {user && (
-            <div className="profile">
-              <div className="profile-edit-container">
-                {Object.entries(editProfile).map(([prop, value]) => {
-                  const key = prop as keyof typeof EditProfile;
-                  return (
-                    <div key={key} className="profile-container">
-                      <ProfileField
-                        updateUserProfile={updateUserProfile}
-                        name={key}
-                        loader={loader}
-                        inputValue={value}
-                        getEditProfileValue={getEditProfileValue}
-                        resetEditProfileValue={resetEditProfileValue}
-                        value={
-                          user[key]
-                            ? user[key]
-                            : key === "password"
-                            ? "Change your password"
-                            : null
-                        }
-                      />
-                    </div>
-                  );
-                })}
-              </div>
+            <div className="profile-wrapper">
+              {success && <div className="profile-edit-success">{success}</div>}
+              {error && <div className="profile-edit-error">{error}</div>}
+              <div className="profile">
+                <div className="profile-edit-container">
+                  {Object.entries(editProfile).map(([prop, value]) => {
+                    const key = prop as keyof typeof EditProfile;
+                    return (
+                      <div key={key} className="profile-container">
+                        <ProfileField
+                          updateUserProfile={updateUserProfile}
+                          name={key}
+                          loader={loader}
+                          inputValue={value}
+                          getEditProfileValue={getEditProfileValue}
+                          resetEditProfileValue={resetEditProfileValue}
+                          value={
+                            user[key]
+                              ? user[key]
+                              : key === "password"
+                              ? "Change your password"
+                              : null
+                          }
+                        />
+                      </div>
+                    );
+                  })}
+                </div>
 
-              <div
-                className="profile-edit-delete-button"
-                onClick={() => setDeleteModalStatus(true)}
-              >
-                <div>Close this account</div>
+                <button
+                  className="profile-delete-button"
+                  onClick={() => setDeleteModalStatus(true)}
+                >
+                  Close this account
+                </button>
               </div>
             </div>
           )}
