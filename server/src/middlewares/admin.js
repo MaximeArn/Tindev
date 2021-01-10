@@ -3,8 +3,8 @@ const { User } = require("../models");
 const TokenError = require("../utils/CustomError");
 
 module.exports = ({ cookies: { token } }, res, next) => {
-  try {
-    verify(token, process.env.SECRET, async (error, { id, role }) => {
+  verify(token, process.env.SECRET, async (error, { id, role }) => {
+    try {
       if (error) {
         throw new TokenError("Corrupted Token", 403);
       }
@@ -18,8 +18,8 @@ module.exports = ({ cookies: { token } }, res, next) => {
       }
 
       next();
-    });
-  } catch (error) {
-    next(error);
-  }
+    } catch (error) {
+      next(error);
+    }
+  });
 };
