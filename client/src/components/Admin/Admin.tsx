@@ -1,12 +1,12 @@
 import React, { useState } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
-  faTrash,
   faChevronRight,
   faChevronLeft,
 } from "@fortawesome/free-solid-svg-icons";
 import "./admin.scss";
 import { AdminOverlayProps } from "../../models/states";
+import CircularProgress from "@material-ui/core/CircularProgress";
 
 const Admin = ({
   id,
@@ -23,12 +23,18 @@ const Admin = ({
       <div className="admin-overlay-content">
         <h3>Admin Panel</h3>
         {error && <div className="message-error">{error}</div>}
-        {success && <div className="message-success">{success}</div>}
         <button
           onClick={() => deleteProject(id)}
           className="admin-overlay-button"
         >
-          Delete
+          {loader ? (
+            <div className="loading-button">
+              <p>Loading</p>
+              <CircularProgress size={15} />
+            </div>
+          ) : (
+            "Delete"
+          )}
         </button>
         {isPanelOpen && (
           <div className="arrow-close">
