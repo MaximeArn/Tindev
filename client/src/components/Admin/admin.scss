@@ -1,8 +1,35 @@
 .admin-overlay {
-  padding: 2rem;
-  background-color: #fff;
-  border: 1px solid #000;
   position: fixed;
-  bottom: 50px;
-  left: 50px;
+  bottom: 5px;
+  left: -200px;
+  display: flex;
+  align-items: center;
+  transition: 0.4s ease;
+
+  &.open {
+    left: 5px;
+  }
+
+  &-content {
+    padding: 1rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    height: 400px;
+    background-color: #fff;
+    border: 1px solid #000;
+    width: 200px;
+
+    .arrow-close {
+      position: absolute;
+      top: 50%;
+      right: 0;
+    }
+  }
+
+  button {
+    background-color: transparent;
+    border: none;
+    font-size: 2em;
+  }
 }
