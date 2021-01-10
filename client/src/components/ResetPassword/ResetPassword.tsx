@@ -54,14 +54,16 @@ const ResetPassword = ({
         </div>
       ) : success ? (
         <>
-          <div className="reset-password-success">{success}</div>
-          <button
-            type="button"
-            className="reset-password-button"
-            onClick={() => history.push("/")}
-          >
-            Return to home page
-          </button>
+          <div className="reset-password-success">
+            <div className="reset-password-success-message">{success}</div>
+            <button
+              type="button"
+              className="reset-password-button-success"
+              onClick={() => history.push("/")}
+            >
+              Return to home page
+            </button>
+          </div>
         </>
       ) : (
         <div>

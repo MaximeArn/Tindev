@@ -6,7 +6,7 @@ const hash = require("../hashPassword");
 module.exports = async (credentials, next) => {
   try {
     const token = await Token.findOne({ token: credentials.token });
-    const user = await User.findById(token.userId);
+    const user = token && (await User.findById(token.userId));
 
     if (!token || !user) {
       throw new UserError("This token is invalid", 400);
