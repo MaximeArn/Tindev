@@ -10,7 +10,7 @@ const userSchema = new Schema(
     password: String,
     age: Number,
     city: String,
-    role: String,
+    role: { type: String, default: "User" },
     project: ObjectId,
     messages: [
       { to: { id: ObjectId, name: String }, message: String, date: Date },
