@@ -12,6 +12,7 @@ module.exports = async (body, next) => {
     const requiredFields = Object.values(mandatory).every((value) =>
       value.trim()
     );
+
     body.username = body.username.replace(" ", "");
 
     if (!requiredFields) {
