@@ -11,7 +11,7 @@ import { Link, useLocation } from "react-router-dom";
 import userify from "../../../utils/whiteSpaceRemover";
 import idGenerator from "../../../utils/randomIdGenerator";
 import CircularProgress from "@material-ui/core/CircularProgress";
-import AdminOverlay from "../../Admin/Admin";
+import AdminOverlay from "../../containers/Admin";
 
 const Project = ({
   _id,

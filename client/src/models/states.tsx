@@ -254,4 +254,5 @@ export interface ResetPasswordProps {
 export interface AdminOverlayProps {
   id: string;
   collection: string;
+  deleteProject: Function;
 }

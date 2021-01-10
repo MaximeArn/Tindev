@@ -1,7 +1,7 @@
 .admin-overlay {
   position: fixed;
   bottom: 5px;
-  left: -200px;
+  left: -150px;
   display: flex;
   align-items: center;
   transition: 0.4s ease;
@@ -14,11 +14,12 @@
     padding: 1rem;
     display: flex;
     flex-direction: column;
+    justify-content: space-between;
     align-items: center;
-    height: 400px;
+    height: 200px;
     background-color: #fff;
     border: 1px solid #000;
-    width: 200px;
+    width: 150px;
 
     .arrow-close {
       position: absolute;

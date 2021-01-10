@@ -8,14 +8,14 @@ import {
 import "./admin.scss";
 import { AdminOverlayProps } from "../../models/states";
 
-const Admin = ({ id, collection }: AdminOverlayProps) => {
+const Admin = ({ id, collection, deleteProject }: AdminOverlayProps) => {
   const [isPanelOpen, setIsPanelOpen] = useState(false);
 
   return (
     <div className={isPanelOpen ? "admin-overlay open" : "admin-overlay"}>
       <div className="admin-overlay-content">
         <h3>Admin Panel</h3>
-        <button onClick={() => console.log("delete !!")}>
+        <button onClick={() => deleteProject(id)}>
           <FontAwesomeIcon icon={faTrash} color="red" />
         </button>
         {isPanelOpen && (
