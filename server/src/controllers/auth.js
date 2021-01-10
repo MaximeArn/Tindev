@@ -43,7 +43,6 @@ const authRouter = {
   login: async ({ body }, res, next) => {
     try {
       const user = await loginValidator(body, res, next);
-
       if (user) {
         const { _id: id, email, username, role } = user;
         const token = jwt.sign({ id, email, username, role }, secret);

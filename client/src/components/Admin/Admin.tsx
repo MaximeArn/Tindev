@@ -7,10 +7,9 @@ import { AdminOverlayProps } from "../../models/states";
 const Admin = ({ id, collection }: AdminOverlayProps) => {
   return (
     <div className="admin-overlay">
-      <FontAwesomeIcon
-        icon={faTrash}
-        onClick={() => console.log("delete !!")}
-      />
+      <button onClick={() => console.log("delete !!")}>
+        <FontAwesomeIcon icon={faTrash} />
+      </button>
     </div>
   );
 };
