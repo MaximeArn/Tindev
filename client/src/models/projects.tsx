@@ -37,6 +37,7 @@ export interface ProjectDetailSubComponent {
   contributing: undefined | Contributor;
   contributorLoader: boolean;
   leaveProject: Function;
+  admin: boolean;
 }
 export interface ProjectCreation {
   title: string;
@@ -100,6 +101,7 @@ export interface ProjectDetailProps {
   contributorLoader: boolean;
   leaveProject: Function;
   contributing: undefined | Contributor;
+  role: string;
 }
 
 export interface ProjectProp {

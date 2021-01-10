@@ -250,3 +250,8 @@ export interface ResetPasswordProps {
   verifyTokenValidity: Function;
   sendNewResetPasswordLink: Function;
 }
+
+export interface AdminOverlayProps {
+  id: string;
+  collection: string;
+}

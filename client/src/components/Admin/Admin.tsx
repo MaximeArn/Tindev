@@ -2,11 +2,15 @@ import React from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faTrash } from "@fortawesome/free-solid-svg-icons";
 import "./admin.scss";
+import { AdminOverlayProps } from "../../models/states";
 
-const Admin = () => {
+const Admin = ({ id, collection }: AdminOverlayProps) => {
   return (
-    <div className="admin">
-      <FontAwesomeIcon icon={faTrash} />
+    <div className="admin-overlay">
+      <FontAwesomeIcon
+        icon={faTrash}
+        onClick={() => console.log("delete !!")}
+      />
     </div>
   );
 };

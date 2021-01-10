@@ -17,6 +17,7 @@ const ProjectDetail = ({
   contributorLoader,
   contributing,
   leaveProject,
+  role,
 }: ProjectDetailProps) => {
   useEffect(() => {
     getProjectDetails();
@@ -38,6 +39,7 @@ const ProjectDetail = ({
               setModalStatus={setModalStatus}
               {...project}
               owner={owner}
+              admin={role === "Admin"}
               contributing={contributing}
               leaveProject={leaveProject}
               contributorLoader={contributorLoader}

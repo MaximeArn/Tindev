@@ -11,6 +11,7 @@ import { Link, useLocation } from "react-router-dom";
 import userify from "../../../utils/whiteSpaceRemover";
 import idGenerator from "../../../utils/randomIdGenerator";
 import CircularProgress from "@material-ui/core/CircularProgress";
+import AdminOverlay from "../../Admin/Admin";
 
 const Project = ({
   _id,
@@ -25,9 +26,11 @@ const Project = ({
   contributing,
   contributorLoader,
   leaveProject,
+  admin,
 }: ProjectDetailSubComponent) => {
   const typedContributors: Contributor[] | [] = contributors;
   const { pathname } = useLocation();
+  console.log(admin);
   return (
     <>
       {author && (
@@ -111,6 +114,7 @@ const Project = ({
           </div>
         </div>
       )}
+      {admin && <AdminOverlay id={_id} collection="project" />}
     </>
   );
 };
