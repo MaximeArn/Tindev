@@ -131,6 +131,7 @@ export interface ErrorState {
   accountActivationErrorMessage: string;
   forgotPasswordErrorMessage: string;
   resetPasswordErrorMessage: string;
+  adminErrorMessage: string;
   accountTokenVerificationErrorMessage: {
     msg: string;
     userId?: null | string;
@@ -208,6 +209,7 @@ export interface SuccessState {
   activationLinkSuccess: boolean | string;
   forgotPasswordSuccess: boolean | string;
   resetPasswordSuccess: boolean | string;
+  adminProjectDeletionSuccess: boolean | string;
 }
 
 export interface SearchState {

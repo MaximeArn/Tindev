@@ -12,6 +12,7 @@ const initialState: SuccessState = {
   activationLinkSuccess: false,
   forgotPasswordSuccess: false,
   resetPasswordSuccess: false,
+  adminProjectDeletionSuccess: false,
 };
 
 const success = (state = initialState, { type, message }: SuccessAction) => {
@@ -37,6 +38,8 @@ const success = (state = initialState, { type, message }: SuccessAction) => {
       return { ...state, forgotPasswordSuccess: msg };
     case "RESET_PASSWORD_SUCCESS_MESSAGE":
       return { ...state, resetPasswordSuccess: message ?? false };
+    case "ADMIN_DELETION_SUCCESS_MESSAGE":
+      return { ...state, adminProjectDeletionSuccess: message ?? false };
     default:
       return state;
   }

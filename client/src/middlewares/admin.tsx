@@ -9,10 +9,19 @@ const admin: Middleware = ({ getState, dispatch }) => (next) => (action) => {
   const { type, id } = action;
   switch (type) {
     case "DELETE_PROJECT":
+      dispatch({ type: "SET_ADMIN_DELETION_LOADER", value: true });
       axios
         .delete(`/admin/project/${id}`)
-        .then(({ data }) => console.log(data))
-        .catch(({ response: { data: { msg } } }) => console.log(msg));
+        .then(({ data: { message } }) => {
+          dispatch({ type: "ADMIN_DELETION_SUCCESS_MESSAGE", message });
+          dispatch({ type: "GET_PROJECTS" });
+        })
+        .catch(({ response: { data: { msg: error } } }) =>
+          dispatch({ type: "ADMIN_PANEL_ERROR_HANDLER", error })
+        )
+        .finally(() =>
+          dispatch({ type: "SET_ADMIN_DELETION_LOADER", value: false })
+        );
       break;
     default:
       next(action);
