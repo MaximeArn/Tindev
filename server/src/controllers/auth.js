@@ -45,13 +45,14 @@ const authRouter = {
       const user = await loginValidator(body, res, next);
 
       if (user) {
-        const { _id: id, email, username } = user;
-        const token = jwt.sign({ id, email, username }, secret);
+        const { _id: id, email, username, role } = user;
+        const token = jwt.sign({ id, email, username, role }, secret);
 
         return res.status(200).json({
           token,
           email,
           username,
+          role,
         });
       }
     } catch (error) {

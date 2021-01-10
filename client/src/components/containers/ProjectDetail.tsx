@@ -24,6 +24,7 @@ const mapState = ({
     user &&
     project?.contributors.find(({ username }) => username === user.username);
   return {
+    role: user.role,
     project,
     isModalOpen: applyModal,
     owner,

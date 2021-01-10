@@ -153,7 +153,7 @@ export interface AppProps {
 }
 
 export interface NavState {
-  user: { email: string; username: string } | null;
+  user: AuthUserState | null;
   search: string;
   focused: boolean;
   logout: Function;

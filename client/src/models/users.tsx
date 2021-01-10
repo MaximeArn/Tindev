@@ -66,6 +66,7 @@ export interface UserProps {
 export interface AuthUserState {
   email: string;
   username: string;
+  role: string;
 }
 
 export interface EditUserProfile {
