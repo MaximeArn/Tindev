@@ -79,8 +79,10 @@ const authRouter = {
   },
   verify: async ({ cookies: { token } }, res, next) => {
     try {
-      const { username, email } = await tokenValidator(token, next);
-      return email && username && res.status(200).json({ username, email });
+      const { username, email, role } = await tokenValidator(token, next);
+      return (
+        email && username && res.status(200).json({ username, email, role })
+      );
     } catch (error) {
       next(error);
     }
