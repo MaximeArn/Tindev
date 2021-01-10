@@ -11,6 +11,7 @@ const { chatHandler } = require("./controllers/chat");
 const mongoDB = require("./config/database");
 const cors = require("cors");
 const corsSettings = require("./config/cors");
+const adminMiddleware = require("./middlewares/admin");
 const {
   authRouter,
   usersRouter,
@@ -18,6 +19,7 @@ const {
   projectRouter,
   searchRouter,
   notificationsRouter,
+  adminRouter,
 } = require("./router");
 
 const ioNameSpace = io.of("/chat");
@@ -33,6 +35,7 @@ server.use("/categories", categoriesRouter);
 server.use("/users", usersRouter);
 server.use("/search", searchRouter);
 server.use("/notifications", notificationsRouter);
+server.use("/admin", adminMiddleware, adminRouter);
 server.use(errorHandler);
 server.use(notFound);
 
