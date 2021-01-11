@@ -30,10 +30,14 @@ const admin: Middleware = ({ getState, dispatch }) => (next) => (action) => {
       axios
         .patch(`/admin/user/${id}`, { duration })
         .then(({ data: { message } }) => {
-          console.log(message);
+          dispatch({ type: "ADMIN_DELETION_SUCCESS_MESSAGE", message });
+          dispatch({ type: "ADMIN_PANEL_ERROR_HANDLER" });
+          dispatch({ type: "GET_USERS" });
           history.push("/users");
         })
-        .catch(({ response: { data: { msg: error } } }) => console.error(error))
+        .catch(({ response: { data: { msg: error } } }) =>
+          dispatch({ type: "ADMIN_PANEL_ERROR_HANDLER", error })
+        )
         .finally(() =>
           dispatch({ type: "SET_ADMIN_DELETION_LOADER", value: false })
         );
