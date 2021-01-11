@@ -269,4 +269,5 @@ export interface AdminOverlayProps {
 
 export interface RadioInputProps {
   duration: number | string;
+  setDuration: Function;
 }

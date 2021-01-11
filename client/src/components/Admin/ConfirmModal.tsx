@@ -7,8 +7,10 @@ const ConfirmModal = ({
   closeModal,
   banUser,
   id,
+  duration,
 }: AdminConfirmationProps) => {
   const modal = useRef<any>(null);
+  console.log("DURATION : ", duration);
 
   useEffect(() => {
     document.addEventListener("click", handleClick);

@@ -22,6 +22,7 @@ const Admin = ({
   banUser,
 }: AdminOverlayProps) => {
   const [isPanelOpen, setIsPanelOpen] = useState(false);
+  const [duration, setDuration] = useState(null);
 
   return (
     <>
@@ -32,6 +33,7 @@ const Admin = ({
           collection={collection}
           closeModal={() => setModalStatus(false)}
           banUser={banUser}
+          duration={duration}
         />
       )}
       <div className={isPanelOpen ? "admin-overlay open" : "admin-overlay"}>
@@ -41,7 +43,11 @@ const Admin = ({
           {collection === "user" && (
             <form>
               {[12, 24, 48, "permanent"].map((duration) => (
-                <Input key={duration} duration={duration} />
+                <Input
+                  key={duration}
+                  duration={duration}
+                  setDuration={setDuration}
+                />
               ))}
             </form>
           )}

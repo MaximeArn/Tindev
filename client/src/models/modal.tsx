@@ -52,4 +52,5 @@ export interface AdminConfirmationProps {
   closeModal: Function;
   banUser: Function;
   id: string;
+  duration: number | string | null;
 }
