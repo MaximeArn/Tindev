@@ -33,6 +33,10 @@ const admin: Middleware = ({ getState, dispatch }) => (next) => (action) => {
           dispatch({ type: "ADMIN_DELETION_SUCCESS_MESSAGE", message });
           dispatch({ type: "ADMIN_PANEL_ERROR_HANDLER" });
           dispatch({ type: "GET_USERS" });
+          dispatch({
+            type: "SET_ADMIN_CONFIRMATION_MODAL_STATUS",
+            modalStatus: false,
+          });
           history.push("/users");
         })
         .catch(({ response: { data: { msg: error } } }) =>

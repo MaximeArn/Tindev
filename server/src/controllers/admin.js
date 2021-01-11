@@ -23,7 +23,6 @@ module.exports = {
   expellUser: async ({ params: { id }, body: { duration } }, res, next) => {
     try {
       const user = await userProfileValidator({ _id: id }, next);
-      console.log("validator --> ", user);
       if (user) {
         await User.updateOne(
           { _id: id },
