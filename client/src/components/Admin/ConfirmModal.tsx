@@ -32,7 +32,9 @@ const ConfirmModal = ({
           <div className="profile-deletion-modal-buttons">
             <button
               className="profile-deletion-modal-button"
-              onClick={collection === "project" ? deleteProject(id) : banUser()}
+              onClick={() =>
+                collection === "project" ? deleteProject(id) : banUser()
+              }
             >
               Yes
             </button>
