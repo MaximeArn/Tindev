@@ -264,4 +264,5 @@ export interface AdminOverlayProps {
   deleteProject: Function;
   modal: boolean;
   setModalStatus: Function;
+  banUser: Function;
 }

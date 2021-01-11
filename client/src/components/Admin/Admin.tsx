@@ -18,6 +18,7 @@ const Admin = ({
   deleteProject,
   modal,
   setModalStatus,
+  banUser,
 }: AdminOverlayProps) => {
   const [isPanelOpen, setIsPanelOpen] = useState(false);
 
@@ -26,8 +27,10 @@ const Admin = ({
       {modal && (
         <ConfirmatonModal
           deleteProject={deleteProject}
+          id={id}
           collection={collection}
           closeModal={() => setModalStatus(false)}
+          banUser={banUser}
         />
       )}
       <div className={isPanelOpen ? "admin-overlay open" : "admin-overlay"}>

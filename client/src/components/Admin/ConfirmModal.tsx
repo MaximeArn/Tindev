@@ -5,6 +5,8 @@ const ConfirmModal = ({
   collection,
   deleteProject,
   closeModal,
+  banUser,
+  id,
 }: AdminConfirmationProps) => {
   const modal = useRef<any>(null);
 
@@ -30,7 +32,7 @@ const ConfirmModal = ({
           <div className="profile-deletion-modal-buttons">
             <button
               className="profile-deletion-modal-button"
-              onClick={() => console.log("yes")}
+              onClick={collection === "project" ? deleteProject(id) : banUser()}
             >
               Yes
             </button>
