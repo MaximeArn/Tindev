@@ -10,6 +10,10 @@ const userSchema = new Schema(
     password: String,
     age: Number,
     city: String,
+    suspended: {
+      status: { type: Boolean, default: false },
+      duration: { type: Number, default: 0 },
+    },
     role: { type: String, default: "User" },
     project: ObjectId,
     messages: [

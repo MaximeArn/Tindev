@@ -31,7 +31,7 @@ const usersController = {
   ) => {
     try {
       const { id } = await tokenValidator(token, next);
-      const user = await userProfileValidator(username, next);
+      const user = await userProfileValidator({ username }, next);
 
       if (id && user) {
         return res.status(200).json(user);

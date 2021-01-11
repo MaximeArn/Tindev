@@ -1,5 +1,8 @@
 const { User, Project } = require("../models");
-const { projectDeletionValidator } = require("../utils/validators/");
+const {
+  projectDeletionValidator,
+  userProfileValidator,
+} = require("../utils/validators/");
 
 module.exports = {
   deleteProject: async ({ params: { id } }, res, next) => {
@@ -19,6 +22,18 @@ module.exports = {
   },
   expellUser: async ({ params: { id }, body: { duration } }, res, next) => {
     try {
+      const user = await userProfileValidator({ id }, next);
+      if (user) {
+        await User.update(
+          { _id: id },
+          {
+            suspended: {
+              status: true,
+              duration: isNaN(duration) ? 0 : Date.now() * 60 * 60 * duration,
+            },
+          }
+        );
+      }
     } catch (error) {
       next(error);
     }
