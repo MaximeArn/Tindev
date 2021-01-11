@@ -23,7 +23,8 @@ const mapDispatch = (dispatch: Dispatch<AnyAction>, { history }: OwnProps) => ({
     dispatch({ type: "DELETE_PROJECT", id, history }),
   setModalStatus: (modalStatus: boolean) =>
     dispatch({ type: "SET_ADMIN_CONFIRMATION_MODAL_STATUS", modalStatus }),
-  banUser: (time: number) => dispatch({ type: "BAN_USER", time }),
+  banUser: (id: string, duration: number | string) =>
+    dispatch({ type: "BAN_USER", id, duration }),
 });
 
 export default withRouter(connect(mapState, mapDispatch)(Admin));

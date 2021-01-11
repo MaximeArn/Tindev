@@ -17,5 +17,10 @@ module.exports = {
       next(error);
     }
   },
-  expellUser: async (req, res, next) => {},
+  expellUser: async ({ params: { id }, body: { duration } }, res, next) => {
+    try {
+    } catch (error) {
+      next(error);
+    }
+  },
 };

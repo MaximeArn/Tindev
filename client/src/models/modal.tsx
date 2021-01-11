@@ -53,4 +53,5 @@ export interface AdminConfirmationProps {
   banUser: Function;
   id: string;
   duration: number | string | null;
+  loader: boolean;
 }

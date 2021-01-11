@@ -1,5 +1,6 @@
 import React, { useRef, useEffect } from "react";
 import { AdminConfirmationProps } from "../../models/modal";
+import CircularProgress from "@material-ui/core/CircularProgress";
 
 const ConfirmModal = ({
   collection,
@@ -8,9 +9,9 @@ const ConfirmModal = ({
   banUser,
   id,
   duration,
+  loader,
 }: AdminConfirmationProps) => {
   const modal = useRef<any>(null);
-  console.log("DURATION : ", duration);
 
   useEffect(() => {
     document.addEventListener("click", handleClick);
@@ -35,10 +36,19 @@ const ConfirmModal = ({
             <button
               className="profile-deletion-modal-button"
               onClick={() =>
-                collection === "project" ? deleteProject(id) : banUser()
+                collection === "project"
+                  ? deleteProject(id)
+                  : banUser(id, duration)
               }
             >
-              Yes
+              {loader ? (
+                <div className="loading-button">
+                  <p>Loading</p>
+                  <CircularProgress size={15} />
+                </div>
+              ) : (
+                "Yes"
+              )}
             </button>
             <button
               className="profile-deletion-modal-button"

@@ -6,7 +6,6 @@ import {
 } from "@fortawesome/free-solid-svg-icons";
 import "./admin.scss";
 import { AdminOverlayProps } from "../../models/states";
-import CircularProgress from "@material-ui/core/CircularProgress";
 import ConfirmatonModal from "./ConfirmModal";
 import Input from "./RadioInput";
 
@@ -34,6 +33,7 @@ const Admin = ({
           closeModal={() => setModalStatus(false)}
           banUser={banUser}
           duration={duration}
+          loader={loader}
         />
       )}
       <div className={isPanelOpen ? "admin-overlay open" : "admin-overlay"}>
@@ -55,14 +55,7 @@ const Admin = ({
             onClick={() => setModalStatus(true)}
             className="admin-overlay-button"
           >
-            {loader ? (
-              <div className="loading-button">
-                <p>Loading</p>
-                <CircularProgress size={15} />
-              </div>
-            ) : (
-              "Delete"
-            )}
+            {collection === "project" ? "Delete" : "Ban"}
           </button>
           {isPanelOpen && (
             <div className="arrow-close">
