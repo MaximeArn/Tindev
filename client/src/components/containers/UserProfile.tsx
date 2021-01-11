@@ -6,10 +6,14 @@ import { withRouter } from "react-router-dom";
 import { OwnProps } from "../../models/connect";
 
 const mapState = ({
+  auth: {
+    user: { role },
+  },
   users: { user },
   error: { userProfileErrorMessage: error },
   loaders: { userProfileLoader: loader },
 }: State) => ({
+  admin: role === "Admin",
   user,
   error,
   loader,

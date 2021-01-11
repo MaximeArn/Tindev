@@ -2,9 +2,16 @@ import React, { useEffect } from "react";
 import { UserProfileProps } from "../../../models/users";
 import CircularProgress from "@material-ui/core/CircularProgress";
 import User from "../../containers/User";
+import AdminPanel from "../../containers/Admin";
 import "./userprofile.scss";
 
-const UserProfile = ({ user, error, loader, getUser }: UserProfileProps) => {
+const UserProfile = ({
+  admin,
+  user: { _id: id },
+  error,
+  loader,
+  getUser,
+}: UserProfileProps) => {
   useEffect(() => {
     getUser();
   }, []);
@@ -22,7 +29,7 @@ const UserProfile = ({ user, error, loader, getUser }: UserProfileProps) => {
             <div className="user-profile-error">{error}</div>
           ) : (
             <>
-              {user && (
+              {id && (
                 <div className="user-profile">
                   <User />
                 </div>
@@ -31,6 +38,7 @@ const UserProfile = ({ user, error, loader, getUser }: UserProfileProps) => {
           )}
         </>
       )}
+      {admin && <AdminPanel id={id} collection="user" />}
     </>
   );
 };

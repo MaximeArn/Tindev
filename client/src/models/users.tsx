@@ -36,6 +36,7 @@ export interface User {
 }
 
 export interface UserProfileProps {
+  admin: string;
   user: User;
   error: string;
   loader: boolean;
