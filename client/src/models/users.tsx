@@ -36,7 +36,7 @@ export interface User {
 }
 
 export interface UserProfileProps {
-  admin: string;
+  admin: boolean;
   user: User;
   error: string;
   loader: boolean;

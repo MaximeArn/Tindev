@@ -7,7 +7,7 @@ import "./userprofile.scss";
 
 const UserProfile = ({
   admin,
-  user: { _id: id },
+  user,
   error,
   loader,
   getUser,
@@ -29,16 +29,19 @@ const UserProfile = ({
             <div className="user-profile-error">{error}</div>
           ) : (
             <>
-              {id && (
-                <div className="user-profile">
-                  <User />
-                </div>
+              {user && (
+                <>
+                  <div className="user-profile">
+                    <User />
+                  </div>
+
+                  {admin && <AdminPanel id={user._id} collection="user" />}
+                </>
               )}
             </>
           )}
         </>
       )}
-      {admin && <AdminPanel id={id} collection="user" />}
     </>
   );
 };
