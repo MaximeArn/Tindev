@@ -266,3 +266,7 @@ export interface AdminOverlayProps {
   setModalStatus: Function;
   banUser: Function;
 }
+
+export interface RadioInputProps {
+  duration: number | string;
+}

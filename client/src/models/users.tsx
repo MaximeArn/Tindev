@@ -1,6 +1,6 @@
 export interface UserState {
   users: User[];
-  user: any | null;
+  user: any;
   editProfile: EditProfile;
 }
 

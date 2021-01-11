@@ -8,6 +8,7 @@ import "./admin.scss";
 import { AdminOverlayProps } from "../../models/states";
 import CircularProgress from "@material-ui/core/CircularProgress";
 import ConfirmatonModal from "./ConfirmModal";
+import Input from "./RadioInput";
 
 const Admin = ({
   id,
@@ -37,6 +38,13 @@ const Admin = ({
         <div className="admin-overlay-content">
           <h3>Admin Panel</h3>
           {error && <div className="message-error">{error}</div>}
+          {collection === "user" && (
+            <form>
+              {[12, 24, 48, "permanent"].map((duration) => (
+                <Input key={duration} duration={duration} />
+              ))}
+            </form>
+          )}
           <button
             onClick={() => setModalStatus(true)}
             className="admin-overlay-button"

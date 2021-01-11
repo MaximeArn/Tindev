@@ -3,7 +3,7 @@ import { UserAction } from "../models/actions";
 
 const initialState: UserState = {
   users: [],
-  user: null,
+  user: {},
   editProfile: {
     username: "",
     firstname: "",

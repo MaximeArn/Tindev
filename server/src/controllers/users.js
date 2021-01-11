@@ -34,7 +34,6 @@ const usersController = {
       const user = await userProfileValidator(username, next);
 
       if (id && user) {
-        console.log("RETURNED USER : ", user);
         return res.status(200).json(user);
       }
     } catch (error) {
