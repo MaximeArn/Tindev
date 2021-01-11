@@ -45,3 +45,8 @@ export interface ForgotPasswordProps {
   success: boolean | string;
   loader: boolean;
 }
+
+export interface AdminConfirmationProps {
+  deleteProject: Function;
+  collection: string;
+}

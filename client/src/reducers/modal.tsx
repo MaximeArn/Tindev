@@ -7,6 +7,7 @@ const initialState: ModalState = {
   deleteProjectModal: false,
   closeAccountModal: false,
   forgotPasswordModal: false,
+  adminConfirmationModal: false,
   authModal: {
     login: false,
     register: false,
@@ -56,6 +57,8 @@ const modal = (
       };
     case "SET_ACCOUNT_DELETION_MODAL_STATUS":
       return { ...state, closeAccountModal: modalStatus };
+    case "SET_ADMIN_CONFIRMATION_MODAL_STATUS":
+      return { ...state, adminConfirmationModal: modalStatus };
     default:
       return state;
   }

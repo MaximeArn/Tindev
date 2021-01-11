@@ -189,6 +189,7 @@ export interface ModalState {
   deleteProjectModal: boolean;
   closeAccountModal: boolean;
   forgotPasswordModal: boolean;
+  adminConfirmationModal: boolean;
   authModal: {
     login: boolean;
     register: boolean;

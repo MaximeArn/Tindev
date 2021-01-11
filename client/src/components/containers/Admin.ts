@@ -10,15 +10,19 @@ const mapState = ({
   loaders: { adminDeletionLoader: loader },
   error: { adminErrorMessage: error },
   success: { adminProjectDeletionSuccess: success },
+  modal: { adminConfirmationModal: modal },
 }: State) => ({
   loader,
   error,
   success,
+  modal,
 });
 
 const mapDispatch = (dispatch: Dispatch<AnyAction>, { history }: OwnProps) => ({
   deleteProject: (id: string) =>
     dispatch({ type: "DELETE_PROJECT", id, history }),
+  setModalStatus: (modalStatus: boolean) =>
+    dispatch({ type: "SET_ADMIN_CONFIRMATION_MODAL_STATUS", modalStatus }),
 });
 
 export default withRouter(connect(mapState, mapDispatch)(Admin));

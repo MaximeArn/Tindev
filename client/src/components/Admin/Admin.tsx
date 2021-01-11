@@ -7,6 +7,7 @@ import {
 import "./admin.scss";
 import { AdminOverlayProps } from "../../models/states";
 import CircularProgress from "@material-ui/core/CircularProgress";
+import ConfirmatonModal from "./ConfirmModal";
 
 const Admin = ({
   id,
