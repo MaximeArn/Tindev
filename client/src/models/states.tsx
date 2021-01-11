@@ -262,4 +262,6 @@ export interface AdminOverlayProps {
   loader: boolean;
   success: boolean | string;
   deleteProject: Function;
+  modal: boolean;
+  setModalStatus: Function;
 }

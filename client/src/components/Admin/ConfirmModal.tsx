@@ -1,11 +1,23 @@
-import React, { useRef } from "react";
+import React, { useRef, useEffect } from "react";
 import { AdminConfirmationProps } from "../../models/modal";
 
 const ConfirmModal = ({
   collection,
   deleteProject,
+  closeModal,
 }: AdminConfirmationProps) => {
   const modal = useRef<any>(null);
+
+  useEffect(() => {
+    document.addEventListener("click", handleClick);
+    return () => {
+      document.removeEventListener("click", handleClick);
+    };
+  }, []);
+
+  const handleClick = ({ target }: MouseEvent) => {
+    !modal.current.contains(target) && closeModal();
+  };
 
   return (
     <div className="profile-deletion">
@@ -18,13 +30,13 @@ const ConfirmModal = ({
           <div className="profile-deletion-modal-buttons">
             <button
               className="profile-deletion-modal-button"
-              onClick={() => deleteAccount(accountId)}
+              onClick={() => console.log("yes")}
             >
               Yes
             </button>
             <button
               className="profile-deletion-modal-button"
-              onClick={() => setDeleteModalStatus(false)}
+              onClick={() => closeModal()}
             >
               No
             </button>

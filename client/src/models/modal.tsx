@@ -49,4 +49,5 @@ export interface ForgotPasswordProps {
 export interface AdminConfirmationProps {
   deleteProject: Function;
   collection: string;
+  closeModal: Function;
 }
