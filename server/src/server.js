@@ -1,6 +1,6 @@
 require("dotenv").config();
 const express = require("express");
-const server = require("express")();
+const server = express();
 const http = require("http").createServer(server);
 const io = require("socket.io")(http, { cookie: false });
 const cookieParser = require("cookie-parser");
