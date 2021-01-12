@@ -22,6 +22,10 @@ module.exports = async (body, res, next) => {
       return null;
     }
 
+    if (user.suspended.status) {
+      throw new UserError("Your account has been suspended until x", 403);
+    }
+
     return user;
   } catch (error) {
     next(error);
