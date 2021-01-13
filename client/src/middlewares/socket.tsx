@@ -12,7 +12,6 @@ let socket: any;
 
 const serverSocketListener = (dispatch: Dispatch<AnyAction>) => {
   socket.on("chat-message", (message: SocketServerResponse) => {
-    console.log("MESSAGE RECEIVED FROM SERVER : ", message);
     dispatch({ type: "SET_CHAT_MESSAGES", message });
   });
 

@@ -1,11 +1,13 @@
-import React from "react";
+import React, { useEffect } from "react";
 import "./visitorPage.scss";
 import image from "src/assets/home-image.jpg";
-interface Visitor {
-  openModal: Function;
-}
+import { VisitorPageProps } from "../../models/states";
 
-const VisitorPage = ({ openModal }: Visitor) => {
+const VisitorPage = ({ openModal, resetGlobalState }: VisitorPageProps) => {
+  useEffect(() => {
+    resetGlobalState && resetGlobalState();
+  }, []);
+
   return (
     <div
       className="visitor-page"

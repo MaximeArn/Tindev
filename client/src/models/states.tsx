@@ -271,3 +271,8 @@ export interface RadioInputProps {
   duration: number | string;
   setDuration: Function;
 }
+
+export interface VisitorPageProps {
+  resetGlobalState?: Function;
+  openModal: Function;
+}
