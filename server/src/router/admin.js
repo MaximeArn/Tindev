@@ -6,6 +6,8 @@ const adminRouterWrapper = (connectedUsers) => {
   router.patch("/user/:id", (req, res, next) => {
     expellUser(req, res, next, connectedUsers);
   });
+
+  return router;
 };
 
 module.exports = adminRouterWrapper;

@@ -30,7 +30,9 @@ module.exports = {
       const user = await userProfileValidator({ _id: id }, next);
 
       if (user) {
-        //TODO: GET BANNED USER SOCKET FROM SOCKET OBJECT AND SEND NEW EVENT TO EXPELL HIM FROM THE APP
+        const { username } = user;
+        const userSocket = connectedUsers[username];
+
         await User.updateOne(
           { _id: id },
           {
@@ -41,6 +43,8 @@ module.exports = {
             },
           }
         );
+
+        userSocket && userSocket.socket.emit("expell-user");
 
         return res.status(200).json({
           message: "This user's account has been successfully suspended",
