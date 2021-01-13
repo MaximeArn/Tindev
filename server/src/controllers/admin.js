@@ -23,16 +23,19 @@ module.exports = {
   expellUser: async ({ params: { id }, body: { duration } }, res, next) => {
     try {
       const user = await userProfileValidator({ _id: id }, next);
+
       if (user) {
         await User.updateOne(
           { _id: id },
           {
             suspended: {
               status: true,
-              duration: isNaN(duration) ? 0 : Date.now() * 60 * 60 * duration,
+              duration:
+                !isNaN(duration) && new Date(Date.now() + duration * 60 * 60),
             },
           }
         );
+
         return res.status(200).json({
           message: "This user's account has been successfully suspended",
         });

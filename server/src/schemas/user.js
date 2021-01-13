@@ -12,7 +12,7 @@ const userSchema = new Schema(
     city: String,
     suspended: {
       status: { type: Boolean, default: false },
-      duration: { type: Number, default: 0 },
+      duration: { type: Date, default: null },
     },
     role: { type: String, default: "User" },
     project: ObjectId,
