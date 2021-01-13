@@ -13,13 +13,13 @@ const cors = require("cors");
 const corsSettings = require("./config/cors");
 const adminMiddleware = require("./middlewares/admin");
 const {
-  authRouter,
+  authRouterWrapper,
   usersRouter,
   categoriesRouter,
-  projectRouter,
+  projectRouterWrapper,
   searchRouter,
   notificationsRouter,
-  adminRouter,
+  adminRouterWrapper,
 } = require("./router");
 
 const ioNameSpace = io.of("/chat");
@@ -29,13 +29,13 @@ server.use(cors(corsSettings));
 server.use(express.static(`${__dirname}/public`));
 server.use(express.json());
 server.use(cookieParser());
-server.use("/auth", authRouter(connectedUsers));
-server.use("/project", projectRouter(connectedUsers));
+server.use("/auth", authRouterWrapper(connectedUsers));
+server.use("/project", projectRouterWrapper(connectedUsers));
 server.use("/categories", categoriesRouter);
 server.use("/users", usersRouter);
 server.use("/search", searchRouter);
 server.use("/notifications", notificationsRouter);
-server.use("/admin", adminMiddleware, adminRouter);
+server.use("/admin", adminMiddleware, adminRouterWrapper(connectedUsers));
 server.use(errorHandler);
 server.use(notFound);
 

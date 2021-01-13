@@ -1,17 +1,17 @@
-const authRouter = require("./auth");
+const authRouterWrapper = require("./auth");
 const categoriesRouter = require("./categories");
-const projectRouter = require("./project");
+const projectRouterWrapper = require("./project");
 const usersRouter = require("./users");
 const searchRouter = require("./search");
 const notificationsRouter = require("./notifications");
-const adminRouter = require("./admin");
+const adminRouterWrapper = require("./admin");
 
 module.exports = {
-  authRouter,
+  authRouterWrapper,
   categoriesRouter,
-  projectRouter,
+  projectRouterWrapper,
   usersRouter,
   searchRouter,
   notificationsRouter,
-  adminRouter,
+  adminRouterWrapper,
 };
