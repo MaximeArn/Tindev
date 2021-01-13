@@ -27,8 +27,11 @@ module.exports = async (body, res, next) => {
         suspended: { duration },
       } = user;
 
+      console.log({ duration, now: new Date() });
       const remaining =
-        duration && Math.floor((duration - new Date()) / 60 / 60);
+        duration && Math.floor(Math.abs(duration - new Date()) / 36e5);
+
+      console.log(remaining);
 
       const message = !remaining
         ? "Your account has been suspended permanently"

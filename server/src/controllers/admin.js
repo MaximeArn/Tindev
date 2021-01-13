@@ -32,14 +32,15 @@ module.exports = {
       if (user) {
         const { username } = user;
         const userSocket = connectedUsers[username];
+        const currentDate = new Date();
+        currentDate.setTime(currentDate.getTime() + duration * 60 * 60 * 1000);
 
         await User.updateOne(
           { _id: id },
           {
             suspended: {
               status: true,
-              duration:
-                !isNaN(duration) && new Date(Date.now() + duration * 60 * 60),
+              duration: !isNaN(duration) && currentDate,
             },
           }
         );
