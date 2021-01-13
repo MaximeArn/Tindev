@@ -51,11 +51,3 @@ mongoDB.on("error", () => console.log("Error connecting to database"));
 mongoDB.once("open", () => console.log("Connected to mongo database"));
 
 module.exports = { server, http };
-
-const duration = new Date(Date.now() + 48 * 60 * 60);
-const diff = duration - new Date();
-
-let minutes = diff / 1000 / 60;
-let hours = Math.floor((minutes / 60) * 1000);
-
-console.log(hours);
