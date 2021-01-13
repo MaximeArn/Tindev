@@ -20,11 +20,17 @@ module.exports = {
       next(error);
     }
   },
-  expellUser: async ({ params: { id }, body: { duration } }, res, next) => {
+  expellUser: async (
+    { params: { id }, body: { duration } },
+    res,
+    next,
+    connectedUsers
+  ) => {
     try {
       const user = await userProfileValidator({ _id: id }, next);
 
       if (user) {
+        //TODO: GET BANNED USER SOCKET FROM SOCKET OBJECT AND SEND NEW EVENT TO EXPELL HIM FROM THE APP
         await User.updateOne(
           { _id: id },
           {
