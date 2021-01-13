@@ -23,6 +23,10 @@ const serverSocketListener = (dispatch: Dispatch<AnyAction>) => {
   socket.on("chat-popup", (windows: ChatWindow[]) =>
     dispatch({ type: "SET_CHAT_WINDOWS", windows })
   );
+
+  socket.on("expell-user", () => {
+    dispatch({ type: "DISCONNECT_USER" });
+  });
 };
 
 const sendMessage = (

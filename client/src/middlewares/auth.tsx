@@ -71,10 +71,11 @@ const retrieveToken = (dispatch: Dispatch<AnyAction>) => {
       .catch(({ response }) => console.log(response));
 };
 
-const logout = (dispatch: Dispatch<AnyAction>) => {
+const logout = ({ dispatch, history }: AxiosSubmit) => {
   axios.delete("/auth/logout").finally(() => {
     Cookies.remove("token");
     dispatch({ type: "RESET_GLOBAL_STATE" });
+    history.push("/");
   });
 };
 
@@ -180,7 +181,7 @@ const sendNewPassword = async (
 const auth: Middleware = ({ getState, dispatch }) => (next) => (
   action: AuthMiddleware
 ) => {
-  const { type, token, userId, linkType } = action;
+  const { type, token, userId, linkType, history } = action;
   switch (type) {
     case "SUBMIT_REGISTER":
       createUser({ getState, dispatch });
@@ -207,7 +208,7 @@ const auth: Middleware = ({ getState, dispatch }) => (next) => (
       retrieveToken(dispatch);
       break;
     case "DISCONNECT_USER":
-      logout(dispatch);
+      logout({ dispatch, history });
       break;
     default:
       next(action);
