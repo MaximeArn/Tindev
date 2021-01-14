@@ -70,7 +70,11 @@ const Login = ({
                   </div>
                 </button>
               ) : (
-                <button type="submit" className="submitButton">
+                <button
+                  type="submit"
+                  className="submitButton"
+                  disabled={loginLoader}
+                >
                   Continue
                 </button>
               )}

@@ -1,5 +1,3 @@
-/** @format */
-
 import { connect } from "react-redux";
 import Login from "../Auth/Login/Login";
 import { State } from "../../models/states";

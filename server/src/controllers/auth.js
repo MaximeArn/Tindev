@@ -43,6 +43,7 @@ const authRouter = {
   login: async ({ body }, res, next) => {
     try {
       const user = await loginValidator(body, res, next);
+
       if (user) {
         const { _id: id, email, username, role } = user;
         const token = jwt.sign({ id, email, username, role }, secret);
@@ -80,10 +81,12 @@ const authRouter = {
   },
   verify: async ({ cookies: { token } }, res, next) => {
     try {
-      const { username, email, role } = await tokenValidator(token, next);
-      return (
-        email && username && res.status(200).json({ username, email, role })
-      );
+      const verified = await tokenValidator(token, next);
+
+      if (verified) {
+        const { email, username, role } = verified;
+        return res.status(200).json({ username, email, role });
+      }
     } catch (error) {
       next(error);
     }

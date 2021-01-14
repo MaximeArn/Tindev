@@ -50,8 +50,6 @@ const auth = (
       return { ...state, [authType]: resetInputs(state[authType]) };
     case "CONNECT_USER":
       return { ...state, user: credentials };
-    case "DISCONNECTION":
-      return initialState;
     default:
       return state;
   }
