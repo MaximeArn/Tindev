@@ -30,11 +30,12 @@ module.exports = async (body, res, next) => {
       const remaining =
         duration && Math.floor(Math.abs(duration - new Date()) / 36e5);
 
-      const message = !remaining
-        ? "Your account has been suspended permanently"
-        : `Your account has been suspended for ${remaining} ${
-            remaining <= 1 ? "hour" : "hours"
-          }`;
+      const message =
+        remaining === false
+          ? "Your account has been suspended permanently"
+          : `Your account has been suspended for ${
+              remaining <= 0 ? 1 : remaining
+            } more ${remaining <= 1 ? "hour" : "hours"}`;
 
       throw new UserError(message, 403);
     }
