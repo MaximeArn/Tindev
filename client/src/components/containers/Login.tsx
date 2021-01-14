@@ -36,7 +36,11 @@ const mapDispatch = (dispatch: Dispatch<AnyAction>) => ({
     dispatch({ type: "RESET_AUTH_MODAL_ERROR_VALUES" });
   },
   sendActivationLink: (userId: string) =>
-    dispatch({ type: "SEND_ACCOUNT_ACTIVATION_LINK", userId }),
+    dispatch({
+      type: "SEND_ACCOUNT_ACTIVATION_LINK",
+      userId,
+      linkType: "accountActivation",
+    }),
 });
 
 export default connect(mapState, mapDispatch)(Login);
