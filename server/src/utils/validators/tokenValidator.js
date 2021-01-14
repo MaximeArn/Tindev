@@ -14,6 +14,8 @@ module.exports = async (token, next) => {
 
       if (!exists) throw new UserError("User does not exists.", 403);
 
+      //TODO: check if user is not suspended
+
       return decoded;
     });
   } catch (error) {
