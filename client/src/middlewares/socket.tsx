@@ -25,8 +25,7 @@ const serverSocketListener = (dispatch: Dispatch<AnyAction>) => {
 
   socket.on("expell-user", (message: string) => {
     dispatch({ type: "DISCONNECT_USER" });
-    //TODO: set suspended succ message
-    dispatch({ type: "" });
+    dispatch({ type: "SUSPENDED_ACCOUNT_SUCCESS_MESSAGE", message });
     dispatch({ type: "SET_SUSPENDED_ACCOUNT_MODAL_STATUS", modalStatus: true });
   });
 };

@@ -213,6 +213,7 @@ export interface SuccessState {
   forgotPasswordSuccess: boolean | string;
   resetPasswordSuccess: boolean | string;
   adminProjectDeletionSuccess: boolean | string;
+  suspendedAccountSuccess: boolean | string;
 }
 
 export interface SearchState {
@@ -275,6 +276,11 @@ export interface RadioInputProps {
 
 export interface VisitorPageProps {
   suspendedAccountModal?: boolean;
+  message?: boolean | string;
   resetGlobalState?: Function;
   openModal: Function;
+}
+
+export interface SuspendedAccountModalProps {
+  message?: boolean | string;
 }

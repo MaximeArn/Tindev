@@ -6,6 +6,7 @@ import { VisitorPageProps } from "../../models/states";
 
 const VisitorPage = ({
   suspendedAccountModal,
+  message,
   openModal,
   resetGlobalState,
 }: VisitorPageProps) => {
@@ -20,7 +21,7 @@ const VisitorPage = ({
         backgroundImage: `url(${image}) `,
       }}
     >
-      {suspendedAccountModal && <SuspendedAccountModal />}
+      {suspendedAccountModal && <SuspendedAccountModal message={message} />}
       <div className="black-filter"></div>
       <div className="content">
         <div className="text">

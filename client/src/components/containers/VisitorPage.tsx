@@ -3,8 +3,12 @@ import { AnyAction, Dispatch } from "redux";
 import { State } from "../../models/states";
 import VisitorPage from "../VisitorPage/VisitorPage";
 
-const mapState = ({ modal: { suspendedAccountModal } }: State) => ({
+const mapState = ({
+  modal: { suspendedAccountModal },
+  success: { suspendedAccountSuccess: message },
+}: State) => ({
   suspendedAccountModal,
+  message,
 });
 
 const mapDispatch = (dispatch: Dispatch<AnyAction>) => ({
