@@ -1,6 +1,11 @@
 import { connect } from "react-redux";
 import { AnyAction, Dispatch } from "redux";
+import { State } from "../../models/states";
 import VisitorPage from "../VisitorPage/VisitorPage";
+
+const mapState = ({ modal: { suspendedAccountModal } }: State) => ({
+  suspendedAccountModal,
+});
 
 const mapDispatch = (dispatch: Dispatch<AnyAction>) => ({
   openModal: (modal: string, modalStatus: boolean) =>
@@ -12,4 +17,4 @@ const mapDispatch = (dispatch: Dispatch<AnyAction>) => ({
   resetGlobalState: () => dispatch({ type: "RESET_GLOBAL_STATE" }),
 });
 
-export default connect(null, mapDispatch)(VisitorPage);
+export default connect(mapState, mapDispatch)(VisitorPage);

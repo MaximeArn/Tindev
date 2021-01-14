@@ -190,6 +190,7 @@ export interface ModalState {
   closeAccountModal: boolean;
   forgotPasswordModal: boolean;
   adminConfirmationModal: boolean;
+  suspendedAccountModal: boolean;
   authModal: {
     login: boolean;
     register: boolean;

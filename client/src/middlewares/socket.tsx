@@ -25,6 +25,7 @@ const serverSocketListener = (dispatch: Dispatch<AnyAction>) => {
 
   socket.on("expell-user", () => {
     dispatch({ type: "DISCONNECT_USER" });
+    dispatch({ type: "SET_SUSPENDED_ACCOUNT_MODAL_STATUS", modalStatus: true });
   });
 };
 
