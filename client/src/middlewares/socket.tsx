@@ -23,8 +23,10 @@ const serverSocketListener = (dispatch: Dispatch<AnyAction>) => {
     dispatch({ type: "SET_CHAT_WINDOWS", windows })
   );
 
-  socket.on("expell-user", () => {
+  socket.on("expell-user", (message: string) => {
     dispatch({ type: "DISCONNECT_USER" });
+    //TODO: set suspended succ message
+    dispatch({ type: "" });
     dispatch({ type: "SET_SUSPENDED_ACCOUNT_MODAL_STATUS", modalStatus: true });
   });
 };

@@ -274,6 +274,7 @@ export interface RadioInputProps {
 }
 
 export interface VisitorPageProps {
+  suspendedAccountModal?: boolean;
   resetGlobalState?: Function;
   openModal: Function;
 }

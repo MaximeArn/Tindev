@@ -30,10 +30,10 @@ module.exports = async (body, res, next) => {
       const remaining =
         duration && Math.floor(Math.abs(duration - new Date()) / 36e5);
 
-      if (remaining <= 0) {
+      if (!isNaN(remaining) && remaining <= 0) {
         user.suspended = {
           status: false,
-          duration: null,
+          duration: false,
         };
 
         const updated = await user.save();

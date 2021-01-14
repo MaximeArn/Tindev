@@ -1,9 +1,14 @@
 import React, { useEffect } from "react";
 import "./visitorPage.scss";
 import image from "src/assets/home-image.jpg";
+import SuspendedAccountModal from "./SuspendedAccountModal";
 import { VisitorPageProps } from "../../models/states";
 
-const VisitorPage = ({ openModal, resetGlobalState }: VisitorPageProps) => {
+const VisitorPage = ({
+  suspendedAccountModal,
+  openModal,
+  resetGlobalState,
+}: VisitorPageProps) => {
   useEffect(() => {
     resetGlobalState && resetGlobalState();
   }, []);
@@ -15,6 +20,7 @@ const VisitorPage = ({ openModal, resetGlobalState }: VisitorPageProps) => {
         backgroundImage: `url(${image}) `,
       }}
     >
+      {suspendedAccountModal && <SuspendedAccountModal />}
       <div className="black-filter"></div>
       <div className="content">
         <div className="text">

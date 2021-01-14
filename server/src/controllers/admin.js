@@ -45,7 +45,13 @@ module.exports = {
           }
         );
 
-        userSocket && userSocket.socket.emit("expell-user");
+        userSocket &&
+          userSocket.socket.emit(
+            "expell-user",
+            `Your account has been suspended ${
+              isNaN(duration) ? "permanently" : `for ${duration} hours`
+            } `
+          );
 
         return res.status(200).json({
           message: "This user's account has been successfully suspended",
