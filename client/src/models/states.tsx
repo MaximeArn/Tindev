@@ -279,8 +279,10 @@ export interface VisitorPageProps {
   message?: boolean | string;
   resetGlobalState?: Function;
   openModal: Function;
+  setSuspendedAccountModalStatus: Function;
 }
 
 export interface SuspendedAccountModalProps {
   message?: boolean | string;
+  setModalStatus: Function;
 }

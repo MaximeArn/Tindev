@@ -9,6 +9,7 @@ const VisitorPage = ({
   message,
   openModal,
   resetGlobalState,
+  setSuspendedAccountModalStatus,
 }: VisitorPageProps) => {
   useEffect(() => {
     resetGlobalState && resetGlobalState();
@@ -21,7 +22,12 @@ const VisitorPage = ({
         backgroundImage: `url(${image}) `,
       }}
     >
-      {suspendedAccountModal && <SuspendedAccountModal message={message} />}
+      {suspendedAccountModal && (
+        <SuspendedAccountModal
+          message={message}
+          setModalStatus={setSuspendedAccountModalStatus}
+        />
+      )}
       <div className="black-filter"></div>
       <div className="content">
         <div className="text">

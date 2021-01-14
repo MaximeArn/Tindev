@@ -19,6 +19,10 @@ const mapDispatch = (dispatch: Dispatch<AnyAction>) => ({
       modalStatus,
     }),
   resetGlobalState: () => dispatch({ type: "RESET_GLOBAL_STATE" }),
+  setSuspendedAccountModalStatus: (modalStatus: boolean) => {
+    dispatch({ type: "SET_SUSPENDED_ACCOUNT_MODAL_STATUS", modalStatus });
+    dispatch({ type: "SUSPENDED_ACCOUNT_SUCCESS_MESSAGE" });
+  },
 });
 
 export default connect(mapState, mapDispatch)(VisitorPage);
