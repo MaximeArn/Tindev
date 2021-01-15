@@ -28,6 +28,7 @@ const authRouter = {
         const { token } = await Token.create({
           userId,
           token: SHA256(userId),
+          expire: Date.now() + 3 * 60000,
         });
 
         await sendAccountActivationEmail(email, token);
@@ -117,7 +118,7 @@ const authRouter = {
       next(error);
     }
   },
-  sendActivationLink: async ({ body: { userId, type } }, res, next) => {
+  sendNewActivationLink: async ({ body: { userId, type } }, res, next) => {
     try {
       const email = await activationLinkValidator(userId, next);
 
@@ -125,6 +126,7 @@ const authRouter = {
         const { token } = await Token.create({
           userId,
           token: SHA256(userId),
+          expire: Date.now() + 3 * 60000,
         });
 
         const message = await mailSender(email, token, type);
@@ -147,6 +149,7 @@ const authRouter = {
         const { token } = await Token.create({
           userId: userId,
           token: SHA256(userId),
+          expire: Date.now() + 15 * 60000,
         });
 
         const message = await sendResetPasswordEmail(userEmail, token);

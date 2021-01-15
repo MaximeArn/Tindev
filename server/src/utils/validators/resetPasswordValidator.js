@@ -12,7 +12,7 @@ module.exports = async (credentials, next) => {
       throw new UserError("This token is invalid", 400);
     }
 
-    if (Date.now() > token.expire) {
+    if (new Date().getTime() > token.expire) {
       await token.remove();
       throw new UserError(
         "This token has expired, please send a new link to continue",

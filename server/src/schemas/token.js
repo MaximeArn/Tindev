@@ -4,7 +4,7 @@ const { Schema } = require("mongoose");
 const tokenSchema = new Schema({
   userId: ObjectId,
   token: String,
-  expire: { type: Number, default: Date.now() + 15 * 60000 },
+  expire: Number,
   delete_at: {
     type: Date,
     default: Date.now,
