@@ -4,6 +4,7 @@ import { AxiosSubmit } from "../models/axios";
 import { url } from "../environments/api";
 import Cookies from "js-cookie";
 import axios from "axios";
+import history from "../utils/history";
 axios.defaults.baseURL = url;
 axios.defaults.headers.post["Content-Type"] = "application/json";
 axios.defaults.withCredentials = true;
@@ -74,7 +75,8 @@ const retrieveToken = (dispatch: Dispatch<AnyAction>) => {
       });
 };
 
-const logout = ({ dispatch, history }: AxiosSubmit) => {
+const logout = (dispatch: Dispatch<AnyAction>) => {
+  console.log(history);
   axios.delete("/auth/logout").finally(() => {
     Cookies.remove("token");
     dispatch({ type: "RESET_GLOBAL_STATE" });
@@ -184,7 +186,7 @@ const sendNewPassword = async (
 const auth: Middleware = ({ getState, dispatch }) => (next) => (
   action: AuthMiddleware
 ) => {
-  const { type, token, userId, linkType, history } = action;
+  const { type, token, userId, linkType } = action;
   switch (type) {
     case "SUBMIT_REGISTER":
       createUser({ getState, dispatch });
@@ -211,7 +213,7 @@ const auth: Middleware = ({ getState, dispatch }) => (next) => (
       retrieveToken(dispatch);
       break;
     case "DISCONNECT_USER":
-      logout({ dispatch, history });
+      logout(dispatch);
       break;
     default:
       next(action);
