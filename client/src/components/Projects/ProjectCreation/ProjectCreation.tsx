@@ -36,7 +36,7 @@ const ProjectCreation = ({
     }
   };
 
-  const onFileBrowserClick = (
+  const fileBrowserClickHandler = (
     event: MouseEvent<HTMLButtonElement | HTMLDivElement>
   ) => {
     event.preventDefault();
@@ -68,7 +68,7 @@ const ProjectCreation = ({
                 <div className="project-creation-error-message">{error}</div>
               )}
               <section className="image-section">
-                <div onClick={onFileBrowserClick}>
+                <div onClick={fileBrowserClickHandler}>
                   <img
                     ref={imagePreview}
                     src="https://user-images.githubusercontent.com/2351721/31314483-7611c488-ac0e-11e7-97d1-3cfc1c79610e.png"

@@ -16,6 +16,7 @@ module.exports = {
     try {
       const { username } = await tokenValidator(token, next);
       const valid = await projectValidator(body, next);
+
       if (valid && username) {
         const created = await Project.create({
           ...valid,
@@ -24,7 +25,8 @@ module.exports = {
           applicants: [],
           image: filename,
         });
-        return created && res.status(200).json(created);
+
+        return res.status(200).json(created);
       }
     } catch (error) {
       next(error);

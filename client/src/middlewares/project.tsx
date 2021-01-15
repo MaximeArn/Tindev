@@ -29,8 +29,7 @@ const sendProject = ({ getState, dispatch, history }: AxiosSubmit) => {
       dispatch({ type: "ADD_PROJECT_ON_PROJECT_CREATION", project });
       history.push(`/project/${slugify(project.title)}`);
     })
-    .catch(({ response }) => {
-      const { msg: error } = response.data;
+    .catch(({ response: { msg: error } }) => {
       dispatch({ type: "PROJECT_CREATION_ERROR_HANDLER", error });
     })
     .finally(() =>
