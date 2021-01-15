@@ -30,7 +30,9 @@ module.exports = async (body, res, next) => {
       const remaining =
         duration && Math.floor(Math.abs(duration - new Date()) / 36e5);
 
-      if (!isNaN(remaining) && remaining <= -1) {
+      console.log({ remaining });
+
+      if (!isNaN(remaining) && remaining <= 0) {
         user.suspended = {
           status: false,
           duration: false,
