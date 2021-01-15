@@ -68,7 +68,10 @@ const retrieveToken = (dispatch: Dispatch<AnyAction>) => {
       .then(({ data: credentials }) => {
         dispatch({ type: "CONNECT_USER", credentials });
       })
-      .catch(({ response }) => console.log(response));
+      .catch(({ response: { data } }) => {
+        Cookies.remove("token");
+        console.error(data);
+      });
 };
 
 const logout = ({ dispatch, history }: AxiosSubmit) => {

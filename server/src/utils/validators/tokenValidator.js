@@ -10,11 +10,13 @@ module.exports = async (token, next) => {
         throw new UserError("User not found, please sign in.", 403);
       }
 
-      const exists = await User.findById(decoded.id);
+      const user = await User.findById(decoded.id);
 
-      if (!exists) throw new UserError("User does not exists.", 403);
+      if (!user) throw new UserError("This user does not exists.", 403);
 
-      //TODO: check if user is not suspended
+      if (user.suspended.status) {
+        throw new UserError("This account has been suspended", 403);
+      }
 
       return decoded;
     });
