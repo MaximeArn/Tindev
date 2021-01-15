@@ -5,8 +5,6 @@ import Cookies from "js-cookie";
 import io from "socket.io-client";
 import { url, socketUrl } from "../environments/api";
 import { Notification } from "../models/notifications";
-import history from "../utils/history";
-
 axios.defaults.baseURL = url;
 axios.defaults.headers.post["Content-Type"] = "application/json";
 axios.defaults.withCredentials = true;
@@ -26,10 +24,7 @@ const serverSocketListener = (dispatch: Dispatch<AnyAction>) => {
   );
 
   socket.on("expell-user", (message: string) => {
-    dispatch({ type: "DISCONNECT_USER" });
-    history.push("/");
-    dispatch({ type: "SUSPENDED_ACCOUNT_SUCCESS_MESSAGE", message });
-    dispatch({ type: "SET_SUSPENDED_ACCOUNT_MODAL_STATUS", modalStatus: true });
+    dispatch({ type: "DISCONNECT_USER", message });
   });
 };
 

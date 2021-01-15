@@ -23,6 +23,7 @@ module.exports = async (body, res, next) => {
     }
 
     if (user.suspended.status) {
+      console.log("SUSPENDED STATUS WAS TRUE");
       const {
         suspended: { duration },
       } = user;
@@ -31,6 +32,7 @@ module.exports = async (body, res, next) => {
         duration && Math.floor(Math.abs(duration - new Date()) / 36e5);
 
       if (!isNaN(remaining) && remaining <= 0) {
+        console.log("USER PURGED HIS SENTENCE", { remaining });
         user.suspended = {
           status: false,
           duration: false,
@@ -39,6 +41,8 @@ module.exports = async (body, res, next) => {
         const updated = await user.save();
         return updated;
       }
+
+      console.log("APPARENTLY USER DIDNT PURGE HIS SENTENCE");
 
       const message =
         remaining === false

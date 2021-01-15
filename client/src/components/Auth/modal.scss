@@ -1,3 +1,5 @@
+@use 'src/styles/vars';
+
 .auth-modal {
   cursor: pointer;
 
@@ -91,7 +93,8 @@
       cursor: pointer;
 
       &:hover {
-        color: blue;
+        color: vars.$green-theme;
+        text-decoration: underline;
       }
     }
   }
