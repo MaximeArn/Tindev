@@ -8,13 +8,8 @@ const VisitorPage = ({
   suspendedAccountModal,
   message,
   openModal,
-  resetGlobalState,
   setSuspendedAccountModalStatus,
 }: VisitorPageProps) => {
-  useEffect(() => {
-    resetGlobalState && resetGlobalState();
-  }, []);
-
   return (
     <div
       className="visitor-page"

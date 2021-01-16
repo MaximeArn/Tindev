@@ -18,7 +18,6 @@ const mapDispatch = (dispatch: Dispatch<AnyAction>) => ({
       modal,
       modalStatus,
     }),
-  resetGlobalState: () => dispatch({ type: "RESET_GLOBAL_STATE" }),
   setSuspendedAccountModalStatus: (modalStatus: boolean) => {
     dispatch({ type: "SET_SUSPENDED_ACCOUNT_MODAL_STATUS", modalStatus });
     dispatch({ type: "SUSPENDED_ACCOUNT_SUCCESS_MESSAGE" });

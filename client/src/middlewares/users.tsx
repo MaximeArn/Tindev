@@ -2,7 +2,6 @@ import { AnyAction, Dispatch, Middleware } from "redux";
 import { url } from "../environments/api";
 import axios from "axios";
 import { AxiosSubmit } from "../models/axios";
-import Cookies from "js-cookie";
 axios.defaults.baseURL = url;
 axios.defaults.headers.post["Content-Type"] = "application/json";
 axios.defaults.withCredentials = true;
@@ -16,16 +15,10 @@ const getUsers = (dispatch: Dispatch<AnyAction>) => {
     .catch((error) => console.log(error));
 };
 
-const getUserProfile = (
-  { dispatch, getState }: AxiosSubmit,
-  username?: string
-) => {
-  const { username: user } = getState().auth.user;
-  const name = username || user;
-
+const getUserProfile = (dispatch: Dispatch<AnyAction>, username: string) => {
   dispatch({ type: "SET_USER_PROFILE_LOADER", value: true });
   axios
-    .get(`/users/${name}`)
+    .get(`/users/${username}`)
     .then(({ data }) => dispatch({ type: "SET_USER", user: data }))
     .catch(({ response: { data: { msg: error } } }) =>
       dispatch({ type: "USER_PROFILE_ERROR_HANDLER", error })
@@ -83,21 +76,25 @@ const deleteProfile = ({ dispatch, history }: AxiosSubmit, id: string) => {
       axios.delete("/auth/logout").finally(() => {
         dispatch({ type: "RESET_GLOBAL_STATE" });
         dispatch({ type: "USER_DELETION_SUCCESS_MESSAGE", message });
+        history.push("/");
       });
     })
-    .catch(({ response }) => console.error(response))
-    .finally(() => history.push("/"));
+    .catch(({ response }) => {
+      dispatch({ type: "SET_USER_DELETION_LOADER", value: false });
+      console.error(response);
+    });
 };
 
 const project: Middleware = ({ getState, dispatch }) => (next) => (action) => {
   const { type, username, fieldName, id, history } = action;
+  const { username: user } = getState().auth.user;
 
   switch (type) {
     case "GET_USERS":
       getUsers(dispatch);
       break;
     case "GET_USER_PROFILE":
-      getUserProfile({ dispatch, getState }, username);
+      getUserProfile(dispatch, username || user);
       break;
     case "UPDATE_USER_PROFILE":
       updateUserProfile({ getState, dispatch }, fieldName);
