@@ -65,7 +65,7 @@ const authRouter = {
         });
       }
     } catch (error) {
-      console.error(error);
+      next(error);
     }
   },
   logout: async (connectedUsers, { cookies: { token } }, res, next) => {
@@ -190,6 +190,10 @@ const authRouter = {
     } catch (error) {
       next(error);
     }
+  },
+  clearCookies: (req, res, next) => {
+    res.clearCookie("token");
+    return res.end();
   },
 };
 

@@ -27,13 +27,8 @@ const serverSocketListener = (dispatch: Dispatch<AnyAction>) => {
   });
 };
 
-const sendMessage = (
-  target: string,
-  id: string,
-  message: string,
-  token: string
-) => {
-  socket.emit("chat-message", { to: { id, name: target }, message, token });
+const sendMessage = (target: string, id: string, message: string) => {
+  socket.emit("chat-message", { to: { id, name: target }, message });
 };
 
 const socketMiddleware: Middleware = ({ getState, dispatch }) => (next) => (
@@ -49,7 +44,7 @@ const socketMiddleware: Middleware = ({ getState, dispatch }) => (next) => (
       serverSocketListener(dispatch);
       break;
     case "SEND_CHAT_MESSAGE":
-      // sendMessage(name, id, message, token);
+      sendMessage(name, id, message);
       break;
     default:
       next(action);

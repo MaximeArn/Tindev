@@ -9,6 +9,7 @@ const {
   sendNewActivationLink,
   forgotPassword,
   resetPassword,
+  clearCookies,
 } = require("../controllers/auth");
 
 const authRouterWrapper = (connectedUsers) => {
@@ -20,6 +21,7 @@ const authRouterWrapper = (connectedUsers) => {
   router.get("/verify", verify);
   router.get("/token_validity/:token", verifyAccountToken);
   router.get("/activate_account/:token", activateAccount);
+  router.delete("/clear_cookies", clearCookies);
   router.delete("/logout", (req, res, next) =>
     logout(connectedUsers, req, res, next)
   );

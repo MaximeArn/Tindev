@@ -6,9 +6,11 @@ const chatPopUp = require("../utils/chatPopUp");
 module.exports = {
   chatHandler: (ioNameSpace, socket, connectedUsers, username) => {
     const { id: socketId } = connectedUsers[username];
+    const { cookie } = socket.request.headers;
+    const token = cookie.substr(6);
     socket.join(socketId);
 
-    socket.on("chat-message", async ({ to, message, token }) => {
+    socket.on("chat-message", async ({ to, message }) => {
       try {
         const { id, username: from } = await tokenValidator(token, null);
         const { name: toName, id: toId } = to;

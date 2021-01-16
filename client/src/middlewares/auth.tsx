@@ -2,7 +2,6 @@ import { AnyAction, Dispatch, Middleware } from "redux";
 import { AuthMiddleware } from "../models/actions";
 import { AxiosSubmit } from "../models/axios";
 import { url } from "../environments/api";
-import Cookies from "js-cookie";
 import axios from "axios";
 import browserHistory from "../utils/history";
 axios.defaults.baseURL = url;
@@ -15,7 +14,7 @@ const createUser = ({ getState, dispatch }: AxiosSubmit) => {
   axios
     .post("/auth/register", register)
     .then(({ data: { msg } }) => {
-      Cookies.remove("token");
+      //TODO: CLEAR COOKIES
       dispatch({
         type: "SWAP_AUTH_MODAL",
         modal: "register",
@@ -67,14 +66,14 @@ const retrieveToken = (dispatch: Dispatch<AnyAction>) => {
       dispatch({ type: "CONNECT_USER", credentials });
     })
     .catch(({ response: { data } }) => {
-      Cookies.remove("token");
-      console.error(data);
+      axios
+        .delete("/auth/clear_cookies")
+        .finally(() => console.error(data.msg));
     });
 };
 
 const logout = ({ dispatch, history }: AxiosSubmit, message?: string) => {
   axios.delete("/auth/logout").finally(() => {
-    // Cookies.remove("token");
     dispatch({ type: "RESET_GLOBAL_STATE" });
     history.push("/");
 
