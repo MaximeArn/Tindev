@@ -42,16 +42,16 @@ const socketMiddleware: Middleware = ({ getState, dispatch }) => (next) => (
 ) => {
   const { type, name, id, message } = action;
   const { user } = getState().auth;
-  const token = Cookies.get("token");
+  // const token = Cookies.get("token");
 
   switch (type) {
     case "SOCKET_CONNECTION":
       const { username } = user;
-      socket = io(`${socketUrl}/chat`, { query: { username, token } });
+      socket = io(`${socketUrl}/chat`, { query: { username } });
       serverSocketListener(dispatch);
       break;
     case "SEND_CHAT_MESSAGE":
-      sendMessage(name, id, message, token);
+      // sendMessage(name, id, message, token);
       break;
     default:
       next(action);

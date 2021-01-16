@@ -1,12 +1,22 @@
 const { tokenValidator } = require("../../utils/validators");
+const TokenError = require("../../utils/CustomError");
 
-module.exports = async ({ handshake: { query } }, next) => {
+module.exports = async (
+  {
+    request: {
+      headers: { cookie },
+    },
+  },
+  next
+) => {
   try {
-    const { token } = query;
+    const token = cookie.substr(6);
     const user = await tokenValidator(token, next);
 
-    user && next();
+    if (!user) throw new TokenError("Invalid token provided", 403);
+
+    next();
   } catch (error) {
-    next(error);
+    console.error(error);
   }
 };

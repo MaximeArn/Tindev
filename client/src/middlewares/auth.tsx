@@ -41,9 +41,10 @@ const login = ({ getState, dispatch }: AxiosSubmit) => {
   axios
     .post("/auth/login", login)
     .then(({ data }) => {
+      console.log("RECEIVED DATA : ", data);
       const { token, ...credentials } = data;
-      !Cookies.get("token") &&
-        Cookies.set("token", token, { expires: 7, sameSite: "strict" });
+      // !Cookies.get("token") &&
+      //   Cookies.set("token", token, { expires: 7, sameSite: "strict" });
       dispatch({ type: "CONNECT_USER", credentials });
       dispatch({
         type: "SET_AUTH_MODAL_STATUS",
@@ -64,21 +65,20 @@ const login = ({ getState, dispatch }: AxiosSubmit) => {
 };
 
 const retrieveToken = (dispatch: Dispatch<AnyAction>) => {
-  Cookies.get("token") &&
-    axios
-      .get("/auth/verify")
-      .then(({ data: credentials }) => {
-        dispatch({ type: "CONNECT_USER", credentials });
-      })
-      .catch(({ response: { data } }) => {
-        Cookies.remove("token");
-        console.error(data);
-      });
+  axios
+    .get("/auth/verify")
+    .then(({ data: credentials }) => {
+      dispatch({ type: "CONNECT_USER", credentials });
+    })
+    .catch(({ response: { data } }) => {
+      Cookies.remove("token");
+      console.error(data);
+    });
 };
 
 const logout = ({ dispatch, history }: AxiosSubmit, message?: string) => {
   axios.delete("/auth/logout").finally(() => {
-    Cookies.remove("token");
+    // Cookies.remove("token");
     dispatch({ type: "RESET_GLOBAL_STATE" });
     history.push("/");
 

@@ -50,6 +50,12 @@ const authRouter = {
         const { _id: id, email, username, role } = user;
         const token = jwt.sign({ id, email, username, role }, secret);
 
+        res.cookie("token", token, {
+          httpOnly: true,
+          sameSite: "strict",
+          secure: false,
+        });
+
         return res.status(200).json({
           token,
           email,
@@ -70,9 +76,15 @@ const authRouter = {
       }
 
       const { username } = user;
-      const { socket } = connectedUsers[username];
-      socket.disconnect(true);
-      delete connectedUsers[username];
+      const userSocket = connectedUsers[username];
+
+      if (userSocket) {
+        const { socket } = userSocket;
+        socket.disconnect(true);
+        delete connectedUsers[username];
+      }
+
+      res.clearCookie("token");
 
       return res
         .status(200)
