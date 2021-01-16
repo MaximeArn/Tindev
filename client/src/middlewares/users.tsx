@@ -87,13 +87,13 @@ const deleteProfile = ({ dispatch, history }: AxiosSubmit, id: string) => {
 
 const project: Middleware = ({ getState, dispatch }) => (next) => (action) => {
   const { type, username, fieldName, id, history } = action;
-  const { username: user } = getState().auth.user;
 
   switch (type) {
     case "GET_USERS":
       getUsers(dispatch);
       break;
     case "GET_USER_PROFILE":
+      const { username: user } = getState().auth.user;
       getUserProfile(dispatch, username || user);
       break;
     case "UPDATE_USER_PROFILE":
