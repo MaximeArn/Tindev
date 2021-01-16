@@ -81,16 +81,12 @@ const deleteProfile = ({ dispatch, history }: AxiosSubmit, id: string) => {
     .delete(`/users/${id}`)
     .then(({ data: { msg: message } }) => {
       axios.delete("/auth/logout").finally(() => {
-        Cookies.remove("token");
-        dispatch({ type: "DISCONNECTION" });
+        dispatch({ type: "RESET_GLOBAL_STATE" });
         dispatch({ type: "USER_DELETION_SUCCESS_MESSAGE", message });
       });
     })
     .catch(({ response }) => console.error(response))
-    .finally(() => {
-      dispatch({ type: "SET_USER_DELETION_LOADER", value: false });
-      history.push("/");
-    });
+    .finally(() => history.push("/"));
 };
 
 const project: Middleware = ({ getState, dispatch }) => (next) => (action) => {

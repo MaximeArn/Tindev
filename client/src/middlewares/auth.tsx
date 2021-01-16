@@ -14,7 +14,6 @@ const createUser = ({ getState, dispatch }: AxiosSubmit) => {
   axios
     .post("/auth/register", register)
     .then(({ data: { msg } }) => {
-      //TODO: CLEAR COOKIES
       dispatch({
         type: "SWAP_AUTH_MODAL",
         modal: "register",
@@ -25,8 +24,7 @@ const createUser = ({ getState, dispatch }: AxiosSubmit) => {
       dispatch({ type: "RESET_AUTH_INPUTS_VALUES", authType: "register" });
       dispatch({ type: "RESET_AUTH_MODAL_ERROR_VALUES" });
     })
-    .catch(({ response }) => {
-      const { msg: error } = response.data;
+    .catch(({ response: { msg: error } }) => {
       dispatch({ type: "REGISTER_ERROR_HANDLER", error });
     })
     .finally(() => {
