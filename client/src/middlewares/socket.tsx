@@ -1,7 +1,6 @@
 import { AnyAction, Dispatch, Middleware } from "redux";
 import axios from "axios";
 import { ChatWindow, SocketServerResponse } from "../models/chat";
-import Cookies from "js-cookie";
 import io from "socket.io-client";
 import { url, socketUrl } from "../environments/api";
 import { Notification } from "../models/notifications";
@@ -42,7 +41,6 @@ const socketMiddleware: Middleware = ({ getState, dispatch }) => (next) => (
 ) => {
   const { type, name, id, message } = action;
   const { user } = getState().auth;
-  // const token = Cookies.get("token");
 
   switch (type) {
     case "SOCKET_CONNECTION":

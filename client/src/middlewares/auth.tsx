@@ -40,11 +40,7 @@ const login = ({ getState, dispatch }: AxiosSubmit) => {
   dispatch({ type: "SET_LOGIN_LOADER", value: true });
   axios
     .post("/auth/login", login)
-    .then(({ data }) => {
-      console.log("RECEIVED DATA : ", data);
-      const { token, ...credentials } = data;
-      // !Cookies.get("token") &&
-      //   Cookies.set("token", token, { expires: 7, sameSite: "strict" });
+    .then(({ data: credentials }) => {
       dispatch({ type: "CONNECT_USER", credentials });
       dispatch({
         type: "SET_AUTH_MODAL_STATUS",

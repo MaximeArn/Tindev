@@ -50,6 +50,8 @@ const authRouter = {
         const { _id: id, email, username, role } = user;
         const token = jwt.sign({ id, email, username, role }, secret);
 
+        // secure option is set to false for now because we are not using HTTPS protocol yet,
+        // but will be set to true later on
         res.cookie("token", token, {
           httpOnly: true,
           sameSite: "strict",
@@ -57,7 +59,6 @@ const authRouter = {
         });
 
         return res.status(200).json({
-          token,
           email,
           username,
           role,
