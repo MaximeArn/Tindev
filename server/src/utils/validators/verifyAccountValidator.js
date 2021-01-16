@@ -10,7 +10,7 @@ module.exports = async (t, next) => {
       throw new AccountError("This Activation link is not valid anymore.", 403);
     }
 
-    if (new Date().getTime() > token.expire) {
+    if (new Date().getTime() > token.expire.getTime()) {
       await token.remove();
       throw new AccountError("This activation link has expired.", 403);
     }

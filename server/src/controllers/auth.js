@@ -5,6 +5,7 @@ const SHA256 = require("crypto-js/sha256");
 const sendAccountActivationEmail = require("../utils/sendAccountConfirmationEmail");
 const sendResetPasswordEmail = require("../utils/sendResetPasswordEmail");
 const mailSender = require("../utils/mailSender");
+const setTokenExpiration = require("../utils/tokenExpiration");
 const {
   loginValidator,
   registerValidator,
@@ -28,7 +29,7 @@ const authRouter = {
         const { token } = await Token.create({
           userId,
           token: SHA256(userId),
-          expire: Date.now() + 3 * 60000,
+          expire: setTokenExpiration(15),
         });
 
         await sendAccountActivationEmail(email, token);
@@ -126,7 +127,7 @@ const authRouter = {
         const { token } = await Token.create({
           userId,
           token: SHA256(userId),
-          expire: Date.now() + 3 * 60000,
+          expire: setTokenExpiration(15),
         });
 
         const message = await mailSender(email, token, type);
@@ -149,7 +150,7 @@ const authRouter = {
         const { token } = await Token.create({
           userId: userId,
           token: SHA256(userId),
-          expire: Date.now() + 15 * 60000,
+          expire: setTokenExpiration(15),
         });
 
         const message = await sendResetPasswordEmail(userEmail, token);

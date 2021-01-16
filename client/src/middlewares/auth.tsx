@@ -42,7 +42,8 @@ const login = ({ getState, dispatch }: AxiosSubmit) => {
     .post("/auth/login", login)
     .then(({ data }) => {
       const { token, ...credentials } = data;
-      !Cookies.get("token") && Cookies.set("token", token, { expires: 7 });
+      !Cookies.get("token") &&
+        Cookies.set("token", token, { expires: 7, sameSite: "strict" });
       dispatch({ type: "CONNECT_USER", credentials });
       dispatch({
         type: "SET_AUTH_MODAL_STATUS",
