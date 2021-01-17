@@ -33,7 +33,7 @@ module.exports = {
         const { username } = user;
         const userSocket = connectedUsers[username];
         const currentDate = new Date();
-        currentDate.setTime(currentDate.getTime() + duration * 60 * 60 * 1000);
+        currentDate.setHours(currentDate.getHours() + duration);
 
         await User.updateOne(
           { _id: id },
