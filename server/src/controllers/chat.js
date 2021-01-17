@@ -5,10 +5,9 @@ const chatPopUp = require("../utils/chatPopUp");
 
 module.exports = {
   chatHandler: (ioNameSpace, socket, connectedUsers, username) => {
-    const { id: socketId } = connectedUsers[username];
+    const { id: room } = connectedUsers[username];
     const { cookie } = socket.request.headers;
     const token = cookie.substr(6);
-    socket.join(socketId);
 
     socket.on("chat-message", async ({ to, message }) => {
       try {
@@ -16,7 +15,7 @@ module.exports = {
         const { name: toName, id: toId } = to;
         const date = Date.now();
         const user = await User.findOne({ _id: id });
-        const { id: room } = connectedUsers[toName];
+        const { socket: toSocket } = connectedUsers[toName];
         const notification = `${from} sent you a message`;
         const target = await User.findById(toId);
 
@@ -39,8 +38,8 @@ module.exports = {
           date,
         };
 
+        [socket, toSocket].forEach((socket) => socket.join(room));
         ioNameSpace.in(room).emit("chat-message", msg);
-        socket.emit("chat-message", msg);
       } catch (error) {
         throw new Error(error);
       }
