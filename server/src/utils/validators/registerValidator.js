@@ -43,7 +43,7 @@ module.exports = async (body, next) => {
 
     body.password = await hash(body.password);
 
-    return { success: true };
+    return true;
   } catch (error) {
     next(error);
   }
