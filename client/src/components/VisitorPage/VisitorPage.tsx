@@ -29,11 +29,10 @@ const VisitorPage = ({
         <div className="text">
           <h2 className="title">Welcome to tindev</h2>
           <p className="welcome-text">
-            Social network to bring devs together with a shared project. You can
-            also create a project yourself, or, join another user's project. You
-            will be able to filter any project according to your criterias and
-            discuss with other users through a chat or create groups to
-            communicate easily with each others.
+            Social network to bring devs together with a shared project. You can also
+            create a project yourself, or, join another user's project. You will be able
+            to filter any project according to your criterias and discuss with other users
+            through a chat or create groups to communicate easily with each others.
           </p>
         </div>
         <div className="buttons-section">

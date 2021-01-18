@@ -9,12 +9,8 @@ configure({ adapter: new Adapter() });
 
 describe("VisitorPage Component", () => {
   const openModal = spy();
-  const setSuspendedAccountModalStatus = spy();
   const componentWrapper = shallow(
-    <VisitorPage
-      openModal={openModal}
-      setSuspendedAccountModalStatus={setSuspendedAccountModalStatus}
-    />
+    <VisitorPage openModal={openModal} setSuspendedAccountModalStatus={openModal} />
   );
   it("should have a container with 'content' class", () => {
     expect(componentWrapper.find(".content")).toHaveLength(1);
