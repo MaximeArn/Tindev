@@ -56,8 +56,8 @@ module.exports = {
   },
   apply: async (sockets, { body, cookies: { token } }, res, next) => {
     try {
-      const { id, username } = await tokenValidator(token, next);
-      const { owner, project } = await applyValidator({ body, id }, next);
+      const { id, username } = Object(await tokenValidator(token, next));
+      const { owner, project } = Object(await applyValidator({ body, id }, next));
 
       if (project && id) {
         const { _id, applicants } = project;
@@ -100,7 +100,7 @@ module.exports = {
     }
   },
   declineApplicant: async ({ body }, res, next) => {
-    const { userId } = body;
+    const { userId } = body || {};
     try {
       const project = await applicantValidator(body, next);
 
@@ -115,7 +115,7 @@ module.exports = {
   },
   verifyOwner: async ({ body, cookies: { token } }, res, next) => {
     const { projectAuthor } = body;
-    const { username } = await tokenValidator(token, next);
+    const { username } = (await tokenValidator(token, next)) || {};
     return username && res.status(200).json(projectAuthor === username);
   },
   deleteById: async ({ params: { id }, cookies: { token } }, res, next) => {
@@ -131,11 +131,7 @@ module.exports = {
       next(error);
     }
   },
-  updateById: async (
-    { body, params: { id }, cookies: { token }, file },
-    res,
-    next
-  ) => {
+  updateById: async ({ body, params: { id }, cookies: { token }, file }, res, next) => {
     try {
       const key = file ? "image" : Object.keys(body)[0];
       const user = await tokenValidator(token, next);
@@ -156,15 +152,10 @@ module.exports = {
       next(error);
     }
   },
-  deleteContributor: async (
-    sockets,
-    { body: { id }, cookies: { token } },
-    res,
-    next
-  ) => {
+  deleteContributor: async (sockets, { body: { id }, cookies: { token } }, res, next) => {
     try {
-      const { id: userId, username } = await tokenValidator(token, next);
-      const { project, user } = await removeContributorValidator(id, next);
+      const { id: userId, username } = (await tokenValidator(token, next)) || {};
+      const { project, user } = (await removeContributorValidator(id, next)) || {};
       const tooltip = `${username} has left your project ${project.title}`;
 
       if (project && userId) {

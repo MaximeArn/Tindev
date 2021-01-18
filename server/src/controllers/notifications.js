@@ -4,7 +4,7 @@ const { tokenValidator } = require("../utils/validators");
 module.exports = {
   notifications: async ({ cookies: { token } }, res, next) => {
     try {
-      const { id } = await tokenValidator(token, next);
+      const { id } = Object(await tokenValidator(token, next));
 
       if (id) {
         const {
@@ -31,7 +31,7 @@ module.exports = {
     next
   ) => {
     try {
-      const { id: userId } = await tokenValidator(token, next);
+      const { id: userId } = Object(await tokenValidator(token, next));
 
       if (userId) {
         const user = await User.findById(userId);
@@ -68,7 +68,7 @@ module.exports = {
   },
   reset: async ({ cookies: { token } }, res, next) => {
     try {
-      const { id } = await tokenValidator(token, next);
+      const { id } = Object(await tokenValidator(token, next));
       const owner = await User.findById(id);
       const { tooltips } = owner.notifications;
 
