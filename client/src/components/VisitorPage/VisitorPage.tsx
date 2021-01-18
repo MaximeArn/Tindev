@@ -10,6 +10,7 @@ const VisitorPage = ({
   openModal,
   setSuspendedAccountModalStatus,
 }: VisitorPageProps) => {
+  console.log("SUSPENDED MESSAGE IN VISITOR PAGE COMPONENT : ", message);
   return (
     <div
       className="visitor-page"

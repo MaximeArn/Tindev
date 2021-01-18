@@ -7,6 +7,7 @@ import { User } from "../models/users";
 import { Project } from "../models/projects";
 import { ChatWindow } from "./chat";
 import { Notification } from "./notifications";
+import { HasBeenSuspended } from "./socket";
 
 export interface Authentication {
   register: {
@@ -172,6 +173,8 @@ export interface NavState {
   setMobileMenu: Function;
   setMainMenu: Function;
   setTrayStatus: Function;
+  hasBeenSuspended: HasBeenSuspended;
+  expellUser: Function;
 }
 
 export interface HomeProps {
@@ -226,6 +229,7 @@ export interface NavBarState {
   main: any;
   mobile: any;
   account: any;
+  hasBeenSuspended: HasBeenSuspended;
 }
 
 export interface MessageState {

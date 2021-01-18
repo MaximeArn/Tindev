@@ -41,7 +41,7 @@ const success = (state = initialState, { type, message }: SuccessAction) => {
       return { ...state, resetPasswordSuccess: message ?? false };
     case "ADMIN_DELETION_SUCCESS_MESSAGE":
       return { ...state, adminProjectDeletionSuccess: message ?? false };
-    case "SUSPENDED_ACCOUNT_SUCCESS_MESSAGE:":
+    case "SUSPENDED_ACCOUNT_SUCCESS_MESSAGE":
       return { ...state, suspendedAccountSuccess: message ?? false };
     default:
       return state;

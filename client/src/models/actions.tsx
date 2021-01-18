@@ -93,6 +93,7 @@ export interface SearchAction {
 export interface NavBarAction {
   type: string;
   status: React.MouseEvent<HTMLElement> | null;
+  message: string;
 }
 
 export interface MessageAction {

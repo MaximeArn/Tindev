@@ -9,7 +9,7 @@ import { OwnProps } from "../../models/connect";
 const mapState = ({
   auth: { user },
   search: { search, focused },
-  navbar: { account, mobile, main },
+  navbar: { account, mobile, main, hasBeenSuspended },
   notifications: {
     notifications: { counter },
     tray,
@@ -23,14 +23,15 @@ const mapState = ({
   main,
   counter,
   tray,
+  hasBeenSuspended,
 });
 
 const mapDispatch = (dispatch: Dispatch<AnyAction>, { history }: OwnProps) => {
+  history.listen(() => setSearchBarStatus(false));
+
   const setSearchBarStatus = (focused: boolean) => {
     dispatch({ type: "SET_SEARCH_BAR_FOCUS_STATUS", focused });
   };
-
-  history.listen(() => setSearchBarStatus(false));
 
   return {
     setSearchBarStatus,
@@ -49,6 +50,8 @@ const mapDispatch = (dispatch: Dispatch<AnyAction>, { history }: OwnProps) => {
       dispatch({ type: "SET_MOBILE_MENU", status }),
     setMainMenu: (status: React.MouseEvent<HTMLElement> | null) =>
       dispatch({ type: "SET_MAIN_MENU", status }),
+    expellUser: (message: string) =>
+      dispatch({ type: "DISCONNECT_USER", message, history }),
   };
 };
 

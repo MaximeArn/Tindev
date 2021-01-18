@@ -24,7 +24,7 @@ const socketEventListener = (dispatch: Dispatch<AnyAction>) => {
   );
 
   socket.on("expell-user", (message: string) => {
-    dispatch({ type: "DISCONNECT_USER", message });
+    dispatch({ type: "SEND_ACCOUNT_SUSPENSION_REQUEST", message });
   });
 };
 

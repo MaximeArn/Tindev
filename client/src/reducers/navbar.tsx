@@ -5,9 +5,15 @@ const initialState: NavBarState = {
   account: null,
   mobile: null,
   main: null,
+  hasBeenSuspended: {
+    status: false,
+  },
 };
 
-const navbar = (state = initialState, { type, status }: NavBarAction) => {
+const navbar = (
+  state = initialState,
+  { type, status, message }: NavBarAction
+) => {
   switch (type) {
     case "SET_ACCOUNT_MENU":
       return { ...state, account: status };
@@ -15,6 +21,8 @@ const navbar = (state = initialState, { type, status }: NavBarAction) => {
       return { ...state, mobile: status };
     case "SET_MAIN_MENU":
       return { ...state, main: status };
+    case "SEND_ACCOUNT_SUSPENSION_REQUEST":
+      return { ...state, hasBeenSuspended: { status: true, message } };
     default:
       return state;
   }

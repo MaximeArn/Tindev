@@ -3,7 +3,6 @@ import { AuthMiddleware } from "../models/actions";
 import { AxiosSubmit } from "../models/axios";
 import { url } from "../environments/api";
 import axios from "axios";
-import browserHistory from "../utils/history";
 axios.defaults.baseURL = url;
 axios.defaults.headers.post["Content-Type"] = "application/json";
 axios.defaults.withCredentials = true;
@@ -214,7 +213,7 @@ const auth: Middleware = ({ getState, dispatch }) => (next) => (
       retrieveToken(dispatch);
       break;
     case "DISCONNECT_USER":
-      logout({ dispatch, history: history ?? browserHistory }, message);
+      logout({ dispatch, history }, message && message);
       break;
     default:
       next(action);

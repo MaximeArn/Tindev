@@ -1,6 +1,10 @@
-/** @format */
-
-import React, { ChangeEvent, FocusEvent, FormEvent, useRef } from "react";
+import React, {
+  ChangeEvent,
+  FocusEvent,
+  FormEvent,
+  useEffect,
+  useRef,
+} from "react";
 import { NavLink } from "react-router-dom";
 import { NavState } from "../../models/states";
 import AppBar from "@material-ui/core/AppBar";
@@ -12,7 +16,6 @@ import Badge from "@material-ui/core/Badge";
 import MenuIcon from "@material-ui/icons/Menu";
 import SearchIcon from "@material-ui/icons/Search";
 import AccountCircle from "@material-ui/icons/AccountCircle";
-import MailIcon from "@material-ui/icons/Mail";
 import NotificationsIcon from "@material-ui/icons/Notifications";
 import MoreIcon from "@material-ui/icons/MoreVert";
 import SearchBarTray from "../containers/SearchTray";
@@ -41,9 +44,15 @@ const NavBar = ({
   setMobileMenu,
   setMainMenu,
   setTrayStatus,
+  hasBeenSuspended: { status, message },
+  expellUser,
 }: NavState) => {
   const searchBar = useRef<HTMLInputElement>(null);
   const classes = useStyles();
+
+  useEffect(() => {
+    status && expellUser(message);
+  }, [status]);
 
   const closeAccountMenu = () => {
     setAccountMenu(null);
