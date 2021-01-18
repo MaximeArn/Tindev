@@ -3,17 +3,19 @@ const { User } = require("../models");
 const TokenError = require("../utils/CustomError");
 
 module.exports = ({ cookies: { token } }, res, next) => {
-  verify(token, process.env.SECRET, async (error, { id, role }) => {
+  verify(token, process.env.SECRET, async (error, { id }) => {
     try {
       if (error) {
         throw new TokenError("Corrupted Token", 403);
       }
 
-      if (!(await User.findById(id))) {
+      const user = await User.findById(id);
+
+      if (!user) {
         throw new TokenError("This token is invalid", 400);
       }
 
-      if (role !== "Admin") {
+      if (user.role !== "Admin") {
         throw new TokenError("Unauthorized access", 403);
       }
 

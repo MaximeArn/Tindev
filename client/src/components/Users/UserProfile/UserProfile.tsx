@@ -7,7 +7,7 @@ import "./userprofile.scss";
 
 const UserProfile = ({
   admin,
-  user: { _id: id },
+  user: { _id: id, role },
   error,
   loader,
   getUser,
@@ -35,7 +35,9 @@ const UserProfile = ({
                     <User />
                   </div>
 
-                  {admin && <AdminPanel id={id} collection="user" />}
+                  {admin && !(role === "Admin") && (
+                    <AdminPanel id={id} collection="user" />
+                  )}
                 </>
               )}
             </>
