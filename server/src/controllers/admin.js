@@ -12,9 +12,7 @@ module.exports = {
       if (project) {
         await project.remove();
 
-        return res
-          .status(200)
-          .json({ message: "Project successfully deleted" });
+        return res.status(200).json({ message: "Project successfully deleted" });
       }
     } catch (error) {
       next(error);
@@ -27,10 +25,9 @@ module.exports = {
     connectedUsers
   ) => {
     try {
-      const user = await userProfileValidator({ _id: id }, next);
+      const { username } = (await userProfileValidator({ _id: id }, next)) || {};
 
-      if (user) {
-        const { username } = user;
+      if (username) {
         const userSocket = connectedUsers[username];
         const currentDate = new Date();
         currentDate.setHours(currentDate.getHours() + duration);
