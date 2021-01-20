@@ -22,8 +22,8 @@ const Admin = ({
   banUser,
 }: AdminOverlayProps) => {
   useEffect(() => {
-    error && toast(error);
-    success && toast(success);
+    error && toast.error(error);
+    success && toast.success(success);
   }, [error, success]);
 
   const [isPanelOpen, setIsPanelOpen] = useState(false);
