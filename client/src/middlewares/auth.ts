@@ -58,8 +58,11 @@ const retrieveToken = (dispatch: Dispatch<AnyAction>) => {
     .then(({ data: credentials }) => {
       dispatch({ type: "CONNECT_USER", credentials });
     })
-    .catch(({ response: { data } }) => {
-      axios.delete("/auth/clear_cookies").finally(() => console.error(data.msg));
+    .catch((error) => {
+      console.log("ERROR : ", error);
+      // axios
+      //   .delete("/auth/clear_cookies")
+      //   .finally(() => console.error(error.response.data.msg));
     });
 };
 

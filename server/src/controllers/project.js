@@ -32,13 +32,17 @@ module.exports = {
       next(error);
     }
   },
-  getProjects: async (req, res, next) => {
+  getProjects: async ({ cookies: { token } }, res, next) => {
     try {
-      const projects = (await Project.find()).filter(
-        ({ size, contributors }) => size > contributors.length
-      );
+      const { username } = await tokenValidator(token, next);
 
-      return res.status(200).json(projects);
+      if (username) {
+        const projects = (await Project.find()).filter(
+          ({ size, contributors }) => size > contributors.length
+        );
+
+        return res.status(200).json(projects);
+      }
     } catch (error) {
       next(error);
     }
@@ -46,6 +50,7 @@ module.exports = {
   getProject: async ({ params: { name }, cookies: { token } }, res, next) => {
     try {
       const user = await tokenValidator(token, next);
+
       if (user) {
         const project = await Project.findOne({ title: name });
         return res.status(200).json(project);
@@ -56,8 +61,8 @@ module.exports = {
   },
   apply: async (sockets, { body, cookies: { token } }, res, next) => {
     try {
-      const { id, username } = Object(await tokenValidator(token, next));
-      const { owner, project } = Object(await applyValidator({ body, id }, next));
+      const { id, username } = await tokenValidator(token, next);
+      const { owner, project } = await applyValidator({ body, id }, next);
 
       if (project && id) {
         const { _id, applicants } = project;

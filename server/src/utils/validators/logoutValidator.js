@@ -5,8 +5,9 @@ const secret = process.env.SECRET;
 module.exports = async (token, next) => {
   return jwt.verify(token, secret, async (error, decoded) => {
     try {
+      console.log("LOGOUT VALIDATOR CALLED");
       if (error) {
-        throw new UserError("User not found, please sign in.", 403);
+        throw new UserError("User not found, please sign in.", 401);
       }
 
       return decoded;

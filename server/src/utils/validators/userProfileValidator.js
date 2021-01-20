@@ -10,7 +10,7 @@ module.exports = async (field, next) => {
       { password: 0, messages: 0, notifications: 0 }
     );
 
-    if (!user) throw new UserError("This user does not exist.", 404);
+    if (!user) throw new UserError("This user does not exist.", 400);
 
     return user;
   } catch (error) {
