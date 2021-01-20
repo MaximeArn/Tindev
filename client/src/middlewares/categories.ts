@@ -1,9 +1,5 @@
 import { AnyAction, Dispatch, Middleware } from "redux";
-import { url } from "../environments/api";
-import axios from "axios";
-axios.defaults.baseURL = url;
-axios.defaults.headers.post["Content-Type"] = "application/json";
-axios.defaults.withCredentials = true;
+import axios from "../utils/axiosInstance";
 
 const getCategories = (dispatch: Dispatch<AnyAction>) => {
   dispatch({ type: "SET_PROJECT_CATEGORIES_LOADER", value: true });

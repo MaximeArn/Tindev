@@ -1,10 +1,6 @@
 import { AxiosSubmit } from "../models/axios";
-import axios from "axios";
-import { url } from "../environments/api";
 import { Middleware } from "redux";
-axios.defaults.baseURL = url;
-axios.defaults.headers.post["Content-Type"] = "application/json";
-axios.defaults.withCredentials = true;
+import axios from "../utils/axiosInstance";
 
 const sendSearch = ({ dispatch, getState }: AxiosSubmit) => {
   const { search } = getState().search;

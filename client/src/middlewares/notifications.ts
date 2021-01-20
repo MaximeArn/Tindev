@@ -1,9 +1,5 @@
 import { AnyAction, Dispatch, Middleware } from "redux";
-import { url } from "../environments/api";
-import axios from "axios";
-axios.defaults.baseURL = url;
-axios.defaults.headers.post["Content-Type"] = "application/json";
-axios.defaults.withCredentials = true;
+import axios from "../utils/axiosInstance";
 
 const getNotifications = async (dispatch: Dispatch<AnyAction>) => {
   try {
@@ -14,10 +10,7 @@ const getNotifications = async (dispatch: Dispatch<AnyAction>) => {
   }
 };
 
-const deleteNotification = async (
-  dispatch: Dispatch<AnyAction>,
-  id: string
-) => {
+const deleteNotification = async (dispatch: Dispatch<AnyAction>, id: string) => {
   try {
     const { data: notifications } = await axios.get(`/notifications/${id}`);
     dispatch({ type: "SET_NOTIFICATIONS", notifications });
@@ -35,9 +28,7 @@ const resetNotifications = async (dispatch: Dispatch<AnyAction>) => {
   }
 };
 
-const notifications: Middleware = ({ getState, dispatch }) => (next) => (
-  action
-) => {
+const notifications: Middleware = ({ getState, dispatch }) => (next) => (action) => {
   const { type, id } = action;
 
   switch (type) {

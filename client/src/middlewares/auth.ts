@@ -1,11 +1,7 @@
 import { AnyAction, Dispatch, Middleware } from "redux";
 import { AuthMiddleware } from "../models/actions";
 import { AxiosSubmit } from "../models/axios";
-import { url } from "../environments/api";
-import axios from "axios";
-axios.defaults.baseURL = url;
-axios.defaults.headers.post["Content-Type"] = "application/json";
-axios.defaults.withCredentials = true;
+import axios from "../utils/axiosInstance";
 
 const createUser = ({ getState, dispatch }: AxiosSubmit) => {
   const { register } = getState().auth;
@@ -63,9 +59,7 @@ const retrieveToken = (dispatch: Dispatch<AnyAction>) => {
       dispatch({ type: "CONNECT_USER", credentials });
     })
     .catch(({ response: { data } }) => {
-      axios
-        .delete("/auth/clear_cookies")
-        .finally(() => console.error(data.msg));
+      axios.delete("/auth/clear_cookies").finally(() => console.error(data.msg));
     });
 };
 
@@ -94,15 +88,10 @@ const activateAccount = (dispatch: Dispatch<AnyAction>, token: string) => {
     .catch(({ response: { data: { msg: error } } }) =>
       dispatch({ type: "ACCOUNT_ACTIVATION_ERROR_HANDLER", error })
     )
-    .finally(() =>
-      dispatch({ type: "SET_ACCOUNT_ACTIVATION_LOADER", value: false })
-    );
+    .finally(() => dispatch({ type: "SET_ACCOUNT_ACTIVATION_LOADER", value: false }));
 };
 
-const checkAccountTokenValidity = (
-  dispatch: Dispatch<AnyAction>,
-  token: string
-) => {
+const checkAccountTokenValidity = (dispatch: Dispatch<AnyAction>, token: string) => {
   axios
     .get(`/auth/token_validity/${token}`)
     .catch(({ response: { data: error } }) =>
@@ -124,9 +113,7 @@ const sendActivationLink = (
       dispatch({ type: "LOGIN_ERROR_HANDLER" });
     })
     .catch((error) => console.error(error))
-    .finally(() =>
-      dispatch({ type: "SET_NEW_ACTIVATION_LINK_LOADER", value: false })
-    );
+    .finally(() => dispatch({ type: "SET_NEW_ACTIVATION_LINK_LOADER", value: false }));
 };
 
 const resetUserPassword = async ({ getState, dispatch }: AxiosSubmit) => {
@@ -155,10 +142,7 @@ const resetUserPassword = async ({ getState, dispatch }: AxiosSubmit) => {
   }
 };
 
-const sendNewPassword = async (
-  { getState, dispatch }: AxiosSubmit,
-  token: string
-) => {
+const sendNewPassword = async ({ getState, dispatch }: AxiosSubmit, token: string) => {
   const { password, confirmPassword } = getState().auth.resetPassword;
   try {
     dispatch({ type: "SET_RESET_PASSWORD_LOADER", value: true });

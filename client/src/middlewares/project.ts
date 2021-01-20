@@ -1,14 +1,9 @@
-/** @format */
-
 import { AnyAction, Dispatch, Middleware } from "redux";
 import { url } from "../environments/api";
 import { AxiosSubmit, AxiosApplicant } from "../models/axios";
 import slugify from "../utils/slugify";
 import unslugify from "../utils/unslugify";
-import axios from "axios";
-axios.defaults.baseURL = url;
-axios.defaults.headers.post["Content-Type"] = "application/json";
-axios.defaults.withCredentials = true;
+import axios from "../utils/axiosInstance";
 
 const sendProject = ({ getState, dispatch, history }: AxiosSubmit) => {
   const { createProject } = getState().project;

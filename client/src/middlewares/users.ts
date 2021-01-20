@@ -1,10 +1,6 @@
 import { AnyAction, Dispatch, Middleware } from "redux";
-import { url } from "../environments/api";
-import axios from "axios";
 import { AxiosSubmit } from "../models/axios";
-axios.defaults.baseURL = url;
-axios.defaults.headers.post["Content-Type"] = "application/json";
-axios.defaults.withCredentials = true;
+import axios from "../utils/axiosInstance";
 
 const getUsers = (dispatch: Dispatch<AnyAction>) => {
   axios
@@ -26,10 +22,7 @@ const getUserProfile = (dispatch: Dispatch<AnyAction>, username: string) => {
     .finally(() => dispatch({ type: "SET_USER_PROFILE_LOADER", value: false }));
 };
 
-const updateUserProfile = (
-  { getState, dispatch }: AxiosSubmit,
-  fieldName: string
-) => {
+const updateUserProfile = ({ getState, dispatch }: AxiosSubmit, fieldName: string) => {
   const { editProfile } = getState().users;
   const formData = new FormData();
 
@@ -61,9 +54,7 @@ const updateUserProfile = (
     .finally(() => {
       dispatch({ type: "SET_USER_PROFILE_EDITION_LOADER", value: false });
       fieldName === "password"
-        ? Object.keys(editProfile[fieldName]).forEach((key) =>
-            resetInputValues(key)
-          )
+        ? Object.keys(editProfile[fieldName]).forEach((key) => resetInputValues(key))
         : resetInputValues();
     });
 };
