@@ -1,6 +1,7 @@
 import React, { useEffect } from "react";
 import ProjectList from "../containers/ProjectList";
 import { Switch, Route } from "react-router-dom";
+import { ToastContainer } from "react-toastify";
 import { AppProps } from "../../models/states";
 import NavBar from "../containers/NavBar";
 import Register from "../containers/Register";
@@ -22,6 +23,7 @@ import AccountDeletionModal from "../Users/EditProfile/DeletionSuccess";
 import AccountVerification from "../containers/Verification";
 import ForgotPassword from "../containers/ForgotPassword";
 import ResetPassword from "../containers/ResetPassword";
+import "react-toastify/dist/ReactToastify.css";
 import "./app.scss";
 
 function App({
@@ -98,6 +100,7 @@ function App({
           </Switch>
         </>
       )}
+      <ToastContainer />
       <Footer />
     </>
   );

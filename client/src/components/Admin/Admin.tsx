@@ -1,4 +1,5 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
+import { toast } from "react-toastify";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
   faChevronRight,
@@ -20,6 +21,11 @@ const Admin = ({
   setModalStatus,
   banUser,
 }: AdminOverlayProps) => {
+  useEffect(() => {
+    error && toast(error);
+    success && toast(success);
+  }, [error, success]);
+
   const [isPanelOpen, setIsPanelOpen] = useState(false);
   const [duration, setDuration] = useState(null);
 
@@ -39,7 +45,6 @@ const Admin = ({
       <div className={isPanelOpen ? "admin-overlay open" : "admin-overlay"}>
         <div className="admin-overlay-content">
           <h3>Admin Panel</h3>
-          {error && <div className="message-error">{error}</div>}
           {collection === "user" && (
             <form>
               {[12, 24, 48, "permanent"].map((duration) => (
