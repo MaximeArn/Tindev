@@ -13,11 +13,11 @@ const initialState: SuccessState = {
   forgotPasswordSuccess: false,
   resetPasswordSuccess: false,
   adminProjectDeletionSuccess: false,
-  suspendedAccountSuccess: false,
+  redirectionSuccess: false,
 };
 
 const success = (state = initialState, { type, message }: SuccessAction) => {
-  const msg = message || false;
+  const msg = message ?? false;
   switch (type) {
     case "APPLY_SUCCESS_MESSAGE":
       return { ...state, applySuccess: msg };
@@ -38,11 +38,11 @@ const success = (state = initialState, { type, message }: SuccessAction) => {
     case "FORGOT_PASSWORD_SUCCESS_MESSAGE":
       return { ...state, forgotPasswordSuccess: msg };
     case "RESET_PASSWORD_SUCCESS_MESSAGE":
-      return { ...state, resetPasswordSuccess: message ?? false };
+      return { ...state, resetPasswordSuccess: msg };
     case "ADMIN_DELETION_SUCCESS_MESSAGE":
-      return { ...state, adminProjectDeletionSuccess: message ?? false };
-    case "SUSPENDED_ACCOUNT_SUCCESS_MESSAGE":
-      return { ...state, suspendedAccountSuccess: message ?? false };
+      return { ...state, adminProjectDeletionSuccess: msg };
+    case "REDIRECTION_SUCCESS_MESSAGE":
+      return { ...state, redirectionSuccess: msg };
     default:
       return state;
   }

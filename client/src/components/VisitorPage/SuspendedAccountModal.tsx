@@ -19,7 +19,7 @@ const SuspendedAccountModal = ({
   return (
     <div className="profile-deletion">
       <div ref={modal} className="profile-deletion-modal">
-        <h1 className="suspended-account-modal-title">Account Suspended</h1>
+        <h1 className="suspended-account-modal-title">Redirection</h1>
         <div className="profile-deletion-modal-message">{message}</div>
         <div className="profile-deletion-modal-buttons">
           <button

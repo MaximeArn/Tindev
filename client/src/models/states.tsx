@@ -193,7 +193,7 @@ export interface ModalState {
   closeAccountModal: boolean;
   forgotPasswordModal: boolean;
   adminConfirmationModal: boolean;
-  suspendedAccountModal: boolean;
+  redirectionModal: boolean;
   authModal: {
     login: boolean;
     register: boolean;
@@ -216,7 +216,7 @@ export interface SuccessState {
   forgotPasswordSuccess: boolean | string;
   resetPasswordSuccess: boolean | string;
   adminProjectDeletionSuccess: boolean | string;
-  suspendedAccountSuccess: boolean | string;
+  redirectionSuccess: boolean | string;
 }
 
 export interface SearchState {
@@ -280,10 +280,10 @@ export interface RadioInputProps {
 }
 
 export interface VisitorPageProps {
-  suspendedAccountModal?: boolean;
+  redirectionModal?: boolean;
   message?: boolean | string;
   openModal: Function;
-  setSuspendedAccountModalStatus: Function;
+  setRedirectionModalStatus: Function;
 }
 
 export interface SuspendedAccountModalProps {

@@ -4,10 +4,10 @@ import { State } from "../../models/states";
 import VisitorPage from "../VisitorPage/VisitorPage";
 
 const mapState = ({
-  modal: { suspendedAccountModal },
-  success: { suspendedAccountSuccess: message },
+  modal: { redirectionModal },
+  success: { redirectionSuccess: message },
 }: State) => ({
-  suspendedAccountModal,
+  redirectionModal,
   message,
 });
 
@@ -18,9 +18,9 @@ const mapDispatch = (dispatch: Dispatch<AnyAction>) => ({
       modal,
       modalStatus,
     }),
-  setSuspendedAccountModalStatus: (modalStatus: boolean) => {
-    dispatch({ type: "SET_SUSPENDED_ACCOUNT_MODAL_STATUS", modalStatus });
-    dispatch({ type: "SUSPENDED_ACCOUNT_SUCCESS_MESSAGE" });
+  setRedirectionModalStatus: (modalStatus: boolean) => {
+    dispatch({ type: "SET_REDIRECTION_MODAL_STATUS", modalStatus });
+    dispatch({ type: "REDIRECTION_SUCCESS_MESSAGE" });
   },
 });
 

@@ -8,7 +8,7 @@ const initialState: ModalState = {
   closeAccountModal: false,
   forgotPasswordModal: false,
   adminConfirmationModal: false,
-  suspendedAccountModal: false,
+  redirectionModal: false,
   authModal: {
     login: false,
     register: false,
@@ -60,8 +60,8 @@ const modal = (
       return { ...state, closeAccountModal: modalStatus };
     case "SET_ADMIN_CONFIRMATION_MODAL_STATUS":
       return { ...state, adminConfirmationModal: modalStatus };
-    case "SET_SUSPENDED_ACCOUNT_MODAL_STATUS":
-      return { ...state, suspendedAccountModal: modalStatus };
+    case "SET_REDIRECTION_MODAL_STATUS":
+      return { ...state, redirectionModal: modalStatus };
     default:
       return state;
   }

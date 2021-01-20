@@ -5,12 +5,11 @@ import SuspendedAccountModal from "./SuspendedAccountModal";
 import { VisitorPageProps } from "../../models/states";
 
 const VisitorPage = ({
-  suspendedAccountModal,
+  redirectionModal,
   message,
   openModal,
-  setSuspendedAccountModalStatus,
+  setRedirectionModalStatus,
 }: VisitorPageProps) => {
-  console.log("SUSPENDED MESSAGE IN VISITOR PAGE COMPONENT : ", message);
   return (
     <div
       className="visitor-page"
@@ -18,10 +17,10 @@ const VisitorPage = ({
         backgroundImage: `url(${image}) `,
       }}
     >
-      {suspendedAccountModal && (
+      {redirectionModal && (
         <SuspendedAccountModal
           message={message}
-          setModalStatus={setSuspendedAccountModalStatus}
+          setModalStatus={setRedirectionModalStatus}
         />
       )}
       <div className="black-filter"></div>

@@ -69,9 +69,9 @@ const logout = ({ dispatch, history }: AxiosSubmit, message?: string) => {
     history.push("/");
 
     if (message) {
-      dispatch({ type: "SUSPENDED_ACCOUNT_SUCCESS_MESSAGE", message });
+      dispatch({ type: "REDIRECTION_SUCCESS_MESSAGE", message });
       dispatch({
-        type: "SET_SUSPENDED_ACCOUNT_MODAL_STATUS",
+        type: "SET_REDIRECTION_MODAL_STATUS",
         modalStatus: true,
       });
     }
