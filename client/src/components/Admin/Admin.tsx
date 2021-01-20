@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { toast } from "react-toastify";
+import { errorToast, successToast } from "../../utils/toastify";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
   faChevronRight,
@@ -22,8 +22,8 @@ const Admin = ({
   banUser,
 }: AdminOverlayProps) => {
   useEffect(() => {
-    error && toast.error(error);
-    success && toast.success(success);
+    error && errorToast(error);
+    success && successToast(success);
   }, [error, success]);
 
   const [isPanelOpen, setIsPanelOpen] = useState(false);
