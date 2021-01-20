@@ -1,10 +1,4 @@
-import React, {
-  ChangeEvent,
-  FocusEvent,
-  FormEvent,
-  useEffect,
-  useRef,
-} from "react";
+import React, { ChangeEvent, FocusEvent, FormEvent, useEffect, useRef } from "react";
 import { NavLink } from "react-router-dom";
 import { NavState } from "../../models/states";
 import AppBar from "@material-ui/core/AppBar";
@@ -44,15 +38,16 @@ const NavBar = ({
   setMobileMenu,
   setMainMenu,
   setTrayStatus,
-  hasBeenSuspended: { status, message },
-  expellUser,
+  hasBeenSuspended: { status: suspendedStatus, message: suspendedMessage },
+  isTokenInvalid: { status: tokenStatus, message: tokenMessage },
+  redirectUser,
 }: NavState) => {
   const searchBar = useRef<HTMLInputElement>(null);
   const classes = useStyles();
 
   useEffect(() => {
-    status && expellUser(message);
-  }, [status]);
+    (suspendedStatus || tokenStatus) && redirectUser(suspendedMessage ?? tokenMessage);
+  }, [suspendedStatus, tokenStatus]);
 
   const closeAccountMenu = () => {
     setAccountMenu(null);
@@ -150,9 +145,7 @@ const NavBar = ({
                   className={classes.navLink}
                   variant="h6"
                   noWrap
-                  onClick={() =>
-                    openModal({ modalStatus: true, modal: "login" })
-                  }
+                  onClick={() => openModal({ modalStatus: true, modal: "login" })}
                 >
                   Sign In
                 </Typography>
@@ -160,9 +153,7 @@ const NavBar = ({
                   className={classes.navLink}
                   variant="h6"
                   noWrap
-                  onClick={() =>
-                    openModal({ modalStatus: true, modal: "register" })
-                  }
+                  onClick={() => openModal({ modalStatus: true, modal: "register" })}
                 >
                   Sign Up
                 </Typography>
@@ -203,13 +194,7 @@ const NavBar = ({
           </div>
         </Toolbar>
       </AppBar>
-      {renderMobileAuthMenu(
-        mobile,
-        setMobileMenu,
-        user,
-        openModal,
-        setAccountMenu
-      )}
+      {renderMobileAuthMenu(mobile, setMobileMenu, user, openModal, setAccountMenu)}
       {renderProfileMenu(account, closeAccountMenu, logout, user)}
       {renderMainMenu(main, setMainMenu)}
     </div>

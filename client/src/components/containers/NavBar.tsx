@@ -9,7 +9,7 @@ import { OwnProps } from "../../models/connect";
 const mapState = ({
   auth: { user },
   search: { search, focused },
-  navbar: { account, mobile, main, hasBeenSuspended },
+  navbar: { account, mobile, main, hasBeenSuspended, isTokenInvalid },
   notifications: {
     notifications: { counter },
     tray,
@@ -24,6 +24,7 @@ const mapState = ({
   counter,
   tray,
   hasBeenSuspended,
+  isTokenInvalid,
 });
 
 const mapDispatch = (dispatch: Dispatch<AnyAction>, { history }: OwnProps) => {
@@ -42,15 +43,14 @@ const mapDispatch = (dispatch: Dispatch<AnyAction>, { history }: OwnProps) => {
     },
     openModal: ({ modalStatus, modal }: AuthModalOpening) =>
       dispatch({ type: "SET_AUTH_MODAL_STATUS", modalStatus, modal }),
-    getSearchValue: (value: string) =>
-      dispatch({ type: "GET_SEARCH_VALUE", value }),
+    getSearchValue: (value: string) => dispatch({ type: "GET_SEARCH_VALUE", value }),
     setAccountMenu: (status: React.MouseEvent<HTMLElement> | null) =>
       dispatch({ type: "SET_ACCOUNT_MENU", status }),
     setMobileMenu: (status: React.MouseEvent<HTMLElement> | null) =>
       dispatch({ type: "SET_MOBILE_MENU", status }),
     setMainMenu: (status: React.MouseEvent<HTMLElement> | null) =>
       dispatch({ type: "SET_MAIN_MENU", status }),
-    expellUser: (message: string) =>
+    redirectUser: (message: string) =>
       dispatch({ type: "DISCONNECT_USER", message, history }),
   };
 };

@@ -1,5 +1,3 @@
-/** @format */
-
 import { Category } from "./categories";
 import { ProjectState } from "./projects";
 import { UserState, AuthUserState } from "./users";
@@ -8,6 +6,7 @@ import { Project } from "../models/projects";
 import { ChatWindow } from "./chat";
 import { Notification } from "./notifications";
 import { HasBeenSuspended } from "./socket";
+import { InvalidToken } from "./token";
 
 export interface Authentication {
   register: {
@@ -174,7 +173,8 @@ export interface NavState {
   setMainMenu: Function;
   setTrayStatus: Function;
   hasBeenSuspended: HasBeenSuspended;
-  expellUser: Function;
+  isTokenInvalid: InvalidToken;
+  redirectUser: Function;
 }
 
 export interface HomeProps {
@@ -230,6 +230,7 @@ export interface NavBarState {
   mobile: any;
   account: any;
   hasBeenSuspended: HasBeenSuspended;
+  isTokenInvalid: InvalidToken;
 }
 
 export interface MessageState {

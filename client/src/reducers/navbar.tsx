@@ -8,12 +8,12 @@ const initialState: NavBarState = {
   hasBeenSuspended: {
     status: false,
   },
+  isTokenInvalid: {
+    status: false,
+  },
 };
 
-const navbar = (
-  state = initialState,
-  { type, status, message }: NavBarAction
-) => {
+const navbar = (state = initialState, { type, status, message }: NavBarAction) => {
   switch (type) {
     case "SET_ACCOUNT_MENU":
       return { ...state, account: status };
@@ -23,6 +23,8 @@ const navbar = (
       return { ...state, main: status };
     case "SEND_ACCOUNT_SUSPENSION_REQUEST":
       return { ...state, hasBeenSuspended: { status: true, message } };
+    case "INVALID_TOKEN":
+      return { ...state, isTokenInvalid: { status: true, message } };
     default:
       return state;
   }
