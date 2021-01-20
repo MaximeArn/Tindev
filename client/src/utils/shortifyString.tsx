@@ -1,2 +1,2 @@
 export default (string: string) =>
-  string.length < 180 ? string : string.substring(0, 180) + "...";
+  string.length < 180 ? string : string.substring(0, 177) + "...";

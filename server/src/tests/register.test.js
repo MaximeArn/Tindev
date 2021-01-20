@@ -9,10 +9,10 @@ describe("create user endpoint", () => {
   it("should return a 200 status with a json success message", async (done) => {
     try {
       const { status, body } = await request.post("/auth/register").send({
-        username: "User1",
-        email: "user1@gmail.com",
-        password: "user1",
-        confirmPassword: "user1",
+        username: "User13",
+        email: "user13@gmail.com",
+        password: "user13",
+        confirmPassword: "user13",
       });
 
       expect(status).toEqual(200);
