@@ -1,5 +1,3 @@
-/** @format */
-
 const { Project } = require("../../models");
 const ProjectError = require("../CustomError");
 
