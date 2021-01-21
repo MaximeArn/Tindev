@@ -16,7 +16,6 @@ const NotificationsTray = ({
 
   useEffect(() => {
     document.addEventListener("click", clickHandler);
-
     return () => document.removeEventListener("click", clickHandler);
   }, []);
 

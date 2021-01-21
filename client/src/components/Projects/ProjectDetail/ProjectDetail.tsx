@@ -34,7 +34,12 @@ const ProjectDetail = ({
         <p className="error-message">{error}</p>
       ) : (
         <>
-          {!loader ? (
+          {loader ? (
+            <div className="project-detail-loader">
+              <p>Loading</p>
+              <CircularProgress size={15} />
+            </div>
+          ) : (
             <Project
               setModalStatus={setModalStatus}
               {...project}
@@ -44,11 +49,6 @@ const ProjectDetail = ({
               leaveProject={leaveProject}
               contributorLoader={contributorLoader}
             />
-          ) : (
-            <div className="project-detail-loader">
-              <p>Loading</p>
-              <CircularProgress size={15} />
-            </div>
           )}
         </>
       )}

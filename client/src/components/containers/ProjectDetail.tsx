@@ -1,5 +1,3 @@
-/** @format */
-
 import { connect } from "react-redux";
 import ProjectDetail from "../Projects/ProjectDetail/ProjectDetail";
 import { State } from "../../models/states";
@@ -14,15 +12,11 @@ const mapState = ({
   },
   modal: { applyModal },
   error: { projectDetailsErrorMessage },
-  loaders: {
-    projectDetailsLoader: loader,
-    removingContributorLoader: contributorLoader,
-  },
+  loaders: { projectDetailsLoader: loader, removingContributorLoader: contributorLoader },
   auth: { user },
 }: State) => {
   const contributing =
-    user &&
-    project?.contributors.find(({ username }) => username === user.username);
+    user && project?.contributors.find(({ username }) => username === user.username);
   return {
     role: user.role,
     project,
@@ -35,10 +29,7 @@ const mapState = ({
   };
 };
 
-const mapDispatch = (
-  dispatch: Dispatch<AnyAction>,
-  { match: { params } }: OwnProps
-) => {
+const mapDispatch = (dispatch: Dispatch<AnyAction>, { match: { params } }: OwnProps) => {
   const { slug } = params;
   return {
     setModalStatus: (modalStatus: boolean) =>

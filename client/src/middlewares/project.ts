@@ -36,7 +36,6 @@ const getProjects = (dispatch: Dispatch<AnyAction>) => {
     .get("/project")
     .then(({ data: projects }) => {
       dispatch({ type: "SET_PROJECTS", projects });
-      dispatch({ type: "PROJECT_LIST_ERROR_HANDLER" });
     })
     .catch(() => {
       dispatch({
