@@ -3,6 +3,7 @@ import { UserProfileProps } from "../../../models/users";
 import CircularProgress from "@material-ui/core/CircularProgress";
 import User from "../../containers/User";
 import AdminPanel from "../../containers/Admin";
+import updateContent from "../../../utils/updateSelectedContent";
 import "./userprofile.scss";
 
 const UserProfile = ({
@@ -20,7 +21,7 @@ const UserProfile = ({
   }, []);
 
   useEffect(() => {
-    content && content["user"] && getUser();
+    updateContent(content, "user", getUser);
   }, [content]);
   return (
     <>
