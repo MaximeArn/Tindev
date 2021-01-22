@@ -183,6 +183,7 @@ const authRouter = {
     }
   },
   clearCookies: (req, res, next) => {
+    console.log("clearcookies called");
     res.clearCookie("token");
     return res.end();
   },

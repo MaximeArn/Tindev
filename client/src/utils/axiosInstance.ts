@@ -1,5 +1,6 @@
 import axios from "axios";
 import { url as baseURL } from "../environments/api";
+import auth from "../reducers/auth";
 import authorizationHandler from "../services/authorizationHandler";
 
 const format = {
@@ -24,8 +25,9 @@ instance.interceptors.response.use(
       config: { url },
     } = error.response;
 
-    status === 401 && !(url === "/auth/verify") && authorizationHandler(msg);
-    return error;
+    return status === 401 && !(url === "/auth/verify")
+      ? authorizationHandler(msg)
+      : Promise.reject(error);
   }
 );
 

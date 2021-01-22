@@ -55,15 +55,8 @@ const login = ({ getState, dispatch }: AxiosSubmit) => {
 const retrieveToken = (dispatch: Dispatch<AnyAction>) => {
   axios
     .get("/auth/verify")
-    .then(({ data: credentials }) => {
-      dispatch({ type: "CONNECT_USER", credentials });
-    })
-    .catch((error) => {
-      console.log("ERROR : ", error);
-      // axios
-      //   .delete("/auth/clear_cookies")
-      //   .finally(() => console.error(error.response.data.msg));
-    });
+    .then(({ data: credentials }) => dispatch({ type: "CONNECT_USER", credentials }))
+    .catch(() => axios.delete("/auth/clear_cookies"));
 };
 
 const logout = ({ getState, dispatch, history }: AxiosSubmit, message?: string) => {
