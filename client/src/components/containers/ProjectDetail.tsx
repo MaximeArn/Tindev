@@ -14,6 +14,7 @@ const mapState = ({
   error: { projectDetailsErrorMessage },
   loaders: { projectDetailsLoader: loader, removingContributorLoader: contributorLoader },
   auth: { user },
+  search: { selectedContent: content },
 }: State) => {
   const contributing =
     user && project?.contributors.find(({ username }) => username === user.username);
@@ -26,6 +27,7 @@ const mapState = ({
     loader,
     contributorLoader,
     contributing,
+    content,
   };
 };
 

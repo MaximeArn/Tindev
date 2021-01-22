@@ -1,6 +1,7 @@
 /** @format */
 
 import { Category } from "./categories";
+import { SelectedContent } from "./search";
 
 export interface Projects {
   projects: Project[];
@@ -102,6 +103,7 @@ export interface ProjectDetailProps {
   leaveProject: Function;
   contributing: undefined | Contributor;
   role: string;
+  content: null | SelectedContent;
 }
 
 export interface ProjectProp {

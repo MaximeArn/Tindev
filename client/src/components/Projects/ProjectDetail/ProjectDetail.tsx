@@ -18,10 +18,15 @@ const ProjectDetail = ({
   contributing,
   leaveProject,
   role,
+  content,
 }: ProjectDetailProps) => {
   useEffect(() => {
     getProjectDetails();
   }, []);
+
+  useEffect(() => {
+    content && content["project"] && getProjectDetails();
+  }, [content]);
 
   useEffect(() => {
     project && verifyOwner(project.author);
