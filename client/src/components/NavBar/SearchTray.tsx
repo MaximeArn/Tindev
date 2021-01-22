@@ -34,7 +34,9 @@ const SearchBarTray = ({
             return (
               <div
                 key={_id}
-                onClick={() => setSelectedContent(author ? "project" : "user")}
+                onClick={() =>
+                  setSelectedContent(author ? { project: title } : { user: username })
+                }
               >
                 <Link to={path} key={_id} className="search-tray-item">
                   <FontAwesomeIcon icon={faSearch} />

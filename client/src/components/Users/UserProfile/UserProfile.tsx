@@ -10,6 +10,7 @@ const UserProfile = ({
   user: { _id: id, role },
   error,
   loader,
+  content,
   getUser,
 }: UserProfileProps) => {
   console.log("USER PROFILE COMPONENT CALLED");
@@ -18,6 +19,9 @@ const UserProfile = ({
     getUser();
   }, []);
 
+  useEffect(() => {
+    content && content["user"] && getUser();
+  }, [content]);
   return (
     <>
       {loader ? (

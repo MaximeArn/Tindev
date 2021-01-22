@@ -1,3 +1,5 @@
+import { SelectedContent } from "./search";
+
 export interface UserState {
   users: User[];
   user: any;
@@ -41,6 +43,7 @@ export interface UserProfileProps {
   user: User;
   error: string;
   loader: boolean;
+  content: null | SelectedContent;
   getUser: Function;
 }
 

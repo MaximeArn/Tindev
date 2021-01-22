@@ -7,6 +7,7 @@ import { ChatWindow } from "./chat";
 import { Notification } from "./notifications";
 import { HasBeenSuspended } from "./socket";
 import { InvalidToken } from "./token";
+import { SelectedContent } from "./search";
 
 export interface Authentication {
   register: {
@@ -223,7 +224,7 @@ export interface SearchState {
   search: string;
   focused: boolean;
   results: (User | Project)[];
-  selectedContent: null | string;
+  selectedContent: null | SelectedContent;
 }
 
 export interface NavBarState {

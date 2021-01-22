@@ -11,3 +11,8 @@ export interface SearchTrayProps {
   sendSearchPreview: Function;
   setSelectedContent: Function;
 }
+
+export interface SelectedContent {
+  user?: string;
+  project?: string;
+}
