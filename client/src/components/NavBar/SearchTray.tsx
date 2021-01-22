@@ -32,7 +32,10 @@ const SearchBarTray = ({
               : `/user/${userify(username)}`;
 
             return (
-              <div key={_id} onClick={() => setSelectedContent()}>
+              <div
+                key={_id}
+                onClick={() => setSelectedContent(author ? "project" : "user")}
+              >
                 <Link to={path} key={_id} className="search-tray-item">
                   <FontAwesomeIcon icon={faSearch} />
                   <span className="search-value">{title || username}</span>

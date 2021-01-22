@@ -88,6 +88,7 @@ export interface SearchAction {
   value: string;
   focused: boolean;
   results: (User | Project)[];
+  selectedContent: string;
 }
 
 export interface NavBarAction {

@@ -10,8 +10,8 @@ const mapState = ({ search: { search, results } }: State) => ({
 
 const mapDispatch = (dispatch: Dispatch<AnyAction>) => ({
   sendSearchPreview: () => dispatch({ type: "SEND_RESEARCH" }),
-  setSelectedContent: (username: string) => {
-    dispatch({ type: "GET_USER", username });
+  setSelectedContent: (selectedContent: string) => {
+    dispatch({ type: "SET_SELECTED_CONTENT", selectedContent });
   },
 });
 
