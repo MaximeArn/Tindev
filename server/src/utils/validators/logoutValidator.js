@@ -7,7 +7,7 @@ module.exports = async (token, next) => {
     try {
       console.log("LOGOUT VALIDATOR CALLED");
       if (error) {
-        throw new UserError("User not found, please sign in.", 401);
+        throw new UserError("User not found", 401);
       }
 
       return decoded;

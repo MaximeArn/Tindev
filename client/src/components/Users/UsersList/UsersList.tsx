@@ -12,9 +12,7 @@ const UsersList = ({ users, getUsers }: UserListProps) => {
 
   return (
     <div className="users-list">
-      {users.map((user) => (
-        <UserCard key={user._id} {...user} />
-      ))}
+      {users && users.map((user) => <UserCard key={user._id} {...user} />)}
     </div>
   );
 };

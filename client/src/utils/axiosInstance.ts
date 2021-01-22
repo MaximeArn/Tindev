@@ -23,13 +23,7 @@ instance.interceptors.response.use(
       data: { msg },
     } = error.response;
 
-    //TODO: return error anyway cause i have undefined errors in original catch block, or maybe try
-    // to return unresolved promise, if you return error just do a !error.status === 401 && expression
-    if (status === 401) {
-      authorizationHandler(msg);
-      throw new axios.Cancel("OPERATION GOT CANCELLED");
-    }
-
+    status === 401 && authorizationHandler(msg);
     return error;
   }
 );
