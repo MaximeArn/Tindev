@@ -11,7 +11,6 @@ const removeContributorValidator = require("./removeContributorValidator");
 const userProfileValidator = require("./userProfileValidator");
 const userUpdateValidator = require("./userUpdateValidator");
 const deleteProfileValidator = require("./deleteProfileValidator");
-const logoutValidator = require("./logoutValidator");
 const chatWindowValidator = require("./chatWindowValidator");
 const verifyAccountValidator = require("./verifyAccountValidator");
 const accountTokenValidator = require("./accountTokenValidator");
@@ -33,7 +32,6 @@ module.exports = {
   userProfileValidator,
   userUpdateValidator,
   deleteProfileValidator,
-  logoutValidator,
   chatWindowValidator,
   verifyAccountValidator,
   accountTokenValidator,
