@@ -5,6 +5,7 @@ const initialState: SearchState = {
   search: "",
   focused: false,
   results: [],
+  selectedSearch: null,
 };
 
 const search = (

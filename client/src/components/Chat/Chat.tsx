@@ -25,8 +25,7 @@ const Chat = ({
                 messages={sentMessages
                   .concat(
                     receivedMessages.filter(
-                      ({ from }: SocketServerResponse) =>
-                        from === window.username
+                      ({ from }: SocketServerResponse) => from === window.username
                     )
                   )
                   .sort(

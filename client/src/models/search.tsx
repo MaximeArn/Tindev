@@ -9,5 +9,5 @@ export interface SearchTrayProps {
   search: string;
   results: (User | Project)[];
   sendSearchPreview: Function;
-  getUser: Function;
+  setSelectedContent: Function;
 }

@@ -10,7 +10,7 @@ const SearchBarTray = ({
   search,
   results,
   sendSearchPreview,
-  getUser,
+  setSelectedContent,
 }: SearchTrayProps) => {
   useEffect(() => {
     search && sendSearchPreview();
@@ -20,10 +20,7 @@ const SearchBarTray = ({
     <div tabIndex={-1} className="search-tray">
       <div className="search-tray-list-item">
         {search && (
-          <Link
-            to={`/search?term=${search}`}
-            className="search-tray-item-default"
-          >
+          <Link to={`/search?term=${search}`} className="search-tray-item-default">
             <FontAwesomeIcon icon={faSearch} />
             <span className="search-value">{search}</span>
           </Link>
@@ -35,12 +32,7 @@ const SearchBarTray = ({
               : `/user/${userify(username)}`;
 
             return (
-              <div
-                key={_id}
-                onClick={() => {
-                  !author && getUser(username);
-                }}
-              >
+              <div key={_id} onClick={() => setSelectedContent()}>
                 <Link to={path} key={_id} className="search-tray-item">
                   <FontAwesomeIcon icon={faSearch} />
                   <span className="search-value">{title || username}</span>

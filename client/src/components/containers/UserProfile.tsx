@@ -19,13 +19,13 @@ const mapState = ({
   loader,
 });
 
-const mapDispatch = (
-  dispatch: Dispatch<AnyAction>,
-  { match: { params } }: OwnProps
-) => {
+const mapDispatch = (dispatch: Dispatch<AnyAction>, { match: { params } }: OwnProps) => {
   const { username } = params;
   return {
-    getUser: () => dispatch({ type: "GET_USER_PROFILE", username }),
+    getUser: () => {
+      console.log("GET USER METHOD CALLED");
+      dispatch({ type: "GET_USER_PROFILE", username });
+    },
   };
 };
 

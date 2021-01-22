@@ -6,10 +6,7 @@ const initialState: MessageState = {
   chatWindows: [],
 };
 
-const message = (
-  state = initialState,
-  { type, message, windows }: MessageAction
-) => {
+const message = (state = initialState, { type, message, windows }: MessageAction) => {
   switch (type) {
     case "SET_CHAT_MESSAGES":
       const { to } = message;
@@ -17,13 +14,9 @@ const message = (
         ...state,
         messages: {
           ...state.messages,
-          [to]: state.messages[to]
-            ? [...state.messages[to], message]
-            : [message],
+          [to]: state.messages[to] ? [...state.messages[to], message] : [message],
         },
       };
-    case "SET_CHAT_WINDOWS":
-      return { ...state, chatWindows: windows };
     default:
       return state;
   }
