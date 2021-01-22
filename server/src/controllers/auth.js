@@ -66,15 +66,12 @@ const authRouter = {
       next(error);
     }
   },
-  logout: async (connectedUsers, { cookies: { token } }, res, next) => {
+  logout: async (connectedUsers, { params: { username } }, res, next) => {
     try {
-      const user = await logoutValidator(token, next);
-
-      if (!user) {
+      if (!username) {
         return res.status(200).json({ message: "User was already logged out" });
       }
 
-      const { username } = user;
       const userSocket = connectedUsers[username];
 
       if (userSocket) {

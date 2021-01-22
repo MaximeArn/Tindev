@@ -66,8 +66,9 @@ const retrieveToken = (dispatch: Dispatch<AnyAction>) => {
     });
 };
 
-const logout = ({ dispatch, history }: AxiosSubmit, message?: string) => {
-  axios.delete("/auth/logout").finally(() => {
+const logout = ({ getState, dispatch, history }: AxiosSubmit, message?: string) => {
+  const { username } = getState().auth.user || {};
+  axios.delete(`/auth/logout/${username}`).finally(() => {
     dispatch({ type: "RESET_GLOBAL_STATE" });
     history.push("/");
 
@@ -200,7 +201,7 @@ const auth: Middleware = ({ getState, dispatch }) => (next) => (
       retrieveToken(dispatch);
       break;
     case "DISCONNECT_USER":
-      logout({ dispatch, history }, message && message);
+      logout({ getState, dispatch, history }, message && message);
       break;
     default:
       next(action);

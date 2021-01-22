@@ -22,7 +22,7 @@ const authRouterWrapper = (connectedUsers) => {
   router.get("/token_validity/:token", verifyAccountToken);
   router.get("/activate_account/:token", activateAccount);
   router.delete("/clear_cookies", clearCookies);
-  router.delete("/logout", (req, res, next) =>
+  router.delete("/logout/:username", (req, res, next) =>
     logout(connectedUsers, req, res, next)
   );
 

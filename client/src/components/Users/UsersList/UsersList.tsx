@@ -1,5 +1,3 @@
-/** @format */
-
 import React, { useEffect } from "react";
 import "./userslist.scss";
 import { UserListProps } from "../../../models/users";
