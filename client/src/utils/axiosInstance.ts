@@ -21,10 +21,10 @@ instance.interceptors.response.use(
     const {
       status,
       data: { msg },
+      config: { url },
     } = error.response;
 
-    //TODO: prevent authorization handler if request referer is /auth/verify
-    status === 401 && authorizationHandler(msg);
+    status === 401 && !(url === "/auth/verify") && authorizationHandler(msg);
     return error;
   }
 );
