@@ -14,8 +14,6 @@ const UserProfile = ({
   content,
   getUser,
 }: UserProfileProps) => {
-  console.log("USER PROFILE COMPONENT CALLED");
-
   useEffect(() => {
     getUser();
   }, []);

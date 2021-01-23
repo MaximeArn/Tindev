@@ -100,7 +100,7 @@ export interface NavBarAction {
 export interface MessageAction {
   type: string;
   message: SocketServerResponse;
-  windows: ChatWindow[];
+  chatWindows: ChatWindow[];
 }
 
 export interface NotificationAction {

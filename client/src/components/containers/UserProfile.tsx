@@ -25,7 +25,6 @@ const mapDispatch = (dispatch: Dispatch<AnyAction>, { match: { params } }: OwnPr
   const { username } = params;
   return {
     getUser: () => {
-      console.log("GET USER METHOD CALLED");
       dispatch({ type: "GET_USER_PROFILE", username });
     },
   };

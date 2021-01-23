@@ -13,19 +13,21 @@ const setChatWindow = (
   !chatWindows.some(({ id: _id }: ChatWindow) => id == _id) &&
     axios
       .patch("/users/chat_window", { id, username })
-      .then(({ data: windows }) => dispatch({ type: "SET_CHAT_WINDOWS", windows }));
+      .then(({ data: chatWindows }) =>
+        dispatch({ type: "SET_CHAT_WINDOWS", chatWindows })
+      );
 };
 
 const getChatWindows = (dispatch: Dispatch<AnyAction>) => {
   axios
     .get("/users/chat_windows")
-    .then(({ data: windows }) => dispatch({ type: "SET_CHAT_WINDOWS", windows }));
+    .then(({ data: chatWindows }) => dispatch({ type: "SET_CHAT_WINDOWS", chatWindows }));
 };
 
 const closeChatWindow = (dispatch: Dispatch<AnyAction>, id: string) => {
   axios
     .patch("/users/close_window", { id })
-    .then(({ data: windows }) => dispatch({ type: "SET_CHAT_WINDOWS", windows }))
+    .then(({ data: chatWindows }) => dispatch({ type: "SET_CHAT_WINDOWS", chatWindows }))
     .catch(({ response: { data } }) => console.error(data));
 };
 
