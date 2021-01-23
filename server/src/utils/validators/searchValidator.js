@@ -3,32 +3,26 @@ const SearchError = require("../CustomError");
 module.exports = async ({ query }, next) => {
   try {
     if (!query) throw new SearchError("Invalid research", 400);
-    const regex = `^${query}`;
+
+    const regex = {
+      $regex: `^${query}`,
+      $options: "i",
+    };
 
     const project = Project.find({
-      $or: [
-        { title: { $regex: regex, $options: "i" } },
-        { author: { $regex: regex, $options: "i" } },
-      ],
+      $or: [{ title: regex }, { author: regex }],
     });
 
     const user = User.find({
-      $or: [
-        { username: { $regex: regex, $options: "i" } },
-        { city: { $regex: regex, $options: "i" } },
-      ],
+      $or: [{ username: regex }, { city: regex }],
     });
 
     //not useful at the moment but might use it later on with a category allocated page
     const category = Category.find({
-      name: { $regex: regex, $options: "i" },
+      name: regex,
     });
 
-    const [projects, users, categories] = await Promise.all([
-      project,
-      user,
-      category,
-    ]);
+    const [projects, users, categories] = await Promise.all([project, user, category]);
 
     return [...projects, ...users];
   } catch (error) {

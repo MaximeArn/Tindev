@@ -21,6 +21,7 @@ const {
   notificationsRouter,
   adminRouterWrapper,
 } = require("./router");
+const tokenVerification = require("./middlewares/tokenVerification");
 
 const ioNameSpace = io.of("/chat");
 const connectedUsers = {};
@@ -29,6 +30,7 @@ server.use(cors(corsSettings));
 server.use(express.static(`${__dirname}/public`));
 server.use(express.json());
 server.use(cookieParser());
+server.use(tokenVerification);
 server.use("/auth", authRouterWrapper(connectedUsers));
 server.use("/project", projectRouterWrapper(connectedUsers));
 server.use("/categories", categoriesRouter);
