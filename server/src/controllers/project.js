@@ -29,50 +29,38 @@ module.exports = {
       next(error);
     }
   },
-  getProjects: async ({ cookies: { token } }, res, next) => {
+  getProjects: async (req, res, next) => {
     try {
-      const { username } = await tokenValidator(token, next);
+      const projects = (await Project.find()).filter(
+        ({ size, contributors }) => size > contributors.length
+      );
 
-      if (username) {
-        const projects = (await Project.find()).filter(
-          ({ size, contributors }) => size > contributors.length
-        );
-
-        return res.status(200).json(projects);
-      }
+      return res.status(200).json(projects);
     } catch (error) {
       next(error);
     }
   },
-  getProject: async ({ params: { name }, cookies: { token } }, res, next) => {
+  getProject: async ({ params: { name } }, res, next) => {
     try {
-      const user = await tokenValidator(token, next);
-
-      if (user) {
-        const project = await Project.findOne({ title: name });
-        return res.status(200).json(project);
-      }
+      const project = await Project.findOne({ title: name });
+      return res.status(200).json(project);
     } catch (error) {
       next(error);
     }
   },
-  apply: async (sockets, { body, cookies: { token } }, res, next) => {
+  apply: async (sockets, { body, decoded: { id, username } }, res, next) => {
     try {
-      const { id, username } = await tokenValidator(token, next);
       const { owner, project } = await applyValidator({ body, id }, next);
 
-      if (project && id) {
+      if (project) {
         const { _id, applicants } = project;
         const { message } = body;
         const tooltip = `${username} applied to your project`;
         setNotification(sockets, owner, tooltip, next);
 
-        await Project.findOneAndUpdate(
-          { _id },
-          {
-            applicants: [...applicants, { _id: id, username, message }],
-          }
-        );
+        await Project.findByIdAndUpdate(_id, {
+          applicants: [...applicants, { _id: id, username, message }],
+        });
 
         return res.status(200).json({
           msg: "Thank you for your apply.",
@@ -83,14 +71,14 @@ module.exports = {
     }
   },
   acceptApplicant: async ({ body }, res, next) => {
-    const { userId, username } = body;
     try {
+      const { userId: _id, username } = body;
       const project = await applicantValidator(body, next);
 
       if (project) {
         project.applicants.pull(userId);
         project.contributors.push({
-          _id: userId,
+          _id,
           username,
         });
 

@@ -1,5 +1,4 @@
 import { AnyAction, Dispatch, Middleware } from "redux";
-import { url } from "../environments/api";
 import { AxiosSubmit, AxiosApplicant } from "../models/axios";
 import slugify from "../utils/slugify";
 import unslugify from "../utils/unslugify";
@@ -73,19 +72,18 @@ const sendApply = ({ getState, dispatch }: AxiosSubmit, projectId: string) => {
     );
 };
 
-const acceptApplicant = ({
-  dispatch,
-  data: { projectId, userId, username },
-}: AxiosApplicant) => {
+const acceptApplicant = ({ dispatch, data }: AxiosApplicant) => {
+  const { projectId, userId } = data;
   dispatch({
     type: "SET_PROJECT_MANAGE_LOADER",
     value: true,
     applicantId: userId,
   });
   axios
-    .patch("/project/accept_applicant", { projectId, userId, username })
+    .patch("/project/accept_applicant", data)
     .then(({ data: project }) => {
       dispatch({ type: "SET_PROJECT", project });
+      dispatch({ type: "GET_PROJECTS" });
     })
     .catch((err) => console.log(err))
     .finally(() => {

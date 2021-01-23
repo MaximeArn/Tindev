@@ -23,15 +23,7 @@ const initialState: ProjectState = {
 
 const project = (
   state = initialState,
-  {
-    type,
-    inputName,
-    inputValue,
-    image,
-    projects,
-    project,
-    owner,
-  }: ProjectAction
+  { type, inputName, inputValue, image, projects, project, owner }: ProjectAction
 ) => {
   switch (type) {
     case "GET_PROJECT_CREATION_VALUE":
@@ -39,11 +31,7 @@ const project = (
         ...state,
         createProject: {
           ...state.createProject,
-          [inputName]: inputValue
-            ? inputValue
-            : inputName === "categories"
-            ? []
-            : "",
+          [inputName]: inputValue ? inputValue : inputName === "categories" ? [] : "",
         },
       };
     case "RESET_PROJECT_CREATION_VALUES":
@@ -66,7 +54,6 @@ const project = (
     case "SET_PROJECT":
       return {
         ...state,
-        projects: updateProjects(project, state.projects),
         project,
       };
     case "ADD_PROJECT_ON_PROJECT_CREATION":
