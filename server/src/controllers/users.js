@@ -29,13 +29,11 @@ const usersController = {
   },
   getMessageHistory: async ({ body: { toId }, decoded: { id: fromId } }, res, next) => {
     try {
-      const fromUser = User.findOne({
-        _id: fromId,
-      }).sort({
+      const fromUser = User.findById(fromId).sort({
         "messages.date": -1,
       });
 
-      const toUser = User.findOne({ _id: toId }).sort({
+      const toUser = User.findById(toId).sort({
         "messages.date": -1,
       });
 
@@ -58,8 +56,8 @@ const usersController = {
 
       if (valid) {
         const key = file ? file.fieldname : Object.keys(body)[0];
-        const user = await User.findOneAndUpdate(
-          { _id: id },
+        const user = await User.findByIdAndUpdate(
+          id,
           { [key]: file ? file.filename : body[key] },
           { new: true, fields: { password: 0, messages: 0 } }
         );
@@ -84,7 +82,7 @@ const usersController = {
   },
   getChatWindows: async ({ decoded: { id } }, res, next) => {
     try {
-      const { chatWindows } = (await User.findById(id)) || {};
+      const { chatWindows } = await User.findById(id);
       return res.status(200).json(chatWindows);
     } catch (error) {
       next(error);

@@ -3,9 +3,7 @@ const UserError = require("../CustomError");
 
 module.exports = async (body, next) => {
   try {
-    const { id } = body;
-
-    const user = await User.findById(id);
+    const user = await User.findById(body.id);
 
     if (!user) throw new UserError("Target User does not exist.", 404);
 
