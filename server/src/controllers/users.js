@@ -8,34 +8,27 @@ const {
 } = require("../utils/validators");
 
 const usersController = {
-  getUsers: async ({ cookies: { token } }, res, next) => {
+  getUsers: async ({ decoded: { username } }, res, next) => {
     try {
-      const { username } = await tokenValidator(token, next);
-
-      if (username) {
-        const users = await User.find({ username: { $ne: username } }, { password: 0 });
-        return res.status(200).json(users);
-      }
+      const users = await User.find({ username: { $ne: username } }, { password: 0 });
+      return res.status(200).json(users);
     } catch (error) {
       next(error);
     }
   },
-  getUserByUsername: async ({ params: { username }, cookies: { token } }, res, next) => {
+  getUserByUsername: async ({ params: { username } }, res, next) => {
     try {
-      const decoded = await tokenValidator(token, next);
       const user = await userProfileValidator({ username }, next);
 
-      if (decoded && user) {
+      if (user) {
         return res.status(200).json(user);
       }
     } catch (error) {
       next(error);
     }
   },
-  getMessageHistory: async ({ body: { toId }, cookies: { token } }, res, next) => {
+  getMessageHistory: async ({ body: { toId }, decoded: { id: fromId } }, res, next) => {
     try {
-      const { id: fromId } = Object(await tokenValidator(token, next));
-
       const fromUser = User.findOne({
         _id: fromId,
       }).sort({
@@ -59,12 +52,11 @@ const usersController = {
       next(error);
     }
   },
-  update: async ({ body, file, cookies: { token } }, res, next) => {
+  update: async ({ body, file, decoded: { id } }, res, next) => {
     try {
-      const { id } = (await tokenValidator(token, next)) || {};
       const valid = await userUpdateValidator(body, next);
 
-      if (id && valid) {
+      if (valid) {
         const key = file ? file.fieldname : Object.keys(body)[0];
         const user = await User.findOneAndUpdate(
           { _id: id },
@@ -90,21 +82,19 @@ const usersController = {
       next(error);
     }
   },
-  getChatWindows: async ({ cookies: { token } }, res, next) => {
+  getChatWindows: async ({ decoded: { id } }, res, next) => {
     try {
-      const { id } = (await tokenValidator(token, next)) || {};
       const { chatWindows } = (await User.findById(id)) || {};
       return res.status(200).json(chatWindows);
     } catch (error) {
       next(error);
     }
   },
-  setChatWindow: async ({ body, cookies: { token } }, res, next) => {
+  setChatWindow: async ({ body, decoded: { id } }, res, next) => {
     try {
-      const { id } = Object(await tokenValidator(token, next));
       const target = await chatWindowValidator(body, next);
 
-      if (id && target) {
+      if (target) {
         const { chatWindows } = await User.findByIdAndUpdate(
           id,
           { $push: { chatWindows: target } },
@@ -117,19 +107,15 @@ const usersController = {
       next(error);
     }
   },
-  deleteChatWindow: async ({ body: { id }, cookies: { token } }, res, next) => {
+  deleteChatWindow: async ({ body: { id }, decoded: { id: userId } }, res, next) => {
     try {
-      const { id: userId } = Object(await tokenValidator(token, next));
+      const { chatWindows } = await User.findByIdAndUpdate(
+        userId,
+        { $pull: { chatWindows: { id } } },
+        { new: true, fields: { _id: 0 } }
+      );
 
-      if (userId) {
-        const { chatWindows } = await User.findByIdAndUpdate(
-          userId,
-          { $pull: { chatWindows: { id } } },
-          { new: true, fields: { _id: 0 } }
-        );
-
-        return res.status(200).json(chatWindows);
-      }
+      return res.status(200).json(chatWindows);
     } catch (error) {
       next(error);
     }

@@ -10,7 +10,9 @@ module.exports = (req, res, next) => {
     cookies: { token },
   } = req;
 
-  path.match(notProtectedPaths) && next();
+  if (path.match(notProtectedPaths)) {
+    return next();
+  }
 
   verify(token, SECRET, async (error, decoded) => {
     try {
