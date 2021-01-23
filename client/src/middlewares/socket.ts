@@ -15,8 +15,8 @@ const socketEventListener = (dispatch: Dispatch<AnyAction>) => {
     dispatch({ type: "SET_NOTIFICATIONS", notifications })
   );
 
-  socket.on("chat-popup", (windows: ChatWindow[]) =>
-    dispatch({ type: "SET_CHAT_WINDOWS", windows })
+  socket.on("chat-popup", (chatWindows: ChatWindow[]) =>
+    dispatch({ type: "SET_CHAT_WINDOWS", chatWindows })
   );
 
   socket.on("expell-user", (message: string) => {
