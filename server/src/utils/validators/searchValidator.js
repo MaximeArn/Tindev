@@ -17,12 +17,11 @@ module.exports = async ({ query }, next) => {
       $or: [{ username: regex }, { city: regex }],
     });
 
-    //not useful at the moment but might use it later on with a category allocated page
     const category = Category.find({
       name: regex,
     });
 
-    const [projects, users, categories] = await Promise.all([project, user, category]);
+    const [projects, users] = await Promise.all([project, user, category]);
 
     return [...projects, ...users];
   } catch (error) {

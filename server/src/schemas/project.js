@@ -6,10 +6,13 @@ const projectSchema = new Schema(
     author: String,
     title: String,
     description: String,
-    contributors: [{ _id: ObjectId, username: String }],
+    contributors: { type: [{ _id: ObjectId, username: String }], default: [] },
     image: String,
     categories: [String],
-    applicants: [{ _id: ObjectId, username: String, message: String }],
+    applicants: {
+      type: [{ _id: ObjectId, username: String, message: String }],
+      default: [],
+    },
     size: Number,
   },
   { collation: { locale: "en", strength: 2 } }

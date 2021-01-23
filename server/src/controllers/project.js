@@ -11,18 +11,15 @@ const {
 } = require("../utils/validators");
 
 module.exports = {
-  create: async ({ body, cookies: { token }, file }, res, next) => {
-    const filename = file ? file.filename : "image-default.jpeg";
+  create: async ({ body, decoded: { username }, file }, res, next) => {
     try {
-      const { username } = await tokenValidator(token, next);
+      const filename = file ? file.filename : "image-default.jpeg";
       const valid = await projectValidator(body, next);
 
-      if (valid && username) {
+      if (valid) {
         const created = await Project.create({
           ...valid,
           author: username,
-          contributors: [],
-          applicants: [],
           image: filename,
         });
 
