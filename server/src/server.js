@@ -12,6 +12,7 @@ const mongoDB = require("./config/database");
 const cors = require("cors");
 const corsSettings = require("./config/cors");
 const adminMiddleware = require("./middlewares/admin");
+const tokenVerification = require("./middlewares/tokenVerification");
 const {
   authRouterWrapper,
   usersRouter,
@@ -21,7 +22,6 @@ const {
   notificationsRouter,
   adminRouterWrapper,
 } = require("./router");
-const tokenVerification = require("./middlewares/tokenVerification");
 
 const ioNameSpace = io.of("/chat");
 const connectedUsers = {};
