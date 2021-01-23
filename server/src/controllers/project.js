@@ -90,8 +90,8 @@ module.exports = {
     }
   },
   declineApplicant: async ({ body }, res, next) => {
-    const { userId } = body || {};
     try {
+      const { userId } = body || {};
       const project = await applicantValidator(body, next);
 
       if (project) {
@@ -103,17 +103,15 @@ module.exports = {
       next(error);
     }
   },
-  verifyOwner: async ({ body, cookies: { token } }, res, next) => {
+  verifyOwner: async ({ body, decoded: { username } }, res, next) => {
     const { projectAuthor } = body;
-    const { username } = (await tokenValidator(token, next)) || {};
-    return username && res.status(200).json(projectAuthor === username);
+    return res.status(200).json(projectAuthor === username);
   },
-  deleteById: async ({ params: { id }, cookies: { token } }, res, next) => {
+  deleteById: async ({ params: { id } }, res, next) => {
     try {
-      const user = await tokenValidator(token, next);
       const project = await projectDeletionValidator(id, next);
 
-      if (project && user) {
+      if (project) {
         await project.deleteOne();
         return res.status(200).json({ msg: "Project successfully deleted" });
       }
@@ -121,18 +119,15 @@ module.exports = {
       next(error);
     }
   },
-  updateById: async ({ body, params: { id }, cookies: { token }, file }, res, next) => {
+  updateById: async ({ body, params: { id }, file }, res, next) => {
     try {
-      const key = file ? "image" : Object.keys(body)[0];
-      const user = await tokenValidator(token, next);
+      // const key = file ? "image" : Object.keys(body)[0];
+      //TODO: VERIFY THAT THIS WORKS
+      const update = file ? { image: file.filename } : body;
       const project = await projectUpdateValidator(id, body, next);
 
-      if (project && user) {
-        const updated = await Project.findOneAndUpdate(
-          { _id: id },
-          { [key]: body[key] || file.filename },
-          { new: true }
-        );
+      if (project) {
+        const updated = await Project.findByIdAndUpdate(id, update, { new: true });
 
         return res
           .status(200)

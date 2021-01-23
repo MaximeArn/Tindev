@@ -3,7 +3,7 @@ const ProjectError = require("../CustomError");
 
 module.exports = async (id, next) => {
   try {
-    const project = await Project.findOne({ _id: id });
+    const project = await Project.findById(id);
 
     if (!project) throw new ProjectError("This project does not exist.", 404);
 

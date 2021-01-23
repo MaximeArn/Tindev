@@ -1,4 +1,4 @@
-const { Project } = require("../../models");
+const { Project, User } = require("../../models");
 const ProjectError = require("../CustomError");
 
 module.exports = async ({ projectId, userId }, next) => {
@@ -9,7 +9,7 @@ module.exports = async ({ projectId, userId }, next) => {
       throw new ProjectError("This project does not exist", 404);
     }
 
-    if (!userId) {
+    if (!(await User.findById(userId))) {
       throw new ProjectError("User not found", 403);
     }
 
