@@ -25,7 +25,7 @@ instance.interceptors.response.use(
       config: { url },
     } = error.response;
 
-    return status === 401 && !(url === "/auth/verify")
+    return status === 401 && !(url === "/verification")
       ? authorizationHandler(msg)
       : Promise.reject(error);
   }
