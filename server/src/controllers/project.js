@@ -49,7 +49,8 @@ module.exports = {
   },
   apply: async (sockets, { body, decoded: { id, username } }, res, next) => {
     try {
-      const { owner, project } = await applyValidator({ body, id }, next);
+      const { owner, project } =
+        (await applyValidator({ body, id }, next)) || {};
 
       if (project) {
         const { _id, applicants } = project;
@@ -75,7 +76,7 @@ module.exports = {
       const project = await applicantValidator(body, next);
 
       if (project) {
-        project.applicants.pull(userId);
+        project.applicants.pull(_id);
         project.contributors.push({
           _id,
           username,
@@ -126,7 +127,9 @@ module.exports = {
       const project = await projectUpdateValidator(id, body, next);
 
       if (project) {
-        const updated = await Project.findByIdAndUpdate(id, update, { new: true });
+        const updated = await Project.findByIdAndUpdate(id, update, {
+          new: true,
+        });
 
         return res
           .status(200)
@@ -143,7 +146,8 @@ module.exports = {
     next
   ) => {
     try {
-      const { project, user } = (await removeContributorValidator(id, next)) || {};
+      const { project, user } =
+        (await removeContributorValidator(id, next)) || {};
       const tooltip = `${username} has left your project ${project.title}`;
 
       if (project) {

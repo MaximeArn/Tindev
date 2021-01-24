@@ -11,15 +11,20 @@ module.exports = {
 
       return res.status(200).json({
         counter,
-        tooltips: tooltips.sort(({ createdAt: createdAt1 }, { createdAt: createdAt2 }) =>
-          createdAt1 > createdAt2 ? -1 : 1
+        tooltips: tooltips.sort(
+          ({ createdAt: createdAt1 }, { createdAt: createdAt2 }) =>
+            createdAt1 > createdAt2 ? -1 : 1
         ),
       });
     } catch (error) {
       next(error);
     }
   },
-  deleteNotification: async ({ params: { id }, decoded: { id: userId } }, res, next) => {
+  deleteNotification: async (
+    { params: { id }, decoded: { id: userId } },
+    res,
+    next
+  ) => {
     try {
       const { notifications } = await User.findByIdAndUpdate(
         userId,
@@ -42,6 +47,7 @@ module.exports = {
       owner.notifications = { counter: ++counter, tooltips };
 
       const { notifications, username } = await owner.save();
+      console.log(tooltip);
 
       sockets[username].socket.emit("notification", notifications);
     } catch (error) {

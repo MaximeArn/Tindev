@@ -5,8 +5,8 @@ const sanitizeConfig = require("../../config/sanitize");
 
 module.exports = async ({ body, id }, next) => {
   try {
-    body.message = sanitize(message, sanitizeConfig);
-    const { appliant, message, project } = body;
+    body.message = sanitize(body.message, sanitizeConfig);
+    let { appliant, message, project } = body;
     const { _id, applicants, contributors, author: username } =
       (await Project.findById(project)) || {};
 

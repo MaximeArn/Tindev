@@ -76,12 +76,14 @@ const authRouter = {
       if (userSocket) {
         const { socket } = userSocket;
         socket.disconnect(true);
-        delete connectedUsers[username];
+        // delete connectedUsers[username];
       }
 
       res.clearCookie("token");
 
-      return res.status(200).json({ message: "Socket successfully disconnected" });
+      return res
+        .status(200)
+        .json({ message: "Socket successfully disconnected" });
     } catch (error) {
       next(error);
     }
@@ -99,7 +101,10 @@ const authRouter = {
       const id = await verifyAccountValidator(token, next);
 
       if (id) {
-        await User.updateOne(id, { $unset: { expire_at: "" }, activated: true });
+        await User.updateOne(id, {
+          $unset: { expire_at: "" },
+          activated: true,
+        });
 
         return res
           .status(200)
@@ -158,7 +163,9 @@ const authRouter = {
       if (credentials) {
         const { password, _id } = credentials;
         await User.findByIdAndUpdate(_id, { password });
-        return res.status(200).json({ message: "Password successfully updated" });
+        return res
+          .status(200)
+          .json({ message: "Password successfully updated" });
       }
     } catch (error) {
       next(error);
