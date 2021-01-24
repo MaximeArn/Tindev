@@ -20,13 +20,13 @@ module.exports = async (credentials, next) => {
       );
     }
 
-    if (!compare(credentials)) {
+    if (!(await compare(credentials))) {
       throw new UserError("Passwords do not match", 400);
     }
 
     await token.remove();
 
-    return { password: await hash(credentials.password), userId: user["_id"] };
+    return { password: credentials.password, userId: user["_id"] };
   } catch (error) {
     next(error);
   }

@@ -1,5 +1,4 @@
-const { User, Project } = require("../models");
-const { searchValidator, tokenValidator } = require("../utils/validators");
+const { searchValidator } = require("../utils/validators");
 
 module.exports = {
   search: async ({ params }, res, next) => {

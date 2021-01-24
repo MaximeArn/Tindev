@@ -1,6 +1,5 @@
 const { User } = require("../models");
 const {
-  tokenValidator,
   userProfileValidator,
   userUpdateValidator,
   deleteProfileValidator,

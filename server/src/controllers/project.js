@@ -3,7 +3,6 @@ const { setNotification } = require("./notifications");
 const {
   projectValidator,
   applyValidator,
-  tokenValidator,
   applicantValidator,
   projectDeletionValidator,
   projectUpdateValidator,

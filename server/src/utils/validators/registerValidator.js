@@ -8,14 +8,11 @@ const emailRegex = require("../emailRegex");
 
 module.exports = async (body, next) => {
   try {
-    const { age, city, lastname, firstname, ...mandatory } = body;
-    const requiredFields = Object.values(mandatory).every((value) =>
-      value.trim()
-    );
-
     body.username = body.username.replace(" ", "");
+    body.age = parseInt(body.age);
+    const { age, city, lastname, firstname, ...mandatory } = body;
 
-    if (!requiredFields) {
+    if (!Object.values(mandatory).every((value) => value.trim())) {
       throw new UserError("Some required fields were not provided", 400);
     }
 
@@ -23,11 +20,11 @@ module.exports = async (body, next) => {
       throw new UserError("Invalid email address", 400);
     }
 
-    if ((body.age && isNaN(body.age)) || body.age < 0) {
-      throw new UserError("Incorrect age format", 400);
+    if (body.age && (isNaN(body.age) || body.age < 0)) {
+      throw new UserError("Incorrect age specified", 400);
     }
 
-    if (!comparePasswords(body)) {
+    if (!(await comparePasswords(body))) {
       throw new UserError("Passwords do not match", 400);
     }
 
@@ -40,8 +37,6 @@ module.exports = async (body, next) => {
     for (const key in body) {
       body[key] = sanitize(body[key], sanitizeConfig);
     }
-
-    body.password = await hash(body.password);
 
     return true;
   } catch (error) {

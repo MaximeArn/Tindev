@@ -1,52 +1,35 @@
 const { User } = require("../models");
-const { tokenValidator } = require("../utils/validators");
 
 module.exports = {
-  notifications: async ({ cookies: { token } }, res, next) => {
+  notifications: async ({ decoded: { id } }, res, next) => {
     try {
-      const { id } = Object(await tokenValidator(token, next));
+      const {
+        notifications: { tooltips, counter },
+      } = await User.findById(id, {
+        notifications: 1,
+      });
 
-      if (id) {
-        const {
-          notifications: { tooltips, counter },
-        } = await User.findById(id, {
-          notifications: 1,
-        });
-
-        return res.status(200).json({
-          counter,
-          tooltips: tooltips.sort(
-            ({ createdAt: createdAt1 }, { createdAt: createdAt2 }) =>
-              createdAt1 > createdAt2 ? -1 : 1
-          ),
-        });
-      }
+      return res.status(200).json({
+        counter,
+        tooltips: tooltips.sort(({ createdAt: createdAt1 }, { createdAt: createdAt2 }) =>
+          createdAt1 > createdAt2 ? -1 : 1
+        ),
+      });
     } catch (error) {
       next(error);
     }
   },
-  deleteNotification: async (
-    { params: { id }, cookies: { token } },
-    res,
-    next
-  ) => {
+  deleteNotification: async ({ params: { id }, decoded: { id: userId } }, res, next) => {
     try {
-      const { id: userId } = Object(await tokenValidator(token, next));
+      const { notifications } = await User.findByIdAndUpdate(
+        userId,
+        {
+          $pull: { notifications: { tooltips: { _id: id } } },
+        },
+        { new: true }
+      );
 
-      if (userId) {
-        const user = await User.findById(userId);
-        const {
-          notifications: { tooltips },
-        } = user;
-
-        user.notifications.tooltips = tooltips.filter(
-          ({ _id }) => !(_id == id)
-        );
-
-        const { notifications } = await user.save();
-
-        return res.status(200).json(notifications);
-      }
+      return res.status(200).json(notifications);
     } catch (error) {
       next(error);
     }
@@ -66,18 +49,15 @@ module.exports = {
       next(error);
     }
   },
-  reset: async ({ cookies: { token } }, res, next) => {
+  reset: async ({ decoded: { id } }, res, next) => {
     try {
-      const { id } = Object(await tokenValidator(token, next));
-      const owner = await User.findById(id);
-      const { tooltips } = owner.notifications;
-
-      owner.notifications = {
-        counter: 0,
-        tooltips,
-      };
-
-      const { notifications } = await owner.save();
+      const { notifications } = await User.findByIdAndUpdate(
+        id,
+        {
+          notifications: { counter: 0 },
+        },
+        { new: true }
+      );
 
       return res.status(200).json(notifications);
     } catch (error) {
