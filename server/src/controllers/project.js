@@ -137,19 +137,20 @@ module.exports = {
       next(error);
     }
   },
-  deleteContributor: async (sockets, { body: { id }, cookies: { token } }, res, next) => {
+  deleteContributor: async (
+    sockets,
+    { body: { id }, decoded: { id: userId, username } },
+    res,
+    next
+  ) => {
     try {
-      const { id: userId, username } = (await tokenValidator(token, next)) || {};
       const { project, user } = (await removeContributorValidator(id, next)) || {};
       const tooltip = `${username} has left your project ${project.title}`;
 
-      if (project && userId) {
+      if (project) {
         setNotification(sockets, user, tooltip, next);
-
         project.contributors.pull(userId);
-
         const updated = await project.save();
-
         return res.status(200).json(updated);
       }
     } catch (error) {
