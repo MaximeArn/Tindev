@@ -148,9 +148,9 @@ module.exports = {
       const tooltip = `${username} has left your project ${project.title}`;
 
       if (project) {
-        setNotification(sockets, user, tooltip, next);
         project.contributors.pull(userId);
         const updated = await project.save();
+        setNotification(sockets, user, tooltip, next);
         return res.status(200).json(updated);
       }
     } catch (error) {
