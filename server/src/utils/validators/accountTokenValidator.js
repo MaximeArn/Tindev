@@ -14,9 +14,7 @@ module.exports = async (t, res, next) => {
 
     if (new Date().getTime() > token.expire.getTime()) {
       console.error(new Error("This token has expired"));
-      res
-        .status(403)
-        .json({ msg: "This token has expired", userId: token.userId });
+      res.status(403).json({ msg: "This token has expired", userId: token.userId });
 
       await token.remove();
       return false;

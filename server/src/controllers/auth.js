@@ -1,9 +1,9 @@
 const jwt = require("jsonwebtoken");
 const SECRET = process.env.SECRET;
 const { User, Token } = require("../models");
-const SHA256 = require("crypto-js/sha256");
 const sendAccountActivationEmail = require("../utils/sendAccountConfirmationEmail");
 const sendResetPasswordEmail = require("../utils/sendResetPasswordEmail");
+const { AES } = require("crypto-js");
 const mailSender = require("../utils/mailSender");
 const setTokenExpiration = require("../utils/tokenExpiration");
 const {
@@ -22,14 +22,17 @@ const authRouter = {
       const validator = await registerValidator(body, next);
 
       if (validator) {
-        const { _id: userId, email } = await User.create(body);
+        const { _id: userId, email, username } = await User.create(body);
 
         const { token } = await Token.create({
           userId,
-          token: SHA256(userId),
+          token: AES.encrypt(username, SECRET)
+            .toString()
+            .replace(/[^a-zA-Z0-9]/g, ""),
           expire: setTokenExpiration(15),
         });
 
+        console.log(token);
         await sendAccountActivationEmail(email, token);
 
         return res

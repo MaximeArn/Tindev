@@ -8,7 +8,6 @@ const emailRegex = require("../emailRegex");
 module.exports = async (body, next) => {
   try {
     body.username = body.username.replace(" ", "");
-    body.age = parseInt(body.age);
     const { age, city, lastname, firstname, ...mandatory } = body;
 
     if (!Object.values(mandatory).every((value) => value.trim())) {
@@ -19,7 +18,7 @@ module.exports = async (body, next) => {
       throw new UserError("Invalid email address", 400);
     }
 
-    if (body.age && (isNaN(body.age) || body.age < 0)) {
+    if (body.age && (isNaN(parseInt(body.age)) || body.age < 0)) {
       throw new UserError("Incorrect age specified", 400);
     }
 

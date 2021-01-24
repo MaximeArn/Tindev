@@ -1,5 +1,4 @@
 const { User } = require("../models");
-const { tokenValidator } = require("../utils/validators");
 const { setNotification } = require("./notifications");
 const chatPopUp = require("../utils/chatPopUp");
 

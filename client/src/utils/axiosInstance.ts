@@ -1,6 +1,5 @@
 import axios from "axios";
 import { url as baseURL } from "../environments/api";
-import auth from "../reducers/auth";
 import authorizationHandler from "../services/authorizationHandler";
 
 const format = {
