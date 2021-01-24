@@ -10,7 +10,11 @@ module.exports = async (body, next) => {
     const { title, size, categories } = body;
     const dbCategories = await Category.find();
 
-    if (!Object.values(body).every((value) => value.trim())) {
+    if (
+      !Object.values(body).every((value) =>
+        typeof value === "string" ? value.trim() : value
+      )
+    ) {
       throw new ProjectError("Some required fields were not provided", 400);
     }
 
