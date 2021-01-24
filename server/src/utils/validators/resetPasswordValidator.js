@@ -1,7 +1,6 @@
 const UserError = require("../CustomError");
 const compare = require("../comparePasswords");
 const { Token, User } = require("../../models");
-const hash = require("../hashPassword");
 
 module.exports = async (credentials, next) => {
   try {

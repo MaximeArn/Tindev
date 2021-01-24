@@ -1,5 +1,5 @@
 const jwt = require("jsonwebtoken");
-const secret = process.env.SECRET;
+const SECRET = process.env.SECRET;
 const { User, Token } = require("../models");
 const SHA256 = require("crypto-js/sha256");
 const sendAccountActivationEmail = require("../utils/sendAccountConfirmationEmail");
@@ -47,7 +47,7 @@ const authRouter = {
 
       if (user) {
         const { _id: id, email, username, role } = user;
-        const token = jwt.sign({ id, email, username, role }, secret);
+        const token = jwt.sign({ id, email, username, role }, SECRET);
 
         res.cookie("token", token, {
           httpOnly: true,
@@ -86,35 +86,32 @@ const authRouter = {
       next(error);
     }
   },
-  verify: async ({ cookies: { token } }, res, next) => {
-    try {
-      const verified = await tokenValidator(token, next);
+  // verify: async ({ cookies: { token } }, res, next) => {
+  //   try {
+  //     const verified = await tokenValidator(token, next);
 
-      if (verified) {
-        const { email, username, role } = verified;
-        return res.status(200).json({ username, email, role });
-      }
-    } catch (error) {
-      next(error);
-    }
-  },
+  //     if (verified) {
+  //       const { email, username, role } = verified;
+  //       return res.status(200).json({ username, email, role });
+  //     }
+  //   } catch (error) {
+  //     next(error);
+  //   }
+  // },
   verifyAccountToken: async ({ params: { token } }, res, next) => {
     try {
       const validity = await accountTokenValidator(token, res, next);
-      return validity && res.status(200).json({ validity });
+      validity && res.status(200);
     } catch (error) {
       next(error);
     }
   },
   activateAccount: async ({ params: { token } }, res, next) => {
     try {
-      const userId = await verifyAccountValidator(token, next);
+      const id = await verifyAccountValidator(token, next);
 
-      if (userId) {
-        await User.updateOne(
-          { _id: userId },
-          { $unset: { expire_at: "" }, activated: true }
-        );
+      if (id) {
+        await User.updateOne(id, { $unset: { expire_at: "" }, activated: true });
 
         return res
           .status(200)

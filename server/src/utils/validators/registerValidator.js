@@ -1,5 +1,4 @@
 const comparePasswords = require("../comparePasswords");
-const hash = require("../hashPassword");
 const { User } = require("../../models");
 const UserError = require("../CustomError");
 const sanitize = require("sanitize-html");
