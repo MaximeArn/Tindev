@@ -61,10 +61,7 @@ const login = ({ getState, dispatch }: AxiosSubmit) => {
 const retrieveToken = (dispatch: Dispatch<AnyAction>) => {
   axios
     .get("/verification")
-    .then(({ data: credentials }) => {
-      console.log(credentials);
-      dispatch({ type: "CONNECT_USER", credentials });
-    })
+    .then(({ data: credentials }) => dispatch({ type: "CONNECT_USER", credentials }))
     .catch(() => axios.delete("/auth/clear_cookies"));
 };
 

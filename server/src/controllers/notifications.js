@@ -21,14 +21,10 @@ module.exports = {
   },
   deleteNotification: async ({ params: { id }, decoded: { id: userId } }, res, next) => {
     try {
-      const { notifications } = await User.findByIdAndUpdate(
-        userId,
-        {
-          $pull: { notifications: { tooltips: { _id: id } } },
-        },
-        { new: true }
-      );
+      const user = await User.findById(userId);
+      user.notifications.tooltips.pull(id);
 
+      const { notifications } = await user.save();
       return res.status(200).json(notifications);
     } catch (error) {
       next(error);
@@ -42,7 +38,6 @@ module.exports = {
       owner.notifications = { counter: ++counter, tooltips };
 
       const { notifications, username } = await owner.save();
-      console.log(tooltip);
 
       sockets[username].socket.emit("notification", notifications);
     } catch (error) {
