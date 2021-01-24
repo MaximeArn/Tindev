@@ -26,7 +26,9 @@ const sendProject = ({ getState, dispatch, history }: AxiosSubmit) => {
     .catch(({ response: { msg: error } }) => {
       dispatch({ type: "PROJECT_CREATION_ERROR_HANDLER", error });
     })
-    .finally(() => dispatch({ type: "SET_PROJECT_CREATION_LOADER", value: false }));
+    .finally(() =>
+      dispatch({ type: "SET_PROJECT_CREATION_LOADER", value: false })
+    );
 };
 
 const getProjects = (dispatch: Dispatch<AnyAction>) => {
@@ -96,7 +98,10 @@ const acceptApplicant = ({ dispatch, data }: AxiosApplicant) => {
     });
 };
 
-const declineApplicant = ({ dispatch, data: { projectId, userId } }: AxiosApplicant) => {
+const declineApplicant = ({
+  dispatch,
+  data: { projectId, userId },
+}: AxiosApplicant) => {
   dispatch({
     type: "SET_PROJECT_MANAGE_LOADER",
     value: true,
@@ -145,6 +150,7 @@ const updateProject = (
       !(slugify(project.title) === slug) &&
         history.push(`/project/${slugify(project.title)}/edit`);
     })
+
     .catch(({ response: { data } }) => {
       const { msg: error } = data;
       dispatch({ type: "PROJECT_EDITION_ERROR_HANDLER", error });
@@ -166,7 +172,9 @@ const getProject = (dispatch: Dispatch<AnyAction>, slug: string) => {
     .catch(({ response: { data: error } }) =>
       dispatch({ type: "PROJECT_DETAILS_ERROR_HANDLER", error })
     )
-    .finally(() => dispatch({ type: "SET_PROJECT_DETAILS_LOADER", value: false }));
+    .finally(() =>
+      dispatch({ type: "SET_PROJECT_DETAILS_LOADER", value: false })
+    );
 };
 
 const leaveProject = (dispatch: Dispatch<AnyAction>, id: string) => {
@@ -177,7 +185,9 @@ const leaveProject = (dispatch: Dispatch<AnyAction>, id: string) => {
       dispatch({ type: "SET_PROJECT", project });
     })
     .catch((error) => console.error(error))
-    .finally(() => dispatch({ type: "SET_CONTRIBUTOR_REMOVING_LOADER", value: false }));
+    .finally(() =>
+      dispatch({ type: "SET_CONTRIBUTOR_REMOVING_LOADER", value: false })
+    );
 };
 
 const deleteProject = (dispatch: Dispatch<AnyAction>, id: string) => {
@@ -198,7 +208,15 @@ const verifyOwner = (projectAuthor: string, dispatch: Dispatch<AnyAction>) => {
 };
 
 const project: Middleware = ({ getState, dispatch }) => (next) => (action) => {
-  const { data, projectAuthor, projectId, history, inputName, slug, id } = action;
+  const {
+    data,
+    projectAuthor,
+    projectId,
+    history,
+    inputName,
+    slug,
+    id,
+  } = action;
 
   switch (action.type) {
     case "SEND_PROJECT":
@@ -211,7 +229,12 @@ const project: Middleware = ({ getState, dispatch }) => (next) => (action) => {
       getProject(dispatch, slug);
       break;
     case "UPDATE_PROJECT":
-      updateProject({ getState, dispatch, history }, inputName, projectId, slug);
+      updateProject(
+        { getState, dispatch, history },
+        inputName,
+        projectId,
+        slug
+      );
       break;
     case "SEND_DELETE_PROJECT":
       deleteProject(dispatch, id);
