@@ -21,6 +21,7 @@ const {
   searchRouter,
   notificationsRouter,
   adminRouterWrapper,
+  authorizationRouter,
 } = require("./router");
 
 const ioNameSpace = io.of("/chat");
@@ -31,6 +32,7 @@ server.use(express.static(`${__dirname}/public`));
 server.use(express.json());
 server.use(cookieParser());
 server.use(tokenVerification);
+server.use("/authorization", authorizationRouter);
 server.use("/auth", authRouterWrapper(connectedUsers));
 server.use("/project", projectRouterWrapper(connectedUsers));
 server.use("/categories", categoriesRouter);

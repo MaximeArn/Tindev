@@ -9,7 +9,6 @@ const setTokenExpiration = require("../utils/tokenExpiration");
 const {
   loginValidator,
   registerValidator,
-  tokenValidator,
   verifyAccountValidator,
   accountTokenValidator,
   activationLinkValidator,
@@ -86,18 +85,6 @@ const authRouter = {
       next(error);
     }
   },
-  // verify: async ({ cookies: { token } }, res, next) => {
-  //   try {
-  //     const verified = await tokenValidator(token, next);
-
-  //     if (verified) {
-  //       const { email, username, role } = verified;
-  //       return res.status(200).json({ username, email, role });
-  //     }
-  //   } catch (error) {
-  //     next(error);
-  //   }
-  // },
   verifyAccountToken: async ({ params: { token } }, res, next) => {
     try {
       const validity = await accountTokenValidator(token, res, next);

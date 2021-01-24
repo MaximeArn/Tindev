@@ -5,6 +5,7 @@ const usersRouter = require("./users");
 const searchRouter = require("./search");
 const notificationsRouter = require("./notifications");
 const adminRouterWrapper = require("./admin");
+const authorizationRouter = require("./authorization");
 
 module.exports = {
   authRouterWrapper,
@@ -14,4 +15,5 @@ module.exports = {
   searchRouter,
   notificationsRouter,
   adminRouterWrapper,
+  authorizationRouter,
 };
