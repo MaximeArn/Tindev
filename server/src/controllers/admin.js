@@ -11,7 +11,6 @@ module.exports = {
 
       if (project) {
         await project.remove();
-
         return res.status(200).json({ message: "Project successfully deleted" });
       }
     } catch (error) {
@@ -32,15 +31,12 @@ module.exports = {
         const currentDate = new Date();
         currentDate.setHours(currentDate.getHours() + duration);
 
-        await User.updateOne(
-          { _id: id },
-          {
-            suspended: {
-              status: true,
-              duration: !isNaN(duration) && currentDate,
-            },
-          }
-        );
+        await User.findByIdAndUpdate(id, {
+          suspended: {
+            status: true,
+            duration: !isNaN(duration) && currentDate,
+          },
+        });
 
         userSocket &&
           userSocket.socket.emit(
