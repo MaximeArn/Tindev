@@ -25,7 +25,7 @@ module.exports = async (credentials, next) => {
 
     await token.remove();
 
-    return { password: credentials.password, userId: user["_id"] };
+    return { password: credentials.password, _id: user["_id"] };
   } catch (error) {
     next(error);
   }

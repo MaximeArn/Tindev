@@ -142,12 +142,12 @@ const authRouter = {
       next(error);
     }
   },
-  forgotPassword: async ({ body: { email } }, res, next) => {
+  forgotPassword: async ({ body }, res, next) => {
     try {
-      const user = await forgotPasswordValidator(email, next);
+      const user = await forgotPasswordValidator(body, next);
 
       if (user) {
-        const { _id: userId, email: userEmail } = user;
+        const { _id: userId, email } = user;
 
         const { token } = await Token.create({
           userId: userId,
@@ -155,7 +155,7 @@ const authRouter = {
           expire: setTokenExpiration(15),
         });
 
-        const message = await sendResetPasswordEmail(userEmail, token);
+        const message = await sendResetPasswordEmail(email, token);
 
         return res.status(200).json({ message });
       }
@@ -168,10 +168,8 @@ const authRouter = {
       const credentials = await resetPasswordValidator(body, next);
 
       if (credentials) {
-        const { password, userId: _id } = credentials;
-
-        await User.update({ _id }, { password });
-
+        const { password, _id } = credentials;
+        await User.findByIdAndUpdate(_id, { password });
         return res.status(200).json({ message: "Password successfully updated" });
       }
     } catch (error) {

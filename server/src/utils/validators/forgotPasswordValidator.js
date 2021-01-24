@@ -2,21 +2,19 @@ const regex = require("../emailRegex");
 const UserError = require("../CustomError");
 const { User } = require("../../models");
 const sanitize = require("sanitize-html");
-
-module.exports = async (email, next) => {
+const sanitizeCfg = require("../../config/sanitize");
+module.exports = async (body, next) => {
   try {
-    email = sanitize(email);
-    const user = await User.findOne({ email });
+    body.email = sanitize(body.email, sanitizeCfg);
 
-    if (!email.match(regex)) {
+    if (!body.email.match(regex)) {
       throw new UserError("This email is invalid.", 400);
     }
 
+    const user = await User.findOne(body);
+
     if (!user) {
-      throw new UserError(
-        "There is no account associated with this email address.",
-        400
-      );
+      throw new UserError("There is no account associated with this email address.", 400);
     }
 
     return user;
