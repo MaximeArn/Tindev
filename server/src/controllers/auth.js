@@ -3,7 +3,7 @@ const SECRET = process.env.SECRET;
 const { User, Token } = require("../models");
 const sendAccountActivationEmail = require("../utils/sendAccountConfirmationEmail");
 const sendResetPasswordEmail = require("../utils/sendResetPasswordEmail");
-const { AES } = require("crypto-js");
+const encryption = require("../utils/encryption");
 const mailSender = require("../utils/mailSender");
 const setTokenExpiration = require("../utils/tokenExpiration");
 const {
@@ -26,9 +26,7 @@ const authRouter = {
 
         const { token } = await Token.create({
           userId,
-          token: AES.encrypt(username, SECRET)
-            .toString()
-            .replace(/[^a-zA-Z0-9]/g, ""),
+          token: encryption(username),
           expire: setTokenExpiration(15),
         });
 
@@ -118,7 +116,7 @@ const authRouter = {
       if (email) {
         const { token } = await Token.create({
           userId,
-          token: SHA256(userId),
+          token: encryption(userId),
           expire: setTokenExpiration(15),
         });
 
