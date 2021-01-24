@@ -11,20 +11,15 @@ module.exports = {
 
       return res.status(200).json({
         counter,
-        tooltips: tooltips.sort(
-          ({ createdAt: createdAt1 }, { createdAt: createdAt2 }) =>
-            createdAt1 > createdAt2 ? -1 : 1
+        tooltips: tooltips.sort(({ createdAt: createdAt1 }, { createdAt: createdAt2 }) =>
+          createdAt1 > createdAt2 ? -1 : 1
         ),
       });
     } catch (error) {
       next(error);
     }
   },
-  deleteNotification: async (
-    { params: { id }, decoded: { id: userId } },
-    res,
-    next
-  ) => {
+  deleteNotification: async ({ params: { id }, decoded: { id: userId } }, res, next) => {
     try {
       const { notifications } = await User.findByIdAndUpdate(
         userId,
@@ -57,13 +52,11 @@ module.exports = {
   },
   reset: async ({ decoded: { id } }, res, next) => {
     try {
-      const { notifications } = await User.findByIdAndUpdate(
-        id,
-        {
-          notifications: { counter: 0 },
-        },
-        { new: true }
-      );
+      const user = await User.findById(id);
+      const { tooltips } = user.notifications;
+
+      user.notifications = { counter: 0, tooltips };
+      const { notifications } = await user.save();
 
       return res.status(200).json(notifications);
     } catch (error) {
