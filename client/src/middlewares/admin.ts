@@ -7,7 +7,7 @@ const admin: Middleware = ({ getState, dispatch }) => (next) => (action) => {
     case "DELETE_PROJECT":
       dispatch({ type: "SET_ADMIN_DELETION_LOADER", value: true });
       axios
-        .delete(`/admin/project/${id}`)
+        .delete(`/admin/project/${id}/cul`)
         .then(({ data: { message } }) => {
           dispatch({ type: "ADMIN_DELETION_SUCCESS_MESSAGE", message });
           dispatch({ type: "ADMIN_PANEL_ERROR_HANDLER" });
