@@ -110,18 +110,19 @@ const authRouter = {
       next(error);
     }
   },
-  sendNewActivationLink: async ({ body: { userId, type } }, res, next) => {
+  sendNewActivationLink: async ({ body }, res, next) => {
     try {
-      const email = await activationLinkValidator(userId, next);
+      const user = await activationLinkValidator(body, next);
 
-      if (email) {
+      if (user) {
+        const { _id: userId, email } = user;
         const { token } = await Token.create({
           userId,
           token: encryption(userId),
           expire: setTokenExpiration(15),
         });
 
-        const message = await mailSender(email, token, type);
+        const message = await mailSender(email, token, body.type);
 
         return res.status(200).json({
           message,

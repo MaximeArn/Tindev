@@ -17,9 +17,7 @@ const ForgotPassword = ({
   return (
     <div
       className="fpw-modal"
-      onClick={({ target }) =>
-        !modal.current?.contains(target) && setModalStatus(false)
-      }
+      onClick={({ target }) => !modal.current?.contains(target) && setModalStatus(false)}
     >
       <div ref={modal} className="fpw-modal-container" id="modal">
         <div className="modal-padding">
@@ -44,7 +42,7 @@ const ForgotPassword = ({
                 action=""
                 onSubmit={(event) => {
                   event.preventDefault();
-                  resetPassword();
+                  resetPassword(inputValue);
                 }}
               >
                 <Input
@@ -56,11 +54,7 @@ const ForgotPassword = ({
 
                 <div className="fpw-modal-buttons">
                   <>
-                    <button
-                      type="submit"
-                      className="fpw-modal-submit"
-                      disabled={loader}
-                    >
+                    <button type="submit" className="fpw-modal-submit" disabled={loader}>
                       {loader ? (
                         <div className="loading-button">
                           <p>Loading</p>

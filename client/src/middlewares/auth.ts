@@ -105,11 +105,12 @@ const checkAccountTokenValidity = (dispatch: Dispatch<AnyAction>, token: string)
 const sendActivationLink = (
   dispatch: Dispatch<AnyAction>,
   userId: string,
-  type: string
+  type: string,
+  email?: string
 ) => {
   dispatch({ type: "SET_NEW_ACTIVATION_LINK_LOADER", value: true });
   axios
-    .post("/auth/send_token", { userId, type })
+    .post("/auth/send_token", email ? { email, type } : { userId, type })
     .then(({ data: { message } }) => {
       dispatch({ type: "ACTIVATION_LINK_SUCCESS_MESSAGE", message });
       dispatch({ type: "ACCOUNT_TOKEN_ERROR_HANDLER" });
@@ -173,7 +174,7 @@ const sendNewPassword = async ({ getState, dispatch }: AxiosSubmit, token: strin
 const auth: Middleware = ({ getState, dispatch }) => (next) => (
   action: AuthMiddleware
 ) => {
-  const { type, token, userId, linkType, message, history } = action;
+  const { type, token, userId, linkType, email, message, history } = action;
   switch (type) {
     case "SUBMIT_REGISTER":
       createUser({ getState, dispatch });
@@ -188,7 +189,7 @@ const auth: Middleware = ({ getState, dispatch }) => (next) => (
       checkAccountTokenValidity(dispatch, token);
       break;
     case "SEND_ACCOUNT_ACTIVATION_LINK":
-      sendActivationLink(dispatch, userId, linkType);
+      sendActivationLink(dispatch, userId, linkType, email);
       break;
     case "RESET_USER_PASSWORD":
       resetUserPassword({ getState, dispatch });
@@ -200,7 +201,7 @@ const auth: Middleware = ({ getState, dispatch }) => (next) => (
       retrieveToken(dispatch);
       break;
     case "DISCONNECT_USER":
-      logout({ getState, dispatch, history }, message && message);
+      logout({ getState, dispatch, history }, message);
       break;
     default:
       next(action);

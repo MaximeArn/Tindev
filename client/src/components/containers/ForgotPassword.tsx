@@ -28,7 +28,8 @@ const mapDispatch = (dispatch: Dispatch<AnyAction>) => ({
       inputValue: "",
     });
   },
-  resetPassword: () => dispatch({ type: "RESET_USER_PASSWORD" }),
+  resetPassword: (email: string) =>
+    dispatch({ type: "SEND_ACCOUNT_ACTIVATION_LINK", linkType: "resetPassword", email }),
 });
 
 export default connect(mapState, mapDispatch)(ForgotPassword);

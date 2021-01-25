@@ -54,6 +54,7 @@ export interface AuthMiddleware {
   token: string;
   userId: string;
   linkType: string;
+  email: string;
   message: string;
   history: any;
 }
