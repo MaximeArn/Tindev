@@ -123,19 +123,19 @@ const checkLinkTokenValidity = (dispatch: Dispatch<AnyAction>, token: string) =>
   axios
     .get(`/auth/token_validity/${token}`)
     .catch(({ response: { data: error } }) =>
-      dispatch({ type: "TOKEN_ERROR_HANDLER", error })
+      dispatch({ type: "NEW_LINK_ERROR_HANDLER", error })
     );
 };
 
 const sendNewLink = (
   dispatch: Dispatch<AnyAction>,
-  userId: string,
+  _id: string,
   type: string,
   email?: string
 ) => {
   dispatch({ type: "SET_NEW_LINK_LOADER", value: true });
   axios
-    .post("/auth/send_token", email ? { email, type } : { userId, type })
+    .post("/auth/send_token", email ? { email, type } : { _id, type })
     .then(({ data: { message } }) => {
       dispatch({ type: "NEW_LINK_SUCCESS_MESSAGE", message });
       dispatch({ type: "NEW_LINK_ERROR_HANDLER" });

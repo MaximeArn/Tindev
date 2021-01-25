@@ -6,7 +6,8 @@ const sanitizeConfig = require("../../config/sanitize");
 module.exports = async (body, next) => {
   try {
     const [key, value] = Object.entries(body)[0];
-    const user = await User.findOne({ [key]: sanitize(value, sanitizeConfig) });
+    const user = await User.findOne({ [key]: value });
+    console.log({ key, value });
 
     if ((key === "email" && !value.match(emailRegex)) || !user) {
       throw new UserError("Invalid credentials", 400);

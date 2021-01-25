@@ -12,6 +12,7 @@ module.exports = async (t, res, next) => {
       );
     }
 
+    console.log({ now: new Date().getTime(), expire: token.expire.getTime() });
     if (new Date().getTime() > token.expire.getTime()) {
       console.error(new Error("This token has expired"));
       res.status(403).json({ msg: "This token has expired", userId: token.userId });

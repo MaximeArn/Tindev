@@ -15,7 +15,6 @@ const chatWindowValidator = require("./chatWindowValidator");
 const verifyAccountValidator = require("./verifyAccountValidator");
 const accountTokenValidator = require("./accountTokenValidator");
 const activationLinkValidator = require("./activationLinkValidator");
-const forgotPasswordValidator = require("./forgotPasswordValidator");
 const resetPasswordValidator = require("./resetPasswordValidator");
 
 module.exports = {
@@ -36,6 +35,5 @@ module.exports = {
   verifyAccountValidator,
   accountTokenValidator,
   activationLinkValidator,
-  forgotPasswordValidator,
   resetPasswordValidator,
 };
