@@ -11,7 +11,7 @@ const mapState = ({
     newLinkVerificationErrorMessage: validityError,
     resetPasswordErrorMessage: error,
   },
-  loaders: { activationLinkLoader: resetPasswordLinkLoader, resetPasswordLoader },
+  loaders: { newLinkLoader: resetPasswordLinkLoader, resetPasswordLoader },
   success: { newLinkSuccess, resetPasswordSuccess: success },
 }: State) => ({
   inputs,
@@ -31,11 +31,11 @@ const mapDispatch = (
     },
   }: OwnProps
 ) => ({
-  verifyTokenValidity: () => dispatch({ type: "VERIFY_ACCOUNT_TOKEN_VALIDITY", token }),
+  verifyTokenValidity: () => dispatch({ type: "VERIFY_TOKEN_VALIDITY", token }),
   submitForm: () => dispatch({ type: "SEND_RESET_PASSWORD_REQUEST", token }),
   sendNewResetPasswordLink: (userId: string) =>
     dispatch({
-      type: "SEND_ACCOUNT_ACTIVATION_LINK",
+      type: "SEND_NEW_LINK",
       userId,
       linkType: "resetPassword",
     }),

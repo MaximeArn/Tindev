@@ -10,7 +10,7 @@ const Verification = ({
   newLinkVerificationErrorMessage: { msg: newLinkError, userId },
   accountActivationErrorMessage: activationError,
   accountActivationLoader,
-  activationLinkLoader,
+  newLinkLoader,
   activateAccount,
   checkTokenValidity,
   sendActivationLink,
@@ -34,9 +34,9 @@ const Verification = ({
               <button
                 className="verification-expired-button"
                 onClick={() => sendActivationLink(userId)}
-                disabled={activationLinkLoader}
+                disabled={newLinkLoader}
               >
-                {activationLinkLoader ? (
+                {newLinkLoader ? (
                   <CircularProgress size={15} style={{ color: "white" }} />
                 ) : (
                   "Send link"

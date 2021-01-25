@@ -84,7 +84,7 @@ const authRouter = {
       next(error);
     }
   },
-  verifyAccountToken: async ({ params: { token } }, res, next) => {
+  verifyNewLinkToken: async ({ params: { token } }, res, next) => {
     try {
       const validity = await accountTokenValidator(token, res, next);
       validity && res.status(200);
@@ -110,7 +110,7 @@ const authRouter = {
       next(error);
     }
   },
-  sendNewActivationLink: async ({ body }, res, next) => {
+  sendNewLink: async ({ body }, res, next) => {
     try {
       const user = await activationLinkValidator(body, next);
 

@@ -11,7 +11,7 @@ const Login = ({
   error: { msg: errorMessage, userId },
   submitLogin,
   loginLoader,
-  activationLinkLoader,
+  newLinkLoader,
   closeModal,
   registerSuccess,
   newLinkSuccess,
@@ -50,9 +50,9 @@ const Login = ({
                       <button
                         className="modal-error-newLink"
                         onClick={() => sendActivationLink(userId)}
-                        disabled={activationLinkLoader}
+                        disabled={newLinkLoader}
                       >
-                        {activationLinkLoader ? (
+                        {newLinkLoader ? (
                           <div className="loading-button">
                             <p>Loading</p>
                             <CircularProgress size={15} />

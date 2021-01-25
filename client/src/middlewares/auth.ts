@@ -119,7 +119,7 @@ const sendNewPassword = async ({ getState, dispatch }: AxiosSubmit, token: strin
   }
 };
 
-const checkAccountTokenValidity = (dispatch: Dispatch<AnyAction>, token: string) => {
+const checkLinkTokenValidity = (dispatch: Dispatch<AnyAction>, token: string) => {
   axios
     .get(`/auth/token_validity/${token}`)
     .catch(({ response: { data: error } }) =>
@@ -127,13 +127,13 @@ const checkAccountTokenValidity = (dispatch: Dispatch<AnyAction>, token: string)
     );
 };
 
-const sendActivationLink = (
+const sendNewLink = (
   dispatch: Dispatch<AnyAction>,
   userId: string,
   type: string,
   email?: string
 ) => {
-  dispatch({ type: "SET_NEW_ACTIVATION_LINK_LOADER", value: true });
+  dispatch({ type: "SET_NEW_LINK_LOADER", value: true });
   axios
     .post("/auth/send_token", email ? { email, type } : { userId, type })
     .then(({ data: { message } }) => {
@@ -145,7 +145,7 @@ const sendActivationLink = (
     .catch(({ response: { data: { msg: error } } }) =>
       dispatch({ type: "FORGOT_PASSWORD_ERROR_HANDLER", error })
     )
-    .finally(() => dispatch({ type: "SET_NEW_ACTIVATION_LINK_LOADER", value: false }));
+    .finally(() => dispatch({ type: "SET_NEW_LINK_LOADER", value: false }));
 };
 
 const auth: Middleware = ({ getState, dispatch }) => (next) => (
@@ -162,11 +162,11 @@ const auth: Middleware = ({ getState, dispatch }) => (next) => (
     case "ACCOUNT_VERIFICATION":
       activateAccount(dispatch, token);
       break;
-    case "VERIFY_ACCOUNT_TOKEN_VALIDITY":
-      checkAccountTokenValidity(dispatch, token);
+    case "VERIFY_TOKEN_VALIDITY":
+      checkLinkTokenValidity(dispatch, token);
       break;
-    case "SEND_ACCOUNT_ACTIVATION_LINK":
-      sendActivationLink(dispatch, userId, linkType, email);
+    case "SEND_NEW_LINK":
+      sendNewLink(dispatch, userId, linkType, email);
       break;
     case "SEND_RESET_PASSWORD_REQUEST":
       sendNewPassword({ getState, dispatch }, token);

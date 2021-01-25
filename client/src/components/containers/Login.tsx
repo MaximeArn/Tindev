@@ -9,13 +9,13 @@ const mapState = ({
   error: {
     auth: { loginErrorMessage: error },
   },
-  loaders: { loginLoader, activationLinkLoader },
+  loaders: { loginLoader, newLinkLoader },
   success: { registerSuccess, newLinkSuccess },
 }: State) => ({
   login,
   error,
   loginLoader,
-  activationLinkLoader,
+  newLinkLoader,
   registerSuccess,
   newLinkSuccess,
 });
@@ -38,7 +38,7 @@ const mapDispatch = (dispatch: Dispatch<AnyAction>) => ({
   },
   sendActivationLink: (userId: string) =>
     dispatch({
-      type: "SEND_ACCOUNT_ACTIVATION_LINK",
+      type: "SEND_NEW_LINK",
       userId,
       linkType: "accountActivation",
     }),

@@ -12,7 +12,7 @@ const initialState: Loaders = {
   userProfileLoader: false,
   userAccountDeletionLoader: false,
   accountActivationLoader: false,
-  activationLinkLoader: false,
+  newLinkLoader: false,
   forgotPasswordLoader: false,
   resetPasswordLoader: false,
   adminDeletionLoader: false,
@@ -49,8 +49,8 @@ const loaders = (
       return { ...state, removingContributorLoader: value };
     case "SET_ACCOUNT_ACTIVATION_LOADER":
       return { ...state, accountActivationLoader: value };
-    case "SET_NEW_ACTIVATION_LINK_LOADER":
-      return { ...state, activationLinkLoader: value };
+    case "SET_NEW_LINK_LOADER":
+      return { ...state, newLinkLoader: value };
     case "SET_PROJECTLIST_LOADER":
       return { ...state, projectListLoader: value };
     case "SET_PROJECT_CREATION_LOADER":

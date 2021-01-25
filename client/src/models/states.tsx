@@ -62,7 +62,7 @@ export interface Loaders {
   accountActivationLoader: boolean;
   forgotPasswordLoader: boolean;
   resetPasswordLoader: boolean;
-  activationLinkLoader: boolean;
+  newLinkLoader: boolean;
   adminDeletionLoader: boolean;
   userProfileEditionLoader: {
     fieldName: string | null;
@@ -102,7 +102,7 @@ export interface LoginAuth {
     password: string;
   };
   loginLoader: boolean;
-  activationLinkLoader: boolean;
+  newLinkLoader: boolean;
   submitLogin: Function;
   error: {
     msg: string;

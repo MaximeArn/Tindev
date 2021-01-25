@@ -6,12 +6,12 @@ import { OwnProps } from "../../models/connect";
 import { State } from "../../models/states";
 
 const mapState = ({
-  loaders: { accountActivationLoader, activationLinkLoader },
+  loaders: { accountActivationLoader, newLinkLoader },
   success: { newLinkSuccess, accountActivationSuccess: activationSuccess },
   error: { newLinkVerificationErrorMessage, accountActivationErrorMessage },
 }: State) => ({
   accountActivationLoader,
-  activationLinkLoader,
+  newLinkLoader,
   newLinkSuccess,
   activationSuccess,
   newLinkVerificationErrorMessage,
@@ -21,11 +21,11 @@ const mapState = ({
 const mapDispatch = (dispatch: Dispatch<AnyAction>, { match: { params } }: OwnProps) => {
   const { token } = params;
   return {
-    checkTokenValidity: () => dispatch({ type: "VERIFY_ACCOUNT_TOKEN_VALIDITY", token }),
+    checkTokenValidity: () => dispatch({ type: "VERIFY_TOKEN_VALIDITY", token }),
     activateAccount: () => dispatch({ type: "ACCOUNT_VERIFICATION", token }),
     sendActivationLink: (userId: string) =>
       dispatch({
-        type: "SEND_ACCOUNT_ACTIVATION_LINK",
+        type: "SEND_NEW_LINK",
         userId,
         linkType: "accountActivation",
       }),

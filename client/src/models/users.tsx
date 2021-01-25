@@ -148,7 +148,7 @@ export interface AccountVerification {
   };
   accountActivationErrorMessage: string;
   accountActivationLoader: boolean;
-  activationLinkLoader: boolean;
+  newLinkLoader: boolean;
   activateAccount: Function;
   checkTokenValidity: Function;
   sendActivationLink: Function;
