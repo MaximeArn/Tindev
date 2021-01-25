@@ -102,6 +102,7 @@ export interface LoginAuth {
     password: string;
   };
   loginLoader: boolean;
+  activationLinkLoader: boolean;
   submitLogin: Function;
   error: {
     msg: string;

@@ -11,6 +11,7 @@ const Login = ({
   error: { msg: errorMessage, userId },
   submitLogin,
   loginLoader,
+  activationLinkLoader,
   closeModal,
   registerSuccess,
   activationLinkSuccess,
@@ -37,9 +38,7 @@ const Login = ({
           <form method="POST" onSubmit={handleSubmit}>
             <div className="modal-padding">
               <h1 className="modal-title">Sign In</h1>
-              {registerSuccess && (
-                <p className="success-message">{registerSuccess}</p>
-              )}
+              {registerSuccess && <p className="success-message">{registerSuccess}</p>}
               {errorMessage && (
                 <>
                   <span className="modal-error-message">{errorMessage}</span>
@@ -48,12 +47,20 @@ const Login = ({
                       <div className="modal-error-activationLink">
                         Didn't receive any email ?
                       </div>
-                      <span
+                      <button
                         className="modal-error-newLink"
                         onClick={() => sendActivationLink(userId)}
+                        disabled={activationLinkLoader}
                       >
-                        Send a new link
-                      </span>
+                        {activationLinkLoader ? (
+                          <div className="loading-button">
+                            <p>Loading</p>
+                            <CircularProgress size={15} />
+                          </div>
+                        ) : (
+                          "Send a new link"
+                        )}
+                      </button>
                     </>
                   )}
                 </>
@@ -70,11 +77,7 @@ const Login = ({
                   </div>
                 </button>
               ) : (
-                <button
-                  type="submit"
-                  className="submitButton"
-                  disabled={loginLoader}
-                >
+                <button type="submit" className="submitButton" disabled={loginLoader}>
                   Continue
                 </button>
               )}
@@ -93,9 +96,7 @@ const Login = ({
                 Not a member yet ?
                 <a
                   className="auth-modal"
-                  onClick={() =>
-                    swapModal({ modal: "login", modal2: "register" })
-                  }
+                  onClick={() => swapModal({ modal: "login", modal2: "register" })}
                 >
                   Register
                 </a>

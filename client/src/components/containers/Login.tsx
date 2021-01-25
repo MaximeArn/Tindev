@@ -9,12 +9,13 @@ const mapState = ({
   error: {
     auth: { loginErrorMessage: error },
   },
-  loaders: { loginLoader },
+  loaders: { loginLoader, activationLinkLoader },
   success: { registerSuccess, activationLinkSuccess },
 }: State) => ({
   login,
   error,
   loginLoader,
+  activationLinkLoader,
   registerSuccess,
   activationLinkSuccess,
 });
