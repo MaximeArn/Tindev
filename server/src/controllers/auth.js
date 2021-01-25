@@ -30,7 +30,6 @@ const authRouter = {
           expire: setTokenExpiration(15),
         });
 
-        console.log(token);
         await sendAccountActivationEmail(email, token);
 
         return res
@@ -81,9 +80,7 @@ const authRouter = {
 
       res.clearCookie("token");
 
-      return res
-        .status(200)
-        .json({ message: "Socket successfully disconnected" });
+      return res.status(200).json({ message: "Socket successfully disconnected" });
     } catch (error) {
       next(error);
     }
@@ -163,9 +160,7 @@ const authRouter = {
       if (credentials) {
         const { password, _id } = credentials;
         await User.findByIdAndUpdate(_id, { password });
-        return res
-          .status(200)
-          .json({ message: "Password successfully updated" });
+        return res.status(200).json({ message: "Password successfully updated" });
       }
     } catch (error) {
       next(error);

@@ -1,5 +1,5 @@
 const SECRET = process.env.SECRET;
-const { encrypt } = require("crypto-js").AES;
+const { encrypt } = require("crypto-js/aes");
 
 module.exports = (string) =>
   encrypt(string, SECRET)
