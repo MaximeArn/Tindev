@@ -49,6 +49,26 @@ const connection = require("./src/config/database");
       email: "john@gmail.com",
       password: await hashPassword("john"),
     },
+    {
+      username: "sylvain",
+      email: "sylvain@gmail.com",
+      password: await hashPassword("sylvain"),
+    },
+    {
+      username: "liv",
+      email: "liv@gmail.com",
+      password: await hashPassword("liv"),
+    },
+    {
+      username: "pauline",
+      email: "pauline@gmail.com",
+      password: await hashPassword("pauline"),
+    },
+    {
+      username: "jerry",
+      email: "jerry@gmail.com",
+      password: await hashPassword("jerry"),
+    },
   ];
 
   const categories = [
@@ -98,44 +118,80 @@ const connection = require("./src/config/database");
 
   const projects = [
     {
-      author: "John",
       title: "Pomodoro",
       description: `Le Pomodoro, pour ceux qui ne connaissent pas, c'est quoi ?
         C'est une technique de gestion du temps, basée sur un minuteur. On sélectionne une tâche, puis on travaille sur des durées de 25 minutes, et on enchaîne sur de courtes pauses, par cycle de 4 pour arriver à une pause plus longue.`,
-      categories: ["Java", "Software", "AI", "Angular"],
       size: 2,
     },
     {
-      author: "John",
       title: "Voyage Voyage",
       description: `Un outil qui permettrait à chaque personne ayant l’âme d'un leader de groupe d'organiser un voyage que ce soit pour un séminaire professionnel, un voyage entre amis ou en famille ou autre.`,
-      categories: ["Java", "Software", "AI", "Angular"],
       size: 3,
     },
     {
-      author: "John",
       title: "Jardins Connectés",
       description: `S'entraider entre jardiniers pour être plus autonomes dans nos productions au potager.
         Gérer des données sur notre propre potager pour les analyser et s'améliorer.
         Voir les jardiniers qui ont de bons résultats dans son secteur pour s'entraider.
         S'appuyer sur un référentiel de fiches diverses en BDD pour mieux gérer nos potagers.
         Le but est de faire un projet qui nous plait, de continuer à apprendre et de travailler en équipe. C'est certainement un poil ambitieux, alors on peut évidemment simplifier.`,
-      categories: ["Java", "Software", "AI", "Angular"],
       size: 4,
     },
     {
-      author: "John",
-      title: "tindev",
+      title: "Tindev",
       description: `Réseau social permettant de réunir des devs autour d'un projet commun.
         Vous pourrez proposer un projet ou vous joindre au projet d'un autre utilisateur.
         Vous aurez la possibilité de filtrer les recherches selon vos critères.
         Discutez avec les autres utilisateurs via une messagerie instantanée et créez des groupes afin de faciliter la communication.`,
-      categories: ["Java", "Software", "AI", "Angular"],
       size: 5,
+    },
+    {
+      title: "Facebook",
+      description: `Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin eleifend blandit massa, id fermentum risus dignissim non. Phasellus vestibulum, massa eu dapibus luctus, lacus dolor lobortis nisl, eu condimentum lacus enim fermentum nulla. Pellentesque justo nisi, fringilla in sagittis nec, laoreet ut libero. Praesent ut erat massa. Fusce in posuere.`,
+      size: 5,
+    },
+    {
+      title: "Google",
+      description: `Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin eleifend blandit massa, id fermentum risus dignissim non. Phasellus vestibulum, massa eu dapibus luctus, lacus dolor lobortis nisl, eu condimentum lacus enim fermentum nulla. Pellentesque justo nisi, fringilla in sagittis nec, laoreet ut libero. Praesent ut erat massa. Fusce in posuere.`,
+      size: 6,
+    },
+    {
+      title: "Twitter",
+      description: `Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin eleifend blandit massa, id fermentum risus dignissim non. Phasellus vestibulum, massa eu dapibus luctus, lacus dolor lobortis nisl, eu condimentum lacus enim fermentum nulla. Pellentesque justo nisi, fringilla in sagittis nec, laoreet ut libero. Praesent ut erat massa. Fusce in posuere.`,
+      size: 3,
+    },
+    {
+      title: "Twitch",
+      description: `Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin eleifend blandit massa, id fermentum risus dignissim non. Phasellus vestibulum, massa eu dapibus luctus, lacus dolor lobortis nisl, eu condimentum lacus enim fermentum nulla. Pellentesque justo nisi, fringilla in sagittis nec, laoreet ut libero. Praesent ut erat massa. Fusce in posuere.`,
+      size: 7,
+    },
+    {
+      title: "Amazon",
+      description: `Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin eleifend blandit massa, id fermentum risus dignissim non. Phasellus vestibulum, massa eu dapibus luctus, lacus dolor lobortis nisl, eu condimentum lacus enim fermentum nulla. Pellentesque justo nisi, fringilla in sagittis nec, laoreet ut libero. Praesent ut erat massa. Fusce in posuere.`,
+      size: 8,
+    },
+    {
+      title: "Apple",
+      description: `Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin eleifend blandit massa, id fermentum risus dignissim non. Phasellus vestibulum, massa eu dapibus luctus, lacus dolor lobortis nisl, eu condimentum lacus enim fermentum nulla. Pellentesque justo nisi, fringilla in sagittis nec, laoreet ut libero. Praesent ut erat massa. Fusce in posuere.`,
+      size: 13,
     },
   ];
 
-  users.forEach(async (user) => await User.create(user));
-  projects.forEach(async (project) => await Project.create(project));
+  users.forEach(async (user) => {
+    await User.create({
+      ...user,
+      activated: true,
+      expire_at: null,
+    });
+  });
+  projects.forEach(
+    async (project) =>
+      await Project.create({
+        ...project,
+        image: "image-default.jpeg",
+        categories: ["Java", "Software", "AI", "Angular"],
+        author: "admin",
+      })
+  );
   categories.forEach(async (category) => await Category.create(category));
 })();
