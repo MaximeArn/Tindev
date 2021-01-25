@@ -1,5 +1,5 @@
-import { User } from "../models/users";
-import { Project } from "../models/projects";
+import { User } from "./users";
+import { Project } from "./projects";
 
 export interface SearchProps {
   results: (User | Project)[];

@@ -1,8 +1,8 @@
 import { Category } from "./categories";
 import { ProjectState } from "./projects";
 import { UserState, AuthUserState } from "./users";
-import { User } from "../models/users";
-import { Project } from "../models/projects";
+import { User } from "./users";
+import { Project } from "./projects";
 import { ChatWindow } from "./chat";
 import { Notification } from "./notifications";
 import { HasBeenSuspended } from "./socket";
