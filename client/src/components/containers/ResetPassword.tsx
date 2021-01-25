@@ -8,24 +8,18 @@ import { OwnProps } from "../../models/connect";
 const mapState = ({
   auth: { resetPassword: inputs },
   error: {
-    accountTokenVerificationErrorMessage: validityError,
+    newLinkVerificationErrorMessage: validityError,
     resetPasswordErrorMessage: error,
   },
-  loaders: {
-    activationLinkLoader: resetPasswordLinkLoader,
-    resetPasswordLoader,
-  },
-  success: {
-    activationLinkSuccess: newResetLinkSuccess,
-    resetPasswordSuccess: success,
-  },
+  loaders: { activationLinkLoader: resetPasswordLinkLoader, resetPasswordLoader },
+  success: { newLinkSuccess, resetPasswordSuccess: success },
 }: State) => ({
   inputs,
   validityError,
   error,
   resetPasswordLinkLoader,
   resetPasswordLoader,
-  newResetLinkSuccess,
+  newLinkSuccess,
   success,
 });
 
@@ -37,8 +31,7 @@ const mapDispatch = (
     },
   }: OwnProps
 ) => ({
-  verifyTokenValidity: () =>
-    dispatch({ type: "VERIFY_ACCOUNT_TOKEN_VALIDITY", token }),
+  verifyTokenValidity: () => dispatch({ type: "VERIFY_ACCOUNT_TOKEN_VALIDITY", token }),
   submitForm: () => dispatch({ type: "SEND_RESET_PASSWORD_REQUEST", token }),
   sendNewResetPasswordLink: (userId: string) =>
     dispatch({

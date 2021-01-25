@@ -110,7 +110,7 @@ export interface LoginAuth {
   };
   closeModal: Function;
   registerSuccess: boolean | string;
-  activationLinkSuccess: boolean | string;
+  newLinkSuccess: boolean | string;
   swapModal: Function;
   sendActivationLink: Function;
   setForgotPasswordModalStatus: Function;
@@ -135,7 +135,7 @@ export interface ErrorState {
   forgotPasswordErrorMessage: string;
   resetPasswordErrorMessage: string;
   adminErrorMessage: string;
-  accountTokenVerificationErrorMessage: {
+  newLinkVerificationErrorMessage: {
     msg: string;
     userId?: null | string;
   };
@@ -214,7 +214,7 @@ export interface SuccessState {
   userEditionSuccess: boolean | string;
   userDeletionSuccess: boolean | string;
   accountActivationSuccess: boolean | string;
-  activationLinkSuccess: boolean | string;
+  newLinkSuccess: boolean | string;
   forgotPasswordSuccess: boolean | string;
   resetPasswordSuccess: boolean | string;
   adminProjectDeletionSuccess: boolean | string;
@@ -257,7 +257,7 @@ export interface ResetPasswordProps {
   };
   error: string;
   submitForm: Function;
-  newResetLinkSuccess: boolean | string;
+  newLinkSuccess: boolean | string;
   success: boolean | string;
   resetPasswordLinkLoader: boolean;
   resetPasswordLoader: boolean;

@@ -140,9 +140,9 @@ export interface UserTabPanelProps {
 }
 
 export interface AccountVerification {
-  activationLinkSuccess: boolean | string;
+  newLinkSuccess: boolean | string;
   activationSuccess: boolean | string;
-  accountTokenVerificationErrorMessage: {
+  newLinkVerificationErrorMessage: {
     msg: string;
     userId?: string;
   };

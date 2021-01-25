@@ -20,7 +20,7 @@ const initialState: ErrorState = {
   forgotPasswordErrorMessage: "",
   resetPasswordErrorMessage: "",
   adminErrorMessage: "",
-  accountTokenVerificationErrorMessage: {
+  newLinkVerificationErrorMessage: {
     msg: "",
     userId: null,
   },
@@ -58,11 +58,11 @@ const error = (state = initialState, { type, error }: ErrorAction) => {
       return { ...state, userProfileEditionErrorMessage: err };
     case "ACCOUNT_ACTIVATION_ERROR_HANDLER":
       return { ...state, accountActivationErrorMessage: err };
-    case "ACCOUNT_TOKEN_ERROR_HANDLER":
+    case "NEW_LINK_ERROR_HANDLER":
       return {
         ...state,
-        accountTokenVerificationErrorMessage:
-          error || initialState.accountTokenVerificationErrorMessage,
+        newLinkVerificationErrorMessage:
+          error || initialState.newLinkVerificationErrorMessage,
       };
     case "FORGOT_PASSWORD_ERROR_HANDLER":
       return { ...state, forgotPasswordErrorMessage: err };

@@ -19,7 +19,6 @@ const NotificationsTray = ({
     return () => document.removeEventListener("click", clickHandler);
   }, []);
 
-  console.log(tooltips);
   return (
     <div ref={trayContent} className="notification-tray">
       {tooltips.length > 0 ? (

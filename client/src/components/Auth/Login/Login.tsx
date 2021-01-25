@@ -14,7 +14,7 @@ const Login = ({
   activationLinkLoader,
   closeModal,
   registerSuccess,
-  activationLinkSuccess,
+  newLinkSuccess,
   sendActivationLink,
   swapModal,
   setForgotPasswordModalStatus,
@@ -65,9 +65,7 @@ const Login = ({
                   )}
                 </>
               )}
-              {activationLinkSuccess && (
-                <p className="success-message">{activationLinkSuccess}</p>
-              )}
+              {newLinkSuccess && <p className="success-message">{newLinkSuccess}</p>}
               <div className="fields">{inputMapper(login)}</div>
               {loginLoader ? (
                 <button type="submit" className="submitButton" disabled>

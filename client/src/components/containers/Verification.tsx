@@ -7,31 +7,21 @@ import { State } from "../../models/states";
 
 const mapState = ({
   loaders: { accountActivationLoader, activationLinkLoader },
-  success: {
-    activationLinkSuccess,
-    accountActivationSuccess: activationSuccess,
-  },
-  error: {
-    accountTokenVerificationErrorMessage,
-    accountActivationErrorMessage,
-  },
+  success: { newLinkSuccess, accountActivationSuccess: activationSuccess },
+  error: { newLinkVerificationErrorMessage, accountActivationErrorMessage },
 }: State) => ({
   accountActivationLoader,
   activationLinkLoader,
-  activationLinkSuccess,
+  newLinkSuccess,
   activationSuccess,
-  accountTokenVerificationErrorMessage,
+  newLinkVerificationErrorMessage,
   accountActivationErrorMessage,
 });
 
-const mapDispatch = (
-  dispatch: Dispatch<AnyAction>,
-  { match: { params } }: OwnProps
-) => {
+const mapDispatch = (dispatch: Dispatch<AnyAction>, { match: { params } }: OwnProps) => {
   const { token } = params;
   return {
-    checkTokenValidity: () =>
-      dispatch({ type: "VERIFY_ACCOUNT_TOKEN_VALIDITY", token }),
+    checkTokenValidity: () => dispatch({ type: "VERIFY_ACCOUNT_TOKEN_VALIDITY", token }),
     activateAccount: () => dispatch({ type: "ACCOUNT_VERIFICATION", token }),
     sendActivationLink: (userId: string) =>
       dispatch({

@@ -9,7 +9,7 @@ const initialState: SuccessState = {
   userEditionSuccess: false,
   userDeletionSuccess: false,
   accountActivationSuccess: false,
-  activationLinkSuccess: false,
+  newLinkSuccess: false,
   forgotPasswordSuccess: false,
   resetPasswordSuccess: false,
   adminProjectDeletionSuccess: false,
@@ -33,8 +33,8 @@ const success = (state = initialState, { type, message }: SuccessAction) => {
       return { ...state, userDeletionSuccess: msg };
     case "ACCOUNT_ACTIVATION_SUCCESS_MESSAGE":
       return { ...state, accountActivationSuccess: msg };
-    case "ACTIVATION_LINK_SUCCESS_MESSAGE":
-      return { ...state, activationLinkSuccess: msg };
+    case "NEW_LINK_SUCCESS_MESSAGE":
+      return { ...state, newLinkSuccess: msg };
     case "FORGOT_PASSWORD_SUCCESS_MESSAGE":
       return { ...state, forgotPasswordSuccess: msg };
     case "RESET_PASSWORD_SUCCESS_MESSAGE":

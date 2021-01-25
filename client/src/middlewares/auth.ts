@@ -94,14 +94,6 @@ const activateAccount = (dispatch: Dispatch<AnyAction>, token: string) => {
     .finally(() => dispatch({ type: "SET_ACCOUNT_ACTIVATION_LOADER", value: false }));
 };
 
-const checkAccountTokenValidity = (dispatch: Dispatch<AnyAction>, token: string) => {
-  axios
-    .get(`/auth/token_validity/${token}`)
-    .catch(({ response: { data: error } }) =>
-      dispatch({ type: "ACCOUNT_TOKEN_ERROR_HANDLER", error })
-    );
-};
-
 const sendNewPassword = async ({ getState, dispatch }: AxiosSubmit, token: string) => {
   const { password, confirmPassword } = getState().auth.resetPassword;
   try {
@@ -127,6 +119,14 @@ const sendNewPassword = async ({ getState, dispatch }: AxiosSubmit, token: strin
   }
 };
 
+const checkAccountTokenValidity = (dispatch: Dispatch<AnyAction>, token: string) => {
+  axios
+    .get(`/auth/token_validity/${token}`)
+    .catch(({ response: { data: error } }) =>
+      dispatch({ type: "TOKEN_ERROR_HANDLER", error })
+    );
+};
+
 const sendActivationLink = (
   dispatch: Dispatch<AnyAction>,
   userId: string,
@@ -137,8 +137,8 @@ const sendActivationLink = (
   axios
     .post("/auth/send_token", email ? { email, type } : { userId, type })
     .then(({ data: { message } }) => {
-      dispatch({ type: "ACTIVATION_LINK_SUCCESS_MESSAGE", message });
-      dispatch({ type: "ACCOUNT_TOKEN_ERROR_HANDLER" });
+      dispatch({ type: "NEW_LINK_SUCCESS_MESSAGE", message });
+      dispatch({ type: "NEW_LINK_ERROR_HANDLER" });
       dispatch({ type: "LOGIN_ERROR_HANDLER" });
       dispatch({ type: "FORGOT_PASSWORD_ERROR_HANDLER" });
     })

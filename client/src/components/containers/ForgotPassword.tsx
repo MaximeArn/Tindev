@@ -8,7 +8,7 @@ const mapState = ({
     forgotPassword: { email: inputValue },
   },
   error: { forgotPasswordErrorMessage: error },
-  success: { activationLinkSuccess: success },
+  success: { newLinkSuccess: success },
   loaders: { activationLinkLoader: loader },
 }: State) => ({
   inputValue,

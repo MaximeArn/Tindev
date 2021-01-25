@@ -5,9 +5,9 @@ import { useHistory } from "react-router-dom";
 import "./verification.scss";
 
 const Verification = ({
-  activationLinkSuccess,
+  newLinkSuccess,
   activationSuccess,
-  accountTokenVerificationErrorMessage: { msg: tokenVerificationError, userId },
+  newLinkVerificationErrorMessage: { msg: newLinkError, userId },
   accountActivationErrorMessage: activationError,
   accountActivationLoader,
   activationLinkLoader,
@@ -23,9 +23,9 @@ const Verification = ({
 
   return (
     <div className="verification">
-      {tokenVerificationError ? (
+      {newLinkError ? (
         <>
-          <div className="verification-error">{tokenVerificationError}</div>
+          <div className="verification-error">{newLinkError}</div>
           {userId && (
             <div className="verification-expired">
               <div className="verification-expired-message">
@@ -45,31 +45,22 @@ const Verification = ({
             </div>
           )}
         </>
-      ) : activationLinkSuccess ? (
+      ) : newLinkSuccess ? (
         <>
-          <div className="verification-expired-success">
-            {activationLinkSuccess}
-          </div>
+          <div className="verification-expired-success">{newLinkSuccess}</div>
         </>
       ) : (
         <div>
           {activationSuccess ? (
             <>
-              <div className="verification-activation-success">
-                {activationSuccess}
-              </div>
-              <button
-                className="verification-button"
-                onClick={() => history.push("/")}
-              >
+              <div className="verification-activation-success">{activationSuccess}</div>
+              <button className="verification-button" onClick={() => history.push("/")}>
                 Return to home page
               </button>
             </>
           ) : activationError ? (
             <>
-              <div className="verification-activation-error">
-                {activationError}
-              </div>
+              <div className="verification-activation-error">{activationError}</div>
             </>
           ) : (
             <button

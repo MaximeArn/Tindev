@@ -9,7 +9,7 @@ const ResetPassword = ({
   inputs,
   validityError: { msg: errorMessage, userId },
   error,
-  newResetLinkSuccess,
+  newLinkSuccess,
   success,
   submitForm,
   resetPasswordLinkLoader,
@@ -31,8 +31,7 @@ const ResetPassword = ({
           {userId && (
             <div className="reset-password-expired">
               <div className="reset-password-expired-message">
-                Click on the button below to send a new link to your email
-                address
+                Click on the button below to send a new link to your email address
               </div>
               <button
                 className="reset-password-new-link-button"
@@ -48,10 +47,8 @@ const ResetPassword = ({
             </div>
           )}
         </>
-      ) : newResetLinkSuccess ? (
-        <div className="reset-password-success-message">
-          {newResetLinkSuccess}
-        </div>
+      ) : newLinkSuccess ? (
+        <div className="reset-password-success-message">{newLinkSuccess}</div>
       ) : success ? (
         <>
           <div className="reset-password-success">
