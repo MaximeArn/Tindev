@@ -115,10 +115,10 @@ const authRouter = {
       const user = await activationLinkValidator(body, next);
 
       if (user) {
-        const { _id: userId, email } = user;
+        const { _id: userId, email, username } = user;
         const { token } = await Token.create({
           userId,
-          token: encryption(userId),
+          token: encryption(username),
           expire: setTokenExpiration(15),
         });
 
@@ -127,27 +127,6 @@ const authRouter = {
         return res.status(200).json({
           message,
         });
-      }
-    } catch (error) {
-      next(error);
-    }
-  },
-  forgotPassword: async ({ body }, res, next) => {
-    try {
-      const user = await forgotPasswordValidator(body, next);
-
-      if (user) {
-        const { _id: userId, email } = user;
-
-        const { token } = await Token.create({
-          userId: userId,
-          token: SHA256(userId),
-          expire: setTokenExpiration(15),
-        });
-
-        const message = await sendResetPasswordEmail(email, token);
-
-        return res.status(200).json({ message });
       }
     } catch (error) {
       next(error);

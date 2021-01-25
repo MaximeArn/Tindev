@@ -8,8 +8,8 @@ const mapState = ({
     forgotPassword: { email: inputValue },
   },
   error: { forgotPasswordErrorMessage: error },
-  success: { forgotPasswordSuccess: success },
-  loaders: { forgotPasswordLoader: loader },
+  success: { activationLinkSuccess: success },
+  loaders: { activationLinkLoader: loader },
 }: State) => ({
   inputValue,
   error,
@@ -21,7 +21,7 @@ const mapDispatch = (dispatch: Dispatch<AnyAction>) => ({
   setModalStatus: (modalStatus: boolean) => {
     dispatch({ type: "SET_FORGOT_PASSWORD_MODAL_STATUS", modalStatus });
     dispatch({ type: "FORGOT_PASSWORD_ERROR_HANDLER" });
-    dispatch({ type: "FORGOT_PASSWORD_SUCCESS_MESSAGE" });
+    dispatch({ type: "ACTIVATION_LINK_SUCCESS_MESSAGE" });
     dispatch({
       type: "GET_FORGOT_PASSWORD_INPUT_VALUE",
       inputName: "email",

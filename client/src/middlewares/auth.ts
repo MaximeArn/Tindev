@@ -116,34 +116,10 @@ const sendActivationLink = (
       dispatch({ type: "ACCOUNT_TOKEN_ERROR_HANDLER" });
       dispatch({ type: "LOGIN_ERROR_HANDLER" });
     })
-    .catch((error) => console.error(error))
+    .catch(({ response: { data: { msg: error } } }) =>
+      dispatch({ type: "FORGOT_PASSWORD_ERROR_HANDLER", error })
+    )
     .finally(() => dispatch({ type: "SET_NEW_ACTIVATION_LINK_LOADER", value: false }));
-};
-
-const resetUserPassword = async ({ getState, dispatch }: AxiosSubmit) => {
-  try {
-    const { forgotPassword } = getState().auth;
-
-    dispatch({ type: "SET_FORGOT_PASSWORD_LOADER", value: true });
-    const {
-      data: { message },
-    } = await axios.post("/auth/forgot_password", forgotPassword);
-    dispatch({ type: "FORGOT_PASSWORD_SUCCESS_MESSAGE", message });
-    dispatch({ type: "FORGOT_PASSWORD_ERROR_HANDLER" });
-    dispatch({
-      type: "GET_FORGOT_PASSWORD_INPUT_VALUE",
-      inputName: "email",
-      inputValue: "",
-    });
-  } catch ({
-    response: {
-      data: { msg: error },
-    },
-  }) {
-    dispatch({ type: "FORGOT_PASSWORD_ERROR_HANDLER", error });
-  } finally {
-    dispatch({ type: "SET_FORGOT_PASSWORD_LOADER", value: false });
-  }
 };
 
 const sendNewPassword = async ({ getState, dispatch }: AxiosSubmit, token: string) => {
@@ -190,9 +166,6 @@ const auth: Middleware = ({ getState, dispatch }) => (next) => (
       break;
     case "SEND_ACCOUNT_ACTIVATION_LINK":
       sendActivationLink(dispatch, userId, linkType, email);
-      break;
-    case "RESET_USER_PASSWORD":
-      resetUserPassword({ getState, dispatch });
       break;
     case "SEND_RESET_PASSWORD_REQUEST":
       sendNewPassword({ getState, dispatch }, token);
