@@ -27,7 +27,7 @@ const initialState: ErrorState = {
 };
 
 const error = (state = initialState, { type, error }: ErrorAction) => {
-  const err = error || "";
+  const err = error ?? "";
   switch (type) {
     case "REGISTER_ERROR_HANDLER":
       return { ...state, auth: { ...state.auth, registerErrorMessage: error } };
@@ -47,13 +47,13 @@ const error = (state = initialState, { type, error }: ErrorAction) => {
     case "PROJECT_CREATION_ERROR_HANDLER":
       return { ...state, projectCreationErrorMessage: err };
     case "PROJECT_APPLY_ERROR_HANDLER":
-      return { ...state, projectApplyErrorMessage: error };
+      return { ...state, projectApplyErrorMessage: err };
     case "USER_PROFILE_ERROR_HANDLER":
-      return { ...state, userProfileErrorMessage: error };
+      return { ...state, userProfileErrorMessage: err };
     case "PROJECT_EDITION_ERROR_HANDLER":
-      return { ...state, projectEditionErrorMessage: error };
+      return { ...state, projectEditionErrorMessage: err };
     case "PROJECT_DETAILS_ERROR_HANDLER":
-      return { ...state, projectDetailsErrorMessage: error };
+      return { ...state, projectDetailsErrorMessage: err };
     case "SET_USER_PROFILE_EDITION_ERROR_HANDLER":
       return { ...state, userProfileEditionErrorMessage: err };
     case "ACCOUNT_ACTIVATION_ERROR_HANDLER":
@@ -65,11 +65,11 @@ const error = (state = initialState, { type, error }: ErrorAction) => {
           error || initialState.accountTokenVerificationErrorMessage,
       };
     case "FORGOT_PASSWORD_ERROR_HANDLER":
-      return { ...state, forgotPasswordErrorMessage: error || "" };
+      return { ...state, forgotPasswordErrorMessage: err };
     case "RESET_PASSWORD_ERROR_HANDLER":
-      return { ...state, resetPasswordErrorMessage: error ?? "" };
+      return { ...state, resetPasswordErrorMessage: err };
     case "ADMIN_PANEL_ERROR_HANDLER":
-      return { ...state, adminErrorMessage: error ?? "" };
+      return { ...state, adminErrorMessage: err };
     default:
       return state;
   }
