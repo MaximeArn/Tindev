@@ -102,26 +102,6 @@ const checkAccountTokenValidity = (dispatch: Dispatch<AnyAction>, token: string)
     );
 };
 
-const sendActivationLink = (
-  dispatch: Dispatch<AnyAction>,
-  userId: string,
-  type: string,
-  email?: string
-) => {
-  dispatch({ type: "SET_NEW_ACTIVATION_LINK_LOADER", value: true });
-  axios
-    .post("/auth/send_token", email ? { email, type } : { userId, type })
-    .then(({ data: { message } }) => {
-      dispatch({ type: "ACTIVATION_LINK_SUCCESS_MESSAGE", message });
-      dispatch({ type: "ACCOUNT_TOKEN_ERROR_HANDLER" });
-      dispatch({ type: "LOGIN_ERROR_HANDLER" });
-    })
-    .catch(({ response: { data: { msg: error } } }) =>
-      dispatch({ type: "FORGOT_PASSWORD_ERROR_HANDLER", error })
-    )
-    .finally(() => dispatch({ type: "SET_NEW_ACTIVATION_LINK_LOADER", value: false }));
-};
-
 const sendNewPassword = async ({ getState, dispatch }: AxiosSubmit, token: string) => {
   const { password, confirmPassword } = getState().auth.resetPassword;
   try {
@@ -145,6 +125,27 @@ const sendNewPassword = async ({ getState, dispatch }: AxiosSubmit, token: strin
   } finally {
     dispatch({ type: "SET_RESET_PASSWORD_LOADER", value: false });
   }
+};
+
+const sendActivationLink = (
+  dispatch: Dispatch<AnyAction>,
+  userId: string,
+  type: string,
+  email?: string
+) => {
+  dispatch({ type: "SET_NEW_ACTIVATION_LINK_LOADER", value: true });
+  axios
+    .post("/auth/send_token", email ? { email, type } : { userId, type })
+    .then(({ data: { message } }) => {
+      dispatch({ type: "ACTIVATION_LINK_SUCCESS_MESSAGE", message });
+      dispatch({ type: "ACCOUNT_TOKEN_ERROR_HANDLER" });
+      dispatch({ type: "LOGIN_ERROR_HANDLER" });
+      dispatch({ type: "FORGOT_PASSWORD_ERROR_HANDLER" });
+    })
+    .catch(({ response: { data: { msg: error } } }) =>
+      dispatch({ type: "FORGOT_PASSWORD_ERROR_HANDLER", error })
+    )
+    .finally(() => dispatch({ type: "SET_NEW_ACTIVATION_LINK_LOADER", value: false }));
 };
 
 const auth: Middleware = ({ getState, dispatch }) => (next) => (
