@@ -20,7 +20,8 @@
   },
   "scripts": {
     "start": "nodemon src/start.js",
-    "test": "jest"
+    "test": "jest",
+    "seed": "node mongo_script.js"
   },
   "devDependencies": {
     "jest": "^26.6.3",
