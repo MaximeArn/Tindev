@@ -25,7 +25,7 @@ const authRouter = {
         const { token } = await Token.create({
           userId,
           token: encryption(username),
-          expire: setTokenExpiration(2),
+          expire: setTokenExpiration(15),
         });
 
         await sendAccountActivationEmail(email, token);
