@@ -1,6 +1,5 @@
 import { Authentication } from "../models/states";
 import { AuthenticationAction } from "../models/actions";
-import resetInputs from "../utils/resetInputs";
 
 export const initialState: any = {
   register: {
@@ -47,7 +46,7 @@ const auth = (
         resetPassword: { ...state.resetPassword, [inputName]: inputValue },
       };
     case "RESET_AUTH_INPUTS_VALUES":
-      return { ...state, [authType]: resetInputs(state[authType]) };
+      return { ...state, [authType]: initialState[authType] };
     case "CONNECT_USER":
       return { ...state, user: credentials };
     default:

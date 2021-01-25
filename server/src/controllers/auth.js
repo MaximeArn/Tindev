@@ -75,7 +75,6 @@ const authRouter = {
       if (userSocket) {
         const { socket } = userSocket;
         socket.disconnect(true);
-        // delete connectedUsers[username];
       }
 
       res.clearCookie("token");

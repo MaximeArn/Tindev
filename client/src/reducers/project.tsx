@@ -1,7 +1,5 @@
 import { ProjectState } from "../models/projects";
 import { ProjectAction } from "../models/actions";
-import updateProjects from "../utils/updateProjects";
-import resetInputs from "../utils/resetInputs";
 
 const initialState: ProjectState = {
   projects: [],
@@ -35,7 +33,7 @@ const project = (
         },
       };
     case "RESET_PROJECT_CREATION_VALUES":
-      return { ...state, createProject: resetInputs(state.createProject) };
+      return { ...state, createProject: initialState.createProject };
     case "GET_PROJECT_DETAIL_MODAL_VALUE":
       return {
         ...state,
@@ -59,12 +57,11 @@ const project = (
     case "ADD_PROJECT_ON_PROJECT_CREATION":
       return { ...state, projects: [...state.projects, project] };
     case "RESET_PROJECT_APPLY_FORM_VALUES":
-      const { application: inputs } = state.projectDetail;
       return {
         ...state,
         projectDetail: {
           ...state.projectDetail,
-          application: resetInputs(inputs),
+          application: initialState.projectDetail.application,
         },
       };
     case "SET_PROJECT_OWNER":
