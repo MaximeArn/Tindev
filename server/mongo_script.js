@@ -114,6 +114,9 @@ const connection = require("./src/config/database");
     {
       name: "Swift",
     },
+    {
+      name: "C",
+    },
   ];
 
   const projects = [
