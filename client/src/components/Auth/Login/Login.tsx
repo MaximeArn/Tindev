@@ -19,7 +19,7 @@ const Login = ({
   swapModal,
   setForgotPasswordModalStatus,
 }: LoginAuth) => {
-  const modal = useRef<HTMLDivElement>(null);
+  const modalWrapper = useRef<HTMLDivElement>(null);
 
   const handleSubmit = (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault();
@@ -29,16 +29,20 @@ const Login = ({
   return (
     <>
       <div
-        ref={modal}
+        ref={modalWrapper}
         id="registerContainer"
         className="modalContainer"
-        onMouseDown={(event) => modalClickHandler({ event, modal, closeModal })}
+        onMouseDown={(event) =>
+          modalClickHandler({ event, modalWrapper, closeModal })
+        }
       >
         <div className="modal" id="modal">
           <form method="POST" onSubmit={handleSubmit}>
             <div className="modal-padding">
               <h1 className="modal-title">Sign In</h1>
-              {registerSuccess && <p className="success-message">{registerSuccess}</p>}
+              {registerSuccess && (
+                <p className="success-message">{registerSuccess}</p>
+              )}
               {errorMessage && (
                 <>
                   <span className="modal-error-message">{errorMessage}</span>
@@ -65,7 +69,9 @@ const Login = ({
                   )}
                 </>
               )}
-              {newLinkSuccess && <p className="success-message">{newLinkSuccess}</p>}
+              {newLinkSuccess && (
+                <p className="success-message">{newLinkSuccess}</p>
+              )}
               <div className="fields">{inputMapper(login)}</div>
               {loginLoader ? (
                 <button type="submit" className="submitButton" disabled>
@@ -75,7 +81,11 @@ const Login = ({
                   </div>
                 </button>
               ) : (
-                <button type="submit" className="submitButton" disabled={loginLoader}>
+                <button
+                  type="submit"
+                  className="submitButton"
+                  disabled={loginLoader}
+                >
                   Continue
                 </button>
               )}
@@ -94,7 +104,9 @@ const Login = ({
                 Not a member yet ?
                 <a
                   className="auth-modal"
-                  onClick={() => swapModal({ modal: "login", modal2: "register" })}
+                  onClick={() =>
+                    swapModal({ modal: "login", modal2: "register" })
+                  }
                 >
                   Register
                 </a>
