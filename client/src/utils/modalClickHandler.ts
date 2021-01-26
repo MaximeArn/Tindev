@@ -1,3 +1,3 @@
-export default ({ target, modalWrapper, closeModal }: any) => {
-  !modalWrapper.current?.contains(target) && closeModal();
+export default ({ target, modal, closeModal }: any) => {
+  !modal.current?.contains(target) && closeModal();
 };

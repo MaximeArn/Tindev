@@ -19,7 +19,7 @@ const Login = ({
   swapModal,
   setForgotPasswordModalStatus,
 }: LoginAuth) => {
-  const modalWrapper = useRef<HTMLDivElement>(null);
+  const modal = useRef<HTMLDivElement>(null);
 
   const handleSubmit = (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault();
@@ -29,14 +29,13 @@ const Login = ({
   return (
     <>
       <div
-        ref={modalWrapper}
         id="registerContainer"
         className="modalContainer"
-        onMouseDown={(event) =>
-          modalClickHandler({ event, modalWrapper, closeModal })
+        onMouseDown={({ target }) =>
+          modalClickHandler({ target, modal, closeModal })
         }
       >
-        <div className="modal" id="modal">
+        <div className="modal" id="modal" ref={modal}>
           <form method="POST" onSubmit={handleSubmit}>
             <div className="modal-padding">
               <h1 className="modal-title">Sign In</h1>
