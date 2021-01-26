@@ -177,6 +177,8 @@ const connection = require("./src/config/database");
     },
   ];
 
+  console.log("MongoDB Seed initialized");
+
   users.forEach(async (user) => {
     await User.create({
       ...user,
@@ -194,4 +196,6 @@ const connection = require("./src/config/database");
       })
   );
   categories.forEach(async (category) => await Category.create(category));
+
+  console.log("MongoDB Seed done");
 })();
