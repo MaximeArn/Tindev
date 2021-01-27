@@ -1,4 +1,4 @@
-const { Project, Category } = require("../../models");
+const { Project, Category, User } = require("../../models");
 const ProjectError = require("../CustomError");
 const sanitize = require("sanitize-html");
 const sanitizeOptions = require("../../config/sanitize");
@@ -9,6 +9,8 @@ module.exports = async (id, body, next) => {
     const truthy = Object.values(body).every((value) => value.trim());
 
     if (!truthy) throw new ProjectError("Empty values are not allowed.", 400);
+
+    if (!project) throw new ProjectError("This project does not exist", 404);
 
     if (body.title && body.title.length > 50) {
       throw new ProjectError("Title character length must not exceed 50", 400);
@@ -30,7 +32,9 @@ module.exports = async (id, body, next) => {
       }
     }
 
-    if (!project) throw new ProjectError("This project does not exist", 404);
+    if (body.author && !(await User.findOne(body))) {
+      throw new ProjectError("Cannot delegate project ownership to this user", 400);
+    }
 
     if (!body.categories) {
       Object.entries(body).forEach(

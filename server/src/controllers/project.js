@@ -49,8 +49,7 @@ module.exports = {
   },
   apply: async (sockets, { body, decoded: { id, username } }, res, next) => {
     try {
-      const { owner, project } =
-        (await applyValidator({ body, id }, next)) || {};
+      const { owner, project } = (await applyValidator({ body, id }, next)) || {};
 
       if (project) {
         const { _id, applicants } = project;
@@ -121,19 +120,15 @@ module.exports = {
   },
   updateById: async ({ body, params: { id }, file }, res, next) => {
     try {
-      // const key = file ? "image" : Object.keys(body)[0];
-      //TODO: VERIFY THAT THIS WORKS
       const update = file ? { image: file.filename } : body;
-      const project = await projectUpdateValidator(id, body, next);
+      const valid = await projectUpdateValidator(id, body, next);
 
-      if (project) {
-        const updated = await Project.findByIdAndUpdate(id, update, {
+      if (valid) {
+        const project = await Project.findByIdAndUpdate(id, update, {
           new: true,
         });
 
-        return res
-          .status(200)
-          .json({ msg: "Project successfully updated", project: updated });
+        return res.status(200).json({ msg: "Project successfully updated", project });
       }
     } catch (error) {
       next(error);
@@ -146,8 +141,7 @@ module.exports = {
     next
   ) => {
     try {
-      const { project, user } =
-        (await removeContributorValidator(id, next)) || {};
+      const { project, user } = (await removeContributorValidator(id, next)) || {};
       const tooltip = `${username} has left your project ${project.title}`;
 
       if (project) {
