@@ -1,5 +1,3 @@
-/** @format */
-
 import { createStyles, makeStyles, Theme } from "@material-ui/core/styles";
 import { Category } from "../../models/categories";
 
@@ -36,11 +34,7 @@ export const MenuProps = {
   },
 };
 
-export function getStyles(
-  name: string,
-  categoriesFieldValues: Category[],
-  theme: Theme
-) {
+export function getStyles(name: string, categoriesFieldValues: Category[], theme: Theme) {
   return {
     fontWeight:
       categoriesFieldValues.indexOf({ name }) === -1

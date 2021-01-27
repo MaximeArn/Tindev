@@ -9,5 +9,8 @@ export default makeStyles(({ spacing }: Theme) =>
     selectEmpty: {
       marginTop: spacing(2),
     },
+    labelColor: {
+      color: "#fff",
+    },
   })
 );
