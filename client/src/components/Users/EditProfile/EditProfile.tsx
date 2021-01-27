@@ -3,6 +3,7 @@ import { EditUserProfile, EditProfile } from "../../../models/users";
 import ProfileField from "./ProfileField";
 import CircularProgress from "@material-ui/core/CircularProgress";
 import DeletionModal from "./DeletionModal";
+import { errorToast, successToast } from "../../../utils/toastify";
 import "./editprofile.scss";
 
 const EditProfile = ({
@@ -27,6 +28,8 @@ const EditProfile = ({
   }, []);
 
   useEffect(() => {
+    error && errorToast(error);
+    success && successToast(success);
     (error || success) && setTimeout(() => resetMessages(), 3000);
   }, [error, success]);
 
@@ -49,8 +52,6 @@ const EditProfile = ({
           )}
           {user && (
             <div className="profile-wrapper">
-              {success && <div className="profile-edit-success">{success}</div>}
-              {error && <div className="profile-edit-error">{error}</div>}
               <div className="profile">
                 <div className="profile-edit-container">
                   {Object.entries(editProfile).map(([prop, value]) => {
