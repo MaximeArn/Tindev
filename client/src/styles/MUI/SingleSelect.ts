@@ -8,6 +8,7 @@ export default makeStyles(({ spacing }: Theme) =>
     },
     selectEmpty: {
       marginTop: spacing(2),
+      color: "#fff",
     },
     labelColor: {
       color: "#fff",

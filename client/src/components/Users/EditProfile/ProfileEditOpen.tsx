@@ -19,9 +19,7 @@ const ProfileEditOpen = ({
   const filePreview = useRef<any>(null);
   const [isImageSelected, setImageStatus] = useState<boolean>(false);
 
-  const handleImageSelect = ({
-    target: { files },
-  }: ChangeEvent<HTMLInputElement>) => {
+  const handleImageSelect = ({ target: { files } }: ChangeEvent<HTMLInputElement>) => {
     const reader = new FileReader();
 
     if (files) {
@@ -38,9 +36,7 @@ const ProfileEditOpen = ({
 
   const resetInputValues = () => {
     name === "password"
-      ? Object.keys(inputValue).forEach((key) =>
-          resetEditProfileValue(name, key)
-        )
+      ? Object.keys(inputValue).forEach((key) => resetEditProfileValue(name, key))
       : resetEditProfileValue(name);
   };
 
@@ -94,16 +90,14 @@ const ProfileEditOpen = ({
                   placeholder={capitalize(key)}
                   value={val}
                   required={isRequired(key)}
-                  onChange={({ target }) =>
-                    getEditProfileValue(name, target.value, key)
-                  }
+                  onChange={({ target }) => getEditProfileValue(name, target.value, key)}
                 />
               );
             })}
           </div>
         ) : name === "technos" ? (
           <div className="profile-edit-open-technos">
-            <MultipleCategories name={name} />
+            <MultipleCategories name="userTechnos" />
           </div>
         ) : (
           <input

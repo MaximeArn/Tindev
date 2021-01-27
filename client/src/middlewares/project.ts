@@ -122,12 +122,12 @@ const updateProject = (
   projectId: string,
   slug: string
 ) => {
-  const { createProject } = getState().project;
+  const { updateProject } = getState().project;
   const formData = new FormData();
 
   name === "categories"
-    ? formData.append(name, JSON.stringify(createProject[name]))
-    : formData.append(name, createProject[name]);
+    ? formData.append(name, JSON.stringify(updateProject[name]))
+    : formData.append(name, updateProject[name]);
 
   dispatch({
     type: "SET_PROJECT_EDITION_LOADER",

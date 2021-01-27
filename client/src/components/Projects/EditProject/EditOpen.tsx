@@ -68,7 +68,7 @@ const EditOpen = ({
             </>
           ) : name === "categories" ? (
             <div className="field-edit-categories">
-              <MultipleCategories name={name} />
+              <MultipleCategories name="projectUpdateCategories" />
             </div>
           ) : name === "author" ? (
             <Select label={name} values={contributors} />

@@ -64,9 +64,7 @@ const ProjectCreation = ({
         <div className="project-container">
           <div className="project-container-form">
             <form onSubmit={handleSubmit}>
-              {error && (
-                <div className="project-creation-error-message">{error}</div>
-              )}
+              {error && <div className="project-creation-error-message">{error}</div>}
               <section className="image-section">
                 <div onClick={fileBrowserClickHandler}>
                   <img
@@ -79,9 +77,7 @@ const ProjectCreation = ({
               </section>
               <section className="title-section">
                 <div className="title-wrapper">
-                  <h3 className="project-creation-title-entry">
-                    PROJECT TITLE
-                  </h3>
+                  <h3 className="project-creation-title-entry">PROJECT TITLE</h3>
                 </div>
                 <Input
                   name="title"
@@ -105,7 +101,7 @@ const ProjectCreation = ({
 
               <section className="category-section">
                 <h3 className="project-creation-title">PROJECT CATEGORY</h3>
-                <MultipleCategories name="categories" />
+                <MultipleCategories name="projectCreationCategories" />
               </section>
 
               <section className="team-size-section">

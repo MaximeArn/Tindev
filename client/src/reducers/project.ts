@@ -1,4 +1,4 @@
-import { ProjectState } from "../models/projects";
+import { ProjectCreation, ProjectState, UpdateProject } from "../models/projects";
 import { ProjectAction } from "../models/actions";
 
 const initialState: ProjectState = {
@@ -10,6 +10,14 @@ const initialState: ProjectState = {
     categories: [],
     size: "",
     image: null,
+  },
+  updateProject: {
+    title: "",
+    description: "",
+    categories: [],
+    size: "",
+    image: null,
+    owner: "",
   },
   projectDetail: {
     owner: false,
@@ -29,7 +37,17 @@ const project = (
         ...state,
         createProject: {
           ...state.createProject,
-          [inputName]: inputValue ? inputValue : inputName === "categories" ? [] : "",
+          [inputName]:
+            inputValue || initialState.createProject[inputName as keyof ProjectCreation],
+        },
+      };
+    case "GET_PROJECT_UPDATE_VALUE":
+      return {
+        ...state,
+        updateProject: {
+          ...state.updateProject,
+          [inputName]:
+            inputValue || initialState.updateProject[inputName as keyof UpdateProject],
         },
       };
     case "RESET_PROJECT_CREATION_VALUES":
@@ -47,6 +65,8 @@ const project = (
       };
     case "SET_PROJECT_IMAGE":
       return { ...state, createProject: { ...state.createProject, image } };
+    case "SET_UPDATED_PROJECT_IMAGE":
+      return { ...state, updateProject: { ...state.updateProject, image } };
     case "SET_PROJECTS":
       return { ...state, projects };
     case "SET_PROJECT":

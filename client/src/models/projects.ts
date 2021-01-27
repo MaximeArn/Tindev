@@ -63,6 +63,7 @@ export interface ProjectState {
   projects: Project[];
   project: Project | null;
   createProject: ProjectCreation;
+  updateProject: UpdateProject;
   projectDetail: ProjectDetail;
 }
 
@@ -157,7 +158,7 @@ export interface EditProjectProps {
   success: string;
   isModalOpen: boolean;
   categories: Category[];
-  projectCreationValues: ProjectCreation;
+  updateProjectValues: UpdateProject;
   resetSuccessMessage: Function;
   deleteProject: Function;
   getProject: Function;
@@ -199,4 +200,13 @@ export interface EditProjectStatusOpen {
   getProjectEditInputValues: Function;
   setNewProjectImage: Function;
   updateProject: Function;
+}
+
+export interface UpdateProject {
+  title: string;
+  description: string;
+  categories: String[];
+  size: string;
+  image: any;
+  owner: string;
 }

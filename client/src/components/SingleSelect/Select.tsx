@@ -24,9 +24,11 @@ const Select = ({ label, values }: SingleSelectProps) => {
         onChange={handleChange}
         className={selectEmpty}
       >
-        {values.map(({ username }) => {
-          <MenuItem value={username}>{username}</MenuItem>;
-        })}
+        {values.map(({ _id, username }) => (
+          <MenuItem key={_id} value={username}>
+            {capitalize(username)}
+          </MenuItem>
+        ))}
       </Input>
     </FormControl>
   );

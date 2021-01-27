@@ -7,7 +7,7 @@ import "./editProject.scss";
 
 const EditProject = ({
   project,
-  projectCreationValues,
+  updateProjectValues,
   error,
   projectDetailsErrorMessage,
   success,
@@ -59,7 +59,7 @@ const EditProject = ({
                         projectId={project._id}
                         contributors={project.contributors}
                         value={project[key]}
-                        inputValue={projectCreationValues[key]}
+                        inputValue={updateProjectValues[key]}
                       />
                     );
                   })}

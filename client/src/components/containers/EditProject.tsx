@@ -6,13 +6,13 @@ import { AnyAction, Dispatch } from "redux";
 import { OwnProps } from "../../models/connect";
 
 const mapState = ({
-  project: { createProject, project },
+  project: { updateProject, project },
   error: { projectEditionErrorMessage: error, projectDetailsErrorMessage },
   success: { projectEditionSuccess: success, projectDeletionSuccess },
   modal: { deleteProjectModal: isModalOpen },
 }: State) => ({
   project: project,
-  projectCreationValues: createProject,
+  updateProjectValues: updateProject,
   error,
   projectDetailsErrorMessage,
   success,
