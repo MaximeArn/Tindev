@@ -1,6 +1,7 @@
 import React, { useEffect, useRef } from "react";
 import "./projectslist.scss";
 import Project from "./Project";
+import { errorToast } from "../../../utils/toastify";
 import CircularProgress from "@material-ui/core/CircularProgress";
 import { Project as ProjectModel, Projects } from "../../../models/projects";
 
@@ -11,6 +12,10 @@ const ProjectsList = ({ projects, error, getProjects, loader }: Projects) => {
     getProjects();
   }, []);
 
+  useEffect(() => {
+    error && errorToast(error);
+  }, [error]);
+
   return (
     <>
       {loader && (
@@ -19,15 +24,11 @@ const ProjectsList = ({ projects, error, getProjects, loader }: Projects) => {
           <CircularProgress size={15} />
         </div>
       )}
-      {error ? (
-        <div className="project-list-error">{error}</div>
-      ) : (
-        <div className="projectsList" ref={projectListRef}>
-          {projects.map((project: ProjectModel) => {
-            return <Project key={project._id} {...project} />;
-          })}
-        </div>
-      )}
+      <div className="projectsList" ref={projectListRef}>
+        {projects.map((project: ProjectModel) => {
+          return <Project key={project._id} {...project} />;
+        })}
+      </div>
     </>
   );
 };
