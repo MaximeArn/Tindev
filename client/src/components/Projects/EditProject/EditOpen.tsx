@@ -68,7 +68,10 @@ const EditOpen = ({
             </>
           ) : name === "categories" ? (
             <div className="field-edit-categories">
-              <MultipleCategories name="projectUpdateCategories" />
+              <MultipleCategories
+                toUpdate="projectUpdateCategories"
+                inputName="categories"
+              />
             </div>
           ) : name === "author" ? (
             <Select label={name} values={contributors} />

@@ -1,14 +1,16 @@
+import { GetSelectedValues } from "./mui";
+
 export interface Category {
   name: string;
 }
 
 export interface MultipleCategory {
-  name: string;
+  toUpdate: string;
+  inputName: string;
   categories: Category[];
   categoriesFieldValues: Category[];
+  getSelectedValues: GetSelectedValues;
   technos: Category[];
   loader: boolean;
-  getCategories: Function;
-  getUserTechnos: Function;
   fetchCategories: Function;
 }

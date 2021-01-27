@@ -101,7 +101,10 @@ const ProjectCreation = ({
 
               <section className="category-section">
                 <h3 className="project-creation-title">PROJECT CATEGORY</h3>
-                <MultipleCategories name="projectCreationCategories" />
+                <MultipleCategories
+                  toUpdate="projectCreationCategories"
+                  inputName="categories"
+                />
               </section>
 
               <section className="team-size-section">
