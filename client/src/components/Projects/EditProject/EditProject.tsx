@@ -1,5 +1,3 @@
-/** @format */
-
 import React, { useEffect } from "react";
 import { EditProjectProps } from "../../../models/projects";
 import Field from "../../containers/ProjectEditField";
@@ -11,13 +9,19 @@ const EditProject = ({
   project,
   projectCreationValues,
   error,
+  projectDetailsErrorMessage,
   success,
   isModalOpen,
   resetSuccessMessage,
+  getProject,
   deleteProject,
   setModalStatus,
   projectDeletionSuccess,
 }: EditProjectProps) => {
+  useEffect(() => {
+    getProject();
+  }, []);
+
   useEffect(() => {
     setTimeout(() => {
       resetSuccessMessage();
@@ -35,33 +39,36 @@ const EditProject = ({
         />
       )}
       <div className="edit-project-container">
-        {error && <div className="edit-project-error-message">{error}</div>}
-        {success && (
-          <div className="edit-project-success-message">{success}</div>
-        )}
-        <div className="edit-project">
-          <div className="edit-form">
-            {project &&
-              Object.keys(fieldChecker(project)).map((props) => {
-                const key = props as keyof typeof EditProject;
-                return (
-                  <Field
-                    key={key}
-                    name={key}
-                    projectId={project._id}
-                    value={project[key]}
-                    inputValue={projectCreationValues[key]}
-                  />
-                );
-              })}
+        {projectDetailsErrorMessage ? (
+          <div className="edit-project-fetching-error-message">
+            {projectDetailsErrorMessage}
           </div>
-        </div>
-        <button
-          onClick={() => setModalStatus(true)}
-          className="edit-project-delete"
-        >
-          Delete
-        </button>
+        ) : (
+          <>
+            {error && <div className="edit-project-error-message">{error}</div>}
+            {success && <div className="edit-project-success-message">{success}</div>}
+            <div className="edit-project">
+              <div className="edit-form">
+                {project &&
+                  Object.keys(fieldChecker(project)).map((props) => {
+                    const key = props as keyof typeof EditProject;
+                    return (
+                      <Field
+                        key={key}
+                        name={key}
+                        projectId={project._id}
+                        value={project[key]}
+                        inputValue={projectCreationValues[key]}
+                      />
+                    );
+                  })}
+              </div>
+            </div>
+            <button onClick={() => setModalStatus(true)} className="edit-project-delete">
+              Delete
+            </button>
+          </>
+        )}
       </div>
     </>
   );

@@ -1,5 +1,3 @@
-/** @format */
-
 import React from "react";
 import { url } from "../../../environments/api";
 import { EditProjectStatusClosed } from "../../../models/projects";
@@ -32,7 +30,7 @@ const EditClosed = ({
             />
           ) : name === "categories" ? (
             <div className="field-text-content">
-              {typeof value !== "string" ? (
+              {Array.isArray(value) ? (
                 value.map((name: string) => <p key={name}>{name}</p>)
               ) : (
                 <p>{value}</p>
