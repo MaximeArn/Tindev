@@ -31,10 +31,12 @@
       h2 {
         font-weight: bold;
         text-transform: uppercase;
-        background: -webkit-linear-gradient(121deg,
-            rgba(149, 230, 191, 1) 0%,
-            rgba(84, 227, 206, 1) 48%,
-            rgba(0, 212, 255, 1) 100%);
+        background: -webkit-linear-gradient(
+          121deg,
+          rgba(149, 230, 191, 1) 0%,
+          rgba(84, 227, 206, 1) 48%,
+          rgba(0, 212, 255, 1) 100%
+        );
         background-clip: text;
         -webkit-background-clip: text;
         -webkit-text-fill-color: transparent;
@@ -151,10 +153,12 @@
         }
 
         &:hover {
-          background: -webkit-linear-gradient(121deg,
-              rgba(149, 230, 191, 1) 0%,
-              rgba(84, 227, 206, 1) 48%,
-              rgba(0, 212, 255, 1) 100%);
+          background: -webkit-linear-gradient(
+            121deg,
+            rgba(149, 230, 191, 1) 0%,
+            rgba(84, 227, 206, 1) 48%,
+            rgba(0, 212, 255, 1) 100%
+          );
           background-clip: text;
           -webkit-background-clip: text;
           -webkit-text-fill-color: transparent;
@@ -169,7 +173,6 @@
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
-  color: #fff;
 }
 
 @media (min-width: 750px) {
@@ -193,7 +196,6 @@
   }
 }
 
-
 @media (max-width: 745px) {
   .projectDetail {
     padding-top: 56px;
@@ -215,7 +217,6 @@
           border-top: 2px solid #fff;
           border-bottom: 2px solid #fff;
           border-left: 2px solid #fff;
-
         }
 
         .apply-button,

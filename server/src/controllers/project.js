@@ -7,6 +7,7 @@ const {
   projectDeletionValidator,
   projectUpdateValidator,
   removeContributorValidator,
+  projectDetailValidator,
 } = require("../utils/validators");
 
 module.exports = {
@@ -39,10 +40,13 @@ module.exports = {
       next(error);
     }
   },
-  getProject: async ({ params: { name } }, res, next) => {
+  getProject: async ({ params }, res, next) => {
     try {
-      const project = await Project.findOne({ title: name });
-      return res.status(200).json(project);
+      const project = await projectDetailValidator(params, next);
+
+      if (project) {
+        return res.status(200).json(project);
+      }
     } catch (error) {
       next(error);
     }

@@ -23,12 +23,10 @@ const {
 
 const projectRouterWrapper = (connectedUsers) => {
   router.get("/", getProjects);
-  router.get("/:name", getProject);
+  router.get("/:title", getProject);
   router.post("/create", upload.single("image"), create);
   router.post("/verify_owner", verifyOwner);
-  router.post("/apply", (req, res, next) =>
-    apply(connectedUsers, req, res, next)
-  );
+  router.post("/apply", (req, res, next) => apply(connectedUsers, req, res, next));
   router.patch("/contributor", (req, res, next) =>
     deleteContributor(connectedUsers, req, res, next)
   );

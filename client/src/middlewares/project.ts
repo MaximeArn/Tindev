@@ -163,8 +163,11 @@ const getProject = (dispatch: Dispatch<AnyAction>, slug: string) => {
   dispatch({ type: "SET_PROJECT_DETAILS_LOADER", value: true });
   axios
     .get(`/project/${unslugify(slug)}`)
-    .then(({ data: project }) => dispatch({ type: "SET_PROJECT", project }))
-    .catch(({ response: { data: error } }) =>
+    .then(({ data: project }) => {
+      dispatch({ type: "SET_PROJECT", project });
+      dispatch({ type: "PROJECT_DETAILS_ERROR_HANDLER" });
+    })
+    .catch(({ response: { data: { msg: error } } }) =>
       dispatch({ type: "PROJECT_DETAILS_ERROR_HANDLER", error })
     )
     .finally(() => dispatch({ type: "SET_PROJECT_DETAILS_LOADER", value: false }));
