@@ -17,7 +17,7 @@ const initialState: ProjectState = {
     categories: [],
     size: "",
     image: null,
-    owner: "",
+    author: "",
   },
   projectDetail: {
     owner: false,

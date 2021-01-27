@@ -3,6 +3,8 @@ import { Contributor } from "./projects";
 export interface SingleSelectProps {
   label: string;
   values: Contributor[];
+  inputValue: any;
+  getNewOwner: Function;
 }
 
 export interface GetSelectedValues {

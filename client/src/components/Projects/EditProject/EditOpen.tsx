@@ -4,7 +4,7 @@ import MultipleCategories from "../../containers/MultipleCategories";
 import capitalize from "../../../utils/capitalizeFirstLetter";
 import typeChecker from "../../../utils/projectEditTypeChecker";
 import { EditProjectStatusOpen } from "../../../models/projects";
-import Select from "../../SingleSelect/Select";
+import Select from "../../containers/SingleSelect";
 
 const EditOpen = ({
   name,
@@ -74,7 +74,7 @@ const EditOpen = ({
               />
             </div>
           ) : name === "author" ? (
-            <Select label={name} values={contributors} />
+            <Select label={name} values={contributors} inputValue={inputValue} />
           ) : (
             <div className="field-edit-form-infos">
               <input

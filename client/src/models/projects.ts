@@ -208,5 +208,5 @@ export interface UpdateProject {
   categories: String[];
   size: string;
   image: any;
-  owner: string;
+  author: string;
 }

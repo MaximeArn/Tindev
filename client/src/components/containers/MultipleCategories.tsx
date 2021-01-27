@@ -6,7 +6,7 @@ import MultipleCategories from "../MultipleCategories/MultipleCategories";
 const mapState = ({
   categories: { categories },
   project: {
-    createProject: { categories: categoriesFieldValues },
+    updateProject: { categories: categoriesFieldValues },
   },
   loaders: { projectCategoriesLoader: loader },
   users: {

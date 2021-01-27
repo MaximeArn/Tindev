@@ -1,15 +1,14 @@
-import React, { useState } from "react";
+import React from "react";
 import { InputLabel, MenuItem, FormControl, Select as Input } from "@material-ui/core";
 import Styles from "../../styles/MUI/SingleSelect";
 import { SingleSelectProps } from "../../models/mui";
 import capitalize from "../../utils/capitalizeFirstLetter";
 
-const Select = ({ label, values }: SingleSelectProps) => {
-  const [value, setValue] = useState("");
+const Select = ({ label, values, inputValue, getNewOwner }: SingleSelectProps) => {
   const { formControl, selectEmpty, labelColor } = Styles();
 
-  const handleChange = (event: React.ChangeEvent<{ value: unknown }>) => {
-    setValue(event.target.value as string);
+  const handleChange = ({ target }: React.ChangeEvent<{ value: unknown }>) => {
+    getNewOwner(label, target.value);
   };
 
   return (
@@ -20,7 +19,7 @@ const Select = ({ label, values }: SingleSelectProps) => {
       <Input
         labelId="demo-simple-Input-required-label"
         id="demo-simple-select-required"
-        value={value}
+        value={inputValue}
         onChange={handleChange}
         className={selectEmpty}
       >
