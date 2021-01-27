@@ -57,6 +57,7 @@ const EditProject = ({
                         key={key}
                         name={key}
                         projectId={project._id}
+                        contributors={project.contributors}
                         value={project[key]}
                         inputValue={projectCreationValues[key]}
                       />

@@ -8,6 +8,7 @@ const Field = ({
   value,
   inputValue,
   isLoading: { fieldName, loader },
+  contributors,
   getProjectEditInputValues,
   setNewProjectImage,
   updateProject,
@@ -22,6 +23,7 @@ const Field = ({
           value={value}
           isExpanded={isExpanded}
           setExpanded={setExpanded}
+          contributors={contributors}
           inputValue={inputValue}
           getProjectEditInputValues={getProjectEditInputValues}
           setNewProjectImage={setNewProjectImage}

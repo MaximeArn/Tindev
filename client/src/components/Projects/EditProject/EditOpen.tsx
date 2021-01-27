@@ -4,6 +4,7 @@ import MultipleCategories from "../../containers/MultipleCategories";
 import capitalize from "../../../utils/capitalizeFirstLetter";
 import typeChecker from "../../../utils/projectEditTypeChecker";
 import { EditProjectStatusOpen } from "../../../models/projects";
+import Select from "../../SingleSelect/Select";
 
 const EditOpen = ({
   name,
@@ -11,6 +12,7 @@ const EditOpen = ({
   inputValue,
   isExpanded,
   setExpanded,
+  contributors,
   getProjectEditInputValues,
   setNewProjectImage,
   updateProject,
@@ -19,9 +21,7 @@ const EditOpen = ({
   const imageFileOpener = useRef<any>(null);
   const imagePreview = useRef<any>(null);
 
-  const showImagePreview = ({
-    target: { files },
-  }: ChangeEvent<HTMLInputElement>) => {
+  const showImagePreview = ({ target: { files } }: ChangeEvent<HTMLInputElement>) => {
     setImage(true);
     const reader = new FileReader();
     files && reader.readAsDataURL(files[0]);
@@ -70,22 +70,20 @@ const EditOpen = ({
             <div className="field-edit-categories">
               <MultipleCategories name={name} />
             </div>
+          ) : name === "author" ? (
+            <Select label={name} values={contributors} />
           ) : (
             <div className="field-edit-form-infos">
               <input
                 required
                 className={
-                  name === "description"
-                    ? "field-edit-textarea"
-                    : "field-edit-input"
+                  name === "description" ? "field-edit-textarea" : "field-edit-input"
                 }
                 type={typeChecker(name)}
                 name={name}
                 placeholder={`New ${capitalize(name)}...`}
                 value={inputValue}
-                onChange={({ target }) =>
-                  getProjectEditInputValues(name, target.value)
-                }
+                onChange={({ target }) => getProjectEditInputValues(name, target.value)}
               />
             </div>
           )}

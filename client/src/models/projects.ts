@@ -168,6 +168,7 @@ export interface EditProjectProps {
 export interface EditFieldProps {
   name: string;
   projectId: string;
+  contributors: Contributor[];
   isLoading: {
     fieldName: string;
     loader: boolean;
@@ -193,6 +194,7 @@ export interface EditProjectStatusOpen {
   value: string | string[];
   inputValue: string | number | undefined;
   isExpanded: boolean;
+  contributors: Contributor[];
   setExpanded: Function;
   getProjectEditInputValues: Function;
   setNewProjectImage: Function;
