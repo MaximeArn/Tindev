@@ -23,7 +23,7 @@ const Login = ({
   const modal = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
-    registerSuccess && successToast(registerSuccess);
+    (registerSuccess || newLinkSuccess) && successToast(registerSuccess);
     errorMessage && !userId && errorToast(errorMessage);
   }, [registerSuccess, errorMessage]);
 
@@ -46,7 +46,7 @@ const Login = ({
             <div className="modal-padding">
               <h1 className="modal-title">Sign In</h1>
               <>
-                {errorMessage && userId && (
+                {userId && (
                   <>
                     <div className="modal-error-activationLink">
                       Didn't receive any email ?
