@@ -22,15 +22,8 @@ const EditProject = ({
 }: EditProjectProps) => {
   useEffect(() => {
     (success || projectDeletionSuccess) &&
-      (() => {
-        successToast(success);
-        resetSuccessMessage();
-      })();
-    error &&
-      (() => {
-        errorToast(error);
-        resetErrorMessage();
-      })();
+      successToast(success, resetSuccessMessage);
+    error && errorToast(error, resetErrorMessage);
   }, [success, error]);
 
   return (
