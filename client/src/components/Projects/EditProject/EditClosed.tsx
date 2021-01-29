@@ -2,13 +2,13 @@ import React from "react";
 import { url } from "../../../environments/api";
 import { EditProjectStatusClosed } from "../../../models/projects";
 import CircularProgress from "@material-ui/core/CircularProgress";
-import { Category } from "../../../models/categories";
 
 const EditClosed = ({
   name,
   value,
   fieldName,
   loader,
+  contributors,
   isExpanded,
   setExpanded,
 }: EditProjectStatusClosed) => {
@@ -36,6 +36,8 @@ const EditClosed = ({
                 <p>{value}</p>
               )}
             </div>
+          ) : name === "author" && contributors.length ? (
+            <div className="field-text-content">{value}</div>
           ) : (
             <div className="field-text-content">{value}</div>
           )}

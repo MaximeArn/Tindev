@@ -37,6 +37,7 @@ const Field = ({
           setExpanded={setExpanded}
           fieldName={fieldName}
           loader={loader}
+          contributors={contributors}
         />
       )}
     </>

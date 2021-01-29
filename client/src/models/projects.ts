@@ -188,6 +188,7 @@ export interface EditProjectStatusClosed {
   fieldName: string;
   loader: boolean;
   setExpanded: Function;
+  contributors: Contributor[];
 }
 
 export interface EditProjectStatusOpen {
