@@ -5,6 +5,7 @@ import MultipleCategories from "../../containers/MultipleCategories";
 import Buttons from "../../containers/ProjectCreationButtons";
 import CircularProgress from "@material-ui/core/CircularProgress";
 import Input from "../../containers/Input";
+import { errorToast } from "../../../utils/toastify";
 import "./projectcreation.scss";
 
 const ProjectCreation = ({
@@ -18,6 +19,10 @@ const ProjectCreation = ({
 }: ProjectCreationProps) => {
   const fileInput = useRef<any>(null);
   const imagePreview = useRef<any>(null);
+
+  useEffect(() => {
+    error && errorToast(error);
+  }, [error]);
 
   useEffect(() => {
     listen(() => {
@@ -64,9 +69,6 @@ const ProjectCreation = ({
         <div className="project-container">
           <div className="project-container-form">
             <form onSubmit={handleSubmit}>
-              {error && (
-                <div className="project-creation-error-message">{error}</div>
-              )}
               <section className="image-section">
                 <div onClick={fileBrowserClickHandler}>
                   <img
