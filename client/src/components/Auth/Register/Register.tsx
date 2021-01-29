@@ -1,9 +1,10 @@
-import React, { FormEvent, useRef } from "react";
+import React, { FormEvent, useRef, useEffect } from "react";
 import { RegisterAuth } from "../../../models/states";
 import googleIcon from "src/assets/icons/googleIcon.svg";
 import modalClickHandler from "../../../utils/modalClickHandler";
 import inputMapper from "../../../utils/inputMapper";
 import "../modal.scss";
+import { successToast, errorToast } from "../../../utils/toastify";
 import CircularProgress from "@material-ui/core/CircularProgress";
 
 const Register = ({
@@ -15,6 +16,11 @@ const Register = ({
   swapModal,
 }: RegisterAuth) => {
   const modal = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    // registerSuccess && successToast(registerSuccess);
+    error && errorToast(error);
+  }, [error]);
 
   const handleSubmit = (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault();

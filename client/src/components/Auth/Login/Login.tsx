@@ -1,8 +1,9 @@
-import React, { FormEvent, MouseEvent, useRef } from "react";
+import React, { FormEvent, MouseEvent, useRef, useEffect } from "react";
 import { LoginAuth } from "../../../models/states";
 import googleIcon from "src/assets/icons/googleIcon.svg";
 import modalClickHandler from "../../../utils/modalClickHandler";
 import inputMapper from "../../../utils/inputMapper";
+import { successToast, errorToast } from "../../../utils/toastify";
 import "../modal.scss";
 import CircularProgress from "@material-ui/core/CircularProgress";
 
@@ -20,6 +21,11 @@ const Login = ({
   setForgotPasswordModalStatus,
 }: LoginAuth) => {
   const modal = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    registerSuccess && successToast(registerSuccess);
+    errorMessage && !userId && errorToast(errorMessage);
+  }, [registerSuccess, errorMessage]);
 
   const handleSubmit = (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault();
@@ -39,35 +45,29 @@ const Login = ({
           <form method="POST" onSubmit={handleSubmit}>
             <div className="modal-padding">
               <h1 className="modal-title">Sign In</h1>
-              {registerSuccess && (
-                <p className="success-message">{registerSuccess}</p>
-              )}
-              {errorMessage && (
-                <>
-                  <span className="modal-error-message">{errorMessage}</span>
-                  {userId && (
-                    <>
-                      <div className="modal-error-activationLink">
-                        Didn't receive any email ?
-                      </div>
-                      <button
-                        className="modal-error-newLink"
-                        onClick={() => sendActivationLink(userId)}
-                        disabled={newLinkLoader}
-                      >
-                        {newLinkLoader ? (
-                          <div className="loading-button">
-                            <p>Loading</p>
-                            <CircularProgress size={15} />
-                          </div>
-                        ) : (
-                          "Send a new link"
-                        )}
-                      </button>
-                    </>
-                  )}
-                </>
-              )}
+              <>
+                {errorMessage && userId && (
+                  <>
+                    <div className="modal-error-activationLink">
+                      Didn't receive any email ?
+                    </div>
+                    <button
+                      className="modal-error-newLink"
+                      onClick={() => sendActivationLink(userId)}
+                      disabled={newLinkLoader}
+                    >
+                      {newLinkLoader ? (
+                        <div className="loading-button">
+                          <p>Loading</p>
+                          <CircularProgress size={15} />
+                        </div>
+                      ) : (
+                        "Send a new link"
+                      )}
+                    </button>
+                  </>
+                )}
+              </>
               {newLinkSuccess && (
                 <p className="success-message">{newLinkSuccess}</p>
               )}
