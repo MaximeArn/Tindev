@@ -161,6 +161,7 @@ export interface EditProjectProps {
   deleteProject: Function;
   setModalStatus: Function;
   projectDeletionSuccess: string;
+  resetErrorMessage: Function;
 }
 
 export interface EditFieldProps {

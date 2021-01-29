@@ -5,6 +5,7 @@ import { EditProjectProps } from "../../../models/projects";
 import Field from "../../containers/ProjectEditField";
 import fieldChecker from "../../../utils/fieldChecker";
 import Modal from "./Modal";
+import { successToast, errorToast } from "../../../utils/toastify";
 import "./editProject.scss";
 
 const EditProject = ({
@@ -12,17 +13,25 @@ const EditProject = ({
   projectCreationValues,
   error,
   success,
-  isModalOpen,
   resetSuccessMessage,
+  isModalOpen,
   deleteProject,
   setModalStatus,
   projectDeletionSuccess,
+  resetErrorMessage,
 }: EditProjectProps) => {
   useEffect(() => {
-    setTimeout(() => {
-      resetSuccessMessage();
-    }, 3000);
-  }, [success]);
+    (success || projectDeletionSuccess) &&
+      (() => {
+        successToast(success);
+        resetSuccessMessage();
+      })();
+    error &&
+      (() => {
+        errorToast(error);
+        resetErrorMessage();
+      })();
+  }, [success, error]);
 
   return (
     <>
@@ -35,10 +44,6 @@ const EditProject = ({
         />
       )}
       <div className="edit-project-container">
-        {error && <div className="edit-project-error-message">{error}</div>}
-        {success && (
-          <div className="edit-project-success-message">{success}</div>
-        )}
         <div className="edit-project">
           <div className="edit-form">
             {project &&
