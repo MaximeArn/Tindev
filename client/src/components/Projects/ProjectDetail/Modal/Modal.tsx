@@ -1,7 +1,8 @@
-import React, { FormEvent, useRef } from "react";
+import React, { FormEvent, useRef, useEffect } from "react";
 import Input from "../../../containers/Input";
 import { ProjectDetailModal } from "../../../../models/modal";
 import "./modal.scss";
+import { errorToast } from "../../../../utils/toastify";
 
 const Modal = ({
   inputValue,
@@ -12,6 +13,10 @@ const Modal = ({
   success,
 }: ProjectDetailModal) => {
   const modal = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    error && errorToast(error);
+  }, [error]);
 
   const handleOutsideClick = (event: any) => {
     if (event.target === modal.current) {
@@ -35,7 +40,6 @@ const Modal = ({
           <form onSubmit={handleSubmit}>
             <div className="project-detail-padding">
               <h1 className="project-detail-interest">Show your interest</h1>
-              {error && <div className="apply-error-message">{error}</div>}
               <Input
                 name="description"
                 formType="ProjectDetail"
