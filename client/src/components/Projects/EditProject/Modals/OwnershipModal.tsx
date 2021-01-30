@@ -16,7 +16,7 @@ const OwnershipModal = ({
   }, []);
 
   const handleOutsideClick = ({ target }: globalThis.MouseEvent) => {
-    !modal.current?.contains(target) && setProjectOwnershipModal(false);
+    !modal.current?.contains(target) && setProjectOwnershipModal(false, name);
   };
 
   return (
@@ -41,7 +41,7 @@ const OwnershipModal = ({
           <button
             className="project-ownership-button"
             type="button"
-            onClick={() => setProjectOwnershipModal(false)}
+            onClick={() => setProjectOwnershipModal(false, name)}
           >
             No
           </button>

@@ -19,7 +19,7 @@ const mapState = (
   { name }: ProjectEditFieldOwnProps
 ) => ({
   isLoading: fieldName === name && loader,
-  projectOwnershipModal,
+  projectOwnershipModal: name === "author" && projectOwnershipModal,
   author,
 });
 
@@ -33,8 +33,10 @@ const mapDispatch = (
       dispatch({ type: "GET_PROJECT_UPDATE_VALUE", inputName, inputValue }),
     setNewProjectImage: (image: MutableRefObject<any>) =>
       dispatch({ type: "SET_UPDATED_PROJECT_IMAGE", image }),
-    setProjectOwnershipModal: (modalStatus: boolean) =>
-      dispatch({ type: "SET_PROJECT_OWNERSHIP_MODAL_STATUS", modalStatus }),
+    setProjectOwnershipModal: (modalStatus: boolean, inputName?: string) => {
+      dispatch({ type: "SET_PROJECT_OWNERSHIP_MODAL_STATUS", modalStatus });
+      !modalStatus && dispatch({ type: "GET_PROJECT_UPDATE_VALUE", inputName });
+    },
     updateProject: (inputName: string) => {
       dispatch({ type: "UPDATE_PROJECT", inputName, projectId, slug, history });
       dispatch({ type: "SET_PROJECT_OWNERSHIP_MODAL_STATUS", modalStatus: false });
