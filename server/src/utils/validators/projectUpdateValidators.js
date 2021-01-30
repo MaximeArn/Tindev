@@ -33,11 +33,11 @@ module.exports = async (id, body, next) => {
       }
     }
 
-    if (body.author && !(await User.findOne(body))) {
+    if (body.author && !(await User.findOne({ username: body.author }))) {
       throw new ProjectError("Cannot delegate project ownership to this user", 400);
     }
 
-    if (!body.hasOwnProperty("categories")) {
+    if (!body.categories) {
       Object.entries(body).forEach(
         ([key, value]) => (body[key] = sanitize(value, sanitizeOptions))
       );

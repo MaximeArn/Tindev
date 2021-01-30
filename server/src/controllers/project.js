@@ -122,7 +122,11 @@ module.exports = {
       next(error);
     }
   },
-  updateById: async ({ body, params: { id }, file }, res, next) => {
+  updateById: async (
+    { body, params: { id }, file, decoded: { username } },
+    res,
+    next
+  ) => {
     try {
       const update = file ? { image: file.filename } : body;
       const valid = await projectUpdateValidator(id, body, next);
@@ -132,7 +136,9 @@ module.exports = {
           new: true,
         });
 
-        return res.status(200).json({ msg: "Project successfully updated", project });
+        return res
+          .status(200)
+          .json({ message: "Project successfully updated", project, username });
       }
     } catch (error) {
       next(error);

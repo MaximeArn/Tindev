@@ -139,9 +139,10 @@ const updateProject = (
     .patch(`/project/${projectId}`, formData, {
       headers: { "Content-Type": "multipart/form-data" },
     })
-    .then(({ data: { msg: message, project } }) => {
+    .then(({ data: { message, project, username } }) => {
       dispatch({ type: "SET_PROJECT", project });
       dispatch({ type: "PROJECT_EDITION_SUCCESS_MESSAGE", message });
+      project.author !== username && history.push(`/project/${slugify(project.title)}`);
       !(slugify(project.title) === slug) &&
         history.push(`/project/${slugify(project.title)}/edit`);
     })
