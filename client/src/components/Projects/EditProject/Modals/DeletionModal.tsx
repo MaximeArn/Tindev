@@ -1,5 +1,5 @@
-import React, { MouseEvent, useRef } from "react";
-import { DeleteProjectModalProps } from "../../../models/projects";
+import React, { useRef } from "react";
+import { DeleteProjectModalProps } from "../../../../models/projects";
 import { useHistory } from "react-router-dom";
 
 const Modal = ({

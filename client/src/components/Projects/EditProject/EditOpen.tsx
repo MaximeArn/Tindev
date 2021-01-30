@@ -14,6 +14,7 @@ const EditOpen = ({
   setExpanded,
   contributors,
   getProjectEditInputValues,
+  setProjectOwnershipModal,
   setNewProjectImage,
   updateProject,
 }: EditProjectStatusOpen) => {
@@ -33,9 +34,9 @@ const EditOpen = ({
 
   const handleSubmit = (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault();
-    name === "image" && setNewProjectImage(imageFileOpener.current.files[0]);
-    updateProject(name);
     setExpanded(false);
+    name === "image" && setNewProjectImage(imageFileOpener.current.files[0]);
+    name === "author" ? setProjectOwnershipModal(true) : updateProject(name);
   };
 
   return (

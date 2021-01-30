@@ -2,7 +2,7 @@ import React, { useEffect } from "react";
 import { EditProjectProps } from "../../../models/projects";
 import Field from "../../containers/ProjectEditField";
 import fieldChecker from "../../../utils/fieldChecker";
-import Modal from "./Modal";
+import Modal from "./Modals/DeletionModal";
 import "./editProject.scss";
 
 const EditProject = ({

@@ -9,6 +9,7 @@ const initialState: ModalState = {
   forgotPasswordModal: false,
   adminConfirmationModal: false,
   redirectionModal: false,
+  projectOwnershipModal: false,
   authModal: {
     login: false,
     register: false,
@@ -56,6 +57,8 @@ const modal = (
         declineApplicantModal: { isModalOpen: modalStatus, applicant },
         showNavbar: !modalStatus,
       };
+    case "SET_PROJECT_OWNERSHIP_MODAL_STATUS":
+      return { ...state, projectOwnershipModal: modalStatus };
     case "SET_ACCOUNT_DELETION_MODAL_STATUS":
       return { ...state, closeAccountModal: modalStatus };
     case "SET_ADMIN_CONFIRMATION_MODAL_STATUS":

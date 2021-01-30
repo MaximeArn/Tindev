@@ -2,13 +2,18 @@ import React from "react";
 import { url } from "../../../environments/api";
 import { EditProjectStatusClosed } from "../../../models/projects";
 import CircularProgress from "@material-ui/core/CircularProgress";
+import OwnershipModal from "./Modals/OwnershipModal";
 
 const EditClosed = ({
   name,
   value,
   loadingField,
   loader,
+  author,
   isExpanded,
+  projectOwnershipModal,
+  setProjectOwnershipModal,
+  updateProject,
   setExpanded,
 }: EditProjectStatusClosed) => {
   return (
@@ -47,6 +52,14 @@ const EditClosed = ({
             Modify
           </button>
         </>
+      )}
+      {projectOwnershipModal && (
+        <OwnershipModal
+          name={name}
+          updateProject={updateProject}
+          author={author}
+          setProjectOwnershipModal={setProjectOwnershipModal}
+        />
       )}
     </div>
   );

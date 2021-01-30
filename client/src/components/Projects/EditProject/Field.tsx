@@ -8,8 +8,11 @@ const Field = ({
   value,
   inputValue,
   isLoading: { fieldName, loader },
+  projectOwnershipModal,
   contributors,
+  author,
   getProjectEditInputValues,
+  setProjectOwnershipModal,
   setNewProjectImage,
   updateProject,
 }: EditFieldProps) => {
@@ -27,6 +30,7 @@ const Field = ({
           inputValue={inputValue}
           getProjectEditInputValues={getProjectEditInputValues}
           setNewProjectImage={setNewProjectImage}
+          setProjectOwnershipModal={setProjectOwnershipModal}
           updateProject={updateProject}
         />
       ) : (
@@ -36,7 +40,11 @@ const Field = ({
             value={value}
             isExpanded={isExpanded}
             setExpanded={setExpanded}
+            projectOwnershipModal={projectOwnershipModal}
+            setProjectOwnershipModal={setProjectOwnershipModal}
+            author={author}
             loadingField={fieldName}
+            updateProject={updateProject}
             loader={loader}
           />
         )
