@@ -1,4 +1,4 @@
-import React, { useRef } from "react";
+import React, { MouseEvent, useEffect, useRef } from "react";
 import { ProjectOwnershipModal } from "../../../../models/projects";
 import "./projectEditModal.scss";
 
@@ -8,10 +8,20 @@ const OwnershipModal = ({
   author,
   setProjectOwnershipModal,
 }: ProjectOwnershipModal) => {
-  const modalContainer = useRef<HTMLDivElement>(null);
+  const modal = useRef<any>(null);
+
+  useEffect(() => {
+    document.addEventListener("click", handleOutsideClick);
+    return () => document.removeEventListener("click", handleOutsideClick);
+  }, []);
+
+  const handleOutsideClick = ({ target }: globalThis.MouseEvent) => {
+    !modal.current?.contains(target) && setProjectOwnershipModal(false);
+  };
+
   return (
     <div className="project-ownership">
-      <div className="project-ownership-container">
+      <div ref={modal} className="project-ownership-container">
         <div className="project-ownership-padding">
           <div className="project-ownership-message">
             Are you sure you want to give the project ownership to {author} ?
