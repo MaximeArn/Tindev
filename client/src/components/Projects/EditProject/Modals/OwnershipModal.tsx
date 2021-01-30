@@ -1,5 +1,6 @@
-import React from "react";
+import React, { useRef } from "react";
 import { ProjectOwnershipModal } from "../../../../models/projects";
+import "./projectEditModal.scss";
 
 const OwnershipModal = ({
   name,
@@ -7,29 +8,34 @@ const OwnershipModal = ({
   author,
   setProjectOwnershipModal,
 }: ProjectOwnershipModal) => {
+  const modalContainer = useRef<HTMLDivElement>(null);
   return (
-    <div className="decline-applicant">
-      <div className="project-detail-padding">
-        <div className="decline-applicant-message">
-          Are you sure you want to give the project ownership to {author} ? Warning : This
-          action is irreversible
+    <div className="project-ownership">
+      <div className="project-ownership-container">
+        <div className="project-ownership-padding">
+          <div className="project-ownership-message">
+            Are you sure you want to give the project ownership to {author} ?
+          </div>
+          <div className="project-ownership-message-warning">
+            Warning : This action is irreversible
+          </div>
         </div>
-      </div>
-      <div className="decline-applicant-buttons">
-        <button
-          className="decline-applicant-button"
-          type="button"
-          onClick={() => updateProject(name)}
-        >
-          Yes
-        </button>
-        <button
-          className="decline-applicant-button"
-          type="button"
-          onClick={() => setProjectOwnershipModal(false)}
-        >
-          No
-        </button>
+        <div className="project-ownership-buttons">
+          <button
+            className="project-ownership-button"
+            type="button"
+            onClick={() => updateProject(name)}
+          >
+            Yes
+          </button>
+          <button
+            className="project-ownership-button"
+            type="button"
+            onClick={() => setProjectOwnershipModal(false)}
+          >
+            No
+          </button>
+        </div>
       </div>
     </div>
   );
