@@ -1,5 +1,6 @@
 import React, { MouseEvent, useEffect, useRef } from "react";
 import { ProjectOwnershipModal } from "../../../../models/projects";
+import capitalize from "../../../../utils/capitalizeFirstLetter";
 import "./projectEditModal.scss";
 
 const OwnershipModal = ({
@@ -24,7 +25,7 @@ const OwnershipModal = ({
       <div ref={modal} className="project-ownership-container">
         <div className="project-ownership-padding">
           <div className="project-ownership-message">
-            Are you sure you want to give the project ownership to {author} ?
+            Are you sure you want to give the project ownership to {capitalize(author)} ?
           </div>
           <div className="project-ownership-message-warning">
             Warning : This action is irreversible

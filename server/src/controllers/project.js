@@ -123,12 +123,22 @@ module.exports = {
     }
   },
   updateById: async (
-    { body, params: { id }, file, decoded: { username } },
+    { body, params: { id }, file, decoded: { id: _id, username } },
     res,
     next
   ) => {
     try {
-      const update = file ? { image: file.filename } : body;
+      //TODO: SEARCH how to push and pull array elements on the same query without having update conflict errors
+      const update = file
+        ? { image: file.filename }
+        : body.author
+        ? {
+            author: body.author,
+            $pull: { contributors: { username: body.author } },
+            $push: { contributors: { _id, username } },
+          }
+        : body;
+
       const valid = await projectUpdateValidator(id, body, next);
 
       if (valid) {

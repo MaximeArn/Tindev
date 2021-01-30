@@ -36,10 +36,7 @@ const Project = ({
         <div className="projectDetail">
           <div className="projectDetail-content">
             <div className="image-section">
-              <img
-                src={`${url}/uploads/projects/${image}`}
-                alt="project image"
-              />
+              <img src={`${url}/uploads/projects/${image}`} alt="project image" />
             </div>
             <div className="title-section">
               <h2>{title}</h2>
@@ -91,20 +88,14 @@ const Project = ({
               ) : contributing ? (
                 <>
                   <button className="edit-button">Like</button>
-                  <button
-                    onClick={() => leaveProject(_id)}
-                    className="manage-button"
-                  >
+                  <button onClick={() => leaveProject(_id)} className="manage-button">
                     Leave
                   </button>
                 </>
               ) : (
                 <>
                   <button className="like-button">Like</button>
-                  <button
-                    onClick={() => setModalStatus(true)}
-                    className="apply-button"
-                  >
+                  <button onClick={() => setModalStatus(true)} className="apply-button">
                     Apply
                   </button>
                 </>
