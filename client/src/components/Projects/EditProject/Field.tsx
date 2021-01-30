@@ -7,7 +7,7 @@ const Field = ({
   name,
   value,
   inputValue,
-  isLoading: { fieldName, loader },
+  isLoading,
   projectOwnershipModal,
   contributors,
   author,
@@ -43,9 +43,8 @@ const Field = ({
             projectOwnershipModal={projectOwnershipModal}
             setProjectOwnershipModal={setProjectOwnershipModal}
             author={author}
-            loadingField={fieldName}
+            isLoading={isLoading}
             updateProject={updateProject}
-            loader={loader}
           />
         )
       )}

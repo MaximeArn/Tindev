@@ -6,15 +6,19 @@ import { ProjectEditFieldOwnProps } from "../../models/connect";
 import { State } from "../../models/states";
 import { MutableRefObject } from "react";
 
-//TODO: improve isloading property to give a boolean instead of an object that needs to be checked later on
-const mapState = ({
-  loaders: { projectEditionLoader },
-  modal: { projectOwnershipModal },
-  project: {
-    updateProject: { author },
-  },
-}: State) => ({
-  isLoading: projectEditionLoader,
+const mapState = (
+  {
+    loaders: {
+      projectEditionLoader: { fieldName, loader },
+    },
+    modal: { projectOwnershipModal },
+    project: {
+      updateProject: { author },
+    },
+  }: State,
+  { name }: ProjectEditFieldOwnProps
+) => ({
+  isLoading: fieldName === name && loader,
   projectOwnershipModal,
   author,
 });

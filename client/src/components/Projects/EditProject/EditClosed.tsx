@@ -7,8 +7,7 @@ import OwnershipModal from "./Modals/OwnershipModal";
 const EditClosed = ({
   name,
   value,
-  loadingField,
-  loader,
+  isLoading,
   author,
   isExpanded,
   projectOwnershipModal,
@@ -18,7 +17,7 @@ const EditClosed = ({
 }: EditProjectStatusClosed) => {
   return (
     <div className="field">
-      {loadingField === name && loader ? (
+      {isLoading ? (
         <div className="field-loading-button">
           <p>Loading</p>
           <CircularProgress size={15} />

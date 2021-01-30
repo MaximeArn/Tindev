@@ -172,10 +172,7 @@ export interface EditFieldProps {
   author: string;
   contributors: Contributor[];
   projectOwnershipModal: boolean;
-  isLoading: {
-    fieldName: string;
-    loader: boolean;
-  };
+  isLoading: boolean;
   value: string | string[];
   inputValue: string | number | undefined;
   getProjectEditInputValues: Function;
@@ -189,11 +186,10 @@ export interface EditProjectStatusClosed {
   author: string;
   value: string | string[];
   isExpanded: boolean;
-  loadingField: string;
+  isLoading: boolean;
   projectOwnershipModal: boolean;
   setProjectOwnershipModal: Function;
   updateProject: Function;
-  loader: boolean;
   setExpanded: Function;
 }
 
