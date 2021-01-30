@@ -30,15 +30,16 @@ const Field = ({
           updateProject={updateProject}
         />
       ) : (
-        <EditClosed
-          name={name}
-          value={value}
-          isExpanded={isExpanded}
-          setExpanded={setExpanded}
-          fieldName={fieldName}
-          loader={loader}
-          contributors={contributors}
-        />
+        !(name === "author" && !contributors.length) && (
+          <EditClosed
+            name={name}
+            value={value}
+            isExpanded={isExpanded}
+            setExpanded={setExpanded}
+            loadingField={fieldName}
+            loader={loader}
+          />
+        )
       )}
     </>
   );

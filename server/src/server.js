@@ -55,9 +55,3 @@ mongoDB.on("error", () => console.log("Error connecting to database"));
 mongoDB.once("open", () => console.log("Connected to mongo database"));
 
 module.exports = { server, http };
-
-const obj = {
-  id: "id",
-};
-
-obj.email = "xdlol";

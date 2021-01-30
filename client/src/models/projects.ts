@@ -185,10 +185,9 @@ export interface EditProjectStatusClosed {
   name: string;
   value: string | string[];
   isExpanded: boolean;
-  fieldName: string;
+  loadingField: string;
   loader: boolean;
   setExpanded: Function;
-  contributors: Contributor[];
 }
 
 export interface EditProjectStatusOpen {

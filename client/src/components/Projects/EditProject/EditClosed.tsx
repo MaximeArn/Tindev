@@ -6,15 +6,14 @@ import CircularProgress from "@material-ui/core/CircularProgress";
 const EditClosed = ({
   name,
   value,
-  fieldName,
+  loadingField,
   loader,
-  contributors,
   isExpanded,
   setExpanded,
 }: EditProjectStatusClosed) => {
   return (
     <div className="field">
-      {fieldName === name && loader ? (
+      {loadingField === name && loader ? (
         <div className="field-loading-button">
           <p>Loading</p>
           <CircularProgress size={15} />
@@ -36,8 +35,6 @@ const EditClosed = ({
                 <p>{value}</p>
               )}
             </div>
-          ) : name === "author" && contributors.length ? (
-            <div className="field-text-content">{value}</div>
           ) : (
             <div className="field-text-content">{value}</div>
           )}
