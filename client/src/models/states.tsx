@@ -263,6 +263,8 @@ export interface ResetPasswordProps {
   resetPasswordLoader: boolean;
   verifyTokenValidity: Function;
   sendNewResetPasswordLink: Function;
+  resetErrorMessage: Function;
+  resetSuccessMessage: Function;
 }
 
 export interface AdminOverlayProps {

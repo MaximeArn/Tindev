@@ -61,11 +61,16 @@ const login = ({ getState, dispatch }: AxiosSubmit) => {
 const retrieveToken = (dispatch: Dispatch<AnyAction>) => {
   axios
     .get("/verification")
-    .then(({ data: credentials }) => dispatch({ type: "CONNECT_USER", credentials }))
+    .then(({ data: credentials }) =>
+      dispatch({ type: "CONNECT_USER", credentials })
+    )
     .catch(() => axios.delete("/auth/clear_cookies"));
 };
 
-const logout = ({ getState, dispatch, history }: AxiosSubmit, message?: string) => {
+const logout = (
+  { getState, dispatch, history }: AxiosSubmit,
+  message?: string
+) => {
   const { username } = getState().auth.user || {};
   axios.delete(`/auth/logout/${username}`).finally(() => {
     dispatch({ type: "RESET_GLOBAL_STATE" });
@@ -91,10 +96,15 @@ const activateAccount = (dispatch: Dispatch<AnyAction>, token: string) => {
     .catch(({ response: { data: { msg: error } } }) =>
       dispatch({ type: "ACCOUNT_ACTIVATION_ERROR_HANDLER", error })
     )
-    .finally(() => dispatch({ type: "SET_ACCOUNT_ACTIVATION_LOADER", value: false }));
+    .finally(() =>
+      dispatch({ type: "SET_ACCOUNT_ACTIVATION_LOADER", value: false })
+    );
 };
 
-const sendNewPassword = async ({ getState, dispatch }: AxiosSubmit, token: string) => {
+const sendNewPassword = async (
+  { getState, dispatch }: AxiosSubmit,
+  token: string
+) => {
   const { password, confirmPassword } = getState().auth.resetPassword;
   try {
     dispatch({ type: "SET_RESET_PASSWORD_LOADER", value: true });
@@ -119,7 +129,10 @@ const sendNewPassword = async ({ getState, dispatch }: AxiosSubmit, token: strin
   }
 };
 
-const checkLinkTokenValidity = (dispatch: Dispatch<AnyAction>, token: string) => {
+const checkLinkTokenValidity = (
+  dispatch: Dispatch<AnyAction>,
+  token: string
+) => {
   axios
     .get(`/auth/token_validity/${token}`)
     .catch(({ response: { data: error } }) =>

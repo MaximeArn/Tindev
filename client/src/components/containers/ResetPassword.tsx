@@ -39,6 +39,9 @@ const mapDispatch = (
       userId,
       linkType: "resetPassword",
     }),
+  resetErrorMessage: () => dispatch({ type: "RESET_PASSWORD_ERROR_HANDLER" }),
+  resetSuccessMessage: () =>
+    dispatch({ type: "RESET_PASSWORD_SUCCESS_MESSAGE" }),
 });
 
 export default withRouter(connect(mapState, mapDispatch)(ResetPassword));
