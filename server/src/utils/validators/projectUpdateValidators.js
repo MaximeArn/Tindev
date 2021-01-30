@@ -23,11 +23,12 @@ module.exports = async (id, body, next) => {
     if (body.categories) {
       body.categories = JSON.parse(body.categories);
       const categories = await Category.find();
-      const valid = body.categories.every((category) =>
-        categories.some(({ name }) => name === category)
-      );
 
-      if (!valid) {
+      if (
+        !body.categories.every((category) =>
+          categories.some(({ name }) => name === category)
+        )
+      ) {
         throw new ProjectError("Invalid Category provided", 400);
       }
     }
@@ -36,7 +37,7 @@ module.exports = async (id, body, next) => {
       throw new ProjectError("Cannot delegate project ownership to this user", 400);
     }
 
-    if (!body.categories) {
+    if (!body.hasOwnProperty("categories")) {
       Object.entries(body).forEach(
         ([key, value]) => (body[key] = sanitize(value, sanitizeOptions))
       );
