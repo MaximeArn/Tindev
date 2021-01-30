@@ -53,14 +53,16 @@ const EditProject = ({
                   Object.keys(fieldChecker(project)).map((props) => {
                     const key = props as keyof typeof EditProject;
                     return (
-                      <Field
-                        key={key}
-                        name={key}
-                        projectId={project._id}
-                        contributors={project.contributors}
-                        value={project[key]}
-                        inputValue={updateProjectValues[key]}
-                      />
+                      !(key === "author" && !project.contributors.length) && (
+                        <Field
+                          key={key}
+                          name={key}
+                          projectId={project._id}
+                          contributors={project.contributors}
+                          value={project[key]}
+                          inputValue={updateProjectValues[key]}
+                        />
+                      )
                     );
                   })}
               </div>

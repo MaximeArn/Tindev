@@ -34,19 +34,17 @@ const Field = ({
           updateProject={updateProject}
         />
       ) : (
-        !(name === "author" && !contributors.length) && (
-          <EditClosed
-            name={name}
-            value={value}
-            isExpanded={isExpanded}
-            setExpanded={setExpanded}
-            projectOwnershipModal={projectOwnershipModal}
-            setProjectOwnershipModal={setProjectOwnershipModal}
-            author={author}
-            isLoading={isLoading}
-            updateProject={updateProject}
-          />
-        )
+        <EditClosed
+          name={name}
+          value={value}
+          isExpanded={isExpanded}
+          setExpanded={setExpanded}
+          projectOwnershipModal={projectOwnershipModal}
+          setProjectOwnershipModal={setProjectOwnershipModal}
+          author={author}
+          isLoading={isLoading}
+          updateProject={updateProject}
+        />
       )}
     </>
   );
