@@ -5,6 +5,7 @@ import User from "../../containers/User";
 import AdminPanel from "../../containers/Admin";
 import updateContent from "../../../utils/updateSelectedContent";
 import "./userprofile.scss";
+import { errorToast } from "../../../utils/toastify";
 
 const UserProfile = ({
   admin,
@@ -19,6 +20,10 @@ const UserProfile = ({
   }, []);
 
   useEffect(() => {
+    error && errorToast(error);
+  }, [error]);
+
+  useEffect(() => {
     updateContent(content, "user", getUser);
   }, [content]);
   return (
@@ -30,20 +35,14 @@ const UserProfile = ({
         </div>
       ) : (
         <>
-          {error ? (
-            <div className="user-profile-error">{error}</div>
-          ) : (
+          {id && (
             <>
-              {id && (
-                <>
-                  <div className="user-profile">
-                    <User />
-                  </div>
+              <div className="user-profile">
+                <User />
+              </div>
 
-                  {admin && !(role === "Admin") && (
-                    <AdminPanel id={id} collection="user" />
-                  )}
-                </>
+              {admin && !(role === "Admin") && (
+                <AdminPanel id={id} collection="user" />
               )}
             </>
           )}
