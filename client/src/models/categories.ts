@@ -2,6 +2,7 @@ import { GetSelectedValues } from "./mui";
 
 export interface Category {
   name: string;
+  image: string;
 }
 
 export interface MultipleCategory {
@@ -16,5 +17,6 @@ export interface MultipleCategory {
 }
 
 export interface CategoriesListProps {
+  categories: Category[];
   getCategories: Function;
 }

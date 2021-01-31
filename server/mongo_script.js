@@ -73,49 +73,52 @@ const connection = require("./src/config/database");
 
   const categories = [
     {
-      name: "Video Game",
-    },
-    {
       name: "Web",
+      image: "image-web.jpg",
     },
     {
       name: "Software",
+      image: "image-software.jpg",
     },
     {
       name: "AI",
+      image: "image-ai.jpg",
     },
     {
       name: "Java",
+      image: "image-java.jpg",
     },
     {
       name: "React",
+      image: "image-react.png",
     },
     {
       name: "Angular",
+      image: "image-angular.png",
     },
     {
       name: "Vue",
+      image: "image-vue.jpeg",
     },
     {
       name: "NodeJS",
-    },
-    {
-      name: "PHP",
+      image: "image-node.jpg",
     },
     {
       name: "Python",
-    },
-    {
-      name: "Rust",
+      image: "image-python.png",
     },
     {
       name: "Go",
+      image: "image-go.jpg",
     },
     {
       name: "Swift",
+      image: "image-swift.png",
     },
     {
       name: "C",
+      image: "image-c.png",
     },
   ];
 
