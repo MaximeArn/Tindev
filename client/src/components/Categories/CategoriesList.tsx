@@ -11,7 +11,7 @@ const CategoriesList = ({ categories, getCategories }: CategoriesListProps) => {
   return (
     <div className="categories">
       {categories.map((category) => (
-        <Category {...category} />
+        <Category key={category.name} {...category} />
       ))}
     </div>
   );

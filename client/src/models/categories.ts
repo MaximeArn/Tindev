@@ -2,7 +2,7 @@ import { GetSelectedValues } from "./mui";
 
 export interface Category {
   name: string;
-  image: string;
+  image?: string;
 }
 
 export interface MultipleCategory {
