@@ -23,6 +23,7 @@ import AccountDeletionModal from "../Users/EditProfile/DeletionSuccess";
 import AccountVerification from "../containers/Verification";
 import ForgotPassword from "../containers/ForgotPassword";
 import ResetPassword from "../containers/ResetPassword";
+import CategoriesList from "../Categories/CategoriesList";
 import "react-toastify/dist/ReactToastify.css";
 import "./app.scss";
 
@@ -70,6 +71,7 @@ function App({
             <Route path="/project/:slug" component={ProjectDetail} />
             <Route exact path="/users" component={UsersList} />
             <Route exact path="/user/:username" component={UserProfile} />
+            <Route exact path="/categories" component={CategoriesList} />
             <Route path="/search" component={Search} />
             <Route path="/account" component={EditProfile} />
             <Route path="/legals" component={Legals} />
@@ -86,11 +88,7 @@ function App({
           )}
           <Switch>
             <Route exact path="/" component={VisitorPage} />
-            <Route
-              exact
-              path="/account/verify/:token"
-              component={AccountVerification}
-            />
+            <Route exact path="/account/verify/:token" component={AccountVerification} />
             <Route
               exact
               path="/account/reset_password/:token"

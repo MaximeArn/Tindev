@@ -98,6 +98,9 @@ const NavBar = ({
                 <Typography className={classes.navLink} variant="subtitle1">
                   <NavLink to="/users">Users</NavLink>
                 </Typography>
+                <Typography className={classes.navLink} variant="subtitle1">
+                  <NavLink to="/categories">Categories</NavLink>
+                </Typography>
               </>
             )}
           </div>
