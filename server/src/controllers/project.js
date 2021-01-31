@@ -1,5 +1,5 @@
 const { Project } = require("../models");
-const { setNotification } = require("./notifications");
+const { setNotification, notifyProjectOwner } = require("./notifications");
 const {
   projectValidator,
   applyValidator,
@@ -123,6 +123,7 @@ module.exports = {
     }
   },
   updateById: async (
+    connectedUsers,
     { body, params: { id }, file, decoded: { id: _id, username } },
     res,
     next
@@ -150,6 +151,8 @@ module.exports = {
         const project = await Project.findOneAndUpdate(condition, update, {
           new: true,
         });
+
+        body.author && notifyProjectOwner(connectedUsers[body.author]);
 
         return res
           .status(200)
