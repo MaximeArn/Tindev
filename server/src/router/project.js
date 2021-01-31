@@ -32,7 +32,9 @@ const projectRouterWrapper = (connectedUsers) => {
   );
   router.patch("/accept_applicant", acceptApplicant);
   router.patch("/decline_applicant", declineApplicant);
-  router.patch("/:id", patchUpload.single("image"), updateById);
+  router.patch("/:id", patchUpload.single("image"), (req, res, next) => {
+    updateById(connectedUsers[req.decoded.username], req, res, next);
+  });
   router.delete("/:id", deleteById);
 
   return router;

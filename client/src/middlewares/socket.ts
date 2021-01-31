@@ -30,12 +30,10 @@ const sendMessage = (to: SocketMessage, message: string) => {
 
 const socketMiddleware: Middleware = ({ getState, dispatch }) => (next) => (action) => {
   const { type, name, id, message } = action;
-  const { user } = getState().auth;
 
   switch (type) {
     case "SOCKET_CONNECTION":
-      const { username } = user;
-      socket = io(`${socketUrl}/chat`, { query: { username } });
+      socket = io(`${socketUrl}/chat`);
       socketEventListener(dispatch);
       break;
     case "SEND_CHAT_MESSAGE":

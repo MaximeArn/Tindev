@@ -45,8 +45,11 @@ server.use(notFound);
 
 ioNameSpace.use(socketConnection).on("connection", (socket) => {
   console.log("connected");
-  const { username } = socket.handshake.query;
-  const { id } = socket.conn;
+  const {
+    decoded: { username },
+    conn: { id },
+  } = socket;
+
   connectedUsers[username] = { id, socket };
   chatHandler(ioNameSpace, socket, connectedUsers, username);
 });
