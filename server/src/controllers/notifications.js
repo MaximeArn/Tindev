@@ -58,5 +58,7 @@ module.exports = {
       next(error);
     }
   },
-  notifyProjectOwner: () => {},
+  notifyProjectOwner: (socket, project) => {
+    socket.emit("project-ownership", project);
+  },
 };

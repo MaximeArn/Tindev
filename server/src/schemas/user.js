@@ -15,10 +15,7 @@ const userSchema = new Schema(
       duration: { type: Schema.Types.Mixed, default: false },
     },
     role: { type: String, default: "User" },
-    project: ObjectId,
-    messages: [
-      { to: { id: ObjectId, name: String }, message: String, date: Date },
-    ],
+    messages: [{ to: { id: ObjectId, name: String }, message: String, date: Date }],
     avatar: String,
     about: String,
     experience: String,

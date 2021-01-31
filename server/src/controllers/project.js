@@ -152,7 +152,7 @@ module.exports = {
           new: true,
         });
 
-        body.author && notifyProjectOwner(connectedUsers[body.author]);
+        body.author && notifyProjectOwner(connectedUsers[body.author].socket, project);
 
         return res
           .status(200)
