@@ -23,7 +23,7 @@ import AccountDeletionModal from "../Users/EditProfile/DeletionSuccess";
 import AccountVerification from "../containers/Verification";
 import ForgotPassword from "../containers/ForgotPassword";
 import ResetPassword from "../containers/ResetPassword";
-import CategoriesList from "../Categories/CategoriesList";
+import CategoriesList from "../containers/CategoriesList";
 import "react-toastify/dist/ReactToastify.css";
 import "./app.scss";
 

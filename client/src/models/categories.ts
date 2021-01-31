@@ -14,3 +14,7 @@ export interface MultipleCategory {
   loader: boolean;
   fetchCategories: Function;
 }
+
+export interface CategoriesListProps {
+  getCategories: Function;
+}
