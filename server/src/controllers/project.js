@@ -128,21 +128,26 @@ module.exports = {
     next
   ) => {
     try {
-      //TODO: SEARCH how to push and pull array elements on the same query without having update conflict errors
+      const valid = await projectUpdateValidator(id, body, next);
+
+      const condition = body.author
+        ? { _id: id, "contributors.username": body.author }
+        : { _id: id };
+
       const update = file
         ? { image: file.filename }
         : body.author
         ? {
-            author: body.author,
-            $pull: { contributors: { username: body.author } },
-            $push: { contributors: { _id, username } },
+            $set: {
+              "contributors.$.username": username,
+              "contributors.$._id": _id,
+              author: body.author,
+            },
           }
         : body;
 
-      const valid = await projectUpdateValidator(id, body, next);
-
       if (valid) {
-        const project = await Project.findByIdAndUpdate(id, update, {
+        const project = await Project.findOneAndUpdate(condition, update, {
           new: true,
         });
 
