@@ -4,6 +4,7 @@ import io from "socket.io-client";
 import { socketUrl } from "../environments/api";
 import { Notification } from "../models/notifications";
 import { SocketMessage } from "../models/socket";
+import { Project } from "../models/projects";
 let socket: any;
 
 const socketEventListener = (dispatch: Dispatch<AnyAction>) => {
@@ -21,6 +22,11 @@ const socketEventListener = (dispatch: Dispatch<AnyAction>) => {
 
   socket.on("expell-user", (message: string) => {
     dispatch({ type: "SEND_ACCOUNT_SUSPENSION_REQUEST", message });
+  });
+
+  socket.on("project-ownership", (project: Project) => {
+    console.log("PROJECT IN PROJECT OWNERSHIP WEBSOCKET EVENT : ", project);
+    dispatch({ type: "SET_PROJECT", project });
   });
 };
 
