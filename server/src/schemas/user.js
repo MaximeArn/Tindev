@@ -16,7 +16,7 @@ const userSchema = new Schema(
     },
     role: { type: String, default: "User" },
     messages: [{ to: { id: ObjectId, name: String }, message: String, date: Date }],
-    avatar: String,
+    avatar: { type: String, default: "default-image.jpg" },
     about: String,
     experience: String,
     technos: [String],

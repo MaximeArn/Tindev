@@ -121,7 +121,12 @@
           }
 
           .field-value {
+            display: flex;
             font-style: italic;
+
+            &-array {
+              padding: 0.3rem;
+            }
           }
         }
       }

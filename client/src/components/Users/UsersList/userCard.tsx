@@ -8,7 +8,7 @@ import LocationCityOutlinedIcon from "@material-ui/icons/LocationCityOutlined";
 import userify from "../../../utils/whiteSpaceRemover";
 import sr, { cardOptions } from "../../../utils/scrollReveal";
 
-const userCard = ({ username, firstname, lastname, email, city }: User) => {
+const userCard = ({ username, firstname, lastname, email, city, avatar }: User) => {
   const profileCardRef = useRef(null);
 
   useEffect(() => {
@@ -21,7 +21,7 @@ const userCard = ({ username, firstname, lastname, email, city }: User) => {
         <header className="user-image">
           <div className="background-container">
             <img
-              src={`${url}/uploads/users/default-image.jpg`}
+              src={`${url}/uploads/users/${avatar}`}
               alt="user-image"
               draggable="false"
               className="background-image"
@@ -29,7 +29,7 @@ const userCard = ({ username, firstname, lastname, email, city }: User) => {
           </div>
           <div className="header-content">
             <img
-              src={`${url}/uploads/users/default-image.jpg`}
+              src={`${url}/uploads/users/${avatar}`}
               alt="user-image"
               draggable="false"
               className="avatar"

@@ -3,11 +3,7 @@ import { UserProfileClosed } from "../../../models/users";
 import capitalize from "../../../utils/capitalizeFirstLetter";
 const { url } = require("../../../environments/api");
 
-const ProfileEditClosed = ({
-  name,
-  value,
-  setEditStatus,
-}: UserProfileClosed) => {
+const ProfileEditClosed = ({ name, value, setEditStatus }: UserProfileClosed) => {
   return (
     <>
       <div className="profile-field">
@@ -20,7 +16,15 @@ const ProfileEditClosed = ({
           />
         ) : (
           <div className="field-value">
-            {!value || !value.length ? "Not yet specified" : value}
+            {!value || !value.length
+              ? "Not yet specified"
+              : Array.isArray(value)
+              ? value.map((val) => (
+                  <div key={val} className="field-value-array">
+                    {val}
+                  </div>
+                ))
+              : value}
           </div>
         )}
       </div>
