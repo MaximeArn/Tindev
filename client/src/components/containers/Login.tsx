@@ -10,14 +10,11 @@ const mapState = ({
     auth: { loginErrorMessage: error },
   },
   loaders: { loginLoader, newLinkLoader },
-  success: { registerSuccess, newLinkSuccess },
 }: State) => ({
   login,
   error,
   loginLoader,
   newLinkLoader,
-  registerSuccess,
-  newLinkSuccess,
 });
 
 const mapDispatch = (dispatch: Dispatch<AnyAction>) => ({

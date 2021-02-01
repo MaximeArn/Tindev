@@ -9,23 +9,16 @@ import CircularProgress from "@material-ui/core/CircularProgress";
 
 const Login = ({
   login,
-  error: { msg: errorMessage, userId },
+  error: { userId },
   submitLogin,
   loginLoader,
   newLinkLoader,
   closeModal,
-  registerSuccess,
-  newLinkSuccess,
   sendActivationLink,
   swapModal,
   setForgotPasswordModalStatus,
 }: LoginAuth) => {
   const modal = useRef<HTMLDivElement>(null);
-
-  // useEffect(() => {
-  //   (registerSuccess || newLinkSuccess) && successToast(registerSuccess);
-  //   errorMessage && !userId && errorToast(errorMessage);
-  // }, [registerSuccess, errorMessage]);
 
   const handleSubmit = (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault();
@@ -68,9 +61,6 @@ const Login = ({
                   </>
                 )}
               </>
-              {newLinkSuccess && (
-                <p className="success-message">{newLinkSuccess}</p>
-              )}
               <div className="fields">{inputMapper(login)}</div>
               {loginLoader ? (
                 <button type="submit" className="submitButton" disabled>
