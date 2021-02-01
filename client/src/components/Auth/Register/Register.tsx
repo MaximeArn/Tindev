@@ -4,22 +4,16 @@ import googleIcon from "src/assets/icons/googleIcon.svg";
 import modalClickHandler from "../../../utils/modalClickHandler";
 import inputMapper from "../../../utils/inputMapper";
 import "../modal.scss";
-import { successToast, errorToast } from "../../../utils/toastify";
 import CircularProgress from "@material-ui/core/CircularProgress";
 
 const Register = ({
   register,
-  error,
   submitRegister,
   registerLoader,
   closeModal,
   swapModal,
 }: RegisterAuth) => {
   const modal = useRef<HTMLDivElement>(null);
-
-  useEffect(() => {
-    error && errorToast(error);
-  }, [error]);
 
   const handleSubmit = (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault();

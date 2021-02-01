@@ -90,7 +90,6 @@ export interface RegisterAuth {
     age?: number | undefined;
   };
   submitRegister: Function;
-  error: string;
   registerLoader: boolean;
   closeModal: Function;
   swapModal: Function;

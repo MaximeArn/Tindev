@@ -15,7 +15,7 @@ const createUser = ({ getState, dispatch }: AxiosSubmit) => {
         modal2: "login",
         modalStatus: false,
       });
-      dispatch({ type: "REGISTER_SUCCESS_MESSAGE", message: msg });
+      dispatch({ type: "toasts/success", message: msg });
       dispatch({ type: "RESET_AUTH_INPUTS_VALUES", authType: "register" });
       dispatch({ type: "RESET_AUTH_MODAL_ERROR_VALUES" });
     })
@@ -25,7 +25,7 @@ const createUser = ({ getState, dispatch }: AxiosSubmit) => {
           data: { msg: error },
         },
       }) => {
-        dispatch({ type: "REGISTER_ERROR_HANDLER", error });
+        dispatch({ type: "toasts/error", message: error });
       }
     )
     .finally(() => {
@@ -55,9 +55,6 @@ const login = ({ getState, dispatch }: AxiosSubmit) => {
           data: { msg: error },
         },
       }) => {
-        // dispatch({ type: "LOGIN_ERROR_HANDLER", error });
-        // dispatch({ type: "REGISTER_SUCCESS_MESSAGE" });
-        console.log(error);
         dispatch({ type: "toasts/error", message: error });
       }
     )
