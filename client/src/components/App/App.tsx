@@ -24,6 +24,7 @@ import AccountVerification from "../containers/Verification";
 import ForgotPassword from "../containers/ForgotPassword";
 import ResetPassword from "../containers/ResetPassword";
 import CategoriesList from "../containers/CategoriesList";
+import CategoryResult from "../containers/CategoryResult";
 import "react-toastify/dist/ReactToastify.css";
 import "./app.scss";
 
@@ -72,6 +73,7 @@ function App({
             <Route exact path="/users" component={UsersList} />
             <Route exact path="/user/:username" component={UserProfile} />
             <Route exact path="/categories" component={CategoriesList} />
+            <Route exact path="/category/:cat" component={CategoryResult} />
             <Route path="/search" component={Search} />
             <Route path="/account" component={EditProfile} />
             <Route path="/legals" component={Legals} />

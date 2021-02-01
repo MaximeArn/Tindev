@@ -20,3 +20,7 @@ export interface CategoriesListProps {
   categories: Category[];
   getCategories: Function;
 }
+
+export interface CategoryResultsProps {
+  fetchResults: Function;
+}

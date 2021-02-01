@@ -11,12 +11,20 @@ const getCategories = (dispatch: Dispatch<AnyAction>) => {
     .catch((error) => console.error(error))
     .finally(() => dispatch({ type: "SET_PROJECT_CATEGORIES_LOADER", value: false }));
 };
+
+const getCategoryResults = (dispatch: Dispatch<AnyAction>, category: string) => {
+  console.log("GET CATEGORY RESULTS METHOD : ", category);
+};
+
 const categories: Middleware = ({ getState, dispatch }) => (next) => (action) => {
-  const { type } = action;
+  const { type, cat } = action;
 
   switch (type) {
     case "GET_CATEGORIES":
       getCategories(dispatch);
+      break;
+    case "GET_CATEGORY_RESULTS":
+      getCategoryResults(dispatch, cat);
       break;
     default:
       next(action);
