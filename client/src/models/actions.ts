@@ -62,6 +62,7 @@ export interface AuthMiddleware {
 export interface CategoriesAction {
   type: string;
   categories: Category[];
+  categoryResults: (Project & Category)[];
 }
 
 export interface SuccessAction {

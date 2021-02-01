@@ -3,6 +3,9 @@ import { AnyAction, Dispatch } from "redux";
 import { withRouter } from "react-router-dom";
 import CategoryResult from "../Categories/CategoryResult";
 import { OwnProps } from "../../models/connect";
+import { State } from "../../models/states";
+
+const mapState = ({ categories: { categoryResults: results } }: State) => ({ results });
 
 const mapDispatch = (
   dispatch: Dispatch<AnyAction>,
@@ -15,4 +18,4 @@ const mapDispatch = (
   fetchResults: () => dispatch({ type: "GET_CATEGORY_RESULTS", cat }),
 });
 
-export default withRouter(connect(null, mapDispatch)(CategoryResult));
+export default withRouter(connect(mapState, mapDispatch)(CategoryResult));

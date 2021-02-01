@@ -186,6 +186,7 @@ export interface HomeProps {
 
 export interface CategoriesState {
   categories: Category[];
+  categoryResults: (Category & Project)[];
 }
 
 export interface ModalState {
