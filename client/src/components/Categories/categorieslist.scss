@@ -11,14 +11,15 @@
   height: 100%;
 
   &-card {
-    width: 300px;
+    width: 280px;
+    padding: 2rem;
 
     &-image {
       height: 39%;
 
       img {
         border-radius: 13px 13px 0 0;
-        width: 100%;
+        width: 200px;
         max-height: 100%;
         user-select: none;
       }
