@@ -56,10 +56,10 @@ const NavBar = ({
 
   const handleSearchSubmit = (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault();
-    history.push({
-      pathname: "/search",
-      search: `term=${search}`,
-    });
+    // history.push({
+    //   pathname: "/search",
+    //   search: `term=${search}`,
+    // });
   };
 
   const handleSearchChange = ({
@@ -109,7 +109,7 @@ const NavBar = ({
               <div className={classes.searchIcon}>
                 <SearchIcon />
               </div>
-              <form onSubmit={handleSearchSubmit}>
+              <form action="/search" method="GET" onSubmit={handleSearchSubmit}>
                 <InputBase
                   ref={searchBar}
                   onFocus={() => search && setSearchBarStatus(true)}
