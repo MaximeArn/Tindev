@@ -58,6 +58,7 @@ const ProfileEditOpen = ({
       >
         {name === "avatar" ? (
           <>
+            <div className="avatar-preview-name">{capitalize(name)} : </div>
             {!isImageSelected ? (
               value?.includes("-") ? (
                 <img

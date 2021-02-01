@@ -18,6 +18,10 @@
     padding: 10px 50px 50px;
     width: 700px;
 
+    &-avatar {
+      width: 150px;
+    }
+
     &-edit {
       &-success,
       &-error {
@@ -36,6 +40,10 @@
       }
       &-error {
         background-color: red;
+      }
+
+      &-image-preview {
+        cursor: pointer;
       }
     }
 
@@ -105,6 +113,7 @@
         .profile-field {
           width: 70%;
           display: flex;
+          align-items: center;
 
           .field-name {
             width: 50%;
@@ -118,6 +127,10 @@
       }
     }
   }
+}
+
+.avatar-preview-name {
+  font-weight: 500;
 }
 
 //delete profile modal
