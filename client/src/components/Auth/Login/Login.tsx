@@ -22,10 +22,10 @@ const Login = ({
 }: LoginAuth) => {
   const modal = useRef<HTMLDivElement>(null);
 
-  useEffect(() => {
-    (registerSuccess || newLinkSuccess) && successToast(registerSuccess);
-    errorMessage && !userId && errorToast(errorMessage);
-  }, [registerSuccess, errorMessage]);
+  // useEffect(() => {
+  //   (registerSuccess || newLinkSuccess) && successToast(registerSuccess);
+  //   errorMessage && !userId && errorToast(errorMessage);
+  // }, [registerSuccess, errorMessage]);
 
   const handleSubmit = (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault();

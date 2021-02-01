@@ -7,6 +7,7 @@ import socket from "./socket";
 import chat from "./chat";
 import notifications from "./notifications";
 import admin from "./admin";
+import toasts from "./toasts";
 import { compose, applyMiddleware } from "redux";
 
 const storeEnhancer = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
@@ -21,6 +22,7 @@ export default storeEnhancer(
     users,
     categories,
     chat,
-    admin
+    admin,
+    toasts
   )
 );

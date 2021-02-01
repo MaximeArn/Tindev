@@ -6,7 +6,8 @@ const toasts: Middleware = ({ getState, dispatch }) => (next) => (action) => {
 
   switch (type) {
     case "toasts/error":
-      return errorToast(message);
+      errorToast(message);
+      break;
     case "toasts/success":
       return successToast(message);
     default:
@@ -14,3 +15,5 @@ const toasts: Middleware = ({ getState, dispatch }) => (next) => (action) => {
       break;
   }
 };
+
+export default toasts;
