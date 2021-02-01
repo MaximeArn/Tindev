@@ -1,4 +1,5 @@
 import { GetSelectedValues } from "./mui";
+import { Project } from "./projects";
 
 export interface Category {
   name: string;
@@ -22,5 +23,6 @@ export interface CategoriesListProps {
 }
 
 export interface CategoryResultsProps {
+  results: (Category & Project)[];
   fetchResults: Function;
 }
