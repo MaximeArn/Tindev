@@ -13,7 +13,10 @@ const getCategories = (dispatch: Dispatch<AnyAction>) => {
 };
 
 const getCategoryResults = (dispatch: Dispatch<AnyAction>, category: string) => {
-  console.log("GET CATEGORY RESULTS METHOD : ", category);
+  axios
+    .get(`/categories/${category}`)
+    .then(({ data }) => console.log(data))
+    .catch(({ response: { data } }) => console.log(data));
 };
 
 const categories: Middleware = ({ getState, dispatch }) => (next) => (action) => {
