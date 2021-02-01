@@ -23,6 +23,7 @@ const MultipleCategories = ({
 }: MultipleCategory) => {
   const classes = useStyles();
   const theme = useTheme();
+  // console.log({ inputName, technos });
 
   useEffect(() => {
     fetchCategories();

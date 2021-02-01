@@ -1,4 +1,4 @@
-import { UserState } from "../models/users";
+import { EditProfile, EditProfilePasswords, UserState } from "../models/users";
 import { UserAction } from "../models/actions";
 
 const initialState: UserState = {
@@ -37,12 +37,21 @@ const users = (
             ...state,
             editProfile: {
               ...state.editProfile,
-              [inputName]: { ...state.editProfile.password, [key]: inputValue },
+              [inputName]: {
+                ...state.editProfile.password,
+                [key]:
+                  inputValue ||
+                  initialState.editProfile.password[key as keyof EditProfilePasswords],
+              },
             },
           }
         : {
             ...state,
-            editProfile: { ...state.editProfile, [inputName]: inputValue },
+            editProfile: {
+              ...state.editProfile,
+              [inputName]:
+                inputValue || initialState.editProfile[inputName as keyof EditProfile],
+            },
           };
     default:
       return state;

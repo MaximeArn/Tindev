@@ -48,8 +48,7 @@ const mapDispatch = (dispatch: Dispatch<AnyAction>, { history }: OwnProps) => ({
     }),
   updateUserProfile: (fieldName: string) =>
     dispatch({ type: "UPDATE_USER_PROFILE", fieldName }),
-  deleteAccount: (id: string) =>
-    dispatch({ type: "DELETE_USER_ACCOUNT", id, history }),
+  deleteAccount: (id: string) => dispatch({ type: "DELETE_USER_ACCOUNT", id, history }),
   setDeleteModalStatus: (modalStatus: boolean) =>
     dispatch({ type: "SET_ACCOUNT_DELETION_MODAL_STATUS", modalStatus }),
 });

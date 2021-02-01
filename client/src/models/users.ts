@@ -11,16 +11,18 @@ export interface EditProfile {
   firstname: string;
   lastname: string;
   email: string;
-  password: {
-    password: string;
-    confirmPassword: string;
-  };
+  password: EditProfilePasswords;
   city: string;
   age: string;
   avatar: null;
   experience: string;
   about: string;
   technos: string[] | [];
+}
+
+export interface EditProfilePasswords {
+  password: string;
+  confirmPassword: string;
 }
 
 export interface User {

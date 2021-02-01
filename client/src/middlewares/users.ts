@@ -30,7 +30,6 @@ const updateUserProfile = ({ getState, dispatch }: AxiosSubmit, fieldName: strin
     dispatch({
       type: "SET_USER_PROFILE_VALUES",
       inputName: fieldName,
-      inputValue: "",
       key: key || null,
     });
   };

@@ -98,7 +98,7 @@ const ProfileEditOpen = ({
           </div>
         ) : name === "technos" ? (
           <div className="profile-edit-open-technos">
-            <MultipleCategories inputNname="technos" toUpdate="userTechnos" />
+            <MultipleCategories inputName="technos" toUpdate="userTechnos" />
           </div>
         ) : (
           <input

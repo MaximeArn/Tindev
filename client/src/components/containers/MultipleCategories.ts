@@ -27,9 +27,9 @@ const mapDispatch = (dispatch: Dispatch<AnyAction>) => {
       inputValue,
     });
 
-  const getUserTechnos = (inputName: string, inputValue: string[]) =>
+  const getUserTechnos = (inputName: string, inputValue: string[]) => {
     dispatch({ type: "SET_USER_PROFILE_VALUES", inputName, inputValue });
-
+  };
   const getProjectUpdateCategories = (inputName: string, inputValue: string) =>
     dispatch({ type: "GET_PROJECT_UPDATE_VALUE", inputName, inputValue });
 
