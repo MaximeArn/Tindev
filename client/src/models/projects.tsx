@@ -152,16 +152,12 @@ export interface DeleteProjectModalProps {
 
 export interface EditProjectProps {
   project: Project;
-  error: string;
-  success: string;
   isModalOpen: boolean;
   categories: Category[];
   projectCreationValues: ProjectCreation;
-  resetSuccessMessage: Function;
   deleteProject: Function;
   setModalStatus: Function;
   projectDeletionSuccess: string;
-  resetErrorMessage: Function;
 }
 
 export interface EditFieldProps {

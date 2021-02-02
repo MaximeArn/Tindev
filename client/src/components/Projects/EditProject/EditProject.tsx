@@ -1,31 +1,20 @@
 /** @format */
 
-import React, { useEffect } from "react";
+import React from "react";
 import { EditProjectProps } from "../../../models/projects";
 import Field from "../../containers/ProjectEditField";
 import fieldChecker from "../../../utils/fieldChecker";
 import Modal from "./Modal";
-import { successToast, errorToast } from "../../../utils/toastify";
 import "./editProject.scss";
 
 const EditProject = ({
   project,
   projectCreationValues,
-  error,
-  success,
-  resetSuccessMessage,
   isModalOpen,
   deleteProject,
   setModalStatus,
   projectDeletionSuccess,
-  resetErrorMessage,
 }: EditProjectProps) => {
-  useEffect(() => {
-    (success || projectDeletionSuccess) &&
-      successToast(success, resetSuccessMessage);
-    error && errorToast(error, resetErrorMessage);
-  }, [success, error]);
-
   return (
     <>
       {isModalOpen && (

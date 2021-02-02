@@ -152,15 +152,20 @@ const updateProject = (
     })
     .then(({ data: { msg: message, project } }) => {
       dispatch({ type: "SET_PROJECT", project });
-      dispatch({ type: "PROJECT_EDITION_SUCCESS_MESSAGE", message });
+      dispatch({ type: "toasts/success", message });
       !(slugify(project.title) === slug) &&
         history.push(`/project/${slugify(project.title)}/edit`);
     })
 
-    .catch(({ response: { data } }) => {
-      const { msg: error } = data;
-      dispatch({ type: "PROJECT_EDITION_ERROR_HANDLER", error });
-    })
+    .catch(
+      ({
+        response: {
+          data: { error },
+        },
+      }) => {
+        dispatch({ type: "toasts/error", message: error });
+      }
+    )
     .finally(() =>
       dispatch({
         type: "SET_PROJECT_EDITION_LOADER",
@@ -200,10 +205,10 @@ const deleteProject = (dispatch: Dispatch<AnyAction>, id: string) => {
   axios
     .delete(`/project/${id}`)
     .then(({ data: { msg: message } }) => {
-      dispatch({ type: "PROJECT_DELETION_SUCCESS_MESSAGE", message });
+      dispatch({ type: "toasts/success", message });
       getProjects(dispatch);
     })
-    .catch((error) => console.error(error));
+    .catch((error) => dispatch({ type: "toasts/error", message: error }));
 };
 
 const verifyOwner = (projectAuthor: string, dispatch: Dispatch<AnyAction>) => {
