@@ -5,12 +5,10 @@ import MultipleCategories from "../../containers/MultipleCategories";
 import Buttons from "../../containers/ProjectCreationButtons";
 import CircularProgress from "@material-ui/core/CircularProgress";
 import Input from "../../containers/Input";
-import { errorToast } from "../../../utils/toastify";
 import "./projectcreation.scss";
 
 const ProjectCreation = ({
   projectInputs,
-  error,
   history: { listen },
   loading,
   setProjectImage,
@@ -19,10 +17,6 @@ const ProjectCreation = ({
 }: ProjectCreationProps) => {
   const fileInput = useRef<any>(null);
   const imagePreview = useRef<any>(null);
-
-  useEffect(() => {
-    error && errorToast(error);
-  }, [error]);
 
   useEffect(() => {
     listen(() => {

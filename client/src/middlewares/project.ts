@@ -29,7 +29,7 @@ const sendProject = ({ getState, dispatch, history }: AxiosSubmit) => {
           data: { msg: error },
         },
       }) => {
-        dispatch({ type: "PROJECT_CREATION_ERROR_HANDLER", error });
+        dispatch({ type: "toasts/error", message: error });
       }
     )
     .finally(() =>
@@ -44,10 +44,10 @@ const getProjects = (dispatch: Dispatch<AnyAction>) => {
     .then(({ data: projects }) => {
       dispatch({ type: "SET_PROJECTS", projects });
     })
-    .catch(() => {
+    .catch(({ error }) => {
       dispatch({
-        type: "PROJECT_LIST_ERROR_HANDLER",
-        error: "Oops... Something went wrong",
+        type: "toasts/error",
+        message: error,
       });
     })
     .finally(() => dispatch({ type: "SET_PROJECTLIST_LOADER", value: false }));
