@@ -3,7 +3,6 @@ import { UserProfileProps } from "../../../models/users";
 import CircularProgress from "@material-ui/core/CircularProgress";
 import User from "../../containers/User";
 import AdminPanel from "../../containers/Admin";
-import updateContent from "../../../utils/updateSelectedContent";
 import "./userprofile.scss";
 
 const UserProfile = ({
@@ -14,12 +13,13 @@ const UserProfile = ({
   content,
   getUser,
 }: UserProfileProps) => {
+  console.log("AH OKI USER DETAILS");
   useEffect(() => {
     getUser();
   }, []);
 
   useEffect(() => {
-    updateContent(content, "user", getUser);
+    content && getUser();
   }, [content]);
   return (
     <>

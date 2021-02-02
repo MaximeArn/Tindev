@@ -4,7 +4,6 @@ import Modal from "../../containers/ProjectDetailModal";
 import { ProjectDetailProps } from "../../../models/projects";
 import Project from "./Project";
 import CircularProgress from "@material-ui/core/CircularProgress";
-import updateContent from "../../../utils/updateSelectedContent";
 
 const ProjectDetail = ({
   project,
@@ -21,12 +20,13 @@ const ProjectDetail = ({
   role,
   content,
 }: ProjectDetailProps) => {
+  console.log("AH OKI PROJECT DETAILS");
   useEffect(() => {
     getProjectDetails();
   }, []);
 
   useEffect(() => {
-    updateContent(content, "project", getProjectDetails);
+    content && getProjectDetails();
   }, [content]);
 
   useEffect(() => {

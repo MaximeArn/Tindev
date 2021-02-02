@@ -45,7 +45,6 @@ const NavBar = ({
 }: NavState) => {
   const searchBar = useRef<HTMLInputElement>(null);
   const classes = useStyles();
-  console.log("FOCUSED STATUS IN NAVBAR COMPONENT : ", focused);
 
   useEffect(() => {
     (suspendedStatus || tokenStatus) && redirectUser(suspendedMessage ?? tokenMessage);
