@@ -28,7 +28,6 @@ const EditProfile = ({
   }, []);
 
   useEffect(() => {
-    error && errorToast(error);
     success && successToast(success);
     (error || success) && setTimeout(() => resetMessages(), 3000);
   }, [error, success]);

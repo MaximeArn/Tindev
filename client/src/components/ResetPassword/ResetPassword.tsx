@@ -4,12 +4,11 @@ import CircularProgress from "@material-ui/core/CircularProgress";
 import Input from "../containers/Input";
 import { useHistory } from "react-router-dom";
 import "./resetpassword.scss";
-import { errorToast, successToast } from "../../utils/toastify";
+import { successToast } from "../../utils/toastify";
 
 const ResetPassword = ({
   inputs,
   validityError: { msg: errorMessage, userId },
-  error,
   newLinkSuccess,
   success,
   submitForm,
@@ -17,15 +16,12 @@ const ResetPassword = ({
   resetPasswordLoader,
   verifyTokenValidity,
   sendNewResetPasswordLink,
-  resetErrorMessage,
-  resetSuccessMessage,
 }: ResetPasswordProps) => {
   const history = useHistory();
 
   useEffect(() => {
-    (error || errorMessage) && errorToast(error);
     (success || newLinkSuccess) && successToast(success);
-  }, [error, success, errorMessage, newLinkSuccess]);
+  }, [success, newLinkSuccess]);
 
   useEffect(() => {
     verifyTokenValidity();

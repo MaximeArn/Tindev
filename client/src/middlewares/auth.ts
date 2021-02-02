@@ -130,7 +130,7 @@ const sendNewPassword = async (
       data: { msg: error },
     },
   }) {
-    dispatch({ type: "RESET_PASSWORD_ERROR_HANDLER", error });
+    dispatch({ type: "toasts/error", message: error });
   } finally {
     dispatch({ type: "SET_RESET_PASSWORD_LOADER", value: false });
   }
