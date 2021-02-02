@@ -24,6 +24,7 @@ const NavBar = ({
   user,
   search,
   focused,
+  results,
   account,
   mobile,
   main,
@@ -44,6 +45,7 @@ const NavBar = ({
 }: NavState) => {
   const searchBar = useRef<HTMLInputElement>(null);
   const classes = useStyles();
+  console.log("FOCUSED STATUS IN NAVBAR COMPONENT : ", focused);
 
   useEffect(() => {
     (suspendedStatus || tokenStatus) && redirectUser(suspendedMessage ?? tokenMessage);
@@ -65,8 +67,8 @@ const NavBar = ({
   const handleSearchChange = ({
     target,
   }: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
-    !focused && setSearchBarStatus(true);
-    !target.value.trim() && setSearchBarStatus(false);
+    !focused && target.value.trim() && setSearchBarStatus(true);
+    focused && !target.value.trim() && setSearchBarStatus(false);
     getSearchValue(target.value);
   };
 
@@ -109,10 +111,10 @@ const NavBar = ({
               <div className={classes.searchIcon}>
                 <SearchIcon />
               </div>
-              <form action="/search" method="GET" onSubmit={handleSearchSubmit}>
+              <form onSubmit={handleSearchSubmit}>
                 <InputBase
                   ref={searchBar}
-                  onFocus={() => search && setSearchBarStatus(true)}
+                  onFocus={() => search.trim() && setSearchBarStatus(true)}
                   onBlur={(event: FocusEvent<HTMLInputElement>) =>
                     !event.relatedTarget && setSearchBarStatus(false)
                   }
@@ -126,7 +128,7 @@ const NavBar = ({
                   }}
                   inputProps={{ "aria-label": "search" }}
                 />
-                {focused && <SearchBarTray />}
+                {focused && <SearchBarTray results={results} />}
               </form>
             </div>
           )}

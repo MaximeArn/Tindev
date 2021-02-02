@@ -161,6 +161,7 @@ export interface NavState {
   search: string;
   focused: boolean;
   logout: Function;
+  results: (User | Project)[];
   counter: number;
   tray: boolean;
   account: Element | null | undefined;

@@ -10,12 +10,13 @@ const initialState: SearchState = {
 
 const search = (
   state = initialState,
-  { type, value, results, focused, selectedContent }: SearchAction
+  { type, value, result, focused, selectedContent }: SearchAction
 ) => {
   switch (type) {
     case "GET_SEARCH_VALUE":
       return { ...state, search: value };
     case "SET_SEARCH_RESULTS":
+      const results = result || [];
       return { ...state, results };
     case "SET_SEARCH_BAR_FOCUS_STATUS":
       return { ...state, focused };

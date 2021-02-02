@@ -6,9 +6,7 @@ export interface SearchProps {
 }
 
 export interface SearchTrayProps {
-  search: string;
   results: (User | Project)[];
-  sendSearchPreview: Function;
   setSelectedContent: Function;
 }
 

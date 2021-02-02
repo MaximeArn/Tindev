@@ -8,7 +8,7 @@ import { OwnProps } from "../../models/connect";
 
 const mapState = ({
   auth: { user },
-  search: { search, focused },
+  search: { search, focused, results },
   navbar: { account, mobile, main, hasBeenSuspended, isTokenInvalid },
   notifications: {
     notifications: { counter },
@@ -18,6 +18,7 @@ const mapState = ({
   user,
   search,
   focused,
+  results,
   account,
   mobile,
   main,
@@ -31,6 +32,7 @@ const mapDispatch = (dispatch: Dispatch<AnyAction>, { history }: OwnProps) => {
   history.listen(() => setSearchBarStatus(false));
 
   const setSearchBarStatus = (focused: boolean) => {
+    console.log("STATUS : ", focused);
     dispatch({ type: "SET_SEARCH_BAR_FOCUS_STATUS", focused });
   };
 
@@ -43,7 +45,10 @@ const mapDispatch = (dispatch: Dispatch<AnyAction>, { history }: OwnProps) => {
     },
     openModal: ({ modalStatus, modal }: AuthModalOpening) =>
       dispatch({ type: "SET_AUTH_MODAL_STATUS", modalStatus, modal }),
-    getSearchValue: (value: string) => dispatch({ type: "GET_SEARCH_VALUE", value }),
+    getSearchValue: (value: string) => {
+      dispatch({ type: "GET_SEARCH_VALUE", value });
+      dispatch({ type: "GET_SEARCH_RESULTS" });
+    },
     setAccountMenu: (status: React.MouseEvent<HTMLElement> | null) =>
       dispatch({ type: "SET_ACCOUNT_MENU", status }),
     setMobileMenu: (status: React.MouseEvent<HTMLElement> | null) =>

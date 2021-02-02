@@ -1,12 +1,9 @@
-/** @format */
-
 import React from "react";
 import { AuthUserState } from "../../../models/users";
 import Menu from "@material-ui/core/Menu";
 import MenuItem from "@material-ui/core/MenuItem";
 import IconButton from "@material-ui/core/IconButton";
 import MailIcon from "@material-ui/icons/Mail";
-import Badge from "@material-ui/core/Badge";
 import NotificationsIcon from "@material-ui/icons/Notifications";
 import AccountCircle from "@material-ui/icons/AccountCircle";
 
@@ -41,21 +38,15 @@ export default (
       </MenuItem>
       {!user ? (
         <div>
-          <MenuItem
-            onClick={() => openModal({ modalStatus: true, modal: "login" })}
-          >
+          <MenuItem onClick={() => openModal({ modalStatus: true, modal: "login" })}>
             <a className="nav-item">Sign in</a>
           </MenuItem>
-          <MenuItem
-            onClick={() => openModal({ modalStatus: true, modal: "register" })}
-          >
+          <MenuItem onClick={() => openModal({ modalStatus: true, modal: "register" })}>
             <a className="nav-item">Sign up</a>
           </MenuItem>
         </div>
       ) : (
-        <MenuItem
-          onClick={({ currentTarget }) => openAccountMenu(currentTarget)}
-        >
+        <MenuItem onClick={({ currentTarget }) => openAccountMenu(currentTarget)}>
           <IconButton
             aria-label="account of current user"
             aria-controls="primary-search-account-menu"

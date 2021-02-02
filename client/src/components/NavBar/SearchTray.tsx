@@ -6,16 +6,7 @@ import { SearchTrayProps } from "../../models/search";
 import slugify from "../../utils/slugify";
 import userify from "../../utils/whiteSpaceRemover";
 
-const SearchBarTray = ({
-  search,
-  results,
-  sendSearchPreview,
-  setSelectedContent,
-}: SearchTrayProps) => {
-  useEffect(() => {
-    sendSearchPreview();
-  }, [search]);
-
+const SearchBarTray = ({ results, setSelectedContent }: SearchTrayProps) => {
   return (
     <div tabIndex={-1} className="search-tray">
       <div className="search-tray-list-item">
