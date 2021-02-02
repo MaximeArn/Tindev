@@ -17,8 +17,8 @@ const userSchema = new Schema(
     role: { type: String, default: "User" },
     messages: [{ to: { id: ObjectId, name: String }, message: String, date: Date }],
     avatar: { type: String, default: "default-image.jpg" },
-    about: String,
-    experience: String,
+    about: { type: String, default: "" },
+    experience: { type: String, default: "" },
     technos: [String],
     chatWindows: [{ id: String, username: String }],
     notifications: {

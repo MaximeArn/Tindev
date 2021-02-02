@@ -66,8 +66,7 @@ const NavBar = ({
   const handleSearchChange = ({
     target,
   }: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
-    !focused && target.value.trim() && setSearchBarStatus(true);
-    focused && !target.value.trim() && setSearchBarStatus(false);
+    !target.value.trim() ? setSearchBarStatus(false) : setSearchBarStatus(true);
     getSearchValue(target.value);
   };
 
