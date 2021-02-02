@@ -7,11 +7,12 @@ import "./userprofile.scss";
 
 const UserProfile = ({
   admin,
-  user: { _id: id, role },
+  user,
   error,
   loader,
   content,
   getUser,
+  openChatWindow,
 }: UserProfileProps) => {
   console.log("AH OKI USER DETAILS");
   useEffect(() => {
@@ -34,14 +35,14 @@ const UserProfile = ({
             <div className="user-profile-error">{error}</div>
           ) : (
             <>
-              {id && (
+              {user && (
                 <>
                   <div className="user-profile">
-                    <User />
+                    <User openChatWindow={openChatWindow} {...user} />
                   </div>
 
-                  {admin && !(role === "Admin") && (
-                    <AdminPanel id={id} collection="user" />
+                  {admin && !(user.role === "Admin") && (
+                    <AdminPanel id={user._id} collection="user" />
                   )}
                 </>
               )}

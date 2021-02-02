@@ -47,6 +47,7 @@ export interface UserProfileProps {
   loader: boolean;
   content: null | SelectedContent;
   getUser: Function;
+  openChatWindow: Function;
 }
 
 export interface UserProfileInfos {

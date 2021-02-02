@@ -27,6 +27,8 @@ const mapDispatch = (dispatch: Dispatch<AnyAction>, { match: { params } }: OwnPr
     getUser: () => {
       dispatch({ type: "GET_USER_PROFILE", username });
     },
+    openChatWindow: (username: string, id: string) =>
+      dispatch({ type: "OPEN_CHAT_WINDOW", username, id }),
   };
 };
 
