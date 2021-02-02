@@ -5,9 +5,8 @@ import ProjectList from "../Projects/ProjectsList/ProjectsList";
 
 const mapState = ({
   project: { projects },
-  error: { projectListErrorMessage: error },
   loaders: { projectListLoader: loader },
-}: State) => ({ projects, error, loader });
+}: State) => ({ projects, loader });
 
 const mapDispatch = (dispatch: Dispatch<AnyAction>) => ({
   getProjects: () => dispatch({ type: "GET_PROJECTS" }),

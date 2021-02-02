@@ -1,20 +1,15 @@
 import React, { useEffect, useRef } from "react";
 import "./projectslist.scss";
 import Project from "./Project";
-import { errorToast } from "../../../utils/toastify";
 import CircularProgress from "@material-ui/core/CircularProgress";
 import { Project as ProjectModel, Projects } from "../../../models/projects";
 
-const ProjectsList = ({ projects, error, getProjects, loader }: Projects) => {
+const ProjectsList = ({ projects, getProjects, loader }: Projects) => {
   const projectListRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
     getProjects();
   }, []);
-
-  useEffect(() => {
-    error && errorToast(error);
-  }, [error]);
 
   return (
     <>
