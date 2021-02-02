@@ -56,17 +56,17 @@ const NavBar = ({
 
   const handleSearchSubmit = (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault();
-    // history.push({
-    //   pathname: "/search",
-    //   search: `term=${search}`,
-    // });
+    history.push({
+      pathname: "/search",
+      search: `term=${search}`,
+    });
   };
 
   const handleSearchChange = ({
     target,
   }: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
     !focused && setSearchBarStatus(true);
-    !target.value && setSearchBarStatus(false);
+    !target.value.trim() && setSearchBarStatus(false);
     getSearchValue(target.value);
   };
 

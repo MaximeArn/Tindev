@@ -7,10 +7,14 @@ import "./search.scss";
 const Search = ({ results }: SearchProps) => {
   return (
     <div className="search-results">
-      {results.map((result: any) => {
-        const Component = result.author ? Project : UserCard;
-        return <Component key={result._id} {...result} />;
-      })}
+      {results.length ? (
+        results.map((result: any) => {
+          const Component = result.author ? Project : UserCard;
+          return <Component key={result._id} {...result} />;
+        })
+      ) : (
+        <div className="search-results-empty">No results found</div>
+      )}
     </div>
   );
 };

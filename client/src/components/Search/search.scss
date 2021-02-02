@@ -9,4 +9,10 @@
   background: vars.$gradient-background;
   min-height: 100vh;
   height: 100%;
+
+  &-empty {
+    color: vars.$error-message;
+    text-align: center;
+    font-size: 2em;
+  }
 }

@@ -13,18 +13,12 @@ const SearchBarTray = ({
   setSelectedContent,
 }: SearchTrayProps) => {
   useEffect(() => {
-    search && sendSearchPreview();
+    sendSearchPreview();
   }, [search]);
 
   return (
     <div tabIndex={-1} className="search-tray">
       <div className="search-tray-list-item">
-        {search && (
-          <Link to={`/search?term=${search}`} className="search-tray-item-default">
-            <FontAwesomeIcon icon={faSearch} />
-            <span className="search-value">{search}</span>
-          </Link>
-        )}
         {results.length ? (
           results.map(({ _id, title, username, author }: any) => {
             const path = author
