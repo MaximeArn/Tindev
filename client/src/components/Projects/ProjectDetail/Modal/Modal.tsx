@@ -9,14 +9,9 @@ const Modal = ({
   sendApply,
   setModalStatus,
   reset,
-  error,
   success,
 }: ProjectDetailModal) => {
   const modal = useRef<HTMLDivElement>(null);
-
-  useEffect(() => {
-    error && errorToast(error);
-  }, [error]);
 
   const handleOutsideClick = (event: any) => {
     if (event.target === modal.current) {

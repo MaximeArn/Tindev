@@ -66,7 +66,7 @@ const sendApply = ({ getState, dispatch }: AxiosSubmit, projectId: string) => {
       project: projectId,
     })
     .then(({ data: { msg } }) => {
-      dispatch({ type: "APPLY_SUCCESS_MESSAGE", message: msg });
+      dispatch({ type: "toasts/success", message: msg });
       dispatch({ type: "RESET_PROJECT_APPLY_FORM_VALUES" });
     })
     .catch(
@@ -75,7 +75,7 @@ const sendApply = ({ getState, dispatch }: AxiosSubmit, projectId: string) => {
           data: { msg: error },
         },
       }) => {
-        dispatch({ type: "PROJECT_APPLY_ERROR_HANDLER", error });
+        dispatch({ type: "toasts/error", message: error });
       }
     );
 };
@@ -116,7 +116,7 @@ const declineApplicant = ({
   axios
     .patch("/project/decline_applicant", { projectId, userId })
     .then(({ data: project }) => dispatch({ type: "SET_PROJECT", project }))
-    .catch((error) => console.error(error))
+    .catch((error) => dispatch({ type: "toasts/error", message: error }))
     .finally(() => {
       dispatch({
         type: "SET_PROJECT_MANAGE_LOADER",

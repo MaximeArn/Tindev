@@ -9,11 +9,9 @@ const mapState = ({
       application: { description },
     },
   },
-  error: { projectApplyErrorMessage },
   success: { applySuccess },
 }: State) => ({
   inputValue: description,
-  error: projectApplyErrorMessage,
   success: applySuccess,
 });
 

@@ -13,7 +13,6 @@ const ProjectDetail = ({
   setModalStatus,
   verifyOwner,
   owner,
-  error,
   getProjectDetails,
   loader,
   contributorLoader,
@@ -25,10 +24,6 @@ const ProjectDetail = ({
   useEffect(() => {
     getProjectDetails();
   }, []);
-
-  useEffect(() => {
-    error && errorToast(error);
-  }, [error]);
 
   useEffect(() => {
     updateContent(content, "project", getProjectDetails);

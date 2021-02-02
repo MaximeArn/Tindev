@@ -95,7 +95,6 @@ export interface ProjectDetailProps {
   setModalStatus: Function;
   verifyOwner: Function;
   owner: boolean;
-  error: string;
   getProjectDetails: Function;
   loader: boolean;
   contributorLoader: boolean;

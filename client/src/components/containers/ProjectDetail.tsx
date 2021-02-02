@@ -11,19 +11,21 @@ const mapState = ({
     projectDetail: { owner },
   },
   modal: { applyModal },
-  error: { projectDetailsErrorMessage },
-  loaders: { projectDetailsLoader: loader, removingContributorLoader: contributorLoader },
+  loaders: {
+    projectDetailsLoader: loader,
+    removingContributorLoader: contributorLoader,
+  },
   auth: { user },
   search: { selectedContent: content },
 }: State) => {
   const contributing =
-    user && project?.contributors.find(({ username }) => username === user.username);
+    user &&
+    project?.contributors.find(({ username }) => username === user.username);
   return {
     role: user.role,
     project,
     isModalOpen: applyModal,
     owner,
-    error: projectDetailsErrorMessage,
     loader,
     contributorLoader,
     contributing,
@@ -31,7 +33,10 @@ const mapState = ({
   };
 };
 
-const mapDispatch = (dispatch: Dispatch<AnyAction>, { match: { params } }: OwnProps) => {
+const mapDispatch = (
+  dispatch: Dispatch<AnyAction>,
+  { match: { params } }: OwnProps
+) => {
   const { slug } = params;
   return {
     setModalStatus: (modalStatus: boolean) =>
