@@ -13,6 +13,7 @@ module.exports = async (field, next) => {
       createdAt: 0,
       updatedAt: 0,
       chatWindows: 0,
+      suspended: 0,
     });
 
     if (!user) throw new UserError("This user does not exist.", 404);

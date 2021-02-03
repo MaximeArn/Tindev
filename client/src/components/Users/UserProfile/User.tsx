@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { UserProps } from "../../../models/users";
+import { UserProfileInfos, UserProps } from "../../../models/users";
 import { url } from "../../../environments/api";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import backgroundImage from "src/assets/user-profile-default.jpg";
@@ -34,21 +34,21 @@ const User = ({ _id, username, infos, openChatWindow }: UserProps) => {
             <div className="user-profile-preview-header-username">{username}</div>
             <div className="user-profile-preview-header-nav">
               <ul className="infos-list">
-                {/* {infos.map(({ name }) => (
+                {Object.keys(infos).map((key) => (
                   <Tab
-                    key={name}
-                    name={name}
+                    key={key}
+                    name={key}
                     selected={selected}
                     setSelectedStatus={setSelectedStatus}
                   />
-                ))} */}
+                ))}
               </ul>
             </div>
           </div>
         </div>
 
         <div className="user-profile-content">
-          {/* <TabPanel content={infos.find(({ name }) => name === selected)} /> */}
+          <TabPanel value={infos[selected as keyof UserProfileInfos]} />
         </div>
 
         <div className="user-profile-social">

@@ -52,8 +52,6 @@ export interface UserProfileProps {
 }
 
 export interface UserProfileInfos {
-  // name: string;
-  // value: string | string[];
   about: string;
   technos: string[];
   experience: string;
@@ -143,7 +141,7 @@ export interface UserTabProps {
 }
 
 export interface UserTabPanelProps {
-  content: any;
+  value: string | string[];
 }
 
 export interface AccountVerification {

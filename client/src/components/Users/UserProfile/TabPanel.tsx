@@ -3,13 +3,15 @@ import { UserTabPanelProps } from "../../../models/users";
 import { faLock } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
-const TabPanel = ({ content: { value } }: UserTabPanelProps) => {
+const TabPanel = ({ value }: UserTabPanelProps) => {
   return (
     <>
       {Array.isArray(value) && value.length ? (
         <ul className="user-profile-content-list">
           {value.map((val: string) => (
-            <li key={val}>{val}</li>
+            <li className="user-profile-technos" key={val}>
+              {val}
+            </li>
           ))}
         </ul>
       ) : (
