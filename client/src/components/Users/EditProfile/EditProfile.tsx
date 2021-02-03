@@ -3,13 +3,10 @@ import { EditUserProfile, EditProfile } from "../../../models/users";
 import ProfileField from "./ProfileField";
 import CircularProgress from "@material-ui/core/CircularProgress";
 import DeletionModal from "./DeletionModal";
-import { errorToast, successToast } from "../../../utils/toastify";
 import "./editprofile.scss";
 
 const EditProfile = ({
   user,
-  error,
-  success,
   isLoading,
   loader,
   deleteModal,
@@ -19,18 +16,12 @@ const EditProfile = ({
   updateUserProfile,
   getEditProfileValue,
   resetEditProfileValue,
-  resetMessages,
   deleteAccount,
   setDeleteModalStatus,
 }: EditUserProfile) => {
   useEffect(() => {
     getUserProfile();
   }, []);
-
-  // useEffect(() => {
-  // success && successToast(success);
-  // (error || success) && setTimeout(() => resetMessages(), 3000);
-  // }, [error, success]);
 
   return (
     <>
