@@ -3,37 +3,36 @@ import { Link } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faSearch } from "@fortawesome/free-solid-svg-icons";
 import { SearchTrayProps } from "../../models/search";
-import slugify from "../../utils/slugify";
-import userify from "../../utils/whiteSpaceRemover";
 
-const SearchBarTray = ({ results, setSelectedContent }: SearchTrayProps) => {
+const SearchBarTray = ({
+  results,
+  setSelectedContent,
+  getResultUrlPath,
+}: SearchTrayProps) => {
   return (
     <div tabIndex={-1} className="search-tray">
       <div className="search-tray-list-item">
         {results.length ? (
-          results.map(({ _id, title, username, author, name }: any) => {
-            const path = author
-              ? `/project/${slugify(title)}`
-              : name
-              ? `/category/${name}`
-              : `/user/${userify(username)}`;
-
+          results.map((result: any) => {
+            getResultUrlPath(result);
             return (
               <div
-                key={_id}
+                key={result._id}
                 onClick={() =>
                   setSelectedContent(
-                    author
-                      ? { project: title }
-                      : name
-                      ? { category: name }
-                      : { user: username }
+                    result.title
+                      ? { project: result.title }
+                      : result.name
+                      ? { category: result.name }
+                      : { user: result.username }
                   )
                 }
               >
-                <Link to={path} key={_id} className="search-tray-item">
+                <Link to={result.path} key={result._id} className="search-tray-item">
                   <FontAwesomeIcon icon={faSearch} />
-                  <span className="search-value">{title || username || name}</span>
+                  <span className="search-value">
+                    {result.title || result.username || result.name}
+                  </span>
                 </Link>
               </div>
             );
