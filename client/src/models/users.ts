@@ -35,8 +35,9 @@ export interface User {
   password?: string;
   age?: number;
   city?: string;
-  experience?: string;
-  about?: string;
+  experience: string;
+  about: string;
+  technos: string[] | [];
   avatar?: string;
 }
 
@@ -51,24 +52,27 @@ export interface UserProfileProps {
 }
 
 export interface UserProfileInfos {
-  name: string;
-  value: string | string[];
+  // name: string;
+  // value: string | string[];
+  about: string;
+  technos: string[];
+  experience: string;
 }
 
 export interface UserProps {
   openChatWindow: Function;
-  infos: UserProfileInfos[];
+  infos: UserProfileInfos;
   _id: string;
   username: string;
   firstname: string;
   lastname: string;
   email: string;
-  password: string;
-  age: number;
-  city: string;
-  experience?: string;
-  technos?: string[];
-  about?: string;
+  age?: number;
+  city?: string;
+  avatar?: string;
+  experience: string;
+  technos: string[] | [];
+  about: string;
 }
 
 export interface AuthUserState {

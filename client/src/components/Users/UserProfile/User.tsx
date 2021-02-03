@@ -6,11 +6,7 @@ import backgroundImage from "src/assets/user-profile-default.jpg";
 import Tab from "./Tab";
 import TabPanel from "./TabPanel";
 import ChatBubbleIcon from "@material-ui/icons/ChatBubble";
-import {
-  faFacebook,
-  faTwitter,
-  faInstagram,
-} from "@fortawesome/free-brands-svg-icons";
+import { faFacebook, faTwitter, faInstagram } from "@fortawesome/free-brands-svg-icons";
 import "./userprofile.scss";
 
 const User = ({ _id, username, infos, openChatWindow }: UserProps) => {
@@ -32,32 +28,27 @@ const User = ({ _id, username, infos, openChatWindow }: UserProps) => {
             src={`${url}/uploads/users/default-image.jpg`}
           />
           <div className="user-profile-preview-header-infos">
-            <i
-              onClick={() => openChatWindow(username, _id)}
-              className="chatIcon"
-            >
+            <i onClick={() => openChatWindow(username, _id)} className="chatIcon">
               <ChatBubbleIcon style={{ fontSize: "1.5em" }} />
             </i>
-            <div className="user-profile-preview-header-username">
-              {username}
-            </div>
+            <div className="user-profile-preview-header-username">{username}</div>
             <div className="user-profile-preview-header-nav">
               <ul className="infos-list">
-                {infos.map(({ name }) => (
+                {/* {infos.map(({ name }) => (
                   <Tab
                     key={name}
                     name={name}
                     selected={selected}
                     setSelectedStatus={setSelectedStatus}
                   />
-                ))}
+                ))} */}
               </ul>
             </div>
           </div>
         </div>
 
         <div className="user-profile-content">
-          <TabPanel content={infos.find(({ name }) => name === selected)} />
+          {/* <TabPanel content={infos.find(({ name }) => name === selected)} /> */}
         </div>
 
         <div className="user-profile-social">

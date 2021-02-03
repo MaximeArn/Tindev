@@ -20,7 +20,6 @@ const ProjectDetail = ({
   role,
   content,
 }: ProjectDetailProps) => {
-  console.log("AH OKI PROJECT DETAILS");
   useEffect(() => {
     getProjectDetails();
   }, []);

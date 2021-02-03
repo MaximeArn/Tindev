@@ -1,7 +1,7 @@
 import React, { useEffect } from "react";
 import { UserProfileProps } from "../../../models/users";
 import CircularProgress from "@material-ui/core/CircularProgress";
-import User from "../../containers/User";
+import User from "./User";
 import AdminPanel from "../../containers/Admin";
 import "./userprofile.scss";
 
@@ -14,7 +14,8 @@ const UserProfile = ({
   getUser,
   openChatWindow,
 }: UserProfileProps) => {
-  console.log("AH OKI USER DETAILS");
+  const { role, avatar, _id, username, email, ...infos } = user;
+
   useEffect(() => {
     getUser();
   }, []);
@@ -38,7 +39,7 @@ const UserProfile = ({
               {user && (
                 <>
                   <div className="user-profile">
-                    <User openChatWindow={openChatWindow} {...user} />
+                    <User openChatWindow={openChatWindow} infos={infos} {...user} />
                   </div>
 
                   {admin && !(user.role === "Admin") && (
