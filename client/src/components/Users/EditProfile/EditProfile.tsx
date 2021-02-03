@@ -27,10 +27,10 @@ const EditProfile = ({
     getUserProfile();
   }, []);
 
-  useEffect(() => {
-    success && successToast(success);
-    (error || success) && setTimeout(() => resetMessages(), 3000);
-  }, [error, success]);
+  // useEffect(() => {
+  // success && successToast(success);
+  // (error || success) && setTimeout(() => resetMessages(), 3000);
+  // }, [error, success]);
 
   return (
     <>

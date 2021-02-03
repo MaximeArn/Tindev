@@ -22,7 +22,10 @@ const getUserProfile = (dispatch: Dispatch<AnyAction>, username: string) => {
     .finally(() => dispatch({ type: "SET_USER_PROFILE_LOADER", value: false }));
 };
 
-const updateUserProfile = ({ getState, dispatch }: AxiosSubmit, fieldName: string) => {
+const updateUserProfile = (
+  { getState, dispatch }: AxiosSubmit,
+  fieldName: string
+) => {
   const { editProfile } = getState().users;
   const formData = new FormData();
 
@@ -46,15 +49,17 @@ const updateUserProfile = ({ getState, dispatch }: AxiosSubmit, fieldName: strin
     })
     .then(({ data: { msg: message, user } }) => {
       dispatch({ type: "SET_USER", user });
-      dispatch({ type: "USER_EDITION_SUCCESS_MESSAGE", message });
+      dispatch({ type: "toasts/success", message });
     })
     .catch(({ response: { data: { msg: error } } }) =>
-      dispatch({ type: "SET_USER_PROFILE_EDITION_ERROR_HANDLER", error })
+      dispatch({ type: "toasts/error", message: error })
     )
     .finally(() => {
       dispatch({ type: "SET_USER_PROFILE_EDITION_LOADER", value: false });
       fieldName === "password"
-        ? Object.keys(editProfile[fieldName]).forEach((key) => resetInputValues(key))
+        ? Object.keys(editProfile[fieldName]).forEach((key) =>
+            resetInputValues(key)
+          )
         : resetInputValues();
     });
 };
@@ -66,7 +71,7 @@ const deleteProfile = ({ dispatch, history }: AxiosSubmit, id: string) => {
     .then(({ data: { msg: message } }) => {
       axios.delete("/auth/logout").finally(() => {
         dispatch({ type: "RESET_GLOBAL_STATE" });
-        dispatch({ type: "USER_DELETION_SUCCESS_MESSAGE", message });
+        dispatch({ type: "toasts/success", message });
         history.push("/");
       });
     })
