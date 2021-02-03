@@ -17,7 +17,7 @@ const getUserProfile = (dispatch: Dispatch<AnyAction>, username: string) => {
     .get(`/users/${username}`)
     .then(({ data }) => dispatch({ type: "SET_USER", user: data }))
     .catch(({ response: { data: { msg: error } } }) =>
-      dispatch({ type: "USER_PROFILE_ERROR_HANDLER", error })
+      dispatch({ type: "toasts/error", message: error })
     )
     .finally(() => dispatch({ type: "SET_USER_PROFILE_LOADER", value: false }));
 };

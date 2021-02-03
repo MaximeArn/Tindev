@@ -41,7 +41,6 @@ export interface User {
 export interface UserProfileProps {
   admin: boolean;
   user: User;
-  error: string;
   loader: boolean;
   content: null | SelectedContent;
   getUser: Function;

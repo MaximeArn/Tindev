@@ -10,18 +10,19 @@ const mapState = ({
     user: { role },
   },
   users: { user },
-  error: { userProfileErrorMessage: error },
   loaders: { userProfileLoader: loader },
   search: { selectedContent: content },
 }: State) => ({
   admin: role === "Admin",
   user,
-  error,
   loader,
   content,
 });
 
-const mapDispatch = (dispatch: Dispatch<AnyAction>, { match: { params } }: OwnProps) => {
+const mapDispatch = (
+  dispatch: Dispatch<AnyAction>,
+  { match: { params } }: OwnProps
+) => {
   const { username } = params;
   return {
     getUser: () => {

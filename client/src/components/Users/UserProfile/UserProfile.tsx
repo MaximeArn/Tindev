@@ -5,12 +5,10 @@ import User from "../../containers/User";
 import AdminPanel from "../../containers/Admin";
 import updateContent from "../../../utils/updateSelectedContent";
 import "./userprofile.scss";
-import { errorToast } from "../../../utils/toastify";
 
 const UserProfile = ({
   admin,
   user: { _id: id, role },
-  error,
   loader,
   content,
   getUser,
@@ -18,10 +16,6 @@ const UserProfile = ({
   useEffect(() => {
     getUser();
   }, []);
-
-  useEffect(() => {
-    error && errorToast(error);
-  }, [error]);
 
   useEffect(() => {
     updateContent(content, "user", getUser);
