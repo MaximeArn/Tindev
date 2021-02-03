@@ -8,13 +8,9 @@ import { OwnProps } from "../../models/connect";
 
 const mapState = ({
   loaders: { adminDeletionLoader: loader },
-  error: { adminErrorMessage: error },
-  success: { adminProjectDeletionSuccess: success },
   modal: { adminConfirmationModal: modal },
 }: State) => ({
   loader,
-  error,
-  success,
   modal,
 });
 

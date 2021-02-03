@@ -264,9 +264,7 @@ export interface ResetPasswordProps {
 export interface AdminOverlayProps {
   id: string;
   collection: string;
-  error: string;
   loader: boolean;
-  success: boolean | string;
   deleteProject: Function;
   modal: boolean;
   setModalStatus: Function;
