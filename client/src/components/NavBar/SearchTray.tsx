@@ -11,21 +11,29 @@ const SearchBarTray = ({ results, setSelectedContent }: SearchTrayProps) => {
     <div tabIndex={-1} className="search-tray">
       <div className="search-tray-list-item">
         {results.length ? (
-          results.map(({ _id, title, username, author }: any) => {
+          results.map(({ _id, title, username, author, name }: any) => {
             const path = author
               ? `/project/${slugify(title)}`
+              : name
+              ? `/category/${name}`
               : `/user/${userify(username)}`;
 
             return (
               <div
                 key={_id}
                 onClick={() =>
-                  setSelectedContent(author ? { project: title } : { user: username })
+                  setSelectedContent(
+                    author
+                      ? { project: title }
+                      : name
+                      ? { category: name }
+                      : { user: username }
+                  )
                 }
               >
                 <Link to={path} key={_id} className="search-tray-item">
                   <FontAwesomeIcon icon={faSearch} />
-                  <span className="search-value">{title || username}</span>
+                  <span className="search-value">{title || username || name}</span>
                 </Link>
               </div>
             );

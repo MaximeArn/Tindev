@@ -25,7 +25,7 @@ const ProjectDetail = ({
   }, []);
 
   useEffect(() => {
-    content && getProjectDetails();
+    content?.project && getProjectDetails();
   }, [content]);
 
   useEffect(() => {

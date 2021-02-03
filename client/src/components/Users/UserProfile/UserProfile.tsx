@@ -21,7 +21,7 @@ const UserProfile = ({
   }, []);
 
   useEffect(() => {
-    content && getUser();
+    content?.user && getUser();
   }, [content]);
   return (
     <>

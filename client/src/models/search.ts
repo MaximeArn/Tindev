@@ -13,4 +13,5 @@ export interface SearchTrayProps {
 export interface SelectedContent {
   user?: string;
   project?: string;
+  category?: string;
 }

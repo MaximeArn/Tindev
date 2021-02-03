@@ -6,6 +6,7 @@ import { Category } from "./categories";
 import { User } from "./users";
 import { ChatWindow, SocketServerResponse } from "./chat";
 import { Notification } from "./notifications";
+import { SelectedContent } from "./search";
 
 export interface AuthenticationAction {
   type: string;
@@ -90,7 +91,7 @@ export interface SearchAction {
   value: string;
   focused: boolean;
   result: (User | Project)[];
-  selectedContent: string;
+  selectedContent: SelectedContent;
 }
 
 export interface NavBarAction {

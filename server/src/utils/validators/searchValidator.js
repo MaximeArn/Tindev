@@ -21,9 +21,9 @@ module.exports = async ({ query }, next) => {
       name: regex,
     });
 
-    const [projects, users] = await Promise.all([project, user, category]);
+    const [projects, users, categories] = await Promise.all([project, user, category]);
 
-    return [...projects, ...users];
+    return [...projects, ...users, ...categories];
   } catch (error) {
     next(error);
   }
