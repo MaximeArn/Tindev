@@ -34,13 +34,12 @@ const Input = ({
         value={inputValue}
         required={required}
       />
-      {(formType === "Register" && name === "password") ||
-        (name === "confirmPassword" && (
-          <PasswordStrengthBar
-            password={inputValue as string}
-            className="passwordStrength"
-          />
-        ))}
+      {formType === "Register" &&
+        (name === "password" || name === "confirmPassword") && (
+          <div className="passwordStrength">
+            <PasswordStrengthBar password={inputValue as string} />
+          </div>
+        )}
     </>
   );
 };
