@@ -19,24 +19,24 @@ const mapDispatch = (dispatch: Dispatch<AnyAction>) => {
       dispatch({ type: "SET_SELECTED_CONTENT", selectedContent });
     },
     getResultUrlPath: (result: User | Project | Category) => {
-      const path = {
-        title: "title" in result && `/project/${slugify(result.title)}`,
-        name: "name" in result && `/category/${result.name}`,
-        username: "username" in result && `/user/${userify(result.username)}`,
-      };
+      const paths = [
+        "title" in result && `/project/${slugify(result.title)}`,
+        "name" in result && `/category/${result.name}`,
+        "username" in result && `/user/${userify(result.username)}`,
+      ];
 
-      Object.entries(path).forEach(([key, value]) => {
-        if (result[key as keyof typeof result]) result.path = value;
+      paths.forEach((value) => {
+        if (value) result.path = value;
       });
     },
     getSelectedContent: (result: User | Project | Category) => {
       const content = [
-        { project: "title" in result && result.title },
-        { user: "username" in result && result.username },
-        { category: "name" in result && result.name },
+        "title" in result && { project: result.title },
+        "username" in result && { user: result.username },
+        "name" in result && { category: result.name },
       ];
 
-      return content.find((selectedContent) => Object.values(selectedContent)[0]);
+      return content.find((value) => value);
     },
   };
 };
