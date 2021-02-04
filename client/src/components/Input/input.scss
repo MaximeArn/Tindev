@@ -10,7 +10,7 @@
 
   &[name="password"],
   &[name="confirmPassword"] {
-    margin-bottom: 0.1rem;
+    margin-bottom: 0rem;
   }
 
   &.description {
@@ -35,6 +35,11 @@
 }
 
 .passwordStrength {
-  padding: 0 5%;
+  padding: 0 calc(5% + 2px);
   margin-bottom: 1rem;
+  text-align: left;
+
+  p {
+    display: none;
+  }
 }
