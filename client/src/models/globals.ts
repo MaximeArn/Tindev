@@ -1,3 +1,3 @@
 export interface GlobalUrlPath {
-  path: string | false;
+  path?: string | false;
 }

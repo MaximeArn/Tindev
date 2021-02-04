@@ -29,6 +29,16 @@ const mapDispatch = (dispatch: Dispatch<AnyAction>) => {
         if (result[key as keyof typeof result]) result.path = value;
       });
     },
+    getSelectedContent: (result: User | Project | Category) => {
+      const content = {
+        title: { project: "title" in result && result.title },
+        username: { user: "username" in result && result.username },
+        name: { category: "name" in result && result.name },
+      };
+
+      const key = Object.keys(content).find((key) => result[key as keyof typeof result]);
+      return content[key as keyof typeof content];
+    },
   };
 };
 

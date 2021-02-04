@@ -7,6 +7,7 @@ import { SearchTrayProps } from "../../models/search";
 const SearchBarTray = ({
   results,
   setSelectedContent,
+  getSelectedContent,
   getResultUrlPath,
 }: SearchTrayProps) => {
   return (
@@ -18,15 +19,7 @@ const SearchBarTray = ({
             return (
               <div
                 key={result._id}
-                onClick={() =>
-                  setSelectedContent(
-                    result.title
-                      ? { project: result.title }
-                      : result.name
-                      ? { category: result.name }
-                      : { user: result.username }
-                  )
-                }
+                onClick={() => setSelectedContent(getSelectedContent(result))}
               >
                 <Link to={result.path} key={result._id} className="search-tray-item">
                   <FontAwesomeIcon icon={faSearch} />
