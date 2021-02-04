@@ -25,7 +25,11 @@ const Input = ({
     <>
       <input
         className={
-          name === "description" ? "auth-input description" : "auth-input"
+          name === "description"
+            ? "auth-input description"
+            : name === "password"
+            ? `auth-input ${formType}`
+            : "auth-input"
         }
         type={convertInputType(name)}
         name={name}
