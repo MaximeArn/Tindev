@@ -1,3 +1,4 @@
+import { GlobalUrlPath } from "./globals";
 import { SelectedContent } from "./search";
 
 export interface UserState {
@@ -25,7 +26,7 @@ export interface EditProfilePasswords {
   confirmPassword: string;
 }
 
-export interface User {
+export interface User extends GlobalUrlPath {
   _id: string;
   username: string;
   firstname: string;

@@ -1,8 +1,9 @@
+import { GlobalUrlPath } from "./globals";
 import { GetSelectedValues } from "./mui";
 import { Project } from "./projects";
 import { SelectedContent } from "./search";
 
-export interface Category {
+export interface Category extends GlobalUrlPath {
   name: string;
   image?: string;
 }

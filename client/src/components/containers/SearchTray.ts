@@ -18,15 +18,15 @@ const mapDispatch = (dispatch: Dispatch<AnyAction>) => {
     setSelectedContent: (selectedContent: SelectedContent) => {
       dispatch({ type: "SET_SELECTED_CONTENT", selectedContent });
     },
-    getResultUrlPath: (result: any) => {
+    getResultUrlPath: (result: User | Project | Category) => {
       const path = {
-        title: `/project/${slugify(result.title || "")}`,
-        name: `/category/${result.name}`,
-        username: `/user/${userify(result.username || "")}`,
+        title: "title" in result && `/project/${slugify(result.title)}`,
+        name: "name" in result && `/category/${result.name}`,
+        username: "username" in result && `/user/${userify(result.username)}`,
       };
 
       Object.entries(path).forEach(([key, value]) => {
-        if (result.hasOwnProperty(key)) result.path = value;
+        if (result[key as keyof typeof result]) result.path = value;
       });
     },
   };
