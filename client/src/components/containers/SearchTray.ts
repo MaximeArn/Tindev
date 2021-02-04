@@ -30,14 +30,13 @@ const mapDispatch = (dispatch: Dispatch<AnyAction>) => {
       });
     },
     getSelectedContent: (result: User | Project | Category) => {
-      const content = {
-        title: { project: "title" in result && result.title },
-        username: { user: "username" in result && result.username },
-        name: { category: "name" in result && result.name },
-      };
+      const content = [
+        { project: "title" in result && result.title },
+        { user: "username" in result && result.username },
+        { category: "name" in result && result.name },
+      ];
 
-      const key = Object.keys(content).find((key) => result[key as keyof typeof result]);
-      return content[key as keyof typeof content];
+      return content.find((selectedContent) => Object.values(selectedContent)[0]);
     },
   };
 };
