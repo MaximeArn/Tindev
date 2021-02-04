@@ -2,6 +2,7 @@ import React, { ChangeEvent } from "react";
 import { GetInputValues, InputModel } from "../../models/inputs";
 import convertInputType from "../../utils/inputType";
 import capitalizeFirstLetter from "../../utils/capitalizeFirstLetter";
+import PasswordStrengthBar from "react-password-strength-bar";
 import "./input.scss";
 
 const Input = ({
@@ -33,6 +34,13 @@ const Input = ({
         value={inputValue}
         required={required}
       />
+      {(formType === "Register" && name === "password") ||
+        (name === "confirmPassword" && (
+          <PasswordStrengthBar
+            password={inputValue as string}
+            className="passwordStrength"
+          />
+        ))}
     </>
   );
 };
