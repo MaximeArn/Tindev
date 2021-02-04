@@ -1,15 +1,23 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { SearchProps } from "../../models/search";
-import Project from "../Projects/ProjectsList/Project";
-import UserCard from "../Users/UsersList/userCard";
+import { useLocation } from "react-router-dom";
+import { User } from "../../models/users";
+import { Project } from "../../models/projects";
+import { Category } from "../../models/categories";
 import "./search.scss";
 
-const Search = ({ results }: SearchProps) => {
+const Search = ({ results, getRenderedComponent }: SearchProps) => {
+  const [renderResults, setRenderResults] = useState<(User | Project | Category)[]>([]);
+
+  useEffect(() => {
+    setRenderResults(results);
+  }, [useLocation()]);
+
   return (
     <div className="search-results">
-      {results.length ? (
-        results.map((result: any) => {
-          const Component = result.author ? Project : UserCard;
+      {renderResults.length ? (
+        renderResults.map((result: any) => {
+          const Component = getRenderedComponent(result);
           return <Component key={result._id} {...result} />;
         })
       ) : (
