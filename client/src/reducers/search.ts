@@ -5,7 +5,6 @@ const initialState: SearchState = {
   search: "",
   focused: false,
   results: [],
-  selectedContent: null,
 };
 
 const search = (
@@ -20,9 +19,6 @@ const search = (
       return { ...state, results };
     case "SET_SEARCH_BAR_FOCUS_STATUS":
       return { ...state, focused };
-    case "SET_SELECTED_CONTENT": {
-      return { ...state, selectedContent };
-    }
     default:
       return state;
   }

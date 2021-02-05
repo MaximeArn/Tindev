@@ -228,7 +228,6 @@ export interface SearchState {
   search: string;
   focused: boolean;
   results: (User | Project)[];
-  selectedContent: null | SelectedContent;
 }
 
 export interface NavBarState {
