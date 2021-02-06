@@ -9,7 +9,7 @@ import { AnyAction, Dispatch } from "redux";
 const mapState = ({
   project: { createProject },
   error: { projectCreationErrorMessage: error },
-  loaders: { projectCreationLoader: loading },
+  loaders: { categoriesLoader: loading },
 }: State) => {
   return {
     projectInputs: createProject,

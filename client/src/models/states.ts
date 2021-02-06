@@ -55,7 +55,7 @@ export interface Loaders {
   projectListLoader: boolean;
   projectDetailsLoader: boolean;
   projectCreationLoader: boolean;
-  projectCategoriesLoader: boolean;
+  categoriesLoader: boolean;
   userProfileLoader: boolean;
   userAccountDeletionLoader: boolean;
   accountActivationLoader: boolean;

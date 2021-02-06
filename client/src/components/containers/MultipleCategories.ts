@@ -8,7 +8,7 @@ const mapState = ({
   project: {
     updateProject: { categories: categoriesFieldValues },
   },
-  loaders: { projectCategoriesLoader: loader },
+  loaders: { categoriesLoader: loader },
   users: {
     editProfile: { technos },
   },

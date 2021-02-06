@@ -1,7 +1,7 @@
 import React from "react";
 import { UserProfileClosed } from "../../../models/users";
 import capitalize from "../../../utils/capitalizeFirstLetter";
-const { url } = require("../../../environments/api");
+import { url } from "../../../environments/api";
 
 const ProfileEditClosed = ({ name, value, setEditStatus }: UserProfileClosed) => {
   return (

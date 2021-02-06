@@ -8,7 +8,7 @@ const initialState: Loaders = {
   projectListLoader: false,
   projectCreationLoader: false,
   projectDetailsLoader: false,
-  projectCategoriesLoader: false,
+  categoriesLoader: false,
   userProfileLoader: false,
   userAccountDeletionLoader: false,
   accountActivationLoader: false,
@@ -55,8 +55,8 @@ const loaders = (
       return { ...state, projectListLoader: value };
     case "SET_PROJECT_CREATION_LOADER":
       return { ...state, projectCreationLoader: value };
-    case "SET_PROJECT_CATEGORIES_LOADER":
-      return { ...state, projectCategoriesLoader: value };
+    case "SET_CATEGORIES_LOADER":
+      return { ...state, categoriesLoader: value };
     case "SET_USER_PROFILE_EDITION_LOADER":
       return {
         ...state,

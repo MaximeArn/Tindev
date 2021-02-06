@@ -3,8 +3,12 @@ import { AnyAction, Dispatch } from "redux";
 import { State } from "../../models/states";
 import CategoriesList from "../Categories/CategoriesList";
 
-const mapState = ({ categories: { categories } }: State) => ({
+const mapState = ({
+  categories: { categories },
+  loaders: { categoriesLoader: loader },
+}: State) => ({
   categories,
+  loader,
 });
 
 const mapDispatch = (dispatch: Dispatch<AnyAction>) => ({

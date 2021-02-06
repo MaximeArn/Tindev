@@ -20,6 +20,7 @@ export interface MultipleCategory {
 
 export interface CategoriesListProps {
   categories: Category[];
+  loader: boolean;
   getCategories: Function;
 }
 

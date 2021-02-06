@@ -3,8 +3,8 @@ import { RegisterAuth } from "../../../models/states";
 import googleIcon from "src/assets/icons/googleIcon.svg";
 import modalClickHandler from "../../../utils/modalClickHandler";
 import inputMapper from "../../../utils/inputMapper";
-import "../modal.scss";
 import CircularProgress from "@material-ui/core/CircularProgress";
+import "../modal.scss";
 
 const Register = ({
   register,
@@ -51,9 +51,7 @@ const Register = ({
               Already have an Account ?
               <a
                 className="auth-modal"
-                onClick={() =>
-                  swapModal({ modal: "register", modal2: "login" })
-                }
+                onClick={() => swapModal({ modal: "register", modal2: "login" })}
               >
                 Sign In
               </a>
