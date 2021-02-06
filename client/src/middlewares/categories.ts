@@ -13,15 +13,17 @@ const getCategories = (dispatch: Dispatch<AnyAction>) => {
 };
 
 const getCategoryResults = (dispatch: Dispatch<AnyAction>, category: string) => {
+  dispatch({ type: "SET_CATEGORY_RESULTS_LOADER", value: true });
   axios
     .get(`/categories/${category}`)
     .then(({ data: categoryResults }) =>
       dispatch({ type: "SET_CATEGORY_RESULTS", categoryResults })
     )
-    .catch(({ response: { data: { msg: error } } }) => console.log(error));
+    .catch(({ response: { data: { msg: error } } }) => console.log(error))
+    .finally(() => dispatch({ type: "SET_CATEGORY_RESULTS_LOADER", value: false }));
 };
 
-const categories: Middleware = ({ getState, dispatch }) => (next) => (action) => {
+const categories: Middleware = ({ dispatch }) => (next) => (action) => {
   const { type, cat } = action;
 
   switch (type) {

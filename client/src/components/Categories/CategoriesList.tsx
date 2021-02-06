@@ -12,7 +12,7 @@ const CategoriesList = ({ categories, loader, getCategories }: CategoriesListPro
   return (
     <div className="categories">
       {loader ? (
-        <div className="loading-button">
+        <div className="categories-loader">
           <p>Loading</p>
           <CircularProgress size={15} />
         </div>

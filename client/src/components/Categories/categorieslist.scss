@@ -10,6 +10,19 @@
   min-height: 100vh;
   height: 100%;
 
+  &-loader {
+    display: flex;
+    justify-content: center;
+
+    p {
+      margin-right: 10px;
+    }
+
+    .MuiCircularProgress-indeterminate {
+      color: #121216 !important;
+    }
+  }
+
   &-card {
     width: 280px;
     padding: 2rem;

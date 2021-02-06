@@ -1,9 +1,15 @@
 import React, { useEffect } from "react";
 import { CategoryResultsProps } from "../../models/categories";
 import Project from "../Projects/ProjectsList/Project";
+import CircularProgress from "@material-ui/core/CircularProgress";
 import User from "../Users/UsersList/userCard";
 
-const CategoryResult = ({ results, fetchResults, location }: CategoryResultsProps) => {
+const CategoryResult = ({
+  results,
+  loader,
+  fetchResults,
+  location,
+}: CategoryResultsProps) => {
   useEffect(() => {
     fetchResults();
   }, []);
@@ -14,7 +20,12 @@ const CategoryResult = ({ results, fetchResults, location }: CategoryResultsProp
 
   return (
     <div className="category-results">
-      {results.length ? (
+      {loader ? (
+        <div className="categories-loader">
+          <p>Loading</p>
+          <CircularProgress size={15} />
+        </div>
+      ) : results.length ? (
         results.map((result: any) => {
           const Component = result.author ? Project : User;
           return <Component key={result._id} {...result} />;
