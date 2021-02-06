@@ -7,10 +7,7 @@ const initialState: SearchState = {
   results: [],
 };
 
-const search = (
-  state = initialState,
-  { type, value, result, focused, selectedContent }: SearchAction
-) => {
+const search = (state = initialState, { type, value, result, focused }: SearchAction) => {
   switch (type) {
     case "GET_SEARCH_VALUE":
       return { ...state, search: value };

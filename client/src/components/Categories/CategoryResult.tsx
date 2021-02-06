@@ -3,14 +3,14 @@ import { CategoryResultsProps } from "../../models/categories";
 import Project from "../Projects/ProjectsList/Project";
 import User from "../Users/UsersList/userCard";
 
-const CategoryResult = ({ results, fetchResults }: CategoryResultsProps) => {
+const CategoryResult = ({ results, fetchResults, location }: CategoryResultsProps) => {
   useEffect(() => {
     fetchResults();
   }, []);
 
   useEffect(() => {
     fetchResults();
-  }, [selectedContent]);
+  }, [location]);
 
   return (
     <div className="category-results">

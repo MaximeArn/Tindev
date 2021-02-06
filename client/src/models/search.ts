@@ -9,7 +9,5 @@ export interface SearchProps {
 
 export interface SearchTrayProps {
   results: (User | Project | Category)[];
-  setSelectedContent: Function;
   getResultUrlPath: Function;
-  getSelectedContent: Function;
 }

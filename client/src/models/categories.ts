@@ -26,4 +26,5 @@ export interface CategoriesListProps {
 export interface CategoryResultsProps {
   results: (Category & Project)[];
   fetchResults: Function;
+  location: any;
 }

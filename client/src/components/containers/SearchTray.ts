@@ -1,6 +1,4 @@
 import { connect } from "react-redux";
-import { AnyAction, Dispatch } from "redux";
-import { SelectedContent } from "../../models/search";
 import { State } from "../../models/states";
 import SearchTray from "../NavBar/SearchTray";
 import slugify from "../../utils/slugify";
@@ -13,11 +11,8 @@ const mapState = ({ search: { results } }: State) => ({
   results,
 });
 
-const mapDispatch = (dispatch: Dispatch<AnyAction>) => {
+const mapDispatch = () => {
   return {
-    setSelectedContent: (selectedContent: SelectedContent) => {
-      dispatch({ type: "SET_SELECTED_CONTENT", selectedContent });
-    },
     getResultUrlPath: (result: User | Project | Category) => {
       const paths = [
         "title" in result && `/project/${slugify(result.title)}`,
@@ -28,15 +23,6 @@ const mapDispatch = (dispatch: Dispatch<AnyAction>) => {
       paths.forEach((value) => {
         if (value) result.path = value;
       });
-    },
-    getSelectedContent: (result: User | Project | Category) => {
-      const content = [
-        "title" in result && { project: result.title },
-        "username" in result && { user: result.username },
-        "name" in result && { category: result.name },
-      ];
-
-      return content.find((value) => value);
     },
   };
 };

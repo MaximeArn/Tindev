@@ -4,12 +4,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faSearch } from "@fortawesome/free-solid-svg-icons";
 import { SearchTrayProps } from "../../models/search";
 
-const SearchBarTray = ({
-  results,
-  setSelectedContent,
-  getSelectedContent,
-  getResultUrlPath,
-}: SearchTrayProps) => {
+const SearchBarTray = ({ results, getResultUrlPath }: SearchTrayProps) => {
   return (
     <div tabIndex={-1} className="search-tray">
       <div className="search-tray-list-item">
@@ -17,10 +12,7 @@ const SearchBarTray = ({
           results.map((result: any) => {
             getResultUrlPath(result);
             return (
-              <div
-                key={result._id}
-                onClick={() => setSelectedContent(getSelectedContent(result))}
-              >
+              <div key={result._id}>
                 <Link to={result.path} key={result._id} className="search-tray-item">
                   <FontAwesomeIcon icon={faSearch} />
                   <span className="search-value">
