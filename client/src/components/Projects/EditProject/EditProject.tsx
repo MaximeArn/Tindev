@@ -11,6 +11,7 @@ const EditProject = ({
   error,
   projectDetailsErrorMessage,
   isModalOpen,
+  projectDeletionLoader,
   getProject,
   deleteProject,
   setModalStatus,
@@ -28,6 +29,7 @@ const EditProject = ({
           projectId={project._id}
           setModalStatus={setModalStatus}
           success={projectDeletionSuccess}
+          loader={projectDeletionLoader}
         />
       )}
       <div className="edit-project-container">

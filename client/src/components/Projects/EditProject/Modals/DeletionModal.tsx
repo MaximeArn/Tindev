@@ -1,11 +1,13 @@
 import React, { useRef } from "react";
 import { DeleteProjectModalProps } from "../../../../models/projects";
+import CircularProgress from "@material-ui/core/CircularProgress";
 import { useHistory } from "react-router-dom";
 
 const Modal = ({
   deleteProject,
   projectId,
   setModalStatus,
+  loader,
   success,
 }: DeleteProjectModalProps) => {
   const modalContainer = useRef<HTMLDivElement>(null);
@@ -45,20 +47,29 @@ const Modal = ({
               </div>
             </div>
             <div className="decline-applicant-buttons">
-              <button
-                onClick={() => deleteProject(projectId)}
-                className="decline-applicant-button"
-                type="button"
-              >
-                Yes
-              </button>
-              <button
-                onClick={() => setModalStatus(false)}
-                className="decline-applicant-button"
-                type="button"
-              >
-                No
-              </button>
+              {loader ? (
+                <div className="project-deletion-loader">
+                  <p>Loading</p>
+                  <CircularProgress size={15} />
+                </div>
+              ) : (
+                <>
+                  <button
+                    onClick={() => deleteProject(projectId)}
+                    className="decline-applicant-button"
+                    type="button"
+                  >
+                    Yes
+                  </button>
+                  <button
+                    onClick={() => setModalStatus(false)}
+                    className="decline-applicant-button"
+                    type="button"
+                  >
+                    No
+                  </button>
+                </>
+              )}
             </div>
           </div>
         )}

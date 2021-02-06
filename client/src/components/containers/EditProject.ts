@@ -10,12 +10,14 @@ const mapState = ({
   error: { projectEditionErrorMessage: error, projectDetailsErrorMessage },
   success: { projectDeletionSuccess },
   modal: { deleteProjectModal: isModalOpen },
+  loaders: { projectDeletionLoader },
 }: State) => ({
   project: project,
   updateProjectValues: updateProject,
   error,
   projectDetailsErrorMessage,
   isModalOpen,
+  projectDeletionLoader,
   projectDeletionSuccess,
 });
 

@@ -144,6 +144,7 @@ export interface DeclineApplicantModalProps {
 export interface DeleteProjectModalProps {
   deleteProject: Function;
   projectId: string;
+  loader: boolean;
   setModalStatus: Function;
   success: string;
 }
@@ -153,6 +154,7 @@ export interface EditProjectProps {
   error: string;
   projectDetailsErrorMessage: string;
   isModalOpen: boolean;
+  projectDeletionLoader: boolean;
   categories: Category[];
   updateProjectValues: UpdateProject;
   deleteProject: Function;

@@ -58,3 +58,17 @@
     }
   }
 }
+
+.project-deletion-loader {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 2rem;
+
+  p {
+    margin-right: 10px;
+  }
+
+  .MuiCircularProgress-indeterminate {
+    color: #121216 !important;
+  }
+}
