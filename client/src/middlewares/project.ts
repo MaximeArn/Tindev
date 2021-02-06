@@ -2,6 +2,7 @@ import { AnyAction, Dispatch, Middleware } from "redux";
 import { AxiosSubmit, AxiosApplicant } from "../models/axios";
 import slugify from "../utils/slugify";
 import unslugify from "../utils/unslugify";
+import { successToast } from "../utils/toastify";
 import axios from "../utils/axiosInstance";
 
 const sendProject = ({ getState, dispatch, history }: AxiosSubmit) => {
@@ -141,7 +142,7 @@ const updateProject = (
     })
     .then(({ data: { message, project, username } }) => {
       dispatch({ type: "SET_PROJECT", project });
-      dispatch({ type: "PROJECT_EDITION_SUCCESS_MESSAGE", message });
+      successToast(message);
       project.author !== username && history.push(`/project/${slugify(project.title)}`);
       !(slugify(project.title) === slug) &&
         history.push(`/project/${slugify(project.title)}/edit`);
@@ -186,13 +187,15 @@ const leaveProject = (dispatch: Dispatch<AnyAction>, id: string) => {
 };
 
 const deleteProject = (dispatch: Dispatch<AnyAction>, id: string) => {
+  dispatch({ type: "SET_PROJECT_DELETION_LOADER", value: true });
   axios
     .delete(`/project/${id}`)
     .then(({ data: { msg: message } }) => {
       dispatch({ type: "PROJECT_DELETION_SUCCESS_MESSAGE", message });
       getProjects(dispatch);
     })
-    .catch((error) => console.error(error));
+    .catch((error) => console.error(error))
+    .finally(() => dispatch({ type: "SET_PROJECT_DELETION_LOADER", value: false }));
 };
 
 const verifyOwner = (projectAuthor: string, dispatch: Dispatch<AnyAction>) => {
@@ -218,7 +221,7 @@ const project: Middleware = ({ getState, dispatch }) => (next) => (action) => {
     case "UPDATE_PROJECT":
       updateProject({ getState, dispatch, history }, inputName, projectId, slug);
       break;
-    case "SEND_DELETE_PROJECT":
+    case "DELETE_PROJECT":
       deleteProject(dispatch, id);
       break;
     case "LEAVE_PROJECT":

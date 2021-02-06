@@ -8,14 +8,13 @@ import { OwnProps } from "../../models/connect";
 const mapState = ({
   project: { project, updateProject },
   error: { projectEditionErrorMessage: error, projectDetailsErrorMessage },
-  success: { projectEditionSuccess: success, projectDeletionSuccess },
+  success: { projectDeletionSuccess },
   modal: { deleteProjectModal: isModalOpen },
 }: State) => ({
   project: project,
   updateProjectValues: updateProject,
   error,
   projectDetailsErrorMessage,
-  success,
   isModalOpen,
   projectDeletionSuccess,
 });
@@ -28,9 +27,8 @@ const mapDispatch = (
     },
   }: OwnProps
 ) => ({
-  resetSuccessMessage: () => dispatch({ type: "PROJECT_EDITION_SUCCESS_MESSAGE" }),
   getProject: () => dispatch({ type: "GET_PROJECT", slug }),
-  deleteProject: (id: string) => dispatch({ type: "SEND_DELETE_PROJECT", id }),
+  deleteProject: (id: string) => dispatch({ type: "DELETE_PROJECT", id }),
   setModalStatus: (modalStatus: boolean) =>
     dispatch({ type: "SET_PROJECT_DELETE_MODAL", modalStatus }),
 });

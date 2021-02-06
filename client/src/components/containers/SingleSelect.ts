@@ -1,6 +1,5 @@
 import { connect } from "react-redux";
 import { AnyAction, Dispatch } from "redux";
-import { State } from "../../models/states";
 import SingleSelect from "../SingleSelect/Select";
 
 const mapDispatch = (dispatch: Dispatch<AnyAction>) => ({

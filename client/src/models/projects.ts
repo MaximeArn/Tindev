@@ -152,11 +152,9 @@ export interface EditProjectProps {
   project: Project;
   error: string;
   projectDetailsErrorMessage: string;
-  success: string;
   isModalOpen: boolean;
   categories: Category[];
   updateProjectValues: UpdateProject;
-  resetSuccessMessage: Function;
   deleteProject: Function;
   getProject: Function;
   setModalStatus: Function;

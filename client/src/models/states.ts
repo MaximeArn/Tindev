@@ -55,6 +55,7 @@ export interface Loaders {
   projectListLoader: boolean;
   projectDetailsLoader: boolean;
   projectCreationLoader: boolean;
+  projectDeletionLoader: boolean;
   categoriesLoader: boolean;
   categoryResultsLoader: boolean;
   userProfileLoader: boolean;
@@ -212,7 +213,6 @@ export interface ModalState {
 export interface SuccessState {
   applySuccess: boolean | string;
   registerSuccess: boolean | string;
-  projectEditionSuccess: boolean | string;
   projectDeletionSuccess: boolean | string;
   userEditionSuccess: boolean | string;
   userDeletionSuccess: boolean | string;

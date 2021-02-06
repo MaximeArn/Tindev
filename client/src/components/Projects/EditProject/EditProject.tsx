@@ -10,9 +10,7 @@ const EditProject = ({
   updateProjectValues,
   error,
   projectDetailsErrorMessage,
-  success,
   isModalOpen,
-  resetSuccessMessage,
   getProject,
   deleteProject,
   setModalStatus,
@@ -21,12 +19,6 @@ const EditProject = ({
   useEffect(() => {
     getProject();
   }, []);
-
-  useEffect(() => {
-    setTimeout(() => {
-      resetSuccessMessage();
-    }, 3000);
-  }, [success]);
 
   return (
     <>
@@ -46,7 +38,6 @@ const EditProject = ({
         ) : (
           <>
             {error && <div className="edit-project-error-message">{error}</div>}
-            {success && <div className="edit-project-success-message">{success}</div>}
             <div className="edit-project">
               <div className="edit-form">
                 {project &&
