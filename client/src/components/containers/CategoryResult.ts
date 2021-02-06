@@ -5,10 +5,7 @@ import CategoryResult from "../Categories/CategoryResult";
 import { OwnProps } from "../../models/connect";
 import { State } from "../../models/states";
 
-const mapState = ({
-  categories: { categoryResults: results },
-  search: { selectedContent },
-}: State) => ({ results, selectedContent });
+const mapState = ({ categories: { categoryResults: results } }: State) => ({ results });
 
 const mapDispatch = (
   dispatch: Dispatch<AnyAction>,

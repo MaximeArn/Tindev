@@ -1,7 +1,6 @@
 import { GlobalUrlPath } from "./globals";
 import { GetSelectedValues } from "./mui";
 import { Project } from "./projects";
-import { SelectedContent } from "./search";
 
 export interface Category extends GlobalUrlPath {
   name: string;
@@ -26,6 +25,5 @@ export interface CategoriesListProps {
 
 export interface CategoryResultsProps {
   results: (Category & Project)[];
-  selectedContent: null | SelectedContent;
   fetchResults: Function;
 }

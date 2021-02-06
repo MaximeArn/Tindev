@@ -10,9 +10,9 @@ const UserProfile = ({
   user,
   error,
   loader,
-  content,
   getUser,
   openChatWindow,
+  location,
 }: UserProfileProps) => {
   const { role, avatar, _id, username, email, ...infos } = user;
 
@@ -21,8 +21,8 @@ const UserProfile = ({
   }, []);
 
   useEffect(() => {
-    content?.user && getUser();
-  }, [content]);
+    getUser();
+  }, [location]);
   return (
     <>
       {loader ? (

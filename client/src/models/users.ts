@@ -1,5 +1,4 @@
 import { GlobalUrlPath } from "./globals";
-import { SelectedContent } from "./search";
 
 export interface UserState {
   users: User[];
@@ -47,9 +46,9 @@ export interface UserProfileProps {
   user: User;
   error: string;
   loader: boolean;
-  content: null | SelectedContent;
   getUser: Function;
   openChatWindow: Function;
+  location: any;
 }
 
 export interface UserProfileInfos {

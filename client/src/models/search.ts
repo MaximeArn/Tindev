@@ -13,9 +13,3 @@ export interface SearchTrayProps {
   getResultUrlPath: Function;
   getSelectedContent: Function;
 }
-
-export interface SelectedContent {
-  user?: string;
-  project?: string;
-  category?: string;
-}

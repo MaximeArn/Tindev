@@ -3,17 +3,13 @@ import { CategoryResultsProps } from "../../models/categories";
 import Project from "../Projects/ProjectsList/Project";
 import User from "../Users/UsersList/userCard";
 
-const CategoryResult = ({
-  results,
-  selectedContent,
-  fetchResults,
-}: CategoryResultsProps) => {
+const CategoryResult = ({ results, fetchResults }: CategoryResultsProps) => {
   useEffect(() => {
     fetchResults();
   }, []);
 
   useEffect(() => {
-    selectedContent?.category && fetchResults();
+    fetchResults();
   }, [selectedContent]);
 
   return (
