@@ -14,14 +14,16 @@ const Modal = ({
   const history = useHistory();
 
   useEffect(() => {
+    document.removeEventListener("click", handleClick);
     document.addEventListener("click", handleClick);
     return () => document.removeEventListener("click", handleClick);
-  }, []);
+  }, [success]);
 
   const handleClick = ({ target }: any) => {
-    //TODO: try to understand why success is not the latest updated value from store
+    //TODO: refactoring
     if (modalContainer.current.every((ref: any) => !ref.contains(target))) {
       setModalStatus(false);
+      success && history.push("/");
     }
   };
 
