@@ -10,9 +10,8 @@ const Modal = ({
   loader,
   success,
 }: DeleteProjectModalProps) => {
-  const modalContainer = useRef<any>(null);
+  const modalContainer = useRef<any>([]);
   const history = useHistory();
-  console.log(success);
 
   useEffect(() => {
     document.addEventListener("click", handleClick);
@@ -20,17 +19,21 @@ const Modal = ({
   }, []);
 
   const handleClick = ({ target }: any) => {
-    console.log({ target, contains: modalContainer.current.contains(target) });
-
-    !modalContainer.current.contains(target) &&
-      !(target?.className === "decline-applicant-button") &&
+    //TODO: try to understand why success is not the latest updated value from store
+    if (modalContainer.current.every((ref: any) => !ref.contains(target))) {
       setModalStatus(false);
+    }
   };
 
   return (
     <>
       <div className="decline">
-        <div ref={modalContainer} className="decline-applicant">
+        <div
+          ref={(ref) =>
+            modalContainer.current.length < 2 && modalContainer.current.push(ref)
+          }
+          className="decline-applicant"
+        >
           {success ? (
             <>
               <div className="project-detail-padding">
@@ -63,6 +66,10 @@ const Modal = ({
                 ) : (
                   <>
                     <button
+                      ref={(ref) =>
+                        modalContainer.current.length < 2 &&
+                        modalContainer.current.push(ref)
+                      }
                       onClick={() => deleteProject(projectId)}
                       className="decline-applicant-button"
                       type="button"
