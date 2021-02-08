@@ -10,7 +10,7 @@ const Modal = ({
   loader,
   success,
 }: DeleteProjectModalProps) => {
-  const modalContainer = useRef<(HTMLDivElement | HTMLButtonElement | null)[]>([]);
+  const modalContainer = useRef<any[]>([]);
   const history = useHistory();
 
   useEffect(() => {
@@ -20,12 +20,8 @@ const Modal = ({
     return () => document.removeEventListener("click", handleClick);
   }, [success]);
 
-  const handleClick = ({ target }: any) => {
-    if (
-      modalContainer.current.every(
-        (ref: HTMLDivElement | HTMLButtonElement | null) => !ref?.contains(target)
-      )
-    ) {
+  const handleClick = ({ target }: MouseEvent) => {
+    if (modalContainer.current.every((ref) => !ref.contains(target))) {
       setModalStatus(false);
       success && history.push("/");
     }
