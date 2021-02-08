@@ -36,6 +36,7 @@ const modal = (
         authModal: { [modal]: modalStatus, [modal2]: !modalStatus },
       };
     case "SET_PROJECT_DELETE_MODAL":
+      console.log("SET PROJECT DELETE MODAL STATUS IN REDUCER");
       return { ...state, deleteProjectModal: modalStatus };
     case "SET_APPLY_MODAL_STATUS":
       return { ...state, applyModal: modalStatus, showNavbar: !modalStatus };

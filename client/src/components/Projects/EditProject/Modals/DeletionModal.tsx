@@ -8,10 +8,15 @@ const Modal = ({
   projectId,
   setModalStatus,
   loader,
+  reset,
   success,
 }: DeleteProjectModalProps) => {
   const modalContainer = useRef<any[]>([]);
   const history = useHistory();
+
+  useEffect(() => {
+    return () => reset();
+  }, []);
 
   useEffect(() => {
     document.removeEventListener("click", handleClick);

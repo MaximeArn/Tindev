@@ -28,11 +28,20 @@ const mapDispatch = (
       params: { slug },
     },
   }: OwnProps
-) => ({
-  getProject: () => dispatch({ type: "GET_PROJECT", slug }),
-  deleteProject: (id: string) => dispatch({ type: "DELETE_PROJECT", id }),
-  setModalStatus: (modalStatus: boolean) =>
-    dispatch({ type: "SET_PROJECT_DELETE_MODAL", modalStatus }),
-});
+) => {
+  const setModalStatus = (modalStatus: boolean) => {
+    dispatch({ type: "SET_PROJECT_DELETE_MODAL", modalStatus });
+  };
+
+  return {
+    getProject: () => dispatch({ type: "GET_PROJECT", slug }),
+    deleteProject: (id: string) => dispatch({ type: "DELETE_PROJECT", id }),
+    setModalStatus,
+    resetDeletionModal: () => {
+      dispatch({ type: "PROJECT_DELETION_SUCCESS_MESSAGE" });
+      setModalStatus(false);
+    },
+  };
+};
 
 export default withRouter(connect(mapState, mapDispatch)(EditProject));

@@ -13,6 +13,7 @@ const EditProject = ({
   isModalOpen,
   projectDeletionLoader,
   getProject,
+  resetDeletionModal,
   deleteProject,
   setModalStatus,
   projectDeletionSuccess,
@@ -30,6 +31,7 @@ const EditProject = ({
           setModalStatus={setModalStatus}
           success={projectDeletionSuccess}
           loader={projectDeletionLoader}
+          reset={resetDeletionModal}
         />
       )}
       <div className="edit-project-container">

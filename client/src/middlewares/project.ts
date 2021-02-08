@@ -142,6 +142,7 @@ const updateProject = (
     })
     .then(({ data: { message, project, username } }) => {
       dispatch({ type: "SET_PROJECT", project });
+      dispatch({ type: "PROJECT_DELETION_SUCCESS_MESSAGE", message });
       successToast(message);
       project.author !== username && history.push(`/project/${slugify(project.title)}`);
       !(slugify(project.title) === slug) &&

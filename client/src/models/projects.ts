@@ -146,6 +146,7 @@ export interface DeleteProjectModalProps {
   projectId: string;
   loader: boolean;
   setModalStatus: Function;
+  reset: Function;
   success: string;
 }
 
@@ -154,6 +155,7 @@ export interface EditProjectProps {
   error: string;
   projectDetailsErrorMessage: string;
   isModalOpen: boolean;
+  resetDeletionModal: Function;
   projectDeletionLoader: boolean;
   categories: Category[];
   updateProjectValues: UpdateProject;
