@@ -31,7 +31,7 @@ export interface ProjectDetailSubComponent {
   size: number;
   contributors: Contributor[];
   applicants: Applicant[] | [];
-  setModalStatus: Function;
+  setApplyModalStatus: Function;
   owner: boolean;
   contributing: undefined | Contributor;
   contributorLoader: boolean;
@@ -91,8 +91,9 @@ export interface ProjectDetailProps {
   location: any;
   match: any;
   project: Project;
-  isModalOpen: boolean;
-  setModalStatus: Function;
+  applyModal: boolean;
+  leaveProjectModal: boolean;
+  setApplyModalStatus: Function;
   verifyOwner: Function;
   owner: boolean;
   error: string;

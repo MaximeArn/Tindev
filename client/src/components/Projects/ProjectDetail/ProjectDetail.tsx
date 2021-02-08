@@ -1,14 +1,16 @@
 import React, { useEffect } from "react";
 import "./projectDetail.scss";
-import Modal from "../../containers/ProjectDetailModal";
+import ApplyModal from "../../containers/ProjectDetailModal";
 import { ProjectDetailProps } from "../../../models/projects";
 import Project from "./Project";
 import CircularProgress from "@material-ui/core/CircularProgress";
+import LeaveProjectModal from "./Modal/LeaveProjectModal";
 
 const ProjectDetail = ({
   project,
-  isModalOpen,
-  setModalStatus,
+  applyModal,
+  leaveProjectModal,
+  setApplyModalStatus,
   verifyOwner,
   owner,
   error,
@@ -34,7 +36,8 @@ const ProjectDetail = ({
 
   return (
     <>
-      {isModalOpen && <Modal projectId={project && project._id} />}
+      {applyModal && <ApplyModal projectId={project && project._id} />}
+      {leaveProjectModal && <LeaveProjectModal />}
       {error ? (
         <p className="error-message">{error}</p>
       ) : (
@@ -46,7 +49,7 @@ const ProjectDetail = ({
             </div>
           ) : (
             <Project
-              setModalStatus={setModalStatus}
+              setApplyModalStatus={setApplyModalStatus}
               {...project}
               owner={owner}
               admin={role === "Admin"}

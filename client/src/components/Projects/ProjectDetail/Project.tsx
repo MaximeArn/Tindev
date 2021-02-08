@@ -1,8 +1,4 @@
-import {
-  Project as ProjectModel,
-  Contributor,
-  ProjectDetailSubComponent,
-} from "../../../models/projects";
+import { Contributor, ProjectDetailSubComponent } from "../../../models/projects";
 import React from "react";
 import { url } from "../../../environments/api";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
@@ -21,7 +17,7 @@ const Project = ({
   contributors,
   categories,
   author,
-  setModalStatus,
+  setApplyModalStatus,
   owner,
   contributing,
   contributorLoader,
@@ -95,7 +91,10 @@ const Project = ({
               ) : (
                 <>
                   <button className="like-button">Like</button>
-                  <button onClick={() => setModalStatus(true)} className="apply-button">
+                  <button
+                    onClick={() => setApplyModalStatus(true)}
+                    className="apply-button"
+                  >
                     Apply
                   </button>
                 </>

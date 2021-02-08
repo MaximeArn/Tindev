@@ -10,7 +10,7 @@ const mapState = ({
     project,
     projectDetail: { owner },
   },
-  modal: { applyModal },
+  modal: { applyModal, leaveProjectModal },
   error: { projectDetailsErrorMessage },
   loaders: { projectDetailsLoader: loader, removingContributorLoader: contributorLoader },
   auth: { user },
@@ -20,7 +20,8 @@ const mapState = ({
   return {
     role: user.role,
     project,
-    isModalOpen: applyModal,
+    applyModal,
+    leaveProjectModal,
     owner,
     error: projectDetailsErrorMessage,
     loader,
@@ -32,7 +33,7 @@ const mapState = ({
 const mapDispatch = (dispatch: Dispatch<AnyAction>, { match: { params } }: OwnProps) => {
   const { slug } = params;
   return {
-    setModalStatus: (modalStatus: boolean) =>
+    setApplyModalStatus: (modalStatus: boolean) =>
       dispatch({ type: "SET_APPLY_MODAL_STATUS", modalStatus }),
     verifyOwner: (projectAuthor: string) =>
       dispatch({ type: "VERIFY_OWNER", projectAuthor }),
