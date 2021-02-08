@@ -10,6 +10,7 @@ const initialState: ModalState = {
   adminConfirmationModal: false,
   redirectionModal: false,
   projectOwnershipModal: false,
+  leaveProjectModal: false,
   authModal: {
     login: false,
     register: false,
@@ -36,8 +37,9 @@ const modal = (
         authModal: { [modal]: modalStatus, [modal2]: !modalStatus },
       };
     case "SET_PROJECT_DELETE_MODAL":
-      console.log("SET PROJECT DELETE MODAL STATUS IN REDUCER");
       return { ...state, deleteProjectModal: modalStatus };
+    case "SET_LEAVE_PROJECT_MODAL":
+      return { ...state, leaveProjectModal: modalStatus };
     case "SET_APPLY_MODAL_STATUS":
       return { ...state, applyModal: modalStatus, showNavbar: !modalStatus };
     case "FORGOT_PASSWORD_MODAL_SWAP":

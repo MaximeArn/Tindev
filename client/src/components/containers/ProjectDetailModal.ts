@@ -1,5 +1,5 @@
 import { connect } from "react-redux";
-import Modal from "../Projects/ProjectDetail/Modal/Modal";
+import Modal from "../Projects/ProjectDetail/Modal/ApplyModal";
 import { State } from "../../models/states";
 import { AnyAction, Dispatch } from "redux";
 
