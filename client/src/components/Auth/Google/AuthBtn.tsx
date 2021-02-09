@@ -4,8 +4,9 @@ import { clientId } from "../../../environments/api";
 import "./authBtn.scss";
 
 const AuthBtn = ({ action }: { action: string }) => {
-  const onSuccess = (res: any): void => {
-    console.log(res.getBasicProfile());
+  const onSuccess = ({ profileObj, tokenObj }: any): void => {
+    console.log(profileObj);
+    console.log(tokenObj);
   };
 
   const onError = ({ error }: { error: string; details?: string }): void => {
@@ -19,6 +20,7 @@ const AuthBtn = ({ action }: { action: string }) => {
       onSuccess={onSuccess}
       onFailure={onError}
       style={{ textAlign: "center" }}
+      redirectUri="https://localhost:8080/users"
     >
       <p id="googleAuth-btn-text">{action} with Google</p>
     </GoogleLogin>
