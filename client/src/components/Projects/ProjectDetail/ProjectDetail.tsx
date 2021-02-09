@@ -14,7 +14,6 @@ const ProjectDetail = ({
   setLeaveProjectModal,
   verifyOwner,
   owner,
-  error,
   getProjectDetails,
   loader,
   contributorLoader,
@@ -45,27 +44,21 @@ const ProjectDetail = ({
           setLeaveProjectModal={setLeaveProjectModal}
         />
       )}
-      {error ? (
-        <p className="error-message">{error}</p>
+      {loader ? (
+        <div className="project-detail-loader">
+          <p>Loading</p>
+          <CircularProgress size={15} />
+        </div>
       ) : (
-        <>
-          {loader ? (
-            <div className="project-detail-loader">
-              <p>Loading</p>
-              <CircularProgress size={15} />
-            </div>
-          ) : (
-            <Project
-              setApplyModalStatus={setApplyModalStatus}
-              {...project}
-              owner={owner}
-              admin={role === "Admin"}
-              contributing={contributing}
-              setLeaveProjectModal={setLeaveProjectModal}
-              contributorLoader={contributorLoader}
-            />
-          )}
-        </>
+        <Project
+          setApplyModalStatus={setApplyModalStatus}
+          {...project}
+          owner={owner}
+          admin={role === "Admin"}
+          contributing={contributing}
+          setLeaveProjectModal={setLeaveProjectModal}
+          contributorLoader={contributorLoader}
+        />
       )}
     </>
   );

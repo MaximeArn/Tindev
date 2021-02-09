@@ -5,17 +5,9 @@ import EditProject from "../Projects/EditProject/EditProject";
 import { AnyAction, Dispatch } from "redux";
 import { OwnProps } from "../../models/connect";
 
-const mapState = ({
-  project: { project, updateProject },
-  error: { projectEditionErrorMessage: error, projectDetailsErrorMessage },
-  success: { projectDeletionSuccess },
-  modal: { deleteProjectModal: isModalOpen },
-  loaders: { projectDeletionLoader },
-}: State) => ({
+const mapState = ({ project: { project, updateProject }, success: { projectDeletionSuccess }, modal: { deleteProjectModal: isModalOpen }, loaders: { projectDeletionLoader } }: State) => ({
   project: project,
   updateProjectValues: updateProject,
-  error,
-  projectDetailsErrorMessage,
   isModalOpen,
   projectDeletionLoader,
   projectDeletionSuccess,

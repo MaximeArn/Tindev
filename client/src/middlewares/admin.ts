@@ -9,25 +9,27 @@ const admin: Middleware = ({ getState, dispatch }) => (next) => (action) => {
       axios
         .delete(`/admin/project/${id}`)
         .then(({ data: { message } }) => {
-          dispatch({ type: "ADMIN_DELETION_SUCCESS_MESSAGE", message });
-          dispatch({ type: "ADMIN_PANEL_ERROR_HANDLER" });
+          dispatch({ type: "toasts/success", message });
           dispatch({ type: "GET_PROJECTS" });
           history.push("/");
         })
         .catch(({ response: { data: { msg: error } } }) =>
-          dispatch({ type: "ADMIN_PANEL_ERROR_HANDLER", error })
+          dispatch({ type: "toasts/error", message: error })
         )
-        .finally(() =>
-          dispatch({ type: "SET_ADMIN_DELETION_LOADER", value: false })
-        );
+        .finally(() => {
+          dispatch({ type: "SET_ADMIN_DELETION_LOADER", value: false });
+          dispatch({
+            type: "SET_ADMIN_CONFIRMATION_MODAL_STATUS",
+            modalStatus: false,
+          });
+        });
       break;
     case "BAN_USER":
       dispatch({ type: "SET_ADMIN_DELETION_LOADER", value: true });
       axios
         .patch(`/admin/user/${id}`, { duration })
         .then(({ data: { message } }) => {
-          dispatch({ type: "ADMIN_DELETION_SUCCESS_MESSAGE", message });
-          dispatch({ type: "ADMIN_PANEL_ERROR_HANDLER" });
+          dispatch({ type: "toasts/success", message });
           dispatch({ type: "GET_USERS" });
           dispatch({
             type: "SET_ADMIN_CONFIRMATION_MODAL_STATUS",
@@ -36,7 +38,7 @@ const admin: Middleware = ({ getState, dispatch }) => (next) => (action) => {
           history.push("/users");
         })
         .catch(({ response: { data: { msg: error } } }) =>
-          dispatch({ type: "ADMIN_PANEL_ERROR_HANDLER", error })
+          dispatch({ type: "toasts/error", message: error })
         )
         .finally(() =>
           dispatch({ type: "SET_ADMIN_DELETION_LOADER", value: false })

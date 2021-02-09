@@ -9,12 +9,9 @@ import { AuthModalSwapping } from "../../models/modal";
 
 const mapState = (state: State) => {
   const { register } = state.auth;
-  const {
-    auth: { registerErrorMessage: error },
-  } = state.error;
   const { registerLoader } = state.loaders;
 
-  return { register, error, registerLoader };
+  return { register, registerLoader };
 };
 
 const mapDispatch = (dispatch: Dispatch<AnyAction>) => ({

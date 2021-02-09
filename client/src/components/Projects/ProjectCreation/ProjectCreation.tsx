@@ -9,7 +9,6 @@ import "./projectcreation.scss";
 
 const ProjectCreation = ({
   projectInputs,
-  error,
   history: { listen },
   loading,
   setProjectImage,
@@ -64,7 +63,6 @@ const ProjectCreation = ({
         <div className="project-container">
           <div className="project-container-form">
             <form onSubmit={handleSubmit}>
-              {error && <div className="project-creation-error-message">{error}</div>}
               <section className="image-section">
                 <div onClick={fileBrowserClickHandler}>
                   <img

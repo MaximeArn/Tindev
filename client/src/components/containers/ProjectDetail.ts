@@ -11,7 +11,6 @@ const mapState = ({
     projectDetail: { owner },
   },
   modal: { applyModal, leaveProjectModal },
-  error: { projectDetailsErrorMessage },
   loaders: { projectDetailsLoader: loader, removingContributorLoader: contributorLoader },
   auth: { user },
 }: State) => {
@@ -23,7 +22,6 @@ const mapState = ({
     applyModal,
     leaveProjectModal,
     owner,
-    error: projectDetailsErrorMessage,
     loader,
     contributorLoader,
     contributing,

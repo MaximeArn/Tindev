@@ -44,7 +44,6 @@ export interface User extends GlobalUrlPath {
 export interface UserProfileProps {
   admin: boolean;
   user: User;
-  error: string;
   loader: boolean;
   getUser: Function;
   openChatWindow: Function;
@@ -81,8 +80,6 @@ export interface AuthUserState {
 
 export interface EditUserProfile {
   user: User;
-  error: string;
-  success: boolean | string;
   isLoading: boolean;
   loader: {
     fieldName: string | null;
@@ -95,7 +92,6 @@ export interface EditUserProfile {
   updateUserProfile: Function;
   getEditProfileValue: Function;
   resetEditProfileValue: Function;
-  resetMessages: Function;
   deleteAccount: Function;
   setDeleteModalStatus: Function;
 }

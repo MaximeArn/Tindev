@@ -10,9 +10,7 @@ const sendProject = ({ getState, dispatch, history }: AxiosSubmit) => {
   const formData = new FormData();
 
   for (const key in createProject) {
-    key === "categories"
-      ? formData.append(key, JSON.stringify(createProject[key]))
-      : formData.append(key, createProject[key]);
+    key === "categories" ? formData.append(key, JSON.stringify(createProject[key])) : formData.append(key, createProject[key]);
   }
 
   dispatch({ type: "SET_PROJECT_CREATION_LOADER", value: true });
@@ -24,9 +22,16 @@ const sendProject = ({ getState, dispatch, history }: AxiosSubmit) => {
       dispatch({ type: "ADD_PROJECT_ON_PROJECT_CREATION", project });
       history.push(`/project/${slugify(project.title)}`);
     })
-    .catch(({ response: { msg: error } }) => {
-      dispatch({ type: "PROJECT_CREATION_ERROR_HANDLER", error });
-    })
+
+    .catch(
+      ({
+        response: {
+          data: { msg: error },
+        },
+      }) => {
+        dispatch({ type: "toasts/error", message: error });
+      }
+    )
     .finally(() => dispatch({ type: "SET_PROJECT_CREATION_LOADER", value: false }));
 };
 
@@ -37,10 +42,10 @@ const getProjects = (dispatch: Dispatch<AnyAction>) => {
     .then(({ data: projects }) => {
       dispatch({ type: "SET_PROJECTS", projects });
     })
-    .catch(() => {
+    .catch(({ error }) => {
       dispatch({
-        type: "PROJECT_LIST_ERROR_HANDLER",
-        error: "Oops... Something went wrong",
+        type: "toasts/error",
+        message: error,
       });
     })
     .finally(() => dispatch({ type: "SET_PROJECTLIST_LOADER", value: false }));
@@ -59,7 +64,7 @@ const sendApply = ({ getState, dispatch }: AxiosSubmit, projectId: string) => {
       project: projectId,
     })
     .then(({ data: { msg } }) => {
-      dispatch({ type: "APPLY_SUCCESS_MESSAGE", message: msg });
+      dispatch({ type: "toasts/success", message: msg });
       dispatch({ type: "RESET_PROJECT_APPLY_FORM_VALUES" });
     })
     .catch(
@@ -68,7 +73,7 @@ const sendApply = ({ getState, dispatch }: AxiosSubmit, projectId: string) => {
           data: { msg: error },
         },
       }) => {
-        dispatch({ type: "PROJECT_APPLY_ERROR_HANDLER", error });
+        dispatch({ type: "toasts/error", message: error });
       }
     );
 };
@@ -106,7 +111,7 @@ const declineApplicant = ({ dispatch, data: { projectId, userId } }: AxiosApplic
   axios
     .patch("/project/decline_applicant", { projectId, userId })
     .then(({ data: project }) => dispatch({ type: "SET_PROJECT", project }))
-    .catch((error) => console.error(error))
+    .catch((error) => dispatch({ type: "toasts/error", message: error }))
     .finally(() => {
       dispatch({
         type: "SET_PROJECT_MANAGE_LOADER",
@@ -117,18 +122,11 @@ const declineApplicant = ({ dispatch, data: { projectId, userId } }: AxiosApplic
     });
 };
 
-const updateProject = (
-  { getState, dispatch, history }: AxiosSubmit,
-  name: string,
-  projectId: string,
-  slug: string
-) => {
+const updateProject = ({ getState, dispatch, history }: AxiosSubmit, name: string, projectId: string, slug: string) => {
   const { updateProject } = getState().project;
   const formData = new FormData();
 
-  name === "categories"
-    ? formData.append(name, JSON.stringify(updateProject[name]))
-    : formData.append(name, updateProject[name]);
+  name === "categories" ? formData.append(name, JSON.stringify(updateProject[name])) : formData.append(name, updateProject[name]);
 
   dispatch({
     type: "SET_PROJECT_EDITION_LOADER",
@@ -143,16 +141,21 @@ const updateProject = (
     .then(({ data: { message, project, username } }) => {
       dispatch({ type: "SET_PROJECT", project });
       dispatch({ type: "PROJECT_DELETION_SUCCESS_MESSAGE", message });
-      successToast(message);
+      dispatch({ type: "toasts/success", message });
       project.author !== username && history.push(`/project/${slugify(project.title)}`);
-      !(slugify(project.title) === slug) &&
-        history.push(`/project/${slugify(project.title)}/edit`);
+
+      !(slugify(project.title) === slug) && history.push(`/project/${slugify(project.title)}/edit`);
     })
 
-    .catch(({ response: { data } }) => {
-      const { msg: error } = data;
-      dispatch({ type: "PROJECT_EDITION_ERROR_HANDLER", error });
-    })
+    .catch(
+      ({
+        response: {
+          data: { error },
+        },
+      }) => {
+        dispatch({ type: "toasts/error", message: error });
+      }
+    )
     .finally(() =>
       dispatch({
         type: "SET_PROJECT_EDITION_LOADER",
@@ -168,11 +171,8 @@ const getProject = (dispatch: Dispatch<AnyAction>, slug: string) => {
     .get(`/project/${unslugify(slug)}`)
     .then(({ data: project }) => {
       dispatch({ type: "SET_PROJECT", project });
-      dispatch({ type: "PROJECT_DETAILS_ERROR_HANDLER" });
     })
-    .catch(({ response: { data: { msg: error } } }) =>
-      dispatch({ type: "PROJECT_DETAILS_ERROR_HANDLER", error })
-    )
+    .catch(({ response: { data: { msg: error } } }) => dispatch({ type: "toasts/error", message: error }))
     .finally(() => dispatch({ type: "SET_PROJECT_DETAILS_LOADER", value: false }));
 };
 
@@ -195,10 +195,10 @@ const deleteProject = (dispatch: Dispatch<AnyAction>, id: string) => {
   axios
     .delete(`/project/${id}`)
     .then(({ data: { msg: message } }) => {
-      dispatch({ type: "PROJECT_DELETION_SUCCESS_MESSAGE", message });
+      dispatch({ type: "toasts/success", message });
       getProjects(dispatch);
     })
-    .catch((error) => console.error(error))
+    .catch((error) => dispatch({ type: "toasts/error", message: error }))
     .finally(() => dispatch({ type: "SET_PROJECT_DELETION_LOADER", value: false }));
 };
 

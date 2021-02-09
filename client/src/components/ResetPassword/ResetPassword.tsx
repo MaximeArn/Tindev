@@ -4,11 +4,11 @@ import CircularProgress from "@material-ui/core/CircularProgress";
 import Input from "../containers/Input";
 import { useHistory } from "react-router-dom";
 import "./resetpassword.scss";
+import { successToast } from "../../utils/toastify";
 
 const ResetPassword = ({
   inputs,
   validityError: { msg: errorMessage, userId },
-  error,
   newLinkSuccess,
   success,
   submitForm,
@@ -18,6 +18,10 @@ const ResetPassword = ({
   sendNewResetPasswordLink,
 }: ResetPasswordProps) => {
   const history = useHistory();
+
+  useEffect(() => {
+    (success || newLinkSuccess) && successToast(success);
+  }, [success, newLinkSuccess]);
 
   useEffect(() => {
     verifyTokenValidity();
@@ -31,7 +35,8 @@ const ResetPassword = ({
           {userId && (
             <div className="reset-password-expired">
               <div className="reset-password-expired-message">
-                Click on the button below to send a new link to your email address
+                Click on the button below to send a new link to your email
+                address
               </div>
               <button
                 className="reset-password-new-link-button"
@@ -47,8 +52,6 @@ const ResetPassword = ({
             </div>
           )}
         </>
-      ) : newLinkSuccess ? (
-        <div className="reset-password-success-message">{newLinkSuccess}</div>
       ) : success ? (
         <>
           <div className="reset-password-success">
@@ -64,7 +67,6 @@ const ResetPassword = ({
         </>
       ) : (
         <div>
-          {error && <div className="reset-password-error">{error}</div>}
           <form
             action=""
             className="reset-password-form"

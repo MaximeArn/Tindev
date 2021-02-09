@@ -1,20 +1,19 @@
-import React, { FormEvent, MouseEvent, useRef } from "react";
+import React, { FormEvent, MouseEvent, useRef, useEffect } from "react";
 import { LoginAuth } from "../../../models/states";
 import googleIcon from "src/assets/icons/googleIcon.svg";
 import modalClickHandler from "../../../utils/modalClickHandler";
 import inputMapper from "../../../utils/inputMapper";
+import { successToast, errorToast } from "../../../utils/toastify";
 import "../modal.scss";
 import CircularProgress from "@material-ui/core/CircularProgress";
 
 const Login = ({
   login,
-  error: { msg: errorMessage, userId },
+  error: { userId },
   submitLogin,
   loginLoader,
   newLinkLoader,
   closeModal,
-  registerSuccess,
-  newLinkSuccess,
   sendActivationLink,
   swapModal,
   setForgotPasswordModalStatus,
@@ -29,43 +28,39 @@ const Login = ({
   return (
     <>
       <div
-        ref={modal}
         id="registerContainer"
         className="modalContainer"
-        onMouseDown={(event) => modalClickHandler({ event, modal, closeModal })}
+        onMouseDown={({ target }) =>
+          modalClickHandler({ target, modal, closeModal })
+        }
       >
-        <div className="modal" id="modal">
+        <div className="modal" id="modal" ref={modal}>
           <form method="POST" onSubmit={handleSubmit}>
             <div className="modal-padding">
               <h1 className="modal-title">Sign In</h1>
-              {registerSuccess && <p className="success-message">{registerSuccess}</p>}
-              {errorMessage && (
-                <>
-                  <span className="modal-error-message">{errorMessage}</span>
-                  {userId && (
-                    <>
-                      <div className="modal-error-activationLink">
-                        Didn't receive any email ?
-                      </div>
-                      <button
-                        className="modal-error-newLink"
-                        onClick={() => sendActivationLink(userId)}
-                        disabled={newLinkLoader}
-                      >
-                        {newLinkLoader ? (
-                          <div className="loading-button">
-                            <p>Loading</p>
-                            <CircularProgress size={15} />
-                          </div>
-                        ) : (
-                          "Send a new link"
-                        )}
-                      </button>
-                    </>
-                  )}
-                </>
-              )}
-              {newLinkSuccess && <p className="success-message">{newLinkSuccess}</p>}
+              <>
+                {userId && (
+                  <>
+                    <div className="modal-error-activationLink">
+                      Didn't receive any email ?
+                    </div>
+                    <button
+                      className="modal-error-newLink"
+                      onClick={() => sendActivationLink(userId)}
+                      disabled={newLinkLoader}
+                    >
+                      {newLinkLoader ? (
+                        <div className="loading-button">
+                          <p>Loading</p>
+                          <CircularProgress size={15} />
+                        </div>
+                      ) : (
+                        "Send a new link"
+                      )}
+                    </button>
+                  </>
+                )}
+              </>
               <div className="fields">{inputMapper(login)}</div>
               {loginLoader ? (
                 <button type="submit" className="submitButton" disabled>
@@ -75,7 +70,11 @@ const Login = ({
                   </div>
                 </button>
               ) : (
-                <button type="submit" className="submitButton" disabled={loginLoader}>
+                <button
+                  type="submit"
+                  className="submitButton"
+                  disabled={loginLoader}
+                >
                   Continue
                 </button>
               )}
@@ -94,7 +93,9 @@ const Login = ({
                 Not a member yet ?
                 <a
                   className="auth-modal"
-                  onClick={() => swapModal({ modal: "login", modal2: "register" })}
+                  onClick={() =>
+                    swapModal({ modal: "login", modal2: "register" })
+                  }
                 >
                   Register
                 </a>

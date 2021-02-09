@@ -7,8 +7,6 @@ import "./editprofile.scss";
 
 const EditProfile = ({
   user,
-  error,
-  success,
   isLoading,
   loader,
   deleteModal,
@@ -18,17 +16,12 @@ const EditProfile = ({
   updateUserProfile,
   getEditProfileValue,
   resetEditProfileValue,
-  resetMessages,
   deleteAccount,
   setDeleteModalStatus,
 }: EditUserProfile) => {
   useEffect(() => {
     getUserProfile();
   }, []);
-
-  useEffect(() => {
-    (error || success) && setTimeout(() => resetMessages(), 3000);
-  }, [error, success]);
 
   return (
     <>
@@ -49,8 +42,6 @@ const EditProfile = ({
           )}
           {user && (
             <div className="profile-wrapper">
-              {success && <div className="profile-edit-success">{success}</div>}
-              {error && <div className="profile-edit-error">{error}</div>}
               <div className="profile">
                 <div className="profile-edit-container">
                   {Object.entries(editProfile).map(([prop, value]) => {

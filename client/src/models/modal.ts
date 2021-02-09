@@ -21,7 +21,6 @@ export interface ProjectDetailModal {
   sendApply: Function;
   setModalStatus: Function;
   reset: Function;
-  error: string;
   success: boolean | string;
 }
 

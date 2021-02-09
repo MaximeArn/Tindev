@@ -1,4 +1,4 @@
-import React, { FormEvent, useRef } from "react";
+import React, { FormEvent, useRef, useEffect } from "react";
 import { RegisterAuth } from "../../../models/states";
 import googleIcon from "src/assets/icons/googleIcon.svg";
 import modalClickHandler from "../../../utils/modalClickHandler";
@@ -8,7 +8,6 @@ import "../modal.scss";
 
 const Register = ({
   register,
-  error,
   submitRegister,
   registerLoader,
   closeModal,
@@ -23,15 +22,15 @@ const Register = ({
 
   return (
     <div
-      ref={modal}
       className="modalContainer"
-      onMouseDown={(event) => modalClickHandler({ event, modal, closeModal })}
+      onMouseDown={({ target }) =>
+        modalClickHandler({ target, modal, closeModal })
+      }
     >
-      <div className="modal" id="modal">
+      <div className="modal" id="modal" ref={modal}>
         <form method="POST" onSubmit={handleSubmit}>
           <div className="modal-padding">
             <h1 className="modal-title">Create Account</h1>
-            {error && <span className="modal-error-message">{error}</span>}
             <div className="fields">{inputMapper(register)}</div>
             {registerLoader ? (
               <button type="submit" className="submitButton" disabled>

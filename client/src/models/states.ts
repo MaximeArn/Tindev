@@ -91,7 +91,6 @@ export interface RegisterAuth {
     age?: number | undefined;
   };
   submitRegister: Function;
-  error: string;
   registerLoader: boolean;
   closeModal: Function;
   swapModal: Function;
@@ -110,8 +109,6 @@ export interface LoginAuth {
     userId?: null | string;
   };
   closeModal: Function;
-  registerSuccess: boolean | string;
-  newLinkSuccess: boolean | string;
   swapModal: Function;
   sendActivationLink: Function;
   setForgotPasswordModalStatus: Function;
@@ -258,7 +255,6 @@ export interface ResetPasswordProps {
     msg: string;
     userId?: null | string;
   };
-  error: string;
   submitForm: Function;
   newLinkSuccess: boolean | string;
   success: boolean | string;
@@ -271,9 +267,7 @@ export interface ResetPasswordProps {
 export interface AdminOverlayProps {
   id: string;
   collection: string;
-  error: string;
   loader: boolean;
-  success: boolean | string;
   deleteProject: Function;
   modal: boolean;
   setModalStatus: Function;

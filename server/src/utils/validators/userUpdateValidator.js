@@ -3,18 +3,25 @@ const { User, Category } = require("../../models");
 const UserError = require("../CustomError");
 const sanitizeConfig = require("../../config/sanitize");
 const hash = require("../hashPassword.js");
-const emailRegex = new RegExp(/^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+$/g);
+const emailRegex = new RegExp(
+  /^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+$/g
+);
 
 module.exports = async (body, next) => {
   try {
     const key = Object.keys(body)[0];
     const categories = await Category.find();
 
+    if (!body[key].trim()) {
+      throw new UserError("Som required fields are not provided");
+    }
+
     if (key === "username") {
       const exists = await User.findOne(body);
 
       if (exists) throw new UserError("This username already exists", 400);
-      if (!body[key].trim()) throw new UserError("Username must not be empty", 400);
+      if (!body[key].trim())
+        throw new UserError("Username must not be empty", 400);
 
       body[key] = body[key].replace(" ", "");
     }
@@ -51,9 +58,15 @@ module.exports = async (body, next) => {
     }
 
     if (key === "technos") {
-      body[key] = JSON.parse(body[key]).map((value) => sanitize(value, sanitizeConfig));
+      body[key] = JSON.parse(body[key]).map((value) =>
+        sanitize(value, sanitizeConfig)
+      );
 
-      if (!body[key].every((techno) => categories.some(({ name }) => name === techno))) {
+      if (
+        !body[key].every((techno) =>
+          categories.some(({ name }) => name === techno)
+        )
+      ) {
         throw new UserError("Invalid technologies provided.", 400);
       }
     }

@@ -1,14 +1,14 @@
-import React, { FormEvent, useRef } from "react";
+import React, { FormEvent, useRef, useEffect } from "react";
 import Input from "../../../containers/Input";
 import { ProjectDetailModal } from "../../../../models/modal";
 import "./modal.scss";
+import { errorToast } from "../../../../utils/toastify";
 
 const Modal = ({
   inputValue,
   sendApply,
   setModalStatus,
   reset,
-  error,
   success,
 }: ProjectDetailModal) => {
   const modal = useRef<HTMLDivElement>(null);
@@ -35,7 +35,6 @@ const Modal = ({
           <form onSubmit={handleSubmit}>
             <div className="project-detail-padding">
               <h1 className="project-detail-interest">Show your interest</h1>
-              {error && <div className="apply-error-message">{error}</div>}
               <Input
                 name="description"
                 formType="ProjectDetail"

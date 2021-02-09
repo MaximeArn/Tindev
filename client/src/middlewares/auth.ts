@@ -15,7 +15,7 @@ const createUser = ({ getState, dispatch }: AxiosSubmit) => {
         modal2: "login",
         modalStatus: false,
       });
-      dispatch({ type: "REGISTER_SUCCESS_MESSAGE", message: msg });
+      dispatch({ type: "toasts/success", message: msg });
       dispatch({ type: "RESET_AUTH_INPUTS_VALUES", authType: "register" });
       dispatch({ type: "RESET_AUTH_MODAL_ERROR_VALUES" });
     })
@@ -25,7 +25,7 @@ const createUser = ({ getState, dispatch }: AxiosSubmit) => {
           data: { msg: error },
         },
       }) => {
-        dispatch({ type: "REGISTER_ERROR_HANDLER", error });
+        dispatch({ type: "toasts/error", message: error });
       }
     )
     .finally(() => {
@@ -49,10 +49,17 @@ const login = ({ getState, dispatch }: AxiosSubmit) => {
       dispatch({ type: "RESET_AUTH_MODAL_ERROR_VALUES" });
       dispatch({ type: "RESET_REGISTER_SUCCESS_MESSAGE" });
     })
-    .catch(({ response: { data: error } }) => {
-      dispatch({ type: "LOGIN_ERROR_HANDLER", error });
-      dispatch({ type: "REGISTER_SUCCESS_MESSAGE" });
-    })
+    .catch(
+      ({
+        response: {
+          data: { msg: error },
+        },
+      }) => {
+        //must be changed
+        dispatch({ type: "LOGIN_ERROR_HANDLER", error });
+        dispatch({ type: "toasts/error", message: error });
+      }
+    )
     .finally(() => {
       dispatch({ type: "SET_LOGIN_LOADER", value: false });
     });
@@ -61,11 +68,16 @@ const login = ({ getState, dispatch }: AxiosSubmit) => {
 const retrieveToken = (dispatch: Dispatch<AnyAction>) => {
   axios
     .get("/verification")
-    .then(({ data: credentials }) => dispatch({ type: "CONNECT_USER", credentials }))
+    .then(({ data: credentials }) =>
+      dispatch({ type: "CONNECT_USER", credentials })
+    )
     .catch(() => axios.delete("/auth/clear_cookies"));
 };
 
-const logout = ({ getState, dispatch, history }: AxiosSubmit, message?: string) => {
+const logout = (
+  { getState, dispatch, history }: AxiosSubmit,
+  message?: string
+) => {
   const { username } = getState().auth.user || {};
   axios.delete(`/auth/logout/${username}`).finally(() => {
     dispatch({ type: "RESET_GLOBAL_STATE" });
@@ -91,10 +103,15 @@ const activateAccount = (dispatch: Dispatch<AnyAction>, token: string) => {
     .catch(({ response: { data: { msg: error } } }) =>
       dispatch({ type: "ACCOUNT_ACTIVATION_ERROR_HANDLER", error })
     )
-    .finally(() => dispatch({ type: "SET_ACCOUNT_ACTIVATION_LOADER", value: false }));
+    .finally(() =>
+      dispatch({ type: "SET_ACCOUNT_ACTIVATION_LOADER", value: false })
+    );
 };
 
-const sendNewPassword = async ({ getState, dispatch }: AxiosSubmit, token: string) => {
+const sendNewPassword = async (
+  { getState, dispatch }: AxiosSubmit,
+  token: string
+) => {
   const { password, confirmPassword } = getState().auth.resetPassword;
   try {
     dispatch({ type: "SET_RESET_PASSWORD_LOADER", value: true });
@@ -113,13 +130,16 @@ const sendNewPassword = async ({ getState, dispatch }: AxiosSubmit, token: strin
       data: { msg: error },
     },
   }) {
-    dispatch({ type: "RESET_PASSWORD_ERROR_HANDLER", error });
+    dispatch({ type: "toasts/error", message: error });
   } finally {
     dispatch({ type: "SET_RESET_PASSWORD_LOADER", value: false });
   }
 };
 
-const checkLinkTokenValidity = (dispatch: Dispatch<AnyAction>, token: string) => {
+const checkLinkTokenValidity = (
+  dispatch: Dispatch<AnyAction>,
+  token: string
+) => {
   axios
     .get(`/auth/token_validity/${token}`)
     .catch(({ response: { data: error } }) =>

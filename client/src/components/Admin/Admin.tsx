@@ -13,19 +13,12 @@ import Input from "./RadioInput";
 const Admin = ({
   id,
   collection,
-  error,
-  success,
   loader,
   deleteProject,
   modal,
   setModalStatus,
   banUser,
 }: AdminOverlayProps) => {
-  useEffect(() => {
-    error && errorToast(error);
-    success && successToast(success);
-  }, [error, success]);
-
   const [isPanelOpen, setIsPanelOpen] = useState(false);
   const [duration, setDuration] = useState(null);
 

@@ -78,7 +78,6 @@ export interface ProjectCreationButton {
 
 export interface ProjectCreationProps {
   projectInputs: Project;
-  error: string;
   loading: boolean;
   sendProject: Function;
   history: any;
@@ -97,7 +96,6 @@ export interface ProjectDetailProps {
   setLeaveProjectModal: Function;
   verifyOwner: Function;
   owner: boolean;
-  error: string;
   getProjectDetails: Function;
   loader: boolean;
   contributorLoader: boolean;
@@ -154,8 +152,6 @@ export interface DeleteProjectModalProps {
 
 export interface EditProjectProps {
   project: Project;
-  error: string;
-  projectDetailsErrorMessage: string;
   isModalOpen: boolean;
   resetDeletionModal: Function;
   projectDeletionLoader: boolean;
