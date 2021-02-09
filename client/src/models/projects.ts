@@ -35,7 +35,7 @@ export interface ProjectDetailSubComponent {
   owner: boolean;
   contributing: undefined | Contributor;
   contributorLoader: boolean;
-  leaveProject: Function;
+  setLeaveProjectModal: Function;
   admin: boolean;
 }
 export interface ProjectCreation {
@@ -94,6 +94,7 @@ export interface ProjectDetailProps {
   applyModal: boolean;
   leaveProjectModal: boolean;
   setApplyModalStatus: Function;
+  setLeaveProjectModal: Function;
   verifyOwner: Function;
   owner: boolean;
   error: string;
@@ -220,4 +221,10 @@ export interface ProjectOwnershipModal {
   updateProject: Function;
   author: string;
   setProjectOwnershipModal: Function;
+}
+
+export interface LeaveProjectProps {
+  id: string;
+  leaveProject: Function;
+  setLeaveProjectModal: Function;
 }

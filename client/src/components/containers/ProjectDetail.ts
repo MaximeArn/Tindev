@@ -35,6 +35,8 @@ const mapDispatch = (dispatch: Dispatch<AnyAction>, { match: { params } }: OwnPr
   return {
     setApplyModalStatus: (modalStatus: boolean) =>
       dispatch({ type: "SET_APPLY_MODAL_STATUS", modalStatus }),
+    setLeaveProjectModal: (modalStatus: boolean) =>
+      dispatch({ type: "SET_LEAVE_PROJECT_MODAL", modalStatus }),
     verifyOwner: (projectAuthor: string) =>
       dispatch({ type: "VERIFY_OWNER", projectAuthor }),
     getProjectDetails: () => {

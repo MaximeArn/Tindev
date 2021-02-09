@@ -11,6 +11,7 @@ const ProjectDetail = ({
   applyModal,
   leaveProjectModal,
   setApplyModalStatus,
+  setLeaveProjectModal,
   verifyOwner,
   owner,
   error,
@@ -37,7 +38,13 @@ const ProjectDetail = ({
   return (
     <>
       {applyModal && <ApplyModal projectId={project && project._id} />}
-      {leaveProjectModal && <LeaveProjectModal />}
+      {leaveProjectModal && (
+        <LeaveProjectModal
+          id={project._id}
+          leaveProject={leaveProject}
+          setLeaveProjectModal={setLeaveProjectModal}
+        />
+      )}
       {error ? (
         <p className="error-message">{error}</p>
       ) : (
@@ -54,7 +61,7 @@ const ProjectDetail = ({
               owner={owner}
               admin={role === "Admin"}
               contributing={contributing}
-              leaveProject={leaveProject}
+              setLeaveProjectModal={setLeaveProjectModal}
               contributorLoader={contributorLoader}
             />
           )}

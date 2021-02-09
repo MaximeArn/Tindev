@@ -2,7 +2,7 @@ import { AnyAction, Dispatch, Middleware } from "redux";
 import { AxiosSubmit, AxiosApplicant } from "../models/axios";
 import slugify from "../utils/slugify";
 import unslugify from "../utils/unslugify";
-import { successToast } from "../utils/toastify";
+import { successToast, errorToast } from "../utils/toastify";
 import axios from "../utils/axiosInstance";
 
 const sendProject = ({ getState, dispatch, history }: AxiosSubmit) => {
@@ -183,8 +183,11 @@ const leaveProject = (dispatch: Dispatch<AnyAction>, id: string) => {
     .then(({ data: project }) => {
       dispatch({ type: "SET_PROJECT", project });
     })
-    .catch((error) => console.error(error))
-    .finally(() => dispatch({ type: "SET_CONTRIBUTOR_REMOVING_LOADER", value: false }));
+    .catch(({ response: { data: { msg: error } } }) => errorToast(error))
+    .finally(() => {
+      dispatch({ type: "SET_CONTRIBUTOR_REMOVING_LOADER", value: false });
+      dispatch({ type: "SET_LEAVE_PROJECT_MODAL", modalStatus: false });
+    });
 };
 
 const deleteProject = (dispatch: Dispatch<AnyAction>, id: string) => {

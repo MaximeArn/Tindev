@@ -21,7 +21,7 @@ const Project = ({
   owner,
   contributing,
   contributorLoader,
-  leaveProject,
+  setLeaveProjectModal,
   admin,
 }: ProjectDetailSubComponent) => {
   const typedContributors: Contributor[] | [] = contributors;
@@ -84,7 +84,10 @@ const Project = ({
               ) : contributing ? (
                 <>
                   <button className="edit-button">Like</button>
-                  <button onClick={() => leaveProject(_id)} className="manage-button">
+                  <button
+                    onClick={() => setLeaveProjectModal(true)}
+                    className="manage-button"
+                  >
                     Leave
                   </button>
                 </>
