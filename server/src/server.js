@@ -13,6 +13,7 @@ const cors = require("cors");
 const corsSettings = require("./config/cors");
 const adminMiddleware = require("./middlewares/admin");
 const tokenVerification = require("./middlewares/tokenVerification");
+const googleAUth = require("./config/GoogleAuth/getOAuthClient");
 const {
   authRouterWrapper,
   usersRouter,
@@ -34,6 +35,9 @@ server.use(cookieParser());
 server.use(tokenVerification);
 server.use("/verification", authorizationRouter);
 server.use("/auth", authRouterWrapper(connectedUsers));
+server.use("/oauth2callback", ({ query }, res, next) => {
+  console.log(query);
+});
 server.use("/project", projectRouterWrapper(connectedUsers));
 server.use("/categories", categoriesRouter);
 server.use("/users", usersRouter);
@@ -57,8 +61,6 @@ ioNameSpace.use(socketConnection).on("connection", (socket) => {
 mongoDB.on("error", () => console.log("Error connecting to database"));
 mongoDB.once("open", () => console.log("Connected to mongo database"));
 
+googleAUth();
+
 module.exports = { server, http };
-
-const tab = [];
-
-const updated = tab.filter((element) => element.id !== 2).push("myelement");
