@@ -61,7 +61,7 @@ const Register = ({
           </div>
 
           <div className="social-media">
-            <GoogleAuthButton />
+            <GoogleAuthButton action="Register" />
             {/* <button className="google-connect">
                 <img src={googleIcon} alt="google icon" />
                 <span>Connect with Google</span>
