@@ -3,9 +3,9 @@ import { LoginAuth } from "../../../models/states";
 import googleIcon from "src/assets/icons/googleIcon.svg";
 import modalClickHandler from "../../../utils/modalClickHandler";
 import inputMapper from "../../../utils/inputMapper";
-import { successToast, errorToast } from "../../../utils/toastify";
 import "../modal.scss";
 import CircularProgress from "@material-ui/core/CircularProgress";
+import GoogleAuthButton from "../Google/AuthBtn";
 
 const Login = ({
   login,
@@ -30,9 +30,7 @@ const Login = ({
       <div
         id="registerContainer"
         className="modalContainer"
-        onMouseDown={({ target }) =>
-          modalClickHandler({ target, modal, closeModal })
-        }
+        onMouseDown={({ target }) => modalClickHandler({ target, modal, closeModal })}
       >
         <div className="modal" id="modal" ref={modal}>
           <form method="POST" onSubmit={handleSubmit}>
@@ -70,11 +68,7 @@ const Login = ({
                   </div>
                 </button>
               ) : (
-                <button
-                  type="submit"
-                  className="submitButton"
-                  disabled={loginLoader}
-                >
+                <button type="submit" className="submitButton" disabled={loginLoader}>
                   Continue
                 </button>
               )}
@@ -93,9 +87,7 @@ const Login = ({
                 Not a member yet ?
                 <a
                   className="auth-modal"
-                  onClick={() =>
-                    swapModal({ modal: "login", modal2: "register" })
-                  }
+                  onClick={() => swapModal({ modal: "login", modal2: "register" })}
                 >
                   Register
                 </a>
@@ -106,10 +98,11 @@ const Login = ({
               </div>
 
               <div className="social-media">
-                <button className="google-connect">
+                <GoogleAuthButton />
+                {/* <button className="google-connect">
                   <img src={googleIcon} alt="google icon" />
                   <span>Connect with Google</span>
-                </button>
+                </button> */}
               </div>
             </footer>
           </form>

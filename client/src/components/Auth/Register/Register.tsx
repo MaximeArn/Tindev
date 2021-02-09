@@ -4,7 +4,7 @@ import googleIcon from "src/assets/icons/googleIcon.svg";
 import modalClickHandler from "../../../utils/modalClickHandler";
 import inputMapper from "../../../utils/inputMapper";
 import CircularProgress from "@material-ui/core/CircularProgress";
-import LoginButton from "../Google/LoginBtn";
+import GoogleAuthButton from "../Google/AuthBtn";
 import "../modal.scss";
 
 const Register = ({
@@ -61,7 +61,7 @@ const Register = ({
           </div>
 
           <div className="social-media">
-            <LoginButton />
+            <GoogleAuthButton />
             {/* <button className="google-connect">
                 <img src={googleIcon} alt="google icon" />
                 <span>Connect with Google</span>
