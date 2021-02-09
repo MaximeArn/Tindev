@@ -25,7 +25,10 @@ const socketEventListener = (dispatch: Dispatch<AnyAction>) => {
   });
 
   socket.on("project-ownership", (project: Project) => {
-    console.log("PROJECT IN PROJECT OWNERSHIP WEBSOCKET EVENT : ", project);
+    dispatch({ type: "SET_PROJECT", project });
+  });
+
+  socket.on("project-contribution", (project: Project) => {
     dispatch({ type: "SET_PROJECT", project });
   });
 };
@@ -34,7 +37,7 @@ const sendMessage = (to: SocketMessage, message: string) => {
   socket.emit("chat-message", { to, message });
 };
 
-const socketMiddleware: Middleware = ({ getState, dispatch }) => (next) => (action) => {
+const socketMiddleware: Middleware = ({ dispatch }) => (next) => (action) => {
   const { type, name, id, message } = action;
 
   switch (type) {
