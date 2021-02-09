@@ -37,6 +37,7 @@ server.use("/verification", authorizationRouter);
 server.use("/auth", authRouterWrapper(connectedUsers));
 server.use("/oauth2callback", ({ query }, res, next) => {
   console.log(query);
+  res.end();
 });
 server.use("/project", projectRouterWrapper(connectedUsers));
 server.use("/categories", categoriesRouter);
