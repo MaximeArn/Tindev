@@ -61,4 +61,7 @@ module.exports = {
   notifyProjectOwner: (socket, project) => {
     socket.emit("project-ownership", project);
   },
+  notifyNewContributor: (socket, project) => {
+    socket.emit("project-contribution", project);
+  },
 };

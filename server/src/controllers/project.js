@@ -1,5 +1,9 @@
 const { Project } = require("../models");
-const { setNotification, notifyProjectOwner } = require("./notifications");
+const {
+  setNotification,
+  notifyProjectOwner,
+  notifyNewContributor,
+} = require("./notifications");
 const {
   projectValidator,
   applyValidator,
@@ -73,7 +77,7 @@ module.exports = {
       next(error);
     }
   },
-  acceptApplicant: async ({ body }, res, next) => {
+  acceptApplicant: async (socket, { body }, res, next) => {
     try {
       const { userId: _id, username } = body;
       const project = await applicantValidator(body, next);
@@ -86,6 +90,8 @@ module.exports = {
         });
 
         const updated = await project.save();
+        notifyNewContributor(socket, updated);
+
         return res.status(200).json(updated);
       }
     } catch (error) {
