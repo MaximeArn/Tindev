@@ -147,6 +147,10 @@ const authRouter = {
     res.clearCookie("token");
     return res.end();
   },
+  googleAuth: ({ body }, res, next) => {
+    console.log("server side request body", body);
+    res.send("works well !!").status(200);
+  },
 };
 
 module.exports = authRouter;

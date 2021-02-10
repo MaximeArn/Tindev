@@ -8,6 +8,7 @@ const {
   sendNewLink,
   resetPassword,
   clearCookies,
+  googleAuth,
 } = require("../controllers/auth");
 
 const authRouterWrapper = (connectedUsers) => {
@@ -15,6 +16,7 @@ const authRouterWrapper = (connectedUsers) => {
   router.post("/register", register);
   router.post("/reset_password", resetPassword);
   router.post("/send_token", sendNewLink);
+  router.post("/googleAuth", googleAuth);
   router.get("/token_validity/:token", verifyNewLinkToken);
   router.get("/activate_account/:token", activateAccount);
   router.delete("/clear_cookies", clearCookies);
