@@ -6,7 +6,7 @@ module.exports = async (idToken, next) => {
     const {
       payload: {
         email,
-        picture,
+        picture: avatar,
         name: username,
         given_name: firstname,
         family_name: lastname,
@@ -18,7 +18,7 @@ module.exports = async (idToken, next) => {
     });
     return {
       email,
-      picture,
+      avatar,
       username,
       lastname,
       firstname,
