@@ -148,8 +148,9 @@ const authRouter = {
     res.clearCookie("token");
     return res.end();
   },
-  googleAuth: ({ body: { tokenId } }, res, next) => {
-    googleTokenValidator(tokenId, next);
+  googleAuth: async ({ body: { tokenId } }, res, next) => {
+    const userData = await googleTokenValidator(tokenId, next);
+    console.log(userData);
     res.end().status(200);
   },
 };

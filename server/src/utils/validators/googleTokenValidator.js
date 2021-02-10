@@ -4,18 +4,26 @@ const client = new OAuth2Client(process.env.GOOGLE_CLIENT_ID);
 module.exports = async (idToken, next) => {
   try {
     const {
-      payload: { email, picture, name, familyName, sub: userId },
+      payload: {
+        email,
+        picture,
+        name: username,
+        given_name: firstname,
+        family_name: lastname,
+        sub: userId,
+      },
     } = await client.verifyIdToken({
       idToken,
       audience: process.env.GOOGLE_CLIENT_ID,
     });
-    console.log({
+    return {
       email,
       picture,
-      name,
-      familyName,
+      username,
+      lastname,
+      firstname,
       // userId, maybe useful
-    });
+    };
   } catch (error) {
     next(error);
   }
