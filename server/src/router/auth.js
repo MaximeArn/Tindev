@@ -8,9 +8,11 @@ const {
   sendNewLink,
   resetPassword,
   clearCookies,
+  googleAuth,
 } = require("../controllers/auth");
 
 const authRouterWrapper = (connectedUsers) => {
+  router.get("/google", googleAuth);
   router.post("/login", login);
   router.post("/register", register);
   router.post("/reset_password", resetPassword);

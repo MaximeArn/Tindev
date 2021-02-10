@@ -35,9 +35,6 @@ server.use(cookieParser());
 server.use(tokenVerification);
 server.use("/verification", authorizationRouter);
 server.use("/auth", authRouterWrapper(connectedUsers));
-server.use("/oauth2callback", ({ query }, res, next) => {
-  console.log(query);
-});
 server.use("/project", projectRouterWrapper(connectedUsers));
 server.use("/categories", categoriesRouter);
 server.use("/users", usersRouter);

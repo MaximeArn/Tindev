@@ -110,6 +110,7 @@ export interface LoginAuth {
   };
   closeModal: Function;
   swapModal: Function;
+  googleAuthAttempt: Function;
   sendActivationLink: Function;
   setForgotPasswordModalStatus: Function;
 }

@@ -29,6 +29,7 @@ const mapDispatch = (dispatch: Dispatch<AnyAction>) => ({
       modalStatus,
     });
   },
+  googleAuthAttempt: () => dispatch({ type: "GOOGLE_CONNECTION" }),
   swapModal: ({ modal, modal2 }: AuthModalSwapping) => {
     dispatch({ type: "SWAP_AUTH_MODAL", modal, modal2, modalStatus: false });
     dispatch({ type: "RESET_AUTH_MODAL_ERROR_VALUES" });
