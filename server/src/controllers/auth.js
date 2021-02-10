@@ -12,6 +12,7 @@ const {
   accountTokenValidator,
   activationLinkValidator,
   resetPasswordValidator,
+  googleTokenValidator,
 } = require("../utils/validators");
 
 const authRouter = {
@@ -147,9 +148,9 @@ const authRouter = {
     res.clearCookie("token");
     return res.end();
   },
-  googleAuth: ({ body }, res, next) => {
-    console.log("server side request body", body);
-    res.send("works well !!").status(200);
+  googleAuth: ({ body: { tokenId } }, res, next) => {
+    googleTokenValidator(tokenId, next);
+    res.end().status(200);
   },
 };
 

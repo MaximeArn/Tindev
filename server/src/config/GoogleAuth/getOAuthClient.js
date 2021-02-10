@@ -15,7 +15,7 @@ module.exports = () => {
         "https://www.googleapis.com/auth/userinfo.email",
       ],
     });
-    console.log(oAuth2Client);
+    // console.log(oAuth2Client);
 
     // const { data } = await oAuth2Client.request({
     //   url: "https://people.googleapis.com/v1/people/me?personFields=names",
