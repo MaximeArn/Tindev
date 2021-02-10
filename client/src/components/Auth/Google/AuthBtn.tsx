@@ -1,12 +1,14 @@
 import React from "react";
 import { GoogleLogin } from "react-google-login";
 import { clientId } from "../../../environments/api";
+import refreshToken from "../../../utils/refrshToken";
 import "./authBtn.scss";
 
 const AuthBtn = ({ action }: { action: string }) => {
-  const onSuccess = ({ profileObj, tokenObj }: any): void => {
-    console.log(profileObj);
-    console.log(tokenObj);
+  const onSuccess = (res: any): void => {
+    console.log(res.profileObj);
+    console.log(res.tokenObj);
+    refreshToken(res);
   };
 
   const onError = ({ error }: { error: string; details?: string }): void => {
