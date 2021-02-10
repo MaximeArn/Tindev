@@ -98,7 +98,11 @@ const Login = ({
               </div>
 
               <div className="social-media">
-                <button onClick={() => googleAuthAttempt()} className="google-connect">
+                <button
+                  onClick={() => googleAuthAttempt()}
+                  className="google-connect"
+                  type="button"
+                >
                   <img src={googleIcon} alt="google icon" />
                   <span>Connect with Google</span>
                 </button>

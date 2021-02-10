@@ -5,6 +5,8 @@ const sendAccountActivationEmail = require("../utils/sendAccountConfirmationEmai
 const encryption = require("../utils/encryption");
 const mailSender = require("../utils/mailSender");
 const setTokenExpiration = require("../utils/tokenExpiration");
+const crypto = require("crypto-random-string");
+const axios = require("axios");
 const {
   loginValidator,
   registerValidator,
@@ -148,7 +150,12 @@ const authRouter = {
     return res.end();
   },
   googleAuth: (req, res, next) => {
-    console.log("google auth request received");
+    const state = crypto({ length: 30, type: "url-safe" });
+    const nonce = crypto({ length: 10 });
+    axios.get(
+      `https://accounts.google.com/o/oauth2/v2/auth?response_type=code&client_id=${process.env.GOOGLE_CLIENT_ID}&scope=openid%20email%20profile&redirect_uri=${process.env.OAUTH2_REDIRECT_URI}&state=${state}&nonce=${nonce}&hd=*`,
+      { headers: { "Content-Type": "application/x-www-form-urlencoded" } }
+    );
   },
 };
 
