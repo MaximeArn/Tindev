@@ -147,7 +147,9 @@ const authRouter = {
     res.clearCookie("token");
     return res.end();
   },
-  googleAuth: (req, res, next) => {},
+  googleAuth: (req, res, next) => {
+    console.log("google auth request received");
+  },
 };
 
 module.exports = authRouter;

@@ -7,12 +7,7 @@ import "./userprofile.scss";
 
 const UserProfile = ({
   admin,
-<<<<<<< HEAD
   user,
-  error,
-=======
-  user: { _id: id, role },
->>>>>>> feature/password-strength
   loader,
   getUser,
   openChatWindow,
@@ -36,27 +31,14 @@ const UserProfile = ({
         </div>
       ) : (
         <>
-          {id && (
+          {user && (
             <>
-<<<<<<< HEAD
-              {user && (
-                <>
-                  <div className="user-profile">
-                    <User openChatWindow={openChatWindow} infos={infos} {...user} />
-                  </div>
-
-                  {admin && !(user.role === "Admin") && (
-                    <AdminPanel id={user._id} collection="user" />
-                  )}
-                </>
-=======
               <div className="user-profile">
-                <User />
+                <User openChatWindow={openChatWindow} infos={infos} {...user} />
               </div>
 
-              {admin && !(role === "Admin") && (
-                <AdminPanel id={id} collection="user" />
->>>>>>> feature/password-strength
+              {admin && !(user.role === "Admin") && (
+                <AdminPanel id={user._id} collection="user" />
               )}
             </>
           )}
