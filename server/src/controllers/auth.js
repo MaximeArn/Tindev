@@ -151,11 +151,7 @@ const authRouter = {
   },
   googleAuth: (req, res, next) => {
     const state = crypto({ length: 30, type: "url-safe" });
-    const nonce = crypto({ length: 10 });
-    axios.get(
-      `https://accounts.google.com/o/oauth2/v2/auth?response_type=code&client_id=${process.env.GOOGLE_CLIENT_ID}&scope=openid%20email%20profile&redirect_uri=${process.env.OAUTH2_REDIRECT_URI}&state=${state}&nonce=${nonce}&hd=*`,
-      { headers: { "Content-Type": "application/x-www-form-urlencoded" } }
-    );
+    const oAuth2AuthorizationUrl = `https://accounts.google.com/o/oauth2/v2/auth?client_id=${process.env.GOOGLE_CLIENT_ID}&redirect_uri=${process.env.OAUTH2_REDIRECT_URI}&response_type=token&scope=https://www.googleapis.com/auth/userinfo.email%20https://www.googleapis.com/auth/userinfo.profile&state=${state}&include_granted_scopes=true`;
   },
 };
 
