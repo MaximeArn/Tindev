@@ -24,11 +24,12 @@ export const initialState: any = {
     confirmPassword: "",
   },
   user: null,
+  oAuth2AuthorizationUrl: null,
 };
 
 const auth = (
   state = initialState,
-  { type, inputName, inputValue, credentials, authType }: any
+  { type, inputName, inputValue, credentials, authType, oAuth2AuthorizationUrl }: any
 ): Authentication => {
   switch (type) {
     case "GET_REGISTER_INPUT_VALUE":
@@ -47,6 +48,8 @@ const auth = (
       };
     case "RESET_AUTH_INPUTS_VALUES":
       return { ...state, [authType]: initialState[authType] };
+    case "SET_OAUTH_AUTHORIZATION_URL":
+      return { ...state, oAuth2AuthorizationUrl };
     case "CONNECT_USER":
       return { ...state, user: credentials };
     default:

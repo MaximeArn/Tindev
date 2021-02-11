@@ -155,11 +155,13 @@ const sendNewLink = (
     .finally(() => dispatch({ type: "SET_NEW_LINK_LOADER", value: false }));
 };
 
-const googleAuthentication = () => {
+const googleAuthentication = (dispatch: Dispatch<AnyAction>) => {
   axios
     .get("/auth/google")
-    .then((data) => console.log(data))
-    .catch((error) => console.log(error));
+    .then(({ data: oAuth2AuthorizationUrl }) =>
+      dispatch({ type: "SET_OAUTH_AUTHORIZATION_URL", oAuth2AuthorizationUrl })
+    )
+    .catch((error) => console.error(error));
 };
 
 const auth: Middleware = ({ getState, dispatch }) => (next) => (
@@ -189,7 +191,7 @@ const auth: Middleware = ({ getState, dispatch }) => (next) => (
       retrieveToken(dispatch);
       break;
     case "GOOGLE_CONNECTION":
-      googleAuthentication();
+      googleAuthentication(dispatch);
       break;
     case "DISCONNECT_USER":
       logout({ getState, dispatch, history }, message);
