@@ -7,10 +7,16 @@ import "./authBtn.scss";
 
 const AuthBtn = ({ action }: { action: string }) => {
   const onSuccess = (res: any): void => {
-    axios
-      .post("auth/googleAuth", res)
-      .then(({ data }) => console.log(data))
-      .catch((err) => console.error(err));
+    action === "Register"
+      ? axios
+          .post("auth/googleRegister", res)
+          .then(({ data }) => console.log(data))
+          .catch((err) => console.error(err))
+      : axios
+          .post("auth/googleLogin", res)
+          .then(({ data }) => console.log(data))
+          .catch((err) => console.error(err));
+
     refreshToken(res);
   };
 

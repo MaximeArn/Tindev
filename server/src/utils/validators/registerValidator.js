@@ -5,7 +5,7 @@ const sanitize = require("sanitize-html");
 const sanitizeConfig = require("../../config/sanitize");
 const emailRegex = require("../emailRegex");
 
-module.exports = async (body, isGoogleAuth = false, next) => {
+module.exports = async (body, next, isGoogleAuth = false) => {
   try {
     console.log("[Is It A Google Auth] --> ", isGoogleAuth);
     body.username = body.username.replace(" ", "");

@@ -15,7 +15,7 @@ const {
   googleTokenValidator,
 } = require("../utils/validators");
 
-const authRouter = {
+const authController = {
   register: async ({ body }, res, next) => {
     try {
       const validator = await registerValidator(body, next);
@@ -148,14 +148,28 @@ const authRouter = {
     res.clearCookie("token");
     return res.end();
   },
-  googleAuth: async ({ body: { tokenId } }, res, next) => {
+  googleRegister: async (req, res, next) => {
+    const {
+      body: { tokenId },
+    } = req;
+    const userData = await googleTokenValidator(tokenId, next);
+    const userExists = await registerValidator(userData, next, true);
+    if (userExists) {
+      authController.googleLogin(req, res, next);
+    } else {
+      User.create(body);
+      res.send("user well registered").status(200);
+    }
+  },
+  googleLogin: async (req, res, next) => {
+    const {
+      body: { tokenId },
+    } = req;
+    console.log(tokenId);
     const userData = await googleTokenValidator(tokenId, next);
     console.log(userData);
-    const userExists = await registerValidator(userData, true, next);
-    console.log(userExists);
-
-    res.end().status(200);
+    res.send("user well loged").status(200);
   },
 };
 
-module.exports = authRouter;
+module.exports = authController;
