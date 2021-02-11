@@ -55,7 +55,6 @@ const login = ({ getState, dispatch }: AxiosSubmit) => {
           data: { msg: error },
         },
       }) => {
-        //must be changed
         dispatch({ type: "LOGIN_ERROR_HANDLER", error });
         dispatch({ type: "toasts/error", message: error });
       }

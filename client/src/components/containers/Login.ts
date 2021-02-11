@@ -3,9 +3,10 @@ import Login from "../Auth/Login/Login";
 import { State } from "../../models/states";
 import { AuthModalSwapping } from "../../models/modal";
 import { AnyAction, Dispatch } from "redux";
+import { withRouter } from "react-router-dom";
 
 const mapState = ({
-  auth: { login },
+  auth: { login, oAuth2AuthorizationUrl },
   error: {
     auth: { loginErrorMessage: error },
   },
@@ -15,6 +16,7 @@ const mapState = ({
   error,
   loginLoader,
   newLinkLoader,
+  oAuth2AuthorizationUrl,
 });
 
 const mapDispatch = (dispatch: Dispatch<AnyAction>) => ({
@@ -42,4 +44,4 @@ const mapDispatch = (dispatch: Dispatch<AnyAction>) => ({
     }),
 });
 
-export default connect(mapState, mapDispatch)(Login);
+export default withRouter(connect(mapState, mapDispatch)(Login));

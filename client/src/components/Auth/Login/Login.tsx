@@ -1,4 +1,4 @@
-import React, { FormEvent, useRef } from "react";
+import React, { FormEvent, useEffect, useRef } from "react";
 import { LoginAuth } from "../../../models/states";
 import googleIcon from "src/assets/icons/googleIcon.svg";
 import modalClickHandler from "../../../utils/modalClickHandler";
@@ -9,6 +9,7 @@ import CircularProgress from "@material-ui/core/CircularProgress";
 const Login = ({
   login,
   error: { userId },
+  history,
   submitLogin,
   loginLoader,
   newLinkLoader,
@@ -16,9 +17,16 @@ const Login = ({
   sendActivationLink,
   swapModal,
   googleAuthAttempt,
+  oAuth2AuthorizationUrl,
   setForgotPasswordModalStatus,
 }: LoginAuth) => {
   const modal = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    if (oAuth2AuthorizationUrl) {
+      window.location.href = oAuth2AuthorizationUrl;
+    }
+  }, [oAuth2AuthorizationUrl]);
 
   const handleSubmit = (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault();
