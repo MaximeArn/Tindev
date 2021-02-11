@@ -149,6 +149,7 @@ const authController = {
     return res.end();
   },
   googleRegister: async (req, res, next) => {
+    console.log(req);
     const {
       body: { tokenId },
     } = req;

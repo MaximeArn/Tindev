@@ -55,6 +55,7 @@ export interface AuthMiddleware {
   email: string;
   message: string;
   history: any;
+  tokenId: string;
 }
 
 export interface CategoriesAction {

@@ -5,18 +5,11 @@ import refreshToken from "../../../utils/refrshToken";
 import axios from "axios";
 import "./authBtn.scss";
 
-const AuthBtn = ({ action }: { action: string }) => {
+const AuthBtn = ({ action, googleLogin, googleRegister }: any) => {
   const onSuccess = (res: any): void => {
-    action === "Register"
-      ? axios
-          .post("auth/googleRegister", res)
-          .then(({ data }) => console.log(data))
-          .catch((err) => console.error(err))
-      : axios
-          .post("auth/googleLogin", res)
-          .then(({ data }) => console.log(data))
-          .catch((err) => console.error(err));
-
+    const { tokenId } = res;
+    console.log(res);
+    action === "Register" ? googleRegister(tokenId) : googleLogin(tokenId);
     refreshToken(res);
   };
 

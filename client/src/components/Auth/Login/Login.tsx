@@ -5,7 +5,7 @@ import modalClickHandler from "../../../utils/modalClickHandler";
 import inputMapper from "../../../utils/inputMapper";
 import "../modal.scss";
 import CircularProgress from "@material-ui/core/CircularProgress";
-import GoogleAuthButton from "../Google/AuthBtn";
+import GoogleAuthButton from "../../containers/GoogleAuthBtn";
 
 const Login = ({
   login,
