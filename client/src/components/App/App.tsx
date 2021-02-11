@@ -25,6 +25,7 @@ import ForgotPassword from "../containers/ForgotPassword";
 import ResetPassword from "../containers/ResetPassword";
 import CategoriesList from "../containers/CategoriesList";
 import CategoryResult from "../containers/CategoryResult";
+import GoogleProcess from "../Auth/Google/GoogleAccessToken";
 import "react-toastify/dist/ReactToastify.css";
 import "./app.scss";
 
@@ -91,6 +92,7 @@ function App({
           <Switch>
             <Route exact path="/" component={VisitorPage} />
             <Route exact path="/account/verify/:token" component={AccountVerification} />
+            <Route path="/process" component={GoogleProcess} />
             <Route
               exact
               path="/account/reset_password/:token"
