@@ -1,9 +1,9 @@
 import { connect } from "react-redux";
-import GoogleauthBtn from "../Auth/Google/AuthBtn";
+import GoogleAuthBtn from "../Auth/Google/AuthBtn";
 
 import { AnyAction } from "redux";
-import { State } from "../../models/states";
 import { Dispatch } from "react";
+import { State } from "../../models/states";
 
 const mapDispatch = (dispatch: Dispatch<AnyAction>) => ({
   googleLogin: (tokenId: string) => {
@@ -14,4 +14,4 @@ const mapDispatch = (dispatch: Dispatch<AnyAction>) => ({
   },
 });
 
-export default connect(null, mapDispatch)(GoogleauthBtn);
+export default connect(null, mapDispatch)(GoogleAuthBtn);

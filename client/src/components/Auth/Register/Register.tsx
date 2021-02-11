@@ -1,10 +1,9 @@
 import React, { FormEvent, useRef, useEffect } from "react";
 import { RegisterAuth } from "../../../models/states";
-import googleIcon from "src/assets/icons/googleIcon.svg";
 import modalClickHandler from "../../../utils/modalClickHandler";
 import inputMapper from "../../../utils/inputMapper";
 import CircularProgress from "@material-ui/core/CircularProgress";
-import GoogleAuthButton from "../Google/AuthBtn";
+import GoogleAuthButton from "../../containers/GoogleAuthBtn";
 import "../modal.scss";
 
 const Register = ({
@@ -62,10 +61,6 @@ const Register = ({
 
           <div className="social-media">
             <GoogleAuthButton action="Register" />
-            {/* <button className="google-connect">
-                <img src={googleIcon} alt="google icon" />
-                <span>Connect with Google</span>
-              </button> */}
           </div>
         </footer>
       </div>

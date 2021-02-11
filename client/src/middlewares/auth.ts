@@ -155,16 +155,23 @@ const sendNewLink = (
     .finally(() => dispatch({ type: "SET_NEW_LINK_LOADER", value: false }));
 };
 
-const googleLogin = (tokenId: string) => {
+const googleLogin = (dispatch: Dispatch<AnyAction>, tokenId: string) => {
   axios
-    .post("auth/googleLogin", tokenId)
-    .then(({ data }) => console.log(data))
+    .post("auth/googleLogin", { tokenId })
+    .then(({ data }) => {
+      dispatch({
+        type: "SWAP_AUTH_MODAL",
+        modal: "register",
+        modal2: "login",
+        modalStatus: false,
+      });
+    })
     .catch((err) => console.error(err));
 };
 
-const googleRegister = (tokenID: string) => {
+const googleRegister = (dispatch: Dispatch<AnyAction>, tokenId: string) => {
   axios
-    .post("auth/googleRegister", tokenID)
+    .post("auth/googleRegister", { tokenId })
     .then(({ data }) => console.log(data))
     .catch((err) => console.error(err));
 };
@@ -199,9 +206,9 @@ const auth: Middleware = ({ getState, dispatch }) => (next) => (
       logout({ getState, dispatch, history }, message);
       break;
     case "auth/googleLogin":
-      googleLogin(tokenId);
+      googleLogin(dispatch, tokenId);
     case "auth/googleRegister":
-      googleRegister(tokenId);
+      googleRegister(dispatch, tokenId);
     default:
       next(action);
       break;

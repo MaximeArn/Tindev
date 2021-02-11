@@ -2,14 +2,20 @@ import React from "react";
 import { GoogleLogin } from "react-google-login";
 import { clientId } from "../../../environments/api";
 import refreshToken from "../../../utils/refrshToken";
-import axios from "axios";
 import "./authBtn.scss";
 
-const AuthBtn = ({ action, googleLogin, googleRegister }: any) => {
+const AuthBtn = ({
+  action,
+  googleLogin,
+  googleRegister,
+}: {
+  action: string;
+  googleLogin: Function;
+  googleRegister: Function;
+}) => {
   const onSuccess = (res: any): void => {
     const { tokenId } = res;
-    console.log(res);
-    action === "Register" ? googleRegister(tokenId) : googleLogin(tokenId);
+    action === "Login" ? googleLogin(tokenId) : googleRegister(tokenId);
     refreshToken(res);
   };
 
@@ -23,7 +29,7 @@ const AuthBtn = ({ action, googleLogin, googleRegister }: any) => {
       buttonText={"Login"}
       onSuccess={onSuccess}
       onFailure={onError}
-      redirectUri="https://localhost:8080/users"
+      redirectUri="https://localhost:8080"
     >
       <p id="googleAuth-btn-text">{action} with Google</p>
     </GoogleLogin>
