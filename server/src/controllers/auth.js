@@ -151,6 +151,9 @@ const authRouter = {
   googleAuth: async ({ body: { tokenId } }, res, next) => {
     const userData = await googleTokenValidator(tokenId, next);
     console.log(userData);
+    const userExists = await registerValidator(userData, true, next);
+    console.log(userExists);
+
     res.end().status(200);
   },
 };

@@ -7,14 +7,10 @@ import "./authBtn.scss";
 
 const AuthBtn = ({ action }: { action: string }) => {
   const onSuccess = (res: any): void => {
-    // console.log("res Object ", res);
-    // console.log("user is signed : ", res.isSignedIn());
-
     axios
       .post("auth/googleAuth", res)
       .then(({ data }) => console.log(data))
       .catch((err) => console.error(err));
-
     refreshToken(res);
   };
 
@@ -28,7 +24,6 @@ const AuthBtn = ({ action }: { action: string }) => {
       buttonText={"Login"}
       onSuccess={onSuccess}
       onFailure={onError}
-      style={{ textAlign: "center" }}
       redirectUri="https://localhost:8080/users"
     >
       <p id="googleAuth-btn-text">{action} with Google</p>

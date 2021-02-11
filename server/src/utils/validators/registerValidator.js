@@ -5,9 +5,11 @@ const sanitize = require("sanitize-html");
 const sanitizeConfig = require("../../config/sanitize");
 const emailRegex = require("../emailRegex");
 
-module.exports = async (body, next) => {
+module.exports = async (body, isGoogleAuth = false, next) => {
   try {
+    console.log("[Is It A Google Auth] --> ", isGoogleAuth);
     body.username = body.username.replace(" ", "");
+
     const { age, city, lastname, firstname, ...mandatory } = body;
 
     if (!Object.values(mandatory).every((value) => value.trim())) {
@@ -22,8 +24,10 @@ module.exports = async (body, next) => {
       throw new UserError("Incorrect age specified", 400);
     }
 
-    if (!(await comparePasswords(body))) {
-      throw new UserError("Passwords do not match", 400);
+    if (!isGoogleAuth) {
+      if (!(await comparePasswords(body))) {
+        throw new UserError("Passwords do not match", 400);
+      }
     }
 
     const user = await User.findOne({
