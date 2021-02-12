@@ -155,7 +155,7 @@ const sendNewLink = (
     .finally(() => dispatch({ type: "SET_NEW_LINK_LOADER", value: false }));
 };
 
-const googleAuthentication = (dispatch: Dispatch<AnyAction>) => {
+const getOAuth2AuthorizationUrl = (dispatch: Dispatch<AnyAction>) => {
   axios
     .get("/auth/google")
     .then(({ data: oAuth2AuthorizationUrl }) =>
@@ -164,10 +164,12 @@ const googleAuthentication = (dispatch: Dispatch<AnyAction>) => {
     .catch((error) => console.error(error));
 };
 
-const googleAccessToken = (
-  dispatch: Dispatch<AnyAction>,
-  authorizationToken: OAuth2Token
-) => {};
+const googleAccessToken = (authorizationToken: OAuth2Token) => {
+  axios
+    .post("/auth/google/request_user_infos", authorizationToken)
+    .then(({ data }) => console.log(data))
+    .catch((error) => console.log(error.response.data));
+};
 
 const auth: Middleware = ({ getState, dispatch }) => (next) => (
   action: AuthMiddleware
@@ -205,10 +207,10 @@ const auth: Middleware = ({ getState, dispatch }) => (next) => (
       retrieveToken(dispatch);
       break;
     case "GOOGLE_CONNECTION":
-      googleAuthentication(dispatch);
+      getOAuth2AuthorizationUrl(dispatch);
       break;
     case "GOOGLE_CONSENT_RESPONSE":
-      googleAccessToken(dispatch, authorizationToken);
+      googleAccessToken(authorizationToken);
       break;
     case "DISCONNECT_USER":
       logout({ getState, dispatch, history }, message);

@@ -12,3 +12,7 @@ export interface OAuth2Token {
   state: string;
   token_type: string;
 }
+
+export interface GoogleProcessProps {
+  authorize: Function;
+}

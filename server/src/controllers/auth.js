@@ -149,10 +149,18 @@ const authRouter = {
     res.clearCookie("token");
     return res.end();
   },
-  googleAuth: (req, res, next) => {
+  googleAuth: (req, res) => {
     const state = crypto({ length: 30, type: "url-safe" });
     const oAuth2AuthorizationUrl = `https://accounts.google.com/o/oauth2/v2/auth?client_id=${process.env.GOOGLE_CLIENT_ID}&redirect_uri=${process.env.OAUTH2_REDIRECT_URI}&response_type=token&scope=https://www.googleapis.com/auth/userinfo.email%20https://www.googleapis.com/auth/userinfo.profile&state=${state}&include_granted_scopes=true`;
     return res.status(200).json(oAuth2AuthorizationUrl);
+  },
+  requestUserInfos: async ({ body: { access_token, token_type } }, res, next) => {
+    axios
+      .get("https://www.googleapis.com/oauth2/v1/userinfo", {
+        headers: { Authorization: `${token_type} ${access_token}` },
+      })
+      .then(({ data }) => console.log(data))
+      .catch((error) => console.log(error.response));
   },
 };
 

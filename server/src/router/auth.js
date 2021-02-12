@@ -9,10 +9,12 @@ const {
   resetPassword,
   clearCookies,
   googleAuth,
+  requestUserInfos,
 } = require("../controllers/auth");
 
 const authRouterWrapper = (connectedUsers) => {
   router.get("/google", googleAuth);
+  router.post("/google/request_user_infos", requestUserInfos);
   router.post("/login", login);
   router.post("/register", register);
   router.post("/reset_password", resetPassword);

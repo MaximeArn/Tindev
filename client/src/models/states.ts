@@ -151,6 +151,7 @@ export interface AppProps {
   getProjects: Function;
   getNotifications: Function;
   getChatWindows: Function;
+  authorize: Function;
   login: boolean;
   register: boolean;
   onAccountClosing: Function;

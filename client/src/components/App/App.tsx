@@ -40,6 +40,7 @@ function App({
   getProjects,
   getNotifications,
   getChatWindows,
+  authorize,
   user,
   onAccountClosing,
 }: AppProps) {
@@ -92,7 +93,9 @@ function App({
           <Switch>
             <Route exact path="/" component={VisitorPage} />
             <Route exact path="/account/verify/:token" component={AccountVerification} />
-            <Route path="/process" component={GoogleProcess} />
+            <Route path="/process">
+              <GoogleProcess authorize={authorize} />
+            </Route>
             <Route
               exact
               path="/account/reset_password/:token"
