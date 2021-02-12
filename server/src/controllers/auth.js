@@ -149,16 +149,17 @@ const authController = {
     return res.end();
   },
   googleRegister: async (req, res, next) => {
-    console.log(req);
     const {
       body: { tokenId },
     } = req;
     const userData = await googleTokenValidator(tokenId, next);
     const userExists = await registerValidator(userData, next, true);
-    if (userExists) {
-      authController.googleLogin(req, res, next);
+    if (!userExists) {
+      console.log("redirect to login");
+      // authController.googleLogin(req, res, next);
     } else {
-      User.create(body);
+      const newUser = await User.create(userData);
+      console.log(newUser);
       res.send("user well registered").status(200);
     }
   },
@@ -166,10 +167,11 @@ const authController = {
     const {
       body: { tokenId },
     } = req;
-    console.log(tokenId);
     const userData = await googleTokenValidator(tokenId, next);
-    console.log(userData);
-    res.send("user well loged").status(200);
+
+    const user = await loginValidator(userData, res, next, true);
+    user && console.log(user);
+    // res.send("user well loged").status(200);
   },
 };
 

@@ -2,9 +2,10 @@ const { User } = require("../../models");
 const UserError = require("../CustomError");
 const compareHashed = require("../compareHashed");
 
-module.exports = async (body, res, next) => {
+module.exports = async (body, res, next, isGoogleAUth = false) => {
   try {
     const { password, email } = body;
+    console.log("validator ---> ", email);
     const user = await User.findOne({ email });
 
     if (!user) throw new UserError("Incorrect Email or Password", 400);
@@ -39,8 +40,7 @@ module.exports = async (body, res, next) => {
         return updated;
       }
 
-      const remaining =
-        duration && Math.floor(Math.abs(duration - new Date()) / 36e5);
+      const remaining = duration && Math.floor(Math.abs(duration - new Date()) / 36e5);
 
       const message = isNaN(remaining)
         ? "Your account has been suspended permanently"
