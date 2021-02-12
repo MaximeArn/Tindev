@@ -6,7 +6,6 @@ const GoogleAccessToken = () => {
   const uriFragment = qs.parse(useLocation().hash);
 
   useEffect(() => {
-    //TODO: send it back to our API and query google auth server to get user's infos
     console.log(uriFragment);
   }, []);
 

@@ -1,6 +1,7 @@
 import { AnyAction, Dispatch, Middleware } from "redux";
 import { AuthMiddleware } from "../models/actions";
 import { AxiosSubmit } from "../models/axios";
+import { OAuth2Token } from "../models/token";
 import axios from "../utils/axiosInstance";
 
 const createUser = ({ getState, dispatch }: AxiosSubmit) => {
@@ -163,10 +164,24 @@ const googleAuthentication = (dispatch: Dispatch<AnyAction>) => {
     .catch((error) => console.error(error));
 };
 
+const googleAccessToken = (
+  dispatch: Dispatch<AnyAction>,
+  authorizationToken: OAuth2Token
+) => {};
+
 const auth: Middleware = ({ getState, dispatch }) => (next) => (
   action: AuthMiddleware
 ) => {
-  const { type, token, userId, linkType, email, message, history } = action;
+  const {
+    type,
+    token,
+    userId,
+    linkType,
+    email,
+    message,
+    history,
+    authorizationToken,
+  } = action;
   switch (type) {
     case "SUBMIT_REGISTER":
       createUser({ getState, dispatch });
@@ -191,6 +206,9 @@ const auth: Middleware = ({ getState, dispatch }) => (next) => (
       break;
     case "GOOGLE_CONNECTION":
       googleAuthentication(dispatch);
+      break;
+    case "GOOGLE_CONSENT_RESPONSE":
+      googleAccessToken(dispatch, authorizationToken);
       break;
     case "DISCONNECT_USER":
       logout({ getState, dispatch, history }, message);
