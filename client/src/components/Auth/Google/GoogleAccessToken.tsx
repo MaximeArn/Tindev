@@ -4,7 +4,8 @@ import qs from "query-string";
 import { GoogleProcessProps } from "../../../models/token";
 
 const GoogleAccessToken = ({ authorize }: GoogleProcessProps) => {
-  const uriFragment = qs.parse(useLocation().hash);
+  const uriFragment = qs.parse(useLocation().search);
+  console.log(uriFragment);
 
   useEffect(() => {
     authorize(uriFragment);
