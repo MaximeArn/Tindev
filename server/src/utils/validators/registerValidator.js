@@ -7,7 +7,6 @@ const emailRegex = require("../emailRegex");
 
 module.exports = async (body, next, isGoogleAuth = false) => {
   try {
-    console.log("[Is It A Google Auth] --> ", isGoogleAuth);
     body.username = body.username.replace(" ", "");
 
     const { age, city, lastname, firstname, ...mandatory } = body;

@@ -149,29 +149,60 @@ const authController = {
     return res.end();
   },
   googleRegister: async (req, res, next) => {
-    const {
-      body: { tokenId },
-    } = req;
-    const userData = await googleTokenValidator(tokenId, next);
-    const userExists = await registerValidator(userData, next, true);
-    if (!userExists) {
-      console.log("redirect to login");
-      // authController.googleLogin(req, res, next);
-    } else {
-      const newUser = await User.create(userData);
-      console.log(newUser);
-      res.send("user well registered").status(200);
+    try {
+      const {
+        body: { tokenId },
+      } = req;
+      const userData = await googleTokenValidator(tokenId, next);
+      const userExists = await registerValidator(userData, next, true);
+      if (!userExists) {
+        authController.googleLogin(req, res, next);
+      } else {
+        const { _id: userId } = await User.create({ ...userData });
+
+        await User.updateOne(
+          { _id: userId },
+          {
+            $unset: { expire_at: "" },
+            activated: true,
+          }
+        );
+
+        authController.googleLogin(req, res, next);
+      }
+    } catch (error) {
+      next(error);
     }
   },
   googleLogin: async (req, res, next) => {
-    const {
-      body: { tokenId },
-    } = req;
-    const userData = await googleTokenValidator(tokenId, next);
+    try {
+      const {
+        body: { tokenId },
+      } = req;
+      const userData = await googleTokenValidator(tokenId, next);
+      const { _id: id, email, username, role } = await loginValidator(
+        userData,
+        res,
+        next,
+        true
+      );
 
-    const user = await loginValidator(userData, res, next, true);
-    user && console.log(user);
-    // res.send("user well loged").status(200);
+      const token = jwt.sign({ id, email, username, role }, SECRET);
+
+      res.cookie("token", token, {
+        httpOnly: true,
+        sameSite: "strict",
+        secure: false,
+      });
+
+      return res.status(200).json({
+        email,
+        username,
+        role,
+      });
+    } catch (error) {
+      next(error);
+    }
   },
 };
 

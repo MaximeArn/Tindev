@@ -158,7 +158,8 @@ const sendNewLink = (
 const googleLogin = (dispatch: Dispatch<AnyAction>, tokenId: string) => {
   axios
     .post("auth/googleLogin", { tokenId })
-    .then(({ data }) => {
+    .then(({ data: credentials }) => {
+      dispatch({ type: "CONNECT_USER", credentials });
       dispatch({
         type: "SET_AUTH_MODAL_STATUS",
         modalStatus: false,
@@ -171,12 +172,12 @@ const googleLogin = (dispatch: Dispatch<AnyAction>, tokenId: string) => {
 const googleRegister = (dispatch: Dispatch<AnyAction>, tokenId: string) => {
   axios
     .post("auth/googleRegister", { tokenId })
-    .then(({ data }) => {
+    .then(({ data: credentials }) => {
+      dispatch({ type: "CONNECT_USER", credentials });
       dispatch({
-        type: "SWAP_AUTH_MODAL",
-        modal: "register",
-        modal2: "login",
+        type: "SET_AUTH_MODAL_STATUS",
         modalStatus: false,
+        modal: "register",
       });
     })
     .catch((err) => console.error(err));

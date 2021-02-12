@@ -5,12 +5,10 @@ const compareHashed = require("../compareHashed");
 module.exports = async (body, res, next, isGoogleAUth = false) => {
   try {
     const { password, email } = body;
-    console.log("validator ---> ", email);
     const user = await User.findOne({ email });
-
     if (!user) throw new UserError("Incorrect Email or Password", 400);
 
-    if (!(await compareHashed(password, user.password))) {
+    if (!isGoogleAUth && !(await compareHashed(password, user.password))) {
       throw new UserError("Incorrect Email or Password", 400);
     }
 
