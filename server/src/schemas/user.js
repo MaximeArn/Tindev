@@ -10,6 +10,7 @@ const userSchema = new Schema(
     password: String,
     age: Number,
     city: String,
+    isGoogleAuth: { type: Boolean, default: false },
     suspended: {
       status: { type: Boolean, default: false },
       duration: { type: Schema.Types.Mixed, default: false },

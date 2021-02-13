@@ -189,17 +189,18 @@ const authController = {
 
       const token = jwt.sign({ id, email, username, role }, SECRET);
 
-      res.cookie("token", token, {
-        httpOnly: true,
-        sameSite: "strict",
-        secure: false,
-      });
-
-      return res.status(200).json({
-        email,
-        username,
-        role,
-      });
+      res
+        .cookie("token", token, {
+          httpOnly: true,
+          sameSite: "strict",
+          secure: false,
+        })
+        .send({
+          email,
+          username,
+          role,
+        })
+        .status(200);
     } catch (error) {
       next(error);
     }

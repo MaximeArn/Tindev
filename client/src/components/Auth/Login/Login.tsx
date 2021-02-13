@@ -99,10 +99,6 @@ const Login = ({
 
               <div className="social-media">
                 <GoogleAuthButton action="Login" />
-                {/* <button className="google-connect">
-                  <img src={googleIcon} alt="google icon" />
-                  <span>Connect with Google</span>
-                </button> */}
               </div>
             </footer>
           </form>
