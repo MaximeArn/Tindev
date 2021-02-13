@@ -3,7 +3,12 @@ import { UserProfileClosed } from "../../../models/users";
 import capitalize from "../../../utils/capitalizeFirstLetter";
 import { url } from "../../../environments/api";
 
-const ProfileEditClosed = ({ name, value, setEditStatus }: UserProfileClosed) => {
+const ProfileEditClosed = ({
+  name,
+  value,
+  setEditStatus,
+  isGoogleAuth,
+}: UserProfileClosed) => {
   return (
     <>
       <div className="profile-field">
@@ -11,7 +16,7 @@ const ProfileEditClosed = ({ name, value, setEditStatus }: UserProfileClosed) =>
         {name === "avatar" && value?.includes("-") ? (
           <img
             className="profile-avatar"
-            src={`${url}/uploads/users/${value}`}
+            src={isGoogleAuth ? value : `${url}/uploads/users/${value}`}
             alt="user-avatar"
           />
         ) : (

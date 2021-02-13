@@ -158,7 +158,7 @@ const authController = {
       if (!userExists) {
         authController.googleLogin(req, res, next);
       } else {
-        const { _id: userId } = await User.create({ ...userData });
+        const { _id: userId } = await User.create({ ...userData, isGoogleAuth: true });
 
         await User.updateOne(
           { _id: userId },

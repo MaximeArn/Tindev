@@ -12,6 +12,7 @@ const Profile = ({
   updateUserProfile,
   getEditProfileValue,
   resetEditProfileValue,
+  isGoogleAuth,
 }: Profile) => {
   const [isEditOpen, setEditStatus] = useState<boolean>(false);
 
@@ -24,6 +25,7 @@ const Profile = ({
         </div>
       ) : isEditOpen ? (
         <ProfileEditOpen
+          isGoogleAuth={isGoogleAuth}
           name={name}
           inputValue={inputValue}
           value={value}
@@ -34,6 +36,7 @@ const Profile = ({
         />
       ) : (
         <ProfileEditClosed
+          isGoogleAuth={isGoogleAuth}
           name={name}
           value={value}
           setEditStatus={setEditStatus}

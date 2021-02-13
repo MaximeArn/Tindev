@@ -14,6 +14,7 @@ const ProfileEditOpen = ({
   updateUserProfile,
   getEditProfileValue,
   resetEditProfileValue,
+  isGoogleAuth,
 }: UserProfileOpen) => {
   const fileInput = useRef<HTMLInputElement>(null);
   const filePreview = useRef<any>(null);

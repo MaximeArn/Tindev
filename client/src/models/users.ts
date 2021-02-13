@@ -39,6 +39,7 @@ export interface User extends GlobalUrlPath {
   about: string;
   technos: string[] | [];
   avatar?: string;
+  isGoogleAuth: boolean;
 }
 
 export interface UserProfileProps {
@@ -107,6 +108,7 @@ export interface Profile {
   updateUserProfile: Function;
   getEditProfileValue: Function;
   resetEditProfileValue: Function;
+  isGoogleAuth: boolean;
 }
 
 export interface UserProfileOpen {
@@ -117,12 +119,14 @@ export interface UserProfileOpen {
   updateUserProfile: Function;
   getEditProfileValue: Function;
   resetEditProfileValue: Function;
+  isGoogleAuth: boolean;
 }
 
 export interface UserProfileClosed {
   name: string;
   value: string | null;
   setEditStatus: Function;
+  isGoogleAuth: boolean;
 }
 
 export interface UserListProps {

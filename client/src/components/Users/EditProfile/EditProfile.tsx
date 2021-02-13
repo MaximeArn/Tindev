@@ -55,6 +55,7 @@ const EditProfile = ({
                           inputValue={value}
                           getEditProfileValue={getEditProfileValue}
                           resetEditProfileValue={resetEditProfileValue}
+                          isGoogleAuth={user.isGoogleAuth}
                           value={
                             user[key]
                               ? user[key]
