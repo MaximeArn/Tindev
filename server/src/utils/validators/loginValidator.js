@@ -27,7 +27,11 @@ module.exports = async (body, res, next) => {
         suspended: { duration },
       } = user;
 
-      const hasEnded = duration && Date.now() > duration.getTime();
+      if (!duration) {
+        throw new UserError("Your Account has been suspended permanently", 403);
+      }
+
+      const hasEnded = Date.now() > duration.getTime();
 
       if (hasEnded) {
         user.suspended = {
@@ -39,14 +43,11 @@ module.exports = async (body, res, next) => {
         return updated;
       }
 
-      const remaining =
-        duration && Math.floor(Math.abs(duration - new Date()) / 36e5);
+      const remaining = Math.floor(Math.abs(duration - new Date()) / 36e5);
 
-      const message = isNaN(remaining)
-        ? "Your account has been suspended permanently"
-        : `Your account has been suspended for ${remaining} more ${
-            remaining <= 1 ? "hour" : "hours"
-          }`;
+      const message = `Your account has been suspended for ${remaining} more ${
+        remaining <= 1 ? "hour" : "hours"
+      }`;
 
       throw new UserError(message, 403);
     }

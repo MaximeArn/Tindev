@@ -34,7 +34,7 @@ module.exports = {
         await User.findByIdAndUpdate(id, {
           suspended: {
             status: true,
-            duration: !isNaN(duration) && currentDate,
+            duration: isNaN(duration) ? null : currentDate,
           },
         });
 

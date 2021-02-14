@@ -1,7 +1,7 @@
 import { Middleware } from "redux";
 import axios from "../utils/axiosInstance";
 
-const admin: Middleware = ({ getState, dispatch }) => (next) => (action) => {
+const admin: Middleware = ({ dispatch }) => (next) => (action) => {
   const { type, id, history, duration } = action;
   switch (type) {
     case "DELETE_PROJECT":
@@ -40,9 +40,7 @@ const admin: Middleware = ({ getState, dispatch }) => (next) => (action) => {
         .catch(({ response: { data: { msg: error } } }) =>
           dispatch({ type: "toasts/error", message: error })
         )
-        .finally(() =>
-          dispatch({ type: "SET_ADMIN_DELETION_LOADER", value: false })
-        );
+        .finally(() => dispatch({ type: "SET_ADMIN_DELETION_LOADER", value: false }));
       break;
     default:
       next(action);

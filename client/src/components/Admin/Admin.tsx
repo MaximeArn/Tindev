@@ -1,10 +1,6 @@
-import React, { useState, useEffect } from "react";
-import { errorToast, successToast } from "../../utils/toastify";
+import React, { useState } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import {
-  faChevronRight,
-  faChevronLeft,
-} from "@fortawesome/free-solid-svg-icons";
+import { faChevronRight, faChevronLeft } from "@fortawesome/free-solid-svg-icons";
 import "./admin.scss";
 import { AdminOverlayProps } from "../../models/states";
 import ConfirmatonModal from "./ConfirmModal";
@@ -41,26 +37,16 @@ const Admin = ({
           {collection === "user" && (
             <form>
               {[12, 24, 48, "permanent"].map((duration) => (
-                <Input
-                  key={duration}
-                  duration={duration}
-                  setDuration={setDuration}
-                />
+                <Input key={duration} duration={duration} setDuration={setDuration} />
               ))}
             </form>
           )}
-          <button
-            onClick={() => setModalStatus(true)}
-            className="admin-overlay-button"
-          >
+          <button onClick={() => setModalStatus(true)} className="admin-overlay-button">
             {collection === "project" ? "Delete" : "Ban"}
           </button>
           {isPanelOpen && (
             <div className="arrow-close">
-              <button
-                onClick={() => setIsPanelOpen(!isPanelOpen)}
-                className="arrow"
-              >
+              <button onClick={() => setIsPanelOpen(!isPanelOpen)} className="arrow">
                 <FontAwesomeIcon icon={faChevronLeft} />
               </button>
             </div>
@@ -68,10 +54,7 @@ const Admin = ({
         </div>
         {!isPanelOpen && (
           <div>
-            <button
-              onClick={() => setIsPanelOpen(!isPanelOpen)}
-              className="arrow"
-            >
+            <button onClick={() => setIsPanelOpen(!isPanelOpen)} className="arrow">
               <FontAwesomeIcon icon={faChevronRight} />
             </button>
           </div>

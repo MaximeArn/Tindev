@@ -18,6 +18,7 @@ const {
   accountTokenValidator,
   activationLinkValidator,
   resetPasswordValidator,
+  googleLoginValidator,
 } = require("../utils/validators");
 
 const authController = {
@@ -200,18 +201,21 @@ const authController = {
     next
   ) => {
     try {
-      const doc = {
+      const user = await User.create({
         email,
         username,
         avatar,
         activated: verified_email,
         expire_at: null,
-      };
-      await User.create(doc);
-      res.cookies("token", accessToken, cookiesOptions);
+      });
+
+      authController.authenticateGoogleVerifiedUser(user, res, next);
     } catch (error) {
       next(error);
     }
+  },
+  authenticateGoogleVerifiedUser: (user, res, next) => {
+    const validated = googleLoginValidator(user, next);
   },
 };
 
