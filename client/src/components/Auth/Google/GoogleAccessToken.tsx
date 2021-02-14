@@ -4,14 +4,14 @@ import qs from "query-string";
 import { GoogleProcessProps } from "../../../models/token";
 
 const GoogleAccessToken = ({ authorize }: GoogleProcessProps) => {
-  const uriFragment = qs.parse(useLocation().search);
-  console.log(uriFragment);
+  const queryParameters = qs.parse(useLocation().search);
+  console.log(queryParameters);
 
   useEffect(() => {
-    authorize(uriFragment);
+    authorize(queryParameters);
   }, []);
 
-  return <div>GOOGLE AUTH PROCESSING</div>;
+  return <div></div>;
 };
 
 export default GoogleAccessToken;

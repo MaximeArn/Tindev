@@ -9,14 +9,13 @@ import CircularProgress from "@material-ui/core/CircularProgress";
 const Login = ({
   login,
   error: { userId },
-  history,
   submitLogin,
   loginLoader,
   newLinkLoader,
   closeModal,
   sendActivationLink,
   swapModal,
-  googleAuthAttempt,
+  googleAuthorize,
   oAuth2AuthorizationUrl,
   setForgotPasswordModalStatus,
 }: LoginAuth) => {
@@ -107,7 +106,7 @@ const Login = ({
 
               <div className="social-media">
                 <button
-                  onClick={() => googleAuthAttempt()}
+                  onClick={() => googleAuthorize()}
                   className="google-connect"
                   type="button"
                 >

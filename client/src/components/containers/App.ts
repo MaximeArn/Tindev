@@ -28,8 +28,8 @@ const mapDispatch = (dispatch: Dispatch<AnyAction>) => ({
   getNotifications: () => dispatch({ type: "GET_NOTIFICATIONS" }),
   getChatWindows: () => dispatch({ type: "GET_CHAT_WINDOWS" }),
   onAccountClosing: () => dispatch({ type: "RESET_GLOBAL_STATE" }),
-  authorize: (authorizationToken: OAuth2Token) =>
-    dispatch({ type: "GOOGLE_CONSENT_RESPONSE", authorizationToken }),
+  authorize: (authorizationCode: OAuth2Token) =>
+    dispatch({ type: "GOOGLE_CONSENT_RESPONSE", authorizationCode }),
 });
 
 export default connect(mapState, mapDispatch)(App);

@@ -1,7 +1,7 @@
 import { AnyAction, Dispatch, Middleware } from "redux";
 import { AuthMiddleware } from "../models/actions";
 import { AxiosSubmit } from "../models/axios";
-import { OAuth2Token } from "../models/token";
+import { OAuth2AuthorizationResponse } from "../models/token";
 import axios from "../utils/axiosInstance";
 
 const createUser = ({ getState, dispatch }: AxiosSubmit) => {
@@ -155,18 +155,18 @@ const sendNewLink = (
     .finally(() => dispatch({ type: "SET_NEW_LINK_LOADER", value: false }));
 };
 
-const getOAuth2AuthorizationUrl = (dispatch: Dispatch<AnyAction>) => {
+const oAuth2Authorization = (dispatch: Dispatch<AnyAction>) => {
   axios
-    .get("/auth/google")
+    .get("/auth/google/authorize")
     .then(({ data: oAuth2AuthorizationUrl }) =>
       dispatch({ type: "SET_OAUTH_AUTHORIZATION_URL", oAuth2AuthorizationUrl })
     )
     .catch((error) => console.error(error));
 };
 
-const googleAccessToken = (authorizationToken: OAuth2Token) => {
+const verifyAuthorizationCode = (authorizationCode: OAuth2AuthorizationResponse) => {
   axios
-    .post("/auth/google/request_user_infos", authorizationToken)
+    .post("/auth/google/verify", authorizationCode)
     .then(({ data }) => console.log(data))
     .catch((error) => console.log(error.response.data));
 };
@@ -182,7 +182,7 @@ const auth: Middleware = ({ getState, dispatch }) => (next) => (
     email,
     message,
     history,
-    authorizationToken,
+    authorizationCode,
   } = action;
   switch (type) {
     case "SUBMIT_REGISTER":
@@ -206,11 +206,11 @@ const auth: Middleware = ({ getState, dispatch }) => (next) => (
     case "TOKEN_VALIDATION":
       retrieveToken(dispatch);
       break;
-    case "GOOGLE_CONNECTION":
-      getOAuth2AuthorizationUrl(dispatch);
+    case "GOOGLE_AUTHORIZE":
+      oAuth2Authorization(dispatch);
       break;
     case "GOOGLE_CONSENT_RESPONSE":
-      googleAccessToken(authorizationToken);
+      verifyAuthorizationCode(authorizationCode);
       break;
     case "DISCONNECT_USER":
       logout({ getState, dispatch, history }, message);

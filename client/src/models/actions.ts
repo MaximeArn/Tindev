@@ -56,7 +56,7 @@ export interface AuthMiddleware {
   email: string;
   message: string;
   history: any;
-  authorizationToken: OAuth2Token;
+  authorizationCode: OAuth2Token;
 }
 
 export interface CategoriesAction {

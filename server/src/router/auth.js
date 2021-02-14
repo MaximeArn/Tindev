@@ -13,8 +13,8 @@ const {
 } = require("../controllers/auth");
 
 const authRouterWrapper = (connectedUsers) => {
-  router.get("/google", authorize);
-  router.post("/google/request_user_infos", verify);
+  router.get("/google/authorize", authorize);
+  router.post("/google/verify", verify);
   router.post("/login", login);
   router.post("/register", register);
   router.post("/reset_password", resetPassword);

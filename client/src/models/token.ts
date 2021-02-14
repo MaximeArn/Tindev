@@ -3,8 +3,8 @@ export interface InvalidToken {
   message?: string;
 }
 
-export interface OAuth2Token {
-  access_token: string;
+export interface OAuth2AuthorizationResponse {
+  authorization_code: string;
   authuser: number;
   expires_in: number;
   prompt: string;

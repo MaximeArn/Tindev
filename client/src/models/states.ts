@@ -103,7 +103,6 @@ export interface LoginAuth {
     password: string;
   };
   loginLoader: boolean;
-  history: any;
   newLinkLoader: boolean;
   submitLogin: Function;
   error: {
@@ -112,7 +111,7 @@ export interface LoginAuth {
   };
   closeModal: Function;
   swapModal: Function;
-  googleAuthAttempt: Function;
+  googleAuthorize: Function;
   oAuth2AuthorizationUrl: null | string;
   sendActivationLink: Function;
   setForgotPasswordModalStatus: Function;

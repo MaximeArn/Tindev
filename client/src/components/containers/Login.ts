@@ -3,7 +3,6 @@ import Login from "../Auth/Login/Login";
 import { State } from "../../models/states";
 import { AuthModalSwapping } from "../../models/modal";
 import { AnyAction, Dispatch } from "redux";
-import { withRouter } from "react-router-dom";
 
 const mapState = ({
   auth: { login, oAuth2AuthorizationUrl },
@@ -31,7 +30,7 @@ const mapDispatch = (dispatch: Dispatch<AnyAction>) => ({
       modalStatus,
     });
   },
-  googleAuthAttempt: () => dispatch({ type: "GOOGLE_CONNECTION" }),
+  googleAuthorize: () => dispatch({ type: "GOOGLE_AUTHORIZE" }),
   swapModal: ({ modal, modal2 }: AuthModalSwapping) => {
     dispatch({ type: "SWAP_AUTH_MODAL", modal, modal2, modalStatus: false });
     dispatch({ type: "RESET_AUTH_MODAL_ERROR_VALUES" });
@@ -44,4 +43,4 @@ const mapDispatch = (dispatch: Dispatch<AnyAction>) => ({
     }),
 });
 
-export default withRouter(connect(mapState, mapDispatch)(Login));
+export default connect(mapState, mapDispatch)(Login);
