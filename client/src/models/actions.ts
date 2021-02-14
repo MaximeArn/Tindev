@@ -4,7 +4,7 @@ import { Category } from "./categories";
 import { User } from "./users";
 import { ChatWindow, SocketServerResponse } from "./chat";
 import { Notification } from "./notifications";
-import { OAuth2Token } from "./token";
+import { OAuth2AuthorizationResponse } from "./token";
 
 export interface AuthenticationAction {
   type: string;
@@ -56,7 +56,7 @@ export interface AuthMiddleware {
   email: string;
   message: string;
   history: any;
-  authorizationCode: OAuth2Token;
+  authorizationCode: OAuth2AuthorizationResponse;
 }
 
 export interface CategoriesAction {

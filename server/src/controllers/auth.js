@@ -7,6 +7,7 @@ const mailSender = require("../utils/mailSender");
 const setTokenExpiration = require("../utils/tokenExpiration");
 const crypto = require("crypto-random-string");
 const axios = require("axios");
+const cookiesOptions = require("../config/cookies/cookiesOptions");
 const {
   loginValidator,
   registerValidator,
@@ -16,7 +17,7 @@ const {
   resetPasswordValidator,
 } = require("../utils/validators");
 
-const authRouter = {
+const authController = {
   register: async ({ body }, res, next) => {
     try {
       const validator = await registerValidator(body, next);
@@ -48,11 +49,7 @@ const authRouter = {
         const { _id: id, email, username, role } = user;
         const token = jwt.sign({ id, email, username, role }, SECRET);
 
-        res.cookie("token", token, {
-          httpOnly: true,
-          sameSite: "strict",
-          secure: false,
-        });
+        res.cookie("token", token, cookiesOptions);
 
         return res.status(200).json({
           email,
@@ -149,6 +146,23 @@ const authRouter = {
     res.clearCookie("token");
     return res.end();
   },
+  requestUserInfos: async (accessToken, res, next) => {
+    try {
+      const { expires_in, token_type, access_token } = accessToken;
+      accessToken.expire_at = Date.now() / 1000 + expires_in;
+
+      const { data } = await axios.get("https://www.googleapis.com/oauth2/v1/userinfo", {
+        headers: {
+          Authorization: `${token_type} ${access_token}`,
+        },
+      });
+
+      console.log(data);
+      // res.cookies("token", accessToken, cookiesOptions);
+    } catch (error) {
+      console.error(error);
+    }
+  },
   authorize: (req, res) => {
     const state = crypto({ length: 30, type: "url-safe" });
     const oAuth2AuthorizationUrl = `https://accounts.google.com/o/oauth2/v2/auth?client_id=${process.env.GOOGLE_CLIENT_ID}&redirect_uri=${process.env.OAUTH2_REDIRECT_URI}&response_type=code&scope=https://www.googleapis.com/auth/userinfo.email%20https://www.googleapis.com/auth/userinfo.profile&state=${state}&include_granted_scopes=true&access_type=offline`;
@@ -167,20 +181,17 @@ const authRouter = {
       const { data } = await axios.post(
         `https://accounts.google.com/o/oauth2/token`,
         null,
-        { headers: { "Content-Type": "application/x-www-form-urlencoded" }, params }
+        {
+          headers: { "Content-Type": "application/x-www-form-urlencoded" },
+          params,
+        }
       );
-      console.log(data);
+
+      authController.requestUserInfos(data, res, next);
     } catch (error) {
       console.error(error);
     }
-
-    // const { email, name, picture } = await axios.get(
-    //   "https://www.googleapis.com/oauth2/v1/userinfo",
-    //   {
-    //     headers: { Authorization: `${body.token_type} ${body.access_token}` },
-    //   }
-    // );
   },
 };
 
-module.exports = authRouter;
+module.exports = authController;

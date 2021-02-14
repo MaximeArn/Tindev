@@ -13,7 +13,6 @@ const cors = require("cors");
 const corsSettings = require("./config/cors");
 const adminMiddleware = require("./middlewares/admin");
 const tokenVerification = require("./middlewares/tokenVerification");
-const googleAUth = require("./config/GoogleAuth/getOAuthClient");
 const {
   authRouterWrapper,
   usersRouter,
@@ -57,7 +56,5 @@ ioNameSpace.use(socketConnection).on("connection", (socket) => {
 
 mongoDB.on("error", () => console.log("Error connecting to database"));
 mongoDB.once("open", () => console.log("Connected to mongo database"));
-
-googleAUth();
 
 module.exports = { server, http };
