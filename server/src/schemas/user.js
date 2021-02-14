@@ -1,18 +1,20 @@
 const { ObjectId } = require("mongodb");
-const { Schema } = require("mongoose");
+const {
+  Types: { Mixed },
+} = require("mongoose").Schema;
 
 const userSchema = new Schema(
   {
-    username: String,
+    username: { type: String, required },
     firstname: String,
     lastname: String,
-    email: String,
+    email: { type: String, required },
     password: String,
     age: Number,
     city: String,
     suspended: {
       status: { type: Boolean, default: false },
-      duration: { type: Schema.Types.Mixed, default: false },
+      duration: { type: Mixed, default: false },
     },
     role: { type: String, default: "User" },
     messages: [{ to: { id: ObjectId, name: String }, message: String, date: Date }],
@@ -27,7 +29,7 @@ const userSchema = new Schema(
     },
     activated: { type: Boolean, default: false },
     expire_at: {
-      type: Date,
+      type: Mixed,
       default: Date.now,
       index: { expires: 60 * 60 * 24 },
     },

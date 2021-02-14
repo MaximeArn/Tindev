@@ -1,5 +1,8 @@
 const jwt = require("jsonwebtoken");
 const SECRET = process.env.SECRET;
+const GOOGLE_CLIENT_ID = process.env.GOOGLE_CLIENT_ID;
+const GOOGLE_CLIENT_SECRET = process.env.GOOGLE_CLIENT_SECRET;
+const OAUTH2_REDIRECT_URI = process.env.OAUTH2_REDIRECT_URI;
 const { User, Token } = require("../models");
 const sendAccountActivationEmail = require("../utils/sendAccountConfirmationEmail");
 const encryption = require("../utils/encryption");
@@ -146,23 +149,6 @@ const authController = {
     res.clearCookie("token");
     return res.end();
   },
-  requestUserInfos: async (accessToken, res, next) => {
-    try {
-      const { expires_in, token_type, access_token } = accessToken;
-      accessToken.expire_at = Date.now() / 1000 + expires_in;
-
-      const { data } = await axios.get("https://www.googleapis.com/oauth2/v1/userinfo", {
-        headers: {
-          Authorization: `${token_type} ${access_token}`,
-        },
-      });
-
-      console.log(data);
-      // res.cookies("token", accessToken, cookiesOptions);
-    } catch (error) {
-      console.error(error);
-    }
-  },
   authorize: (req, res) => {
     const state = crypto({ length: 30, type: "url-safe" });
     const oAuth2AuthorizationUrl = `https://accounts.google.com/o/oauth2/v2/auth?client_id=${process.env.GOOGLE_CLIENT_ID}&redirect_uri=${process.env.OAUTH2_REDIRECT_URI}&response_type=code&scope=https://www.googleapis.com/auth/userinfo.email%20https://www.googleapis.com/auth/userinfo.profile&state=${state}&include_granted_scopes=true&access_type=offline`;
@@ -172,10 +158,10 @@ const authController = {
     try {
       const params = {
         grant_type: "authorization_code",
-        client_id: process.env.GOOGLE_CLIENT_ID,
-        client_secret: process.env.GOOGLE_CLIENT_SECRET,
+        client_id: GOOGLE_CLIENT_ID,
+        client_secret: GOOGLE_CLIENT_SECRET,
         code,
-        redirect_uri: process.env.OAUTH2_REDIRECT_URI,
+        redirect_uri: OAUTH2_REDIRECT_URI,
       };
 
       const { data } = await axios.post(
@@ -187,9 +173,44 @@ const authController = {
         }
       );
 
-      authController.requestUserInfos(data, res, next);
+      authController.requestGoogleUserInfos(data, res, next);
     } catch (error) {
       console.error(error);
+    }
+  },
+  requestGoogleUserInfos: async (accessToken, res, next) => {
+    try {
+      const { expires_in, token_type, access_token } = accessToken;
+      accessToken.expire_at = Date.now() / 1000 + expires_in;
+
+      const { data } = await axios.get("https://www.googleapis.com/oauth2/v1/userinfo", {
+        headers: {
+          Authorization: `${token_type} ${access_token}`,
+        },
+      });
+
+      authController.saveGoogleVerifiedUser(data, res, next);
+    } catch (error) {
+      console.error(error);
+    }
+  },
+  saveGoogleVerifiedUser: async (
+    { email, name: username, picture: avatar, verified_email },
+    res,
+    next
+  ) => {
+    try {
+      const doc = {
+        email,
+        username,
+        avatar,
+        activated: verified_email,
+        expire_at: null,
+      };
+      await User.create(doc);
+      res.cookies("token", accessToken, cookiesOptions);
+    } catch (error) {
+      next(error);
     }
   },
 };
