@@ -1,5 +1,5 @@
-const { User } = require("../../models");
 const UserError = require("../CustomError");
+
 module.exports = async (user, next) => {
   if (user.suspended.status) {
     const { duration } = user.suspended;

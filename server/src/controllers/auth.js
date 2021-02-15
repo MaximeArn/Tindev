@@ -201,21 +201,26 @@ const authController = {
     next
   ) => {
     try {
-      const user = await User.create({
-        email,
-        username,
-        avatar,
-        activated: verified_email,
-        expire_at: null,
-      });
+      const user =
+        (await User.findOne({ email })) ||
+        (await User.create({
+          email,
+          username,
+          avatar,
+          activated: verified_email,
+          expire_at: null,
+        }));
 
       authController.authenticateGoogleVerifiedUser(user, res, next);
     } catch (error) {
       next(error);
     }
   },
-  authenticateGoogleVerifiedUser: (user, res, next) => {
-    const validated = googleLoginValidator(user, next);
+  authenticateGoogleVerifiedUser: async (user, res, next) => {
+    const validated = await googleLoginValidator(user, next);
+
+    if (validated) {
+    }
   },
 };
 
