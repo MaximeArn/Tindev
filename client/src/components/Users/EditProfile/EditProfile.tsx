@@ -23,6 +23,8 @@ const EditProfile = ({
     getUserProfile();
   }, []);
 
+  const googleHidenFields = ["password", "username", "email"];
+
   return (
     <>
       {isLoading ? (
@@ -47,24 +49,27 @@ const EditProfile = ({
                   {Object.entries(editProfile).map(([prop, value]) => {
                     const key = prop as keyof typeof EditProfile;
                     return (
-                      <div key={key} className="profile-container">
-                        <ProfileField
-                          updateUserProfile={updateUserProfile}
-                          name={key}
-                          loader={loader}
-                          inputValue={value}
-                          getEditProfileValue={getEditProfileValue}
-                          resetEditProfileValue={resetEditProfileValue}
-                          isGoogleAuth={user.isGoogleAuth}
-                          value={
-                            user[key]
-                              ? user[key]
-                              : key === "password"
-                              ? "Change your password"
-                              : null
-                          }
-                        />
-                      </div>
+                      user.isGoogleAuth &&
+                      !googleHidenFields.includes(key) && (
+                        <div key={key} className="profile-container">
+                          <ProfileField
+                            updateUserProfile={updateUserProfile}
+                            name={key}
+                            loader={loader}
+                            inputValue={value}
+                            getEditProfileValue={getEditProfileValue}
+                            resetEditProfileValue={resetEditProfileValue}
+                            isGoogleAuth={user.isGoogleAuth}
+                            value={
+                              user[key]
+                                ? user[key]
+                                : key === "password"
+                                ? "Change your password"
+                                : null
+                            }
+                          />
+                        </div>
+                      )
                     );
                   })}
                 </div>
