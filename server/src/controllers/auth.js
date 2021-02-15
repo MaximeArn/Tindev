@@ -190,13 +190,14 @@ const authController = {
         },
       });
 
-      authController.saveGoogleVerifiedUser(data, res, next);
+      authController.saveGoogleVerifiedUser(data, acessToken, res, next);
     } catch (error) {
       console.error(error);
     }
   },
   saveGoogleVerifiedUser: async (
     { email, name: username, picture: avatar, verified_email },
+    token,
     res,
     next
   ) => {
@@ -211,15 +212,17 @@ const authController = {
           expire_at: null,
         }));
 
-      authController.authenticateGoogleVerifiedUser(user, res, next);
+      authController.authenticateGoogleVerifiedUser(user, token, res, next);
     } catch (error) {
       next(error);
     }
   },
-  authenticateGoogleVerifiedUser: async (user, res, next) => {
-    const validated = await googleLoginValidator(user, next);
+  authenticateGoogleVerifiedUser: async (user, token, res, next) => {
+    const { email, username, role } = (await googleLoginValidator(user, next)) || {};
 
-    if (validated) {
+    if (email) {
+      res.cookie("token", token, cookiesOptions);
+      return res.status(200).json({ email, username, role });
     }
   },
 };
