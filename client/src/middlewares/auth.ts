@@ -214,8 +214,10 @@ const auth: Middleware = ({ getState, dispatch }) => (next) => (
       break;
     case "auth/googleLogin":
       googleLogin(dispatch, tokenId);
+      break;
     case "auth/googleRegister":
       googleRegister(dispatch, tokenId);
+      break;
     default:
       next(action);
       break;

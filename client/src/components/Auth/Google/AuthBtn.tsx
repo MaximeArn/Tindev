@@ -16,7 +16,7 @@ const AuthBtn = ({
   const onSuccess = (res: any): void => {
     const { tokenId } = res;
     action === "Login" ? googleLogin(tokenId) : googleRegister(tokenId);
-    refreshToken(res);
+    // refreshToken(res);
   };
 
   const onError = ({ error }: { error: string; details?: string }): void => {

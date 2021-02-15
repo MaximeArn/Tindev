@@ -25,6 +25,7 @@ module.exports = async (idToken, next) => {
       // userId, maybe useful
     };
   } catch (error) {
+    console.error(error);
     next(error);
   }
 };
