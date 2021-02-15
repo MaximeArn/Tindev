@@ -1,8 +1,10 @@
 const { verify } = require("jsonwebtoken");
 const TokenError = require("../utils/CustomError");
 const { User } = require("../models");
+const isObject = require("../utils/isObject");
+const googleRefreshToken = require("../utils/googleRefreshToken");
 const SECRET = process.env.SECRET;
-const notProtectedPaths = new RegExp(/^\/(admin|auth)/i);
+const unProtectedPaths = new RegExp(/^\/(admin|auth)/i);
 
 module.exports = (req, res, next) => {
   const {
@@ -10,12 +12,21 @@ module.exports = (req, res, next) => {
     cookies: { token },
   } = req;
 
-  if (path.match(notProtectedPaths)) {
+  if (path.match(unProtectedPaths)) {
     return next();
+  }
+
+  if (!token) {
+    throw new TokenError("Please sign in", 401);
   }
 
   verify(token, SECRET, async (error, decoded) => {
     try {
+      if (isObject(token)) {
+        googleRefreshToken(token, next);
+        return;
+      }
+
       if (error) {
         throw new TokenError("Please sign in", 401);
       }

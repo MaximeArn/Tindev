@@ -165,12 +165,16 @@ const oAuth2Authorization = (dispatch: Dispatch<AnyAction>) => {
 };
 
 const verifyAuthorizationCode = (
-  dispatch: Dispatch<AnyAction>,
+  { dispatch, history }: AxiosSubmit,
   authorizationCode: OAuth2AuthorizationResponse
 ) => {
   axios
     .post("/auth/google/verify", authorizationCode)
-    .then(({ data: credentials }) => dispatch({ type: "CONNECT_USER", credentials }))
+    .then(({ data: credentials }) => {
+      dispatch({ type: "TOKEN_VALIDATION" });
+      // dispatch({ type: "CONNECT_USER", credentials });
+      // history.push("/");
+    })
     .catch((error) => console.log(error.response.data));
 };
 
@@ -213,7 +217,7 @@ const auth: Middleware = ({ getState, dispatch }) => (next) => (
       oAuth2Authorization(dispatch);
       break;
     case "GOOGLE_CONSENT_RESPONSE":
-      verifyAuthorizationCode(dispatch, authorizationCode);
+      verifyAuthorizationCode({ dispatch, history }, authorizationCode);
       break;
     case "DISCONNECT_USER":
       logout({ getState, dispatch, history }, message);

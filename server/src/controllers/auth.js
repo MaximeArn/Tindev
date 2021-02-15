@@ -190,7 +190,7 @@ const authController = {
         },
       });
 
-      authController.saveGoogleVerifiedUser(data, acessToken, res, next);
+      authController.saveGoogleVerifiedUser(data, accessToken, res, next);
     } catch (error) {
       console.error(error);
     }
