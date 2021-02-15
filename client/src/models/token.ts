@@ -1,3 +1,5 @@
+import { User } from "./users";
+
 export interface InvalidToken {
   status: boolean;
   message?: string;

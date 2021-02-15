@@ -2,7 +2,9 @@ import { connect } from "react-redux";
 import { AnyAction, Dispatch } from "redux";
 import { State } from "../../models/states";
 import { OAuth2AuthorizationResponse } from "../../models/token";
+import { withRouter } from "react-router-dom";
 import App from "../App/App";
+import { OwnProps } from "../../models/connect";
 
 const mapState = ({
   modal: {
@@ -21,7 +23,7 @@ const mapState = ({
   userDeletionSuccess,
 });
 
-const mapDispatch = (dispatch: Dispatch<AnyAction>) => ({
+const mapDispatch = (dispatch: Dispatch<AnyAction>, { history }: OwnProps) => ({
   verifyToken: () => dispatch({ type: "TOKEN_VALIDATION" }),
   wsConnection: () => dispatch({ type: "SOCKET_CONNECTION" }),
   getProjects: () => dispatch({ type: "GET_PROJECTS" }),
@@ -29,7 +31,7 @@ const mapDispatch = (dispatch: Dispatch<AnyAction>) => ({
   getChatWindows: () => dispatch({ type: "GET_CHAT_WINDOWS" }),
   onAccountClosing: () => dispatch({ type: "RESET_GLOBAL_STATE" }),
   authorize: (authorizationCode: OAuth2AuthorizationResponse) =>
-    dispatch({ type: "GOOGLE_CONSENT_RESPONSE", authorizationCode }),
+    dispatch({ type: "GOOGLE_CONSENT_RESPONSE", authorizationCode, history }),
 });
 
-export default connect(mapState, mapDispatch)(App);
+export default withRouter(connect(mapState, mapDispatch)(App));
