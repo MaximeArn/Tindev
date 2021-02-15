@@ -65,7 +65,7 @@ const ProfileEditOpen = ({
                 <img
                   className="profile-edit-image-preview"
                   onClick={() => fileInput.current?.click()}
-                  src={`${url}/uploads/users/${value}`}
+                  src={isGoogleAuth ? value : `${url}/uploads/users/${value}`}
                   alt="profile-avatar-preview"
                 />
               ) : (
