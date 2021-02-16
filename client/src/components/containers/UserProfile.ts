@@ -19,16 +19,17 @@ const mapState = ({
 
 const mapDispatch = (
   dispatch: Dispatch<AnyAction>,
-  { match: { params } }: OwnProps
-) => {
-  const { username } = params;
-  return {
-    getUser: () => {
-      dispatch({ type: "GET_USER_PROFILE", username });
+  {
+    match: {
+      params: { username },
     },
-    openChatWindow: (username: string, id: string) =>
-      dispatch({ type: "OPEN_CHAT_WINDOW", username, id }),
-  };
-};
+  }: OwnProps
+) => ({
+  getUser: () => {
+    dispatch({ type: "GET_USER_PROFILE", username });
+  },
+  openChatWindow: (username: string, id: string) =>
+    dispatch({ type: "OPEN_CHAT_WINDOW", username, id }),
+});
 
 export default withRouter(connect(mapState, mapDispatch)(UserProfile));

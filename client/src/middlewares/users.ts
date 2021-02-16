@@ -22,10 +22,7 @@ const getUserProfile = (dispatch: Dispatch<AnyAction>, username: string) => {
     .finally(() => dispatch({ type: "SET_USER_PROFILE_LOADER", value: false }));
 };
 
-const updateUserProfile = (
-  { getState, dispatch }: AxiosSubmit,
-  fieldName: string
-) => {
+const updateUserProfile = ({ getState, dispatch }: AxiosSubmit, fieldName: string) => {
   const { editProfile } = getState().users;
   const formData = new FormData();
 
@@ -56,9 +53,7 @@ const updateUserProfile = (
     .finally(() => {
       dispatch({ type: "SET_USER_PROFILE_EDITION_LOADER", value: false });
       fieldName === "password"
-        ? Object.keys(editProfile[fieldName]).forEach((key) =>
-            resetInputValues(key)
-          )
+        ? Object.keys(editProfile[fieldName]).forEach((key) => resetInputValues(key))
         : resetInputValues();
     });
 };
@@ -88,8 +83,7 @@ const project: Middleware = ({ getState, dispatch }) => (next) => (action) => {
       getUsers(dispatch);
       break;
     case "GET_USER_PROFILE":
-      const { username: user } = getState().auth.user;
-      getUserProfile(dispatch, username || user);
+      getUserProfile(dispatch, username || getState().auth.user.username);
       break;
     case "UPDATE_USER_PROFILE":
       updateUserProfile({ getState, dispatch }, fieldName);
