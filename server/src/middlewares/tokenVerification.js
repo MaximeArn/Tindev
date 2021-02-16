@@ -22,7 +22,7 @@ module.exports = (req, res, next) => {
   verify(token.credentials, SECRET, async (error, decoded) => {
     try {
       if (token.hasOwnProperty("access_token")) {
-        googleRefreshToken(token, res, next);
+        googleRefreshToken(token, res);
       }
 
       if (error) {

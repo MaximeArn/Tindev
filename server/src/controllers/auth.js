@@ -55,9 +55,7 @@ const authController = {
         const { _id: id, email, username, role } = user;
         const credentials = jwt.sign({ id, email, username, role }, SECRET);
 
-        res.cookie("token", { credentials }, cookiesOptions);
-
-        return res.status(200).json({
+        return res.cookie("token", { credentials }, cookiesOptions).status(200).json({
           email,
           username,
           role,
@@ -80,9 +78,10 @@ const authController = {
         socket.disconnect(true);
       }
 
-      res.clearCookie("token");
-
-      return res.status(200).json({ message: "Socket successfully disconnected" });
+      return res
+        .clearCookie("token")
+        .status(200)
+        .json({ message: "Socket successfully disconnected" });
     } catch (error) {
       next(error);
     }
@@ -149,8 +148,7 @@ const authController = {
     }
   },
   clearCookies: (req, res, next) => {
-    res.clearCookie("token");
-    return res.end();
+    return res.clearCookie("token").end();
   },
   authorize: (req, res) => {
     const state = crypto({ length: 30, type: "url-safe" });
@@ -217,8 +215,10 @@ const authController = {
     token.credentials = jwt.sign({ id: _id, email, username, role }, SECRET);
 
     if (email) {
-      res.cookie("token", token, cookiesOptions);
-      return res.status(200).json({ email, username, role });
+      return res
+        .cookie("token", token, cookiesOptions)
+        .status(200)
+        .json({ email, username, role });
     }
   },
 };

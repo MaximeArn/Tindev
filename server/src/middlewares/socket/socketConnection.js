@@ -4,6 +4,7 @@ const TokenError = require("../../utils/CustomError");
 module.exports = async (socket, next) => {
   try {
     const { cookie } = socket.request.headers;
+    //TODO won't work anymore XDXD
     const token = cookie && cookie.substr(6);
     const decoded = await tokenValidator(token, next);
 
