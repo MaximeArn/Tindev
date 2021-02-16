@@ -3,13 +3,15 @@ const SECRET = process.env.SECRET;
 const GOOGLE_CLIENT_ID = process.env.GOOGLE_CLIENT_ID;
 const GOOGLE_CLIENT_SECRET = process.env.GOOGLE_CLIENT_SECRET;
 const OAUTH2_REDIRECT_URI = process.env.OAUTH2_REDIRECT_URI;
+const OAUTH2_TOKEN_ENDPOINT = process.env.OAUTH2_TOKEN_ENDPOINT;
+const GOOGLE_USER_INFOS_API = process.env.GOOGLE_USER_INFOS_API;
 const { User, Token } = require("../models");
 const sendAccountActivationEmail = require("../utils/sendAccountConfirmationEmail");
 const encryption = require("../utils/encryption");
 const mailSender = require("../utils/mailSender");
 const setTokenExpiration = require("../utils/tokenExpiration");
 const crypto = require("crypto-random-string");
-const axios = require("axios");
+const axios = require("../utils/axiosInstance");
 const cookiesOptions = require("../config/cookies/cookiesOptions");
 const {
   loginValidator,
@@ -51,9 +53,9 @@ const authController = {
 
       if (user) {
         const { _id: id, email, username, role } = user;
-        const token = jwt.sign({ id, email, username, role }, SECRET);
+        const credentials = jwt.sign({ id, email, username, role }, SECRET);
 
-        res.cookie("token", { credentials: token }, cookiesOptions);
+        res.cookie("token", { credentials }, cookiesOptions);
 
         return res.status(200).json({
           email,
@@ -157,22 +159,15 @@ const authController = {
   },
   verify: async ({ body: { code } }, res, next) => {
     try {
-      const params = {
-        grant_type: "authorization_code",
-        client_id: GOOGLE_CLIENT_ID,
-        client_secret: GOOGLE_CLIENT_SECRET,
-        code,
-        redirect_uri: OAUTH2_REDIRECT_URI,
-      };
-
-      const { data } = await axios.post(
-        `https://accounts.google.com/o/oauth2/token`,
-        null,
-        {
-          headers: { "Content-Type": "application/x-www-form-urlencoded" },
-          params,
-        }
-      );
+      const { data } = await axios.post(OAUTH2_TOKEN_ENDPOINT, null, {
+        params: {
+          grant_type: "authorization_code",
+          client_id: GOOGLE_CLIENT_ID,
+          client_secret: GOOGLE_CLIENT_SECRET,
+          code,
+          redirect_uri: OAUTH2_REDIRECT_URI,
+        },
+      });
 
       authController.requestGoogleUserInfos(data, res, next);
     } catch (error) {
@@ -184,7 +179,7 @@ const authController = {
       const { expires_in, token_type, access_token } = accessToken;
       accessToken.expire_at = Date.now() / 1000 + expires_in;
 
-      const { data } = await axios.get("https://www.googleapis.com/oauth2/v1/userinfo", {
+      const { data } = await axios.get(GOOGLE_USER_INFOS_API, {
         headers: {
           Authorization: `${token_type} ${access_token}`,
         },
