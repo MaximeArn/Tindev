@@ -1,12 +1,12 @@
 const { tokenValidator } = require("../../utils/validators");
 const TokenError = require("../../utils/CustomError");
+const qs = require("qs");
 
 module.exports = async (socket, next) => {
   try {
     const { cookie } = socket.request.headers;
-    //TODO won't work anymore XDXD
-    const token = cookie && cookie.substr(6);
-    const decoded = await tokenValidator(token, next);
+    const { credentials } = cookie && JSON.parse(qs.parse(cookie).token.substr(2));
+    const decoded = await tokenValidator(credentials, next);
 
     if (!decoded) throw new TokenError("Invalid token provided", 403);
 

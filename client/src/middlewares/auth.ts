@@ -171,9 +171,8 @@ const verifyAuthorizationCode = (
   axios
     .post("/auth/google/verify", authorizationCode)
     .then(({ data: credentials }) => {
-      dispatch({ type: "TOKEN_VALIDATION" });
-      // dispatch({ type: "CONNECT_USER", credentials });
-      // history.push("/");
+      dispatch({ type: "CONNECT_USER", credentials });
+      history.push("/");
     })
     .catch((error) => console.log(error.response.data));
 };
