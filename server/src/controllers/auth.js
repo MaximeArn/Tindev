@@ -53,7 +53,7 @@ const authController = {
         const { _id: id, email, username, role } = user;
         const token = jwt.sign({ id, email, username, role }, SECRET);
 
-        res.cookie("token", token, cookiesOptions);
+        res.cookie("token", { credentials: token }, cookiesOptions);
 
         return res.status(200).json({
           email,
@@ -218,7 +218,8 @@ const authController = {
     }
   },
   authenticateGoogleVerifiedUser: async (user, token, res, next) => {
-    const { email, username, role } = (await googleLoginValidator(user, next)) || {};
+    const { _id, email, username, role } = (await googleLoginValidator(user, next)) || {};
+    token.credentials = jwt.sign({ id: _id, email, username, role }, SECRET);
 
     if (email) {
       res.cookie("token", token, cookiesOptions);
