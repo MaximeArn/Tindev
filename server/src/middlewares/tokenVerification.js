@@ -23,7 +23,7 @@ module.exports = (req, res, next) => {
   verify(token, SECRET, async (error, decoded) => {
     try {
       if (isObject(token)) {
-        googleRefreshToken(token, next);
+        googleRefreshToken(token, res, next);
         return;
       }
 
