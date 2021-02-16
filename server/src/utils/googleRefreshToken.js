@@ -2,7 +2,7 @@ const axios = require("../utils/axiosInstance");
 const cookiesOptions = require("../config/cookies/cookiesOptions");
 const OAUTH2_TOKEN_ENDPOINT = process.env.OAUTH2_TOKEN_ENDPOINT;
 
-module.exports = async ({ expire_at, refresh_token }, res) => {
+module.exports = async ({ expire_at, refresh_token, credentials }, res) => {
   console.log({ current: Date.now() / 1000, expire: expire_at });
 
   if (Date.now() / 1000 > expire_at) {
@@ -15,7 +15,8 @@ module.exports = async ({ expire_at, refresh_token }, res) => {
       },
     });
 
-    //TODO: implement credential object on default method login instead of directly setting jwt in token cookie
-    res.cookie("token", token, cookiesOptions);
+    token.expire_at = Date.now() / 1000 + token.expires_in;
+    token.credentials = credentials;
+    return res.cookie("token", token, cookiesOptions);
   }
 };
