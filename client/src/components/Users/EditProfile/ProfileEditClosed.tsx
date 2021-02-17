@@ -16,7 +16,7 @@ const ProfileEditClosed = ({ name, value, setEditStatus }: UserProfileClosed) =>
           />
         ) : (
           <div className="field-value">
-            {!value || !value.length
+            {!value || (Array.isArray(value) && !value.length)
               ? "Not yet specified"
               : Array.isArray(value)
               ? value.map((val) => (

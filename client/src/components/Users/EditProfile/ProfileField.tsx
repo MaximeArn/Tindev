@@ -14,7 +14,6 @@ const Profile = ({
   resetEditProfileValue,
 }: Profile) => {
   const [isEditOpen, setEditStatus] = useState<boolean>(false);
-
   return (
     <>
       {status && fieldName === name ? (
@@ -33,11 +32,7 @@ const Profile = ({
           resetEditProfileValue={resetEditProfileValue}
         />
       ) : (
-        <ProfileEditClosed
-          name={name}
-          value={value}
-          setEditStatus={setEditStatus}
-        />
+        <ProfileEditClosed name={name} value={value} setEditStatus={setEditStatus} />
       )}
     </>
   );
