@@ -1,11 +1,11 @@
 const router = require("express").Router();
-const imageDiskStorage = require("../config/multer/projectStorage");
+const storage = require("../config/multer/projectStorage");
 const fileFilter = require("../config/multer/fileFilter");
 const patchFileFilter = require("../config/multer/patchFileFilter");
 const multer = require("multer");
-const upload = multer({ storage: imageDiskStorage, fileFilter });
+const upload = multer({ storage, fileFilter });
 const patchUpload = multer({
-  storage: imageDiskStorage,
+  storage,
   fileFilter: patchFileFilter,
 });
 const {

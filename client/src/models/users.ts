@@ -103,7 +103,7 @@ export interface Profile {
     status: boolean;
   };
   inputValue: string | undefined;
-  value: string | null;
+  value: string | string[] | null;
   updateUserProfile: Function;
   getEditProfileValue: Function;
   resetEditProfileValue: Function;
@@ -112,7 +112,7 @@ export interface Profile {
 export interface UserProfileOpen {
   name: string;
   inputValue: any;
-  value: string | null;
+  value: string | string[] | null;
   setEditStatus: Function;
   updateUserProfile: Function;
   getEditProfileValue: Function;
@@ -121,7 +121,7 @@ export interface UserProfileOpen {
 
 export interface UserProfileClosed {
   name: string;
-  value: string | null;
+  value: string | string[] | null;
   setEditStatus: Function;
 }
 

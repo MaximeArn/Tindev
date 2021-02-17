@@ -9,11 +9,7 @@ const ALLOWED_MIME_TYPE = {
   "image/png": "png",
 };
 
-module.exports = async (
-  { body, cookies: { token } },
-  { mimetype },
-  callback
-) => {
+module.exports = async ({ cookies: { token } }, { mimetype }, callback) => {
   try {
     const { id } = await tokenValidator(token, null);
 
@@ -30,9 +26,7 @@ module.exports = async (
     const imageRemover = () => {
       return new Promise(async (resolve, reject) => {
         try {
-          await fs.unlink(
-            path.join(__dirname, `../../public/uploads/users/${avatar}`)
-          );
+          await fs.unlink(path.join(__dirname, `../../public/uploads/users/${avatar}`));
           resolve({ message: "Success" });
         } catch (error) {
           resolve(error);

@@ -8,10 +8,10 @@ const ProfileEditClosed = ({ name, value, setEditStatus }: UserProfileClosed) =>
     <>
       <div className="profile-field">
         <div className="field-name">{capitalize(name)} :</div>
-        {name === "avatar" && value?.includes("-") ? (
+        {name === "avatar" && typeof value === "string" ? (
           <img
             className="profile-avatar"
-            src={`${url}/uploads/users/${value}`}
+            src={value.includes("avatar") ? `${url}/uploads/users/${value}` : value}
             alt="user-avatar"
           />
         ) : (

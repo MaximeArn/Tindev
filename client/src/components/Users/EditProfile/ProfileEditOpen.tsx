@@ -56,25 +56,16 @@ const ProfileEditOpen = ({
           setEditStatus(false);
         }}
       >
-        {name === "avatar" ? (
+        {name === "avatar" && typeof value === "string" ? (
           <>
             <div className="avatar-preview-name">{capitalize(name)} : </div>
             {!isImageSelected ? (
-              value?.includes("-") ? (
-                <img
-                  className="profile-edit-image-preview"
-                  onClick={() => fileInput.current?.click()}
-                  src={`${url}/uploads/users/${value}`}
-                  alt="profile-avatar-preview"
-                />
-              ) : (
-                <img
-                  className="profile-edit-image-preview"
-                  onClick={() => fileInput.current?.click()}
-                  src="https://user-images.githubusercontent.com/2351721/31314483-7611c488-ac0e-11e7-97d1-3cfc1c79610e.png"
-                  alt="preview-image"
-                />
-              )
+              <img
+                className="profile-edit-image-preview"
+                onClick={() => fileInput.current?.click()}
+                src={value.includes("avatar") ? `${url}/uploads/users/${value}` : value}
+                alt="profile-avatar-preview"
+              />
             ) : (
               <img className="profile-edit-image-preview" ref={filePreview} />
             )}

@@ -16,7 +16,7 @@ const userSchema = new Schema(
     },
     role: { type: String, default: "User" },
     messages: [{ to: { id: ObjectId, name: String }, message: String, date: Date }],
-    avatar: { type: String, default: "default-image.jpg" },
+    avatar: { type: String, default: "avatar-default.jpg" },
     about: { type: String, default: "" },
     experience: { type: String, default: "" },
     technos: [String],
@@ -32,7 +32,7 @@ const userSchema = new Schema(
       index: { expires: 60 * 60 * 24 },
     },
   },
-  { collation: { locale: "en", strength: 2 }, timestamps: true }
+  { timestamps: true }
 );
 
 module.exports = userSchema;

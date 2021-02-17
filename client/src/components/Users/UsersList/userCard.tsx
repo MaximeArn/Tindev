@@ -54,7 +54,7 @@ const userCard = ({ username, firstname, lastname, email, city, avatar }: User) 
               <span>
                 <PermIdentityOutlinedIcon style={{ fontSize: 16 }} />
               </span>
-              User name :
+              Username :
             </p>
             <p>{username}</p>
           </div>
