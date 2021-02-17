@@ -2,7 +2,7 @@ import React, { useEffect } from "react";
 import { CategoryResultsProps } from "../../models/categories";
 import Project from "../Projects/ProjectsList/Project";
 import CircularProgress from "@material-ui/core/CircularProgress";
-import User from "../Users/UsersList/userCard";
+import User from "../Users/UsersList/UserCard/Card";
 
 const CategoryResult = ({
   results,

@@ -38,7 +38,7 @@ export interface User extends GlobalUrlPath {
   experience: string;
   about: string;
   technos: string[] | [];
-  avatar?: string;
+  avatar: string;
 }
 
 export interface UserProfileProps {

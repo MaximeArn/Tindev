@@ -24,6 +24,7 @@
   box-shadow: 0px 0px 2px black;
   border-radius: 15px;
   max-width: 300px;
+  width: 300px;
   margin: 1rem;
   background-color: #fff;
   color: #333;
@@ -43,6 +44,7 @@
     .background-container {
       overflow: hidden;
       border-radius: 13px 13px 0 0;
+      height: 202px;
     }
 
     .background-image {

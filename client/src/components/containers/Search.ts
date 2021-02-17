@@ -3,7 +3,7 @@ import { State } from "../../models/states";
 import Search from "../Search/Search";
 import Category from "../Categories/Category";
 import Project from "../Projects/ProjectsList/Project";
-import User from "../Users/UsersList/userCard";
+import User from "../Users/UsersList/UserCard/Card";
 
 const mapState = ({ search: { results } }: State) => ({
   results,
