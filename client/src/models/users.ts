@@ -154,3 +154,11 @@ export interface AccountVerification {
   checkTokenValidity: Function;
   sendActivationLink: Function;
 }
+
+export interface CardImageProps {
+  containerClassName: string;
+  imgClassName: string;
+  avatar: string;
+  firstname?: string;
+  lastname?: string;
+}
