@@ -4,7 +4,7 @@ import ProfileEditClosed from "./ProfileEditClosed";
 import ProfileEditOpen from "./ProfileEditOpen";
 import CircularProgress from "@material-ui/core/CircularProgress";
 
-const Profile = ({
+const ProfileField = ({
   name,
   inputValue,
   value,
@@ -38,4 +38,4 @@ const Profile = ({
   );
 };
 
-export default Profile;
+export default ProfileField;

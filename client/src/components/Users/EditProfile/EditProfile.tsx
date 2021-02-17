@@ -7,6 +7,7 @@ import "./editprofile.scss";
 
 const EditProfile = ({
   user,
+  authType,
   isLoading,
   loader,
   deleteModal,
@@ -19,6 +20,7 @@ const EditProfile = ({
   deleteAccount,
   setDeleteModalStatus,
 }: EditUserProfile) => {
+  const NOT_ALLOWED_FIELDS = ["username", "email", "password", "avatar"];
   useEffect(() => {
     getUserProfile();
   }, []);
@@ -46,7 +48,28 @@ const EditProfile = ({
                 <div className="profile-edit-container">
                   {Object.entries(editProfile).map(([prop, value]) => {
                     const key = prop as keyof typeof EditProfile;
-                    return (
+
+                    return authType === "google" ? (
+                      !NOT_ALLOWED_FIELDS.includes(key) && (
+                        <div key={key} className="profile-container">
+                          <ProfileField
+                            updateUserProfile={updateUserProfile}
+                            name={key}
+                            loader={loader}
+                            inputValue={value}
+                            getEditProfileValue={getEditProfileValue}
+                            resetEditProfileValue={resetEditProfileValue}
+                            value={
+                              user[key]
+                                ? user[key]
+                                : key === "password"
+                                ? "Change your password"
+                                : null
+                            }
+                          />
+                        </div>
+                      )
+                    ) : (
                       <div key={key} className="profile-container">
                         <ProfileField
                           updateUserProfile={updateUserProfile}

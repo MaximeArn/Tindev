@@ -76,10 +76,12 @@ export interface AuthUserState {
   email: string;
   username: string;
   role: string;
+  authType: string;
 }
 
 export interface EditUserProfile {
   user: User;
+  authType: string;
   isLoading: boolean;
   loader: {
     fieldName: string | null;

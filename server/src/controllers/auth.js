@@ -59,6 +59,7 @@ const authController = {
           email,
           username,
           role,
+          authType: "standard",
         });
       }
     } catch (error) {
@@ -147,7 +148,7 @@ const authController = {
       next(error);
     }
   },
-  clearCookies: (req, res, next) => {
+  clearCookies: (req, res) => {
     return res.clearCookie("token").end();
   },
   authorize: (req, res) => {
@@ -218,7 +219,7 @@ const authController = {
       return res
         .cookie("token", token, cookiesOptions)
         .status(200)
-        .json({ email, username, role });
+        .json({ email, username, role, authType: "google" });
     }
   },
 };

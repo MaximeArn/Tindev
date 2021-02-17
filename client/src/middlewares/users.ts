@@ -15,7 +15,7 @@ const getUserProfile = (dispatch: Dispatch<AnyAction>, username: string) => {
   dispatch({ type: "SET_USER_PROFILE_LOADER", value: true });
   axios
     .get(`/users/${username}`)
-    .then(({ data }) => dispatch({ type: "SET_USER", user: data }))
+    .then(({ data: user }) => dispatch({ type: "SET_USER", user }))
     .catch(({ response: { data: { msg: error } } }) =>
       dispatch({ type: "toasts/error", message: error })
     )

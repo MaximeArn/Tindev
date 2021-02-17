@@ -21,7 +21,7 @@ module.exports = (req, res, next) => {
 
   verify(token.credentials, SECRET, async (error, decoded) => {
     try {
-      token.hasOwnProperty("access_token") && googleRefreshToken(token, res);
+      token.hasOwnProperty("access_token") && (await googleRefreshToken(token, res));
 
       if (error) {
         throw new TokenError("Please sign in", 401);

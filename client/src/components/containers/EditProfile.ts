@@ -6,6 +6,9 @@ import { withRouter } from "react-router-dom";
 import { OwnProps } from "../../models/connect";
 
 const mapState = ({
+  auth: {
+    user: { authType },
+  },
   users: { user, editProfile },
   loaders: {
     userProfileEditionLoader: loader,
@@ -15,6 +18,7 @@ const mapState = ({
   modal: { closeAccountModal: deleteModal },
 }: State) => ({
   user,
+  authType,
   editProfile,
   isLoading,
   deleteModal,

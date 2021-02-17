@@ -15,7 +15,6 @@ module.exports = async ({ expire_at, refresh_token, credentials }, res) => {
 
     token.expire_at = Date.now() / 1000 + token.expires_in;
     token.credentials = credentials;
-    //TODO: seems like this line is throwing error cuz it's trying to send http headers after a response has already been sent
     return res.cookie("token", token, cookiesOptions);
   }
 };
