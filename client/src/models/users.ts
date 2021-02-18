@@ -66,7 +66,8 @@ export interface UserProps {
   email: string;
   age?: number;
   city?: string;
-  avatar?: string;
+  avatar: string;
+  background_image: string;
   experience: string;
   technos: string[] | [];
   about: string;

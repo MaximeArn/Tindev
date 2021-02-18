@@ -2,14 +2,20 @@ import React, { useState } from "react";
 import { UserProfileInfos, UserProps } from "../../../models/users";
 import { url } from "../../../environments/api";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import backgroundImage from "src/assets/user-profile-default.jpg";
 import Tab from "./Tab";
 import TabPanel from "./TabPanel";
 import ChatBubbleIcon from "@material-ui/icons/ChatBubble";
 import { faFacebook, faTwitter, faInstagram } from "@fortawesome/free-brands-svg-icons";
 import "./userprofile.scss";
 
-const User = ({ _id, username, infos, openChatWindow }: UserProps) => {
+const User = ({
+  _id,
+  username,
+  avatar,
+  background_image,
+  infos,
+  openChatWindow,
+}: UserProps) => {
   const [selected, setSelectedStatus] = useState<string>("about");
 
   return (
@@ -19,13 +25,13 @@ const User = ({ _id, username, infos, openChatWindow }: UserProps) => {
           <div className="user-profile-preview-header-background">
             <img
               className="user-profile-background"
-              src={backgroundImage}
+              src={`${url}/uploads/users/${background_image}`}
               alt="background-image"
             />
           </div>
           <img
             className="user-profile-image"
-            src={`${url}/uploads/users/default-image.jpg`}
+            src={avatar.includes("avatar") ? `${url}/uploads/users/${avatar}` : avatar}
           />
           <div className="user-profile-preview-header-infos">
             <i onClick={() => openChatWindow(username, _id)} className="chatIcon">

@@ -14,6 +14,7 @@ const UserProfile = ({
   location,
 }: UserProfileProps) => {
   const { role, avatar, _id, username, email, ...infos } = user;
+  console.log("USER : ", user);
 
   useEffect(() => {
     getUser();
@@ -31,7 +32,7 @@ const UserProfile = ({
         </div>
       ) : (
         <>
-          {user && (
+          {Object.keys(user).length && (
             <>
               <div className="user-profile">
                 <User openChatWindow={openChatWindow} infos={infos} {...user} />
