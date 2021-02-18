@@ -1,10 +1,10 @@
-import React, { useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faChevronRight, faChevronLeft } from "@fortawesome/free-solid-svg-icons";
-import "./admin.scss";
 import { AdminOverlayProps } from "../../models/states";
 import ConfirmatonModal from "./ConfirmModal";
 import Input from "./RadioInput";
+import "./admin.scss";
 
 const Admin = ({
   id,
@@ -17,6 +17,17 @@ const Admin = ({
 }: AdminOverlayProps) => {
   const [isPanelOpen, setIsPanelOpen] = useState(false);
   const [duration, setDuration] = useState(null);
+  const adminPanel = useRef<any>(null);
+
+  useEffect(() => {
+    document.removeEventListener("click", handleClick);
+    document.addEventListener("click", handleClick);
+    return () => document.removeEventListener("click", handleClick);
+  }, [isPanelOpen]);
+
+  const handleClick = ({ target }: globalThis.MouseEvent) => {
+    isPanelOpen && !adminPanel.current.contains(target) && setIsPanelOpen(false);
+  };
 
   return (
     <>
@@ -31,7 +42,10 @@ const Admin = ({
           loader={loader}
         />
       )}
-      <div className={isPanelOpen ? "admin-overlay open" : "admin-overlay"}>
+      <div
+        ref={adminPanel}
+        className={isPanelOpen ? "admin-overlay open" : "admin-overlay"}
+      >
         <div className="admin-overlay-content">
           <h3>Admin Panel</h3>
           {collection === "user" && (
