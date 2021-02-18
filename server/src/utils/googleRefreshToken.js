@@ -15,6 +15,6 @@ module.exports = async ({ expire_at, refresh_token, credentials }, res) => {
 
     token.expire_at = Date.now() / 1000 + token.expires_in;
     token.credentials = credentials;
-    return res.cookie("token", token, cookiesOptions);
+    res.cookie("token", token, cookiesOptions);
   }
 };

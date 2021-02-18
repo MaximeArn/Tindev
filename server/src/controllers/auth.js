@@ -49,18 +49,24 @@ const authController = {
   },
   login: async ({ body }, res, next) => {
     try {
-      const user = await loginValidator(body, res, next);
+      const { _id, email, username, role } =
+        (await loginValidator(body, res, next)) || {};
 
-      if (user) {
-        const { _id: id, email, username, role } = user;
-        const credentials = jwt.sign({ id, email, username, role }, SECRET);
+      if (_id) {
+        const token = jwt.sign(
+          { id, email, username, role, authType: "standard" },
+          SECRET
+        );
 
-        return res.cookie("token", { credentials }, cookiesOptions).status(200).json({
-          email,
-          username,
-          role,
-          authType: "standard",
-        });
+        return res
+          .cookie("token", { credentials: token }, cookiesOptions)
+          .status(200)
+          .json({
+            email,
+            username,
+            role,
+            authType: "standard",
+          });
       }
     } catch (error) {
       next(error);
@@ -212,8 +218,13 @@ const authController = {
     }
   },
   authenticateGoogleVerifiedUser: async (user, token, res, next) => {
-    const { _id, email, username, role } = (await googleLoginValidator(user, next)) || {};
-    token.credentials = jwt.sign({ id: _id, email, username, role }, SECRET);
+    const { _id: id, email, username, role } =
+      (await googleLoginValidator(user, next)) || {};
+
+    token.credentials = jwt.sign(
+      { id, email, username, role, authType: "google" },
+      SECRET
+    );
 
     if (email) {
       return res

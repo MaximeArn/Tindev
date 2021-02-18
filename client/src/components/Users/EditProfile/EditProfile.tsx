@@ -20,7 +20,15 @@ const EditProfile = ({
   deleteAccount,
   setDeleteModalStatus,
 }: EditUserProfile) => {
-  const NOT_ALLOWED_FIELDS = ["username", "email", "password", "avatar"];
+  const googleEditableFields = {
+    firstname: "",
+    lastname: "",
+    city: "",
+    age: "",
+    experience: "",
+    about: "",
+    technos: [],
+  };
   useEffect(() => {
     getUserProfile();
   }, []);
@@ -46,36 +54,17 @@ const EditProfile = ({
             <div className="profile-wrapper">
               <div className="profile">
                 <div className="profile-edit-container">
-                  {Object.entries(editProfile).map(([prop, value]) => {
+                  {Object.keys(
+                    authType === "google" ? googleEditableFields : editProfile
+                  ).map((prop) => {
                     const key = prop as keyof typeof EditProfile;
-
-                    return authType === "google" ? (
-                      !NOT_ALLOWED_FIELDS.includes(key) && (
-                        <div key={key} className="profile-container">
-                          <ProfileField
-                            updateUserProfile={updateUserProfile}
-                            name={key}
-                            loader={loader}
-                            inputValue={value}
-                            getEditProfileValue={getEditProfileValue}
-                            resetEditProfileValue={resetEditProfileValue}
-                            value={
-                              user[key]
-                                ? user[key]
-                                : key === "password"
-                                ? "Change your password"
-                                : null
-                            }
-                          />
-                        </div>
-                      )
-                    ) : (
+                    return (
                       <div key={key} className="profile-container">
                         <ProfileField
                           updateUserProfile={updateUserProfile}
                           name={key}
                           loader={loader}
-                          inputValue={value}
+                          inputValue={editProfile[key]}
                           getEditProfileValue={getEditProfileValue}
                           resetEditProfileValue={resetEditProfileValue}
                           value={
