@@ -8,27 +8,20 @@ import "./editprofile.scss";
 const EditProfile = ({
   user,
   authType,
+  googleEditableFields,
   isLoading,
   loader,
   deleteModal,
   deletionLoader,
   editProfile,
   getUserProfile,
+  getValueToDisplay,
   updateUserProfile,
   getEditProfileValue,
   resetEditProfileValue,
   deleteAccount,
   setDeleteModalStatus,
 }: EditUserProfile) => {
-  const googleEditableFields = {
-    firstname: "",
-    lastname: "",
-    city: "",
-    age: "",
-    experience: "",
-    about: "",
-    technos: [],
-  };
   useEffect(() => {
     getUserProfile();
   }, []);
@@ -67,13 +60,7 @@ const EditProfile = ({
                           inputValue={editProfile[key]}
                           getEditProfileValue={getEditProfileValue}
                           resetEditProfileValue={resetEditProfileValue}
-                          value={
-                            user[key]
-                              ? user[key]
-                              : key === "password"
-                              ? "Change your password"
-                              : null
-                          }
+                          value={getValueToDisplay(key, user)}
                         />
                       </div>
                     );

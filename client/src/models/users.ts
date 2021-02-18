@@ -83,6 +83,7 @@ export interface EditUserProfile {
   user: User;
   authType: string;
   isLoading: boolean;
+  googleEditableFields: GoogleEditableFields;
   loader: {
     fieldName: string | null;
     status: boolean;
@@ -91,6 +92,7 @@ export interface EditUserProfile {
   deletionLoader: boolean;
   editProfile: EditProfile;
   getUserProfile: Function;
+  getValueToDisplay: Function;
   updateUserProfile: Function;
   getEditProfileValue: Function;
   resetEditProfileValue: Function;
@@ -163,4 +165,14 @@ export interface CardImageProps {
   avatar: string;
   firstname?: string;
   lastname?: string;
+}
+
+export interface GoogleEditableFields {
+  firstname: string;
+  lastname: string;
+  city: string;
+  age: string;
+  experience: string;
+  about: string;
+  technos: string[];
 }

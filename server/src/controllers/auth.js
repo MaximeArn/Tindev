@@ -49,10 +49,10 @@ const authController = {
   },
   login: async ({ body }, res, next) => {
     try {
-      const { _id, email, username, role } =
+      const { _id: id, email, username, role } =
         (await loginValidator(body, res, next)) || {};
 
-      if (_id) {
+      if (id) {
         const token = jwt.sign(
           { id, email, username, role, authType: "standard" },
           SECRET

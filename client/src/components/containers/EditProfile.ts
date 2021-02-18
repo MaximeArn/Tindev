@@ -4,6 +4,16 @@ import { AnyAction, Dispatch } from "redux";
 import { State } from "../../models/states";
 import { withRouter } from "react-router-dom";
 import { OwnProps } from "../../models/connect";
+import { User } from "../../models/users";
+const googleEditableFields = {
+  firstname: "",
+  lastname: "",
+  city: "",
+  age: "",
+  experience: "",
+  about: "",
+  technos: [],
+};
 
 const mapState = ({
   auth: {
@@ -19,6 +29,7 @@ const mapState = ({
 }: State) => ({
   user,
   authType,
+  googleEditableFields,
   editProfile,
   isLoading,
   deleteModal,
@@ -27,6 +38,9 @@ const mapState = ({
 });
 
 const mapDispatch = (dispatch: Dispatch<AnyAction>, { history }: OwnProps) => ({
+  getValueToDisplay: (key: string, user: User) =>
+    user[key as keyof typeof user] ||
+    (key === "password" ? "Change your password" : null),
   getUserProfile: () => dispatch({ type: "GET_USER_PROFILE" }),
   getEditProfileValue: (inputName: string, inputValue: string, key?: string) =>
     dispatch({
