@@ -41,7 +41,11 @@ const Admin = ({
               ))}
             </form>
           )}
-          <button onClick={() => setModalStatus(true)} className="admin-overlay-button">
+          <button
+            onClick={() => setModalStatus(true)}
+            className="admin-overlay-button"
+            disabled={collection === "user" ? (duration ? false : true) : false}
+          >
             {collection === "project" ? "Delete" : "Ban"}
           </button>
           {isPanelOpen && (

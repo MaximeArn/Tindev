@@ -29,8 +29,9 @@ const ConfirmModal = ({
       <div ref={modal} className="profile-deletion-modal">
         <>
           <div className="profile-deletion-modal-message">
-            //TODO: dynamic message wtf ??
-            {`Are you sure you want to delete this ${collection} ? This action is
+            {`Are you sure you want to ${
+              collection === "user" ? "suspend this user" : "delete this project"
+            } ? This action is
             irreversible`}
           </div>
           <div className="profile-deletion-modal-buttons">
