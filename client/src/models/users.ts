@@ -39,6 +39,7 @@ export interface User extends GlobalUrlPath {
   about: string;
   technos: string[] | [];
   avatar: string;
+  background_image: string;
 }
 
 export interface UserProfileProps {

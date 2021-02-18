@@ -1,8 +1,8 @@
-import React, { useEffect } from "react";
-import "./visitorPage.scss";
-import image from "src/assets/home-image.jpg";
+import React from "react";
+import { url, homeImage } from "../../environments/api";
 import SuspendedAccountModal from "./SuspendedAccountModal";
 import { VisitorPageProps } from "../../models/states";
+import "./visitorPage.scss";
 
 const VisitorPage = ({
   redirectionModal,
@@ -14,7 +14,7 @@ const VisitorPage = ({
     <div
       className="visitor-page"
       style={{
-        backgroundImage: `url(${image}) `,
+        backgroundImage: `url(${url}/uploads/home/${homeImage})`,
       }}
     >
       {redirectionModal && (
