@@ -56,9 +56,12 @@ const ProfileEditOpen = ({
           setEditStatus(false);
         }}
       >
-        {name === "avatar" && typeof value === "string" ? (
+        {(name === "avatar" || name === "background_image") &&
+        typeof value === "string" ? (
           <>
-            <div className="avatar-preview-name">{capitalize(name)} : </div>
+            <div className="avatar-preview-name">
+              {capitalize(name).replace("_", " ")} :
+            </div>
             {!isImageSelected ? (
               <img
                 className="profile-edit-image-preview"
@@ -67,7 +70,11 @@ const ProfileEditOpen = ({
                 alt="profile-avatar-preview"
               />
             ) : (
-              <img className="profile-edit-image-preview" ref={filePreview} />
+              <img
+                className="profile-edit-image-preview"
+                ref={filePreview}
+                onClick={() => fileInput.current?.click()}
+              />
             )}
           </>
         ) : name === "password" ? (

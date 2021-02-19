@@ -17,7 +17,14 @@ router.get("/", getUsers);
 router.get("/chat_windows", getChatWindows);
 router.get("/:username", getUserByUsername);
 router.post("/messageHistory", getMessageHistory);
-router.patch("/update", upload.single("avatar"), update);
+router.patch(
+  "/update",
+  upload.fields([
+    { name: "avatar", maxCount: 1 },
+    { name: "background_image", maxCount: 1 },
+  ]),
+  update
+);
 router.patch("/chat_window", setChatWindow);
 router.patch("/close_window", deleteChatWindow);
 router.delete("/:id", deleteProfile);

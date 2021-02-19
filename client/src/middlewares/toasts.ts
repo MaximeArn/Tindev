@@ -1,7 +1,7 @@
 import { Middleware } from "redux";
 import { errorToast, successToast } from "../utils/toastify";
 
-const toasts: Middleware = ({ getState, dispatch }) => (next) => (action) => {
+const toasts: Middleware = (store) => (next) => (action) => {
   const { type, message } = action;
 
   switch (type) {
@@ -9,7 +9,8 @@ const toasts: Middleware = ({ getState, dispatch }) => (next) => (action) => {
       errorToast(message);
       break;
     case "toasts/success":
-      return successToast(message);
+      successToast(message);
+      break;
     default:
       next(action);
       break;

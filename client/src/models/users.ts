@@ -15,6 +15,7 @@ export interface EditProfile {
   city: string;
   age: string;
   avatar: null;
+  background_image: null;
   experience: string;
   about: string;
   technos: string[] | [];

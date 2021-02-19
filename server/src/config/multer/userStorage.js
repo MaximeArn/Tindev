@@ -1,15 +1,20 @@
-const multer = require("multer");
+const { diskStorage } = require("multer");
 const path = require("path");
 
-const extensions = {
+const ALLOWED_EXTENSIONS = {
   "image/jpeg": "jpeg",
   "image/jpg": "jpg",
   "image/png": "png",
 };
 
-module.exports = multer.diskStorage({
+module.exports = diskStorage({
   destination: (req, file, callback) =>
     callback(null, path.join(__dirname, "../../public/uploads/users")),
-  filename: (req, { mimetype }, callback) =>
-    callback(null, `avatar-${Date.now()}.${extensions[mimetype]}`),
+  filename: (req, { mimetype, fieldname }, callback) =>
+    callback(
+      null,
+      fieldname === "avatar"
+        ? `avatar-${Date.now()}.${ALLOWED_EXTENSIONS[mimetype]}`
+        : `avatar-background-image-${Date.now()}.${ALLOWED_EXTENSIONS[mimetype]}`
+    ),
 });

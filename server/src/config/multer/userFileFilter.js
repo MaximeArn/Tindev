@@ -1,4 +1,3 @@
-const { tokenValidator } = require("../../utils/validators");
 const UserError = require("../../utils/CustomError");
 const { User } = require("../../models");
 const path = require("path");
@@ -9,12 +8,8 @@ const ALLOWED_MIME_TYPE = {
   "image/png": "png",
 };
 
-module.exports = async ({ cookies: { token } }, { mimetype }, callback) => {
+module.exports = async ({ mimetype }, callback) => {
   try {
-    const { id } = await tokenValidator(token, null);
-
-    if (!id) return callback(new UserError("User not found", 404));
-
     if (!mimetype) return callback(new UserError("Image not found", 400));
 
     if (!ALLOWED_MIME_TYPE[mimetype]) {

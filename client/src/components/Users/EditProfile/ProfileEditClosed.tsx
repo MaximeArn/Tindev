@@ -7,8 +7,9 @@ const ProfileEditClosed = ({ name, value, setEditStatus }: UserProfileClosed) =>
   return (
     <>
       <div className="profile-field">
-        <div className="field-name">{capitalize(name)} :</div>
-        {name === "avatar" && typeof value === "string" ? (
+        <div className="field-name">{capitalize(name).replace("_", " ")} :</div>
+        {(name === "avatar" || name === "background_image") &&
+        typeof value === "string" ? (
           <img
             className="profile-avatar"
             src={value.includes("avatar") ? `${url}/uploads/users/${value}` : value}

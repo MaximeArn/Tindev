@@ -58,3 +58,10 @@ mongoDB.on("error", () => console.log("Error connecting to database"));
 mongoDB.once("open", () => console.log("Connected to mongo database"));
 
 module.exports = { server, http };
+
+const fieldName = "avatar";
+
+const name = `avatar-${
+  fieldName === "background_image" ? "background-image-" : ""
+}${Date.now()}.jpg`;
+console.log(name);

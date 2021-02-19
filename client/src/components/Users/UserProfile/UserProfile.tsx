@@ -14,7 +14,6 @@ const UserProfile = ({
   location,
 }: UserProfileProps) => {
   const { role, avatar, _id, username, email, ...infos } = user;
-  console.log("USER : ", user);
 
   useEffect(() => {
     getUser();

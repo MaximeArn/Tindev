@@ -13,6 +13,7 @@ const googleEditableFields = {
   experience: "",
   about: "",
   technos: [],
+  background_image: null,
 };
 
 const mapState = ({
