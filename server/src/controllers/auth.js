@@ -1,18 +1,17 @@
 const jwt = require("jsonwebtoken");
+const { User, Token } = require("../models");
+const sendAccountActivationEmail = require("../utils/sendAccountConfirmationEmail");
+const encryption = require("../utils/encryption");
+const mailSender = require("../utils/mailSender");
+const setTokenExpiration = require("../utils/tokenExpiration");
+const axios = require("../utils/axiosInstance");
+const cookiesOptions = require("../config/cookies/cookiesOptions");
 const SECRET = process.env.SECRET;
 const GOOGLE_CLIENT_ID = process.env.GOOGLE_CLIENT_ID;
 const GOOGLE_CLIENT_SECRET = process.env.GOOGLE_CLIENT_SECRET;
 const OAUTH2_REDIRECT_URI = process.env.OAUTH2_REDIRECT_URI;
 const OAUTH2_TOKEN_ENDPOINT = process.env.OAUTH2_TOKEN_ENDPOINT;
 const GOOGLE_USER_INFOS_API = process.env.GOOGLE_USER_INFOS_API;
-const { User, Token } = require("../models");
-const sendAccountActivationEmail = require("../utils/sendAccountConfirmationEmail");
-const encryption = require("../utils/encryption");
-const mailSender = require("../utils/mailSender");
-const setTokenExpiration = require("../utils/tokenExpiration");
-const crypto = require("crypto-random-string");
-const axios = require("../utils/axiosInstance");
-const cookiesOptions = require("../config/cookies/cookiesOptions");
 const {
   loginValidator,
   registerValidator,
@@ -158,8 +157,7 @@ const authController = {
     return res.clearCookie("token").end();
   },
   authorize: (req, res) => {
-    const state = crypto({ length: 30, type: "url-safe" });
-    const oAuth2AuthorizationUrl = `https://accounts.google.com/o/oauth2/v2/auth?client_id=${process.env.GOOGLE_CLIENT_ID}&redirect_uri=${process.env.OAUTH2_REDIRECT_URI}&response_type=code&scope=https://www.googleapis.com/auth/userinfo.email%20https://www.googleapis.com/auth/userinfo.profile&state=${state}&include_granted_scopes=true&access_type=offline`;
+    const oAuth2AuthorizationUrl = `https://accounts.google.com/o/oauth2/v2/auth?client_id=${process.env.GOOGLE_CLIENT_ID}&redirect_uri=${process.env.OAUTH2_REDIRECT_URI}&response_type=code&scope=https://www.googleapis.com/auth/userinfo.email%20https://www.googleapis.com/auth/userinfo.profile&include_granted_scopes=true&access_type=offline`;
     return res.status(200).json(oAuth2AuthorizationUrl);
   },
   verify: async ({ body: { code } }, res, next) => {

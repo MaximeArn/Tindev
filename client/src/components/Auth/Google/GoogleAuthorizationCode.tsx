@@ -1,10 +1,10 @@
 import React, { useEffect } from "react";
 import { useLocation } from "react-router-dom";
-import qs from "query-string";
 import { GoogleProcessProps } from "../../../models/token";
+import qs from "qs";
 
 const GoogleAuthorizationCode = ({ verifyAuthorizationCode }: GoogleProcessProps) => {
-  const queryParameters = qs.parse(useLocation().search);
+  const queryParameters = qs.parse(useLocation().search, { ignoreQueryPrefix: true });
 
   useEffect(() => {
     verifyAuthorizationCode(queryParameters);

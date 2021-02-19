@@ -12,3 +12,4 @@ declare module "scrollreveal";
 declare module "enzyme";
 declare module "enzyme-adapter-react-16";
 declare module "sinon";
+declare module "qs";
