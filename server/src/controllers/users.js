@@ -51,15 +51,17 @@ const usersController = {
   },
   update: async ({ body, fieldName, files, decoded: { id } }, res, next) => {
     try {
-      const valid = await userUpdateValidator(body, next);
-      if (valid) {
-        const hasFile = Object.keys(files).length;
+      const hasFile = Object.keys(files).length;
+      const valid = !hasFile && (await userUpdateValidator(body, next));
+
+      if (valid || hasFile) {
         const key = hasFile ? fieldName : Object.keys(body)[0];
         const user = await User.findByIdAndUpdate(
           id,
           { [key]: hasFile ? files[fieldName][0].filename : body[key] },
           { new: true, fields: { password: 0, messages: 0 } }
         );
+
         return res.status(200).json({ msg: "Profile successfully updated", user });
       }
     } catch (error) {
