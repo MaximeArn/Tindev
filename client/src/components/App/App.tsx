@@ -25,7 +25,7 @@ import ForgotPassword from "../containers/ForgotPassword";
 import ResetPassword from "../containers/ResetPassword";
 import CategoriesList from "../containers/CategoriesList";
 import CategoryResult from "../containers/CategoryResult";
-import GoogleProcess from "../Auth/Google/GoogleAccessToken";
+import GoogleProcess from "../Auth/Google/GoogleAuthorizationCode";
 import "react-toastify/dist/ReactToastify.css";
 import "./app.scss";
 

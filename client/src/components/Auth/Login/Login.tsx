@@ -16,16 +16,9 @@ const Login = ({
   sendActivationLink,
   swapModal,
   googleAuthorize,
-  oAuth2AuthorizationUrl,
   setForgotPasswordModalStatus,
 }: LoginAuth) => {
   const modal = useRef<HTMLDivElement>(null);
-
-  useEffect(() => {
-    if (oAuth2AuthorizationUrl) {
-      window.location.href = oAuth2AuthorizationUrl;
-    }
-  }, [oAuth2AuthorizationUrl]);
 
   const handleSubmit = (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault();

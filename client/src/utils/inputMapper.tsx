@@ -1,6 +1,6 @@
 import Input from "../components/containers/Input";
 import React from "react";
-import isRequired from "./registerMandatoryFields";
+import isRequired from "./authMandatoryFields";
 import { Login, Register } from "../models/inputs";
 
 export default (input: Login | Register) => {

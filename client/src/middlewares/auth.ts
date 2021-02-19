@@ -155,12 +155,12 @@ const sendNewLink = (
     .finally(() => dispatch({ type: "SET_NEW_LINK_LOADER", value: false }));
 };
 
-const oAuth2AuthorizationCode = (dispatch: Dispatch<AnyAction>) => {
+const oAuth2AuthorizationCode = () => {
   axios
     .get("/auth/google/authorize")
-    .then(({ data: oAuth2AuthorizationUrl }) =>
-      dispatch({ type: "SET_OAUTH_AUTHORIZATION_URL", oAuth2AuthorizationUrl })
-    )
+    .then(({ data: oAuth2AuthorizationUrl }) => {
+      window.location.href = oAuth2AuthorizationUrl;
+    })
     .catch((error) => console.error(error));
 };
 
@@ -220,7 +220,7 @@ const auth: Middleware = ({ getState, dispatch }) => (next) => (
       retrieveToken(dispatch);
       break;
     case "GOOGLE_AUTHORIZE":
-      oAuth2AuthorizationCode(dispatch);
+      oAuth2AuthorizationCode();
       break;
     case "GOOGLE_VERIFY_AUTHORIZATION_CODE":
       verifyAuthorizationCode({ dispatch, history }, authorizationCode);

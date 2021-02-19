@@ -112,7 +112,6 @@ export interface LoginAuth {
   closeModal: Function;
   swapModal: Function;
   googleAuthorize: Function;
-  oAuth2AuthorizationUrl: null | string;
   sendActivationLink: Function;
   setForgotPasswordModalStatus: Function;
 }

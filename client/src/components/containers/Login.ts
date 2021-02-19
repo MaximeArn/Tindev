@@ -5,7 +5,7 @@ import { AuthModalSwapping } from "../../models/modal";
 import { AnyAction, Dispatch } from "redux";
 
 const mapState = ({
-  auth: { login, oAuth2AuthorizationUrl },
+  auth: { login },
   error: {
     auth: { loginErrorMessage: error },
   },
@@ -15,7 +15,6 @@ const mapState = ({
   error,
   loginLoader,
   newLinkLoader,
-  oAuth2AuthorizationUrl,
 });
 
 const mapDispatch = (dispatch: Dispatch<AnyAction>) => ({

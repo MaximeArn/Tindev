@@ -1,5 +1,4 @@
 import { Authentication } from "../models/states";
-import { AuthenticationAction } from "../models/actions";
 
 export const initialState: any = {
   register: {
@@ -24,7 +23,6 @@ export const initialState: any = {
     confirmPassword: "",
   },
   user: null,
-  oAuth2AuthorizationUrl: null,
 };
 
 const auth = (
@@ -48,8 +46,6 @@ const auth = (
       };
     case "RESET_AUTH_INPUTS_VALUES":
       return { ...state, [authType]: initialState[authType] };
-    case "SET_OAUTH_AUTHORIZATION_URL":
-      return { ...state, oAuth2AuthorizationUrl };
     case "CONNECT_USER":
       return { ...state, user: credentials };
     default:

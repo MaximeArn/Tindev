@@ -3,7 +3,7 @@ import typeChecker from "../../../utils/inputType";
 import { UserProfileOpen } from "../../../models/users";
 import capitalize from "../../../utils/capitalizeFirstLetter";
 import { url } from "../../../environments/api";
-import isRequired from "../../../utils/registerMandatoryFields";
+import isRequired from "../../../utils/authMandatoryFields";
 import MultipleCategories from "../../containers/MultipleCategories";
 
 const ProfileEditOpen = ({
