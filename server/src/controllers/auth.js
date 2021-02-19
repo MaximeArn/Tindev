@@ -11,7 +11,11 @@ const GOOGLE_CLIENT_ID = process.env.GOOGLE_CLIENT_ID;
 const GOOGLE_CLIENT_SECRET = process.env.GOOGLE_CLIENT_SECRET;
 const OAUTH2_REDIRECT_URI = process.env.OAUTH2_REDIRECT_URI;
 const OAUTH2_TOKEN_ENDPOINT = process.env.OAUTH2_TOKEN_ENDPOINT;
-const GOOGLE_USER_INFOS_API = process.env.GOOGLE_USER_INFOS_API;
+const {
+  requestGoogleUserInfos,
+  saveGoogleVerifiedUser,
+  authenticateGoogleVerifiedUser,
+} = require("./google");
 const {
   loginValidator,
   registerValidator,
@@ -19,7 +23,6 @@ const {
   accountTokenValidator,
   activationLinkValidator,
   resetPasswordValidator,
-  googleLoginValidator,
 } = require("../utils/validators");
 
 const authController = {
@@ -162,7 +165,7 @@ const authController = {
   },
   verify: async ({ body: { code } }, res, next) => {
     try {
-      const { data } = await axios.post(OAUTH2_TOKEN_ENDPOINT, null, {
+      const { data: accessToken } = await axios.post(OAUTH2_TOKEN_ENDPOINT, null, {
         params: {
           grant_type: "authorization_code",
           client_id: GOOGLE_CLIENT_ID,
@@ -172,63 +175,16 @@ const authController = {
         },
       });
 
-      authController.requestGoogleUserInfos(data, res, next);
-    } catch (error) {
-      console.error(error);
-    }
-  },
-  requestGoogleUserInfos: async (accessToken, res, next) => {
-    try {
-      const { expires_in, token_type, access_token } = accessToken;
-      accessToken.expire_at = Date.now() / 1000 + expires_in;
+      const userInfos = await requestGoogleUserInfos(accessToken);
+      const user = await saveGoogleVerifiedUser(userInfos);
+      const credentials = await authenticateGoogleVerifiedUser(user, accessToken, next);
 
-      const { data } = await axios.get(GOOGLE_USER_INFOS_API, {
-        headers: {
-          Authorization: `${token_type} ${access_token}`,
-        },
-      });
-
-      authController.saveGoogleVerifiedUser(data, accessToken, res, next);
-    } catch (error) {
-      console.error(error);
-    }
-  },
-  saveGoogleVerifiedUser: async (
-    { email, name: username, picture: avatar, verified_email },
-    token,
-    res,
-    next
-  ) => {
-    try {
-      const user =
-        (await User.findOne({ email })) ||
-        (await User.create({
-          email,
-          username,
-          avatar,
-          activated: verified_email,
-          expire_at: null,
-        }));
-
-      authController.authenticateGoogleVerifiedUser(user, token, res, next);
-    } catch (error) {
-      next(error);
-    }
-  },
-  authenticateGoogleVerifiedUser: async (user, token, res, next) => {
-    const { _id: id, email, username, role } =
-      (await googleLoginValidator(user, next)) || {};
-
-    token.credentials = jwt.sign(
-      { id, email, username, role, authType: "google" },
-      SECRET
-    );
-
-    if (email) {
       return res
-        .cookie("token", token, cookiesOptions)
+        .cookie("token", accessToken, cookiesOptions)
         .status(200)
-        .json({ email, username, role, authType: "google" });
+        .json(credentials);
+    } catch (error) {
+      console.error(error);
     }
   },
 };
