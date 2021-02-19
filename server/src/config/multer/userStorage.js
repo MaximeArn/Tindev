@@ -11,7 +11,8 @@ const ALLOWED_EXTENSIONS = {
 module.exports = diskStorage({
   destination: (req, file, callback) =>
     callback(null, path.join(__dirname, "../../public/uploads/users")),
-  filename: (req, { mimetype, fieldname }, callback) =>
+  filename: (req, { mimetype, fieldname }, callback) => {
+    req.fieldName = fieldname;
     callback(
       null,
       fieldname === "avatar"
@@ -19,5 +20,6 @@ module.exports = diskStorage({
         : `avatar-${fieldname.replace("_", "-")}-${Date.now()}.${
             ALLOWED_EXTENSIONS[mimetype]
           }`
-    ),
+    );
+  },
 });
