@@ -1,7 +1,7 @@
 import { AnyAction, Dispatch, Middleware } from "redux";
 import { AuthMiddleware } from "../models/actions";
 import { AxiosSubmit } from "../models/axios";
-import { OAuth2AuthorizationResponse } from "../models/token";
+import { GoogleAPITokenResponse, OAuth2AuthorizationResponse } from "../models/token";
 import axios from "../utils/axiosInstance";
 
 const createUser = ({ getState, dispatch }: AxiosSubmit) => {
@@ -155,7 +155,7 @@ const sendNewLink = (
     .finally(() => dispatch({ type: "SET_NEW_LINK_LOADER", value: false }));
 };
 
-const oAuth2Authorization = (dispatch: Dispatch<AnyAction>) => {
+const oAuth2AuthorizationCode = (dispatch: Dispatch<AnyAction>) => {
   axios
     .get("/auth/google/authorize")
     .then(({ data: oAuth2AuthorizationUrl }) =>
@@ -171,10 +171,17 @@ const verifyAuthorizationCode = (
   axios
     .post("/auth/google/verify", authorizationCode)
     .then(({ data: credentials }) => {
-      dispatch({ type: "CONNECT_USER", credentials });
-      history.push("/");
+      loginGoogleAuthenticatedUser({ dispatch, history }, credentials);
     })
     .catch((error) => console.log(error.response.data));
+};
+
+const loginGoogleAuthenticatedUser = (
+  { dispatch, history }: AxiosSubmit,
+  credentials: GoogleAPITokenResponse
+) => {
+  dispatch({ type: "CONNECT_USER", credentials });
+  history.push("/");
 };
 
 const auth: Middleware = ({ getState, dispatch }) => (next) => (
@@ -213,9 +220,9 @@ const auth: Middleware = ({ getState, dispatch }) => (next) => (
       retrieveToken(dispatch);
       break;
     case "GOOGLE_AUTHORIZE":
-      oAuth2Authorization(dispatch);
+      oAuth2AuthorizationCode(dispatch);
       break;
-    case "GOOGLE_CONSENT_RESPONSE":
+    case "GOOGLE_VERIFY_AUTHORIZATION_CODE":
       verifyAuthorizationCode({ dispatch, history }, authorizationCode);
       break;
     case "DISCONNECT_USER":

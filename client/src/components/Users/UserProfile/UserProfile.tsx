@@ -13,7 +13,7 @@ const UserProfile = ({
   openChatWindow,
   location,
 }: UserProfileProps) => {
-  const { role, avatar, _id, username, email, ...infos } = user;
+  const { about, experience, technos } = user;
 
   useEffect(() => {
     getUser();
@@ -34,7 +34,11 @@ const UserProfile = ({
           {Object.keys(user).length && (
             <>
               <div className="user-profile">
-                <User openChatWindow={openChatWindow} infos={infos} {...user} />
+                <User
+                  openChatWindow={openChatWindow}
+                  infos={{ about, experience, technos }}
+                  {...user}
+                />
               </div>
 
               {admin && !(user.role === "Admin") && (

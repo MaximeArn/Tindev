@@ -16,5 +16,12 @@ export interface OAuth2AuthorizationResponse {
 }
 
 export interface GoogleProcessProps {
-  authorize: Function;
+  verifyAuthorizationCode: Function;
+}
+
+export interface GoogleAPITokenResponse {
+  email: string;
+  username: string;
+  role: string;
+  authType: string;
 }

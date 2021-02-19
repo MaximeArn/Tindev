@@ -3,11 +3,11 @@ import { useLocation } from "react-router-dom";
 import qs from "query-string";
 import { GoogleProcessProps } from "../../../models/token";
 
-const GoogleAccessToken = ({ authorize }: GoogleProcessProps) => {
+const GoogleAccessToken = ({ verifyAuthorizationCode }: GoogleProcessProps) => {
   const queryParameters = qs.parse(useLocation().search);
 
   useEffect(() => {
-    authorize(queryParameters);
+    verifyAuthorizationCode(queryParameters);
   }, []);
 
   return <div></div>;

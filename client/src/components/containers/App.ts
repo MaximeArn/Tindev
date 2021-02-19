@@ -30,8 +30,8 @@ const mapDispatch = (dispatch: Dispatch<AnyAction>, { history }: OwnProps) => ({
   getNotifications: () => dispatch({ type: "GET_NOTIFICATIONS" }),
   getChatWindows: () => dispatch({ type: "GET_CHAT_WINDOWS" }),
   onAccountClosing: () => dispatch({ type: "RESET_GLOBAL_STATE" }),
-  authorize: (authorizationCode: OAuth2AuthorizationResponse) =>
-    dispatch({ type: "GOOGLE_CONSENT_RESPONSE", authorizationCode, history }),
+  verifyAuthorizationCode: (authorizationCode: OAuth2AuthorizationResponse) =>
+    dispatch({ type: "GOOGLE_VERIFY_AUTHORIZATION_CODE", authorizationCode, history }),
 });
 
 export default withRouter(connect(mapState, mapDispatch)(App));
