@@ -1,3 +1,4 @@
+const { ALL } = require("dns");
 const { diskStorage } = require("multer");
 const path = require("path");
 
@@ -14,7 +15,9 @@ module.exports = diskStorage({
     callback(
       null,
       fieldname === "avatar"
-        ? `avatar-${Date.now()}.${ALLOWED_EXTENSIONS[mimetype]}`
-        : `avatar-background-image-${Date.now()}.${ALLOWED_EXTENSIONS[mimetype]}`
+        ? `${fieldname}-${Date.now()}.${ALLOWED_EXTENSIONS[mimetype]}`
+        : `avatar-${fieldname.replace("_", "-")}-${Date.now()}.${
+            ALLOWED_EXTENSIONS[mimetype]
+          }`
     ),
 });

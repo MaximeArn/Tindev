@@ -8,7 +8,7 @@ const ALLOWED_MIME_TYPE = {
   "image/png": "png",
 };
 
-module.exports = async ({ mimetype }, callback) => {
+module.exports = async ({ decoded: { id } }, { mimetype, fieldname }, callback) => {
   try {
     if (!mimetype) return callback(new UserError("Image not found", 400));
 
@@ -16,12 +16,15 @@ module.exports = async ({ mimetype }, callback) => {
       return callback(new UserError("Invalid file format", 400));
     }
 
-    const { avatar } = await User.findById(id);
+    const user = await User.findById(id);
 
     const imageRemover = () => {
-      return new Promise(async (resolve, reject) => {
+      return new Promise(async (resolve) => {
         try {
-          await fs.unlink(path.join(__dirname, `../../public/uploads/users/${avatar}`));
+          //TODO: change dynamic string value to handle both avatar and background
+          await fs.unlink(
+            path.join(__dirname, `../../public/uploads/users/${user[fieldname]}`)
+          );
           resolve({ message: "Success" });
         } catch (error) {
           resolve(error);
@@ -29,6 +32,7 @@ module.exports = async ({ mimetype }, callback) => {
       });
     };
 
+    //TODO: implements conditional checks to handle avatar and background_image fields
     avatar && avatar !== "default-image.jpg" && (await imageRemover());
 
     return callback(null, true);
