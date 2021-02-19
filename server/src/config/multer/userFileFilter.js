@@ -21,7 +21,6 @@ module.exports = async ({ decoded: { id } }, { mimetype, fieldname }, callback) 
     const imageRemover = () => {
       return new Promise(async (resolve) => {
         try {
-          //TODO: change dynamic string value to handle both avatar and background
           await fs.unlink(
             path.join(__dirname, `../../public/uploads/users/${user[fieldname]}`)
           );
@@ -32,8 +31,7 @@ module.exports = async ({ decoded: { id } }, { mimetype, fieldname }, callback) 
       });
     };
 
-    //TODO: implements conditional checks to handle avatar and background_image fields
-    avatar && avatar !== "default-image.jpg" && (await imageRemover());
+    !user[fieldname].includes("default") && (await imageRemover());
 
     return callback(null, true);
   } catch (error) {
