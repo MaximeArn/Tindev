@@ -1,5 +1,8 @@
 const GOOGLE_USER_INFOS_API = process.env.GOOGLE_USER_INFOS_API;
+const { User } = require("../models/index");
+const axios = require("../utils/axiosInstance");
 const { googleLoginValidator } = require("../utils/validators/index");
+const jwt = require("jsonwebtoken");
 
 module.exports = {
   requestGoogleUserInfos: async (accessToken) => {
@@ -18,7 +21,7 @@ module.exports = {
       console.error(error);
     }
   },
-  saveGoogleVerifiedUser: async ({ email, name: username, picture: avatar }) => {
+  saveGoogleVerifiedUser: async ({ email, name: username, picture: avatar }, next) => {
     try {
       return (
         (await User.findOne({ email })) ||

@@ -176,7 +176,7 @@ const authController = {
       });
 
       const userInfos = await requestGoogleUserInfos(accessToken);
-      const user = await saveGoogleVerifiedUser(userInfos);
+      const user = await saveGoogleVerifiedUser(userInfos, next);
       const credentials = await authenticateGoogleVerifiedUser(user, accessToken, next);
 
       return res
