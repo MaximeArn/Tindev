@@ -1,4 +1,5 @@
 const GOOGLE_USER_INFOS_API = process.env.GOOGLE_USER_INFOS_API;
+const SECRET = process.env.SECRET;
 const { User } = require("../models/index");
 const axios = require("../utils/axiosInstance");
 const { googleLoginValidator } = require("../utils/validators/index");
