@@ -57,7 +57,8 @@ const authController = {
       if (id) {
         const token = jwt.sign(
           { id, email, username, role, authType: "standard" },
-          SECRET
+          SECRET,
+          { expiresIn: "7d" }
         );
 
         return res

@@ -1,7 +1,6 @@
 import axios from "axios";
 import { url as baseURL } from "../environments/api";
 import authorizationHandler from "../services/authorizationHandler";
-import extendToken from "../services/extendToken";
 
 const format = {
   "Content-Type": "application/json",

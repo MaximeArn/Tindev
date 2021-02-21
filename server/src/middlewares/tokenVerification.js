@@ -21,10 +21,15 @@ module.exports = (req, res, next) => {
 
   verify(token.credentials, SECRET, async (error, decoded) => {
     try {
+      console.log({ exp: decoded.exp, current: Math.floor(Date.now() / 1000) });
       token.hasOwnProperty("access_token") && (await googleRefreshToken(token, res));
 
       if (error) {
         throw new TokenError("Please sign in", 401);
+      }
+
+      if (decoded.exp && Math.floor(Date.now() / 1000) > decoded.exp) {
+        throw new TokenError("Token has expired", 401);
       }
 
       const user = await User.findById(decoded.id);
