@@ -10,12 +10,10 @@ const {
   clearCookies,
   authorize,
   verify,
-  extendJwt,
 } = require("../controllers/auth");
 
 const authRouterWrapper = (connectedUsers) => {
   router.get("/google/authorize", authorize);
-  router.get("/token/extend", extendJwt);
   router.post("/google/verify", verify);
   router.post("/login", login);
   router.post("/register", register);
