@@ -21,7 +21,6 @@ module.exports = (req, res, next) => {
 
   verify(token.credentials, SECRET, async (error, decoded) => {
     try {
-      console.log({ exp: decoded.exp, current: Math.floor(Date.now() / 1000) });
       token.hasOwnProperty("access_token") && (await googleRefreshToken(token, res));
 
       if (error) {

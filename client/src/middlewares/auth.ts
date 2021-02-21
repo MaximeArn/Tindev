@@ -69,7 +69,7 @@ const retrieveToken = (dispatch: Dispatch<AnyAction>) => {
   axios
     .get("/verification")
     .then(({ data: credentials, status }) => {
-      return status === 200
+      status === 200
         ? dispatch({ type: "CONNECT_USER", credentials })
         : axios
             .get("/verification/token/extend")
