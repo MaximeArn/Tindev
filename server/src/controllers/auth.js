@@ -187,6 +187,7 @@ const authController = {
       console.error(error);
     }
   },
+  extendJwt: (req, res, next) => {},
 };
 
 module.exports = authController;
