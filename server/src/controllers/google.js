@@ -38,13 +38,18 @@ module.exports = {
       next(error);
     }
   },
-  authenticateGoogleVerifiedUser: async (user, token, next) => {
-    const { _id, email, username, role } = (await googleLoginValidator(user, next)) || {};
-    const authType = "google";
+  authenticateGoogleVerifiedUser: async (data, token, next) => {
+    const user = await googleLoginValidator(data, next);
+    const credentials = {
+      email: user.email,
+      username: user.username,
+      role: user.role,
+      authType: "google",
+    };
 
-    if (email) {
-      token.credentials = jwt.sign({ id: _id, email, username, role, authType }, SECRET);
-      return { email, username, role, authType };
+    if (user) {
+      token.credentials = jwt.sign({ id: user._id, ...credentials }, SECRET);
+      return credentials;
     }
   },
 };

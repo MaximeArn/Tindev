@@ -75,26 +75,22 @@ const authController = {
       next(error);
     }
   },
-  logout: async (connectedUsers, { params: { username } }, res, next) => {
-    try {
-      if (!username) {
-        return res.status(200).json({ message: "User was already logged out" });
-      }
-
-      const userSocket = connectedUsers[username];
-
-      if (userSocket) {
-        const { socket } = userSocket;
-        socket.disconnect(true);
-      }
-
-      return res
-        .clearCookie("token")
-        .status(200)
-        .json({ message: "Socket successfully disconnected" });
-    } catch (error) {
-      next(error);
+  logout: (connectedUsers, { params: { username } }, res) => {
+    if (!username) {
+      return res.status(200).json({ message: "User was already logged out" });
     }
+
+    const userSocket = connectedUsers[username];
+
+    if (userSocket) {
+      const { socket } = userSocket;
+      socket.disconnect(true);
+    }
+
+    return res
+      .clearCookie("token")
+      .status(200)
+      .json({ message: "Socket successfully disconnected" });
   },
   verifyNewLinkToken: async ({ params: { token } }, res, next) => {
     try {
