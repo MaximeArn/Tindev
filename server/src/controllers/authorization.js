@@ -1,7 +1,9 @@
+const jwt = require("jsonwebtoken");
+
 module.exports = {
   authorizationHandler: ({ decoded }, res) => {
     const { id, ...credentials } = decoded;
-    return res.status(200).json(credentials);
+    return res.status(decoded.authType === "google" ? 200 : 202).json(credentials);
   },
   extendJwt: ({ decoded }, res, next) => {
     const { id, ...credentials } = decoded;

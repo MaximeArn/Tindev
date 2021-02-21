@@ -16,7 +16,14 @@ const instance = axios.create({
 });
 
 instance.interceptors.response.use(
-  (response) => response,
+  (response) => {
+    const {
+      status,
+      config: { url },
+    } = response;
+
+    return response;
+  },
   (error) => {
     const {
       status,
