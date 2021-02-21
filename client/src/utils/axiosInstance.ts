@@ -1,6 +1,7 @@
 import axios from "axios";
 import { url as baseURL } from "../environments/api";
 import authorizationHandler from "../services/authorizationHandler";
+import extendToken from "../services/extendToken";
 
 const format = {
   "Content-Type": "application/json",
@@ -16,14 +17,7 @@ const instance = axios.create({
 });
 
 instance.interceptors.response.use(
-  (response) => {
-    const {
-      status,
-      config: { url },
-    } = response;
-
-    return response;
-  },
+  (response) => response,
   (error) => {
     const {
       status,
