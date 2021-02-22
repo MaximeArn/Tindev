@@ -1,7 +1,7 @@
 const { verify } = require("jsonwebtoken");
 const TokenError = require("../utils/CustomError");
 const { User } = require("../models");
-const googleRefreshToken = require("../utils/googleRefreshToken");
+const { googleRefreshToken } = require("../controllers/google");
 const SECRET = process.env.SECRET;
 const unProtectedPaths = new RegExp(/^\/(admin|auth)/i);
 

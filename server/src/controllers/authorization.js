@@ -9,7 +9,7 @@ module.exports = {
       ? res.status(200).json(credentials)
       : res.status(202).end();
   },
-  extendJwt: ({ decoded }, res) => {
+  extendJwtDuration: ({ decoded }, res) => {
     const { id, exp, iat, ...credentials } = decoded;
     const token = jwt.sign({ id, ...credentials }, SECRET, { expiresIn: "7d" });
 
