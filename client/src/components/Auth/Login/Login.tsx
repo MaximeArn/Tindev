@@ -104,7 +104,7 @@ const Login = ({
                   type="button"
                 >
                   <img src={googleIcon} alt="google icon" />
-                  <span>Connect with Google</span>
+                  <span className="google-tooltip">Connect with Google</span>
                 </button>
               </div>
             </footer>
