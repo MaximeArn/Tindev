@@ -83,7 +83,7 @@ const ProfileEditOpen = ({
               return (
                 <input
                   key={key}
-                  className="profile-edit-password-input"
+                  className="profile-edit-input"
                   type={typeChecker(name)}
                   name={key}
                   placeholder={capitalize(key)}
