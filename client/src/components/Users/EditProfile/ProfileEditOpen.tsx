@@ -102,8 +102,8 @@ const ProfileEditOpen = ({
           <input
             className={
               typeChecker(name) === "textarea"
-                ? "input-edit-textarea"
-                : "input-edit-input"
+                ? "profile-edit-textarea"
+                : "profile-edit-input"
             }
             name={name}
             type={typeChecker(name)}
