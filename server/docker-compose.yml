@@ -1,0 +1,14 @@
+version: 3.8
+
+services:
+  app:
+    image: node:14-alpine
+    build: /src/start.js
+    command: yarn start-prod
+    container_name: Tindev web app
+    env_file: .env.production
+    depends_on: mongo
+    ports: 7200:7200
+    volumes:
+      - ./:${VOLUME_MAPPING_PATH}
+    restart: unless-stopped
