@@ -1,14 +1,31 @@
 version: 3.8
 
+env_file: .env.production
+
 services:
   app:
-    image: node:14-alpine
+    container_name: Tindev web app
+    image: node:latest-alpine
+    hostname: tindev server
     build: /src/start.js
     command: yarn start-prod
-    container_name: Tindev web app
-    env_file: .env.production
     depends_on: mongo
     ports: 7200:7200
     volumes:
       - ./:${VOLUME_MAPPING_PATH}
     restart: unless-stopped
+
+  mongodb:
+    container_name: Mongo Database
+    image: mongo:latest
+    hostname: mongo Database
+    ports: 27017:27017
+    environment:
+      MONGO_INITDB_ROOT_USERNAME: ${MONGO_INITDB_ROOT_USERNAME}
+      MONGO_INITDB_ROOT_PASSWORD: ${MONGO_INITDB_ROOT_PASSWORD}
+    restart: always
+    volumes:
+      - mongodb_data_container:/data/db
+
+volumes:
+  mongodb_data_container:

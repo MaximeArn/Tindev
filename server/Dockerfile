@@ -1,4 +1,4 @@
-FROM node:14-alpine
+FROM node:latest-alpine
 ENV SERVER=/server PORT=7200
 
 RUN yarn global add pm2
