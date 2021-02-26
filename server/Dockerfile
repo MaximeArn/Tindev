@@ -1,7 +1,7 @@
-FROM node:latest-alpine
-ENV SERVER=/server PORT=7200
+FROM node:14-alpine
+ENV SERVER=/server/ PORT=7200
 
-RUN yarn global add pm2
+RUN yarn global add pm2 && yarn global add nodemon
 
 WORKDIR ${SERVER}
 
