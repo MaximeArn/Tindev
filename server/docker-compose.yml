@@ -1,24 +1,8 @@
 version: "3.8"
 services:
-  app:
-    container_name: tindevapp
-    env_file: .env
-    image: node:14-alpine
-    hostname: tindev
-    build:
-      context: .
-      dockerfile: Dockerfile
-    command: yarn start
-    depends_on:
-      - mongodb
-    ports:
-      - "7200:7200"
-    restart: unless-stopped
-
-  mongodb:
+  mongo:
     container_name: mongodb
     image: mongo:latest
-    hostname: mongo
     env_file: .env
     ports:
       - "27017:27017"
@@ -28,6 +12,22 @@ services:
     restart: unless-stopped
     volumes:
       - mongodb_data_container:/data/db
+
+  app:
+    container_name: tindev
+    env_file: .env
+    image: node:14-alpine
+    build:
+      context: .
+      dockerfile: Dockerfile
+    command: yarn start
+    depends_on:
+      - mongo
+    ports:
+      - "7200:7200"
+    restart: unless-stopped
+    environment:
+      WAIT_HOST: mongo:27017
 
 volumes:
   mongodb_data_container:
