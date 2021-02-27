@@ -1,19 +1,22 @@
 version: "3.8"
 services:
   mongo:
-    container_name: mongodb
+    container_name: mongo
     image: mongo:latest
     env_file: .env
     ports:
       - "27017:27017"
-    # environment:
-    #   MONGO_INITDB_ROOT_USERNAME: ${MONGO_INITDB_ROOT_USERNAME}
-    #   MONGO_INITDB_ROOT_PASSWORD: ${MONGO_INITDB_ROOT_PASSWORD}
     restart: unless-stopped
+    command: mongod
+    environment:
+      MONGO_INITDB_ROOT_USERNAME: ${MONGO_INITDB_ROOT_USERNAME}
+      MONGO_INITDB_ROOT_PASSWORD: ${MONGO_INITDB_ROOT_PASSWORD}
+      MONGO_INITDB_DATABASE: ${MONGO_INITDB_DATABASE}
     volumes:
       - mongodb_data_container:/data/db
+      - "./mongo-init.js:/docker-entrypoint-initdb.d/mongo-init.js"
 
-  app:
+  tindev:
     container_name: tindev
     env_file: .env
     image: node:14-alpine
