@@ -39,7 +39,7 @@ module.exports = {
         ({ size, contributors }) => size > contributors.length
       );
 
-      return res.status(200).json(projects);
+      return res.status(200).json({ projects, msg: "TEST WORKING" });
     } catch (error) {
       next(error);
     }

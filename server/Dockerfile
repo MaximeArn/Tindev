@@ -12,7 +12,7 @@ COPY . ${SERVER}
 
 EXPOSE ${PORT}
 
-ADD https://github.com/ufoscout/docker-compose-wait/releases/download/${DOCKER_COMPOSE_WAIT_VERSION}/wait /wait
-RUN chmod +x /wait
+# ADD https://github.com/ufoscout/docker-compose-wait/releases/download/${DOCKER_COMPOSE_WAIT_VERSION}/wait /wait
+# RUN chmod +x /wait
 
-CMD /wait && /pm2-runtime src/start.js
+CMD ["pm2-runtime", "src/start.js", "ecosystem.config.js"]
