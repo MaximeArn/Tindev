@@ -16,21 +16,19 @@ services:
       - mongodb_data_container:/data/db
       - "./mongo-init.js:/docker-entrypoint-initdb.d/mongo-init.js"
 
-  tindev:
-    container_name: tindev
-    env_file: .env
-    image: krysyx/tindev:1.0
-    # build:
-    #   context: .
-    #   dockerfile: Dockerfile
-    # command: yarn start
-    depends_on:
-      - mongo
-    ports:
-      - "7200:7200"
-    restart: unless-stopped
-    # environment:
-    #   WAIT_HOST: mongo:27017
+  # tindev:
+  #   container_name: tindev
+  #   env_file: .env
+  #   image: krysyx/tindev:1.0
+  # build:
+  #   context: .
+  #   dockerfile: Dockerfile
+  # command: yarn start
+  # depends_on:
+  #   - mongo
+  # ports:
+  #   - "7200:7200"
+  # restart: unless-stopped
 
 volumes:
   mongodb_data_container:
