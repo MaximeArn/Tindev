@@ -35,11 +35,13 @@ module.exports = {
   },
   getProjects: async (req, res, next) => {
     try {
-      const projects = (await Project.find()).filter(
-        ({ size, contributors }) => size > contributors.length
-      );
+      // const projects = (await Project.find()).filter(
+      //   ({ size, contributors }) => size > contributors.length
+      // );
 
-      return res.status(200).json({ projects, msg: "TEST WORKING" });
+      const projects = await Project.find();
+      console.log("PROJECTS WERE CORRECTLY FETCHED : ", projects);
+      return res.status(200).json(projects);
     } catch (error) {
       next(error);
     }
