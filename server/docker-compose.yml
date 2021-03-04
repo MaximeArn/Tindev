@@ -14,21 +14,22 @@ services:
       MONGO_INITDB_DATABASE: ${MONGO_INITDB_DATABASE}
     volumes:
       - mongodb_data:/data/db
-      - "./mongo-init.js:/docker-entrypoint-initdb.d/db-init.js"
+      - "./mongo-authentication.js:/docker-entrypoint-initdb.d/db-init.js"
 
   tindev:
     container_name: tindev
     env_file: .env
-    image: krysyx/tindev:1.0
-  # build:
-  #   context: .
-  #   dockerfile: Dockerfile
-  command: yarn start
-  depends_on:
-    - mongo
-  ports:
-    - "7200:7200"
-  restart: unless-stopped
+    # image: krysyx/tindev:1.0
+    image: node:14-alpine
+    build:
+      context: .
+      dockerfile: Dockerfile
+    command: [sh, -c, "yarn seed && yarn build"]
+    depends_on:
+      - mongo
+    ports:
+      - "7200:7200"
+    restart: unless-stopped
 
 volumes:
   mongodb_data:

@@ -4,5 +4,5 @@ node_modules
 .env.production
 src/environments
 docker-compose.yml
-mongo-init.js
+mongo-authentication.js
 mongo-script-aws.js

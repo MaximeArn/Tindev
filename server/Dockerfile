@@ -1,7 +1,7 @@
 FROM node:14-alpine
 ENV SERVER=/server/ PORT=7200
 
-RUN yarn global add pm2
+# RUN yarn global add pm2
 
 WORKDIR ${SERVER}
 
@@ -12,4 +12,4 @@ COPY . ${SERVER}
 
 EXPOSE ${PORT}
 
-CMD /pm2-runtime src/start.js
+# CMD /pm2-runtime src/start.js
