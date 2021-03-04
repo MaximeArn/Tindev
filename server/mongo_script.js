@@ -185,23 +185,23 @@ const connection = require("./src/config/database");
 
   console.log("MongoDB Seed initialized");
 
-  users.forEach(async (user) => {
-    await User.create({
+  users.forEach((user) => {
+    User.create({
       ...user,
       activated: true,
       expire_at: null,
     });
   });
-  projects.forEach(
-    async (project) =>
-      await Project.create({
-        ...project,
-        image: "image-default.jpeg",
-        categories: ["Java", "Software", "AI", "Angular"],
-        author: "admin",
-      })
+
+  projects.forEach((project) =>
+    Project.create({
+      ...project,
+      image: "image-default.jpeg",
+      categories: ["Java", "Software", "AI", "Angular"],
+      author: "admin",
+    })
   );
-  categories.forEach(async (category) => await Category.create(category));
+  categories.forEach((category) => Category.create(category));
 
   console.log("MongoDB Seed done");
 })();

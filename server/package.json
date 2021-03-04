@@ -24,9 +24,10 @@
   },
   "scripts": {
     "start": "cross-env NODE_ENV=development nodemon src/start.js",
-    "start-prod": "cross-env NODE_ENV=production node src/start.js",
+    "build": "cross-env NODE_ENV=production node src/start.js",
     "test": "jest",
-    "seed": "node mongo_script.js"
+    "seed": "node mongo-script-aws.js --prod",
+    "init-db": "node mongo_script.js"
   },
   "devDependencies": {
     "jest": "^26.6.3",

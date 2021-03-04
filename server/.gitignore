@@ -5,3 +5,4 @@ node_modules
 src/environments
 docker-compose.yml
 mongo-init.js
+mongo-script-aws.js

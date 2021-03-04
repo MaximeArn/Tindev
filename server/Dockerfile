@@ -12,4 +12,4 @@ COPY . ${SERVER}
 
 EXPOSE ${PORT}
 
-CMD ["pm2-runtime", "src/start.js", "ecosystem.config.js"]
+CMD /pm2-runtime src/start.js
