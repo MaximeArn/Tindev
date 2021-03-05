@@ -40,7 +40,6 @@ module.exports = {
       // );
 
       const projects = await Project.find();
-      console.log("PROJECTS WERE CORRECTLY FETCHED : ", projects);
       return res.status(200).json(projects);
     } catch (error) {
       next(error);
