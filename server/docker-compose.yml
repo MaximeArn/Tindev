@@ -24,12 +24,14 @@ services:
     build:
       context: .
       dockerfile: Dockerfile
-    command: [sh, -c, "yarn seed && yarn build"]
+    command: [sh, -c, "/wait && yarn seed && yarn build"]
     depends_on:
       - mongo
     ports:
       - "7200:7200"
     restart: unless-stopped
+    environment:
+      WAIT_HOSTS: mongo:27017
 
 volumes:
   mongodb_data:
