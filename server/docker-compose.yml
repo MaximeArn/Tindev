@@ -18,11 +18,7 @@ services:
 
   tindev:
     container_name: tindev
-    # image: krysyx/tindev:1.0
-    image: node:14-alpine
-    build:
-      context: .
-      dockerfile: Dockerfile
+    image: krysyx/tindev:1.0
     command: [sh, -c, "/wait && yarn build"]
     depends_on:
       - mongo
