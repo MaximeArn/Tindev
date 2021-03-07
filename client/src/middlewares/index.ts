@@ -10,7 +10,10 @@ import admin from "./admin";
 import toasts from "./toasts";
 import { compose, applyMiddleware } from "redux";
 
-const storeEnhancer = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
+const storeEnhancer =
+  process.env.NODE_ENV === "development"
+    ? window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose
+    : compose;
 
 export default storeEnhancer(
   applyMiddleware(
