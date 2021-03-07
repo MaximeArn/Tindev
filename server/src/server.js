@@ -1,4 +1,4 @@
-require("dotenv").config({ path: `.env.${process.env.NODE_ENV}` });
+require("dotenv").config({ path: `${process.env.NODE_ENV}.env` });
 const express = require("express");
 const server = express();
 const http = require("http").createServer(server);

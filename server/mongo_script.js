@@ -1,4 +1,4 @@
-require("dotenv").config({ path: ".env.development" });
+require("dotenv").config({ path: "development.env" });
 const hashPassword = require("./src/utils/hashPassword");
 const { User, Project, Category } = require("./src/models");
 const connection = require("./src/config/database");

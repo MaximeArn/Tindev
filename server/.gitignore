@@ -1,7 +1,7 @@
 node_modules
 .env
-.env.development
-.env.production
+production.env
+development.env
 src/environments
 docker-compose.yml
 mongo-authentication.js

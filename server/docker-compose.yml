@@ -3,7 +3,7 @@ services:
   mongo:
     container_name: mongo
     image: mongo:latest
-    env_file: .env
+    env_file: production.env
     ports:
       - "27017:27017"
     restart: unless-stopped
@@ -18,13 +18,12 @@ services:
 
   tindev:
     container_name: tindev
-    env_file: .env
     # image: krysyx/tindev:1.0
     image: node:14-alpine
     build:
       context: .
       dockerfile: Dockerfile
-    command: [sh, -c, "/wait && yarn seed && yarn build"]
+    command: [sh, -c, "/wait && yarn build"]
     depends_on:
       - mongo
     ports:

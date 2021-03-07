@@ -11,11 +11,14 @@ module.exports = (req, res, next) => {
     cookies: { token },
   } = req;
 
+  console.log(path);
+
   if (path.match(unProtectedPaths)) {
     return next();
   }
 
   if (!token) {
+    console.log("AH IL ETAIT PAS PRESENT : ", token);
     throw new TokenError("Please sign in", 401);
   }
 
