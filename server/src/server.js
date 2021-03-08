@@ -13,6 +13,7 @@ const cors = require("cors");
 const corsSettings = require("./config/cors");
 const adminMiddleware = require("./middlewares/admin");
 const tokenVerification = require("./middlewares/tokenVerification");
+const path = require("path");
 const {
   authRouterWrapper,
   usersRouter,
