@@ -28,8 +28,7 @@ const ioNameSpace = io.of("/chat");
 const connectedUsers = {};
 
 server.use(cors(corsSettings));
-server.use(express.static(`${__dirname}/client/build`));
-// server.use(express.static(`${__dirname}/public`));
+server.use(express.static(`${__dirname}/public`));
 server.use(express.json());
 server.use(cookieParser());
 server.use(tokenVerification);
