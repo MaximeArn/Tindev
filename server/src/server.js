@@ -13,7 +13,6 @@ const cors = require("cors");
 const corsSettings = require("./config/cors");
 const adminMiddleware = require("./middlewares/admin");
 const tokenVerification = require("./middlewares/tokenVerification");
-const path = require("path");
 const {
   authRouterWrapper,
   usersRouter,
@@ -29,7 +28,8 @@ const ioNameSpace = io.of("/chat");
 const connectedUsers = {};
 
 server.use(cors(corsSettings));
-server.use(express.static(`${__dirname}/public`));
+server.use(express.static(`${__dirname}/client/build`));
+// server.use(express.static(`${__dirname}/public`));
 server.use(express.json());
 server.use(cookieParser());
 server.use(tokenVerification);
