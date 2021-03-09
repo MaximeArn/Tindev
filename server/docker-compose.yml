@@ -19,7 +19,7 @@ services:
   tindev:
     container_name: tindev
     image: krysyx/tindev:1.0
-    command: [sh, -c, "/wait && pm2-runtime src/start.js"]
+    command: [sh, -c, "/wait && pm2-runtime start ecosystem.config.js"]
     depends_on:
       - mongo
     ports:
