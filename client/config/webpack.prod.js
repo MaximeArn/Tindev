@@ -1,4 +1,4 @@
-const paths = require("./paths");
+const { build } = require("./paths");
 const { merge } = require("webpack-merge");
 const common = require("./webpack.common.js");
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
@@ -10,7 +10,7 @@ module.exports = merge(common, {
   mode: "production",
   devtool: false,
   output: {
-    path: paths.build,
+    path: build,
     publicPath: "/",
     filename: "js/[name].[contenthash].js",
   },
